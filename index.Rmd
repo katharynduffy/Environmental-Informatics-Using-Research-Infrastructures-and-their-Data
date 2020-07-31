@@ -1,0 +1,21 @@
+--- 
+title: "Survey in Ecological Data Collection Tools & Products"
+author: "Dr. Katharyn Duffy, Dr. Ben Ruddell"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: 'katharynduffy/katharynduffy.github.io'
+description: "Course text for NAU INF 550"
+---
+
+# Preface {-}
+
+Welcome to our live INF550 course textbook.  This live text is a combination of materials, videos, example code, and assignments.
+
+## Acknowledgements {-}
+
+As with all open source data and tools, this book is built upon the shoulders of giants who came before me. Special thanks to Megan Jones and Donal O'Leary at Battelle for their support in pulling NEON materials. 
