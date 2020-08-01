@@ -1,0 +1,92 @@
+# Section Title
+
+
+--
+Estimated Time: ___ hour(s)
+--
+
+<div id="ds-challenge" markdown="1">
+
+
+<div id="ds-challenge" markdown="1">
+**Course participants**: As you review this information, please
+consider the
+<a href="https://www.neonscience.org/di-rs-capstone" target="_blank">final course project </a>
+that you will work on at the over this semester. At the end of this section, you will
+document an initial research question or idea and associated data needed to
+address that question, that you may want to explore while pursuing this course.
+</div>
+
+<div id="ds-objectives" markdown="1">
+
+--
+
+## Learning Objectives
+At the end of this activity, you will be able to:
+
+
+ </div>
+ 
+--
+
+## Exercises
+
+### Computational
+1. Sign up for a NEON API token
+2. waiting for materials from NEON...
+
+<div id="ds-challenge" markdown="1">
+
+### Written
+
+**Question 1:** How might or does the NEON project
+intersect with your current research or future career goals? *(1 paragraph)*
+</div>
+
+
+
+<div id="ds-challenge" markdown="1">
+**Question 2:**
+Use the map in week 2:Intro to NEON to answer the following questions. Consider the research question that you may explore as your final semester project or a current project that you are working on and answer each of the following questions:
+
+* Are there NEON field sites that are in study regions of interest to you?  
+* What domains are the sites located in?  
+* What NEON field sites do your current research or Capstone Project ideas
+coincide with?  
+* Is the site or sites core or relocatable?  
+* Is or are they terrestrial or aquatic?  
+* Are there data available for the NEON field site(s) that you are most
+interested in? What kind of data are available?
+</div>
+
+<div id="ds-challenge" markdown="1">
+**Question 3:**
+Consider either your current or future research, or a question you’d like to
+address durring this course:
+
+* Which types of NEON data may be more useful to address these questions?
+* What non-NEON data resources could be combined with NEON data to help address your question?
+* What challenges, if any, could you foresee when beginning to work with these
+data?
+</div>
+
+<div id="ds-challenge" markdown="1">
+**Question 4:**
+Use the Data Portal tools to investigate the data availability for the field
+sites you’ve already identified in the previous questions:
+
+* What types of aquatic or terrestrial data are currently available? Remote sensing data?  
+* Of these, what type of data are you most interested in working with for your project during this course?  
+* For what time period does the data cover?  
+* What format is the downloadable file available in?  
+* Where is the metadata to support this data?  
+</div>
+
+
+<div id="ds-challenge" markdown="1">
+
+**Intro to USA-NPN Culmination Activity**
+
+Write up a 1-page summary of a project that you might want to explore using NEON data over the duration of this course. Include the types of USA-NPN (and other data) that you will need to implement this project. Save this summary as you will be refining and adding to your ideas over the course of the semester.
+
+
