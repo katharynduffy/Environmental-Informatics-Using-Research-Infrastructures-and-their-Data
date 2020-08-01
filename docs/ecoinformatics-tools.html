@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Ecoinformatics Tools | Survey in Ecological Data Collection Tools &amp; Products</title>
+  <meta name="description" content="Course text for NAU INF 550" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Ecoinformatics Tools | Survey in Ecological Data Collection Tools &amp; Products" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Course text for NAU INF 550" />
+  <meta name="github-repo" content="katharynduffy/katharynduffy.github.io" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Ecoinformatics Tools | Survey in Ecological Data Collection Tools &amp; Products" />
+  
+  <meta name="twitter:description" content="Course text for NAU INF 550" />
+  
+
+<meta name="author" content="Dr. Katharyn Duffy, Dr. Ben Ruddell" />
+
+
+<meta name="date" content="2020-07-31" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="introduction-to-neon-its-data.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">INF550: EcoInformatics data collection tools & products, </a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="ecoinformatics-tools.html"><a href="ecoinformatics-tools.html"><i class="fa fa-check"></i><b>1</b> Ecoinformatics Tools</a><ul>
+<li class="chapter" data-level="1.1" data-path="ecoinformatics-tools.html"><a href="ecoinformatics-tools.html#pre-course-skills-setup"><i class="fa fa-check"></i><b>1.1</b> Pre-Course Skills &amp; Setup</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="ecoinformatics-tools.html"><a href="ecoinformatics-tools.html#installing-or-updating-r"><i class="fa fa-check"></i><b>1.1.1</b> Installing or Updating R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="ecoinformatics-tools.html"><a href="ecoinformatics-tools.html#windows-rrstudio-setup"><i class="fa fa-check"></i><b>1.1.2</b> Windows R/RStudio Setup</a></li>
+<li class="chapter" data-level="1.1.3" data-path="ecoinformatics-tools.html"><a href="ecoinformatics-tools.html#mac-rrstudio-setup"><i class="fa fa-check"></i><b>1.1.3</b> Mac R/RStudio Setup</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="ecoinformatics-tools.html"><a href="ecoinformatics-tools.html#linux-rrstudio-setup"><i class="fa fa-check"></i><b>1.2</b> Linux R/RStudio Setup</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="ecoinformatics-tools.html"><a href="ecoinformatics-tools.html#install-basic-packages-for-this-course"><i class="fa fa-check"></i><b>1.2.1</b> Install basic packages for this course</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="ecoinformatics-tools.html"><a href="ecoinformatics-tools.html#installing-and-setting-up-git-github-on-your-machine"><i class="fa fa-check"></i><b>1.3</b> Installing and Setting up Git &amp; Github on Your Machine</a></li>
+<li class="chapter" data-level="1.4" data-path="ecoinformatics-tools.html"><a href="ecoinformatics-tools.html#installing-atom"><i class="fa fa-check"></i><b>1.4</b> Installing Atom</a></li>
+<li class="chapter" data-level="1.5" data-path="ecoinformatics-tools.html"><a href="ecoinformatics-tools.html#linking-rstudio-to-git"><i class="fa fa-check"></i><b>1.5</b> Linking RStudio to Git</a></li>
+<li class="chapter" data-level="1.6" data-path="ecoinformatics-tools.html"><a href="ecoinformatics-tools.html#how-we-will-be-conducting-this-course"><i class="fa fa-check"></i><b>1.6</b> How we will be Conducting this Course</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html"><i class="fa fa-check"></i><b>2</b> Introduction to NEON &amp; its Data</a></li>
+<li class="chapter" data-level="3" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html"><i class="fa fa-check"></i><b>3</b> Introduction to USA-NPN &amp; its Data</a><ul>
+<li class="chapter" data-level="3.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#the-usa-npn-project-mission-design"><i class="fa fa-check"></i><b>3.1</b> The USA-NPN Project Mission &amp; Design</a></li>
+<li class="chapter" data-level="3.2" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#exercises"><i class="fa fa-check"></i><b>3.2</b> Exercises</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#computational"><i class="fa fa-check"></i><b>3.2.1</b> Computational</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="usa-npn-data-access-uses-challenges.html"><a href="usa-npn-data-access-uses-challenges.html"><i class="fa fa-check"></i><b>4</b> USA-NPN Data Access, Uses &amp; Challenges</a><ul>
+<li class="chapter" data-level="4.1" data-path="usa-npn-data-access-uses-challenges.html"><a href="usa-npn-data-access-uses-challenges.html#example-one"><i class="fa fa-check"></i><b>4.1</b> Example one</a></li>
+<li class="chapter" data-level="4.2" data-path="usa-npn-data-access-uses-challenges.html"><a href="usa-npn-data-access-uses-challenges.html#example-two"><i class="fa fa-check"></i><b>4.2</b> Example two</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html"><i class="fa fa-check"></i><b>5</b> Digital Repeat Photography Networks</a><ul>
+<li class="chapter" data-level="5.1" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#the-phenocam-network-mission-design"><i class="fa fa-check"></i><b>5.1</b> The PhenoCam Network Mission &amp; Design</a></li>
+<li class="chapter" data-level="5.2" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#exercises"><i class="fa fa-check"></i><b>5.2</b> Exercises</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#computational"><i class="fa fa-check"></i><b>5.2.1</b> Computational</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="neon-aop-introduction.html"><a href="neon-aop-introduction.html"><i class="fa fa-check"></i><b>6</b> NEON AOP Introduction</a><ul>
+<li class="chapter" data-level="6.1" data-path="neon-aop-introduction.html"><a href="neon-aop-introduction.html#about-hyperspectral-remote-sensing-data"><i class="fa fa-check"></i><b>6.1</b> About Hyperspectral Remote Sensing Data</a></li>
+<li class="chapter" data-level="6.2" data-path="neon-aop-introduction.html"><a href="neon-aop-introduction.html#key-metadata-for-hyperspectral-data"><i class="fa fa-check"></i><b>6.2</b> Key Metadata for Hyperspectral Data</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="neon-aop-introduction.html"><a href="neon-aop-introduction.html#bands-and-wavelengths"><i class="fa fa-check"></i><b>6.2.1</b> Bands and Wavelengths</a></li>
+<li class="chapter" data-level="6.2.2" data-path="neon-aop-introduction.html"><a href="neon-aop-introduction.html#spectral-resolution"><i class="fa fa-check"></i><b>6.2.2</b> Spectral Resolution</a></li>
+<li class="chapter" data-level="6.2.3" data-path="neon-aop-introduction.html"><a href="neon-aop-introduction.html#full-width-half-max-fwhm"><i class="fa fa-check"></i><b>6.2.3</b> Full Width Half Max (FWHM)</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/katharynduffy/katharynduffy.github.io" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Survey in Ecological Data Collection Tools &amp; Products</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ecoinformatics-tools" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Ecoinformatics Tools</h1>
+<p>As an Ecoinformatician you <em>need</em> to be able to:</p>
+<ol style="list-style-type: decimal">
+<li>Pull data from Application Programing Interfaces (APIs)
+<ul>
+<li>More on this in Chapter 2</li>
+</ul></li>
+<li><p>Organize and document your code and data</p></li>
+<li>Version control your code to avoid disaster and make it reproducible
+<ul>
+<li>For you, your collaborators, and/or the wider community</li>
+</ul></li>
+<li><p>Push your code up to public-facing repositories</p></li>
+<li><p>Pull other’s code from public repositories.</p></li>
+</ol>
+<p>More thoughts on the benefits and power of reproducibility <a href="https://github.com/katharynduffy/ECOSS_reproducible_science">can be found here</a></p>
+<p>To be successful, both in this course and in your careers you will need these skills. This is why <strong>they are a requirement</strong> for this course. If you already using these skills on a daily basis, fantastic! If some of this sounds a little greek, I have placed lesson links throughout this chapter so that you can build these skills and be successful in this course.</p>
+<div id="pre-course-skills-setup" class="section level2">
+<h2><span class="header-section-number">1.1</span> Pre-Course Skills &amp; Setup</h2>
+<p>For the purpose of this course we will largely be using the following tools to access, pull, and explore data:</p>
+<ol style="list-style-type: decimal">
+<li>R &amp; Rstudio</li>
+<li>Git, GitHub, &amp; Atom.io</li>
+<li>Markdown &amp; Rmarkdown</li>
+</ol>
+<p>As such we will need to install and/or update these tools on your personal computer <em>before</em> our first day of class. While we chose R for this course, nearly all of the packages and data are fully available and transferable to Python or other languages. If you’d like to brush up on your R skills I highly recommend Data Carpentry Boostcamp’s free <a href="http://swcarpentry.github.io/r-novice-gapminder">R for Reproducible Scientific Analysis</a> course.</p>
+<div id="installing-or-updating-r" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> Installing or Updating R</h3>
+<p>Please check your version of R. You will need R 3.6.0+</p>
+<p>How to check your version in R or RStudio if you already have it:</p>
+<pre><code>&gt; version
+               _                           
+platform       x86_64-apple-darwin15.6.0   
+arch           x86_64                      
+os             darwin15.6.0                
+system         x86_64, darwin15.6.0        
+status                                     
+major          3                           
+minor          5.1                         
+year           2018                        
+month          07                          
+day            02                          
+svn rev        74947                       
+language       R                           
+version.string R version 3.5.1 (2018-07-02)
+nickname       Feather Spray  </code></pre>
+<p>If you don’t already have R or need to update it <a href="https://cran.rstudio.com/">do so here.</a></p>
+</div>
+<div id="windows-rrstudio-setup" class="section level3">
+<h3><span class="header-section-number">1.1.2</span> Windows R/RStudio Setup</h3>
+<p>After you have downloaded R, run the .exe file that was just downloaded
+Go to the <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio Download page</a>
+Under Installers select RStudio X.XX.XXX - e.g. Windows Vista/7/8/10
+Double click the file to install it
+Once R and RStudio are installed, click to open RStudio. If you don’t get any error messages you are set. If there is an error message, you will need to re-install the program.</p>
+</div>
+<div id="mac-rrstudio-setup" class="section level3">
+<h3><span class="header-section-number">1.1.3</span> Mac R/RStudio Setup</h3>
+<p>After you have downloaded R, double click on the file that was downloaded and R will install
+Go to the <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio Download page</a>
+Under Installers select RStudio 1.2.1135 - Mac OS X XX.X (64-bit) to download it.
+Once it’s downloaded, double click the file to install it.
+Once R and RStudio are installed, click to open RStudio. If you don’t get any error messages you are set. If there is an error message, you will need to re-install the program.</p>
+</div>
+</div>
+<div id="linux-rrstudio-setup" class="section level2">
+<h2><span class="header-section-number">1.2</span> Linux R/RStudio Setup</h2>
+<p>R is available through most Linux package managers. You can download the binary files for your distribution from CRAN. Or you can use your package manager.
+e.g. for Debian/Ubuntu</p>
+<pre><code>  run sudo apt-get install r-base</code></pre>
+<p>and for Fedora</p>
+<pre><code>  run sudo yum install R</code></pre>
+<p>To install RStudio, go to the <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio Download page</a>
+Under Installers select the version for your distribution.
+Once it’s downloaded, double click the file to install it
+Once R and RStudio are installed, click to open RStudio. If you don’t get any error messages you are set. If there is an error message, you will need to re-install the program.</p>
+<div id="install-basic-packages-for-this-course" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Install basic packages for this course</h3>
+<p>You can run the following script to make sure all the required packages are properly installed on your computer.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># list of required packages</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">list.of.packages &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="st">&#39;data.table&#39;</span>,</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="st">&#39;tidyverse&#39;</span>,</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="st">&#39;jsonlite&#39;</span>,</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="st">&#39;jpeg&#39;</span>,</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">  <span class="st">&#39;png&#39;</span>,</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">  <span class="st">&#39;raster&#39;</span>,</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">  <span class="st">&#39;rgdal&#39;</span>,</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">  <span class="st">&#39;rmarkdown&#39;</span>, </a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">  <span class="st">&#39;knitr&#39;</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">)</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co"># identify new (not installed) packages</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">new.packages &lt;-<span class="st"> </span>list.of.packages[<span class="op">!</span>(list.of.packages <span class="op">%in%</span><span class="st"> </span><span class="kw">installed.packages</span>()[,<span class="st">&quot;Package&quot;</span>])]</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co"># install new (not installed) packages</span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="cf">if</span>(<span class="kw">length</span>(new.packages)) </a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">  <span class="kw">install.packages</span>(new.packages, </a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">                   <span class="dt">repos=</span><span class="st">&#39;http://cran.rstudio.com/&#39;</span>)</a>
+<a class="sourceLine" id="cb4-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="co"># load all of the required libraries</span></a>
+<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="kw">sapply</span>(list.of.packages, library, <span class="dt">character.only =</span> T)</a></code></pre></div>
+<p><strong>Note</strong>: On some operating systems, you may need to install the Geospatial Data Abstraction Library (GDAL). More information about GDAL can be found from <a href="https://trac.osgeo.org/gdal/wiki/DownloadingGdalBinaries">here</a>.</p>
+</div>
+</div>
+<div id="installing-and-setting-up-git-github-on-your-machine" class="section level2">
+<h2><span class="header-section-number">1.3</span> Installing and Setting up Git &amp; Github on Your Machine</h2>
+<p>For this course you will need:
+1. Git installed on your local machine
+2. Very basic bash scripting
+3. A linked GitHub account
+4. To link RStudio to git via RStudio or Atom.io</p>
+<p>As we will be using these skills constantly, they are a <em>pre-requisite</em> for this course. If you don’t yet have these skills it’s okay! You can learn everything that you need to know via the following freely available resources:</p>
+<p>*<a href="http://swcarpentry.github.io/shell-novice">The Unix Shell</a></p>
+<p>*<a href="http://swcarpentry.github.io/git-novice">Version Control with Git</a></p>
+<p>*<a href="https://happygitwithr.com/">Happy Git with R</a></p>
+<p>If you are learning these skills from scratch I estimate that you will need to devote ~4-6 hours to get set up and comfortable with the various workflows. Alo remember that I have code office hours every week and that Stack Exchange is your friend.</p>
+</div>
+<div id="installing-atom" class="section level2">
+<h2><span class="header-section-number">1.4</span> Installing Atom</h2>
+<p><a href="https://atom.io/">Atom.io</a> is a powerful and useful text editor for the follwng reasons:
+1. It is langugae agnostic
+2. It fully integrates with git and github
++ You can use it to push/pull/resolve conflicts and write code all in one space.</p>
+</div>
+<div id="linking-rstudio-to-git" class="section level2">
+<h2><span class="header-section-number">1.5</span> Linking RStudio to Git</h2>
+<p><a href="https://happygitwithr.com/rstudio-git-github.html">Happy Git with R</a> has a fantastic tutorial to help you link Rstudio-Git-Github on your local machine and push/pull from or to public repositories.</p>
+</div>
+<div id="how-we-will-be-conducting-this-course" class="section level2">
+<h2><span class="header-section-number">1.6</span> How we will be Conducting this Course</h2>
+<p>At the end of each chapter you will find a set of <strong>Exercises</strong>. At the end of the assigned chapter you will be expected to submit via BBLearn two files:
+1. An <a href="https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">RMarkdown file</a> with the naming convention:
+LASTNAME_COURSECODE_Section#.Rmd, and
+2. A knitted .PDF with the same naming convention:
+LASTNAME_COURSECODE_Section#.pdf</p>
+<p>To generate these files you have two options:</p>
+<ol style="list-style-type: decimal">
+<li>Click on the pencil and pad logo in the top of this text, copy the exercise section code, and drop it into your own .Rmd.</li>
+<li>Git clone our <a href="https://github.com/katharynduffy/katharynduffy.github.io">course Github Repository</a>, navigate to the ‘Exercises’ folder, and use that .Rmd as a template.</li>
+</ol>
+<p><em>Note: Exercises submited in any other format, or those missing questions will not be graded</em></p>
+<p>To generate your .PDF to upload, in your RMarkdown file simply push the ‘Knit’ button at the top of your document.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction-to-neon-its-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/katharynduffy/katharynduffy.github.io/edit/master/01_Pre-Course_Skills.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
