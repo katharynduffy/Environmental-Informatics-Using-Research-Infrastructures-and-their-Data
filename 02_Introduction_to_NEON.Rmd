@@ -1,27 +1,21 @@
+
 # Introduction to NEON & its Data
 
 
---
-Estimated Time: 1 hour
---
 
-<div id="ds-challenge" markdown="1">
-Here we will broadly overview of the National Ecological Observatory
-Network (NEON). Please carefully read through these materials and links that
-discuss NEON’s mission and design.
+>Estimated Time: 1 hour
 
-<div id="ds-challenge" markdown="1">
+
+
 **Course participants**: As you review this information, please
-consider the
-<a href="https://www.neonscience.org/di-rs-capstone" target="_blank">final course project </a>
-that you will work on at the over this semester. At the end of week two, you will
+consider thefinal course project that you will work on at the over this semester. At the end of week two, you will
 document an initial research question or idea and associated data needed to
 address that question, that you may want to explore while pursuing this course.
 </div>
 
 <div id="ds-objectives" markdown="1">
 
---
+
 
 ## Learning Objectives
 At the end of this activity, you will be able to:
@@ -32,7 +26,7 @@ At the end of this activity, you will be able to:
  NEON.
  </div>
  
---
+
 
 ## The NEON Project Mission & Design
 
@@ -41,7 +35,7 @@ divides the continent into 20 statistically different eco-climatic domains. Each
 NEON field site is located within an eco-climatic domain.
 
 
-#### The Science and Design of NEON
+## The Science and Design of NEON
 
 To gain a better understanding of the broad scope fo NEON watch this 4 minute long
 video.
@@ -53,7 +47,8 @@ Please, read the following page about
 
 ## NEON's Spatial Design
 
-#### The Spatial Design of NEON
+### The Spatial Design of NEON
+
 Watch this 4:22 minute video exploring the spatial design of NEON field sites.
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/zYr9vII-iu4" frameborder="0" allowfullscreen></iframe>
@@ -95,9 +90,8 @@ filter sites by name, site host, domain or state.
 <a href="https://www.neonscience.org/data/maps-spatial-data" target="_blank">maps, kmz, or shapefiles of the field sites here</a>.
 </div>
 
-## NEON Data
 
-#### How NEON Collects Data
+## How NEON Collects Data
 Watch this 3:06 minute video exploring the data that NEON collects.
 <iframe width="640" height="360" src="https://www.youtube.com/embed/9IbbdQC1N3A" frameborder="0" allowfullscreen></iframe>
 
@@ -139,7 +133,7 @@ tower/instrumentation setup and others. Learn more here the
 </div>
 
 
-### Accessing NEON Data
+## Accessing NEON Data
 
 NEON data are processed and go through quality assurance quality control checks
 at NEON headquarters in Boulder, CO.
@@ -186,7 +180,7 @@ with other community resources, NEON data can be accessed through the portals.
 Examples include Phenocam, BOLD, Ameriflux, and others. You can learn more in the
 documentation for individual data products.  
 
-## Accessing NEON Data
+## Hands on: Accessing NEON Data
 
 ### Via a NEON API Token
 
@@ -214,25 +208,27 @@ focus on using tokens with the neonUtilities R package.
 
 <div id="ds-objectives" markdown="1">
 
-## Objectives
-After completing this activity, you will be able to:
+### Objectives
+After completing this section, you will be able to:
 
  * Create a NEON API token 
  * Use your token when downloading data with neonUtilities 
+ 
 
-## Things You’ll Need To Complete This Tutorial
+
+### Things You’ll Need To Complete This Tutorial
 You will need a version of R (3.4.1 or higher) and, preferably, `RStudio` 
 loaded on your computer to complete this tutorial.
 
 ### Install R Packages
 
-* **neonUtilities:** `install.packages("neonUtilities")`
+1. **neonUtilities:** `install.packages("neonUtilities")`
 
 ## Additional Resources
 
-* NEON <a href="http://data.neonscience.org" target="_blank"> Data Portal </a>
-* <a href="https://github.com/NEONScience" target="_blank">NEONScience GitHub Organization</a>
-* <a href="https://www.neonscience.org/neonDataStackR" target="_blank">neonUtilities tutorial</a>
+2. NEON <a href="http://data.neonscience.org" target="_blank"> Data Portal </a>
+3.  <a href="https://github.com/NEONScience" target="_blank">NEONScience GitHub Organization</a>
+4. <a href="https://www.neonscience.org/neonDataStackR" target="_blank">neonUtilities tutorial</a>
 
 </div>
 
@@ -420,13 +416,12 @@ foliar <- loadByProduct(dpID="DP1.10026.001", site="all",
 
 
 
-#### Part 2: Pulling NEON Data via the API
+### Part 2: Pulling NEON Data via the API
 
 This is a tutorial in pulling data from the NEON API or Application 
 Programming Interface. The tutorial uses R and the R package httr, but the core 
 information about the API is applicable to other languages and approaches.
 
-## NEON data
 As a reminder, there are 3 basic categories of NEON data:
 
 1. Observational - Data collected by a human in the field, or in an analytical 
@@ -441,18 +436,22 @@ are explained in the first section, on observational data.
 
 
 <div id="ds-objectives" markdown="1">
-## Objectives
+
+
+### Objectives
 
 After completing this activity, you will be able to:
 
 * Pull observational, instrumentation, and geolocation data from the NEON API.
 * Transform API-accessed data from JSON to tabular format for analyses.
 
-## Things You’ll Need To Complete This Tutorial
+
+
+### Things You’ll Need To Complete This Tutorial
 To complete this tutorial you will need the most current version of R and, 
 preferably, RStudio loaded on your computer.
 
-### Install R Packages
+#### Install R Packages
 
 * **httr:** `install.packages("httr")`
 * **jsonlite:** `install.packages("jsonlite")`
@@ -464,7 +463,7 @@ preferably, RStudio loaded on your computer.
 
 Note, you must have devtools installed & loaded, prior to loading geoNEON or neonUtilities. 
 
-### Additional Resources
+#### Additional Resources
 
 * <a href="http://data.neonscience.org/data-api" target="_blank">Webpage for the NEON API</a>
 * <a href="https://github.com/NEONScience/neon-data-api" target="_blank">GitHub repository for the NEON API</a>
@@ -485,13 +484,13 @@ programmatically pull data into their analyses. (Quoted from the NEON Observator
 Blog story: 
 <a href="https://www.neonscience.org/observatory/observatory-blog/api-data-availability-viewer-now-live-neon-data-portal" target ="_blank"> API and data availability viewer now live on the NEON data portal</a>.)
 
-## Anatomy of an API call
+### Anatomy of an API call
 
 An example API call: http://data.neonscience.org/api/v0/data/DP1.10003.001/WOOD/2015-07
 
 This includes the base URL, endpoint, and target.
 
-### Base URL: 
+#### Base URL: 
 <span style="color:#A00606;font-weight:bold">http://data.neonscience.org/api/v0</span><span style="color:#A2A4A3">/data/DP1.10003.001/WOOD/2015-07</span>
 
 Specifics are appended to this in order to get the data or metadata you're 
@@ -499,7 +498,7 @@ looking for, but all calls to this API will include the base URL. For the NEON
 API, this is http://data.neonscience.org/api/v0 --
 not clickable, because the base URL by itself will take you nowhere!
 
-### Endpoints: 
+#### Endpoints: 
 <span style="color:#A2A4A3">http://data.neonscience.org/api/v0</span><span style="color:#A00606;font-weight:bold">/data</span><span style="color:#A2A4A3">/DP1.10003.001/WOOD/2015-07</span>
 
 What type of data or metadata are you looking for?
@@ -521,7 +520,7 @@ What type of data or metadata are you looking for?
 
 The specific data product, site, or location you want to get data for.
 
-## Observational data (OS)
+### Observational data (OS)
 Which product do you want to get data for? Consult the <a href="http://data.neonscience.org/data-products/explore" target="_blank">Explore Data Products page</a>.
 
 We'll pick Breeding landbird point counts, DP1.10003.001
@@ -738,7 +737,7 @@ barplot(clusterBySp$total, names.arg=clusterBySp$scientificName,
 Wow! There are lots of *Agelaius phoeniceus* (Red-winged Blackbirds) at WOOD in July. 
 
 
-## Instrumentation data (IS)
+### Instrumentation data (IS)
 
 The process is essentially the same for sensor data. We'll do the same series of 
 queries for Soil Temperature, DP1.00041.001. Let's use data from Moab in March 
@@ -816,7 +815,7 @@ plot(soil.temp$soilTempMean~as.POSIXct(soil.temp$startDateTime,
 As we'd expect we see daily fluctuation in soil temperature. 
 
 
-## Remote sensing data (AOP)
+### Remote sensing data (AOP)
 
 Again, the process of determining which sites and time periods have data, and 
 finding the URLs for those data, is the same as for the other data types. We'll 
@@ -883,7 +882,7 @@ working directory.
 	</figcaption>
 </figure>
 
-## Geolocation data
+### Geolocation data
 
 You may have noticed some of the spatial data referenced above are a bit vague, 
 e.g. "soil plot 2, 4th depth below the surface."
@@ -980,7 +979,7 @@ brd.point.pt <- getLocTOS(brd.point, "brd_perpoint")
 Now you can see the individual points where the respective point counts were 
 located. 
 
-## Taxonomy
+### Taxonomy
 
 NEON maintains accepted taxonomies for many of the taxonomic identification 
 data we collect. NEON taxonomies are available for query via the API; they 

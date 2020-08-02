@@ -14,7 +14,7 @@ As an Ecoinformatician you *need* to be able to:
 
 More thoughts on the benefits and power of reproducibility [can be found here](https://github.com/katharynduffy/ECOSS_reproducible_science)
 
-To be successful, both in this course and in your careers you will need these skills.  This is why **they are a requirement** for this course.  If you already using these skills on a daily basis, fantastic!  If some of this sounds a little greek, I have placed lesson links throughout this chapter so that you can build these skills and be successful in this course.
+To be successful, both in this course and in your careers you will need these skills.  This is why **they are a requirement** for this course.  If you already using these skills on a daily basis, fantastic!  If you don't feel that you have mastery in the workflows listed above I have placed lesson links throughout this chapter so that you can build these skills and be successful in this course.
 
 ## Pre-Course Skills & Setup
 
@@ -125,13 +125,13 @@ For this course you will need:
 
 As we will be using these skills constantly, they are a *pre-requisite* for this course.  If you don't yet have these skills it's okay!  You can learn everything that you need to know via the following freely available resources:
 
-*[The Unix Shell](http://swcarpentry.github.io/shell-novice)
+* [The Unix Shell](http://swcarpentry.github.io/shell-novice)
 
-*[Version Control with Git](http://swcarpentry.github.io/git-novice)
+* [Version Control with Git](http://swcarpentry.github.io/git-novice)
 
-*[Happy Git with R](https://happygitwithr.com/)
+* [Happy Git with R](https://happygitwithr.com/)
 
-If you are learning these skills from scratch I estimate that you will need to devote ~4-6 hours to get set up and comfortable with the various workflows.  Alo remember that I have code office hours every week and that Stack Exchange is your friend.
+If you are learning these skills from scratch I estimate that you will need to devote ~4-6 hours to get set up and comfortable with the various workflows.  Also remember that I have code office hours every week and that Stack Exchange is your friend.
 
 ## Installing Atom
 
@@ -160,7 +160,7 @@ At the end of each chapter you will find a set of **Exercises**.  At the end of 
 To generate these files you have two options:
 
 1. Click on the pencil and pad logo in the top of this text, copy the exercise section code, and drop it into your own .Rmd.
-2. Git clone our [course Github Repository](https://github.com/katharynduffy/katharynduffy.github.io), navigate to the 'Exercises' folder, and use that .Rmd as a template.
+2. Git clone our [course Github Repository](https://github.com/katharynduffy/katharynduffy.github.io), navigate to the '_Exercises' folder, and use that .Rmd as a template.
 
 *Note: Exercises submited in any other format, or those missing questions will not be graded*
 
