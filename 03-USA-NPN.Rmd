@@ -7,28 +7,29 @@
 <div id="ds-challenge" markdown="1">
 
 
-<div id="ds-challenge" markdown="1">
+
 
 **Course participants**: As you review this information, please
 consider the final course project
 that you will work on at the over this semester. At the end of this section, you will
 document an initial research question or idea and associated data needed to
 address that question, that you may want to explore while pursuing this course.
-</div>
 
-<div id="ds-objectives" markdown="1">
 
 
 
 ## Learning Objectives
 
 At the end of this activity, you will be able to:
+
   * Understand the mission and purpose of the USA-National Phenology Network (USA-NPN) and the nature of the citizen science program from which that the data is derived
+  
   * Access all of the various tools & resources that are available to pull USA-NPN geospatial and observational data
+  
   * Effectively use the rNPN package to integrate and analyze NPN data with other similar datasets
 
 
- </div>
+
 
 
 
@@ -117,15 +118,17 @@ A concise list of all available NPN data sets, tools, products.
 ### APIs
 This is a set of standard web service calls that allows for programmatic access to NPN data independent of any particular programming language.
 
-*[Documentation](https://docs.google.com/document/d/1yNjupricKOAXn6tY1sI7-EwkcfwdGUZ7lxYv7fcPjO8/edit?hl=en_US)
-*[Observational Data API](https://www.usanpn.org/node/34646)
-*[GeoServer API](https://www.usanpn.org/node/34645)
+  *[Documentation](https://docs.google.com/document/d/1yNjupricKOAXn6tY1sI7-EwkcfwdGUZ7lxYv7fcPjO8/edit?hl=en_US)
+  
+  *[Observational Data API](https://www.usanpn.org/node/34646)
+  
+  *[GeoServer API](https://www.usanpn.org/node/34645)
 
 ### Rnpn package
 This suite of R functions allows for programmatic access to both gridded and in-situ NPN data sets in an R environment. Full documentation available here: https://usa-npn.github.io/rnpn/
 
 ### Phenology Observation Portal (for observational data)
-[This tool](https://www.usanpn.org/data/observational) allows for users to download customized datasets of observational data from the National Phenology Database, which includes phenology data collected via the Nature's Notebook phenology program (2009-present for the United States), and additional integrated datasets, such as historical lilac and honeysuckle data (1955-present).  Filters are available to specify dates, regions, species and phenophases of interest. This provides access to all phenometrics, which represents varying degrees of data aggregation.
+[This tool](https://www.usanpn.org/data/observational) allows users to download customized datasets of observational data from the National Phenology Database, which includes phenology data collected via the Nature's Notebook phenology program (2009-present for the United States), and additional integrated datasets, such as historical lilac and honeysuckle data (1955-present).  Filters are available to specify dates, regions, species and phenophases of interest. This provides access to all phenometrics, which represents varying degrees of data aggregation.
 
 
 ### Geospatial Request Builder (for raster data and image files)
@@ -136,6 +139,7 @@ This suite of R functions allows for programmatic access to both gridded and in-
 [The Visualization Tool](https://data.usanpn.org/vis-tool/#/) provides an easier way to explore phenology data and maps. The user-friendly interface is intended to allow for searching for comparing general trends and quick-and-easy access to map data/products.
 
 ## Hands on: Accessing USA-NPN Data via rNPN
+
 ### Introduction
 
 The USA National Phenology Network (USA-NPN) is a USGS funded organization that collects phenological observation records from volunteer and professional scientists to better understand the impact of changes in the environment on the timing of species' life cycles. The USA-NPN also provides a number of raster-based climatological data sets and phenological models. These in-situ observation and geospatial, modeled datasets are available through a number of tools and data services.
