@@ -2,22 +2,19 @@
 # Introduction to NEON & its Data
 
 
-
->Estimated Time: 1 hour
-
+>Estimated Time: 2 hours
 
 
 **Course participants**: As you review this information, please
-consider thefinal course project that you will work on at the over this semester. At the end of week two, you will
-document an initial research question or idea and associated data needed to
+consider the final course project
+that you will work on at the over this semester. At the end of this section, you will document an initial research question or idea and associated data needed to
 address that question, that you may want to explore while pursuing this course.
-</div>
 
-<div id="ds-objectives" markdown="1">
 
 
 
 ## Learning Objectives
+
 At the end of this activity, you will be able to:
 
 * Explain the mission of the National Ecological Observatory Network (NEON).
@@ -47,7 +44,6 @@ Please, read the following page about
 
 ## NEON's Spatial Design
 
-### The Spatial Design of NEON
 
 Watch this 4:22 minute video exploring the spatial design of NEON field sites.
 

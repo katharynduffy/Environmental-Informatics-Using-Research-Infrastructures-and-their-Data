@@ -32,6 +32,8 @@ At the end of this activity, you will be able to:
 
 ## The PhenoCam Network Mission & Design
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_4uHLXL1yZA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Exercises
 
 ### Computational
