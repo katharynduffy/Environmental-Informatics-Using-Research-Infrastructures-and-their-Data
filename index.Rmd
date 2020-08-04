@@ -31,6 +31,21 @@ Informatics is arguably *the key scientific discipline* of the 21st century, and
 
 ## Acknowledgements {-}
 
-This first version of the textbook was developed to offer INF550, a graduate course in the School of Informatics Computing and Cyber Systems at Northern Arizona University in Fall 2020, with funding and leadership from the National Science Foundation funded National Research Traineeship "T3" option in Ecological and Environmental Informatics within a PhD program in Informatics and Computing (NRT-HDR #1829075, PI's Ogle, Barber, Richardson, Ruddell, and Sankey). Our research infrastructure partners were critical to the creation of the material. Our partners at NEON - Battelle deserve special gratitude for anchoring the project. The opinions expressed are those of the researchers, and not necessarily the funding agencies.  Special thanks to Megan Jones and Donal O'Leary at NEON-Battelle for their support in pulling NEON materials. 
+This first version of the textbook was developed to offer INF550, a graduate course in the School of Informatics Computing and Cyber Systems at Northern Arizona University in Fall 2020, with funding and leadership from the National Science Foundation funded National Research Traineeship "T3" option in Ecological and Environmental Informatics within a PhD program in Informatics and Computing *(NRT-HDR #1829075, PI's Ogle, Barber, Richardson, Ruddell, and Sankey)*. Our research infrastructure partners were critical to the creation of the material. Our partners at NEON - Battelle deserve special gratitude for anchoring the project. The opinions expressed are those of the researchers, and not necessarily the funding agencies.  Special thanks to Megan Jones and Donal O'Leary at NEON-Battelle for their support in pulling NEON materials. 
+
+### Key Contributors {-}
+
+*Alphabetized by organization, then last name*
+
+* Alycia Crall, *NEON - Battelle*
+* Megan Jones, *NEON - Battelle*
+* Hank Loescher, *NEON - Battelle*
+* Paula Mabee, *NEON - Battelle*
+* Donal O'Leary, *NEON - Battelle*
+* Andrew Richardson,  *PhenoCam - NAU*
+* Bijan Seyednasrollah,  *PhenoCam - NAU*
+* Theresa Crimmons, *USA-NPN*
+* Kathy Gerst, *USA-NPN*
+* Lee Marsh,  *USA-NPN*
 
 
