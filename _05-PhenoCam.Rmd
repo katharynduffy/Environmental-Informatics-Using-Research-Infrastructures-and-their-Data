@@ -40,7 +40,6 @@ We will use several packages in this tutoiral. All are availale from CRAN.
 library(hazer)
 library(jpeg)
 library(data.table)
-
 ```
 
 Before we start the image processing steps, let's read in and plot an image. This
@@ -84,7 +83,7 @@ blue_vector <- rgb_array[,,3]
 # plotting 
 par(mar=c(5,4,4,2)) 
 plot(density(red_vector), col = 'red', lwd = 2, 
-		 main = 'Density function of the RGB channels', ylim = c(0,5))
+     main = 'Density function of the RGB channels', ylim = c(0,5))
 lines(density(green_vector), col = 'green', lwd = 2)
 lines(density(blue_vector), col = 'blue', lwd = 2)
 
@@ -214,16 +213,21 @@ a stack of images.
 
 You can download the related datasets from 
 <a href="http://bit.ly/2F8w2Ia">here (direct download)</a>. 
+Download and extract the zip file to be used as input data for the following step.
 
-Download and extract the zip file to be used as input data for the followig step.
-
-
-
-```{r}
+```{r, download-pointreyes}
+pointreyes_url <- 'http://bit.ly/2F8w2Ia'
 
 # set up the input image directory
-#pointreyes_dir <- '/path/to/image/directory/'
-pointreyes_dir <- '/Users/kdw223/Research/katharynduffy.github.io/docs/data/pointreyes'
+data_dir <- 'data/'
+dir.create(data_dir, showWarnings = F)
+
+pointreyes_zip <- paste0(data_dir, 'pointreyes.zip')
+pointreyes_dir <- paste0(data_dir, 'pointreyes')
+
+#download zip file
+download.file(pointreyes_url, destfile = pointreyes_zip)
+unzip(pointreyes_zip, exdir = data_dir)
 
 # get a list of all .jpg files in the directory
 pointreyes_images <- dir(path = pointreyes_dir, 
@@ -252,37 +256,38 @@ pb <- txtProgressBar(0, n, style = 3)
 for(i in 1:n) {
   image_path <- pointreyes_images[i]
   img <- jpeg::readJPEG(image_path)
-  haze <- getHazeFactor(img)
+  hz <- getHazeFactor(img)
   
   haze_mat <- rbind(haze_mat, 
-                    data.table(file = image_path, 
-                               haze = haze[1], 
-                               A0 = haze[2]))
+                    data.frame(file = image_path, 
+                               haze = hz[1], 
+                               A0 = hz[2]))
   
   setTxtProgressBar(pb, i)
 }
+
 ```
 
 Now we have a matrix with haze and A0 values for all our images. Let's 
-compare top five images with low and high haze values.
+compare top three images with low and high haze values.
 
-```{r plot-foggy-clear, fig.height=10, fig.width=8, message=FALSE, eval=TRUE}
-top10_high_haze <-  haze_mat[order(haze), file][1:5]
-top10_low_haze <-  haze_mat[order(-haze), file][1:5]
+```{r plot-foggy-clear, fig.height=8, fig.width=8, message=FALSE, eval=TRUE}
+top10_high_haze <-  haze_mat[order(haze), file][1:3]
+top10_low_haze <-  haze_mat[order(-haze), file][1:3]
 
-par(mar= c(0,0,0,0), mfrow=c(5,2), oma=c(0,0,3,0))
+par(mar= c(0,0,0,0), mfrow=c(3,2), oma=c(0,0,3,0))
 
-for(i in 1:5){
+for(i in 1:3){
   img <- readJPEG(top10_low_haze[i])
-  plot(0:1,0:1, type='n', axes= FALSE, xlab= '', ylab = '')
-  rasterImage(img, 0, 0, 1, 1)
+  plot.new()
+  rasterImage(img, par()$usr[1], par()$usr[3], par()$usr[2], par()$usr[4])
   
   img <- readJPEG(top10_high_haze[i])
-  plot(0:1,0:1, type='n', axes= FALSE, xlab= '', ylab = '')
-  rasterImage(img, 0, 0, 1, 1)
-
+  plot.new()
+  rasterImage(img, par()$usr[1], par()$usr[3], par()$usr[2], par()$usr[4])
+  
 }
-mtext('Seasonal variation of forest at Duke Hardwood Forest', font = 2, outer = TRUE)
+mtext('Top images with low (right) and high (left) haze values at Point Reyes', font = 2, outer = TRUE)
 
 ```
 
@@ -327,9 +332,9 @@ values only for those images that are not classfied as "foggy".
 
 # loading all the images as a list of arrays
 pointreyes_clear_images <- dir(path = clear_dir, 
-                         pattern = '*.jpg',
-                         ignore.case = TRUE, 
-                         full.names = TRUE)
+                               pattern = '*.jpg',
+                               ignore.case = TRUE, 
+                               full.names = TRUE)
 
 img_list <- lapply(pointreyes_clear_images, FUN = jpeg::readJPEG)
 
@@ -357,9 +362,9 @@ The most recent release is available from
 
 In this section, we'll learn how to use an interactive open-source toolkit, the 
 <a href="https://cran.r-project.org/web/packages/xROI/index.html" target="_blank">xROI R package</a>
- that facilitates the process of time series extraction and improves the quality 
- of the final data. The xROI package provides a responsive environment for 
- scientists to interactively:
+that facilitates the process of time series extraction and improves the quality 
+of the final data. The xROI package provides a responsive environment for 
+scientists to interactively:
 
 a) delineate regions of interest (ROIs), 
 b) handle field of view (FOV) shifts, and
@@ -921,7 +926,7 @@ phenocamr::download_phenocam(
   site = 'harvard',
   phenophase = TRUE,
   out_dir = "."
-  )
+)
 ```
 
 Now look in your working directory.  You have data!  Read it in:
@@ -941,22 +946,22 @@ Let's take a look at the data:
 ```{r}
 p = plot_ly() %>%
   add_trace(
-  data = df,
-  x = ~ as.Date(date),
-  y = ~ smooth_gcc_90,
-  name = 'Smoothed GCC',
-  showlegend = TRUE,
-  type = 'scatter',
-  mode = 'line'
-) %>% add_markers(
-  data=df,
-  x ~ as.Date(date),
-  y = ~gcc_90,
-  name = 'GCC',
-  type = 'scatter',
-  color ='#07A4B5', 
-  opacity=.5
-)
+    data = df,
+    x = ~ as.Date(date),
+    y = ~ smooth_gcc_90,
+    name = 'Smoothed GCC',
+    showlegend = TRUE,
+    type = 'scatter',
+    mode = 'line'
+  ) %>% add_markers(
+    data=df,
+    x ~ as.Date(date),
+    y = ~gcc_90,
+    name = 'GCC',
+    type = 'scatter',
+    color ='#07A4B5', 
+    opacity=.5
+  )
 p
 ```
 
@@ -978,21 +983,21 @@ Let's create a simple plot_ly line graph of the smooth Green Chromatic Coordinat
 ```{r}
 p = plot_ly() %>%
   add_trace(
-  data = df,
-  x = ~ as.Date(date),
-  y = ~ smooth_gcc_90,
-  name = 'PhenoCam GCC',
-  showlegend = TRUE,
-  type = 'scatter',
-  mode = 'line'
-) %>% add_markers(
-  data= spring, 
-  x = ~ as.Date(spring$transition_25, origin = "1970-01-01"),
-  y = ~ spring$threshold_25,
-  type = 'scatter',
-  mode = 'marker',
-  name = 'Spring Dates')
-                
+    data = df,
+    x = ~ as.Date(date),
+    y = ~ smooth_gcc_90,
+    name = 'PhenoCam GCC',
+    showlegend = TRUE,
+    type = 'scatter',
+    mode = 'line'
+  ) %>% add_markers(
+    data= spring, 
+    x = ~ as.Date(spring$transition_25, origin = "1970-01-01"),
+    y = ~ spring$threshold_25,
+    type = 'scatter',
+    mode = 'marker',
+    name = 'Spring Dates')
+
 p
 ```
 
@@ -1022,7 +1027,7 @@ Let's load in a function to make plotting smoother.  I've dropped it here in the
 ```{r}
 gcc_plot = function(gcc, spring, fall){
   unix = "1970-01-01"
-
+  
   p = plot_ly(
     data = gcc,
     x = ~ date,
@@ -1158,13 +1163,13 @@ gcc_p <- gcc_p %>%
   layout(
     legend = list(x = 0.9, y = 0.9),
     xaxis = list(
-        type = 'date',
-        tickformat = " %B<br>%Y", 
-        title='Year'),
-        
-        yaxis = list(
-          title = 'PhenoCam GCC'
-  ))
+      type = 'date',
+      tickformat = " %B<br>%Y", 
+      title='Year'),
+    
+    yaxis = list(
+      title = 'PhenoCam GCC'
+    ))
 
 gcc_p
 ```
