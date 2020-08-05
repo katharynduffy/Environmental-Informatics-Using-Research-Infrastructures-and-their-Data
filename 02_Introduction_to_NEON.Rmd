@@ -245,15 +245,14 @@ Once you have an account, you can create an API token for yourself. At
 the bottom of the My Account page, you should see this bar: 
 
 ```{r,echo=FALSE}
-knitr::include_graphics('/Users/kdw223/Research/katharynduffy.github.io/images/account-page-token-view.png')
+knitr::include_graphics('/Users/kdw223/Research/katharynduffy.github.io/images/get-api-token-button.png')
 ```
 
 Click the 'GET API TOKEN' button. After a moment, you should see this:
 
 ```{r,echo=FALSE}
-knitr::include_graphics('/Users/kdw223/Research/katharynduffy.github.io/images/get-api-token-button.png')
+knitr::include_graphics('/Users/kdw223/Research/katharynduffy.github.io/images/account-page-token-view.png')
 ```
-
 
 Click on the Copy button to copy your API token to the clipboard.
 
