@@ -1,3 +1,141 @@
+--- 
+title: "Environmental Informatics Using Research Infrastructures and their Data"
+author: "Dr. Katharyn Duffy, Dr. Ben Ruddell"
+date: "2020 Edition"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+  #lib_dir: "docs"
+documentclass: book
+github-repo: 'katharynduffy/katharynduffy.github.io'
+description: "Course text for NAU INF 550"
+---
+
+# Preface {-}
+
+Placeholder
+
+
+## Acknowledgements {-}
+### Key Contributors {-}
+
+<!--chapter:end:index.Rmd-->
+
+
+# Ecoinformatics Tools
+
+Placeholder
+
+
+## Pre-Course Skills & Setup
+### Installing or Updating R
+### Windows R/RStudio Setup
+### Mac R/RStudio Setup
+## Linux R/RStudio Setup
+### Install basic packages for this course
+## Installing and Setting up Git & Github on Your Machine
+## Installing Atom
+## Linking RStudio to Git
+## How we will be Conducting this Course
+
+<!--chapter:end:01_Pre-Course_Skills.Rmd-->
+
+
+# Introduction to NEON & its Data
+
+Placeholder
+
+
+## Learning Objectives
+## The NEON Project Mission & Design
+## The Science and Design of NEON
+## NEON's Spatial Design
+### NEON Field Site Locations
+## How NEON Collects Data
+### Specimens & Samples
+### Airborne Remote Sensing
+## Accessing NEON Data
+### Pathways to access NEON Data
+## Hands on: Accessing NEON Data
+### Via a NEON API Token
+### Objectives
+### Things You’ll Need To Complete This Tutorial
+### Install R Packages
+## Additional Resources
+## Get a NEON API Token 
+## Use API token in neonUtilities 
+## Token management for open code
+## Option 1: Save token in a local file
+## Option 2: Save token to the R environment
+### Part 2: Pulling NEON Data via the API
+### Objectives
+### Things You’ll Need To Complete This Tutorial
+#### Install R Packages
+#### Additional Resources
+## What is an API?
+### Anatomy of an API call
+#### Base URL: 
+#### Endpoints: 
+### Targets:
+### Observational data (OS)
+### Instrumentation data (IS)
+### Remote sensing data (AOP)
+### Geolocation data
+#### Instrumentation data (both aquatic and terrestrial)
+#### Observational data - Aquatic
+#### Observational data - Terrestrial
+### Querying a single named location
+### Taxonomy
+## Stacking NEON data 
+## Exercises
+### Computational
+#### Part 1: Sign up for and Use an NEON API Token:
+### Written
+
+<!--chapter:end:02_Introduction_to_NEON.Rmd-->
+
+
+# Introduction to USA-NPN & its Data
+
+Placeholder
+
+
+## Learning Objectives
+## USA-NPN Project Mission & Design:
+## Vision & Mission
+### Relevant documents & background information:
+## USA-NPN’s Spatial design:
+## Types of USA-NPN Data:
+### Observational
+### Status & Intensity Data
+### Gridded Raster Data
+### Pheno-Forecasts
+## How to Access USA-NPN Data:
+### The USA-NPN Landing page
+### APIs
+### Rnpn package
+### Phenology Observation Portal (for observational data)
+### Geospatial Request Builder (for raster data and image files)
+### Visualization Tool
+## Hands on: Accessing USA-NPN Data via rNPN
+### Introduction
+### Accessing USA-NPN Observational Data
+#### Basic format for for Observational data calls
+#### Required Parameters
+#### Find stations at which a species has been observed
+### Status and Intensity Data
+### Individual Phenometrics
+### Site Phenometrics
+### Magnitude Phenometrics
+### USA-NPN Geospatial Data
+## Accumulated Growing Degree Day Products
+## Extended Spring Indices
+### Other Layers
+## Exercises
+### Computational
+### Written
+
+<!--chapter:end:03-USA-NPN.Rmd-->
+
 # Digital Repeat Photography Networks
 
 
@@ -40,6 +178,7 @@ We will use several packages in this tutoiral. All are availale from CRAN.
 library(hazer)
 library(jpeg)
 library(data.table)
+library(dplyr)
 ```
 
 Before we start the image processing steps, let's read in and plot an image. This
@@ -945,8 +1084,8 @@ df <- read.table("data/harvard_DB_1000_3day.csv", header = TRUE, sep = ",")
 
 # read in the transidation date file
 td <- read.table("data/harvard_DB_1000_3day_transition_dates.csv",
-                 header = TRUE,
-                 sep = ",")
+                header = TRUE,
+                sep = ",")
 ```
 
 Let's take a look at the data:
@@ -981,7 +1120,7 @@ Let's subset the transition date (td) for each year when 25% of the greenness am
 
 ```{r}
 # select the rising (spring dates) for 25% threshold of Gcc 90
-# spring <- td[td$direction == "rising" & td$gcc_value == "gcc_90",]
+spring <- td[td$direction == "rising" & td$gcc_value == "gcc_90",]
 
 ```
 
@@ -1025,7 +1164,7 @@ What would be a reasonable threshold for peak greenness?  Or autumn onset?  Look
 # #td <- phenophases("butte_GR_1000_3day.csv",
 # #            internal = TRUE,
 # #            upper_thresh = 0.8)
-# fall <- td[td$direction == "falling" & td$gcc_value == "gcc_90",]
+fall <- td[td$direction == "falling" & td$gcc_value == "gcc_90",]
 #Now generate a fall dataframe, what metrics should you use?
 ```
 
@@ -1273,4 +1412,23 @@ Write up a 1-page summary of a project that you might want to explore using Phen
 
 
 
+
+
+<!--chapter:end:05-PhenoCam.Rmd-->
+
+
+# NEON AOP Introduction
+
+Placeholder
+
+
+## Learning Objectives
+#### Mapping the Invisible
+## About Hyperspectral Remote Sensing Data
+## Key Metadata for Hyperspectral Data
+### Bands and Wavelengths
+### Spectral Resolution
+### Full Width Half Max (FWHM)
+
+<!--chapter:end:06-NEON_AOP.Rmd-->
 

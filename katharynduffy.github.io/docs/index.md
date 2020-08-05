@@ -4,6 +4,7 @@ author: "Dr. Katharyn Duffy, Dr. Ben Ruddell"
 date: "2020 Edition"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
+  #lib_dir: "docs"
 documentclass: book
 github-repo: 'katharynduffy/katharynduffy.github.io'
 description: "Course text for NAU INF 550"

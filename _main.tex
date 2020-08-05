@@ -1,0 +1,3174 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={Survey in Ecological Data Collection Tools \& Products},
+            pdfauthor={Dr.~Katharyn Duffy, Dr.~Ben Ruddell},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+
+\title{Survey in Ecological Data Collection Tools \& Products}
+\author{Dr.~Katharyn Duffy, Dr.~Ben Ruddell}
+\date{2020-08-02}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{preface}{%
+\chapter*{Preface}\label{preface}}
+\addcontentsline{toc}{chapter}{Preface}
+
+Welcome to our live INF550 course textbook. This live text is a combination of materials, videos, example code, and assignments.
+
+\hypertarget{acknowledgements}{%
+\section*{Acknowledgements}\label{acknowledgements}}
+\addcontentsline{toc}{section}{Acknowledgements}
+
+As with all open source data and tools, this book is built upon the shoulders of giants who came before me. Special thanks to Megan Jones and Donal O'Leary at Battelle for their support in pulling NEON materials.
+
+\hypertarget{ecoinformatics-tools}{%
+\chapter{Ecoinformatics Tools}\label{ecoinformatics-tools}}
+
+As an Ecoinformatician you \emph{need} to be able to:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Pull data from Application Programing Interfaces (APIs)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    More on this in Chapter 2
+  \end{itemize}
+\item
+  Organize and document your code and data
+\item
+  Version control your code to avoid disaster and make it reproducible
+
+  \begin{itemize}
+  \tightlist
+  \item
+    For you, your collaborators, and/or the wider community
+  \end{itemize}
+\item
+  Push your code up to public-facing repositories
+\item
+  Pull other's code from public repositories.
+\end{enumerate}
+
+More thoughts on the benefits and power of reproducibility \href{https://github.com/katharynduffy/ECOSS_reproducible_science}{can be found here}
+
+To be successful, both in this course and in your careers you will need these skills. This is why \textbf{they are a requirement} for this course. If you already using these skills on a daily basis, fantastic! If you don't feel that you have mastery in the workflows listed above I have placed lesson links throughout this chapter so that you can build these skills and be successful in this course.
+
+\hypertarget{pre-course-skills-setup}{%
+\section{Pre-Course Skills \& Setup}\label{pre-course-skills-setup}}
+
+For the purpose of this course we will largely be using the following tools to access, pull, and explore data:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  R \& Rstudio
+\item
+  Git, GitHub, \& Atom.io
+\item
+  Markdown \& Rmarkdown
+\end{enumerate}
+
+As such we will need to install and/or update these tools on your personal computer \emph{before} our first day of class. While we chose R for this course, nearly all of the packages and data are fully available and transferable to Python or other languages. If you'd like to brush up on your R skills I highly recommend Data Carpentry Boostcamp's free \href{http://swcarpentry.github.io/r-novice-gapminder}{R for Reproducible Scientific Analysis} course.
+
+\hypertarget{installing-or-updating-r}{%
+\subsection{Installing or Updating R}\label{installing-or-updating-r}}
+
+Please check your version of R. You will need R 3.6.0+
+
+How to check your version in R or RStudio if you already have it:
+
+\begin{verbatim}
+> version
+               _                           
+platform       x86_64-apple-darwin15.6.0   
+arch           x86_64                      
+os             darwin15.6.0                
+system         x86_64, darwin15.6.0        
+status                                     
+major          3                           
+minor          5.1                         
+year           2018                        
+month          07                          
+day            02                          
+svn rev        74947                       
+language       R                           
+version.string R version 3.5.1 (2018-07-02)
+nickname       Feather Spray  
+\end{verbatim}
+
+If you don't already have R or need to update it \href{https://cran.rstudio.com/}{do so here.}
+
+\hypertarget{windows-rrstudio-setup}{%
+\subsection{Windows R/RStudio Setup}\label{windows-rrstudio-setup}}
+
+After you have downloaded R, run the .exe file that was just downloaded
+Go to the \href{https://www.rstudio.com/products/rstudio/download/\#download}{RStudio Download page}
+Under Installers select RStudio X.XX.XXX - e.g.~Windows Vista/7/8/10
+Double click the file to install it
+Once R and RStudio are installed, click to open RStudio. If you don't get any error messages you are set. If there is an error message, you will need to re-install the program.
+
+\hypertarget{mac-rrstudio-setup}{%
+\subsection{Mac R/RStudio Setup}\label{mac-rrstudio-setup}}
+
+After you have downloaded R, double click on the file that was downloaded and R will install
+Go to the \href{https://www.rstudio.com/products/rstudio/download/\#download}{RStudio Download page}
+Under Installers select RStudio 1.2.1135 - Mac OS X XX.X (64-bit) to download it.
+Once it's downloaded, double click the file to install it.
+Once R and RStudio are installed, click to open RStudio. If you don't get any error messages you are set. If there is an error message, you will need to re-install the program.
+
+\hypertarget{linux-rrstudio-setup}{%
+\section{Linux R/RStudio Setup}\label{linux-rrstudio-setup}}
+
+R is available through most Linux package managers. You can download the binary files for your distribution from CRAN. Or you can use your package manager.
+e.g.~for Debian/Ubuntu
+
+\begin{verbatim}
+  run sudo apt-get install r-base
+\end{verbatim}
+
+and for Fedora
+
+\begin{verbatim}
+  run sudo yum install R
+\end{verbatim}
+
+To install RStudio, go to the \href{https://www.rstudio.com/products/rstudio/download/\#download}{RStudio Download page}
+Under Installers select the version for your distribution.
+Once it's downloaded, double click the file to install it
+Once R and RStudio are installed, click to open RStudio. If you don't get any error messages you are set. If there is an error message, you will need to re-install the program.
+
+\hypertarget{install-basic-packages-for-this-course}{%
+\subsection{Install basic packages for this course}\label{install-basic-packages-for-this-course}}
+
+You can run the following script to make sure all the required packages are properly installed on your computer.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# list of required packages}
+\NormalTok{list.of.packages <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}
+  \StringTok{'data.table'}\NormalTok{,}
+  \StringTok{'tidyverse'}\NormalTok{,}
+  \StringTok{'jsonlite'}\NormalTok{,}
+  \StringTok{'jpeg'}\NormalTok{,}
+  \StringTok{'png'}\NormalTok{,}
+  \StringTok{'raster'}\NormalTok{,}
+  \StringTok{'rgdal'}\NormalTok{,}
+  \StringTok{'rmarkdown'}\NormalTok{, }
+  \StringTok{'knitr'}
+\NormalTok{)}
+
+\CommentTok{# identify new (not installed) packages}
+\NormalTok{new.packages <-}\StringTok{ }\NormalTok{list.of.packages[}\OperatorTok{!}\NormalTok{(list.of.packages }\OperatorTok{%in%}\StringTok{ }\KeywordTok{installed.packages}\NormalTok{()[,}\StringTok{"Package"}\NormalTok{])]}
+
+\CommentTok{# install new (not installed) packages}
+\ControlFlowTok{if}\NormalTok{(}\KeywordTok{length}\NormalTok{(new.packages)) }
+  \KeywordTok{install.packages}\NormalTok{(new.packages, }
+                   \DataTypeTok{repos=}\StringTok{'http://cran.rstudio.com/'}\NormalTok{)}
+
+\CommentTok{# load all of the required libraries}
+\KeywordTok{sapply}\NormalTok{(list.of.packages, library, }\DataTypeTok{character.only =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Note}: On some operating systems, you may need to install the Geospatial Data Abstraction Library (GDAL). More information about GDAL can be found from \href{https://trac.osgeo.org/gdal/wiki/DownloadingGdalBinaries}{here}.
+
+\hypertarget{installing-and-setting-up-git-github-on-your-machine}{%
+\section{Installing and Setting up Git \& Github on Your Machine}\label{installing-and-setting-up-git-github-on-your-machine}}
+
+For this course you will need:
+1. Git installed on your local machine
+2. Very basic bash scripting
+3. A linked GitHub account
+4. To link RStudio to git via RStudio or Atom.io
+
+As we will be using these skills constantly, they are a \emph{pre-requisite} for this course. If you don't yet have these skills it's okay! You can learn everything that you need to know via the following freely available resources:
+
+\begin{itemize}
+\item
+  \href{http://swcarpentry.github.io/shell-novice}{The Unix Shell}
+\item
+  \href{http://swcarpentry.github.io/git-novice}{Version Control with Git}
+\item
+  \href{https://happygitwithr.com/}{Happy Git with R}
+\end{itemize}
+
+If you are learning these skills from scratch I estimate that you will need to devote \textasciitilde{}4-6 hours to get set up and comfortable with the various workflows. Also remember that I have code office hours every week and that Stack Exchange is your friend.
+
+\hypertarget{installing-atom}{%
+\section{Installing Atom}\label{installing-atom}}
+
+\href{https://atom.io/}{Atom.io} is a powerful and useful text editor for the follwng reasons:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  It is langugae agnostic
+\item
+  It fully integrates with git and github
+  + You can use it to push/pull/resolve conflicts and write code all in one space.
+\end{enumerate}
+
+\hypertarget{linking-rstudio-to-git}{%
+\section{Linking RStudio to Git}\label{linking-rstudio-to-git}}
+
+\href{https://happygitwithr.com/rstudio-git-github.html}{Happy Git with R} has a fantastic tutorial to help you link Rstudio-Git-Github on your local machine and push/pull from or to public repositories.
+
+\hypertarget{how-we-will-be-conducting-this-course}{%
+\section{How we will be Conducting this Course}\label{how-we-will-be-conducting-this-course}}
+
+At the end of each chapter you will find a set of \textbf{Exercises}. At the end of the assigned chapter you will be expected to submit via BBLearn two files:
+1. An \href{https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf}{RMarkdown file} with the naming convention:
+LASTNAME\_COURSECODE\_Section\#.Rmd, and
+2. A knitted .PDF with the same naming convention:
+LASTNAME\_COURSECODE\_Section\#.pdf
+
+To generate these files you have two options:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Click on the pencil and pad logo in the top of this text, copy the exercise section code, and drop it into your own .Rmd.
+\item
+  Git clone our \href{https://github.com/katharynduffy/katharynduffy.github.io}{course Github Repository}, navigate to the '\_Exercises' folder, and use that .Rmd as a template.
+\end{enumerate}
+
+\emph{Note: Exercises submited in any other format, or those missing questions will not be graded}
+
+To generate your .PDF to upload, in your RMarkdown file simply push the `Knit' button at the top of your document.
+
+\hypertarget{introduction-to-neon-its-data}{%
+\chapter{Introduction to NEON \& its Data}\label{introduction-to-neon-its-data}}
+
+\begin{longtable}[]{@{}l@{}}
+\toprule
+\endhead
+Estimated Time: 1 hour\tabularnewline
+\bottomrule
+\end{longtable}
+
+Here we will broadly overview of the National Ecological Observatory
+Network (NEON). Please carefully read through these materials and links that
+discuss NEON's mission and design.
+
+\leavevmode\hypertarget{ds-challenge}{}%
+\textbf{Course participants}: As you review this information, please
+consider the
+final course project
+that you will work on at the over this semester. At the end of week two, you will
+document an initial research question or idea and associated data needed to
+address that question, that you may want to explore while pursuing this course.
+
+\leavevmode\hypertarget{ds-objectives}{}%
+--
+
+\hypertarget{learning-objectives}{%
+\section{Learning Objectives}\label{learning-objectives}}
+
+At the end of this activity, you will be able to:
+
+\begin{itemize}
+\tightlist
+\item
+  Explain the mission of the National Ecological Observatory Network (NEON).
+\item
+  Explain the how sites are located within the NEON project design.
+\item
+  Explain the different types of data that will be collected and provided by
+  NEON.
+\end{itemize}
+
+--
+
+\hypertarget{the-neon-project-mission-design}{%
+\section{The NEON Project Mission \& Design}\label{the-neon-project-mission-design}}
+
+To capture ecological heterogeneity across the United States, NEON's design
+divides the continent into 20 statistically different eco-climatic domains. Each
+NEON field site is located within an eco-climatic domain.
+
+\hypertarget{the-science-and-design-of-neon}{%
+\subsubsection{The Science and Design of NEON}\label{the-science-and-design-of-neon}}
+
+To gain a better understanding of the broad scope fo NEON watch this 4 minute long
+video.
+
+Please, read the following page about
+ NEON's mission.
+
+\hypertarget{neons-spatial-design}{%
+\section{NEON's Spatial Design}\label{neons-spatial-design}}
+
+\hypertarget{the-spatial-design-of-neon}{%
+\subsubsection{The Spatial Design of NEON}\label{the-spatial-design-of-neon}}
+
+Watch this 4:22 minute video exploring the spatial design of NEON field sites.
+
+Please read the following page about NEON's Spatial Design:
+
+\begin{itemize}
+\item
+  Read this primer on NEON's Sampling Design
+\item
+  Read about the different types of field sites - core and relocatable
+\end{itemize}
+
+\hypertarget{neon-field-site-locations}{%
+\subsection{NEON Field Site Locations}\label{neon-field-site-locations}}
+
+Explore the NEON Field Site map taking note of the locations of
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Aquatic \& terrestrial field sites.
+\item
+  Core \& relocatable field sites.
+\end{enumerate}
+
+Click here to view the NEON Field Site Map
+
+Explore the NEON field site map. Do the following:
+
+\begin{itemize}
+\tightlist
+\item
+  Zoom in on a study area of interest to see if there are any NEON field sites
+  that are nearby.
+\item
+  Click the ``More'' button in the \textbf{upper right hand} corner of the map to
+  filter sites by name, site host, domain or state.
+\item
+  Select one field site of interest.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Click on the marker in the map.
+  \item
+    Then click on the name of the field site to jump to the field site landing page.
+  \end{itemize}
+\end{itemize}
+
+\leavevmode\hypertarget{ds-dataTip}{}%
+ \textbf{Data Tip:} You can download
+maps, kmz, or shapefiles of the field sites here.
+
+\hypertarget{neon-data}{%
+\section{NEON Data}\label{neon-data}}
+
+\hypertarget{how-neon-collects-data}{%
+\subsubsection{How NEON Collects Data}\label{how-neon-collects-data}}
+
+Watch this 3:06 minute video exploring the data that NEON collects.
+
+Read the
+ Data Collection Methods
+page to learn more about the different types of data that NEON collects and
+provides. Then, follow the links below to learn more about each collection method:
+
+\begin{itemize}
+\tightlist
+\item
+  Aquatic Observation System (AOS) 
+\item
+  Aquatic Instrument System (AIS) 
+\item
+   Terrestrial Instrument System (TIS) -- Flux Tower 
+\item
+   Terrestrial Instrument System (TIS) -- Soil Sensors and Measurements 
+\item
+   Terrestrial Organismal System (TOS) 
+\item
+   Airborne Observation Platform (AOP) 
+\end{itemize}
+
+All data collection protocols and processing documents are publicly available.
+Read more about the standardized protocols and how to access these documents.
+
+\hypertarget{specimens-samples}{%
+\subsection{Specimens \& Samples}\label{specimens-samples}}
+
+NEON also collects samples and specimens from which the other data products are
+based. These samples are also available for research and education purposes. Learn
+more:
+ NEON Biorepository.
+
+\hypertarget{airborne-remote-sensing}{%
+\subsection{Airborne Remote Sensing}\label{airborne-remote-sensing}}
+
+Watch this 5 minute video to better understand the NEON Airborne Observation
+Platform (AOP).
+
+\leavevmode\hypertarget{ds-dataTip}{}%
+ \textbf{Data Tip:} NEON also provides support to your own
+research including proposals to fly the AOP over other study sites, a mobile
+tower/instrumentation setup and others. Learn more here the
+Assignable Assets programs .
+
+\hypertarget{accessing-neon-data}{%
+\subsection{Accessing NEON Data}\label{accessing-neon-data}}
+
+NEON data are processed and go through quality assurance quality control checks
+at NEON headquarters in Boulder, CO.
+NEON carefully documents every aspect of sampling design, data collection,
+processing and delivery. This documentation is freely available through the
+NEON data portal.
+
+\begin{itemize}
+\tightlist
+\item
+  Visit the
+  NEON Data Portal - data.neonscience.org 
+\item
+  Read more about the
+  quality assurance and quality control processes for NEON data
+  and how the data are processed from raw data to higher level data products.
+\item
+  Explore NEON Data Products.
+  On the page for each data product in the catalog you can find the basic information
+  about the product, find the data collection and processing protocols, and link
+  directly to downloading the data.
+\item
+  Additionally, some types of NEON data are also available through the data portals
+  of other organizations. For example,
+   NEON Terrestrial Insect DNA Barcoding Data
+  is available through the
+   Barcode of Life Datasystem (BOLD).
+  Or NEON phenocam images are available from the
+  Phenocam network site.
+  More details on where else the data are available from can be found in the Availability and Download
+  section on the Product Details page for each data product (visit
+  Explore Data Products
+  to access individual Product Details pages).
+\end{itemize}
+
+\hypertarget{pathways-to-access-neon-data}{%
+\subsection{Pathways to access NEON Data}\label{pathways-to-access-neon-data}}
+
+There are several ways to access data from NEON:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Via the NEON data portal.
+  Explore and download data. Note that much of the tabular data is available in zipped
+  .csv files for each month and site of interest. To combine these files, use the
+  neonUtilities package (R tutorial, Python tutorial).\\
+\item
+  Use R or Python to programmatically access the data. NEON and community members
+  have created code packages to directly access the data through an API. Learn more
+  about the available resources by reading the Code Resources page or visiting the
+  NEONScience GitHub repo.\\
+\item
+  Using the NEON API. Access NEON data directly
+  using a custom API call.
+\item
+  Access NEON data through partner's portals. Where NEON data directly overlap
+  with other community resources, NEON data can be accessed through the portals.
+  Examples include Phenocam, BOLD, Ameriflux, and others. You can learn more in the
+  documentation for individual data products.
+\end{enumerate}
+
+\hypertarget{hands-on-accessing-neon-data}{%
+\section{Hands on: Accessing NEON Data}\label{hands-on-accessing-neon-data}}
+
+\hypertarget{via-a-neon-api-token}{%
+\subsection{Via a NEON API Token}\label{via-a-neon-api-token}}
+
+NEON data can be downloaded from either the NEON Data Portal or the NEON API.
+When downloading from the Data Portal, you can create a user account. Read
+about the benefits of an account on the User Account page. You can also use your account to create a token for using the
+API. Your token is unique to your account, so don't share it.
+
+While using a token is optional in general, it is required for this course. Using a token when downloading data via the API,
+including when using the neonUtilities package, links your downloads to
+your user account, as well as enabling faster download speeds. For more
+information about token usage and benefits, see the
+NEON API documentation page.
+
+For now, in addition to faster downloads, using a token helps NEON to track
+data downloads. Using \textbf{anonymized} user information, they can then calculate
+data access statistics, such as which data products are downloaded most
+frequently, which data products are downloaded in groups by the same users,
+and how many users in total are downloading data. This information helps NEON
+to evaluate the growth and reach of the observatory, and to advocate for
+training activities, workshops, and software development.
+
+Tokens can be used whenever you use the NEON API. In this tutorial, we'll
+focus on using tokens with the neonUtilities R package.
+
+\hypertarget{ds-objectives}{}
+\hypertarget{objectives}{%
+\section{Objectives}\label{objectives}}
+
+After completing this activity, you will be able to:
+
+\begin{itemize}
+\tightlist
+\item
+  Create a NEON API token
+\item
+  Use your token when downloading data with neonUtilities
+\end{itemize}
+
+\hypertarget{things-youll-need-to-complete-this-tutorial}{%
+\section{Things You'll Need To Complete This Tutorial}\label{things-youll-need-to-complete-this-tutorial}}
+
+You will need a version of R (3.4.1 or higher) and, preferably, \texttt{RStudio}
+loaded on your computer to complete this tutorial.
+
+\hypertarget{install-r-packages}{%
+\subsection{Install R Packages}\label{install-r-packages}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{neonUtilities:} \texttt{install.packages("neonUtilities")}
+\end{itemize}
+
+\hypertarget{additional-resources}{%
+\section{Additional Resources}\label{additional-resources}}
+
+\begin{itemize}
+\tightlist
+\item
+  NEON Data Portal 
+\item
+  NEONScience GitHub Organization
+\item
+  neonUtilities tutorial
+\end{itemize}
+
+If you've never downloaded NEON data using the neonUtilities package before,
+we recommend starting with the Download and Explore tutorial before proceeding with this tutorial.
+
+In the next sections, we'll get an API token from the NEON Data Portal, and
+then use it in neonUtilities when downloading data.
+
+\hypertarget{get-a-neon-api-token}{%
+\section{Get a NEON API Token}\label{get-a-neon-api-token}}
+
+The first step is create a NEON user account, if you don't have one.
+Follow the instructions on the Data Portal User Accounts page. If you do already
+have an account, go to the NEON Data Portal,
+sign in, and go to your My Account profile page.
+
+Once you have an account, you can create an API token for yourself. At
+the bottom of the My Account page, you should see this bar:
+
+\begin{verbatim}
+<a href="{{ site.baseurl }}/images/NEON-api-token/get-api-token-button.png">
+<img src="{{ site.baseurl }}/images/NEON-api-token/get-api-token-button.png" alt="Account page on NEON Data Portal showing Get API Token button."></a>
+\end{verbatim}
+
+Click the `GET API TOKEN' button. After a moment, you should see this:
+
+\begin{verbatim}
+<a href="{{ site.baseurl }}/images/NEON-api-token/account-page-token-view.png">
+<img src="{{ site.baseurl }}/images/NEON-api-token/account-page-token-view.png" alt="Account page on NEON Data Portal showing API token has been created."></a>
+\end{verbatim}
+
+Click on the Copy button to copy your API token to the clipboard:
+
+\begin{verbatim}
+<a href="{{ site.baseurl }}/images/NEON-api-token/api-token-copy-button.png">
+<img src="{{ site.baseurl }}/images/NEON-api-token/api-token-copy-button.png" alt="Account page on NEON Data Portal showing API token with Copy button highlighted"></a>
+\end{verbatim}
+
+\hypertarget{use-api-token-in-neonutilities}{%
+\section{Use API token in neonUtilities}\label{use-api-token-in-neonutilities}}
+
+In the next section, we'll walk through saving your token somewhere secure but
+accessible to your code. But first let's try out using the token the easy way.
+
+First, we need to load the \texttt{neonUtilities} package and set the working
+directory:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# install neonUtilities - can skip if already installed, but}
+\CommentTok{# API tokens are only enabled in neonUtilities v1.3.4 and higher}
+\CommentTok{# if your version number is lower, re-install}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"neonUtilities"}\NormalTok{)}
+\CommentTok{# load neonUtilities}
+\KeywordTok{library}\NormalTok{(neonUtilities)}
+\CommentTok{# set working directory}
+\NormalTok{wd <-}\StringTok{ "~/data"} \CommentTok{# this will depend on your local machine}
+\KeywordTok{setwd}\NormalTok{(wd)}
+\end{Highlighting}
+\end{Shaded}
+
+NEON API tokens are very long, so it would be annoying to keep pasting the
+entire text string into functions. Assign your token an object name:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NEON_TOKEN <-}\StringTok{ "PASTE YOUR TOKEN HERE"}
+\end{Highlighting}
+\end{Shaded}
+
+Now we'll use the \texttt{loadByProduct()} function to download data. Your
+API token is entered as the optional \texttt{token} input parameter. For
+this example, we'll download Plant foliar traits (DP1.10026.001).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{foliar <-}\StringTok{ }\KeywordTok{loadByProduct}\NormalTok{(}\DataTypeTok{dpID=}\StringTok{"DP1.10026.001"}\NormalTok{, }\DataTypeTok{site=}\StringTok{"all"}\NormalTok{, }
+                        \DataTypeTok{package=}\StringTok{"expanded"}\NormalTok{, }\DataTypeTok{check.size=}\NormalTok{F,}
+                        \DataTypeTok{token=}\NormalTok{NEON_TOKEN)}
+\end{Highlighting}
+\end{Shaded}
+
+You should now have data saved in the \texttt{foliar} object; the API
+silently used your token. If you've downloaded data without a
+token before, you may notice this is faster!
+
+This format applies to all \texttt{neonUtilities} functions that involve
+downloading data or otherwise accessing the API; you can use the
+\texttt{token} input with all of them. For example, when downloading
+remote sensing data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chm <-}\StringTok{ }\KeywordTok{byTileAOP}\NormalTok{(}\DataTypeTok{dpID=}\StringTok{"DP3.30015.001"}\NormalTok{, }\DataTypeTok{site=}\StringTok{"WREF"}\NormalTok{, }
+                 \DataTypeTok{year=}\DecValTok{2017}\NormalTok{, }\DataTypeTok{check.size=}\NormalTok{F,}
+                 \DataTypeTok{easting=}\KeywordTok{c}\NormalTok{(}\DecValTok{571000}\NormalTok{,}\DecValTok{578000}\NormalTok{), }
+                 \DataTypeTok{northing=}\KeywordTok{c}\NormalTok{(}\DecValTok{5079000}\NormalTok{,}\DecValTok{5080000}\NormalTok{), }
+                 \DataTypeTok{savepath=}\NormalTok{wd,}
+                 \DataTypeTok{token=}\NormalTok{NEON_TOKEN)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{token-management-for-open-code}{%
+\section{Token management for open code}\label{token-management-for-open-code}}
+
+Your API token is unique to your account, so don't share it!
+
+If you're writing code that will be shared with colleagues or available
+publicly, such as in a GitHub repository or supplemental materials of a
+published paper, you can't include the line of code above where we assigned
+your token to \texttt{NEON\_TOKEN}, since your token is fully visible in the code
+there. Instead, you'll need to save your token locally on your computer,
+and pull it into your code without displaying it. There are a few ways to
+do this, we'll show two options here.
+
+\begin{itemize}
+\item
+  Option 1: Save the token in a local file, and \texttt{source()} that file at the
+  start of every script. This is fairly simple but requires a line of code in
+  every script.
+\item
+  Option 2: Add the token to a \texttt{.Renviron} file to create an environment
+  variable that gets loaded when you open R. This is a little harder to set
+  up initially, but once it's done, it's done globally, and it will work in
+  every script you run.
+\end{itemize}
+
+\hypertarget{option-1-save-token-in-a-local-file}{%
+\section{Option 1: Save token in a local file}\label{option-1-save-token-in-a-local-file}}
+
+Open a new, empty R script (.R). Put a single line of code in the script:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NEON_TOKEN <-}\StringTok{ "PASTE YOUR TOKEN HERE"}
+\end{Highlighting}
+\end{Shaded}
+
+Save this file in a logical place on your machine, somewhere that won't be
+visible publicly. Here, let's call the file \texttt{neon\_token\_source.R}, and
+save it to the working directory. Then, at the start of
+every script where you're going to use the NEON API, you would run this line
+of code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{source}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(wd, }\StringTok{"/neon_token_source.R"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Then you'll be able to use \texttt{token=NEON\_TOKEN} when you run \texttt{neonUtilities}
+functions, and you can share your code without accidentally sharing your
+token.
+
+\hypertarget{option-2-save-token-to-the-r-environment}{%
+\section{Option 2: Save token to the R environment}\label{option-2-save-token-to-the-r-environment}}
+
+To create a persistent environment variable, we use a \texttt{.Renviron} file.
+Before creating a file, check which directory R is using as your home
+directory:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# For Windows:}
+\KeywordTok{Sys.getenv}\NormalTok{(}\StringTok{"R_USER"}\NormalTok{)}
+\CommentTok{# For Mac/Linux:}
+\KeywordTok{Sys.getenv}\NormalTok{(}\StringTok{"HOME"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Check the home directory to see if you already have a \texttt{.Renviron} file, \textbf{using
+the file browse pane in RStudio}, or using another file browse method with
+hidden files shown. Files that begin with \texttt{.} are hidden by default, but
+RStudio recognizes files that begin with \texttt{.R} and displays them.
+
+\begin{verbatim}
+<a href="{{ site.baseurl }}/images/NEON-api-token/R-environ-file-browse.png">
+<img src="{{ site.baseurl }}/images/NEON-api-token/R-environ-file-browse.png" alt="File browse pane in RStudio showing .Renviron file."></a>
+<figcaption>Screenshot of file browse pane with .Renviron file. 
+</figcaption>
+\end{verbatim}
+
+If you already have a \texttt{.Renviron} file, open it and follow the instructions
+below to add to it. If you don't have one, create one using File -\textgreater{} New File
+-\textgreater{} Text File in the RStudio menus.
+
+Add one line to the text file. In this option, there are no quotes around the
+token value.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NEON_TOKEN=PASTE YOUR TOKEN HERE}
+\end{Highlighting}
+\end{Shaded}
+
+Save the file as \texttt{.Renviron}, in the RStudio home directory identified above.
+Double check the spelling, this will not work if you have a typo. Re-start
+R to load the environment.
+
+Once your token is assigned to an environment variable, use the function
+\texttt{Sys.getenv()} to access it. For example, in \texttt{loadByProduct()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{foliar <-}\StringTok{ }\KeywordTok{loadByProduct}\NormalTok{(}\DataTypeTok{dpID=}\StringTok{"DP1.10026.001"}\NormalTok{, }\DataTypeTok{site=}\StringTok{"all"}\NormalTok{, }
+                        \DataTypeTok{package=}\StringTok{"expanded"}\NormalTok{, }\DataTypeTok{check.size=}\NormalTok{F,}
+                        \DataTypeTok{token=}\KeywordTok{Sys.getenv}\NormalTok{(}\StringTok{"NEON_TOKEN"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{part-2-pulling-neon-data-via-the-api}{%
+\subsubsection{Part 2: Pulling NEON Data via the API}\label{part-2-pulling-neon-data-via-the-api}}
+
+This is a tutorial in pulling data from the NEON API or Application
+Programming Interface. The tutorial uses R and the R package httr, but the core
+information about the API is applicable to other languages and approaches.
+
+\hypertarget{neon-data-1}{%
+\section{NEON data}\label{neon-data-1}}
+
+As a reminder, there are 3 basic categories of NEON data:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Observational - Data collected by a human in the field, or in an analytical
+  laboratory, e.g.~beetle identification, foliar isotopes
+\item
+  Instrumentation - Data collected by an automated, streaming sensor, e.g.~net
+  radiation, soil carbon dioxide
+\item
+  Remote sensing - Data collected by the airborne observation platform, e.g.
+  LIDAR, surface reflectance
+\end{enumerate}
+
+This lab covers all three types of data, it is required to complete these sections in order and not skip ahead, since the query principles
+are explained in the first section, on observational data.
+
+\hypertarget{ds-objectives}{}
+\hypertarget{objectives-1}{%
+\section{Objectives}\label{objectives-1}}
+
+After completing this activity, you will be able to:
+
+\begin{itemize}
+\tightlist
+\item
+  Pull observational, instrumentation, and geolocation data from the NEON API.
+\item
+  Transform API-accessed data from JSON to tabular format for analyses.
+\end{itemize}
+
+\hypertarget{things-youll-need-to-complete-this-tutorial-1}{%
+\section{Things You'll Need To Complete This Tutorial}\label{things-youll-need-to-complete-this-tutorial-1}}
+
+To complete this tutorial you will need the most current version of R and,
+preferably, RStudio loaded on your computer.
+
+\hypertarget{install-r-packages-1}{%
+\subsection{Install R Packages}\label{install-r-packages-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{httr:} \texttt{install.packages("httr")}
+\item
+  \textbf{jsonlite:} \texttt{install.packages("jsonlite")}
+\item
+  \textbf{dplyr:} \texttt{install.packages("dplyr")}
+\item
+  \textbf{devtools:} \texttt{install.packages("devtools")}
+\item
+  \textbf{downloader:} \texttt{install.packages("downloader")}
+\item
+  \textbf{geoNEON:} \texttt{devtools::install\_github("NEONScience/NEON-geolocation/geoNEON")}
+\item
+  \textbf{neonUtilities:} \texttt{devtools::install\_github("NEONScience/NEON-utilities/neonUtilities")}
+\end{itemize}
+
+Note, you must have devtools installed \& loaded, prior to loading geoNEON or neonUtilities.
+
+\hypertarget{additional-resources-1}{%
+\subsection{Additional Resources}\label{additional-resources-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Webpage for the NEON API
+\item
+  GitHub repository for the NEON API
+\item
+   ROpenSci wrapper for the NEON API (not covered in this tutorial)
+\end{itemize}
+
+\hypertarget{what-is-an-api}{%
+\section{What is an API?}\label{what-is-an-api}}
+
+If you are unfamiliar with the concept of an API, think of an API as a
+`middle person' that provides a communication path for a software application
+to obtain information from a digital data source. APIs are becoming a very
+common means of sharing digital information. Many of the apps that you use on
+your computer or mobile device to produce maps, charts, reports, and other
+useful forms of information pull data from multiple sources using APIs. In
+the ecological and environmental sciences, many researchers use APIs to
+programmatically pull data into their analyses. (Quoted from the NEON Observatory
+Blog story:
+ API and data availability viewer now live on the NEON data portal.)
+
+\hypertarget{anatomy-of-an-api-call}{%
+\section{Anatomy of an API call}\label{anatomy-of-an-api-call}}
+
+An example API call: \url{http://data.neonscience.org/api/v0/data/DP1.10003.001/WOOD/2015-07}
+
+This includes the base URL, endpoint, and target.
+
+\hypertarget{base-url}{%
+\subsection{Base URL:}\label{base-url}}
+
+{\url{http://data.neonscience.org/api/v0}}{/data/DP1.10003.001/WOOD/2015-07}
+
+Specifics are appended to this in order to get the data or metadata you're
+looking for, but all calls to this API will include the base URL. For the NEON
+API, this is \url{http://data.neonscience.org/api/v0} --
+not clickable, because the base URL by itself will take you nowhere!
+
+\hypertarget{endpoints}{%
+\subsection{Endpoints:}\label{endpoints}}
+
+{\url{http://data.neonscience.org/api/v0}}{/data}{/DP1.10003.001/WOOD/2015-07}
+
+What type of data or metadata are you looking for?
+
+\begin{itemize}
+\item
+  \textbf{\textasciitilde{}/products}
+  Information about one or all of NEON's data products
+\item
+  \textbf{\textasciitilde{}/sites}
+  Information about data availability at the site specified in the call
+\item
+  \textbf{\textasciitilde{}/locations}
+  Spatial data for the NEON locations specified in the call
+\item
+  \textbf{\textasciitilde{}/data}
+  Data! By product, site, and date (in monthly chunks).
+\end{itemize}
+
+\hypertarget{targets}{%
+\subsection{Targets:}\label{targets}}
+
+{\url{http://data.neonscience.org/api/v0/data}}{/DP1.10003.001/WOOD/2015-07}
+
+The specific data product, site, or location you want to get data for.
+
+\hypertarget{observational-data-os}{%
+\section{Observational data (OS)}\label{observational-data-os}}
+
+Which product do you want to get data for? Consult the Explore Data Products page.
+
+We'll pick Breeding landbird point counts, DP1.10003.001
+
+First query the products endpoint of the API to find out which sites and dates
+have data available. In the products endpoint, the target is the numbered
+identifier for the data product:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Load the necessary libraries}
+\KeywordTok{library}\NormalTok{(httr)}
+\KeywordTok{library}\NormalTok{(jsonlite)}
+\KeywordTok{library}\NormalTok{(dplyr, }\DataTypeTok{quietly=}\NormalTok{T)}
+\KeywordTok{library}\NormalTok{(downloader)}
+
+\CommentTok{# Request data using the GET function & the API call}
+\NormalTok{req <-}\StringTok{ }\KeywordTok{GET}\NormalTok{(}\StringTok{"http://data.neonscience.org/api/v0/products/DP1.10003.001"}\NormalTok{)}
+\NormalTok{req}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Response [https://data.neonscience.org/api/v0/products/DP1.10003.001]
+##   Date: 2020-08-02 15:06
+##   Status: 200
+##   Content-Type: application/json;charset=UTF-8
+##   Size: 24.2 kB
+\end{verbatim}
+
+The object returned from \texttt{GET()} has many layers of information. Entering the
+name of the object gives you some basic information about what you downloaded.
+
+The \texttt{content()} function returns the contents in the form of a highly nested
+list. This is typical of JSON-formatted data returned by APIs. We can use the
+\texttt{names()} function to view the different types of information within this list.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# View requested data}
+\NormalTok{req.content <-}\StringTok{ }\KeywordTok{content}\NormalTok{(req, }\DataTypeTok{as=}\StringTok{"parsed"}\NormalTok{)}
+\KeywordTok{names}\NormalTok{(req.content}\OperatorTok{$}\NormalTok{data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "productCodeLong"              "productCode"                 
+##  [3] "productCodePresentation"      "productName"                 
+##  [5] "productDescription"           "productStatus"               
+##  [7] "productCategory"              "productHasExpanded"          
+##  [9] "productScienceTeamAbbr"       "productScienceTeam"          
+## [11] "productPublicationFormatType" "productAbstract"             
+## [13] "productDesignDescription"     "productStudyDescription"     
+## [15] "productBasicDescription"      "productExpandedDescription"  
+## [17] "productSensor"                "productRemarks"              
+## [19] "themes"                       "changeLogs"                  
+## [21] "specs"                        "keywords"                    
+## [23] "siteCodes"
+\end{verbatim}
+
+You can see all of the infoamtion by running the line \texttt{print(req.content)}, but
+this will result in a very long printout in your console. Instead, you can view
+list items individually. Here, we highlight a couple of interesting examples:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# View Abstract}
+\NormalTok{req.content}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{productAbstract}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "This data product contains the quality-controlled, native sampling resolution data from NEON's breeding landbird sampling. Breeding landbirds are defined as “smaller birds (usually exclusive of raptors and upland game birds) not usually associated with aquatic habitats” (Ralph et al. 1993). The breeding landbird point counts product provides records of species identification of all individuals observed during the 6-minute count period, as well as metadata which can be used to model detectability, e.g., weather, distances from observers to birds, and detection methods. The NEON point count method is adapted from the Integrated Monitoring in Bird Conservation Regions (IMBCR): Field protocol for spatially-balanced sampling of landbird populations (Hanni et al. 2017; http://bit.ly/2u2ChUB). For additional details, see the user guide, protocols, and science design listed in the Documentation section in [this data product's details webpage](https://data.neonscience.org/data-products/DP1.10003.001). \n\nLatency:\nThe expected time from data and/or sample collection in the field to data publication is as follows, for each of the data tables (in days) in the downloaded data package. See the Data Product User Guide for more information.\n \nbrd_countdata:  120\n\nbrd_perpoint:  120\n\nbrd_personnel:  120\n\nbrd_references:  120"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# View Available months and associated URLs for Onaqui, Utah - ONAQ}
+\NormalTok{req.content}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{siteCodes[[}\DecValTok{27}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $siteCode
+## [1] "ONAQ"
+## 
+## $availableMonths
+## $availableMonths[[1]]
+## [1] "2017-05"
+## 
+## $availableMonths[[2]]
+## [1] "2018-05"
+## 
+## $availableMonths[[3]]
+## [1] "2018-06"
+## 
+## $availableMonths[[4]]
+## [1] "2019-05"
+## 
+## 
+## $availableDataUrls
+## $availableDataUrls[[1]]
+## [1] "https://data.neonscience.org/api/v0/data/DP1.10003.001/ONAQ/2017-05"
+## 
+## $availableDataUrls[[2]]
+## [1] "https://data.neonscience.org/api/v0/data/DP1.10003.001/ONAQ/2018-05"
+## 
+## $availableDataUrls[[3]]
+## [1] "https://data.neonscience.org/api/v0/data/DP1.10003.001/ONAQ/2018-06"
+## 
+## $availableDataUrls[[4]]
+## [1] "https://data.neonscience.org/api/v0/data/DP1.10003.001/ONAQ/2019-05"
+\end{verbatim}
+
+To get a more accessible view of which sites have data for which months, you'll
+need to extract data from the nested list. There are a variety of ways to do this,
+in this tutorial we'll explore a couple of them. Here we'll use \texttt{fromJSON()}, in
+the jsonlite package, which doesn't fully flatten the nested list, but gets us
+the part we need. To use it, we need a text version of the content. The text
+version is not as human readable but is readable by the \texttt{fromJSON()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# make this JSON readable -> "text"}
+\NormalTok{req.text <-}\StringTok{ }\KeywordTok{content}\NormalTok{(req, }\DataTypeTok{as=}\StringTok{"text"}\NormalTok{)}
+
+\CommentTok{# Flatten data frame to see available data. }
+\NormalTok{avail <-}\StringTok{ }\NormalTok{jsonlite}\OperatorTok{::}\KeywordTok{fromJSON}\NormalTok{(req.text, }\DataTypeTok{simplifyDataFrame=}\NormalTok{T, }\DataTypeTok{flatten=}\NormalTok{T)}
+\NormalTok{avail}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $data
+## $data$productCodeLong
+## [1] "NEON.DOM.SITE.DP1.10003.001"
+## 
+## $data$productCode
+## [1] "DP1.10003.001"
+## 
+## $data$productCodePresentation
+## [1] "NEON.DP1.10003"
+## 
+## $data$productName
+## [1] "Breeding landbird point counts"
+## 
+## $data$productDescription
+## [1] "Count, distance from observer, and taxonomic identification of breeding landbirds observed during point counts"
+## 
+## $data$productStatus
+## [1] "ACTIVE"
+## 
+## $data$productCategory
+## [1] "Level 1 Data Product"
+## 
+## $data$productHasExpanded
+## [1] TRUE
+## 
+## $data$productScienceTeamAbbr
+## [1] "TOS"
+## 
+## $data$productScienceTeam
+## [1] "Terrestrial Observation System (TOS)"
+## 
+## $data$productPublicationFormatType
+## [1] "TOS Data Product Type"
+## 
+## $data$productAbstract
+## [1] "This data product contains the quality-controlled, native sampling resolution data from NEON's breeding landbird sampling. Breeding landbirds are defined as “smaller birds (usually exclusive of raptors and upland game birds) not usually associated with aquatic habitats” (Ralph et al. 1993). The breeding landbird point counts product provides records of species identification of all individuals observed during the 6-minute count period, as well as metadata which can be used to model detectability, e.g., weather, distances from observers to birds, and detection methods. The NEON point count method is adapted from the Integrated Monitoring in Bird Conservation Regions (IMBCR): Field protocol for spatially-balanced sampling of landbird populations (Hanni et al. 2017; http://bit.ly/2u2ChUB). For additional details, see the user guide, protocols, and science design listed in the Documentation section in [this data product's details webpage](https://data.neonscience.org/data-products/DP1.10003.001). \n\nLatency:\nThe expected time from data and/or sample collection in the field to data publication is as follows, for each of the data tables (in days) in the downloaded data package. See the Data Product User Guide for more information.\n \nbrd_countdata:  120\n\nbrd_perpoint:  120\n\nbrd_personnel:  120\n\nbrd_references:  120"
+## 
+## $data$productDesignDescription
+## [1] "Depending on the size of the site, sampling for this product occurs either at either randomly distributed individual points or grids of nine points each. At larger sites, point count sampling occurs at five to fifteen 9-point grids, with grid centers collocated with distributed base plot centers (where plant, beetle, and/or soil sampling may also occur), if possible. At smaller sites (i.e., sites that cannot accommodate a minimum of 5 grids) point counts occur at the southwest corner (point 21) of 5-25 distributed base plots. Point counts are conducted once per breeding season at large sites and twice per breeding season at smaller sites. Point counts are six minutes long, with each minute tracked by the observer, following a two-minute settling-in period. All birds are recorded to species and sex, whenever possible, and the distance to each individual or flock is measured with a laser rangefinder, except in the case of flyovers."
+## 
+## $data$productStudyDescription
+## [1] "This sampling occurs at all NEON terrestrial sites."
+## 
+## $data$productBasicDescription
+## [1] "The basic package contains the per point metadata table that includes data pertaining to the observer and the weather conditions and the count data table that includes all of the observational data."
+## 
+## $data$productExpandedDescription
+## [1] "The expanded package includes two additional tables and two additional fields within the count data table. The personnel table provides institutional information about each observer, as well as their performance on identification quizzes, where available. The references tables provides the list of resources used by an observer to identify birds. The additional fields in the countdata table are family and nativeStatusCode, which are derived from the NEON master list of birds."
+## 
+## $data$productSensor
+## NULL
+## 
+## $data$productRemarks
+## [1] "Queries for this data product will return data collected during the date range specified for `brd_perpoint` and `brd_countdata`, but will return data from all dates for `brd_personnel` (quiz scores may occur over time periods which are distinct from when sampling occurs) and `brd_references` (which apply to a broad range of sampling dates). A record from `brd_perPoint` should have 6+ child records in `brd_countdata`, at least one per pointCountMinute. Duplicates or missing data may exist where protocol and/or data entry aberrations have occurred; users should check data carefully for anomalies before joining tables. Taxonomic IDs of species of concern have been 'fuzzed'; see data package readme files for more information."
+## 
+## $data$themes
+## [1] "Organisms, Populations, and Communities"
+## 
+## $data$changeLogs
+## NULL
+## 
+## $data$specs
+##   specId             specNumber
+## 1   3656      NEON.DOC.000916vC
+## 2   2565 NEON_bird_userGuide_vA
+## 3   3729      NEON.DOC.014041vJ
+## 
+## $data$keywords
+##  [1] "vertebrates"           "birds"                
+##  [3] "diversity"             "taxonomy"             
+##  [5] "community composition" "distance sampling"    
+##  [7] "avian"                 "species composition"  
+##  [9] "population"            "Aves"                 
+## [11] "Chordata"              "point counts"         
+## [13] "landbirds"             "invasive"             
+## [15] "introduced"            "native"               
+## [17] "animals"               "Animalia"             
+## 
+## $data$siteCodes
+##    siteCode
+## 1      ABBY
+## 2      BARR
+## 3      BART
+## 4      BLAN
+## 5      BONA
+## 6      CLBJ
+## 7      CPER
+## 8      DCFS
+## 9      DEJU
+## 10     DELA
+## 11     DSNY
+## 12     GRSM
+## 13     GUAN
+## 14     HARV
+## 15     HEAL
+## 16     JERC
+## 17     JORN
+## 18     KONA
+## 19     KONZ
+## 20     LAJA
+## 21     LENO
+## 22     MLBS
+## 23     MOAB
+## 24     NIWO
+## 25     NOGP
+## 26     OAES
+## 27     ONAQ
+## 28     ORNL
+## 29     OSBS
+## 30     PUUM
+## 31     RMNP
+## 32     SCBI
+## 33     SERC
+## 34     SJER
+## 35     SOAP
+## 36     SRER
+## 37     STEI
+## 38     STER
+## 39     TALL
+## 40     TEAK
+## 41     TOOL
+## 42     TREE
+## 43     UKFS
+## 44     UNDE
+## 45     WOOD
+## 46     WREF
+## 47     YELL
+##                                                                    availableMonths
+## 1                                      2017-05, 2017-06, 2018-06, 2018-07, 2019-05
+## 2                                                        2017-07, 2018-07, 2019-06
+## 3                                      2015-06, 2016-06, 2017-06, 2018-06, 2019-06
+## 4                             2017-05, 2017-06, 2018-05, 2018-06, 2019-05, 2019-06
+## 5                                               2017-06, 2018-06, 2018-07, 2019-06
+## 6                                               2017-05, 2018-04, 2019-04, 2019-05
+## 7                    2013-06, 2015-05, 2016-05, 2017-05, 2017-06, 2018-05, 2019-06
+## 8                                      2017-06, 2017-07, 2018-07, 2019-06, 2019-07
+## 9                                                        2017-06, 2018-06, 2019-06
+## 10                                              2015-06, 2017-06, 2018-05, 2019-06
+## 11                                     2015-06, 2016-05, 2017-05, 2018-05, 2019-05
+## 12                                     2016-06, 2017-05, 2017-06, 2018-05, 2019-05
+## 13                                     2015-05, 2017-05, 2018-05, 2019-05, 2019-06
+## 14                            2015-05, 2015-06, 2016-06, 2017-06, 2018-06, 2019-06
+## 15                                     2017-06, 2018-06, 2018-07, 2019-06, 2019-07
+## 16                                              2016-06, 2017-05, 2018-06, 2019-06
+## 17                                     2017-04, 2017-05, 2018-04, 2018-05, 2019-04
+## 18                                                       2018-05, 2018-06, 2019-06
+## 19                                              2017-06, 2018-05, 2018-06, 2019-06
+## 20                                              2017-05, 2018-05, 2019-05, 2019-06
+## 21                                                       2017-06, 2018-05, 2019-06
+## 22                                                                2018-06, 2019-05
+## 23                                              2015-06, 2017-05, 2018-05, 2019-05
+## 24                                              2015-07, 2017-07, 2018-07, 2019-07
+## 25                                                       2017-07, 2018-07, 2019-07
+## 26                                     2017-05, 2017-06, 2018-04, 2018-05, 2019-05
+## 27                                              2017-05, 2018-05, 2018-06, 2019-05
+## 28                                     2016-05, 2016-06, 2017-05, 2018-06, 2019-05
+## 29                                              2016-05, 2017-05, 2018-05, 2019-05
+## 30                                                                         2018-04
+## 31                            2017-06, 2017-07, 2018-06, 2018-07, 2019-06, 2019-07
+## 32 2015-06, 2016-05, 2016-06, 2017-05, 2017-06, 2018-05, 2018-06, 2019-05, 2019-06
+## 33                                              2017-05, 2017-06, 2018-05, 2019-05
+## 34                                                       2017-04, 2018-04, 2019-04
+## 35                                                       2017-05, 2018-05, 2019-05
+## 36                                              2017-05, 2018-04, 2018-05, 2019-04
+## 37                   2016-05, 2016-06, 2017-06, 2018-05, 2018-06, 2019-05, 2019-06
+## 38                   2013-06, 2015-05, 2016-05, 2017-05, 2018-05, 2019-05, 2019-06
+## 39                                     2015-06, 2016-07, 2017-06, 2018-06, 2019-05
+## 40                                              2017-06, 2018-06, 2019-06, 2019-07
+## 41                                                       2017-06, 2018-07, 2019-06
+## 42                                              2016-06, 2017-06, 2018-06, 2019-06
+## 43                                                       2017-06, 2018-06, 2019-06
+## 44                                     2016-06, 2016-07, 2017-06, 2018-06, 2019-06
+## 45                                     2015-07, 2017-07, 2018-07, 2019-06, 2019-07
+## 46                                                       2018-06, 2019-05, 2019-06
+## 47                                                                2018-06, 2019-06
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              availableDataUrls
+## 1                                                                                                                                                                                                                                                                                      https://data.neonscience.org/api/v0/data/DP1.10003.001/ABBY/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/ABBY/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/ABBY/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/ABBY/2018-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/ABBY/2019-05
+## 2                                                                                                                                                                                                                                                                                                                                                                                                                                https://data.neonscience.org/api/v0/data/DP1.10003.001/BARR/2017-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/BARR/2018-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/BARR/2019-06
+## 3                                                                                                                                                                                                                                                                                      https://data.neonscience.org/api/v0/data/DP1.10003.001/BART/2015-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/BART/2016-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/BART/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/BART/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/BART/2019-06
+## 4                                                                                                                                                                                                                 https://data.neonscience.org/api/v0/data/DP1.10003.001/BLAN/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/BLAN/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/BLAN/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/BLAN/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/BLAN/2019-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/BLAN/2019-06
+## 5                                                                                                                                                                                                                                                                                                                                                           https://data.neonscience.org/api/v0/data/DP1.10003.001/BONA/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/BONA/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/BONA/2018-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/BONA/2019-06
+## 6                                                                                                                                                                                                                                                                                                                                                           https://data.neonscience.org/api/v0/data/DP1.10003.001/CLBJ/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/CLBJ/2018-04, https://data.neonscience.org/api/v0/data/DP1.10003.001/CLBJ/2019-04, https://data.neonscience.org/api/v0/data/DP1.10003.001/CLBJ/2019-05
+## 7                                                                                                                                            https://data.neonscience.org/api/v0/data/DP1.10003.001/CPER/2013-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/CPER/2015-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/CPER/2016-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/CPER/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/CPER/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/CPER/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/CPER/2019-06
+## 8                                                                                                                                                                                                                                                                                      https://data.neonscience.org/api/v0/data/DP1.10003.001/DCFS/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/DCFS/2017-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/DCFS/2018-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/DCFS/2019-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/DCFS/2019-07
+## 9                                                                                                                                                                                                                                                                                                                                                                                                                                https://data.neonscience.org/api/v0/data/DP1.10003.001/DEJU/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/DEJU/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/DEJU/2019-06
+## 10                                                                                                                                                                                                                                                                                                                                                          https://data.neonscience.org/api/v0/data/DP1.10003.001/DELA/2015-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/DELA/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/DELA/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/DELA/2019-06
+## 11                                                                                                                                                                                                                                                                                     https://data.neonscience.org/api/v0/data/DP1.10003.001/DSNY/2015-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/DSNY/2016-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/DSNY/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/DSNY/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/DSNY/2019-05
+## 12                                                                                                                                                                                                                                                                                     https://data.neonscience.org/api/v0/data/DP1.10003.001/GRSM/2016-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/GRSM/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/GRSM/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/GRSM/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/GRSM/2019-05
+## 13                                                                                                                                                                                                                                                                                     https://data.neonscience.org/api/v0/data/DP1.10003.001/GUAN/2015-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/GUAN/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/GUAN/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/GUAN/2019-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/GUAN/2019-06
+## 14                                                                                                                                                                                                                https://data.neonscience.org/api/v0/data/DP1.10003.001/HARV/2015-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/HARV/2015-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/HARV/2016-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/HARV/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/HARV/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/HARV/2019-06
+## 15                                                                                                                                                                                                                                                                                     https://data.neonscience.org/api/v0/data/DP1.10003.001/HEAL/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/HEAL/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/HEAL/2018-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/HEAL/2019-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/HEAL/2019-07
+## 16                                                                                                                                                                                                                                                                                                                                                          https://data.neonscience.org/api/v0/data/DP1.10003.001/JERC/2016-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/JERC/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/JERC/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/JERC/2019-06
+## 17                                                                                                                                                                                                                                                                                     https://data.neonscience.org/api/v0/data/DP1.10003.001/JORN/2017-04, https://data.neonscience.org/api/v0/data/DP1.10003.001/JORN/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/JORN/2018-04, https://data.neonscience.org/api/v0/data/DP1.10003.001/JORN/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/JORN/2019-04
+## 18                                                                                                                                                                                                                                                                                                                                                                                                                               https://data.neonscience.org/api/v0/data/DP1.10003.001/KONA/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/KONA/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/KONA/2019-06
+## 19                                                                                                                                                                                                                                                                                                                                                          https://data.neonscience.org/api/v0/data/DP1.10003.001/KONZ/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/KONZ/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/KONZ/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/KONZ/2019-06
+## 20                                                                                                                                                                                                                                                                                                                                                          https://data.neonscience.org/api/v0/data/DP1.10003.001/LAJA/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/LAJA/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/LAJA/2019-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/LAJA/2019-06
+## 21                                                                                                                                                                                                                                                                                                                                                                                                                               https://data.neonscience.org/api/v0/data/DP1.10003.001/LENO/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/LENO/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/LENO/2019-06
+## 22                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    https://data.neonscience.org/api/v0/data/DP1.10003.001/MLBS/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/MLBS/2019-05
+## 23                                                                                                                                                                                                                                                                                                                                                          https://data.neonscience.org/api/v0/data/DP1.10003.001/MOAB/2015-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/MOAB/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/MOAB/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/MOAB/2019-05
+## 24                                                                                                                                                                                                                                                                                                                                                          https://data.neonscience.org/api/v0/data/DP1.10003.001/NIWO/2015-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/NIWO/2017-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/NIWO/2018-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/NIWO/2019-07
+## 25                                                                                                                                                                                                                                                                                                                                                                                                                               https://data.neonscience.org/api/v0/data/DP1.10003.001/NOGP/2017-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/NOGP/2018-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/NOGP/2019-07
+## 26                                                                                                                                                                                                                                                                                     https://data.neonscience.org/api/v0/data/DP1.10003.001/OAES/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/OAES/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/OAES/2018-04, https://data.neonscience.org/api/v0/data/DP1.10003.001/OAES/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/OAES/2019-05
+## 27                                                                                                                                                                                                                                                                                                                                                          https://data.neonscience.org/api/v0/data/DP1.10003.001/ONAQ/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/ONAQ/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/ONAQ/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/ONAQ/2019-05
+## 28                                                                                                                                                                                                                                                                                     https://data.neonscience.org/api/v0/data/DP1.10003.001/ORNL/2016-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/ORNL/2016-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/ORNL/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/ORNL/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/ORNL/2019-05
+## 29                                                                                                                                                                                                                                                                                                                                                          https://data.neonscience.org/api/v0/data/DP1.10003.001/OSBS/2016-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/OSBS/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/OSBS/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/OSBS/2019-05
+## 30                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         https://data.neonscience.org/api/v0/data/DP1.10003.001/PUUM/2018-04
+## 31                                                                                                                                                                                                                https://data.neonscience.org/api/v0/data/DP1.10003.001/RMNP/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/RMNP/2017-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/RMNP/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/RMNP/2018-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/RMNP/2019-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/RMNP/2019-07
+## 32 https://data.neonscience.org/api/v0/data/DP1.10003.001/SCBI/2015-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/SCBI/2016-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/SCBI/2016-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/SCBI/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/SCBI/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/SCBI/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/SCBI/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/SCBI/2019-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/SCBI/2019-06
+## 33                                                                                                                                                                                                                                                                                                                                                          https://data.neonscience.org/api/v0/data/DP1.10003.001/SERC/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/SERC/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/SERC/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/SERC/2019-05
+## 34                                                                                                                                                                                                                                                                                                                                                                                                                               https://data.neonscience.org/api/v0/data/DP1.10003.001/SJER/2017-04, https://data.neonscience.org/api/v0/data/DP1.10003.001/SJER/2018-04, https://data.neonscience.org/api/v0/data/DP1.10003.001/SJER/2019-04
+## 35                                                                                                                                                                                                                                                                                                                                                                                                                               https://data.neonscience.org/api/v0/data/DP1.10003.001/SOAP/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/SOAP/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/SOAP/2019-05
+## 36                                                                                                                                                                                                                                                                                                                                                          https://data.neonscience.org/api/v0/data/DP1.10003.001/SRER/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/SRER/2018-04, https://data.neonscience.org/api/v0/data/DP1.10003.001/SRER/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/SRER/2019-04
+## 37                                                                                                                                           https://data.neonscience.org/api/v0/data/DP1.10003.001/STEI/2016-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/STEI/2016-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/STEI/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/STEI/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/STEI/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/STEI/2019-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/STEI/2019-06
+## 38                                                                                                                                           https://data.neonscience.org/api/v0/data/DP1.10003.001/STER/2013-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/STER/2015-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/STER/2016-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/STER/2017-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/STER/2018-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/STER/2019-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/STER/2019-06
+## 39                                                                                                                                                                                                                                                                                     https://data.neonscience.org/api/v0/data/DP1.10003.001/TALL/2015-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/TALL/2016-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/TALL/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/TALL/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/TALL/2019-05
+## 40                                                                                                                                                                                                                                                                                                                                                          https://data.neonscience.org/api/v0/data/DP1.10003.001/TEAK/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/TEAK/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/TEAK/2019-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/TEAK/2019-07
+## 41                                                                                                                                                                                                                                                                                                                                                                                                                               https://data.neonscience.org/api/v0/data/DP1.10003.001/TOOL/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/TOOL/2018-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/TOOL/2019-06
+## 42                                                                                                                                                                                                                                                                                                                                                          https://data.neonscience.org/api/v0/data/DP1.10003.001/TREE/2016-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/TREE/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/TREE/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/TREE/2019-06
+## 43                                                                                                                                                                                                                                                                                                                                                                                                                               https://data.neonscience.org/api/v0/data/DP1.10003.001/UKFS/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/UKFS/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/UKFS/2019-06
+## 44                                                                                                                                                                                                                                                                                     https://data.neonscience.org/api/v0/data/DP1.10003.001/UNDE/2016-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/UNDE/2016-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/UNDE/2017-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/UNDE/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/UNDE/2019-06
+## 45                                                                                                                                                                                                                                                                                     https://data.neonscience.org/api/v0/data/DP1.10003.001/WOOD/2015-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/WOOD/2017-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/WOOD/2018-07, https://data.neonscience.org/api/v0/data/DP1.10003.001/WOOD/2019-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/WOOD/2019-07
+## 46                                                                                                                                                                                                                                                                                                                                                                                                                               https://data.neonscience.org/api/v0/data/DP1.10003.001/WREF/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/WREF/2019-05, https://data.neonscience.org/api/v0/data/DP1.10003.001/WREF/2019-06
+## 47                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    https://data.neonscience.org/api/v0/data/DP1.10003.001/YELL/2018-06, https://data.neonscience.org/api/v0/data/DP1.10003.001/YELL/2019-06
+\end{verbatim}
+
+The object contains a lot of information about the data product, including:
+
+\begin{itemize}
+\tightlist
+\item
+  keywords under \texttt{\$data\$keywords},
+\item
+  references for documentation under \texttt{\$data\$specs},
+\item
+  data availability by site and month under \texttt{\$data\$siteCodes}, and
+\item
+  specific URLs for the API calls for each site and month under
+  \texttt{\$data\$siteCodes\$availableDataUrls}.
+\end{itemize}
+
+We need \texttt{\$data\$siteCodes} to tell us what we can download.
+\texttt{\$data\$siteCodes\$availableDataUrls} allows us to avoid writing the API
+calls ourselves in the next steps.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# get data availability list for the product}
+\NormalTok{bird.urls <-}\StringTok{ }\KeywordTok{unlist}\NormalTok{(avail}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{siteCodes}\OperatorTok{$}\NormalTok{availableDataUrls)}
+\KeywordTok{length}\NormalTok{(bird.urls) }\CommentTok{#total number of URLs}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 204
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bird.urls[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{] }\CommentTok{#show first 10 URLs available}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "https://data.neonscience.org/api/v0/data/DP1.10003.001/ABBY/2017-05"
+##  [2] "https://data.neonscience.org/api/v0/data/DP1.10003.001/ABBY/2017-06"
+##  [3] "https://data.neonscience.org/api/v0/data/DP1.10003.001/ABBY/2018-06"
+##  [4] "https://data.neonscience.org/api/v0/data/DP1.10003.001/ABBY/2018-07"
+##  [5] "https://data.neonscience.org/api/v0/data/DP1.10003.001/ABBY/2019-05"
+##  [6] "https://data.neonscience.org/api/v0/data/DP1.10003.001/BARR/2017-07"
+##  [7] "https://data.neonscience.org/api/v0/data/DP1.10003.001/BARR/2018-07"
+##  [8] "https://data.neonscience.org/api/v0/data/DP1.10003.001/BARR/2019-06"
+##  [9] "https://data.neonscience.org/api/v0/data/DP1.10003.001/BART/2015-06"
+## [10] "https://data.neonscience.org/api/v0/data/DP1.10003.001/BART/2016-06"
+\end{verbatim}
+
+These are the URLs showing us what files are available for each month where
+there are data.
+
+Let's look at the bird data from Woodworth (WOOD) site from July 2015. We can do
+this by using the above code but now specifying which site/date we want using
+the \texttt{grep()} function.
+
+Note that if there were only one month of data from a site, you could leave
+off the date in the function. If you want date from more than one site/month
+you need to iterate this code, GET fails if you give it more than one URL.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# get data availability for WOOD July 2015}
+\NormalTok{brd <-}\StringTok{ }\KeywordTok{GET}\NormalTok{(bird.urls[}\KeywordTok{grep}\NormalTok{(}\StringTok{"WOOD/2015-07"}\NormalTok{, bird.urls)])}
+\NormalTok{brd.files <-}\StringTok{ }\NormalTok{jsonlite}\OperatorTok{::}\KeywordTok{fromJSON}\NormalTok{(}\KeywordTok{content}\NormalTok{(brd, }\DataTypeTok{as=}\StringTok{"text"}\NormalTok{))}
+
+\CommentTok{# view just the available data files }
+\NormalTok{brd.files}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{files}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                               crc32
+## 1  e0adb3146b5cce59eea09864145efcb1
+## 2  4438e5e050fc7be5949457f42089a397
+## 3  d84b496cf950b5b96e762473beda563a
+## 4  6d15da01c03793da8fc6d871e6659ea8
+## 5  f37931d46213246dccf2a161211c9afe
+## 6  e67f1ae72760a63c616ec18108453aaa
+## 7  df102cb4cfdce092cda3c0942c9d9b67
+## 8  e67f1ae72760a63c616ec18108453aaa
+## 9  2ad379ae44f4e87996bdc3dee70a0794
+## 10 d76cfc5443ac27a058fab1d319d31d34
+## 11 22e3353dabb8b154768dc2eee9873718
+## 12 6d15da01c03793da8fc6d871e6659ea8
+## 13 a2c47410a6a0f49d0b1cf95be6238604
+## 14 f37931d46213246dccf2a161211c9afe
+## 15 6ba91b6e109ff14d1911dcaad9febeb9
+## 16 680a2f53c0a9d1b0ab4f8814bda5b399
+##                                                                               name
+## 1     NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.basic.20191107T152331Z.csv
+## 2                   NEON.D09.WOOD.DP1.10003.001.2015-07.basic.20191107T152331Z.zip
+## 3                          NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt
+## 4                      NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv
+## 5      NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.basic.20191107T152331Z.csv
+## 6                       NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv
+## 7           NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml
+## 8                       NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv
+## 9  NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.expanded.20191107T152331Z.csv
+## 10        NEON.D09.WOOD.DP1.10003.001.brd_references.expanded.20191107T152331Z.csv
+## 11               NEON.D09.WOOD.DP1.10003.001.2015-07.expanded.20191107T152331Z.zip
+## 12                     NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv
+## 13                          NEON.Bird_Conservancy_of_the_Rockies.brd_personnel.csv
+## 14  NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.expanded.20191107T152331Z.csv
+## 15          NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml
+## 16                         NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt
+##      size
+## 1  346679
+## 2   67816
+## 3   12784
+## 4   10084
+## 5   23521
+## 6    7337
+## 7   70539
+## 8    7337
+## 9  367402
+## 10   1012
+## 11  79998
+## 12  10084
+## 13  46349
+## 14  23521
+## 15  78750
+## 16  13063
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        url
+## 1        https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.basic.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200802T150650Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200802%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=cacfd89bb3a3e34d4d90086680dc6b6fdda1fc885a4824cfb43e68574fafdec5
+## 2                      https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.2015-07.basic.20191107T152331Z.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200802T150650Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200802%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=34fb5348303fb04fe5578f3b3c39edf6974f724c623d43d35b7efa23d5078289
+## 3                             https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200802T150650Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200802%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=0fe19ff62b5bb148c5a78e10856781eefe522ac6d40de9ec9ecc3dd9a4cdf12d
+## 4                         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200802T150650Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200802%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=d88a7f1338c38ea52d6fc3fad6bd65add699aed9dbf2a3696734e4c4675303c1
+## 5         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.basic.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200802T150650Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200802%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=7ee68e909944d49d80bcf4fba61af23a3b483f40f025b91f0e6d2f80a5341235
+## 6                          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200802T150650Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200802%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=ac886dd7f4c7c03aea6b999e5fe3d9265da38e91d019ea70ce8a2a603c96fab5
+## 7              https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200802T150650Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200802%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=fc00e26b812f0daac840cc223eac5bd08d6d206ce1c6ce5ffbf022736f3530ae
+## 8                       https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200802T150650Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200802%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=c33e468f58e5129e17381f276038380a6ca7d3ddc9d1d6cdadc36e8bdcd9e29a
+## 9  https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200802T150650Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200802%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=89963fae2363ba088ad3962579b0a0b8535987f0a8f68644abe78af62656a8f1
+## 10        https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_references.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200802T150650Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200802%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=5797f809ed19d3259478b02379bb91daf2975a11de810ae075611359c3ce6289
+## 11               https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.2015-07.expanded.20191107T152331Z.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200802T150650Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200802%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=e26131b0042ac3a56beb9e988bb9627f545f22cf5938a16a3b0c83889eb0acd4
+## 12                     https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200802T150650Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200802%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=e9af208ec0484d7b9a18663debf429460e450674b5dfaf758724260edf6f7982
+## 13                          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.Bird_Conservancy_of_the_Rockies.brd_personnel.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200802T150650Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200802%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=91a07f3ed49804fb79cf26fe219934e5265c4a8cdf6de8c084ffcc359b849179
+## 14  https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200802T150650Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=pub-internal-read%2F20200802%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=ca0ba0f03acd6d7ae11e7933375d6d43e0c319bce931ee804b51e5f63ee1d318
+## 15          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200802T150650Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200802%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=1ac759ed553fce04a78691933627b77a6f5a892edf57cc23005d5a2286f4173e
+## 16                         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200802T150650Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200802%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=dccb9c79dee53b769d7f9732d9a4b067e4bbdae9d9beac30c9276dfc99043f13
+\end{verbatim}
+
+In this output, \texttt{name} and \texttt{url} are key fields. It provides us with the names
+of the files available for this site and month, and URLs where we can get the
+files. We'll use the file names to pick which ones we want.
+
+The available files include both \textbf{data} and \textbf{metadata}, and both the \textbf{basic}
+and \textbf{expanded} data packages. Typically the expanded package includes additional
+quality or uncertainty data, either in additional files or additional fields
+than in the basic files. Basic and expanded data packages are available for
+most NEON data products (some only have basic). Metadata are described by file
+name below.
+
+The format for most of the file names is:
+
+\textbf{NEON.{[}domain number{]}.{[}site code{]}.{[}data product ID{]}.{[}file-specific name{]}.
+{[}date of file creation{]}}
+
+Some files omit the domain and site, since they're not specific to a
+location, like the data product readme. The date of file creation uses the
+ISO6801 format, in this case 20170720T182547Z, and can be used to determine
+whether data have been updated since the last time you downloaded.
+
+Available files in our query for July 2015 at Woodworth are all of the following
+(leaving off the initial NEON.D09.WOOD.10003.001):
+
+\begin{itemize}
+\item
+  \textbf{\textasciitilde{}.2015-07.expanded.20170720T182547Z.zip:} zip of all files in the expanded
+  package
+\item
+  \textbf{\textasciitilde{}.brd\_countdata.2015-07.expanded.20170720T182547Z.csv:} count data table,
+  expanded package version: counts of birds at each point
+\item
+  \textbf{\textasciitilde{}.brd\_perpoint.2015-07.expanded.20170720T182547Z.csv:} point data table,
+  expanded package version: metadata at each observation point
+\item
+  \textbf{NEON.Bird Conservancy of the Rockies.brd\_personnel.csv:} personnel data
+  table, accuracy scores for bird observers
+\item
+  \textbf{\textasciitilde{}.2015-07.basic.20170720T182547Z.zip:} zip of all files in the basic package
+\item
+  \textbf{\textasciitilde{}.brd\_countdata.2015-07.basic.20170720T182547Z.csv:} count data table,
+  basic package version: counts of birds at each point
+\item
+  \textbf{\textasciitilde{}.brd\_perpoint.2015-07.basic.20170720T182547Z.csv:} point data table,
+  basic package version: metadata at each observation point
+\item
+  \textbf{NEON.DP1.10003.001\_readme.txt:} readme for the data product (not specific
+  to dates or location). Appears twice in the list, since it's in both the basic
+  and expanded package
+\item
+  \textbf{\textasciitilde{}.20150101-20160613.xml:} Ecological Metadata Language (EML) file. Appears
+  twice in the list, since it's in both the basic and expanded package
+\item
+  \textbf{\textasciitilde{}.validation.20170720T182547Z.csv:} validation file for the data product,
+  lists input data and data entry rules. Appears twice in the list, since it's in
+  both the basic and expanded package
+\item
+  \textbf{\textasciitilde{}.variables.20170720T182547Z.csv:} variables file for the data product,
+  lists data fields in downloaded tables. Appears twice in the list, since it's
+  in both the basic and expanded package
+\end{itemize}
+
+We'll get the data tables for the point data and count data in the basic
+package. The list of files doesn't return in the same order every time, so we
+won't use position in the list to select. Plus, we want code we can re-use
+when getting data from other sites and other months. So we select files
+based on the data table name and the package name.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Get both files}
+\NormalTok{brd.count <-}\StringTok{ }\KeywordTok{read.delim}\NormalTok{(brd.files}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{files}\OperatorTok{$}\NormalTok{url}
+\NormalTok{                        [}\KeywordTok{intersect}\NormalTok{(}\KeywordTok{grep}\NormalTok{(}\StringTok{"countdata"}\NormalTok{, }
+\NormalTok{                                        brd.files}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{files}\OperatorTok{$}\NormalTok{name),}
+                                    \KeywordTok{grep}\NormalTok{(}\StringTok{"basic"}\NormalTok{, }
+\NormalTok{                                         brd.files}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{files}\OperatorTok{$}\NormalTok{name))], }
+                        \DataTypeTok{sep=}\StringTok{","}\NormalTok{)}
+
+\NormalTok{brd.point <-}\StringTok{ }\KeywordTok{read.delim}\NormalTok{(brd.files}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{files}\OperatorTok{$}\NormalTok{url}
+\NormalTok{                        [}\KeywordTok{intersect}\NormalTok{(}\KeywordTok{grep}\NormalTok{(}\StringTok{"perpoint"}\NormalTok{, }
+\NormalTok{                                        brd.files}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{files}\OperatorTok{$}\NormalTok{name),}
+                                    \KeywordTok{grep}\NormalTok{(}\StringTok{"basic"}\NormalTok{, }
+\NormalTok{                                         brd.files}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{files}\OperatorTok{$}\NormalTok{name))], }
+                        \DataTypeTok{sep=}\StringTok{","}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now we have the data and can access it in R. Just to show that the files we
+pulled have actual data in them, let's make a quick graphic:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Cluster by species }
+\NormalTok{clusterBySp <-}\StringTok{ }\NormalTok{brd.count }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{group_by}\NormalTok{(scientificName) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{total=}\KeywordTok{sum}\NormalTok{(clusterSize, }\DataTypeTok{na.rm=}\NormalTok{T))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Reorder so list is ordered most to least abundance}
+\NormalTok{clusterBySp <-}\StringTok{ }\NormalTok{clusterBySp[}\KeywordTok{order}\NormalTok{(clusterBySp}\OperatorTok{$}\NormalTok{total, }\DataTypeTok{decreasing=}\NormalTok{T),]}
+
+\CommentTok{# Plot}
+\KeywordTok{barplot}\NormalTok{(clusterBySp}\OperatorTok{$}\NormalTok{total, }\DataTypeTok{names.arg=}\NormalTok{clusterBySp}\OperatorTok{$}\NormalTok{scientificName, }
+        \DataTypeTok{ylab=}\StringTok{"Total"}\NormalTok{, }\DataTypeTok{cex.names=}\FloatTok{0.5}\NormalTok{, }\DataTypeTok{las=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/os-plot-bird-data-1.pdf}
+
+Wow! There are lots of \emph{Agelaius phoeniceus} (Red-winged Blackbirds) at WOOD in July.
+
+\hypertarget{instrumentation-data-is}{%
+\section{Instrumentation data (IS)}\label{instrumentation-data-is}}
+
+The process is essentially the same for sensor data. We'll do the same series of
+queries for Soil Temperature, DP1.00041.001. Let's use data from Moab in March
+2017 this time.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Request soil temperature data availability info}
+\NormalTok{req.soil <-}\StringTok{ }\KeywordTok{GET}\NormalTok{(}\StringTok{"http://data.neonscience.org/api/v0/products/DP1.00041.001"}\NormalTok{)}
+
+\CommentTok{# make this JSON readable}
+\CommentTok{# Note how we've change this from two commands into one here}
+\NormalTok{avail.soil <-}\StringTok{ }\NormalTok{jsonlite}\OperatorTok{::}\KeywordTok{fromJSON}\NormalTok{(}\KeywordTok{content}\NormalTok{(req.soil, }\DataTypeTok{as=}\StringTok{"text"}\NormalTok{), }\DataTypeTok{simplifyDataFrame=}\NormalTok{T, }\DataTypeTok{flatten=}\NormalTok{T)}
+
+\CommentTok{# get data availability list for the product}
+\NormalTok{temp.urls <-}\StringTok{ }\KeywordTok{unlist}\NormalTok{(avail.soil}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{siteCodes}\OperatorTok{$}\NormalTok{availableDataUrls)}
+
+\CommentTok{# get data availability from location/date of interest}
+\NormalTok{tmp <-}\StringTok{ }\KeywordTok{GET}\NormalTok{(temp.urls[}\KeywordTok{grep}\NormalTok{(}\StringTok{"MOAB/2017-06"}\NormalTok{, temp.urls)])}
+\NormalTok{tmp.files <-}\StringTok{ }\NormalTok{jsonlite}\OperatorTok{::}\KeywordTok{fromJSON}\NormalTok{(}\KeywordTok{content}\NormalTok{(tmp, }\DataTypeTok{as=}\StringTok{"text"}\NormalTok{))}
+\KeywordTok{length}\NormalTok{(tmp.files}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{files}\OperatorTok{$}\NormalTok{name) }\CommentTok{# There are a lot of available files}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 190
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tmp.files}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{files}\OperatorTok{$}\NormalTok{name[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{]   }\CommentTok{# Let's print the first 10}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "NEON.D13.MOAB.DP1.00041.001.004.501.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
+##  [2] "NEON.D13.MOAB.DP1.00041.001.002.506.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
+##  [3] "NEON.D13.MOAB.DP1.00041.001.004.505.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
+##  [4] "NEON.D13.MOAB.DP1.00041.001.001.508.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
+##  [5] "NEON.D13.MOAB.DP1.00041.001.003.505.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
+##  [6] "NEON.D13.MOAB.DP1.00041.001.003.501.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
+##  [7] "NEON.D13.MOAB.DP1.00041.001.002.501.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
+##  [8] "NEON.D13.MOAB.DP1.00041.001.004.502.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
+##  [9] "NEON.D13.MOAB.DP1.00041.001.004.509.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
+## [10] "NEON.D13.MOAB.DP1.00041.001.sensor_positions.20200620T070859Z.csv"
+\end{verbatim}
+
+These file names start and end the same way as the observational files, but the
+middle is a little more cryptic. The structure from beginning to end is:
+
+\textbf{NEON.{[}domain number{]}.{[}site code{]}.{[}data product ID{]}.00000.
+{[}soil plot number{]}.{[}depth{]}.{[}averaging interval{]}.{[}data table name{]}.
+{[}year{]}-{[}month{]}.{[}data package{]}.{[}date of file creation{]}}
+
+So \textbf{``NEON.D13.MOAB.DP1.00041.001.003.507.030.ST\_30\_minute.2017-06.expanded.20200620T070859Z.csv''} is the:
+
+\begin{itemize}
+\tightlist
+\item
+  NEON (\texttt{NEON.})
+\item
+  Domain 13 (\texttt{.D13.})
+\item
+  Moab field site (\texttt{.MOAB.})
+\item
+  soil temperature data (\texttt{.DP1.00041.001.})
+\item
+  collected in Soil Plot 2, (\texttt{.002.})
+\item
+  at the 7th depth below the surface (\texttt{.507.})
+\item
+  and reported as a 30-minute mean of (\texttt{.030.} and \texttt{.ST\_30\_minute.})
+\item
+  only for the period of June 2017 (\texttt{.2017-06.})
+\item
+  and provided in a expanded data package (\texttt{.basic.})
+\item
+  published on June 20th, 2020 (\texttt{.0200620T070859Z.}).
+\end{itemize}
+
+More information about interpreting file names can be found in the readme that
+accompanies each download.
+
+Let's get data (and the URL) for only the 2nd depth described above by selecting
+\texttt{002.502.030} and the word \texttt{basic} in the file name.
+
+Go get it:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{soil.temp <-}\StringTok{ }\KeywordTok{read.delim}\NormalTok{(tmp.files}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{files}\OperatorTok{$}\NormalTok{url}
+\NormalTok{                        [}\KeywordTok{intersect}\NormalTok{(}\KeywordTok{grep}\NormalTok{(}\StringTok{"002.502.030"}\NormalTok{, }
+\NormalTok{                                        tmp.files}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{files}\OperatorTok{$}\NormalTok{name),}
+                                   \KeywordTok{grep}\NormalTok{(}\StringTok{"basic"}\NormalTok{, }
+\NormalTok{                                        tmp.files}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{files}\OperatorTok{$}\NormalTok{name))], }
+                        \DataTypeTok{sep=}\StringTok{","}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now we have the data and can use it to conduct our analyses. To take
+a quick look at it, let's plot the mean soil temperature by date.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# plot temp ~ date}
+\KeywordTok{plot}\NormalTok{(soil.temp}\OperatorTok{$}\NormalTok{soilTempMean}\OperatorTok{~}\KeywordTok{as.POSIXct}\NormalTok{(soil.temp}\OperatorTok{$}\NormalTok{startDateTime, }
+                                       \DataTypeTok{format=}\StringTok{"%Y-%m-%d T %H:%M:%S Z"}\NormalTok{), }
+     \DataTypeTok{pch=}\StringTok{"."}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Date"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"T"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/os-plot-soil-data-1.pdf}
+
+As we'd expect we see daily fluctuation in soil temperature.
+
+\hypertarget{remote-sensing-data-aop}{%
+\section{Remote sensing data (AOP)}\label{remote-sensing-data-aop}}
+
+Again, the process of determining which sites and time periods have data, and
+finding the URLs for those data, is the same as for the other data types. We'll
+go looking for High resolution orthorectified camera imagery, DP1.30010, and
+we'll look at the flight over San Joaquin Experimental Range (SJER) in March
+2017.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Request camera data availability info}
+\NormalTok{req.aop <-}\StringTok{ }\KeywordTok{GET}\NormalTok{(}\StringTok{"http://data.neonscience.org/api/v0/products/DP1.30010.001"}\NormalTok{)}
+
+\CommentTok{# make this JSON readable}
+\CommentTok{# Note how we've changed this from two commands into one here}
+\NormalTok{avail.aop <-}\StringTok{ }\NormalTok{jsonlite}\OperatorTok{::}\KeywordTok{fromJSON}\NormalTok{(}\KeywordTok{content}\NormalTok{(req.aop, }\DataTypeTok{as=}\StringTok{"text"}\NormalTok{), }
+                      \DataTypeTok{simplifyDataFrame=}\NormalTok{T, }\DataTypeTok{flatten=}\NormalTok{T)}
+
+\CommentTok{# get data availability list for the product}
+\NormalTok{cam.urls <-}\StringTok{ }\KeywordTok{unlist}\NormalTok{(avail.aop}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{siteCodes}\OperatorTok{$}\NormalTok{availableDataUrls)}
+
+\CommentTok{# get data availability from location/date of interest}
+\NormalTok{cam <-}\StringTok{ }\KeywordTok{GET}\NormalTok{(cam.urls[}\KeywordTok{intersect}\NormalTok{(}\KeywordTok{grep}\NormalTok{(}\StringTok{"SJER"}\NormalTok{, cam.urls),}
+                              \KeywordTok{grep}\NormalTok{(}\StringTok{"2017"}\NormalTok{, cam.urls))])}
+\NormalTok{cam.files <-}\StringTok{ }\NormalTok{jsonlite}\OperatorTok{::}\KeywordTok{fromJSON}\NormalTok{(}\KeywordTok{content}\NormalTok{(cam, }\DataTypeTok{as=}\StringTok{"text"}\NormalTok{))}
+
+\CommentTok{# this list of files is very long, so we'll just look at the first ten}
+\KeywordTok{head}\NormalTok{(cam.files}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{files}\OperatorTok{$}\NormalTok{name, }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "17032816_EH021656(20170328190629)-0680_ort.tif"
+##  [2] "17032816_EH021656(20170328190117)-0642_ort.tif"
+##  [3] "17032816_EH021656(20170328195321)-1085_ort.tif"
+##  [4] "17032816_EH021656(20170328182204)-0324_ort.tif"
+##  [5] "17032816_EH021656(20170328193045)-0880_ort.tif"
+##  [6] "17032816_EH021656(20170328182447)-0358_ort.tif"
+##  [7] "17032816_EH021656(20170328185526)-0596_ort.tif"
+##  [8] "17032816_EH021656(20170328180003)-0154_ort.tif"
+##  [9] "17032816_EH021656(20170328192935)-0864_ort.tif"
+## [10] "17032816_EH021656(20170328191703)-0760_ort.tif"
+\end{verbatim}
+
+File names for AOP data are more variable than for IS or OS data;
+different AOP data products use different naming conventions.
+File formats differ by product as well.
+
+This particular product, camera imagery, is stored in TIFF files.
+For a full list of AOP data products, their naming conventions, and
+their file formats, see .
+
+Instead of reading a TIFF into R, we'll download it to the working
+directory. This is one option for getting AOP files from the API; if
+you plan to work with the files in R, you'll need to know how to
+read the relevant file types into R. We hope to add tutorials for
+this in the near future.
+
+To download the TIFF file, we use the \texttt{downloader} package, and we'll
+select a file based on the time stamp in the file name: \texttt{20170328192931}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{download}\NormalTok{(cam.files}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{files}\OperatorTok{$}\NormalTok{url[}\KeywordTok{grep}\NormalTok{(}\StringTok{"20170328192931"}\NormalTok{, }
+\NormalTok{                                       cam.files}\OperatorTok{$}\NormalTok{data}\OperatorTok{$}\NormalTok{files}\OperatorTok{$}\NormalTok{name)],}
+         \KeywordTok{paste}\NormalTok{(}\KeywordTok{getwd}\NormalTok{(), }\StringTok{"/SJER_image.tif"}\NormalTok{, }\DataTypeTok{sep=}\StringTok{""}\NormalTok{), }\DataTypeTok{mode=}\StringTok{"wb"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The image, below, of the San Joaquin Experimental Range should now be in your
+working directory.
+
+\begin{verbatim}
+<a href="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/neon-aop/SJER_tile_20170328192931.png">
+<img src="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/neon-aop/SJER_tile_20170328192931.png"></a>
+<figcaption> An example of camera data (DP1.30010.001) from the San Joaquin 
+Experimental Range. Source: National Ecological Observatory Network (NEON) 
+</figcaption>
+\end{verbatim}
+
+\hypertarget{geolocation-data}{%
+\section{Geolocation data}\label{geolocation-data}}
+
+You may have noticed some of the spatial data referenced above are a bit vague,
+e.g. ``soil plot 2, 4th depth below the surface.''
+
+How to get spatial data and what to do with it depends on which type of
+data you're working with.
+
+\hypertarget{instrumentation-data-both-aquatic-and-terrestrial}{%
+\subsubsection{Instrumentation data (both aquatic and terrestrial)}\label{instrumentation-data-both-aquatic-and-terrestrial}}
+
+Stay tuned - spatial data for instruments are in the process of entry into
+the NEON database.
+
+\hypertarget{observational-data---aquatic}{%
+\subsubsection{Observational data - Aquatic}\label{observational-data---aquatic}}
+
+Latitude, longitude, elevation, and associated uncertainties are included in
+data downloads. Most products also include an ``additional coordinate uncertainty''
+that should be added to the provided uncertainty. Additional spatial data, such
+as northing and easting, can be downloaded from the API.
+
+\hypertarget{observational-data---terrestrial}{%
+\subsubsection{Observational data - Terrestrial}\label{observational-data---terrestrial}}
+
+Latitude, longitude, elevation, and associated uncertainties are included in
+data downloads. These are the coordinates and uncertainty of the sampling plot;
+for many protocols it is possible to calculate a more precise location.
+Instructions for doing this are in the respective data product user guides, and
+code is in the \texttt{geoNEON} package on GitHub.
+
+\hypertarget{querying-a-single-named-location}{%
+\subsection{Querying a single named location}\label{querying-a-single-named-location}}
+
+Let's look at the named locations in the bird data we downloaded above. To do this,
+look for the field called \texttt{namedLocation}, which is present in all observational
+data products, both aquatic and terrestrial.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# view named location}
+\KeywordTok{head}\NormalTok{(brd.point}\OperatorTok{$}\NormalTok{namedLocation)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] WOOD_013.birdGrid.brd WOOD_013.birdGrid.brd WOOD_013.birdGrid.brd
+## [4] WOOD_013.birdGrid.brd WOOD_013.birdGrid.brd WOOD_013.birdGrid.brd
+## 7 Levels: WOOD_006.birdGrid.brd ... WOOD_020.birdGrid.brd
+\end{verbatim}
+
+Here we see the first six entries in the \texttt{namedLocation} column which tells us
+the names of the Terrestrial Observation plots where the bird surveys were
+conducted.
+
+We can query the locations endpoint of the API for the first named location,
+\texttt{WOOD\_013.birdGrid.brd}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# location data }
+\NormalTok{req.loc <-}\StringTok{ }\KeywordTok{GET}\NormalTok{(}\StringTok{"http://data.neonscience.org/api/v0/locations/WOOD_013.birdGrid.brd"}\NormalTok{)}
+
+\CommentTok{# make this JSON readable}
+\NormalTok{brd.WOOD_}\DecValTok{013}\NormalTok{ <-}\StringTok{ }\NormalTok{jsonlite}\OperatorTok{::}\KeywordTok{fromJSON}\NormalTok{(}\KeywordTok{content}\NormalTok{(req.loc, }\DataTypeTok{as=}\StringTok{"text"}\NormalTok{))}
+\NormalTok{brd.WOOD_}\DecValTok{013}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $data
+## $data$locationName
+## [1] "WOOD_013.birdGrid.brd"
+## 
+## $data$locationDescription
+## [1] "Plot \"WOOD_013\" at site \"WOOD\""
+## 
+## $data$locationType
+## [1] "OS Plot - brd"
+## 
+## $data$domainCode
+## [1] "D09"
+## 
+## $data$siteCode
+## [1] "WOOD"
+## 
+## $data$locationDecimalLatitude
+## [1] 47.13912
+## 
+## $data$locationDecimalLongitude
+## [1] -99.23243
+## 
+## $data$locationElevation
+## [1] 579.31
+## 
+## $data$locationUtmEasting
+## [1] 482375.7
+## 
+## $data$locationUtmNorthing
+## [1] 5220650
+## 
+## $data$locationUtmHemisphere
+## [1] "N"
+## 
+## $data$locationUtmZone
+## [1] 14
+## 
+## $data$alphaOrientation
+## [1] 0
+## 
+## $data$betaOrientation
+## [1] 0
+## 
+## $data$gammaOrientation
+## [1] 0
+## 
+## $data$xOffset
+## [1] 0
+## 
+## $data$yOffset
+## [1] 0
+## 
+## $data$zOffset
+## [1] 0
+## 
+## $data$offsetLocation
+## NULL
+## 
+## $data$locationProperties
+##                             locationPropertyName locationPropertyValue
+## 1                    Value for Coordinate source            GeoXH 6000
+## 2               Value for Coordinate uncertainty                  0.28
+## 3                              Value for Country          unitedStates
+## 4                               Value for County              Stutsman
+## 5                Value for Elevation uncertainty                  0.48
+## 6                   Value for Filtered positions                   121
+## 7                       Value for Geodetic datum                 WGS84
+## 8     Value for Horizontal dilution of precision                     1
+## 9                    Value for Maximum elevation                579.31
+## 10                   Value for Minimum elevation                569.79
+## 11 Value for National Land Cover Database (2001)   grasslandHerbaceous
+## 12                     Value for Plot dimensions           500m x 500m
+## 13                             Value for Plot ID              WOOD_013
+## 14                           Value for Plot size                250000
+## 15                        Value for Plot subtype              birdGrid
+## 16                           Value for Plot type           distributed
+## 17    Value for Positional dilution of precision                   2.4
+## 18            Value for Reference Point Position                    B2
+## 19                        Value for Slope aspect                238.91
+## 20                      Value for Slope gradient                  2.83
+## 21                     Value for Soil type order             Mollisols
+## 22                      Value for State province                    ND
+## 23               Value for Subtype Specification            ninePoints
+## 24                            Value for UTM Zone                   14N
+## 
+## $data$locationParent
+## [1] "WOOD"
+## 
+## $data$locationParentUrl
+## [1] "https://data.neonscience.org/api/v0/locations/WOOD"
+## 
+## $data$locationChildren
+## [1] "WOOD_013.birdGrid.brd.B2" "WOOD_013.birdGrid.brd.A2"
+## [3] "WOOD_013.birdGrid.brd.C3" "WOOD_013.birdGrid.brd.A3"
+## [5] "WOOD_013.birdGrid.brd.B3" "WOOD_013.birdGrid.brd.C1"
+## [7] "WOOD_013.birdGrid.brd.A1" "WOOD_013.birdGrid.brd.B1"
+## [9] "WOOD_013.birdGrid.brd.C2"
+## 
+## $data$locationChildrenUrls
+## [1] "https://data.neonscience.org/api/v0/locations/WOOD_013.birdGrid.brd.B2"
+## [2] "https://data.neonscience.org/api/v0/locations/WOOD_013.birdGrid.brd.A2"
+## [3] "https://data.neonscience.org/api/v0/locations/WOOD_013.birdGrid.brd.C3"
+## [4] "https://data.neonscience.org/api/v0/locations/WOOD_013.birdGrid.brd.A3"
+## [5] "https://data.neonscience.org/api/v0/locations/WOOD_013.birdGrid.brd.B3"
+## [6] "https://data.neonscience.org/api/v0/locations/WOOD_013.birdGrid.brd.C1"
+## [7] "https://data.neonscience.org/api/v0/locations/WOOD_013.birdGrid.brd.A1"
+## [8] "https://data.neonscience.org/api/v0/locations/WOOD_013.birdGrid.brd.B1"
+## [9] "https://data.neonscience.org/api/v0/locations/WOOD_013.birdGrid.brd.C2"
+\end{verbatim}
+
+Note spatial information under \texttt{\$data\${[}nameOfCoordinate{]}} and under
+\texttt{\$data\$locationProperties}. Also note \texttt{\$data\$locationChildren}: these are the
+finer scale locations that can be used to calculate precise spatial data for
+bird observations.
+
+For convenience, we'll use the \texttt{geoNEON} package to make the calculations.
+First we'll use \texttt{getLocByName()} to get the additional spatial information
+available through the API, and look at the spatial resolution available in the
+initial download:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# load the geoNEON package}
+\KeywordTok{library}\NormalTok{(geoNEON)}
+
+\CommentTok{# extract the spatial data}
+\NormalTok{brd.point.loc <-}\StringTok{ }\KeywordTok{getLocByName}\NormalTok{(brd.point)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+  |                                                                       
+  |                                                                 |   0%
+  |                                                                       
+  |=========                                                        |  14%
+  |                                                                       
+  |===================                                              |  29%
+  |                                                                       
+  |============================                                     |  43%
+  |                                                                       
+  |=====================================                            |  57%
+  |                                                                       
+  |==============================================                   |  71%
+  |                                                                       
+  |========================================================         |  86%
+  |                                                                       
+  |=================================================================| 100%
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# plot bird point locations }
+\CommentTok{# note that decimal degrees is also an option in the data}
+\KeywordTok{symbols}\NormalTok{(brd.point.loc}\OperatorTok{$}\NormalTok{easting, brd.point.loc}\OperatorTok{$}\NormalTok{northing, }
+        \DataTypeTok{circles=}\NormalTok{brd.point.loc}\OperatorTok{$}\NormalTok{coordinateUncertainty, }
+        \DataTypeTok{xlab=}\StringTok{"Easting"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Northing"}\NormalTok{, }\DataTypeTok{tck=}\FloatTok{0.01}\NormalTok{, }\DataTypeTok{inches=}\NormalTok{F)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/brd-extr-NL-1.pdf}
+
+And use \texttt{getLocTOS()} to calculate the point locations of observations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{brd.point.pt <-}\StringTok{ }\KeywordTok{getLocTOS}\NormalTok{(brd.point, }\StringTok{"brd_perpoint"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+  |                                                                       
+  |                                                                 |   0%
+  |                                                                       
+  |=                                                                |   2%
+  |                                                                       
+  |==                                                               |   3%
+  |                                                                       
+  |===                                                              |   5%
+  |                                                                       
+  |====                                                             |   6%
+  |                                                                       
+  |=====                                                            |   8%
+  |                                                                       
+  |======                                                           |  10%
+  |                                                                       
+  |=======                                                          |  11%
+  |                                                                       
+  |========                                                         |  13%
+  |                                                                       
+  |=========                                                        |  14%
+  |                                                                       
+  |==========                                                       |  16%
+  |                                                                       
+  |===========                                                      |  17%
+  |                                                                       
+  |============                                                     |  19%
+  |                                                                       
+  |=============                                                    |  21%
+  |                                                                       
+  |==============                                                   |  22%
+  |                                                                       
+  |===============                                                  |  24%
+  |                                                                       
+  |=================                                                |  25%
+  |                                                                       
+  |==================                                               |  27%
+  |                                                                       
+  |===================                                              |  29%
+  |                                                                       
+  |====================                                             |  30%
+  |                                                                       
+  |=====================                                            |  32%
+  |                                                                       
+  |======================                                           |  33%
+  |                                                                       
+  |=======================                                          |  35%
+  |                                                                       
+  |========================                                         |  37%
+  |                                                                       
+  |=========================                                        |  38%
+  |                                                                       
+  |==========================                                       |  40%
+  |                                                                       
+  |===========================                                      |  41%
+  |                                                                       
+  |============================                                     |  43%
+  |                                                                       
+  |=============================                                    |  44%
+  |                                                                       
+  |==============================                                   |  46%
+  |                                                                       
+  |===============================                                  |  48%
+  |                                                                       
+  |================================                                 |  49%
+  |                                                                       
+  |=================================                                |  51%
+  |                                                                       
+  |==================================                               |  52%
+  |                                                                       
+  |===================================                              |  54%
+  |                                                                       
+  |====================================                             |  56%
+  |                                                                       
+  |=====================================                            |  57%
+  |                                                                       
+  |======================================                           |  59%
+  |                                                                       
+  |=======================================                          |  60%
+  |                                                                       
+  |========================================                         |  62%
+  |                                                                       
+  |=========================================                        |  63%
+  |                                                                       
+  |==========================================                       |  65%
+  |                                                                       
+  |===========================================                      |  67%
+  |                                                                       
+  |============================================                     |  68%
+  |                                                                       
+  |=============================================                    |  70%
+  |                                                                       
+  |==============================================                   |  71%
+  |                                                                       
+  |===============================================                  |  73%
+  |                                                                       
+  |================================================                 |  75%
+  |                                                                       
+  |==================================================               |  76%
+  |                                                                       
+  |===================================================              |  78%
+  |                                                                       
+  |====================================================             |  79%
+  |                                                                       
+  |=====================================================            |  81%
+  |                                                                       
+  |======================================================           |  83%
+  |                                                                       
+  |=======================================================          |  84%
+  |                                                                       
+  |========================================================         |  86%
+  |                                                                       
+  |=========================================================        |  87%
+  |                                                                       
+  |==========================================================       |  89%
+  |                                                                       
+  |===========================================================      |  90%
+  |                                                                       
+  |============================================================     |  92%
+  |                                                                       
+  |=============================================================    |  94%
+  |                                                                       
+  |==============================================================   |  95%
+  |                                                                       
+  |===============================================================  |  97%
+  |                                                                       
+  |================================================================ |  98%
+  |                                                                       
+  |=================================================================| 100%
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# plot bird point locations }
+\CommentTok{# note that decimal degrees is also an option in the data}
+\CommentTok{# symbols(brd.point.pt$easting, brd.point.pt$northing, }
+\CommentTok{#         circles=brd.point.pt$adjCoordinateUncertainty, }
+\CommentTok{#         xlab="Easting", ylab="Northing", tck=0.01, inches=F)}
+\end{Highlighting}
+\end{Shaded}
+
+Now you can see the individual points where the respective point counts were
+located.
+
+\hypertarget{taxonomy}{%
+\section{Taxonomy}\label{taxonomy}}
+
+NEON maintains accepted taxonomies for many of the taxonomic identification
+data we collect. NEON taxonomies are available for query via the API; they
+are also provided via an interactive user interface, the Taxon Viewer.
+
+NEON taxonomy data provides the reference information for how NEON
+validates taxa; an identification must appear in the taxonomy lists
+in order to be accepted into the NEON database. Additions to the lists
+are reviewed regularly. The taxonomy lists also provide the author
+of the scientific name, and the reference text used.
+
+The taxonomy endpoint of the API works a little bit differently from the
+other endpoints. In the ``Anatomy of an API Call'' section above, each
+endpoint has a single type of target - a data product number, a named
+location name, etc. For taxonomic data, there are multiple query
+options, and some of them can be used in combination.
+For example, a query for taxa in the Pinaceae family:
+
+{\url{http://data.neonscience.org/api/v0/taxonomy}}{/?family=Pinaceae}
+
+The available types of queries are listed in the taxonomy section
+of the API web page. Briefly, they are:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{taxonTypeCode}: Which of the taxonomies maintained by NEON are you
+  looking for? BIRD, FISH, PLANT, etc. Cannot be used in combination
+  with the taxonomic rank queries.
+\item
+  each of the major taxonomic ranks from genus through kingdom
+\item
+  \texttt{scientificname}: Genus + specific epithet (+ authority). Search is
+  by exact match only, see final example below.
+\item
+  \texttt{verbose}: Do you want the short (\texttt{false}) or long (\texttt{true}) response
+\item
+  \texttt{offset}: Skip this number of items in the list. Defaults to 50.
+\item
+  \texttt{limit}: Result set will be truncated at this length. Defaults to 50.
+\end{itemize}
+
+Staff on the NEON project have plans to modify the settings for \texttt{offset}
+and \texttt{limit}, such that \texttt{offset} will default to 0 and \texttt{limit} will default
+to ∞, but in the meantime users will want to set these manually. They are
+set to non-default values in the examples below.
+
+For the first example, let's query for the loon family, Gaviidae, in the
+bird taxonomy. Note that query parameters are case-sensitive.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loon.req <-}\StringTok{ }\KeywordTok{GET}\NormalTok{(}\StringTok{"http://data.neonscience.org/api/v0/taxonomy/?family=Gaviidae&offset=0&limit=500"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Parse the results into a list using \texttt{fromJSON()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loon.list <-}\StringTok{ }\NormalTok{jsonlite}\OperatorTok{::}\KeywordTok{fromJSON}\NormalTok{(}\KeywordTok{content}\NormalTok{(loon.req, }\DataTypeTok{as=}\StringTok{"text"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+And look at the \texttt{\$data} element of the results, which contains:
+
+\begin{itemize}
+\tightlist
+\item
+  The full taxonomy of each taxon
+\item
+  The short taxon code used by NEON (taxonID/acceptedTaxonID)
+\item
+  The author of the scientific name (scientificNameAuthorship)
+\item
+  The vernacular name, if applicable
+\item
+  The reference text used (nameAccordingToID)
+\end{itemize}
+
+The terms used for each field are matched to Darwin Core (dwc) and
+the Global Biodiversity Information Facility (gbif) terms, where
+possible, and the matches are indicated in the column headers.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loon.list}\OperatorTok{$}\NormalTok{data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   taxonTypeCode taxonID acceptedTaxonID dwc:scientificName
+## 1          BIRD    ARLO            ARLO      Gavia arctica
+## 2          BIRD    COLO            COLO        Gavia immer
+## 3          BIRD    PALO            PALO     Gavia pacifica
+## 4          BIRD    RTLO            RTLO     Gavia stellata
+## 5          BIRD    YBLO            YBLO      Gavia adamsii
+##   dwc:scientificNameAuthorship dwc:taxonRank dwc:vernacularName
+## 1                   (Linnaeus)       species        Arctic Loon
+## 2                   (Brunnich)       species        Common Loon
+## 3                   (Lawrence)       species       Pacific Loon
+## 4                (Pontoppidan)       species  Red-throated Loon
+## 5                 (G. R. Gray)       species Yellow-billed Loon
+##      dwc:nameAccordingToID dwc:kingdom dwc:phylum dwc:class   dwc:order
+## 1 doi: 10.1642/AUK-15-73.1    Animalia   Chordata      Aves Gaviiformes
+## 2 doi: 10.1642/AUK-15-73.1    Animalia   Chordata      Aves Gaviiformes
+## 3 doi: 10.1642/AUK-15-73.1    Animalia   Chordata      Aves Gaviiformes
+## 4 doi: 10.1642/AUK-15-73.1    Animalia   Chordata      Aves Gaviiformes
+## 5 doi: 10.1642/AUK-15-73.1    Animalia   Chordata      Aves Gaviiformes
+##   dwc:family dwc:genus gbif:subspecies gbif:variety
+## 1   Gaviidae     Gavia              NA           NA
+## 2   Gaviidae     Gavia              NA           NA
+## 3   Gaviidae     Gavia              NA           NA
+## 4   Gaviidae     Gavia              NA           NA
+## 5   Gaviidae     Gavia              NA           NA
+\end{verbatim}
+
+To get the entire list for a particular taxonomic type, use the
+\texttt{taxonTypeCode} query. Be cautious with this query, the PLANT taxonomic
+list has several hundred thousand entries.
+
+For an example, let's look up the small mammal taxonomic list, which
+is one of the shorter ones, and use the \texttt{verbose=true} option to see
+a more extensive list of taxon data, including many taxon ranks that
+aren't populated for these taxa. For space here, we display only
+the first 10 taxa:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mam.req <-}\StringTok{ }\KeywordTok{GET}\NormalTok{(}\StringTok{"http://data.neonscience.org/api/v0/taxonomy/?taxonTypeCode=SMALL_MAMMAL&offset=0&limit=500&verbose=true"}\NormalTok{)}
+\NormalTok{mam.list <-}\StringTok{ }\NormalTok{jsonlite}\OperatorTok{::}\KeywordTok{fromJSON}\NormalTok{(}\KeywordTok{content}\NormalTok{(mam.req, }\DataTypeTok{as=}\StringTok{"text"}\NormalTok{))}
+\NormalTok{mam.list}\OperatorTok{$}\NormalTok{data[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    taxonTypeCode taxonID acceptedTaxonID               dwc:scientificName
+## 1   SMALL_MAMMAL    AMHA            AMHA        Ammospermophilus harrisii
+## 2   SMALL_MAMMAL    AMIN            AMIN       Ammospermophilus interpres
+## 3   SMALL_MAMMAL    AMLE            AMLE        Ammospermophilus leucurus
+## 4   SMALL_MAMMAL    AMLT            AMLT Ammospermophilus leucurus tersus
+## 5   SMALL_MAMMAL    AMNE            AMNE         Ammospermophilus nelsoni
+## 6   SMALL_MAMMAL    AMSP            AMSP             Ammospermophilus sp.
+## 7   SMALL_MAMMAL    APRN            APRN            Aplodontia rufa nigra
+## 8   SMALL_MAMMAL    APRU            APRU                  Aplodontia rufa
+## 9   SMALL_MAMMAL    ARAL            ARAL                Arborimus albipes
+## 10  SMALL_MAMMAL    ARLO            ARLO            Arborimus longicaudus
+##    dwc:scientificNameAuthorship dwc:taxonRank
+## 1           Audubon and Bachman       species
+## 2                       Merriam       species
+## 3                       Merriam       species
+## 4                       Goldman    subspecies
+## 5                       Merriam       species
+## 6                          <NA>         genus
+## 7                        Taylor    subspecies
+## 8                    Rafinesque       species
+## 9                       Merriam       species
+## 10                         True       species
+##               dwc:vernacularName taxonProtocolCategory
+## 1      Harriss Antelope Squirrel         opportunistic
+## 2        Texas Antelope Squirrel         opportunistic
+## 3  Whitetailed Antelope Squirrel         opportunistic
+## 4                           <NA>         opportunistic
+## 5      Nelsons Antelope Squirrel         opportunistic
+## 6                           <NA>         opportunistic
+## 7                           <NA>            non-target
+## 8                       Sewellel            non-target
+## 9               Whitefooted Vole                target
+## 10                 Red Tree Vole                target
+##    dwc:nameAccordingToID
+## 1   isbn: 978 0801882210
+## 2   isbn: 978 0801882210
+## 3   isbn: 978 0801882210
+## 4   isbn: 978 0801882210
+## 5   isbn: 978 0801882210
+## 6   isbn: 978 0801882210
+## 7   isbn: 978 0801882210
+## 8   isbn: 978 0801882210
+## 9   isbn: 978 0801882210
+## 10  isbn: 978 0801882210
+##                                                                                                                                                 dwc:nameAccordingToTitle
+## 1  Wilson D. E. and D. M. Reeder. 2005. Mammal Species of the World; A Taxonomic and Geographic Reference. Third edition. Johns Hopkins University Press; Baltimore, MD.
+## 2  Wilson D. E. and D. M. Reeder. 2005. Mammal Species of the World; A Taxonomic and Geographic Reference. Third edition. Johns Hopkins University Press; Baltimore, MD.
+## 3  Wilson D. E. and D. M. Reeder. 2005. Mammal Species of the World; A Taxonomic and Geographic Reference. Third edition. Johns Hopkins University Press; Baltimore, MD.
+## 4  Wilson D. E. and D. M. Reeder. 2005. Mammal Species of the World; A Taxonomic and Geographic Reference. Third edition. Johns Hopkins University Press; Baltimore, MD.
+## 5  Wilson D. E. and D. M. Reeder. 2005. Mammal Species of the World; A Taxonomic and Geographic Reference. Third edition. Johns Hopkins University Press; Baltimore, MD.
+## 6  Wilson D. E. and D. M. Reeder. 2005. Mammal Species of the World; A Taxonomic and Geographic Reference. Third edition. Johns Hopkins University Press; Baltimore, MD.
+## 7  Wilson D. E. and D. M. Reeder. 2005. Mammal Species of the World; A Taxonomic and Geographic Reference. Third edition. Johns Hopkins University Press; Baltimore, MD.
+## 8  Wilson D. E. and D. M. Reeder. 2005. Mammal Species of the World; A Taxonomic and Geographic Reference. Third edition. Johns Hopkins University Press; Baltimore, MD.
+## 9  Wilson D. E. and D. M. Reeder. 2005. Mammal Species of the World; A Taxonomic and Geographic Reference. Third edition. Johns Hopkins University Press; Baltimore, MD.
+## 10 Wilson D. E. and D. M. Reeder. 2005. Mammal Species of the World; A Taxonomic and Geographic Reference. Third edition. Johns Hopkins University Press; Baltimore, MD.
+##    dwc:kingdom gbif:subkingdom gbif:infrakingdom gbif:superdivision
+## 1     Animalia              NA                NA                 NA
+## 2     Animalia              NA                NA                 NA
+## 3     Animalia              NA                NA                 NA
+## 4     Animalia              NA                NA                 NA
+## 5     Animalia              NA                NA                 NA
+## 6     Animalia              NA                NA                 NA
+## 7     Animalia              NA                NA                 NA
+## 8     Animalia              NA                NA                 NA
+## 9     Animalia              NA                NA                 NA
+## 10    Animalia              NA                NA                 NA
+##    gbif:division gbif:subdivision gbif:infradivision gbif:parvdivision
+## 1             NA               NA                 NA                NA
+## 2             NA               NA                 NA                NA
+## 3             NA               NA                 NA                NA
+## 4             NA               NA                 NA                NA
+## 5             NA               NA                 NA                NA
+## 6             NA               NA                 NA                NA
+## 7             NA               NA                 NA                NA
+## 8             NA               NA                 NA                NA
+## 9             NA               NA                 NA                NA
+## 10            NA               NA                 NA                NA
+##    gbif:superphylum dwc:phylum gbif:subphylum gbif:infraphylum
+## 1                NA   Chordata             NA               NA
+## 2                NA   Chordata             NA               NA
+## 3                NA   Chordata             NA               NA
+## 4                NA   Chordata             NA               NA
+## 5                NA   Chordata             NA               NA
+## 6                NA   Chordata             NA               NA
+## 7                NA   Chordata             NA               NA
+## 8                NA   Chordata             NA               NA
+## 9                NA   Chordata             NA               NA
+## 10               NA   Chordata             NA               NA
+##    gbif:superclass dwc:class gbif:subclass gbif:infraclass gbif:superorder
+## 1               NA  Mammalia            NA              NA              NA
+## 2               NA  Mammalia            NA              NA              NA
+## 3               NA  Mammalia            NA              NA              NA
+## 4               NA  Mammalia            NA              NA              NA
+## 5               NA  Mammalia            NA              NA              NA
+## 6               NA  Mammalia            NA              NA              NA
+## 7               NA  Mammalia            NA              NA              NA
+## 8               NA  Mammalia            NA              NA              NA
+## 9               NA  Mammalia            NA              NA              NA
+## 10              NA  Mammalia            NA              NA              NA
+##    dwc:order gbif:suborder gbif:infraorder gbif:section gbif:subsection
+## 1   Rodentia            NA              NA           NA              NA
+## 2   Rodentia            NA              NA           NA              NA
+## 3   Rodentia            NA              NA           NA              NA
+## 4   Rodentia            NA              NA           NA              NA
+## 5   Rodentia            NA              NA           NA              NA
+## 6   Rodentia            NA              NA           NA              NA
+## 7   Rodentia            NA              NA           NA              NA
+## 8   Rodentia            NA              NA           NA              NA
+## 9   Rodentia            NA              NA           NA              NA
+## 10  Rodentia            NA              NA           NA              NA
+##    gbif:superfamily    dwc:family gbif:subfamily gbif:tribe gbif:subtribe
+## 1                NA     Sciuridae        Xerinae  Marmotini            NA
+## 2                NA     Sciuridae        Xerinae  Marmotini            NA
+## 3                NA     Sciuridae        Xerinae  Marmotini            NA
+## 4                NA     Sciuridae        Xerinae  Marmotini            NA
+## 5                NA     Sciuridae        Xerinae  Marmotini            NA
+## 6                NA     Sciuridae        Xerinae  Marmotini            NA
+## 7                NA Aplodontiidae           <NA>       <NA>            NA
+## 8                NA Aplodontiidae           <NA>       <NA>            NA
+## 9                NA    Cricetidae    Arvicolinae       <NA>            NA
+## 10               NA    Cricetidae    Arvicolinae       <NA>            NA
+##           dwc:genus dwc:subgenus gbif:subspecies gbif:variety
+## 1  Ammospermophilus         <NA>              NA           NA
+## 2  Ammospermophilus         <NA>              NA           NA
+## 3  Ammospermophilus         <NA>              NA           NA
+## 4  Ammospermophilus         <NA>              NA           NA
+## 5  Ammospermophilus         <NA>              NA           NA
+## 6  Ammospermophilus         <NA>              NA           NA
+## 7        Aplodontia         <NA>              NA           NA
+## 8        Aplodontia         <NA>              NA           NA
+## 9         Arborimus         <NA>              NA           NA
+## 10        Arborimus         <NA>              NA           NA
+##    gbif:subvariety gbif:form gbif:subform speciesGroup dwc:specificEpithet
+## 1               NA        NA           NA         <NA>            harrisii
+## 2               NA        NA           NA         <NA>           interpres
+## 3               NA        NA           NA         <NA>            leucurus
+## 4               NA        NA           NA         <NA>            leucurus
+## 5               NA        NA           NA         <NA>             nelsoni
+## 6               NA        NA           NA         <NA>                 sp.
+## 7               NA        NA           NA         <NA>                rufa
+## 8               NA        NA           NA         <NA>                rufa
+## 9               NA        NA           NA         <NA>             albipes
+## 10              NA        NA           NA         <NA>         longicaudus
+##    dwc:infraspecificEpithet
+## 1                      <NA>
+## 2                      <NA>
+## 3                      <NA>
+## 4                    tersus
+## 5                      <NA>
+## 6                      <NA>
+## 7                     nigra
+## 8                      <NA>
+## 9                      <NA>
+## 10                     <NA>
+\end{verbatim}
+
+To get information about a single taxon, use the \texttt{scientificname}
+query. This query will not do a fuzzy match, so you need to query
+the exact name of the taxon in the NEON taxonomy. Because of this,
+the query will be most useful when you already have NEON data in
+hand and are looking for more information about a specific taxon.
+Querying on \texttt{scientificname} is unlikely to be an efficient way to
+figure out if NEON recognizes a particular taxon.
+
+In addition, scientific names contain spaces, which are not
+allowed in a URL. The spaces need to be replaced with the URL
+encoding replacement, \%20.
+
+For an example, let's look up the little sand verbena, \emph{Abronia
+minor Standl.} Searching for \emph{Abronia minor} will fail, because
+the NEON taxonomy for this species includes the authority. The
+search will also fail with spaces. Search for
+\texttt{Abronia\%20minor\%20Standl.}, and in this case we can omit
+\texttt{offset} and \texttt{limit} because we know there can only be a single
+result:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{am.req <-}\StringTok{ }\KeywordTok{GET}\NormalTok{(}\StringTok{"http://data.neonscience.org/api/v0/taxonomy/?scientificname=Abronia%20minor%20Standl."}\NormalTok{)}
+\NormalTok{am.list <-}\StringTok{ }\NormalTok{jsonlite}\OperatorTok{::}\KeywordTok{fromJSON}\NormalTok{(}\KeywordTok{content}\NormalTok{(am.req, }\DataTypeTok{as=}\StringTok{"text"}\NormalTok{))}
+\NormalTok{am.list}\OperatorTok{$}\NormalTok{data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   taxonTypeCode taxonID acceptedTaxonID    dwc:scientificName
+## 1         PLANT   ABMI2           ABMI2 Abronia minor Standl.
+##   dwc:scientificNameAuthorship dwc:taxonRank  dwc:vernacularName
+## 1                      Standl.       species little sand verbena
+##                         dwc:nameAccordingToID dwc:kingdom    dwc:phylum
+## 1 http://plants.usda.gov (accessed 8/25/2014)     Plantae Magnoliophyta
+##       dwc:class      dwc:order    dwc:family dwc:genus gbif:subspecies
+## 1 Magnoliopsida Caryophyllales Nyctaginaceae   Abronia              NA
+##   gbif:variety
+## 1           NA
+\end{verbatim}
+
+\hypertarget{stacking-neon-data}{%
+\section{Stacking NEON data}\label{stacking-neon-data}}
+
+At the top of this tutorial, we installed the \texttt{neonUtilities} package.
+This is a custom R package that stacks the monthly files provided by
+the NEON data portal into a single continuous file for each type of
+data table in the download. It currently handles files downloaded from
+the data portal, but not files pulled from the API. That functionality
+will be added soon!
+
+For a guide to using \texttt{neonUtilities} on data downloaded from the portal,
+look here.
+
+\hypertarget{exercises}{%
+\section{Exercises}\label{exercises}}
+
+\hypertarget{computational}{%
+\subsection{Computational}\label{computational}}
+
+\hypertarget{part-1-sign-up-for-and-use-an-neon-api-token}{%
+\subsubsection{Part 1: Sign up for and Use an NEON API Token:}\label{part-1-sign-up-for-and-use-an-neon-api-token}}
+
+\emph{Code to come}
+
+\hypertarget{written}{%
+\subsection{Written}\label{written}}
+
+\textbf{Question 1:} How might or does the NEON project
+intersect with your current research or future career goals? \emph{(1 paragraph)}
+
+\leavevmode\hypertarget{ds-challenge}{}%
+\textbf{Question 2:}
+Use the map in week 2:Intro to NEON to answer the following questions. Consider the research question that you may explore as your final semester project or a current project that you are working on and answer each of the following questions:
+
+\begin{itemize}
+\tightlist
+\item
+  Are there NEON field sites that are in study regions of interest to you?\\
+\item
+  What domains are the sites located in?\\
+\item
+  What NEON field sites do your current research or Capstone Project ideas
+  coincide with?\\
+\item
+  Is the site or sites core or relocatable?\\
+\item
+  Is or are they terrestrial or aquatic?\\
+\item
+  Are there data available for the NEON field site(s) that you are most
+  interested in? What kind of data are available?
+\end{itemize}
+
+\leavevmode\hypertarget{ds-challenge}{}%
+\textbf{Question 3:}
+Consider either your current or future research, or a question you'd like to
+address durring this course:
+
+\begin{itemize}
+\tightlist
+\item
+  Which types of NEON data may be more useful to address these questions?
+\item
+  What non-NEON data resources could be combined with NEON data to help address your question?
+\item
+  What challenges, if any, could you foresee when beginning to work with these
+  data?
+\end{itemize}
+
+\leavevmode\hypertarget{ds-challenge}{}%
+\textbf{Question 4:}
+Use the Data Portal tools to investigate the data availability for the field
+sites you've already identified in the previous questions:
+
+\begin{itemize}
+\tightlist
+\item
+  What types of aquatic or terrestrial data are currently available? Remote sensing data?\\
+\item
+  Of these, what type of data are you most interested in working with for your project during this course?\\
+\item
+  For what time period does the data cover?\\
+\item
+  What format is the downloadable file available in?\\
+\item
+  Where is the metadata to support this data?\\
+\end{itemize}
+
+\textbf{Intro to NEON Culmination Activity}
+
+Write up a 1-page summary of a project that you might want to explore using NEON data over the duration of this course. Include the types of NEON (and other data) that you will need to implement this project. Save this summary as you will be refining and adding to your ideas over the course of the semester.
+
+\hypertarget{introduction-to-usa-npn-its-data}{%
+\chapter{Introduction to USA-NPN \& its Data}\label{introduction-to-usa-npn-its-data}}
+
+\begin{longtable}[]{@{}l@{}}
+\toprule
+\endhead
+Estimated Time: 2 hours\tabularnewline
+\bottomrule
+\end{longtable}
+
+\leavevmode\hypertarget{ds-challenge}{}%
+\textbf{Course participants}: As you review this information, please
+consider the final course project
+that you will work on at the over this semester. At the end of this section, you will
+document an initial research question or idea and associated data needed to
+address that question, that you may want to explore while pursuing this course.
+
+\hypertarget{ds-objectives}{}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{learning-objectives}{%
+\section{Learning Objectives}\label{learning-objectives}}
+
+At the end of this activity, you will be able to:
+* Understand the mission and purpose of the USA-National Phenology Network (USA-NPN) and the nature of the citizen science program from which that the data is derived
+* Access all of the various tools \& resources that are available to pull USA-NPN geospatial and observational data
+* Effectively use the rNPN package to integrate and analyze NPN data with other similar datasets
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{usa-npn-project-mission-design}{%
+\section{USA-NPN Project Mission \& Design:}\label{usa-npn-project-mission-design}}
+
+The \href{www.usanpn.org}{USA National Phenology Network (USA-NPN)} collects, organizes, and shares phenological data and information to aid decision-making, scientific discovery, and a broader understanding of phenology from a diversity of perspectives. The USA National Phenology Network consists of a National Coordinating Office (NCO), thousands of volunteer observers and many partners, including research scientists, resource managers, educators, and policy-makers. Anyone who participates in Nature's Notebook or collaborates with NCO staff to advance the science of phenology or to inform decisions is part of the USA-NPN.
+
+\hypertarget{vision-mission}{%
+\section{Vision \& Mission}\label{vision-mission}}
+
+USA-NPN's vision is to provide data and information on the timing of seasonal events in plants and animals to ensure the well-being of humans, ecosystems, and natural resources. To support this and its mission the USA-NPN collects, organizes, and shares phenological data and information to aid decision-making, scientific discovery, and a broader understanding of phenology from a diversity of perspectives.
+
+\hypertarget{relevant-documents-background-information}{%
+\subsection{Relevant documents \& background information:}\label{relevant-documents-background-information}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \href{https://usanpn.org/files/npn/reports/USA-NPN_StrategicPlan_2019-2024.pdf}{USA-NPN Strategic Plan}
+\item
+  \href{https://usanpn.org/files/npn/reports/USA-NPN_InfoSheet_2020.pdf}{USA-NPN Information Sheet: Tracking seasonal changes to support science, natural resource management, and society}
+\item
+  \href{https://www.usanpn.org/files/npn/reports/USA-NPN_AnnualReport2019.pdf}{2019 USA-NPN Annual Report}
+\end{enumerate}
+
+\hypertarget{usa-npns-spatial-design}{%
+\section{USA-NPN's Spatial design:}\label{usa-npns-spatial-design}}
+
+As a \href{https://www.youtube.com/watch?v=WR34LGvuFac}{citizen-science based platform}, the spatial sampling of USA-NPN data is opportunistic, since observations are contributed voluntarily by citizen scientist participants.
+
+\hypertarget{types-of-usa-npn-data}{%
+\section{Types of USA-NPN Data:}\label{types-of-usa-npn-data}}
+
+\begin{itemize}
+\tightlist
+\item
+  Observational - As described in USA National Phenology Network Observational Data Documentation \href{https://pubs.usgs.gov/of/2018/1060/ofr20181060.pdf}{(Rosemartin et al.~2018)}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Status/intensity
+  \item
+    Individual phenometrics
+  \item
+    Site-level phenometrics
+    \includegraphics{/Users/kdw223/Research/katharynduffy.github.io/images/USA_NPN_data_types.png}
+  \end{itemize}
+\item
+  Gridded data products - As described in USA National Phenology Network gridded products documentation \href{https://pubs.usgs.gov/of/2017/1003/ofr20171003.pdf}{(Crimmins et al.~2017)}
+  \includegraphics{/Users/kdw223/Research/katharynduffy.github.io/images/USA-NPN-AGDD-32base-Anomaly.gif}
+\item
+  Pheno-Forecast products - As described in ``Short-term forecasts of insect phenology inform pest management'' \href{https://academic.oup.com/aesa/article/113/2/139/5727873}{(Crimmins et al.~2020)}
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{/Users/kdw223/Research/katharynduffy.github.io/images/buffelgrass_10.18.19.gif}
+\caption{Example of USA-NPN's Buffel Grass Pheno-Forecast for Arizona.}
+\end{figure}
+
+\hypertarget{how-to-access-usa-npn-data}{%
+\section{How to Access USA-NPN Data:}\label{how-to-access-usa-npn-data}}
+
+The USA-NPN makes the data they produce available through a number of different channels and tools. This is partly driven by the format of the data; GIS data, in many ways, can and should be managed differently than observational records, which can more easily be managed in a relational database. However, the need for these different venues is also driven by end-user need. The different tiers of tools makes the data accessible to anyone regardless of their level of technical experience. This is true from the casual observer that would like to use the visualization tool to see how their contributions to citizen science relate to the broader world, all the way to the data scientist that needs simple and standard APIs to integrate USA-NPN data into larger applications and analyses.
+
+\hypertarget{the-usa-npn-landing-page}{%
+\subsection{The USA-NPN Landing page}\label{the-usa-npn-landing-page}}
+
+A concise list of all available NPN data sets, tools, products.
+
+\hypertarget{apis}{%
+\subsection{APIs}\label{apis}}
+
+This is a set of standard web service calls that allows for programmatic access to NPN data independent of any particular programming language.
+
+\hypertarget{rnpn-package}{%
+\subsection{Rnpn package}\label{rnpn-package}}
+
+This suite of R functions allows for programmatic access to both gridded and in-situ NPN data sets in an R environment. Full documentation available here: \url{https://usa-npn.github.io/rnpn/}
+
+\hypertarget{phenology-observation-portal-for-observational-data}{%
+\subsection{Phenology Observation Portal (for observational data)}\label{phenology-observation-portal-for-observational-data}}
+
+This tool allows for users to download customized datasets of observational data from the National Phenology Database, which includes phenology data collected via the Nature's Notebook phenology program (2009-present for the United States), and additional integrated datasets, such as historical lilac and honeysuckle data (1955-present). Filters are available to specify dates, regions, species and phenophases of interest. This provides access to all phenometrics, which represents varying degrees of data aggregation.
+Geospatial Request Builder (for raster data and image files)
+This tool simplifies the process of accessing NPN gridded data through standard WMS and WCS services. WMS services provide the data as basic graphic images, such as PNGs or TIFFs, whereas WCS services provide the same data in formats accessible to GIS applications.
+\#\#\# Visualization Tool
+The Visualization Tool provides an easier way to explore phenology data and maps. The user-friendly interface is intended to allow for searching for comparing general trends and quick-and-easy access to map data/products.
+
+\hypertarget{hands-on-accessing-usa-npn-data-via-rnpn}{%
+\section{Hands on: Accessing USA-NPN Data via rNPN}\label{hands-on-accessing-usa-npn-data-via-rnpn}}
+
+\hypertarget{introduction}{%
+\subsection{Introduction}\label{introduction}}
+
+The USA National Phenology Network (USA-NPN) is a USGS funded organization that collects phenological observation records from volunteer and professional scientists to better understand the impact of changes in the environment on the timing of species' life cycles. The USA-NPN also provides a number of raster-based climatological data sets and phenological models. These in-situ observation and geospatial, modeled datasets are available through a number of tools and data services.
+
+The USA-NPN R library, ``rnpn'', is primarily a data access service for USA-NPN data products, serving as a wrapper to the USA-NPN REST based web services. (link). This guide details how to use the library to access and work with all USA-NPN data types.
+
+\hypertarget{accessing-usa-npn-observational-data}{%
+\subsection{Accessing USA-NPN Observational Data}\label{accessing-usa-npn-observational-data}}
+
+USA-NPN Observational data are collected on the ground by citizen and professional observers following standardized protocols, using the Nature's Notebook platform. The data are available 2009 to present, and come in four formats or data types: Status \& Intensity, Individual Phenometrics, Site Phenometrics and Magnitude Phenometrics. An overview of the differences is provided in the figure below, and each type is detailed in the following sections. For a complete description of the USA-NPN approach and notes for working with each data type see the \href{https://pubs.usgs.gov/of/2018/1060/ofr20181060.pdf}{Open File Report on USA-NPN Observational Data}.
+
+In Nature's Notebook, observers register a location, and then at each location they register any number of individual plants or animal species. The expectation is that the user then takes regular observations on each individual/species at a regular interval. Phenological status is reported by yes or no answers to a series of questions, for example, ``Do you see leaves?'' or ``Do you see active individuals?''. In contrast to traditional monitoring of annual ``first'' events (for example, date of first leaf or first robin), this approach captures absence data when the phenophase is not occurring and repeat events. Each observation is comprised of a series of 1, 0 and -1 values, representing yes/no/uncertain for each possible phenophase for the plant on that date. To explore data in this native ``Status and Intensity'' format, see the vignette by the same name.
+
+A few considerations and functions apply across all USA-NPN Observational data types.
+
+\hypertarget{basic-format-for-for-observational-data-calls}{%
+\subsubsection{Basic format for for Observational data calls}\label{basic-format-for-for-observational-data-calls}}
+
+The basic format for an observational data call in the rnpn library is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{npn_download_[NAME OF DATA TYPE] (}
+  \DataTypeTok{request_source =}\NormalTok{ [}\OtherTok{NULL}\NormalTok{]}
+  \DataTypeTok{year =}\NormalTok{  [}\OtherTok{NULL}\NormalTok{]}
+  \DataTypeTok{species_ID =}\NormalTok{ [}\OtherTok{NULL}\NormalTok{]}
+\NormalTok{)                  }
+\end{Highlighting}
+\end{Shaded}
+
+`Request source' should usually be populated with your full name or the name of the organization you represent. Species\_ID is the unique identifier for all the available plants and animals in the USA-NPN database.
+You can create a table of all available species and their ID numbers:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{species <-}\StringTok{ }\KeywordTok{npn_species}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Search for a species by common name from the full list:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{species[species}\OperatorTok{$}\NormalTok{common_name}\OperatorTok{==}\StringTok{"red maple"}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+There are many parameters which can be set beyond these basic ones, depending on the data type, and further detailed in the other vignettes featured in this package.
+
+\hypertarget{required-parameters}{%
+\subsubsection{Required Parameters}\label{required-parameters}}
+
+Note that specifying the year(s) of interest is a required parameter.
+
+There's also another required field, ``request\_source'', which is a user-provided, self-identifying string. This allows the client to provide some information about who is accessing the data. Knowing who is using the data is very helpful for our staff to report the impact of the USA-NPN to the scientific community. The input provided here is entirely honor-based.
+
+\hypertarget{find-stations-at-which-a-species-has-been-observed}{%
+\subsubsection{Find stations at which a species has been observed}\label{find-stations-at-which-a-species-has-been-observed}}
+
+You can also now look up which stations have a registered plant for a particular species. In the example below, we use the species ID for red maple, which we were able to find through the npn\_species() function, to find all stations with that species.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{npn_stations_with_spp}\NormalTok{ (}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercises}{%
+\section{Exercises}\label{exercises}}
+
+\hypertarget{computational}{%
+\subsection{Computational}\label{computational}}
+
+\hypertarget{ds-challenge}{}
+\hypertarget{written}{%
+\subsection{Written}\label{written}}
+
+\textbf{Question 1:} How might or does USA-NPN
+intersect with your current research or future career goals? \emph{(1 paragraph)}
+
+\textbf{Question 2:}
+
+\textbf{Question 4:}
+
+\textbf{Intro to USA-NPN Culmination Activity}
+
+Write up a 1-page summary of a project that you might want to explore using USA-NPN data over the duration of this course. Include the types of USA-NPN (and other data) that you will need to implement this project. Save this summary as you will be refining and adding to your ideas over the course of the semester.
+
+\hypertarget{usa-npn-data-access-uses-challenges}{%
+\chapter{USA-NPN Data Access, Uses \& Challenges}\label{usa-npn-data-access-uses-challenges}}
+
+Some \emph{significant} applications are demonstrated in this chapter.
+
+\hypertarget{example-one}{%
+\section{Example one}\label{example-one}}
+
+\hypertarget{example-two}{%
+\section{Example two}\label{example-two}}
+
+\hypertarget{digital-repeat-photography-networks}{%
+\chapter{Digital Repeat Photography Networks}\label{digital-repeat-photography-networks}}
+
+\begin{longtable}[]{@{}l@{}}
+\toprule
+\endhead
+Estimated Time: \_\_\_ hour(s)\tabularnewline
+\bottomrule
+\end{longtable}
+
+\leavevmode\hypertarget{ds-challenge}{}%
+\textbf{Course participants}: As you review this information, please
+consider the
+final course project
+that you will work on at the over this semester. At the end of this section, you will
+document an initial research question or idea and associated data needed to
+address that question, that you may want to explore while pursuing this course.
+
+\leavevmode\hypertarget{ds-objectives}{}%
+--
+
+\hypertarget{learning-objectives}{%
+\section{Learning Objectives}\label{learning-objectives}}
+
+At the end of this activity, you will be able to:
+
+--
+
+\hypertarget{the-phenocam-network-mission-design}{%
+\section{The PhenoCam Network Mission \& Design}\label{the-phenocam-network-mission-design}}
+
+\hypertarget{exercises}{%
+\section{Exercises}\label{exercises}}
+
+\hypertarget{computational}{%
+\subsection{Computational}\label{computational}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+\end{enumerate}
+
+\hypertarget{ds-challenge}{}
+\hypertarget{written}{%
+\subsection{Written}\label{written}}
+
+\textbf{Question 1:} How might or does the NEON project
+intersect with your current research or future career goals? \emph{(1 paragraph)}
+
+\leavevmode\hypertarget{ds-challenge}{}%
+\textbf{Question 2:}
+Use the map in week 2:Intro to NEON to answer the following questions. Consider the research question that you may explore as your final semester project or a current project that you are working on and answer each of the following questions:
+
+\begin{itemize}
+\tightlist
+\item
+  Are there NEON field sites that are in study regions of interest to you?\\
+\item
+  What domains are the sites located in?\\
+\item
+  What NEON field sites do your current research or Capstone Project ideas
+  coincide with?\\
+\item
+  Is the site or sites core or relocatable?\\
+\item
+  Is or are they terrestrial or aquatic?\\
+\item
+  Are there data available for the NEON field site(s) that you are most
+  interested in? What kind of data are available?
+\end{itemize}
+
+\leavevmode\hypertarget{ds-challenge}{}%
+\textbf{Question 3:}
+Consider either your current or future research, or a question you'd like to
+address durring this course:
+
+\begin{itemize}
+\tightlist
+\item
+  Which types of NEON data may be more useful to address these questions?
+\item
+  What non-NEON data resources could be combined with NEON data to help address your question?
+\item
+  What challenges, if any, could you foresee when beginning to work with these
+  data?
+\end{itemize}
+
+\leavevmode\hypertarget{ds-challenge}{}%
+\textbf{Question 4:}
+Use the Data Portal tools to investigate the data availability for the field
+sites you've already identified in the previous questions:
+
+\begin{itemize}
+\tightlist
+\item
+  What types of aquatic or terrestrial data are currently available? Remote sensing data?\\
+\item
+  Of these, what type of data are you most interested in working with for your project during this course?\\
+\item
+  For what time period does the data cover?\\
+\item
+  What format is the downloadable file available in?\\
+\item
+  Where is the metadata to support this data?\\
+\end{itemize}
+
+\textbf{Intro to USA-NPN Culmination Activity}
+
+Write up a 1-page summary of a project that you might want to explore using NEON data over the duration of this course. Include the types of USA-NPN (and other data) that you will need to implement this project. Save this summary as you will be refining and adding to your ideas over the course of the semester.
+
+\hypertarget{neon-aop-introduction}{%
+\chapter{NEON AOP Introduction}\label{neon-aop-introduction}}
+
+\begin{longtable}[]{@{}l@{}}
+\toprule
+\endhead
+Estimated Time: .25-.5 hours\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{ds-objectives}{}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{learning-objectives}{%
+\section{Learning Objectives}\label{learning-objectives}}
+
+After completing this tutorial, you will be able to:
+
+\begin{itemize}
+\tightlist
+\item
+  Define hyperspectral remote sensing.
+\item
+  Explain the fundamental principles of hyperspectral remote sensing data.
+\item
+  Describe the key attributes that are required to effectively work with
+  hyperspectral remote sensing data in tools like R or Python.
+\item
+  Describe what a ``band'' is.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{mapping-the-invisible}{%
+\subsubsection{Mapping the Invisible}\label{mapping-the-invisible}}
+
+\hypertarget{about-hyperspectral-remote-sensing-data}{%
+\section{About Hyperspectral Remote Sensing Data}\label{about-hyperspectral-remote-sensing-data}}
+
+The electromagnetic spectrum is composed of thousands of bands representing
+different types of light energy. Imaging spectrometers (instruments that collect
+hyperspectral data) break the electromagnetic spectrum into groups of bands
+that support classification of objects by their spectral properties on the
+earth's surface. Hyperspectral data consists of many bands -- up to hundreds of
+bands -- that cover the electromagnetic spectrum.
+
+The NEON imaging spectrometer collects data within the 380nm to 2510nm portions
+of the electromagnetic spectrum within bands that are approximately 5nm in
+width. This results in a hyperspectral data cube that contains approximately
+426 bands - which means big, big data.
+
+\hypertarget{key-metadata-for-hyperspectral-data}{%
+\section{Key Metadata for Hyperspectral Data}\label{key-metadata-for-hyperspectral-data}}
+
+\hypertarget{bands-and-wavelengths}{%
+\subsection{Bands and Wavelengths}\label{bands-and-wavelengths}}
+
+A \emph{band} represents a group of wavelengths. For example, the wavelength values
+between 695nm and 700nm might be one band as captured by an imaging spectrometer.
+The imaging spectrometer collects reflected light energy in a pixel for light
+in that band. Often when you work with a multi or hyperspectral dataset, the
+band information is reported as the center wavelength value. This value
+represents the center point value of the wavelengths represented in that band.
+Thus in a band spanning 695-700 nm, the center would be 697.5).
+
+Imaging spectrometers collect reflected light information within
+defined bands or regions of the electromagnetic spectrum. Source: National
+Ecological Observatory Network (NEON)
+
+\hypertarget{spectral-resolution}{%
+\subsection{Spectral Resolution}\label{spectral-resolution}}
+
+The spectral resolution of a dataset that has more than one band, refers to the
+width of each band in the dataset. In the example above, a band was defined as
+spanning 695-700nm. The width or spatial resolution of the band is thus 5
+nanometers. To see an example of this, check out the band widths for the
+Landsat sensors.
+
+\hypertarget{full-width-half-max-fwhm}{%
+\subsection{Full Width Half Max (FWHM)}\label{full-width-half-max-fwhm}}
+
+The full width half max (FWHM) will also often be reported in a multi or
+hyperspectral dataset. This value represents the spread of the band around that
+center point.
+
+The Full Width Half Max (FWHM) of a band relates to the distance
+in nanometers between the band center and the edge of the band. In this
+case, the FWHM for Band C is 5 nm.
+
+In the illustration above, the band that covers 695-700nm has a FWHM of 5 nm.
+While a general spectral resolution of the sensor is often provided, not all
+sensors create bands of uniform widths. For instance bands 1-9 of Landsat 8 are
+listed below (Courtesy of USGS)
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.36\columnwidth}\raggedright
+Band\strut
+\end{minipage} & \begin{minipage}[b]{0.18\columnwidth}\raggedright
+Wavelength range (microns)\strut
+\end{minipage} & \begin{minipage}[b]{0.19\columnwidth}\raggedright
+Spatial Resolution (m)\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright
+Spectral Width (microns)\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.36\columnwidth}\raggedright
+Band 1 - Coastal aerosol\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright
+0.43 - 0.45\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+30\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.02\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\raggedright
+Band 2 - Blue\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright
+0.45 - 0.51\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+30\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.06\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\raggedright
+Band 3 - Green\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright
+0.53 - 0.59\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+30\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.06\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\raggedright
+Band 4 - Red\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright
+0.64 - 0.67\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+30\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.03\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\raggedright
+Band 5 - Near Infrared (NIR)\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright
+0.85 - 0.88\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+30\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.03\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\raggedright
+Band 6 - SWIR 1\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright
+1.57 - 1.65\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+30\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.08\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\raggedright
+Band 7 - SWIR 2\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright
+2.11 - 2.29\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+30\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.18\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\raggedright
+Band 8 - Panchromatic\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright
+0.50 - 0.68\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+15\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.18\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.36\columnwidth}\raggedright
+Band 9 - Cirrus\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright
+1.36 - 1.38\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+30\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright
+0.02\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\end{document}
