@@ -919,13 +919,15 @@ Use the dataframe of sites that you want to analyze to feed the phenocamr packag
 Note: you can choose either a daily or 3 day product
 
 ```{r}
+dir.create('data/', showWarnings = F)
+
 phenocamr::download_phenocam(
   frequency = 3,
   veg_type = 'DB',
   roi_id = 1000,
-  site = 'harvard',
+  site = 'harvard$',
   phenophase = TRUE,
-  out_dir = "."
+  out_dir = "data/"
 )
 ```
 
@@ -933,12 +935,12 @@ Now look in your working directory.  You have data!  Read it in:
 
 ```{r}
 # load the time series data but replace the csv filename with whatever you downloaded
-# df <- read.table("butte_GR_1000_3day.csv", header = TRUE, sep = ",")
-# 
-# # read in the transition date file
-# td <- read.table("butte_GR_1000_3day_transition_dates.csv",
-#                  header = TRUE,
-#                  sep = ",")
+df <- read.table("data/harvard_DB_1000_3day.csv", header = TRUE, sep = ",")
+
+# read in the transidation date file
+td <- read.table("data/harvard_DB_1000_3day_transition_dates.csv",
+                 header = TRUE,
+                 sep = ",")
 ```
 
 Let's take a look at the data:
