@@ -64,8 +64,9 @@ A unique aspect of Nature’s Notebook is that monitoring can be undertaken by i
 
 
 ## Types of USA-NPN Data:
-
-![Types of USA-NPN Observational Data from Rosemartin et al.,2018 ](/Users/kdw223/Research/katharynduffy.github.io/docs/images/USA_NPN_data_types.png)
+```{r}
+knitr::include_graphics('/Users/kdw223/Research/katharynduffy.github.io/docs/images/USA_NPN_data_types.png')
+```
 
 ### Observational
 
@@ -78,7 +79,11 @@ In this system, phenological status is reported by yes or no answers to a series
 
 USA-NPN observational data and derivative products are described in USA National Phenology Network Observational Data Documentation [(Rosemartin et al. 2018)](https://pubs.usgs.gov/of/2018/1060/ofr20181060.pdf). The three formats in which the USA-NPN observational data are made available include: *status and intensity data*, *individual phenometrics*, and *site-level phenometrics*.
 
-![Visual comparison of data collected by monitoring phenological events, phenophase status, and phenophase status plus intensity. Event monitoring captures onset of a given phenophase, whereas status monitoring captures onset and duration. Status monitoring with intensity (or abundance) captures onset, duration, and magnitude of a phenophase. Examples are derived from 2012 data submitted in Nature’s Notebook for (a) sugar maple (Acer saccharum) leafing for one individual plant in Maine, and (b) forsythia flowering (Forsythia sp.) for one individual plant in Massachusetts. Each point represents one observation; black points indicate presence of the phenophase while white points indicate absence. (a) illustrates the date on which the first leaf appears (event), the period during which leaves are present (status), and the period and rate at which the canopy fills from 0 to 100 % capacity and then, empties back to 0 with leaf fall (status + intensity, circles and solid line) using estimates of canopy fullness. Also illustrated is the period and rate at which the canopy fills and empties of autumn colored leaves (status + intensity, triangles and dashed line). (b) illustrates the date on which the first open flower appears (event), the periods during which open flowers are present on the plant (status), and an estimate of the number of open flowers on the plant over the periods in which they are present (status + intensity). In both examples, the event point is calculated as the first date of the year where the phenophase was reported as present. Note that in (b) there are two distinct periods of flowering, the second of which would not have been captured using event monitoring alone. (Denny et al., 2014) ](/Users/kdw223/Research/katharynduffy.github.io/docs/images/npn_data_exampe.png)
+```{r}
+knitr::include_graphics('/Users/kdw223/Research/katharynduffy.github.io/docs/images/npn_data_exampe.png')
+```
+
+>Visual comparison of data collected by monitoring phenological events, phenophase status, and phenophase status plus intensity. Event monitoring captures onset of a given phenophase, whereas status monitoring captures onset and duration. Status monitoring with intensity (or abundance) captures onset, duration, and magnitude of a phenophase. Examples are derived from 2012 data submitted in Nature’s Notebook for (a) sugar maple (Acer saccharum) leafing for one individual plant in Maine, and (b) forsythia flowering (Forsythia sp.) for one individual plant in Massachusetts. Each point represents one observation; black points indicate presence of the phenophase while white points indicate absence. (a) illustrates the date on which the first leaf appears (event), the period during which leaves are present (status), and the period and rate at which the canopy fills from 0 to 100 % capacity and then, empties back to 0 with leaf fall (status + intensity, circles and solid line) using estimates of canopy fullness. Also illustrated is the period and rate at which the canopy fills and empties of autumn colored leaves (status + intensity, triangles and dashed line). (b) illustrates the date on which the first open flower appears (event), the periods during which open flowers are present on the plant (status), and an estimate of the number of open flowers on the plant over the periods in which they are present (status + intensity). In both examples, the event point is calculated as the first date of the year where the phenophase was reported as present. Note that in (b) there are two distinct periods of flowering, the second of which would not have been captured using event monitoring alone. (Denny et al., 2014) 
 
 
 ### Status & Intensity Data
@@ -87,7 +92,11 @@ Status and intensity data consist of presence/absence records for individual phe
 
 These metrics include several approaches for capturing the shape of seasonal activity curves. In Nature’s Notebook, plants are marked and tracked through time, while animals are not, resulting in several key differences between the phenometric data types for plants and for animals. Individual Phenometrics and Site Phenometrics are nearly identical for animals, while for plants the former provide data for individual plants and the latter aggregate data across plants of the same species at a site. Magnitude Phenometrics provide additional information on animals, including correcting abundance values by search time and search area, which is not relevant for plants. As additional observational phenology data types are created by the USA-NPN, they are described at www.usanpn.org/data/new_data_products.
 
-![USA-NPN Animal Phenological Data by Type from Rosemartin et al.,2018](/Users/kdw223/Research/katharynduffy.github.io/docs/images/animal_pheno.png)
+
+```
+knitr::include_graphics('/Users/kdw223/Research/katharynduffy.github.io/docs/images/animal_pheno.png')
+```
+>USA-NPN Animal Phenological Data by Type from Rosemartin et al.,2018]
 
 ### Gridded Raster Data
 
