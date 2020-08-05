@@ -253,11 +253,10 @@ Click the 'GET API TOKEN' button. After a moment, you should see this:
 ```{r,echo=FALSE}
 knitr::include_graphics('/Users/kdw223/Research/katharynduffy.github.io/images/get-api-token-button.png')
 ```
-Click on the Copy button to copy your API token to the clipboard:
 
-```{r,echo=FALSE}
-knitr::include_graphics('/Users/kdw223/Research/katharynduffy.github.io/docs/images/NEON-api-token/api-token-copy-button.png')
-```
+
+Click on the Copy button to copy your API token to the clipboard.
+
 
 ## Use API token in neonUtilities 
 
