@@ -4,22 +4,22 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Introduction to NEON &amp; its Data | Environmental Informatics Using Research Infrastructures and their Data</title>
+  <title>Chapter 2 Introduction to NEON &amp; its Data | Environmental Informatics Using Research Infrastructures and their Data</title>
   <meta name="description" content="Course text for NAU INF 550" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Introduction to NEON &amp; its Data | Environmental Informatics Using Research Infrastructures and their Data" />
+  <meta property="og:title" content="Chapter 2 Introduction to NEON &amp; its Data | Environmental Informatics Using Research Infrastructures and their Data" />
   <meta property="og:type" content="book" />
   
-  
+  <meta property="og:image" content="/Users/kdw223/Research/katharynduffy.github.io/images/EcoInfo4.png" />
   <meta property="og:description" content="Course text for NAU INF 550" />
   <meta name="github-repo" content="katharynduffy/katharynduffy.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Introduction to NEON &amp; its Data | Environmental Informatics Using Research Infrastructures and their Data" />
+  <meta name="twitter:title" content="Chapter 2 Introduction to NEON &amp; its Data | Environmental Informatics Using Research Infrastructures and their Data" />
   
   <meta name="twitter:description" content="Course text for NAU INF 550" />
-  
+  <meta name="twitter:image" content="/Users/kdw223/Research/katharynduffy.github.io/images/EcoInfo4.png" />
 
 <meta name="author" content="Dr. Katharyn Duffy, Dr. Ben Ruddell" />
 
@@ -49,6 +49,13 @@
 
 
 
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.0.9000/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -167,7 +174,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#via-a-neon-api-token"><i class="fa fa-check"></i><b>2.7.1</b> Via a NEON API Token</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#get-a-neon-api-token"><i class="fa fa-check"></i><b>2.8</b> Get a NEON API Token</a></li>
-<li class="chapter" data-level="2.9" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#use-the-api-token-in-neonutilities"><i class="fa fa-check"></i><b>2.9</b> Use the API token in neonUtilities</a></li>
+<li class="chapter" data-level="2.9" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#use-api-token-in-neonutilities"><i class="fa fa-check"></i><b>2.9</b> Use API token in neonUtilities</a></li>
 <li class="chapter" data-level="2.10" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#token-management-for-open-code"><i class="fa fa-check"></i><b>2.10</b> Token management for open code</a></li>
 <li class="chapter" data-level="2.11" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#option-1-save-token-in-a-local-file"><i class="fa fa-check"></i><b>2.11</b> Option 1: Save token in a local file</a></li>
 <li class="chapter" data-level="2.12" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#option-2-save-token-to-the-r-environment"><i class="fa fa-check"></i><b>2.12</b> Option 2: Save token to the R environment</a><ul>
@@ -228,13 +235,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.10.2" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#written"><i class="fa fa-check"></i><b>3.10.2</b> Written</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="neon-aop-introduction.html"><a href="neon-aop-introduction.html"><i class="fa fa-check"></i><b>4</b> NEON AOP Introduction</a><ul>
+<li class="chapter" data-level="4" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html"><i class="fa fa-check"></i><b>4</b> Digital Repeat Photography Networks</a><ul>
 <li class="chapter" data-level="4.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#learning-objectives"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="4.2" data-path="neon-aop-introduction.html"><a href="neon-aop-introduction.html#about-hyperspectral-remote-sensing-data"><i class="fa fa-check"></i><b>4.2</b> About Hyperspectral Remote Sensing Data</a></li>
-<li class="chapter" data-level="4.3" data-path="neon-aop-introduction.html"><a href="neon-aop-introduction.html#key-metadata-for-hyperspectral-data"><i class="fa fa-check"></i><b>4.3</b> Key Metadata for Hyperspectral Data</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="neon-aop-introduction.html"><a href="neon-aop-introduction.html#bands-and-wavelengths"><i class="fa fa-check"></i><b>4.3.1</b> Bands and Wavelengths</a></li>
-<li class="chapter" data-level="4.3.2" data-path="neon-aop-introduction.html"><a href="neon-aop-introduction.html#spectral-resolution"><i class="fa fa-check"></i><b>4.3.2</b> Spectral Resolution</a></li>
-<li class="chapter" data-level="4.3.3" data-path="neon-aop-introduction.html"><a href="neon-aop-introduction.html#full-width-half-max-fwhm"><i class="fa fa-check"></i><b>4.3.3</b> Full Width Half Max (FWHM)</a></li>
+<li class="chapter" data-level="4.2" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#introduction-to-digital-repeat-photogrpahy-methods"><i class="fa fa-check"></i><b>4.2</b> Introduction to Digital Repeat Photogrpahy Methods</a></li>
+<li class="chapter" data-level="4.3" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#detecting-foggy-images-using-the-hazer-r-package"><i class="fa fa-check"></i><b>4.3</b> Detecting Foggy Images using the ‘hazer’ R Package</a></li>
+<li class="chapter" data-level="4.4" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#extracting-timeseries-from-images-using-the-xroi-r-package"><i class="fa fa-check"></i><b>4.4</b> Extracting Timeseries from Images using the xROI R Package</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#xroi-design"><i class="fa fa-check"></i><b>4.4.1</b> xROI Design</a></li>
+<li class="chapter" data-level="4.4.2" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#install-xroi"><i class="fa fa-check"></i><b>4.4.2</b> Install xROI</a></li>
+<li class="chapter" data-level="4.4.3" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#launch-xroi"><i class="fa fa-check"></i><b>4.4.3</b> Launch xROI</a></li>
+<li class="chapter" data-level="4.4.4" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#end-xroi"><i class="fa fa-check"></i><b>4.4.4</b> End xROI</a></li>
+<li class="chapter" data-level="4.4.5" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#use-xroi"><i class="fa fa-check"></i><b>4.4.5</b> Use xROI</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#documentation-and-citation"><i class="fa fa-check"></i><b>4.5</b> Documentation and Citation</a></li>
+<li class="chapter" data-level="4.6" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#challenge-use-xroi"><i class="fa fa-check"></i><b>4.6</b> Challenge: Use xROI</a></li>
+<li class="chapter" data-level="4.7" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#the-phenocam-network-mission-design"><i class="fa fa-check"></i><b>4.7</b> The PhenoCam Network Mission &amp; Design</a></li>
+<li class="chapter" data-level="4.8" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#pulling-data-via-the-phenocamapi-package"><i class="fa fa-check"></i><b>4.8</b> Pulling Data via the <em>phenocamapi</em> Package</a></li>
+<li class="chapter" data-level="4.9" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#exploring-phenocam-metadata"><i class="fa fa-check"></i><b>4.9</b> Exploring PhenoCam metadata</a><ul>
+<li class="chapter" data-level="4.9.1" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#remove-null-values"><i class="fa fa-check"></i><b>4.9.1</b> Remove null values</a></li>
+<li class="chapter" data-level="4.9.2" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#filtering-using-attributes"><i class="fa fa-check"></i><b>4.9.2</b> Filtering using attributes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#phenocam-time-series"><i class="fa fa-check"></i><b>4.10</b> PhenoCam time series</a><ul>
+<li class="chapter" data-level="4.10.1" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#obtain-rois"><i class="fa fa-check"></i><b>4.10.1</b> Obtain ROIs</a></li>
+<li class="chapter" data-level="4.10.2" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#download-time-series"><i class="fa fa-check"></i><b>4.10.2</b> Download time series</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#download-midday-images"><i class="fa fa-check"></i><b>4.11</b> Download midday images</a><ul>
+<li class="chapter" data-level="4.11.1" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#download-midday-images-for-a-given-time-range"><i class="fa fa-check"></i><b>4.11.1</b> Download midday images for a given time range</a></li>
+</ul></li>
+<li class="chapter" data-level="4.12" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#exercises"><i class="fa fa-check"></i><b>4.12</b> Exercises</a><ul>
+<li class="chapter" data-level="4.12.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#computational"><i class="fa fa-check"></i><b>4.12.1</b> Computational</a></li>
+<li class="chapter" data-level="4.12.2" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#threshold-values"><i class="fa fa-check"></i><b>4.12.2</b> Threshold values</a></li>
+<li class="chapter" data-level="4.12.3" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#comparing-phenology-across-vegetation-types"><i class="fa fa-check"></i><b>4.12.3</b> Comparing phenology across vegetation types</a></li>
+<li class="chapter" data-level="4.12.4" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#comparing-phenology-of-the-same-plant-function-type-pft-across-climate-space"><i class="fa fa-check"></i><b>4.12.4</b> Comparing phenology of the same plant function type (PFT) across climate space</a></li>
+<li class="chapter" data-level="4.12.5" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#written"><i class="fa fa-check"></i><b>4.12.5</b> Written</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="neon-aop-introduction.html"><a href="neon-aop-introduction.html"><i class="fa fa-check"></i><b>5</b> NEON AOP Introduction</a><ul>
+<li class="chapter" data-level="5.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#learning-objectives"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="5.2" data-path="neon-aop-introduction.html"><a href="neon-aop-introduction.html#about-hyperspectral-remote-sensing-data"><i class="fa fa-check"></i><b>5.2</b> About Hyperspectral Remote Sensing Data</a></li>
+<li class="chapter" data-level="5.3" data-path="neon-aop-introduction.html"><a href="neon-aop-introduction.html#key-metadata-for-hyperspectral-data"><i class="fa fa-check"></i><b>5.3</b> Key Metadata for Hyperspectral Data</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="neon-aop-introduction.html"><a href="neon-aop-introduction.html#bands-and-wavelengths"><i class="fa fa-check"></i><b>5.3.1</b> Bands and Wavelengths</a></li>
+<li class="chapter" data-level="5.3.2" data-path="neon-aop-introduction.html"><a href="neon-aop-introduction.html#spectral-resolution"><i class="fa fa-check"></i><b>5.3.2</b> Spectral Resolution</a></li>
+<li class="chapter" data-level="5.3.3" data-path="neon-aop-introduction.html"><a href="neon-aop-introduction.html#full-width-half-max-fwhm"><i class="fa fa-check"></i><b>5.3.3</b> Full Width Half Max (FWHM)</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -258,7 +299,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="introduction-to-neon-its-data" class="section level1">
-<h1><span class="header-section-number">2</span> Introduction to NEON &amp; its Data</h1>
+<h1><span class="header-section-number">Chapter 2</span> Introduction to NEON &amp; its Data</h1>
 <blockquote>
 <p>Estimated Time: 2 hours</p>
 </blockquote>
@@ -475,18 +516,18 @@ then use it in neonUtilities when downloading data.</p>
 <h2><span class="header-section-number">2.8</span> Get a NEON API Token</h2>
 <p>The first step is create a NEON user account, if you don’t have one.
 Follow the instructions on the <a href="https://www.neonscience.org/data/about-data/data-portal-user-accounts" target="_blank">Data Portal User Accounts</a> page. If you do already
-have an account, go to the <a href="https://data.neonscience.org/home">NEON Data Portal</a>,
+have an account, go to <a href="https://data.neonscience.org/home" target="_blank">the NEON Data Portal</a>,
 sign in, and go to your My Account profile page.</p>
 <p>Once you have an account, you can create an API token for yourself. At
 the bottom of the My Account page, you should see this bar:</p>
-<p><img src="images/get-api-token-button.png" /></p>
+<p><img src="images/account-page-token-view.png" width="602" /></p>
 <p>Click the ‘GET API TOKEN’ button. After a moment, you should see this:</p>
-<p><img src="images/account-page-token-view.png" /></p>
-<p>Click on the Copy button to copy your API token to the clipboard:</p>
-<p><img src="images/api-token-copy-button.png" /></p>
+<p><img src="images/get-api-token-button.png" width="600" />
+Click on the Copy button to copy your API token to the clipboard:</p>
+<p><img src="/Users/kdw223/Research/katharynduffy.github.io/docs/images/NEON-api-token/api-token-copy-button.png" /><!-- --></p>
 </div>
-<div id="use-the-api-token-in-neonutilities" class="section level2">
-<h2><span class="header-section-number">2.9</span> Use the API token in neonUtilities</h2>
+<div id="use-api-token-in-neonutilities" class="section level2">
+<h2><span class="header-section-number">2.9</span> Use API token in neonUtilities</h2>
 <p>In the next section, we’ll walk through saving your token somewhere secure but
 accessible to your code. But first let’s try out using the token the easy way.</p>
 <p>First, we need to load the <code>neonUtilities</code> package and set the working
@@ -570,21 +611,26 @@ directory:</p>
 the file browse pane in RStudio</strong>, or using another file browse method with
 hidden files shown. Files that begin with <code>.</code> are hidden by default, but
 RStudio recognizes files that begin with <code>.R</code> and displays them.</p>
-<p><img src="images/R-environ-file-browse.png" /></p>
+<figure>
+<pre><code>&lt;a href=&quot;{{ site.baseurl }}/images/NEON-api-token/R-environ-file-browse.png&quot;&gt;
+&lt;img src=&quot;{{ site.baseurl }}/images/NEON-api-token/R-environ-file-browse.png&quot; alt=&quot;File browse pane in RStudio showing .Renviron file.&quot;&gt;&lt;/a&gt;
+&lt;figcaption&gt;Screenshot of file browse pane with .Renviron file. 
+&lt;/figcaption&gt;</code></pre>
+</figure>
 <p>If you already have a <code>.Renviron</code> file, open it and follow the instructions
 below to add to it. If you don’t have one, create one using File -&gt; New File
 -&gt; Text File in the RStudio menus.</p>
 <p>Add one line to the text file. In this option, there are no quotes around the
 token value.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">NEON_TOKEN=PASTE YOUR TOKEN HERE</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">NEON_TOKEN=PASTE YOUR TOKEN HERE</a></code></pre></div>
 <p>Save the file as <code>.Renviron</code>, in the RStudio home directory identified above.
 Double check the spelling, this will not work if you have a typo. Re-start
 R to load the environment.</p>
 <p>Once your token is assigned to an environment variable, use the function
 <code>Sys.getenv()</code> to access it. For example, in <code>loadByProduct()</code>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">foliar &lt;-<span class="st"> </span><span class="kw">loadByProduct</span>(<span class="dt">dpID=</span><span class="st">&quot;DP1.10026.001&quot;</span>, <span class="dt">site=</span><span class="st">&quot;all&quot;</span>, </a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">                        <span class="dt">package=</span><span class="st">&quot;expanded&quot;</span>, <span class="dt">check.size=</span>F,</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">                        <span class="dt">token=</span><span class="kw">Sys.getenv</span>(<span class="st">&quot;NEON_TOKEN&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">foliar &lt;-<span class="st"> </span><span class="kw">loadByProduct</span>(<span class="dt">dpID=</span><span class="st">&quot;DP1.10026.001&quot;</span>, <span class="dt">site=</span><span class="st">&quot;all&quot;</span>, </a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">                        <span class="dt">package=</span><span class="st">&quot;expanded&quot;</span>, <span class="dt">check.size=</span>F,</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">                        <span class="dt">token=</span><span class="kw">Sys.getenv</span>(<span class="st">&quot;NEON_TOKEN&quot;</span>))</a></code></pre></div>
 <div id="part-2-pulling-neon-data-via-the-api" class="section level3">
 <h3><span class="header-section-number">2.12.1</span> Part 2: Pulling NEON Data via the API</h3>
 <p>This is a tutorial in pulling data from the NEON API or Application
@@ -683,11 +729,11 @@ Data! By product, site, and date (in monthly chunks).</p></li>
 <p>First query the products endpoint of the API to find out which sites and dates
 have data available. In the products endpoint, the target is the numbered
 identifier for the data product:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># Load the necessary libraries</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">library</span>(httr)</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw">library</span>(jsonlite)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># Load the necessary libraries</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">library</span>(httr)</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw">library</span>(jsonlite)</a></code></pre></div>
 <pre><code>## Warning: package &#39;jsonlite&#39; was built under R version 3.6.2</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">library</span>(dplyr, <span class="dt">quietly=</span>T)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">library</span>(dplyr, <span class="dt">quietly=</span>T)</a></code></pre></div>
 <pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.6.2</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;dplyr&#39;</code></pre>
@@ -697,13 +743,13 @@ identifier for the data product:</p>
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">library</span>(downloader)</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="co"># Request data using the GET function &amp; the API call</span></a>
-<a class="sourceLine" id="cb17-4" data-line-number="4">req &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://data.neonscience.org/api/v0/products/DP1.10003.001&quot;</span>)</a>
-<a class="sourceLine" id="cb17-5" data-line-number="5">req</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">library</span>(downloader)</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="co"># Request data using the GET function &amp; the API call</span></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4">req &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://data.neonscience.org/api/v0/products/DP1.10003.001&quot;</span>)</a>
+<a class="sourceLine" id="cb18-5" data-line-number="5">req</a></code></pre></div>
 <pre><code>## Response [https://data.neonscience.org/api/v0/products/DP1.10003.001]
-##   Date: 2020-08-04 23:41
+##   Date: 2020-08-05 20:02
 ##   Status: 200
 ##   Content-Type: application/json;charset=UTF-8
 ##   Size: 24.2 kB</code></pre>
@@ -712,9 +758,9 @@ name of the object gives you some basic information about what you downloaded.</
 <p>The <code>content()</code> function returns the contents in the form of a highly nested
 list. This is typical of JSON-formatted data returned by APIs. We can use the
 <code>names()</code> function to view the different types of information within this list.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># View requested data</span></a>
-<a class="sourceLine" id="cb19-2" data-line-number="2">req.content &lt;-<span class="st"> </span><span class="kw">content</span>(req, <span class="dt">as=</span><span class="st">&quot;parsed&quot;</span>)</a>
-<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="kw">names</span>(req.content<span class="op">$</span>data)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># View requested data</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">req.content &lt;-<span class="st"> </span><span class="kw">content</span>(req, <span class="dt">as=</span><span class="st">&quot;parsed&quot;</span>)</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="kw">names</span>(req.content<span class="op">$</span>data)</a></code></pre></div>
 <pre><code>##  [1] &quot;productCodeLong&quot;              &quot;productCode&quot;                 
 ##  [3] &quot;productCodePresentation&quot;      &quot;productName&quot;                 
 ##  [5] &quot;productDescription&quot;           &quot;productStatus&quot;               
@@ -730,11 +776,11 @@ list. This is typical of JSON-formatted data returned by APIs. We can use the
 <p>You can see all of the infoamtion by running the line <code>print(req.content)</code>, but
 this will result in a very long printout in your console. Instead, you can view
 list items individually. Here, we highlight a couple of interesting examples:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># View Abstract</span></a>
-<a class="sourceLine" id="cb21-2" data-line-number="2">req.content<span class="op">$</span>data<span class="op">$</span>productAbstract</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co"># View Abstract</span></a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">req.content<span class="op">$</span>data<span class="op">$</span>productAbstract</a></code></pre></div>
 <pre><code>## [1] &quot;This data product contains the quality-controlled, native sampling resolution data from NEON&#39;s breeding landbird sampling. Breeding landbirds are defined as “smaller birds (usually exclusive of raptors and upland game birds) not usually associated with aquatic habitats” (Ralph et al. 1993). The breeding landbird point counts product provides records of species identification of all individuals observed during the 6-minute count period, as well as metadata which can be used to model detectability, e.g., weather, distances from observers to birds, and detection methods. The NEON point count method is adapted from the Integrated Monitoring in Bird Conservation Regions (IMBCR): Field protocol for spatially-balanced sampling of landbird populations (Hanni et al. 2017; http://bit.ly/2u2ChUB). For additional details, see the user guide, protocols, and science design listed in the Documentation section in [this data product&#39;s details webpage](https://data.neonscience.org/data-products/DP1.10003.001). \n\nLatency:\nThe expected time from data and/or sample collection in the field to data publication is as follows, for each of the data tables (in days) in the downloaded data package. See the Data Product User Guide for more information.\n \nbrd_countdata:  120\n\nbrd_perpoint:  120\n\nbrd_personnel:  120\n\nbrd_references:  120&quot;</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co"># View Available months and associated URLs for Onaqui, Utah - ONAQ</span></a>
-<a class="sourceLine" id="cb23-2" data-line-number="2">req.content<span class="op">$</span>data<span class="op">$</span>siteCodes[[<span class="dv">27</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="co"># View Available months and associated URLs for Onaqui, Utah - ONAQ</span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">req.content<span class="op">$</span>data<span class="op">$</span>siteCodes[[<span class="dv">27</span>]]</a></code></pre></div>
 <pre><code>## $siteCode
 ## [1] &quot;ONAQ&quot;
 ## 
@@ -770,12 +816,12 @@ in this tutorial we’ll explore a couple of them. Here we’ll use <code>fromJS
 the jsonlite package, which doesn’t fully flatten the nested list, but gets us
 the part we need. To use it, we need a text version of the content. The text
 version is not as human readable but is readable by the <code>fromJSON()</code> function.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="co"># make this JSON readable -&gt; &quot;text&quot;</span></a>
-<a class="sourceLine" id="cb25-2" data-line-number="2">req.text &lt;-<span class="st"> </span><span class="kw">content</span>(req, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>)</a>
-<a class="sourceLine" id="cb25-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb25-4" data-line-number="4"><span class="co"># Flatten data frame to see available data. </span></a>
-<a class="sourceLine" id="cb25-5" data-line-number="5">avail &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(req.text, <span class="dt">simplifyDataFrame=</span>T, <span class="dt">flatten=</span>T)</a>
-<a class="sourceLine" id="cb25-6" data-line-number="6">avail</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co"># make this JSON readable -&gt; &quot;text&quot;</span></a>
+<a class="sourceLine" id="cb26-2" data-line-number="2">req.text &lt;-<span class="st"> </span><span class="kw">content</span>(req, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>)</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb26-4" data-line-number="4"><span class="co"># Flatten data frame to see available data. </span></a>
+<a class="sourceLine" id="cb26-5" data-line-number="5">avail &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(req.text, <span class="dt">simplifyDataFrame=</span>T, <span class="dt">flatten=</span>T)</a>
+<a class="sourceLine" id="cb26-6" data-line-number="6">avail</a></code></pre></div>
 <pre><code>## $data
 ## $data$productCodeLong
 ## [1] &quot;NEON.DOM.SITE.DP1.10003.001&quot;
@@ -1010,11 +1056,11 @@ version is not as human readable but is readable by the <code>fromJSON()</code> 
 <p>We need <code>$data$siteCodes</code> to tell us what we can download.
 <code>$data$siteCodes$availableDataUrls</code> allows us to avoid writing the API
 calls ourselves in the next steps.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># get data availability list for the product</span></a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">bird.urls &lt;-<span class="st"> </span><span class="kw">unlist</span>(avail<span class="op">$</span>data<span class="op">$</span>siteCodes<span class="op">$</span>availableDataUrls)</a>
-<a class="sourceLine" id="cb27-3" data-line-number="3"><span class="kw">length</span>(bird.urls) <span class="co">#total number of URLs</span></a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="co"># get data availability list for the product</span></a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">bird.urls &lt;-<span class="st"> </span><span class="kw">unlist</span>(avail<span class="op">$</span>data<span class="op">$</span>siteCodes<span class="op">$</span>availableDataUrls)</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3"><span class="kw">length</span>(bird.urls) <span class="co">#total number of URLs</span></a></code></pre></div>
 <pre><code>## [1] 204</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">bird.urls[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>] <span class="co">#show first 10 URLs available</span></a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">bird.urls[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>] <span class="co">#show first 10 URLs available</span></a></code></pre></div>
 <pre><code>##  [1] &quot;https://data.neonscience.org/api/v0/data/DP1.10003.001/ABBY/2017-05&quot;
 ##  [2] &quot;https://data.neonscience.org/api/v0/data/DP1.10003.001/ABBY/2017-06&quot;
 ##  [3] &quot;https://data.neonscience.org/api/v0/data/DP1.10003.001/ABBY/2018-06&quot;
@@ -1033,80 +1079,80 @@ the <code>grep()</code> function.</p>
 <p>Note that if there were only one month of data from a site, you could leave
 off the date in the function. If you want date from more than one site/month
 you need to iterate this code, GET fails if you give it more than one URL.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="co"># get data availability for WOOD July 2015</span></a>
-<a class="sourceLine" id="cb31-2" data-line-number="2">brd &lt;-<span class="st"> </span><span class="kw">GET</span>(bird.urls[<span class="kw">grep</span>(<span class="st">&quot;WOOD/2015-07&quot;</span>, bird.urls)])</a>
-<a class="sourceLine" id="cb31-3" data-line-number="3">brd.files &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="kw">content</span>(brd, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>))</a>
-<a class="sourceLine" id="cb31-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb31-5" data-line-number="5"><span class="co"># view just the available data files </span></a>
-<a class="sourceLine" id="cb31-6" data-line-number="6">brd.files<span class="op">$</span>data<span class="op">$</span>files</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="co"># get data availability for WOOD July 2015</span></a>
+<a class="sourceLine" id="cb32-2" data-line-number="2">brd &lt;-<span class="st"> </span><span class="kw">GET</span>(bird.urls[<span class="kw">grep</span>(<span class="st">&quot;WOOD/2015-07&quot;</span>, bird.urls)])</a>
+<a class="sourceLine" id="cb32-3" data-line-number="3">brd.files &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="kw">content</span>(brd, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>))</a>
+<a class="sourceLine" id="cb32-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb32-5" data-line-number="5"><span class="co"># view just the available data files </span></a>
+<a class="sourceLine" id="cb32-6" data-line-number="6">brd.files<span class="op">$</span>data<span class="op">$</span>files</a></code></pre></div>
 <pre><code>##                               crc32
-## 1  e0adb3146b5cce59eea09864145efcb1
-## 2  4438e5e050fc7be5949457f42089a397
-## 3  d84b496cf950b5b96e762473beda563a
-## 4  df102cb4cfdce092cda3c0942c9d9b67
-## 5  f37931d46213246dccf2a161211c9afe
-## 6  e67f1ae72760a63c616ec18108453aaa
-## 7  6d15da01c03793da8fc6d871e6659ea8
-## 8  e67f1ae72760a63c616ec18108453aaa
-## 9  d76cfc5443ac27a058fab1d319d31d34
-## 10 a2c47410a6a0f49d0b1cf95be6238604
-## 11 f37931d46213246dccf2a161211c9afe
+## 1  d84b496cf950b5b96e762473beda563a
+## 2  6d15da01c03793da8fc6d871e6659ea8
+## 3  e0adb3146b5cce59eea09864145efcb1
+## 4  f37931d46213246dccf2a161211c9afe
+## 5  df102cb4cfdce092cda3c0942c9d9b67
+## 6  4438e5e050fc7be5949457f42089a397
+## 7  e67f1ae72760a63c616ec18108453aaa
+## 8  6d15da01c03793da8fc6d871e6659ea8
+## 9  e67f1ae72760a63c616ec18108453aaa
+## 10 d76cfc5443ac27a058fab1d319d31d34
+## 11 22e3353dabb8b154768dc2eee9873718
 ## 12 6ba91b6e109ff14d1911dcaad9febeb9
-## 13 680a2f53c0a9d1b0ab4f8814bda5b399
-## 14 6d15da01c03793da8fc6d871e6659ea8
-## 15 22e3353dabb8b154768dc2eee9873718
+## 13 a2c47410a6a0f49d0b1cf95be6238604
+## 14 680a2f53c0a9d1b0ab4f8814bda5b399
+## 15 f37931d46213246dccf2a161211c9afe
 ## 16 2ad379ae44f4e87996bdc3dee70a0794
 ##                                                                               name
-## 1     NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.basic.20191107T152331Z.csv
-## 2                   NEON.D09.WOOD.DP1.10003.001.2015-07.basic.20191107T152331Z.zip
-## 3                          NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt
-## 4           NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml
-## 5      NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.basic.20191107T152331Z.csv
-## 6                       NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv
-## 7                      NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv
-## 8                       NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv
-## 9         NEON.D09.WOOD.DP1.10003.001.brd_references.expanded.20191107T152331Z.csv
-## 10                          NEON.Bird_Conservancy_of_the_Rockies.brd_personnel.csv
-## 11  NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.expanded.20191107T152331Z.csv
+## 1                          NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt
+## 2                      NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv
+## 3     NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.basic.20191107T152331Z.csv
+## 4      NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.basic.20191107T152331Z.csv
+## 5           NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml
+## 6                   NEON.D09.WOOD.DP1.10003.001.2015-07.basic.20191107T152331Z.zip
+## 7                       NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv
+## 8                      NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv
+## 9                       NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv
+## 10        NEON.D09.WOOD.DP1.10003.001.brd_references.expanded.20191107T152331Z.csv
+## 11               NEON.D09.WOOD.DP1.10003.001.2015-07.expanded.20191107T152331Z.zip
 ## 12          NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml
-## 13                         NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt
-## 14                     NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv
-## 15               NEON.D09.WOOD.DP1.10003.001.2015-07.expanded.20191107T152331Z.zip
+## 13                          NEON.Bird_Conservancy_of_the_Rockies.brd_personnel.csv
+## 14                         NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt
+## 15  NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.expanded.20191107T152331Z.csv
 ## 16 NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.expanded.20191107T152331Z.csv
 ##      size
-## 1  346679
-## 2   67816
-## 3   12784
-## 4   70539
-## 5   23521
-## 6    7337
-## 7   10084
-## 8    7337
-## 9    1012
-## 10  46349
-## 11  23521
+## 1   12784
+## 2   10084
+## 3  346679
+## 4   23521
+## 5   70539
+## 6   67816
+## 7    7337
+## 8   10084
+## 9    7337
+## 10   1012
+## 11  79998
 ## 12  78750
-## 13  13063
-## 14  10084
-## 15  79998
+## 13  46349
+## 14  13063
+## 15  23521
 ## 16 367402
 ##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        url
-## 1        https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.basic.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200804T234117Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200804%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=24d195afa9ebef8339e557e4d093134b34e59f563dbd84601ff36823b092f2cb
-## 2                      https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.2015-07.basic.20191107T152331Z.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200804T234117Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200804%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=636f54d6ec5f48a4f67708f67e8cf20fdd077e3671a1d5e4c2f750a5beb89e93
-## 3                             https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200804T234117Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200804%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=73af3230657895916c156a6d4649d275366c03cd8a18eb647e2ac32570d1e125
-## 4              https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200804T234117Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200804%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=0ca820678ccf090587895ab114aa4afdc001e45611d4ebde8f3c9231c7fd5efd
-## 5         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.basic.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200804T234117Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200804%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=40bacfb7468ffb33b452f73d9e8c52c0d47d33877a1b77fd3b218994212fe85b
-## 6                          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200804T234117Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200804%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=dcb0abfd199b4c045c15960d604e10e117637aab4343f981b3cbf1e43d44503c
-## 7                         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200804T234117Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200804%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=e46574c0d5fba4385916f6a53ad0063cd8104ce89569dab794e861bd00e5241b
-## 8                       https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200804T234117Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200804%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=89108d441904116ffff78416eaad13a868c79cb6ba6f2487f5b06834443df46d
-## 9         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_references.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200804T234117Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200804%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=f295203ceb95136c9827247c8d228782ee37cf599291cc9b12754ae77edf95f7
-## 10                          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.Bird_Conservancy_of_the_Rockies.brd_personnel.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200804T234117Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200804%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=c1e32a8ae8fb3aca0184ad2ef60849c6e94ce5da0d58f29092cea8007285b142
-## 11  https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200804T234117Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200804%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=7ceb6c497923f98de2d4a99b19acd827272ce45e50f6af82446e69b2f0e33242
-## 12          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200804T234117Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200804%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=47b66afe1f2e39f44c9f998a4e799d7ded47236d08a73ec4974a227ad3558157
-## 13                         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200804T234117Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200804%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=9b5fd6c9622d61fd076f717da9a47f53e94a6b06dc87bafc1b52a43de3f90f5a
-## 14                     https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200804T234117Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200804%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=da08677f670f6cf2c45416603d31b69e44752264a8832d4b914fc0f6b8ab0658
-## 15               https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.2015-07.expanded.20191107T152331Z.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200804T234117Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200804%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=4a9a81b1349ec92377963156ff111a43320ab6da3564ef220f70be94547ca7fe
-## 16 https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200804T234117Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200804%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=ee1437974466c4446fb56e5402b7e8b9279144b1511860b5e9f312c5f2f8c41f</code></pre>
+## 1                             https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200805T200207Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=dd95ec93b488bdd4a2d918d5d560fe9c107e40e6c80691d34ef021dad6ec942f
+## 2                         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200805T200207Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=e33fa25de7471a6e4cc7fb50b568f77caf5c4852aa7377066582460dddcd2107
+## 3        https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.basic.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200805T200207Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=ce14d99911b0e7f9a4c5629bea123da23cb22ff502157f77e88cd247a6ca92bd
+## 4         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.basic.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200805T200207Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=ad948dd1754a01d1e746189973ddbeabcabc803497c595cf04f91447328680ee
+## 5              https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200805T200207Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=5f8692c42103ba7b2a27788a670c21c2ff4cb9b2c0ccdab65cbabdb51a538428
+## 6                      https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.2015-07.basic.20191107T152331Z.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200805T200207Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=60dbcd3d317f8f0d440f15492ba1c04eee50d5831c597003713ab9adb1660079
+## 7                          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200805T200207Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=3273762de6a47878a800fe6a5dc323f1d0c5c019ed0876e652280be4cbfc37a0
+## 8                      https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200805T200207Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=692462e966b214948cbb4ee7aff3e8f37cda5eadda4ac4f2b6af01026e41487a
+## 9                       https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200805T200207Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=e555013ce6bb22e34b5c22db98d12a7d0f34450be5fe71c49d135a35552a6d6c
+## 10        https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_references.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200805T200207Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=9f1258890941f19950fd41d6b0db3c3101636c39ca630c4bbeae80c5e8520a09
+## 11               https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.2015-07.expanded.20191107T152331Z.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200805T200207Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=f5d57b96f1ca7fce5f53071c9beb784d98881f0f76ed6835a8605732ee6562c5
+## 12          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200805T200207Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=25641747d511850caf60a107d9cf259590151615a501c21cc3ace5f9cc154a12
+## 13                          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.Bird_Conservancy_of_the_Rockies.brd_personnel.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200805T200207Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=9d6f431133b232f5fe7a3911b1b653df7ad369d8eaba8c33fbfe84307536a44d
+## 14                         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200805T200207Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=db1be5fd333d7a65f623210078fbd843b56dca8d688500c8b2e03a4ba2c49dc2
+## 15  https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200805T200207Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=f595ffb17eb6e2c062cb1a2499f33dc51d8e6a1bbc1dffa36fb8590b9a8fdb1b
+## 16 https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20200805T200207Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Signature=923fe60be9c473dbf0d10cfa8a6dbede8a3bb515507f624f4d0ff6eb34917126</code></pre>
 <p>In this output, <code>name</code> and <code>url</code> are key fields. It provides us with the names
 of the files available for this site and month, and URLs where we can get the
 files. We’ll use the file names to pick which ones we want.</p>
@@ -1156,34 +1202,34 @@ package. The list of files doesn’t return in the same order every time, so we
 won’t use position in the list to select. Plus, we want code we can re-use
 when getting data from other sites and other months. So we select files
 based on the data table name and the package name.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="co"># Get both files</span></a>
-<a class="sourceLine" id="cb33-2" data-line-number="2">brd.count &lt;-<span class="st"> </span><span class="kw">read.delim</span>(brd.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>url</a>
-<a class="sourceLine" id="cb33-3" data-line-number="3">                        [<span class="kw">intersect</span>(<span class="kw">grep</span>(<span class="st">&quot;countdata&quot;</span>, </a>
-<a class="sourceLine" id="cb33-4" data-line-number="4">                                        brd.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name),</a>
-<a class="sourceLine" id="cb33-5" data-line-number="5">                                    <span class="kw">grep</span>(<span class="st">&quot;basic&quot;</span>, </a>
-<a class="sourceLine" id="cb33-6" data-line-number="6">                                         brd.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name))], </a>
-<a class="sourceLine" id="cb33-7" data-line-number="7">                        <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>)</a>
-<a class="sourceLine" id="cb33-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb33-9" data-line-number="9">brd.point &lt;-<span class="st"> </span><span class="kw">read.delim</span>(brd.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>url</a>
-<a class="sourceLine" id="cb33-10" data-line-number="10">                        [<span class="kw">intersect</span>(<span class="kw">grep</span>(<span class="st">&quot;perpoint&quot;</span>, </a>
-<a class="sourceLine" id="cb33-11" data-line-number="11">                                        brd.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name),</a>
-<a class="sourceLine" id="cb33-12" data-line-number="12">                                    <span class="kw">grep</span>(<span class="st">&quot;basic&quot;</span>, </a>
-<a class="sourceLine" id="cb33-13" data-line-number="13">                                         brd.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name))], </a>
-<a class="sourceLine" id="cb33-14" data-line-number="14">                        <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="co"># Get both files</span></a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">brd.count &lt;-<span class="st"> </span><span class="kw">read.delim</span>(brd.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>url</a>
+<a class="sourceLine" id="cb34-3" data-line-number="3">                        [<span class="kw">intersect</span>(<span class="kw">grep</span>(<span class="st">&quot;countdata&quot;</span>, </a>
+<a class="sourceLine" id="cb34-4" data-line-number="4">                                        brd.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name),</a>
+<a class="sourceLine" id="cb34-5" data-line-number="5">                                    <span class="kw">grep</span>(<span class="st">&quot;basic&quot;</span>, </a>
+<a class="sourceLine" id="cb34-6" data-line-number="6">                                         brd.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name))], </a>
+<a class="sourceLine" id="cb34-7" data-line-number="7">                        <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>)</a>
+<a class="sourceLine" id="cb34-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb34-9" data-line-number="9">brd.point &lt;-<span class="st"> </span><span class="kw">read.delim</span>(brd.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>url</a>
+<a class="sourceLine" id="cb34-10" data-line-number="10">                        [<span class="kw">intersect</span>(<span class="kw">grep</span>(<span class="st">&quot;perpoint&quot;</span>, </a>
+<a class="sourceLine" id="cb34-11" data-line-number="11">                                        brd.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name),</a>
+<a class="sourceLine" id="cb34-12" data-line-number="12">                                    <span class="kw">grep</span>(<span class="st">&quot;basic&quot;</span>, </a>
+<a class="sourceLine" id="cb34-13" data-line-number="13">                                         brd.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name))], </a>
+<a class="sourceLine" id="cb34-14" data-line-number="14">                        <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>)</a></code></pre></div>
 <p>Now we have the data and can access it in R. Just to show that the files we
 pulled have actual data in them, let’s make a quick graphic:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="co"># Cluster by species </span></a>
-<a class="sourceLine" id="cb34-2" data-line-number="2">clusterBySp &lt;-<span class="st"> </span>brd.count <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(scientificName) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb34-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">total=</span><span class="kw">sum</span>(clusterSize, <span class="dt">na.rm=</span>T))</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="co"># Cluster by species </span></a>
+<a class="sourceLine" id="cb35-2" data-line-number="2">clusterBySp &lt;-<span class="st"> </span>brd.count <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(scientificName) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">total=</span><span class="kw">sum</span>(clusterSize, <span class="dt">na.rm=</span>T))</a></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="co"># Reorder so list is ordered most to least abundance</span></a>
-<a class="sourceLine" id="cb36-2" data-line-number="2">clusterBySp &lt;-<span class="st"> </span>clusterBySp[<span class="kw">order</span>(clusterBySp<span class="op">$</span>total, <span class="dt">decreasing=</span>T),]</a>
-<a class="sourceLine" id="cb36-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb36-4" data-line-number="4"><span class="co"># Plot</span></a>
-<a class="sourceLine" id="cb36-5" data-line-number="5"><span class="kw">barplot</span>(clusterBySp<span class="op">$</span>total, <span class="dt">names.arg=</span>clusterBySp<span class="op">$</span>scientificName, </a>
-<a class="sourceLine" id="cb36-6" data-line-number="6">        <span class="dt">ylab=</span><span class="st">&quot;Total&quot;</span>, <span class="dt">cex.names=</span><span class="fl">0.5</span>, <span class="dt">las=</span><span class="dv">2</span>)</a></code></pre></div>
-<p><img src="_main_files/figure-html/os-plot-bird-data-1.png" width="672" /></p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="co"># Reorder so list is ordered most to least abundance</span></a>
+<a class="sourceLine" id="cb37-2" data-line-number="2">clusterBySp &lt;-<span class="st"> </span>clusterBySp[<span class="kw">order</span>(clusterBySp<span class="op">$</span>total, <span class="dt">decreasing=</span>T),]</a>
+<a class="sourceLine" id="cb37-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="co"># Plot</span></a>
+<a class="sourceLine" id="cb37-5" data-line-number="5"><span class="kw">barplot</span>(clusterBySp<span class="op">$</span>total, <span class="dt">names.arg=</span>clusterBySp<span class="op">$</span>scientificName, </a>
+<a class="sourceLine" id="cb37-6" data-line-number="6">        <span class="dt">ylab=</span><span class="st">&quot;Total&quot;</span>, <span class="dt">cex.names=</span><span class="fl">0.5</span>, <span class="dt">las=</span><span class="dv">2</span>)</a></code></pre></div>
+<p><img src="02_Introduction_to_NEON_files/figure-html/os-plot-bird-data-1.png" width="672" /></p>
 <p>Wow! There are lots of <em>Agelaius phoeniceus</em> (Red-winged Blackbirds) at WOOD in July.</p>
 </div>
 <div id="instrumentation-data-is" class="section level3">
@@ -1191,32 +1237,32 @@ pulled have actual data in them, let’s make a quick graphic:</p>
 <p>The process is essentially the same for sensor data. We’ll do the same series of
 queries for Soil Temperature, DP1.00041.001. Let’s use data from Moab in March
 2017 this time.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="co"># Request soil temperature data availability info</span></a>
-<a class="sourceLine" id="cb37-2" data-line-number="2">req.soil &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://data.neonscience.org/api/v0/products/DP1.00041.001&quot;</span>)</a>
-<a class="sourceLine" id="cb37-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="co"># make this JSON readable</span></a>
-<a class="sourceLine" id="cb37-5" data-line-number="5"><span class="co"># Note how we&#39;ve change this from two commands into one here</span></a>
-<a class="sourceLine" id="cb37-6" data-line-number="6">avail.soil &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="kw">content</span>(req.soil, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>), <span class="dt">simplifyDataFrame=</span>T, <span class="dt">flatten=</span>T)</a>
-<a class="sourceLine" id="cb37-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb37-8" data-line-number="8"><span class="co"># get data availability list for the product</span></a>
-<a class="sourceLine" id="cb37-9" data-line-number="9">temp.urls &lt;-<span class="st"> </span><span class="kw">unlist</span>(avail.soil<span class="op">$</span>data<span class="op">$</span>siteCodes<span class="op">$</span>availableDataUrls)</a>
-<a class="sourceLine" id="cb37-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb37-11" data-line-number="11"><span class="co"># get data availability from location/date of interest</span></a>
-<a class="sourceLine" id="cb37-12" data-line-number="12">tmp &lt;-<span class="st"> </span><span class="kw">GET</span>(temp.urls[<span class="kw">grep</span>(<span class="st">&quot;MOAB/2017-06&quot;</span>, temp.urls)])</a>
-<a class="sourceLine" id="cb37-13" data-line-number="13">tmp.files &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="kw">content</span>(tmp, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>))</a>
-<a class="sourceLine" id="cb37-14" data-line-number="14"><span class="kw">length</span>(tmp.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name) <span class="co"># There are a lot of available files</span></a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="co"># Request soil temperature data availability info</span></a>
+<a class="sourceLine" id="cb38-2" data-line-number="2">req.soil &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://data.neonscience.org/api/v0/products/DP1.00041.001&quot;</span>)</a>
+<a class="sourceLine" id="cb38-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="co"># make this JSON readable</span></a>
+<a class="sourceLine" id="cb38-5" data-line-number="5"><span class="co"># Note how we&#39;ve change this from two commands into one here</span></a>
+<a class="sourceLine" id="cb38-6" data-line-number="6">avail.soil &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="kw">content</span>(req.soil, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>), <span class="dt">simplifyDataFrame=</span>T, <span class="dt">flatten=</span>T)</a>
+<a class="sourceLine" id="cb38-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb38-8" data-line-number="8"><span class="co"># get data availability list for the product</span></a>
+<a class="sourceLine" id="cb38-9" data-line-number="9">temp.urls &lt;-<span class="st"> </span><span class="kw">unlist</span>(avail.soil<span class="op">$</span>data<span class="op">$</span>siteCodes<span class="op">$</span>availableDataUrls)</a>
+<a class="sourceLine" id="cb38-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb38-11" data-line-number="11"><span class="co"># get data availability from location/date of interest</span></a>
+<a class="sourceLine" id="cb38-12" data-line-number="12">tmp &lt;-<span class="st"> </span><span class="kw">GET</span>(temp.urls[<span class="kw">grep</span>(<span class="st">&quot;MOAB/2017-06&quot;</span>, temp.urls)])</a>
+<a class="sourceLine" id="cb38-13" data-line-number="13">tmp.files &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="kw">content</span>(tmp, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>))</a>
+<a class="sourceLine" id="cb38-14" data-line-number="14"><span class="kw">length</span>(tmp.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name) <span class="co"># There are a lot of available files</span></a></code></pre></div>
 <pre><code>## [1] 190</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">tmp.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]   <span class="co"># Let&#39;s print the first 10</span></a></code></pre></div>
-<pre><code>##  [1] &quot;NEON.D13.MOAB.DP1.00041.001.003.505.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv&quot;
-##  [2] &quot;NEON.D13.MOAB.DP1.00041.001.002.509.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv&quot;
-##  [3] &quot;NEON.D13.MOAB.DP1.00041.001.001.505.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv&quot;
-##  [4] &quot;NEON.D13.MOAB.DP1.00041.001.002.503.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv&quot; 
-##  [5] &quot;NEON.D13.MOAB.DP1.00041.001.004.509.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv&quot;
-##  [6] &quot;NEON.D13.MOAB.DP1.00041.001.005.509.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv&quot;
-##  [7] &quot;NEON.D13.MOAB.DP1.00041.001.002.501.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv&quot;
-##  [8] &quot;NEON.D13.MOAB.DP1.00041.001.005.502.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv&quot;
-##  [9] &quot;NEON.D13.MOAB.DP1.00041.001.004.504.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv&quot; 
-## [10] &quot;NEON.D13.MOAB.DP1.00041.001.004.502.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv&quot;</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">tmp.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]   <span class="co"># Let&#39;s print the first 10</span></a></code></pre></div>
+<pre><code>##  [1] &quot;NEON.D13.MOAB.DP1.00041.001.readme.20200620T070859Z.txt&quot;                                   
+##  [2] &quot;NEON.D13.MOAB.DP1.00041.001.003.509.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv&quot; 
+##  [3] &quot;NEON.D13.MOAB.DP1.00041.001.002.504.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv&quot; 
+##  [4] &quot;NEON.D13.MOAB.DP1.00041.001.003.509.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv&quot;
+##  [5] &quot;NEON.D13.MOAB.DP1.00041.001.002.502.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv&quot;
+##  [6] &quot;NEON.D13.MOAB.DP1.00041.001.001.504.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv&quot; 
+##  [7] &quot;NEON.D13.MOAB.DP1.00041.001.005.506.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv&quot; 
+##  [8] &quot;NEON.D13.MOAB.DP1.00041.001.002.507.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv&quot;
+##  [9] &quot;NEON.D13.MOAB.DP1.00041.001.002.506.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv&quot; 
+## [10] &quot;NEON.D13.MOAB.DP1.00041.001.003.503.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv&quot;</code></pre>
 <p>These file names start and end the same way as the observational files, but the
 middle is a little more cryptic. The structure from beginning to end is:</p>
 <p><strong>NEON.[domain number].[site code].[data product ID].00000.
@@ -1240,19 +1286,19 @@ accompanies each download.</p>
 <p>Let’s get data (and the URL) for only the 2nd depth described above by selecting
 <code>002.502.030</code> and the word <code>basic</code> in the file name.</p>
 <p>Go get it:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">soil.temp &lt;-<span class="st"> </span><span class="kw">read.delim</span>(tmp.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>url</a>
-<a class="sourceLine" id="cb41-2" data-line-number="2">                        [<span class="kw">intersect</span>(<span class="kw">grep</span>(<span class="st">&quot;002.502.030&quot;</span>, </a>
-<a class="sourceLine" id="cb41-3" data-line-number="3">                                        tmp.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name),</a>
-<a class="sourceLine" id="cb41-4" data-line-number="4">                                   <span class="kw">grep</span>(<span class="st">&quot;basic&quot;</span>, </a>
-<a class="sourceLine" id="cb41-5" data-line-number="5">                                        tmp.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name))], </a>
-<a class="sourceLine" id="cb41-6" data-line-number="6">                        <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">soil.temp &lt;-<span class="st"> </span><span class="kw">read.delim</span>(tmp.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>url</a>
+<a class="sourceLine" id="cb42-2" data-line-number="2">                        [<span class="kw">intersect</span>(<span class="kw">grep</span>(<span class="st">&quot;002.502.030&quot;</span>, </a>
+<a class="sourceLine" id="cb42-3" data-line-number="3">                                        tmp.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name),</a>
+<a class="sourceLine" id="cb42-4" data-line-number="4">                                   <span class="kw">grep</span>(<span class="st">&quot;basic&quot;</span>, </a>
+<a class="sourceLine" id="cb42-5" data-line-number="5">                                        tmp.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name))], </a>
+<a class="sourceLine" id="cb42-6" data-line-number="6">                        <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>)</a></code></pre></div>
 <p>Now we have the data and can use it to conduct our analyses. To take
 a quick look at it, let’s plot the mean soil temperature by date.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="co"># plot temp ~ date</span></a>
-<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="kw">plot</span>(soil.temp<span class="op">$</span>soilTempMean<span class="op">~</span><span class="kw">as.POSIXct</span>(soil.temp<span class="op">$</span>startDateTime, </a>
-<a class="sourceLine" id="cb42-3" data-line-number="3">                                       <span class="dt">format=</span><span class="st">&quot;%Y-%m-%d T %H:%M:%S Z&quot;</span>), </a>
-<a class="sourceLine" id="cb42-4" data-line-number="4">     <span class="dt">pch=</span><span class="st">&quot;.&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Date&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;T&quot;</span>)</a></code></pre></div>
-<p><img src="_main_files/figure-html/os-plot-soil-data-1.png" width="672" /></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="co"># plot temp ~ date</span></a>
+<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="kw">plot</span>(soil.temp<span class="op">$</span>soilTempMean<span class="op">~</span><span class="kw">as.POSIXct</span>(soil.temp<span class="op">$</span>startDateTime, </a>
+<a class="sourceLine" id="cb43-3" data-line-number="3">                                       <span class="dt">format=</span><span class="st">&quot;%Y-%m-%d T %H:%M:%S Z&quot;</span>), </a>
+<a class="sourceLine" id="cb43-4" data-line-number="4">     <span class="dt">pch=</span><span class="st">&quot;.&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Date&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;T&quot;</span>)</a></code></pre></div>
+<p><img src="02_Introduction_to_NEON_files/figure-html/os-plot-soil-data-1.png" width="672" /></p>
 <p>As we’d expect we see daily fluctuation in soil temperature.</p>
 </div>
 <div id="remote-sensing-data-aop" class="section level3">
@@ -1262,34 +1308,34 @@ finding the URLs for those data, is the same as for the other data types. We’l
 go looking for High resolution orthorectified camera imagery, DP1.30010, and
 we’ll look at the flight over San Joaquin Experimental Range (SJER) in March
 2017.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="co"># Request camera data availability info</span></a>
-<a class="sourceLine" id="cb43-2" data-line-number="2">req.aop &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://data.neonscience.org/api/v0/products/DP1.30010.001&quot;</span>)</a>
-<a class="sourceLine" id="cb43-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb43-4" data-line-number="4"><span class="co"># make this JSON readable</span></a>
-<a class="sourceLine" id="cb43-5" data-line-number="5"><span class="co"># Note how we&#39;ve changed this from two commands into one here</span></a>
-<a class="sourceLine" id="cb43-6" data-line-number="6">avail.aop &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="kw">content</span>(req.aop, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>), </a>
-<a class="sourceLine" id="cb43-7" data-line-number="7">                      <span class="dt">simplifyDataFrame=</span>T, <span class="dt">flatten=</span>T)</a>
-<a class="sourceLine" id="cb43-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb43-9" data-line-number="9"><span class="co"># get data availability list for the product</span></a>
-<a class="sourceLine" id="cb43-10" data-line-number="10">cam.urls &lt;-<span class="st"> </span><span class="kw">unlist</span>(avail.aop<span class="op">$</span>data<span class="op">$</span>siteCodes<span class="op">$</span>availableDataUrls)</a>
-<a class="sourceLine" id="cb43-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb43-12" data-line-number="12"><span class="co"># get data availability from location/date of interest</span></a>
-<a class="sourceLine" id="cb43-13" data-line-number="13">cam &lt;-<span class="st"> </span><span class="kw">GET</span>(cam.urls[<span class="kw">intersect</span>(<span class="kw">grep</span>(<span class="st">&quot;SJER&quot;</span>, cam.urls),</a>
-<a class="sourceLine" id="cb43-14" data-line-number="14">                              <span class="kw">grep</span>(<span class="st">&quot;2017&quot;</span>, cam.urls))])</a>
-<a class="sourceLine" id="cb43-15" data-line-number="15">cam.files &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="kw">content</span>(cam, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>))</a>
-<a class="sourceLine" id="cb43-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb43-17" data-line-number="17"><span class="co"># this list of files is very long, so we&#39;ll just look at the first ten</span></a>
-<a class="sourceLine" id="cb43-18" data-line-number="18"><span class="kw">head</span>(cam.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name, <span class="dv">10</span>)</a></code></pre></div>
-<pre><code>##  [1] &quot;17032816_EH021656(20170328194404)-1008_ort.tif&quot;
-##  [2] &quot;17032816_EH021656(20170328194232)-0987_ort.tif&quot;
-##  [3] &quot;17032816_EH021656(20170328182912)-0387_ort.tif&quot;
-##  [4] &quot;17032816_EH021656(20170328191808)-0775_ort.tif&quot;
-##  [5] &quot;17032816_EH021656(20170328192638)-0855_ort.tif&quot;
-##  [6] &quot;17032816_EH021656(20170328181654)-0284_ort.tif&quot;
-##  [7] &quot;17032816_EH021656(20170328195445)-1104_ort.tif&quot;
-##  [8] &quot;17032816_EH021656(20170328194711)-1025_ort.tif&quot;
-##  [9] &quot;17032816_EH021656(20170328185450)-0588_ort.tif&quot;
-## [10] &quot;17032816_EH021656(20170328184913)-0544_ort.tif&quot;</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="co"># Request camera data availability info</span></a>
+<a class="sourceLine" id="cb44-2" data-line-number="2">req.aop &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://data.neonscience.org/api/v0/products/DP1.30010.001&quot;</span>)</a>
+<a class="sourceLine" id="cb44-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb44-4" data-line-number="4"><span class="co"># make this JSON readable</span></a>
+<a class="sourceLine" id="cb44-5" data-line-number="5"><span class="co"># Note how we&#39;ve changed this from two commands into one here</span></a>
+<a class="sourceLine" id="cb44-6" data-line-number="6">avail.aop &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="kw">content</span>(req.aop, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>), </a>
+<a class="sourceLine" id="cb44-7" data-line-number="7">                      <span class="dt">simplifyDataFrame=</span>T, <span class="dt">flatten=</span>T)</a>
+<a class="sourceLine" id="cb44-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb44-9" data-line-number="9"><span class="co"># get data availability list for the product</span></a>
+<a class="sourceLine" id="cb44-10" data-line-number="10">cam.urls &lt;-<span class="st"> </span><span class="kw">unlist</span>(avail.aop<span class="op">$</span>data<span class="op">$</span>siteCodes<span class="op">$</span>availableDataUrls)</a>
+<a class="sourceLine" id="cb44-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb44-12" data-line-number="12"><span class="co"># get data availability from location/date of interest</span></a>
+<a class="sourceLine" id="cb44-13" data-line-number="13">cam &lt;-<span class="st"> </span><span class="kw">GET</span>(cam.urls[<span class="kw">intersect</span>(<span class="kw">grep</span>(<span class="st">&quot;SJER&quot;</span>, cam.urls),</a>
+<a class="sourceLine" id="cb44-14" data-line-number="14">                              <span class="kw">grep</span>(<span class="st">&quot;2017&quot;</span>, cam.urls))])</a>
+<a class="sourceLine" id="cb44-15" data-line-number="15">cam.files &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="kw">content</span>(cam, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>))</a>
+<a class="sourceLine" id="cb44-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb44-17" data-line-number="17"><span class="co"># this list of files is very long, so we&#39;ll just look at the first ten</span></a>
+<a class="sourceLine" id="cb44-18" data-line-number="18"><span class="kw">head</span>(cam.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name, <span class="dv">10</span>)</a></code></pre></div>
+<pre><code>##  [1] &quot;17032816_EH021656(20170328182329)-0342_ort.tif&quot;
+##  [2] &quot;17032816_EH021656(20170328181633)-0279_ort.tif&quot;
+##  [3] &quot;17032816_EH021656(20170328193818)-0957_ort.tif&quot;
+##  [4] &quot;17032816_EH021656(20170328183021)-0403_ort.tif&quot;
+##  [5] &quot;17032816_EH021656(20170328182349)-0346_ort.tif&quot;
+##  [6] &quot;17032816_EH021656(20170328180609)-0203_ort.tif&quot;
+##  [7] &quot;17032816_EH021656(20170328182114)-0314_ort.tif&quot;
+##  [8] &quot;17032816_EH021656(20170328201525)-1253_ort.tif&quot;
+##  [9] &quot;17032816_EH021656(20170328174855)-0051_ort.tif&quot;
+## [10] &quot;17032816_EH021656(20170328191130)-0717_ort.tif&quot;</code></pre>
 <p>File names for AOP data are more variable than for IS or OS data;
 different AOP data products use different naming conventions.
 File formats differ by product as well.</p>
@@ -1303,9 +1349,9 @@ read the relevant file types into R. We hope to add tutorials for
 this in the near future.</p>
 <p>To download the TIFF file, we use the <code>downloader</code> package, and we’ll
 select a file based on the time stamp in the file name: <code>20170328192931</code></p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">download</span>(cam.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>url[<span class="kw">grep</span>(<span class="st">&quot;20170328192931&quot;</span>, </a>
-<a class="sourceLine" id="cb45-2" data-line-number="2">                                       cam.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name)],</a>
-<a class="sourceLine" id="cb45-3" data-line-number="3">         <span class="kw">paste</span>(<span class="kw">getwd</span>(), <span class="st">&quot;/SJER_image.tif&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>), <span class="dt">mode=</span><span class="st">&quot;wb&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">download</span>(cam.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>url[<span class="kw">grep</span>(<span class="st">&quot;20170328192931&quot;</span>, </a>
+<a class="sourceLine" id="cb46-2" data-line-number="2">                                       cam.files<span class="op">$</span>data<span class="op">$</span>files<span class="op">$</span>name)],</a>
+<a class="sourceLine" id="cb46-3" data-line-number="3">         <span class="kw">paste</span>(<span class="kw">getwd</span>(), <span class="st">&quot;/SJER_image.tif&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>), <span class="dt">mode=</span><span class="st">&quot;wb&quot;</span>)</a></code></pre></div>
 <p>The image, below, of the San Joaquin Experimental Range should now be in your
 working directory.</p>
 <figure>
@@ -1348,8 +1394,8 @@ code is in the <code>geoNEON</code> package on GitHub.</p>
 <p>Let’s look at the named locations in the bird data we downloaded above. To do this,
 look for the field called <code>namedLocation</code>, which is present in all observational
 data products, both aquatic and terrestrial.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="co"># view named location</span></a>
-<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="kw">head</span>(brd.point<span class="op">$</span>namedLocation)</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="co"># view named location</span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="kw">head</span>(brd.point<span class="op">$</span>namedLocation)</a></code></pre></div>
 <pre><code>## [1] WOOD_013.birdGrid.brd WOOD_013.birdGrid.brd WOOD_013.birdGrid.brd
 ## [4] WOOD_013.birdGrid.brd WOOD_013.birdGrid.brd WOOD_013.birdGrid.brd
 ## 7 Levels: WOOD_006.birdGrid.brd ... WOOD_020.birdGrid.brd</code></pre>
@@ -1358,12 +1404,12 @@ the names of the Terrestrial Observation plots where the bird surveys were
 conducted.</p>
 <p>We can query the locations endpoint of the API for the first named location,
 <code>WOOD_013.birdGrid.brd</code>.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="co"># location data </span></a>
-<a class="sourceLine" id="cb49-2" data-line-number="2">req.loc &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://data.neonscience.org/api/v0/locations/WOOD_013.birdGrid.brd&quot;</span>)</a>
-<a class="sourceLine" id="cb49-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb49-4" data-line-number="4"><span class="co"># make this JSON readable</span></a>
-<a class="sourceLine" id="cb49-5" data-line-number="5">brd.WOOD_<span class="dv">013</span> &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="kw">content</span>(req.loc, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>))</a>
-<a class="sourceLine" id="cb49-6" data-line-number="6">brd.WOOD_<span class="dv">013</span></a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="co"># location data </span></a>
+<a class="sourceLine" id="cb50-2" data-line-number="2">req.loc &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://data.neonscience.org/api/v0/locations/WOOD_013.birdGrid.brd&quot;</span>)</a>
+<a class="sourceLine" id="cb50-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb50-4" data-line-number="4"><span class="co"># make this JSON readable</span></a>
+<a class="sourceLine" id="cb50-5" data-line-number="5">brd.WOOD_<span class="dv">013</span> &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="kw">content</span>(req.loc, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>))</a>
+<a class="sourceLine" id="cb50-6" data-line-number="6">brd.WOOD_<span class="dv">013</span></a></code></pre></div>
 <pre><code>## $data
 ## $data$locationName
 ## [1] &quot;WOOD_013.birdGrid.brd&quot;
@@ -1480,11 +1526,11 @@ bird observations.</p>
 First we’ll use <code>getLocByName()</code> to get the additional spatial information
 available through the API, and look at the spatial resolution available in the
 initial download:</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="co"># load the geoNEON package</span></a>
-<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="kw">library</span>(geoNEON)</a>
-<a class="sourceLine" id="cb51-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb51-4" data-line-number="4"><span class="co"># extract the spatial data</span></a>
-<a class="sourceLine" id="cb51-5" data-line-number="5">brd.point.loc &lt;-<span class="st"> </span><span class="kw">getLocByName</span>(brd.point)</a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="co"># load the geoNEON package</span></a>
+<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="kw">library</span>(geoNEON)</a>
+<a class="sourceLine" id="cb52-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb52-4" data-line-number="4"><span class="co"># extract the spatial data</span></a>
+<a class="sourceLine" id="cb52-5" data-line-number="5">brd.point.loc &lt;-<span class="st"> </span><span class="kw">getLocByName</span>(brd.point)</a></code></pre></div>
 <pre><code>## 
   |                                                                       
   |                                                                 |   0%
@@ -1502,14 +1548,14 @@ initial download:</p>
   |========================================================         |  86%
   |                                                                       
   |=================================================================| 100%</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="co"># plot bird point locations </span></a>
-<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="co"># note that decimal degrees is also an option in the data</span></a>
-<a class="sourceLine" id="cb53-3" data-line-number="3"><span class="kw">symbols</span>(brd.point.loc<span class="op">$</span>easting, brd.point.loc<span class="op">$</span>northing, </a>
-<a class="sourceLine" id="cb53-4" data-line-number="4">        <span class="dt">circles=</span>brd.point.loc<span class="op">$</span>coordinateUncertainty, </a>
-<a class="sourceLine" id="cb53-5" data-line-number="5">        <span class="dt">xlab=</span><span class="st">&quot;Easting&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Northing&quot;</span>, <span class="dt">tck=</span><span class="fl">0.01</span>, <span class="dt">inches=</span>F)</a></code></pre></div>
-<p><img src="_main_files/figure-html/brd-extr-NL-1.png" width="672" /></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="co"># plot bird point locations </span></a>
+<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="co"># note that decimal degrees is also an option in the data</span></a>
+<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="kw">symbols</span>(brd.point.loc<span class="op">$</span>easting, brd.point.loc<span class="op">$</span>northing, </a>
+<a class="sourceLine" id="cb54-4" data-line-number="4">        <span class="dt">circles=</span>brd.point.loc<span class="op">$</span>coordinateUncertainty, </a>
+<a class="sourceLine" id="cb54-5" data-line-number="5">        <span class="dt">xlab=</span><span class="st">&quot;Easting&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Northing&quot;</span>, <span class="dt">tck=</span><span class="fl">0.01</span>, <span class="dt">inches=</span>F)</a></code></pre></div>
+<p><img src="02_Introduction_to_NEON_files/figure-html/brd-extr-NL-1.png" width="672" /></p>
 <p>And use <code>getLocTOS()</code> to calculate the point locations of observations.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">brd.point.pt &lt;-<span class="st"> </span><span class="kw">getLocTOS</span>(brd.point, <span class="st">&quot;brd_perpoint&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">brd.point.pt &lt;-<span class="st"> </span><span class="kw">getLocTOS</span>(brd.point, <span class="st">&quot;brd_perpoint&quot;</span>)</a></code></pre></div>
 <pre><code>## 
   |                                                                       
   |                                                                 |   0%
@@ -1639,11 +1685,11 @@ initial download:</p>
   |================================================================ |  98%
   |                                                                       
   |=================================================================| 100%</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="co"># plot bird point locations </span></a>
-<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="co"># note that decimal degrees is also an option in the data</span></a>
-<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="co"># symbols(brd.point.pt$easting, brd.point.pt$northing, </span></a>
-<a class="sourceLine" id="cb56-4" data-line-number="4"><span class="co">#         circles=brd.point.pt$adjCoordinateUncertainty, </span></a>
-<a class="sourceLine" id="cb56-5" data-line-number="5"><span class="co">#         xlab=&quot;Easting&quot;, ylab=&quot;Northing&quot;, tck=0.01, inches=F)</span></a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="co"># plot bird point locations </span></a>
+<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="co"># note that decimal degrees is also an option in the data</span></a>
+<a class="sourceLine" id="cb57-3" data-line-number="3"><span class="co"># symbols(brd.point.pt$easting, brd.point.pt$northing, </span></a>
+<a class="sourceLine" id="cb57-4" data-line-number="4"><span class="co">#         circles=brd.point.pt$adjCoordinateUncertainty, </span></a>
+<a class="sourceLine" id="cb57-5" data-line-number="5"><span class="co">#         xlab=&quot;Easting&quot;, ylab=&quot;Northing&quot;, tck=0.01, inches=F)</span></a></code></pre></div>
 <p>Now you can see the individual points where the respective point counts were
 located.</p>
 </div>
@@ -1683,9 +1729,9 @@ to ∞, but in the meantime users will want to set these manually. They are
 set to non-default values in the examples below.</p>
 <p>For the first example, let’s query for the loon family, Gaviidae, in the
 bird taxonomy. Note that query parameters are case-sensitive.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">loon.req &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://data.neonscience.org/api/v0/taxonomy/?family=Gaviidae&amp;offset=0&amp;limit=500&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">loon.req &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://data.neonscience.org/api/v0/taxonomy/?family=Gaviidae&amp;offset=0&amp;limit=500&quot;</span>)</a></code></pre></div>
 <p>Parse the results into a list using <code>fromJSON()</code>:</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">loon.list &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="kw">content</span>(loon.req, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">loon.list &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="kw">content</span>(loon.req, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>))</a></code></pre></div>
 <p>And look at the <code>$data</code> element of the results, which contains:</p>
 <ul>
 <li>The full taxonomy of each taxon</li>
@@ -1697,7 +1743,7 @@ bird taxonomy. Note that query parameters are case-sensitive.</p>
 <p>The terms used for each field are matched to Darwin Core (dwc) and
 the Global Biodiversity Information Facility (gbif) terms, where
 possible, and the matches are indicated in the column headers.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">loon.list<span class="op">$</span>data</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">loon.list<span class="op">$</span>data</a></code></pre></div>
 <pre><code>##   taxonTypeCode taxonID acceptedTaxonID dwc:scientificName
 ## 1          BIRD    ARLO            ARLO      Gavia arctica
 ## 2          BIRD    COLO            COLO        Gavia immer
@@ -1730,9 +1776,9 @@ is one of the shorter ones, and use the <code>verbose=true</code> option to see
 a more extensive list of taxon data, including many taxon ranks that
 aren’t populated for these taxa. For space here, we display only
 the first 10 taxa:</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">mam.req &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://data.neonscience.org/api/v0/taxonomy/?taxonTypeCode=SMALL_MAMMAL&amp;offset=0&amp;limit=500&amp;verbose=true&quot;</span>)</a>
-<a class="sourceLine" id="cb61-2" data-line-number="2">mam.list &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="kw">content</span>(mam.req, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>))</a>
-<a class="sourceLine" id="cb61-3" data-line-number="3">mam.list<span class="op">$</span>data[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,]</a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">mam.req &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://data.neonscience.org/api/v0/taxonomy/?taxonTypeCode=SMALL_MAMMAL&amp;offset=0&amp;limit=500&amp;verbose=true&quot;</span>)</a>
+<a class="sourceLine" id="cb62-2" data-line-number="2">mam.list &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="kw">content</span>(mam.req, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>))</a>
+<a class="sourceLine" id="cb62-3" data-line-number="3">mam.list<span class="op">$</span>data[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,]</a></code></pre></div>
 <pre><code>##    taxonTypeCode taxonID acceptedTaxonID               dwc:scientificName
 ## 1   SMALL_MAMMAL    AMHA            AMHA        Ammospermophilus harrisii
 ## 2   SMALL_MAMMAL    AMIN            AMIN       Ammospermophilus interpres
@@ -1904,9 +1950,9 @@ search will also fail with spaces. Search for
 <code>Abronia%20minor%20Standl.</code>, and in this case we can omit
 <code>offset</code> and <code>limit</code> because we know there can only be a single
 result:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">am.req &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://data.neonscience.org/api/v0/taxonomy/?scientificname=Abronia%20minor%20Standl.&quot;</span>)</a>
-<a class="sourceLine" id="cb63-2" data-line-number="2">am.list &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="kw">content</span>(am.req, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>))</a>
-<a class="sourceLine" id="cb63-3" data-line-number="3">am.list<span class="op">$</span>data</a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">am.req &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://data.neonscience.org/api/v0/taxonomy/?scientificname=Abronia%20minor%20Standl.&quot;</span>)</a>
+<a class="sourceLine" id="cb64-2" data-line-number="2">am.list &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="kw">content</span>(am.req, <span class="dt">as=</span><span class="st">&quot;text&quot;</span>))</a>
+<a class="sourceLine" id="cb64-3" data-line-number="3">am.list<span class="op">$</span>data</a></code></pre></div>
 <pre><code>##   taxonTypeCode taxonID acceptedTaxonID    dwc:scientificName
 ## 1         PLANT   ABMI2           ABMI2 Abronia minor Standl.
 ##   dwc:scientificNameAuthorship dwc:taxonRank  dwc:vernacularName
@@ -2049,7 +2095,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.pdf", "_main.epub"],
+"download": ["Environmental Informatics Using Research Infrastructures and their Data.pdf", "Environmental Informatics Using Research Infrastructures and their Data.epub"],
 "toc": {
 "collapse": "subsection"
 },

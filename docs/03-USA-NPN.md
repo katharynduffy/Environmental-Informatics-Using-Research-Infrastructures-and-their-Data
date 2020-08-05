@@ -64,11 +64,6 @@ A unique aspect of Nature’s Notebook is that monitoring can be undertaken by i
 
 
 ## Types of USA-NPN Data:
-
-```r
-knitr::include_graphics('/Users/kdw223/Research/katharynduffy.github.io/docs/images/USA_NPN_data_types.png')
-```
-
 <img src="/Users/kdw223/Research/katharynduffy.github.io/docs/images/USA_NPN_data_types.png" width="900" />
 
 ### Observational
@@ -99,10 +94,9 @@ Status and intensity data consist of presence/absence records for individual phe
 These metrics include several approaches for capturing the shape of seasonal activity curves. In Nature’s Notebook, plants are marked and tracked through time, while animals are not, resulting in several key differences between the phenometric data types for plants and for animals. Individual Phenometrics and Site Phenometrics are nearly identical for animals, while for plants the former provide data for individual plants and the latter aggregate data across plants of the same species at a site. Magnitude Phenometrics provide additional information on animals, including correcting abundance values by search time and search area, which is not relevant for plants. As additional observational phenology data types are created by the USA-NPN, they are described at www.usanpn.org/data/new_data_products.
 
 
-```
-knitr::include_graphics('/Users/kdw223/Research/katharynduffy.github.io/docs/images/animal_pheno.png')
-```
->USA-NPN Animal Phenological Data by Type from Rosemartin et al.,2018]
+<img src="/Users/kdw223/Research/katharynduffy.github.io/docs/images/animal_pheno.png" width="894" />
+
+>USA-NPN Animal Phenological Data by Type from Rosemartin et al.,2018
 
 ### Gridded Raster Data
 
@@ -115,7 +109,9 @@ The USA-NPN offers a growing suite of gridded (raster) maps of phenological even
 
 [**USA-NPN Pheno-Forecasts**](https://www.usanpn.org/data/forecasts) include real-time maps and short-term forecasts of insect pest activity at management-relevant spatial and temporal resolutions and are based on accumulated temperature thresholds associated with critical life-cycle stages of econmically important pests. Pheno Forecasts indicate, for a specified day, the status of the insect’s target life-cycle stage in real time across the contiguous United States. The maps are available for insect 12 pest species including the invasive emerald ash borer, hemlock woolly adelgid, and gypsy moth. These products are described in “Short-term forecasts of insect phenology inform pest management” [(Crimmins et al. 2020)](https://academic.oup.com/aesa/article/113/2/139/5727873)
 
-![Example of USA-NPN's Hemlock Wolly Adelgid Pheno-Forecast for August, 2020.](/Users/kdw223/Research/katharynduffy.github.io/docs/images/wolly_adleg.png)
+
+<img src="/Users/kdw223/Research/katharynduffy.github.io/docs/images/wolly_adleg.png" width="1067" />
+> Example of USA-NPN's Hemlock Wolly Adelgid Pheno-Forecast for August, 2020.
 
 Pheno-Forecasts are also available for an invasive grasses, such as buffelgrass. The [buffelgrass Pheno-Forecast](https://usanpn.org/data/forecasts/Buffelgrass)  is based on known precipitation thresholds for triggering green-up to a level where management actions are most effective. These maps are updated daily and predict green-up one to two weeks in the future.
 
