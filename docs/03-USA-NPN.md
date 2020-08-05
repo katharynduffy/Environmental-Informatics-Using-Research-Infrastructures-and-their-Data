@@ -11,7 +11,7 @@
 
 **Course participants**: As you review this information, please
 consider the final course project
-that you will work on at the over this semester. At the end of this section, you will
+that you will  build upon over this semester. At the end of this section, you will
 document an initial research question or idea and associated data needed to
 address that question, that you may want to explore while pursuing this course.
 
@@ -22,7 +22,7 @@ address that question, that you may want to explore while pursuing this course.
 
 At the end of this activity, you will be able to:
 
-  * Understand the mission and purpose of the USA-National Phenology Network (USA-NPN) and the nature of the citizen science program from which that the data is derived
+  * Understand the mission and purpose of the USA-National Phenology Network (USA-NPN) and the nature of the citizen science program from which the data is derived
   
   * Access all of the various tools & resources that are available to pull USA-NPN geospatial and observational data
   
@@ -102,7 +102,7 @@ The USA-NPN offers a growing suite of gridded (raster) maps of phenological even
 
 ### Pheno-Forecasts
 
-[**USA-NPN Pheno-Forecasts**](https://www.usanpn.org/data/forecasts) include real-time maps and short-term forecasts of insect pest activity at management-relevant spatial and temporal resolutions and are based on accumulated temperature thresholds associated with critical life-cycle stages of econmically important pests. Pheno Forecasts indicate, for a specified day, the status of the insect’s target life-cycle stage in real time across the contiguous United States. The maps are available for insect 12 pest species including the invasive emerald ash borer, hemlock woolly adelgid, and gypsy moth. These products are described in “Short-term forecasts of insect phenology inform pest management” [(Crimmins et al. 2020)](https://academic.oup.com/aesa/article/113/2/139/5727873)
+[**USA-NPN Pheno-Forecasts**](https://www.usanpn.org/data/forecasts) include real-time maps and short-term forecasts of insect pest activity at management-relevant spatial and temporal resolutions and are based on accumulated temperature thresholds associated with critical life-cycle stages of econmically important pests. Pheno Forecasts indicate, for a specified day, the status of the insect’s target life-cycle stage in real time across the contiguous United States. The maps are available for 12 insect pest species including the invasive emerald ash borer, hemlock woolly adelgid, and gypsy moth. These products are described in “Short-term forecasts of insect phenology inform pest management” [(Crimmins et al. 2020)](https://academic.oup.com/aesa/article/113/2/139/5727873)
 
 
 <img src="/Users/kdw223/Research/katharynduffy.github.io/docs/images/wolly_adleg.png" width="1067" />

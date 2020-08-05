@@ -7,7 +7,7 @@
 
 **Course participants**: As you review this information, please
 consider the final course project
-that you will work on at the over this semester. At the end of this section, you will document an initial research question or idea and associated data needed to
+that you will work on the over this semester. At the end of this section, you will document an initial research question or idea and associated data needed to
 address that question, that you may want to explore while pursuing this course.
 
 
@@ -21,7 +21,7 @@ At the end of this activity, you will be able to:
 * Explain the how sites are located within the NEON project design.
 * Explain the different types of data that will be collected and provided by
  NEON.
- </div>
+
  
 
 
@@ -34,7 +34,7 @@ NEON field site is located within an eco-climatic domain.
 
 ## The Science and Design of NEON
 
-To gain a better understanding of the broad scope fo NEON watch this 4 minute long
+To gain a better understanding of the broad scope of NEON watch this 4 minute long
 video.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/39YrzpxVRF8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -607,7 +607,7 @@ this by using the above code but now specifying which site/date we want using
 the `grep()` function. 
 
 Note that if there were only one month of data from a site, you could leave 
-off the date in the function. If you want date from more than one site/month 
+off the date in the function. If you want data from more than one site/month 
 you need to iterate this code, GET fails if you give it more than one URL. 
 
 ```{r os-query-bird-data-urls}
@@ -841,7 +841,7 @@ File formats differ by product as well.
 
 This particular product, camera imagery, is stored in TIFF files. 
 For a full list of AOP data products, their naming conventions, and 
-their file formats, see <link pending>.
+their file formats, see **update from NEON?**.
 
 Instead of reading a TIFF into R, we'll download it to the working 
 directory. This is one option for getting AOP files from the API; if 
@@ -1054,7 +1054,7 @@ mam.list$data[1:10,]
 ```
 
 To get information about a single taxon, use the `scientificname` 
-query. This query will not do a fuzzy match, so you need to query 
+query. This query will not do a 'fuzzy match', so you need to query 
 the exact name of the taxon in the NEON taxonomy. Because of this, 
 the query will be most useful when you already have NEON data in 
 hand and are looking for more information about a specific taxon. 
@@ -1117,7 +1117,7 @@ Use the map in week 2:Intro to NEON to answer the following questions. Consider 
 * What NEON field sites do your current research or Capstone Project ideas
 coincide with?  
 * Is the site or sites core or relocatable?  
-* Is or are they terrestrial or aquatic?  
+* Are they terrestrial or aquatic?  
 * Are there data available for the NEON field site(s) that you are most
 interested in? What kind of data are available?
 </div>

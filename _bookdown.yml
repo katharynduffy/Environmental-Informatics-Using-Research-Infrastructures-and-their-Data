@@ -2,3 +2,4 @@ book_filename: "Environmental Informatics Using Research Infrastructures and the
 chapter_name: "Chapter "
 output_dir: "/Users/kdw223/Research/katharynduffy.github.io/docs"
 new_session: yes
+always_allow_html: true

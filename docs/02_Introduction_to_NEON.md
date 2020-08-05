@@ -7,7 +7,7 @@
 
 **Course participants**: As you review this information, please
 consider the final course project
-that you will work on at the over this semester. At the end of this section, you will document an initial research question or idea and associated data needed to
+that you will work on the over this semester. At the end of this section, you will document an initial research question or idea and associated data needed to
 address that question, that you may want to explore while pursuing this course.
 
 
@@ -21,7 +21,7 @@ At the end of this activity, you will be able to:
 * Explain the how sites are located within the NEON project design.
 * Explain the different types of data that will be collected and provided by
  NEON.
- </div>
+
  
 
 
@@ -34,7 +34,7 @@ NEON field site is located within an eco-climatic domain.
 
 ## The Science and Design of NEON
 
-To gain a better understanding of the broad scope fo NEON watch this 4 minute long
+To gain a better understanding of the broad scope of NEON watch this 4 minute long
 video.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/39YrzpxVRF8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -570,7 +570,7 @@ req
 
 ```
 ## Response [https://data.neonscience.org/api/v0/products/DP1.10003.001]
-##   Date: 2020-08-05 20:16
+##   Date: 2020-08-05 21:06
 ##   Status: 200
 ##   Content-Type: application/json;charset=UTF-8
 ##   Size: 24.2 kB
@@ -947,7 +947,7 @@ this by using the above code but now specifying which site/date we want using
 the `grep()` function. 
 
 Note that if there were only one month of data from a site, you could leave 
-off the date in the function. If you want date from more than one site/month 
+off the date in the function. If you want data from more than one site/month 
 you need to iterate this code, GET fails if you give it more than one URL. 
 
 
@@ -1013,22 +1013,22 @@ brd.files$data$files
 ## 15  23521
 ## 16 367402
 ##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        url
-## 1                             https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T201634Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=643abbe0d9484d22fb25421d75f8c0a3ca587da13224afdb1da5941f20be9a34
-## 2                         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T201634Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=6f5cb36153eed3d8a6d827859eff90515402e5dd0a316cc4f3a0cba6dcda01ca
-## 3        https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.basic.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T201634Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=c511aa49b9aabea20a9f6133be9351b5478d31ff29995e4cc0630ba476926bbb
-## 4         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.basic.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T201634Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=b5d4708214d499d1026a58f833ebe3fb79db5cf120e1e4ff708edb66592ed307
-## 5              https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T201634Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=5e7cd72dcca804994a8d3d9e5e69efb7c343da6949a3e5b1cbe203faa4ad1da0
-## 6                      https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.2015-07.basic.20191107T152331Z.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T201634Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=46e39fbeb8e57374cf998b9c3452c5529fd8b91b6210749f5d0caeeaf7ec64e2
-## 7                          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T201634Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=0068624730203440c6066d736cc3502b2db28d4991791711089b2bf19cad91a9
-## 8                      https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T201634Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=86bd8489957cb1037d3e238ae842f5b8145c9e9f5a961fedfd3d4414b638eaa5
-## 9                       https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T201634Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=44d66795fd5a8b14e11fa9ed8f5ce803d0df8ae0d8a560cc592fe31cd4850f4b
-## 10        https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_references.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T201634Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=79d9aa8ba8769e2528dca4ecebb19c9f06e2604bd6030873778187668c934645
-## 11               https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.2015-07.expanded.20191107T152331Z.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T201634Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=a971f806776322cbb586bca61cce979157a527b2ce3614e9b387a3b3a6dbe08b
-## 12          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T201634Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=57e8ebaa8b6ecb7aaf6744e6191709b3bc22084439955b5676895e1295e455a9
-## 13                          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.Bird_Conservancy_of_the_Rockies.brd_personnel.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T201634Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=aefec11c8d7a3bbb76fb61bdbadf63f936cf642d0a684319f09e3fd087843ca5
-## 14                         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T201634Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=c2f0d19f247b46500edbce755361e6e1f4890d041f94e6ad4adebdd801027e94
-## 15  https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T201634Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=46a4aa02675912845c5463f74b75d0fe0df3ef54b184a10d813260ef1188bad5
-## 16 https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T201634Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=4dffa9ab520ef702c7a7c49c69eb0a03a1e28ba71ed12f88873ae34b8c59a8b9
+## 1                             https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T210645Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=c797e0c7cd77e94a4f36cc879ce15cc01d473f6d4dad2aed1ef953a9eccf2f37
+## 2                         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T210645Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=43380a9a2e42ec0390c8cabdf94768e8edb39c3eb375f62eb21ec66dec5c2df0
+## 3        https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.basic.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T210645Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=623ddd9e93b8847c6320103470c21b4b29b246181e56a14a724e1b23c4f45fb1
+## 4         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.basic.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T210645Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=88a8d1bdddf5cc06838efe01ffbbf766bde436af1bd9dc1263122c23426c5ecf
+## 5              https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T210645Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=a437bb85e8b4cdde8d6ff02b253c00d1e0ed60191837a316d5363c783cf444d8
+## 6                      https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.2015-07.basic.20191107T152331Z.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T210645Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=8591865423b3efdaa0e6db50fd552e73d0355082719e3081a236183e85a8da6b
+## 7                          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T210645Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=8758852f9a0c90876737695cb08c337c1cfc1d026062ed6cfbd1f382d6431e24
+## 8                      https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T210645Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=e51ac843508fb96a154c8a6320922d171bc763fbe0c6850dace248902b0d104e
+## 9                       https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T210645Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=9c83edf761bb6a7ac59c7fe5f256c6dfe4f72c1719d5271db322b6c83bbdf408
+## 10        https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_references.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T210645Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=0c8c587663365124f0fc130ec68a0e974eaddd0b8923a788b55fb99c8f971d0b
+## 11               https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.2015-07.expanded.20191107T152331Z.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T210645Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=7f64bf7167ee46506e7f12799f762dc14073c88b0f205fa3206c866bef473352
+## 12          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T210645Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=298654d92dcd8d8ad6cbcb5df6e289149e0508c3333d6c8ee8d46c7bf023eff1
+## 13                          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.Bird_Conservancy_of_the_Rockies.brd_personnel.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T210645Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=c1575b843fab66917494b5681d634c31f10f0b2bb2d033ac4a206013d95e2b22
+## 14                         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T210645Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=700eab3d0bdc9e9eb99fc477b47a9b8ac995d3068f7bd57f99025dbd93bb9c4a
+## 15  https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T210645Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=df6003923ceda1fb612c55362e222929bdf4842da720f5a31ff75a4a8e4dab6b
+## 16 https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200805T210645Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200805%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=4c4bf1dc082672472635f17ceade9d3a01a5c44dadf9640edfbaa3d23aac5e8e
 ```
 
 In this output, `name` and `url` are key fields. It provides us with the names 
@@ -1293,7 +1293,7 @@ File formats differ by product as well.
 
 This particular product, camera imagery, is stored in TIFF files. 
 For a full list of AOP data products, their naming conventions, and 
-their file formats, see <link pending>.
+their file formats, see **update from NEON?**.
 
 Instead of reading a TIFF into R, we'll download it to the working 
 directory. This is one option for getting AOP files from the API; if 
@@ -1821,7 +1821,7 @@ mam.list$data[1:10,]
 ```
 
 To get information about a single taxon, use the `scientificname` 
-query. This query will not do a fuzzy match, so you need to query 
+query. This query will not do a 'fuzzy match', so you need to query 
 the exact name of the taxon in the NEON taxonomy. Because of this, 
 the query will be most useful when you already have NEON data in 
 hand and are looking for more information about a specific taxon. 
@@ -1898,7 +1898,7 @@ Use the map in week 2:Intro to NEON to answer the following questions. Consider 
 * What NEON field sites do your current research or Capstone Project ideas
 coincide with?  
 * Is the site or sites core or relocatable?  
-* Is or are they terrestrial or aquatic?  
+* Are they terrestrial or aquatic?  
 * Are there data available for the NEON field site(s) that you are most
 interested in? What kind of data are available?
 </div>

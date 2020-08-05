@@ -14,7 +14,7 @@ As an Ecoinformatician you *need* to be able to:
 
 More thoughts on the benefits and power of reproducibility [can be found here](https://github.com/katharynduffy/ECOSS_reproducible_science)
 
-To be successful, both in this course and in your careers you will need these skills.  This is why **they are a requirement** for this course.  If you already using these skills on a daily basis, fantastic!  If you don't feel that you have mastery in the workflows listed above I have placed lesson links throughout this chapter so that you can build these skills and be successful in this course.
+To be successful, both in this course and in your careers you will need these skills.  This is why **they are a requirement** for this course.  If you are already using these skills on a daily basis, fantastic!  If you don't feel that you have mastery in the workflows listed above I have placed lesson links throughout this chapter so that you can build these skills and be successful in this course.
 
 ## Pre-Course Skills & Setup
 
