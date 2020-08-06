@@ -19,8 +19,8 @@ At the end of this activity, you will be able to:
 
 * Explain the mission of the National Ecological Observatory Network (NEON).
 * Explain the how sites are located within the NEON project design.
-* Explain the different types of data that will be collected and provided by
- NEON.
+* Determine how the different types of data that are collected and provided by NEON, and how they align with your own research.
+* Pull NEON data from the API and `neonUtilities` package
 
  
 

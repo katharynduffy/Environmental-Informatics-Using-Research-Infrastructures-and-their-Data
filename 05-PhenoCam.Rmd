@@ -1,7 +1,7 @@
 ---
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 # Digital Repeat Photography Networks
 
@@ -407,7 +407,7 @@ The software gives user the opportunity to re-adjust mask files or redraw new
 ones every time an FOV shift occurs.
 ```{r, echo=FALSE}
 
-knitr::include_graphics(docs/images/xROI.png)
+knitr::include_graphics('docs/images/xROI.png')
 ```
 ### xROI Design
 The R language and Shiny package were used as the main development tool for xROI,
@@ -429,7 +429,7 @@ The latest tested xROI package can be installed from the
 <a href="https://cran.r-project.org/package=xROI" target="_blank">CRAN packages repository</a> by running the following command in an R environment. 
 
 
-```{r}
+```{r, eval=FALSE}
 utils::install.packages('xROI', repos = "http://cran.us.r-project.org" )
 ```
 
@@ -437,7 +437,7 @@ Alternatively, the latest beta release of xROI can be directly downloaded and
 installed from the development GitHub repository. 
 
 
-```{r}
+```{r, eval=FALSE}
 # install devtools first
 utils::install.packages('devtools', repos = "http://cran.us.r-project.org" )
 
@@ -467,7 +467,7 @@ example dataset to explore different modules or upload a new dataset of images.
 You can launch the interactive mode can be launched from an interactive R environment.
 
 
-```{r}
+```{r, eval=FALSE}
 # load xROI
 library(xROI)
 
@@ -510,7 +510,7 @@ First,save and extract (unzip) the file on your computer.
 Second, open the data set in `xROI` by setting the file path to your data
 
 
-```{r}
+```{r, eval=FALSE}
 # launch data in ROI
 # first edit the path below to the dowloaded directory you just extracted
 xROI::Launch('/path/to/extracted/directory')
@@ -531,10 +531,10 @@ Finally, we can go to the `Time series extraction` tab. Extract the time-series.
 
 More documentation about **xROI** can be found from: <a href="https://bnasr.github.io/papers/Seyednasrollah_et_al_2019_PRS.pdf">Seyednarollah, et al. 2019</a>. 
 
-```{r, 'xROI published in ISPRS Journal of Photogrammetry and Remote Sensing, 2019'}
-knitr::include_graphics(docs/images/xROI-ms2019.png)
+```{r}
+knitr::include_graphics('docs/images/xROI-ms2019.png')
 ```
-
+>xROI published in ISPRS Journal of Photogrammetry and Remote Sensing, 2019
 
 ## Challenge: Use xROI
 
