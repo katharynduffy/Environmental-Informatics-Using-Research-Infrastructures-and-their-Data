@@ -20,20 +20,40 @@ address that question, that you may want to explore while pursuing this course.
 
 
 ## Learning Objectives
+
 At the end of this activity, you will be able to:
+
+  1. perform basic image processing.
+  
+  2. estimate image haziness as an indication of fog, cloud or other natural or artificial factors using the `hazer`R package.
+  
+  3. Define and use a Region of Interest, or ROI, for digitial repeat photography methods.
+  
+  4. Handle Field-of-View (FOV) shifts in digital repeat photography.
+  
+  5. Extract timeseries data from a stack of images using color-based metrics.
 
 
 ## Introduction to Digital Repeat Photogrpahy Methods
 
+
+
+```{r, echo=FALSE}
+knitr::include_graphics('./images/repeat_photo.jpg')
+```
+
+
+>1929 - 2016: Alpine Mountains near East Fork Toklat River, Alaska.  Credit: Denali National Park (NPS)
+
+
 *Intro text here*
+*A start for Bijan to edit/expand upon*
+
+Photogaphy represents an important 'bookmark' in time, and is also a relevant stream of data.  Repeat photography is the practice of taking multiple photographs of the same subject, from the same location, at different times.  For ecologists, it is becoming a popular technique for observing change in a particular area, and serves as an inexpensive “time machine,” allowing us to replay the natural and historical change of a particular place.  
+
+Digital Repeat, or time-lapse Photography holds even more promise.  Through automating mounted cameras to repeatedly photograph 'subjects' ranging from plants to water gauges, digital repeat photography methods can extract a whole host of relevant data.....
 
 ## Detecting Foggy Images using the 'hazer' R Package
-
-In this section you will learn how to 
-
-1. perform basic image processing and 
-2. estimate image haziness as an indication of fog, cloud or other natural or artificial factors using the `hazer`R package.
-
 
 #### Read & Plot an Image
 
