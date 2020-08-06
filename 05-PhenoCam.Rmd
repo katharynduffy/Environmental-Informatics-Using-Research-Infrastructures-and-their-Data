@@ -34,7 +34,7 @@ At the end of this activity, you will be able to:
   5. Extract timeseries data from a stack of images using color-based metrics.
 
 
-## Introduction to Digital Repeat Photogrpahy Methods
+## Introduction to Digital Repeat Photography Methods
 
 
 
@@ -49,7 +49,7 @@ knitr::include_graphics('./images/repeat_photo.jpg')
 *Intro text here*
 *A start for Bijan to edit/expand upon*
 
-Photogaphy represents an important 'bookmark' in time, and is also a relevant stream of data.  Repeat photography is the practice of taking multiple photographs of the same subject, from the same location, at different times.  For ecologists, it is becoming a popular technique for observing change in a particular area, and serves as an inexpensive “time machine,” allowing us to replay the natural and historical change of a particular place.  
+Photography represents an important 'bookmark' in time, and is also a relevant stream of data.  Repeat photography is the practice of taking multiple photographs of the same subject, from the same location, at different times.  For ecologists, it is becoming a popular technique for observing change in a particular area, and serves as an inexpensive “time machine,” allowing us to replay the natural and historical change of a particular place.  
 
 Digital Repeat, or time-lapse Photography holds even more promise.  Through automating mounted cameras to repeatedly photograph 'subjects' ranging from plants to water gauges, digital repeat photography methods can extract a whole host of relevant data.....
 
@@ -57,7 +57,7 @@ Digital Repeat, or time-lapse Photography holds even more promise.  Through auto
 
 #### Read & Plot an Image
 
-We will use several packages in this tutoiral. All are availale from CRAN.
+We will use several packages in this tutorial. All are available from CRAN.
 
 
 ```{r}
@@ -92,7 +92,7 @@ plotRGBArray(rgb_array, bty = 'n', main = 'Point Reyes National Seashore')
 
 When we work with images, all data we work with is generally on the scale of each
 individual pixel in the image. Therefore, for large images we will be working with
-large matrixes that hold the value for each pixel. Keep this in mind before opening 
+large matrices that hold the value for each pixel. Keep this in mind before opening 
 some of the matrices we'll be creating this tutorial as it can take a while for 
 them to load. 
 
@@ -145,7 +145,7 @@ plotRGBArray(brightness_mat, bty = 'n', main = 'Brightness matrix')
 Here the grayscale is used to show the value of each pixel's maximum brightness 
 of the R, G or B color channel. 
 
-To extract a single brighness value for the image, depending on our needs we can 
+To extract a single brightness value for the image, depending on our needs we can 
 perform some statistics or we can just use the mean of this matrix. 
 
 
@@ -199,7 +199,7 @@ The contrast of an image is the difference between the darkness and brightness
 of the image. The contrast matrix is calculated by difference between the 
 darkness and brightness matrices. 
 
-The contrast of the image can quickly be extacted using the `getContrast()` function.
+The contrast of the image can quickly be extracted using the `getContrast()` function.
 
 
 ```{r}
@@ -356,7 +356,7 @@ head(haze_mat)
 
 
 Now we can save all the foggy images to a new folder that will retain the
-foggy images but keep them seperate from the non-foggy ones that we want to 
+foggy images but keep them separate from the non-foggy ones that we want to 
 analyze. 
 
 
@@ -375,8 +375,8 @@ dir.create(clear_dir,  showWarnings = FALSE)
 #file.copy(haze_mat[foggy==FALSE,file], to = clear_dir)
 ```
 
-Now that we have our images seperated, we can get the full list of haze
-values only for those images that are not classfied as "foggy".  
+Now that we have our images separated, we can get the full list of haze
+values only for those images that are not classified as "foggy".  
 
 
 ```{r}

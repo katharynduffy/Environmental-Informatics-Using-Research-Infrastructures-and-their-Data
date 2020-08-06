@@ -152,14 +152,17 @@ If you are learning these skills from scratch I estimate that you will need to d
 ## How we will be Conducting this Course
 
 At the end of each chapter you will find a set of **Exercises**.  At the end of the assigned chapter you will be expected to submit via BBLearn two files:
-    1. An [RMarkdown file](https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) with the naming convention:
+
+1. An [RMarkdown file](https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) with the naming convention:
       LASTNAME_COURSECODE_Section#.Rmd,  and 
-    2. A knitted .PDF with the same naming convention:
+      
+2. A knitted .PDF with the same naming convention:
       LASTNAME_COURSECODE_Section#.pdf
   
 To generate these files you have two options:
 
 1. Click on the pencil and pad logo in the top of this text, copy the exercise section code, and drop it into your own .Rmd.
+
 2. Git clone our [course Github Repository](https://github.com/katharynduffy/katharynduffy.github.io), navigate to the '_Exercises' folder, and use that .Rmd as a template.
 
 *Note: Exercises submited in any other format, or those missing questions will not be graded*
