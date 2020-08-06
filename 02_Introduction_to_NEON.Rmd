@@ -27,20 +27,18 @@ At the end of this activity, you will be able to:
 
 ## The NEON Project Mission & Design
 
-To capture ecological heterogeneity across the United States, NEON’s design
+To capture ecological heterogeneity across the United States, [NEON’s design](https://www.neonscience.org/neon-project-science-brochure)
 divides the continent into 20 statistically different eco-climatic domains. Each
 NEON field site is located within an eco-climatic domain.
 
 
 ## The Science and Design of NEON
 
-To gain a better understanding of the broad scope of NEON watch this 4 minute long
-video.
+To gain a better understanding of the broad scope of NEON watch this 4:08 minute long video.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/39YrzpxVRF8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-Please, read the following page about
-<a href="https://www.neonscience.org/observatory/about" target="_blank"> NEON's mission</a>.
+
 
 ## NEON's Spatial Design
 
@@ -58,7 +56,7 @@ Read this primer on NEON's Sampling Design</a>
 Read about the different types of field sites - core and relocatable</a>
 
 
-### NEON Field Site Locations
+### NEON Samples All 20 Eco-Regions
 
 Explore the NEON Field Site map taking note of the locations of
 
@@ -115,7 +113,7 @@ more:
 
 ### Airborne Remote Sensing
 
-Watch this 5 minute video to better understand the NEON Airborne Observation
+Watch this 4:02 minute video to better understand the NEON Airborne Observation
 Platform (AOP).
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/muBZxMMQXK8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -234,7 +232,7 @@ we recommend starting with the <a href="https://www.neonscience.org/download-exp
 In the next sections, we'll get an API token from the NEON Data Portal, and 
 then use it in neonUtilities when downloading data.
 
-## Get a NEON API Token 
+### Get a NEON API Token 
 
 The first step is create a NEON user account, if you don't have one. 
 Follow the instructions on the <a href="https://www.neonscience.org/data/about-data/data-portal-user-accounts" target="_blank">Data Portal User Accounts</a> page. If you do already 
@@ -257,7 +255,7 @@ knitr::include_graphics('/Users/kdw223/Research/katharynduffy.github.io/images/a
 Click on the Copy button to copy your API token to the clipboard.
 
 
-## Use API token in neonUtilities 
+### Use the API token in neonUtilities 
 
 In the next section, we'll walk through saving your token somewhere secure but 
 accessible to your code. But first let's try out using the token the easy way.
@@ -312,7 +310,7 @@ chm <- byTileAOP(dpID="DP3.30015.001", site="WREF",
                  token=NEON_TOKEN)
 ```
 
-## Token management for open code
+### Token management for open code
 
 Your API token is unique to your account, so don't share it!
 
@@ -333,7 +331,7 @@ variable that gets loaded when you open R. This is a little harder to set
 up initially, but once it's done, it's done globally, and it will work in 
 every script you run.
 
-## Option 1: Save token in a local file
+#### Option 1: Save token in a local file
 
 Open a new, empty R script (.R). Put a single line of code in the script:
 
@@ -355,7 +353,7 @@ Then you'll be able to use `token=NEON_TOKEN` when you run `neonUtilities`
 functions, and you can share your code without accidentally sharing your 
 token.
 
-## Option 2: Save token to the R environment
+#### Option 2: Save token to the R environment
 
 To create a persistent environment variable, we use a `.Renviron` file. 
 Before creating a file, check which directory R is using as your home 
@@ -406,7 +404,7 @@ foliar <- loadByProduct(dpID="DP1.10026.001", site="all",
 
 
 
-### Part 2: Pulling NEON Data via the API
+## Part 2: Pulling NEON Data via the API
 
 This is a tutorial in pulling data from the NEON API or Application 
 Programming Interface. The tutorial uses R and the R package httr, but the core 

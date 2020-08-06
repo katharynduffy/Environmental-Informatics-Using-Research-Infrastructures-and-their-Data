@@ -64,7 +64,7 @@ A unique aspect of Nature’s Notebook is that monitoring can be undertaken by i
 
 
 ## Types of USA-NPN Data:
-<img src="/Users/kdw223/Research/katharynduffy.github.io/docs/images/USA_NPN_data_types.png" width="900" />
+<img src="./docs/images/USA_NPN_data_types.png" width="900" />
 
 ### Observational
 
@@ -77,17 +77,19 @@ In this system, phenological status is reported by yes or no answers to a series
 
 USA-NPN observational data and derivative products are described in USA National Phenology Network Observational Data Documentation [(Rosemartin et al. 2018)](https://pubs.usgs.gov/of/2018/1060/ofr20181060.pdf). The three formats in which the USA-NPN observational data are made available include: *status and intensity data*, *individual phenometrics*, and *site-level phenometrics*.
 
-<img src="/Users/kdw223/Research/katharynduffy.github.io/docs/images/npn_data_exampe.png" width="1143" />
+<img src="./docs/images/npn_data_exampe.png" width="1143" />
 
 >Visual comparison of data collected by monitoring phenological events, phenophase status, and phenophase status plus intensity. Event monitoring captures onset of a given phenophase, whereas status monitoring captures onset and duration. Status monitoring with intensity (or abundance) captures onset, duration, and magnitude of a phenophase. Examples are derived from 2012 data submitted in Nature’s Notebook for (a) sugar maple (Acer saccharum) leafing for one individual plant in Maine, and (b) forsythia flowering (Forsythia sp.) for one individual plant in Massachusetts. Each point represents one observation; black points indicate presence of the phenophase while white points indicate absence. (a) illustrates the date on which the first leaf appears (event), the period during which leaves are present (status), and the period and rate at which the canopy fills from 0 to 100 % capacity and then, empties back to 0 with leaf fall (status + intensity, circles and solid line) using estimates of canopy fullness. Also illustrated is the period and rate at which the canopy fills and empties of autumn colored leaves (status + intensity, triangles and dashed line). (b) illustrates the date on which the first open flower appears (event), the periods during which open flowers are present on the plant (status), and an estimate of the number of open flowers on the plant over the periods in which they are present (status + intensity). In both examples, the event point is calculated as the first date of the year where the phenophase was reported as present. Note that in (b) there are two distinct periods of flowering, the second of which would not have been captured using event monitoring alone. (Denny et al., 2014) 
 
+
+### Status & Intensity Data
 
 Status and intensity data consist of presence/absence records for individual phenophases on individual plants or species of animals at a site on a single visit. These records also include intensity and abundance measures. Individual Phenometrics and Site Phenometrics, which are synthesized sequentially from Status and Intensity data, provide estimated phenophase onset and end dates. Individual Phenometrics are derived estimates of phenophase onset and end dates for organisms within a given period of interest. Site Phenometrics are summary metrics of the onset and end date of phenophase activity across multiple individuals of the same species at a site within a given period of interest. Magnitude Phenometrics provide measures of the extent to which a phenophase is expressed across multiple individuals or sites, for a given time interval. 
 
 These metrics include several approaches for capturing the shape of seasonal activity curves. In Nature’s Notebook, plants are marked and tracked through time, while animals are not, resulting in several key differences between the phenometric data types for plants and for animals. Individual Phenometrics and Site Phenometrics are nearly identical for animals, while for plants the former provide data for individual plants and the latter aggregate data across plants of the same species at a site. Magnitude Phenometrics provide additional information on animals, including correcting abundance values by search time and search area, which is not relevant for plants. As additional observational phenology data types are created by the USA-NPN, they are described at www.usanpn.org/data/new_data_products.
 
 
-<img src="/Users/kdw223/Research/katharynduffy.github.io/docs/images/animal_pheno.png" width="894" />
+<img src="./docs/images/animal_pheno.png" width="894" />
 
 >USA-NPN Animal Phenological Data by Type from Rosemartin et al.,2018
 
@@ -96,23 +98,21 @@ These metrics include several approaches for capturing the shape of seasonal act
 The USA-NPN offers a growing suite of gridded (raster) maps of phenological events, patterns, and trends. These products include historical, real-time, and short-term forecasts and anomalies in the timing of events such as the [start of the spring season](https://www.usanpn.org/data/spring_indices), and [growing degree days](https://www.usanpn.org/data/agdd_maps). These products are described in the USA National Phenology Network gridded products documentation [(Crimmins et al. 2017)](https://pubs.usgs.gov/of/2017/1003/ofr20171003.pdf)
 
 
-![Accumulated Growing Degree Days (^oF) anomaly in 2018](https://www.usanpn.org/files/npn/maps/USA-NPN-AGDD-32base-Anomaly.gif)
+![Accumulated Growing Degree Days anomaly in 2018](https://www.usanpn.org/files/npn/maps/USA-NPN-AGDD-32base-Anomaly.gif)
+
 
 ### Pheno-Forecasts
 
 [**USA-NPN Pheno-Forecasts**](https://www.usanpn.org/data/forecasts) include real-time maps and short-term forecasts of insect pest activity at management-relevant spatial and temporal resolutions and are based on accumulated temperature thresholds associated with critical life-cycle stages of econmically important pests. Pheno Forecasts indicate, for a specified day, the status of the insect’s target life-cycle stage in real time across the contiguous United States. The maps are available for 12 insect pest species including the invasive emerald ash borer, hemlock woolly adelgid, and gypsy moth. These products are described in “Short-term forecasts of insect phenology inform pest management” [(Crimmins et al. 2020)](https://academic.oup.com/aesa/article/113/2/139/5727873)
 
 
-<img src="/Users/kdw223/Research/katharynduffy.github.io/docs/images/wolly_adleg.png" width="1067" />
+<img src="./docs/images/wolly_adleg.png" width="1067" />
 > Example of USA-NPN's Hemlock Wolly Adelgid Pheno-Forecast for August, 2020.
 
 Pheno-Forecasts are also available for an invasive grasses, such as buffelgrass. The [buffelgrass Pheno-Forecast](https://usanpn.org/data/forecasts/Buffelgrass)  is based on known precipitation thresholds for triggering green-up to a level where management actions are most effective. These maps are updated daily and predict green-up one to two weeks in the future.
 
 ![](https://usanpn.org/files/npn/maps/buffelgrass_10.18.19.gif)
 
-### Land Surface Phenology
-
-The USA-NPN offers maps derived from [MODIS 6 land surface phenology data](https://www.usanpn.org/data/land_surface_phenology). Satellite observations can be linked to in-situ observations to help understand vegetation dynamics across large spatial scales. The MODIS Land Cover Dynamics Product (MLCD) provides global land surface phenology (LSP) data from 2001-present. MLCD serves a wide variety of applications and is currently the only source of operationally produced global LSP data. MLCD data have enabled important discoveries about the role of climate in driving seasonal vegetation changes, helped to create improved maps of land cover, and support ecosystem modeling efforts, among many other important applications.
 
 
 ## How to Access USA-NPN Data:
@@ -124,8 +124,10 @@ A concise list of all available NPN data sets, tools, products.
 
 ### APIs
 This is a set of standard web service calls that allows for programmatic access to NPN data independent of any particular programming language.
+
+  *[Documentation](https://docs.google.com/document/d/1yNjupricKOAXn6tY1sI7-EwkcfwdGUZ7lxYv7fcPjO8/edit?hl=en_US)
   
-  *[Observational Data API](https://docs.google.com/document/d/1yNjupricKOAXn6tY1sI7-EwkcfwdGUZ7lxYv7fcPjO8/edit?hl=en_US)
+  *[Observational Data API](https://www.usanpn.org/node/34646)
   
   *[GeoServer API](https://www.usanpn.org/node/34645)
 
