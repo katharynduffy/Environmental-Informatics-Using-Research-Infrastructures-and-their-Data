@@ -37,13 +37,15 @@ This first version of the textbook was developed to offer INF550, a graduate cou
 
 ### Key Contributors {-}
 
-*Alphabetized by organization, then last name*
+*Alphabetized by organization, then last name:*
 
 * Alycia Crall, *NEON - Battelle*
+* Chris Florian, *NEON - Battelle*
 * Megan Jones, *NEON - Battelle*
 * Hank Loescher, *NEON - Battelle*
 * Paula Mabee, *NEON - Battelle*
 * Donal O'Leary, *NEON - Battelle*
+* Kate Thibault, *NEON - Battelle*
 * Andrew Richardson,  *PhenoCam - NAU*
 * Bijan Seyednasrollah,  *PhenoCam - NAU*
 * Theresa Crimmons, *USA-NPN*
