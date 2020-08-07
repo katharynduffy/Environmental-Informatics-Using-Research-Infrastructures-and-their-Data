@@ -7,7 +7,7 @@
 
 **Course participants**: As you review this information, please
 consider the final course project
-that you will work on the over this semester. At the end of this section, you will document an initial research question or idea and associated data needed to
+that you will work on the over this semester. At the end of this section you will document an initial research question, or idea and associated data needed to
 address that question, that you may want to explore while pursuing this course.
 
 
@@ -58,7 +58,7 @@ Read about the different types of field sites - core and relocatable</a>
 
 ### NEON Samples All 20 Eco-Regions
 
-Explore the NEON Field Site map taking note of the locations of
+Explore the NEON Field Site map taking note of the locations of:
 
 1. Aquatic & terrestrial field sites.
 2. Core & relocatable field sites.
@@ -90,7 +90,7 @@ Watch this 3:06 minute video exploring the data that NEON collects.
 <iframe width="640" height="360" src="https://www.youtube.com/embed/9IbbdQC1N3A" frameborder="0" allowfullscreen></iframe>
 
 Read the
-<a href="https://www.neonscience.org/data-collection" target="_blank"> Data Collection Methods </a>
+<a href="https://www.neonscience.org/data-collection" target="_blank"> Data Collection Methods</a> 
 page to learn more about the different types of data that NEON collects and
 provides. Then, follow the links below to learn more about each collection method:
 
@@ -176,14 +176,14 @@ documentation for individual data products.
 
 ## Hands on: Accessing NEON Data
 
-### Via a NEON API Token
+### Via the NEON API, with your User Token
 
 NEON data can be downloaded from either the NEON Data Portal or the NEON API. 
 When downloading from the Data Portal, you can create a user account. Read 
 about the benefits of an account on the <a href="https://www.neonscience.org/data/about-data/data-portal-user-accounts" target="_blank">User Account page</a>. You can also use your account to create a token for using the 
 API. Your token is unique to your account, so don't share it.
 
-While using a token is optional in general, it is required for this course.  Using a token when downloading data via the API, 
+While using a token is optional in general, it is required for this course. Using a token when downloading data via the API, 
 including when using the neonUtilities package, links your downloads to 
 your user account, as well as enabling faster download speeds. For more 
 information about token usage and benefits, see the 
@@ -197,7 +197,7 @@ and how many users in total are downloading data. This information helps NEON
 to evaluate the growth and reach of the observatory, and to advocate for 
 training activities, workshops, and software development.
 
-Tokens can be used whenever you use the NEON API. In this tutorial, we'll 
+Tokens can (and should) be used whenever you use the NEON API. In this tutorial, we'll 
 focus on using tokens with the neonUtilities R package.
 
 <div id="ds-objectives" markdown="1">
@@ -875,7 +875,7 @@ working directory.
 You may have noticed some of the spatial data referenced above are a bit vague, 
 e.g. "soil plot 2, 4th depth below the surface."
 
-How to get spatial data and what to do with it depends on which type of 
+This section describes how to get spatial data and what to do with it depends on which type of 
 data you're working with.
 
 #### Instrumentation data (both aquatic and terrestrial)
