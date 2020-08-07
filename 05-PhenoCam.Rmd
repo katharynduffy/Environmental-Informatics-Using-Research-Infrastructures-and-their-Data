@@ -36,9 +36,12 @@ At the end of this activity, you will be able to:
 
 ## Introduction to Digital Repeat Photography Methods
 
-The concept of repeat photography for studying environmental has been introduced to scientists long time ago (See Stephens et al., 1987). 
-But in the past decade the idea has gained much popularity for monitoring environmental change (e.g., Sonnentag et al., 2012).
-One of the main applications of digital repeat photography is studying vegetation phenology for a diverse range of ecosystems and biomes (Richardson et al., 2019).
+The concept of repeat photography for studying environmental has been
+introduced to scientists long time ago (See Stephens et al., 1987). 
+But in the past decade the idea has gained much popularity for monitoring 
+environmental change (e.g., Sonnentag et al., 2012).
+One of the main applications of digital repeat photography is studying vegetation
+phenology for a diverse range of ecosystems and biomes (Richardson et al., 2019).
 The methods has also shown great applicability in other fields such as:
 
 1. assessing the seasonality of gross primary production,
@@ -51,13 +54,25 @@ The methods has also shown great applicability in other fields such as:
 
 5. evaluating phenological data products derived from satellite remote sensing.
 
-Obtaining quantitative data from digital repeat photography images is usually performed by defining appropriate region of interest, also know as ROI's, 
-and for the red (R), green (G) and blue (B) color channels, calculating pixel value (intensity) statistics across the pixels within each ROI. 
-ROI boundaries are delineated by mask files which define which pixels are included and which are excluded from these calculations. 
+Obtaining quantitative data from digital repeat photography images is usually 
+performed by defining appropriate region of interest, also know as ROI's, 
+and for the red (R), green (G) and blue (B) color channels, calculating 
+pixel value (intensity) statistics across the pixels within each ROI. 
+ROI boundaries are delineated by mask files which define which pixels 
+are included and which are excluded from these calculations. 
 
-The masks are then used to extract color-based time series from a stack of images. Following the time-series, statistical metrics are used to obtain 1-day and 3-day summary time series.
-From the summary product time series, phenological transition dates corresponding to the start and the end of green-up and green-down phenological phases are calculated.
-In this chapter we explain this process by starting from general image processing tools and then phenocam-based software applications. 
+The masks are then used to extract color-based time series from a stack of images. 
+Following the time-series, statistical metrics are used to obtain
+1-day and 3-day summary time series.
+From the summary product time series, phenological transition dates
+corresponding to the start and the end of green-up and green-down 
+phenological phases are calculated.
+In this chapter we explain this process by starting from general
+image processing tools and then to phenocam-based software applications. 
+
+For more details about digital repeat photogrpahy you can check out the following publication:
+- <a href="https://bnasr.github.io/papers/Seyednasrollah_et_al_2019_SciData.pdf">Seyednarollah, et al. 2019, "Tracking vegetation phenology across diverse biomes using Version 2.0 of the PhenoCam Dataset "</a>. 
+- <a href="https://bnasr.github.io/papers/Seyednasrollah_et_al_2019_PRS.pdf">Seyednarollah, et al. 2019, "Data extraction from digital repeat photography using xROI: An interactive framework to facilitate the process"</a>. 
 
 
 ```{r, echo=FALSE}
