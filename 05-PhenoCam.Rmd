@@ -70,7 +70,7 @@ phenological phases are calculated.
 In this chapter we explain this process by starting from general
 image processing tools and then to phenocam-based software applications. 
 
-For more details about digital repeat photogrpahy you can check out the following publication:
+For more details about digital repeat photogrpahy you can check out the following publications:
 - <a href="https://bnasr.github.io/papers/Seyednasrollah_et_al_2019_SciData.pdf">Seyednarollah, et al. 2019, "Tracking vegetation phenology across diverse biomes using Version 2.0 of the PhenoCam Dataset "</a>. 
 - <a href="https://bnasr.github.io/papers/Seyednasrollah_et_al_2019_PRS.pdf">Seyednarollah, et al. 2019, "Data extraction from digital repeat photography using xROI: An interactive framework to facilitate the process"</a>. 
 
