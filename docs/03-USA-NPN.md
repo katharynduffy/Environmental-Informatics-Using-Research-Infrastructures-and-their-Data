@@ -1,8 +1,4 @@
----
-output:
-  word_document: default
-  html_document: default
----
+
 # Introduction to USA-NPN & its Data
 
 

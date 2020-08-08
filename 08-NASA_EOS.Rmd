@@ -1,0 +1,61 @@
+
+# NASA's Earth Observing System (EOS)
+
+> Estimated Time: 2 hours
+
+## Learning Objectives
+
+
+```{r, echo=FALSE}
+knitr::include_graphics('./images/CURRENT-Earth-Missions10_2019.png')
+```
+
+## NASA EOS Project Mission & Design
+
+NASA’s Earth Observing System (EOS) is a coordinated series of polar-orbiting and low inclination satellites for long-term global observations of the land surface, biosphere, solid Earth, atmosphere, and oceans. As a major component of the Earth Science Division of NASA’s Science Mission Directorate, EOS enables an improved understanding of the Earth as an integrated system. 
+
+[**Review NASA EOS's Mission Profile**](https://eospso.nasa.gov/files/mission_profile.pdf)
+
+* Completeed Missions
+
+* Current Missions
+
+* Future Missions
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pDvRE0iF9ME" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+>Credit: NASA's Goddard Space Flight Center
+
+## Distributed Active Archive Centers
+
+### LP DAAC
+
+The [Land Processes Distributed Active Archive Center (LP DAAC)](https://lpdaac.usgs.gov/about/) is one of several discipline-specific data centers within the NASA EOS Data and Information System [(EOSDIS)](https://earthdata.nasa.gov/about-eosdis?_ga=2.174168546.1999623198.1596733217-204014717.1592177507).  The LP DAAC operates as a partnership between the U.S. Geological Survey (USGS) and the National Aeronautics and Space Administration (NASA). Data specialists, system engineers, user service representatives, and science communicators work in collaboration to support LP DAAC activities.
+
+**Watch this 4:02 minute video on LP DAAC's 2019-2021 Prosectus**
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pCuE007qEqI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## The LPDAAC Mission: Process, Archive, Distribute, Apply
+
+The LP DAAC processes, archives, and distributes land data products to hundreds of thousands of users in the earth science community. Land data products are made universally accessible and support the ongoing monitoring of Earth’s land dynamics and environmental systems to facilitate interdisciplinary research, education, and decision-making.
+
+**Process:** Raw data collected from specific satellite sensors, such as ASTER onboard NASA’s Terra satellite, are received and processed into a readable and interpretable format here at the LP DAAC, while other data undergo processing in other facilities around the country before arriving to the LP DAAC to be archived and distributed to the public.
+
+**Archive:** The LP DAAC continually archives a wide variety of land remote sensing data products collected by sensors onboard satellites, aircraft, and the International Space Station (ISS). The archive currently totals more than 3.5 petabytes of data, the equivalent of listening to 800 million songs, and distributes data to over 200,000 global users.
+
+**Distribute:** All data products in the archive are distributed free of charge through NASA [Earthdata Search](https://search.earthdata.nasa.gov/search) and [USGS EarthExplorer](https://earthexplorer.usgs.gov/) search and download clients. The LP DAAC also supports tools and services, like the [Application for Extracting and Exploring Analysis Ready Samples (AppEEARS)](https://lpdaacsvc.cr.usgs.gov/appeears/), which allows users to transform and visualize data before download while offering enhanced subsetting and reprojecting capabilities.
+
+### How you can use LP DAAC's data
+
+**Watch this 2:13 minute long video on searching for data at the LP DAAC**
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zX-cuTWeh8Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## AppEEARS
+
+The Application for Extracting and Exploring Analysis Ready Samples ([AppEEARS](https://lpdaacsvc.cr.usgs.gov/appeears/)) offers a simple and efficient way to access and transform [geospatial data](https://lpdaacsvc.cr.usgs.gov/appeears/products) from a variety of federal data archives in an easy-to-use web application interface. AppEEARS enables users to subset geospatial data spatially, temporally, and by band/layer for point and area samples. AppEEARS returns not only the requested data, but also the associated quality values, and offers interactive visualizations with summary statistics in the web interface. The [AppEEARS API](https://lpdaacsvc.cr.usgs.gov/appeears/api/) offers users **programmatic access** to all features available in AppEEARS, with the exception of visualizations. The API features are demonstrated in this tutorial.
+
+## Hands on: Pulling AppEEARS Data via the API
+
+### Submit an Area Request
