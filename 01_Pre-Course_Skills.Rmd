@@ -72,6 +72,22 @@ relevant biological, environmental, and socioeconomic data and information. Many
 
 And that, course participants, is why we are here.
 
+## The Framework of this Course
+
+Over the duration of this course we will survey a wide array of observation platforms and networks and build hands-on experience with the framework of Ecoinformatics.  For coherance we will cover the following overarching themes:
+
+>1. Each network's **mission and design**
+>2. Each network's **spatial design**
+> * e.g. opprtunistic vs. planned, citizen science vs. orbital sensors
+>3. The **types of data** that stream from each network
+> * e.g. sensors, derived products, metadata
+>4. **How to access that data**
+> * e.g. APIs, landing pages, r packages etc.
+>5. Opportunities to interact with or contribute to each network
+> * e.g. RFP's coming down the pipeline, internships, and post-doctoral scholar programs.
+    
+At the conclusion of each network's section you will be asked to write a 1-page summary reviewing the above framework for each network, and highlight how it potentially aligns with your own research.  These series of 1-page summaries will then culminate into a final presentation where you propose to derive your own data product for your own research *touching upon multiple networks* and *accounting for differences in spatial footprints, frequency of observations, and important data cross-walks*.
+
 ## EcoInformatics Tools
 
 The purpose of this course is to train you in key ecoinformatics practices.
