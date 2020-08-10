@@ -49,3 +49,11 @@ The LP DAAC processes, archives, and distributes land data products to hundreds 
 **Watch this 2:13 minute long video on searching for data at the LP DAAC**
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/zX-cuTWeh8Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## AppEEARS
+
+The Application for Extracting and Exploring Analysis Ready Samples ([AppEEARS](https://lpdaacsvc.cr.usgs.gov/appeears/)) offers a simple and efficient way to access and transform [geospatial data](https://lpdaacsvc.cr.usgs.gov/appeears/products) from a variety of federal data archives in an easy-to-use web application interface. AppEEARS enables users to subset geospatial data spatially, temporally, and by band/layer for point and area samples. AppEEARS returns not only the requested data, but also the associated quality values, and offers interactive visualizations with summary statistics in the web interface. The [AppEEARS API](https://lpdaacsvc.cr.usgs.gov/appeears/api/) offers users **programmatic access** to all features available in AppEEARS, with the exception of visualizations. The API features are demonstrated in this tutorial.
+
+## Hands on: Pulling AppEEARS Data via the API
+
+### Submit an Area Request

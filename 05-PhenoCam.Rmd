@@ -24,21 +24,21 @@ address that question, that you may want to explore while pursuing this course.
 At the end of this activity, you will be able to:
 
   1. perform basic image processing.
-  
+
   2. estimate image haziness as an indication of fog, cloud or other natural or artificial factors using the `hazer`R package.
-  
+
   3. Define and use a Region of Interest, or ROI, for digitial repeat photography methods.
-  
+
   4. Handle Field-of-View (FOV) shifts in digital repeat photography.
-  
+
   5. Extract timeseries data from a stack of images using color-based metrics.
 
 
 ## Introduction to Digital Repeat Photography Methods
 
 The concept of repeat photography for studying environmental has been
-introduced to scientists long time ago (See Stephens et al., 1987). 
-But in the past decade the idea has gained much popularity for monitoring 
+introduced to scientists long time ago (See Stephens et al., 1987).
+But in the past decade the idea has gained much popularity for monitoring
 environmental change (e.g., Sonnentag et al., 2012).
 One of the main applications of digital repeat photography is studying vegetation
 phenology for a diverse range of ecosystems and biomes (Richardson et al., 2019).
@@ -54,25 +54,25 @@ The methods has also shown great applicability in other fields such as:
 
 5. evaluating phenological data products derived from satellite remote sensing.
 
-Obtaining quantitative data from digital repeat photography images is usually 
-performed by defining appropriate region of interest, also know as ROI's, 
-and for the red (R), green (G) and blue (B) color channels, calculating 
-pixel value (intensity) statistics across the pixels within each ROI. 
-ROI boundaries are delineated by mask files which define which pixels 
-are included and which are excluded from these calculations. 
+Obtaining quantitative data from digital repeat photography images is usually
+performed by defining appropriate region of interest, also know as ROI's,
+and for the red (R), green (G) and blue (B) color channels, calculating
+pixel value (intensity) statistics across the pixels within each ROI.
+ROI boundaries are delineated by mask files which define which pixels
+are included and which are excluded from these calculations.
 
-The masks are then used to extract color-based time series from a stack of images. 
+The masks are then used to extract color-based time series from a stack of images.
 Following the time-series, statistical metrics are used to obtain
 1-day and 3-day summary time series.
 From the summary product time series, phenological transition dates
-corresponding to the start and the end of green-up and green-down 
+corresponding to the start and the end of green-up and green-down
 phenological phases are calculated.
 In this chapter we explain this process by starting from general
-image processing tools and then to phenocam-based software applications. 
+image processing tools and then to phenocam-based software applications.
 
 For more details about digital repeat photogrpahy you can check out the following publications:
-- <a href="https://bnasr.github.io/papers/Seyednasrollah_et_al_2019_SciData.pdf">Seyednarollah, et al. 2019, "Tracking vegetation phenology across diverse biomes using Version 2.0 of the PhenoCam Dataset "</a>. 
-- <a href="https://bnasr.github.io/papers/Seyednasrollah_et_al_2019_PRS.pdf">Seyednarollah, et al. 2019, "Data extraction from digital repeat photography using xROI: An interactive framework to facilitate the process"</a>. 
+- <a href="https://bnasr.github.io/papers/Seyednasrollah_et_al_2019_SciData.pdf">Seyednarollah, et al. 2019, "Tracking vegetation phenology across diverse biomes using Version 2.0 of the PhenoCam Dataset "</a>.
+- <a href="https://bnasr.github.io/papers/Seyednasrollah_et_al_2019_PRS.pdf">Seyednarollah, et al. 2019, "Data extraction from digital repeat photography using xROI: An interactive framework to facilitate the process"</a>.
 
 
 ```{r, echo=FALSE}
@@ -108,7 +108,7 @@ library(dplyr)
 
 
 Before we start the image processing steps, let's read in and plot an image. This
-image is an example image that comes with the *hazer* package. 
+image is an example image that comes with the *hazer* package.
 
 
 ```{r}
@@ -129,14 +129,14 @@ plotRGBArray(rgb_array, bty = 'n', main = 'Point Reyes National Seashore')
 
 When we work with images, all data we work with is generally on the scale of each
 individual pixel in the image. Therefore, for large images we will be working with
-large matrices that hold the value for each pixel. Keep this in mind before opening 
-some of the matrices we'll be creating this tutorial as it can take a while for 
-them to load. 
+large matrices that hold the value for each pixel. Keep this in mind before opening
+some of the matrices we'll be creating this tutorial as it can take a while for
+them to load.
 
 #### Histogram of RGB channels
 
 A histogram of the colors can be useful to understanding what our image is made
-up of. Using the `density()` function from the base *stats* package, we can extract 
+up of. Using the `density()` function from the base *stats* package, we can extract
 density distribution of each color channel.
 
 
@@ -146,9 +146,9 @@ red_vector <- rgb_array[,,1]
 green_vector <- rgb_array[,,2]
 blue_vector <- rgb_array[,,3]
 
-# plotting 
-par(mar=c(5,4,4,2)) 
-plot(density(red_vector), col = 'red', lwd = 2, 
+# plotting
+par(mar=c(5,4,4,2))
+plot(density(red_vector), col = 'red', lwd = 2,
      main = 'Density function of the RGB channels', ylim = c(0,5))
 lines(density(green_vector), col = 'green', lwd = 2)
 lines(density(blue_vector), col = 'blue', lwd = 2)
@@ -163,15 +163,15 @@ In *hazer* we can also extract three basic elements of an RGB image :
 
 #### Brightness
 
-The brightness matrix comes from the maximum value of the R, G, or B channel. We 
-can extract and show the brightness matrix using the `getBrightness()` function. 
+The brightness matrix comes from the maximum value of the R, G, or B channel. We
+can extract and show the brightness matrix using the `getBrightness()` function.
 
 
 ```{r}
 # extracting the brightness matrix
 brightness_mat <- getBrightness(rgb_array)
 
-# unlike the RGB array which has 3 dimensions, the brightness matrix has only two 
+# unlike the RGB array which has 3 dimensions, the brightness matrix has only two
 # dimensions and can be shown as a grayscale image,
 # we can do this using the same plotRGBArray function
 par(mar=c(0,0,3,0))
@@ -179,11 +179,11 @@ plotRGBArray(brightness_mat, bty = 'n', main = 'Brightness matrix')
 ```
 
 
-Here the grayscale is used to show the value of each pixel's maximum brightness 
-of the R, G or B color channel. 
+Here the grayscale is used to show the value of each pixel's maximum brightness
+of the R, G or B color channel.
 
-To extract a single brightness value for the image, depending on our needs we can 
-perform some statistics or we can just use the mean of this matrix. 
+To extract a single brightness value for the image, depending on our needs we can
+perform some statistics or we can just use the mean of this matrix.
 
 
 ```{r}
@@ -200,11 +200,11 @@ hist(brightness_mat)
 
 
 **Question for the class:** Why are we getting so many images up in the high range of the brightness? Where
-does this correlate to on the RGB image? 
+does this correlate to on the RGB image?
 
 #### Darkness
 
-Darkness is determined by the minimum of the R, G or B color channel. In the 
+Darkness is determined by the minimum of the R, G or B color channel. In the
 Similarly, we can extract and show the darkness matrix using the `getDarkness()` function.
 
 
@@ -232,9 +232,9 @@ hist(darkness_mat)
 
 #### Contrast
 
-The contrast of an image is the difference between the darkness and brightness 
-of the image. The contrast matrix is calculated by difference between the 
-darkness and brightness matrices. 
+The contrast of an image is the difference between the darkness and brightness
+of the image. The contrast matrix is calculated by difference between the
+darkness and brightness matrices.
 
 The contrast of the image can quickly be extracted using the `getContrast()` function.
 
@@ -261,18 +261,18 @@ hist(contrast_mat)
 
 #### Image fogginess & haziness
 
-Haziness of an image can be estimated using the `getHazeFactor()` function. This 
-function is based on the method described in 
-<a href="https://www.omicsonline.org/open-access/detecting-foggy-images-and-estimating-the-haze-degree-factor-jcsb.1000226.pdf">Mao et al. (2014)</a>. 
-The technique was originally developed to for *"detecting foggy images and 
+Haziness of an image can be estimated using the `getHazeFactor()` function. This
+function is based on the method described in
+<a href="https://www.omicsonline.org/open-access/detecting-foggy-images-and-estimating-the-haze-degree-factor-jcsb.1000226.pdf">Mao et al. (2014)</a>.
+The technique was originally developed to for *"detecting foggy images and
 estimating the haze degree factor"* for a wide range of outdoor conditions.
 
-The function returns a vector of two numeric values: 
+The function returns a vector of two numeric values:
 
-1.  **haze** as the haze degree and 
-2.  **A0** as the global atmospheric light, as it is explained in the original paper. 
+1.  **haze** as the haze degree and
+2.  **A0** as the global atmospheric light, as it is explained in the original paper.
 
-The PhenoCam standards classify any image with the haze degree greater 
+The PhenoCam standards classify any image with the haze degree greater
 than 0.4 as a significantly foggy image.
 
 
@@ -284,16 +284,16 @@ print(haze_degree)
 ```
 
 
-Here we have the haze values for our image. Note that the values might be 
-slightly different due to rounding errors on different platforms. 
+Here we have the haze values for our image. Note that the values might be
+slightly different due to rounding errors on different platforms.
 
 #### Process sets of images
 
-We can use `for` loops or the `lapply` functions to extract the haze values for 
-a stack of images. 
+We can use `for` loops or the `lapply` functions to extract the haze values for
+a stack of images.
 
-You can download the related datasets from 
-<a href="http://bit.ly/2F8w2Ia">here (direct download)</a>. 
+You can download the related datasets from
+<a href="http://bit.ly/2F8w2Ia">here (direct download)</a>.
 Download and extract the zip file to be used as input data for the following step.
 
 
@@ -312,15 +312,15 @@ pointreyes_dir <- paste0(data_dir, 'pointreyes')
 #unzip(pointreyes_zip, exdir = data_dir)
 
 # get a list of all .jpg files in the directory
-pointreyes_images <- dir(path = 'data/pointreyes', 
+pointreyes_images <- dir(path = 'data/pointreyes',
                          pattern = '*.jpg',
-                         ignore.case = TRUE, 
+                         ignore.case = TRUE,
                          full.names = TRUE)
 ```
 
 
-Now we can use a for loop to process all of the images to get the haze and A0 
-values. 
+Now we can use a for loop to process all of the images to get the haze and A0
+values.
 
 
 ```{r}
@@ -340,18 +340,18 @@ for(i in 1:n) {
   image_path <- pointreyes_images[i]
   img <- jpeg::readJPEG(image_path)
   hz <- getHazeFactor(img)
-  
-  haze_mat <- rbind(haze_mat, 
-                    data.frame(file = as.character(image_path), 
-                               haze = hz[1], 
+
+  haze_mat <- rbind(haze_mat,
+                    data.frame(file = as.character(image_path),
+                               haze = hz[1],
                                A0 = hz[2]))
-  
+
   setTxtProgressBar(pb, i)
 }
 ```
 
 
-Now we have a matrix with haze and A0 values for all our images. Let's 
+Now we have a matrix with haze and A0 values for all our images. Let's
 compare top three images with low and high haze values.
 
 
@@ -370,17 +370,17 @@ for(i in 1:3){
   img <- readJPEG(as.character(top10_low_haze$file[i]))
   plot.new()
   rasterImage(img, par()$usr[1], par()$usr[3], par()$usr[2], par()$usr[4])
-  
+
   img <- readJPEG(as.character(top10_high_haze$file[i]))
   plot.new()
   rasterImage(img, par()$usr[1], par()$usr[3], par()$usr[2], par()$usr[4])
-  
+
 }
 mtext('Top images with low (left) and high (right) haze values at Point Reyes', font = 2, outer = TRUE)
 ```
 
 
-Let's classify those into hazy and non-hazy as per the PhenoCam standard of 0.4. 
+Let's classify those into hazy and non-hazy as per the PhenoCam standard of 0.4.
 
 
 ```{r}
@@ -393,8 +393,8 @@ head(haze_mat)
 
 
 Now we can save all the foggy images to a new folder that will retain the
-foggy images but keep them separate from the non-foggy ones that we want to 
-analyze. 
+foggy images but keep them separate from the non-foggy ones that we want to
+analyze.
 
 
 ```{r}
@@ -420,9 +420,9 @@ values only for those images that are not classified as "foggy".
 # this is an alternative approach instead of a for loop
 
 # loading all the images as a list of arrays
-pointreyes_clear_images <- dir(path = clear_dir, 
+pointreyes_clear_images <- dir(path = clear_dir,
                                pattern = '*.jpg',
-                               ignore.case = TRUE, 
+                               ignore.case = TRUE,
                                full.names = TRUE)
 
 img_list <- lapply(pointreyes_clear_images, FUN = jpeg::readJPEG)
@@ -436,62 +436,66 @@ head(haze_list)
 ```
 
 
-We can then use these values for further analyses and data correction. 
+We can then use these values for further analyses and data correction.
 
 
-*** 
+***
 
-The *hazer* R package is developed and maintained by 
-<a href="https://bnasr.github.io/">Bijan Seyednarollah</a>. 
-The most recent release is available from 
+The *hazer* R package is developed and maintained by
+<a href="https://bnasr.github.io/">Bijan Seyednarollah</a>.
+The most recent release is available from
 <a href="https://github.com/bnasr/hazer" target="_blank">https://github.com/bnasr/hazer</a>.
 
 
 ## Extracting Timeseries from Images using the xROI R Package
 
-In this section, we'll learn how to use an interactive open-source toolkit, the 
+In this section, we'll learn how to use an interactive open-source toolkit, the
 <a href="https://cran.r-project.org/web/packages/xROI/index.html" target="_blank">xROI R package</a>
-that facilitates the process of time series extraction and improves the quality 
-of the final data. The xROI package provides a responsive environment for 
+that facilitates the process of time series extraction and improves the quality
+of the final data. The xROI package provides a responsive environment for
 scientists to interactively:
 
-a) delineate regions of interest (ROIs), 
+a) delineate regions of interest (ROIs),
 b) handle field of view (FOV) shifts, and
 c) extract and export time series data characterizing color-based metrics.
 
-Using the *xROI* R package, the user can detect FOV shifts with minimal difficulty. 
-The software gives user the opportunity to re-adjust mask files or redraw new 
+Using the *xROI* R package, the user can detect FOV shifts with minimal difficulty.
+The software gives user the opportunity to re-adjust mask files or redraw new
 ones every time an FOV shift occurs.
+
 ```{r, echo=FALSE}
 
 knitr::include_graphics('docs/images/xROI.png')
 ```
+
 ### xROI Design
+
+
 The R language and Shiny package were used as the main development tool for xROI,
-while Markdown, HTML, CSS and JavaScript languages were used to improve the 
-interactivity. While Shiny apps are primarily used for web-based applications to 
-be used online, the package authors used Shiny for its graphical user interface 
-capabilities. In other words, both the User Interface (UI) and server modules are run 
+while Markdown, HTML, CSS and JavaScript languages were used to improve the
+interactivity. While Shiny apps are primarily used for web-based applications to
+be used online, the package authors used Shiny for its graphical user interface
+capabilities. In other words, both the User Interface (UI) and server modules are run
 locally from the same machine and hence no internet connection is required (after
-installation). The xROI's UI element presents a side-panel for data entry and 
-three main tab-pages, each responsible for a specific task. The server-side 
-element consists of R and bash scripts. Image processing and geospatial features 
-were performed using the `Geospatial Data Abstraction Library (GDAL)` and the 
-`rgdal` and `raster` R packages. 
+installation). The xROI's UI element presents a side-panel for data entry and
+three main tab-pages, each responsible for a specific task. The server-side
+element consists of R and bash scripts. Image processing and geospatial features
+were performed using the `Geospatial Data Abstraction Library (GDAL)` and the
+`rgdal` and `raster` R packages.
 
 ### Install xROI
 
-The xROI R package has been published on The Comprehensive R Archive Network (CRAN). 
-The latest tested xROI package can be installed from the 
-<a href="https://cran.r-project.org/package=xROI" target="_blank">CRAN packages repository</a> by running the following command in an R environment. 
+The xROI R package has been published on The Comprehensive R Archive Network (CRAN).
+The latest tested xROI package can be installed from the
+<a href="https://cran.r-project.org/package=xROI" target="_blank">CRAN packages repository</a> by running the following command in an R environment.
 
 
 ```{r, eval=FALSE}
 utils::install.packages('xROI', repos = "http://cran.us.r-project.org" )
 ```
 
-Alternatively, the latest beta release of xROI can be directly downloaded and 
-installed from the development GitHub repository. 
+Alternatively, the latest beta release of xROI can be directly downloaded and
+installed from the development GitHub repository.
 
 
 ```{r, eval=FALSE}
@@ -502,24 +506,24 @@ utils::install.packages('devtools', repos = "http://cran.us.r-project.org" )
 devtools::install_github("bnasr/xROI")
 ```
 
-xROI depends on many R packages including: `raster`, `rgdal`, `sp`, `jpeg`, 
-`tiff`, `shiny`, `shinyjs`, `shinyBS`, `shinyAce`, `shinyTime`, `shinyFiles`, 
-`shinydashboard`, `shinythemes`, `colourpicker`, `rjson`, `stringr`, `data.table`, 
-`lubridate`, `plotly`, `moments`, and `RCurl`. All the required libraries and 
-packages will be automatically installed with installation of *xROI*. The package 
-offers a fully interactive high-level interface as well as a set of low-level 
-functions for ROI processing. 
+xROI depends on many R packages including: `raster`, `rgdal`, `sp`, `jpeg`,
+`tiff`, `shiny`, `shinyjs`, `shinyBS`, `shinyAce`, `shinyTime`, `shinyFiles`,
+`shinydashboard`, `shinythemes`, `colourpicker`, `rjson`, `stringr`, `data.table`,
+`lubridate`, `plotly`, `moments`, and `RCurl`. All the required libraries and
+packages will be automatically installed with installation of *xROI*. The package
+offers a fully interactive high-level interface as well as a set of low-level
+functions for ROI processing.
 
 ### Launch xROI
 
-A comprehensive user manual for low-level image processing using *xROI* is available from 
-<a href="https://cran.r-project.org/package=xROI/xROI.pdf" target="_blank">CRAN xROI.pdf</a>. 
-While the user manual includes a set of examples for each function; here we 
-will learn to use the graphical interactive mode. 
+A comprehensive user manual for low-level image processing using *xROI* is available from
+<a href="https://cran.r-project.org/package=xROI/xROI.pdf" target="_blank">CRAN xROI.pdf</a>.
+While the user manual includes a set of examples for each function; here we
+will learn to use the graphical interactive mode.
 
-Calling the `Launch()` function, as we'll do below, opens up the interactive 
-mode in your operating system’s default web browser. The landing page offers an 
-example dataset to explore different modules or upload a new dataset of images. 
+Calling the `Launch()` function, as we'll do below, opens up the interactive
+mode in your operating system’s default web browser. The landing page offers an
+example dataset to explore different modules or upload a new dataset of images.
 
 You can launch the interactive mode can be launched from an interactive R environment.
 
@@ -528,11 +532,11 @@ You can launch the interactive mode can be launched from an interactive R enviro
 # load xROI
 library(xROI)
 
-# launch xROI 
+# launch xROI
 Launch()
 ```
 
-Or from the command line (e.g. bash in Linux, Terminal in macOS and Command 
+Or from the command line (e.g. bash in Linux, Terminal in macOS and Command
 Prompt in Windows machines) where an R engine is already installed.
 
 
@@ -545,24 +549,24 @@ Rscript -e “xROI::Launch(Interactive = TRUE)”
 
 ### End xROI
 
-When you are done with the xROI interface you can close the tab in your browser 
+When you are done with the xROI interface you can close the tab in your browser
 and end the session in R by using one of the following options
 
 **In RStudio:** Press the <Esc> key on your keyboard.
 **In R Terminal:** Press <Ctrl + C> on your keyboard.
 
-### Use xROI 
+### Use xROI
 
-To get some hands-on experience with `xROI`, we can analyze images from the 
-<a href="https://phenocam.sr.unh.edu/webcam/sites/dukehw/">dukehw</a> 
-of the PhenoCam network. 
+To get some hands-on experience with `xROI`, we can analyze images from the
+<a href="https://phenocam.sr.unh.edu/webcam/sites/dukehw/">dukehw</a>
+of the PhenoCam network.
 
-You can download the data set from 
-<a href="http://bit.ly/2PzZ2fL">this link (direct download)</a>. 
+You can download the data set from
+<a href="http://bit.ly/2PzZ2fL">this link (direct download)</a>.
 
 Follow the steps below:
 
-First,save and extract (unzip) the file on your computer. 
+First,save and extract (unzip) the file on your computer.
 
 Second, open the data set in `xROI` by setting the file path to your data
 
@@ -572,10 +576,10 @@ Second, open the data set in `xROI` by setting the file path to your data
 # first edit the path below to the dowloaded directory you just extracted
 xROI::Launch('/path/to/extracted/directory')
 
-# alternatively, you can run without specifying a path and use the interface to browse 
+# alternatively, you can run without specifying a path and use the interface to browse
 ```
 
-Now, draw an ROI and the metadata. 
+Now, draw an ROI and the metadata.
 
 Then, save the metadata and explore its content.
 
@@ -586,7 +590,7 @@ Finally, we can go to the `Time series extraction` tab. Extract the time-series.
 
 ## Documentation and Citation
 
-More documentation about **xROI** can be found from: <a href="https://bnasr.github.io/papers/Seyednasrollah_et_al_2019_PRS.pdf">Seyednarollah, et al. 2019</a>. 
+More documentation about **xROI** can be found from: <a href="https://bnasr.github.io/papers/Seyednasrollah_et_al_2019_PRS.pdf">Seyednarollah, et al. 2019</a>.
 
 ```{r}
 knitr::include_graphics('docs/images/xROI-ms2019.png')
@@ -595,18 +599,18 @@ knitr::include_graphics('docs/images/xROI-ms2019.png')
 
 ## Challenge: Use xROI
 
-Let's use xROI on a little more challenging site with field of view shifts. 
+Let's use xROI on a little more challenging site with field of view shifts.
 
-Download and extract the data set from 
-<a href="http://bit.ly/2DrZgA1">this link (direct download, 218 MB)</a> 
+Download and extract the data set from
+<a href="http://bit.ly/2DrZgA1">this link (direct download, 218 MB)</a>
 and follow the above steps to extract the time-series.
 </div>
 
 
-*** 
+***
 
-The *xROI* R package is developed and maintained by 
-<a href="https://bnasr.github.io/">Bijan Seyednarollah</a>. 
+The *xROI* R package is developed and maintained by
+<a href="https://bnasr.github.io/">Bijan Seyednarollah</a>.
 The most recent release is available from <a href="https://github.com/bnasr/xROI" target="_blank">https://github.com/bnasr/xROI</a>.
 
 
@@ -619,20 +623,20 @@ The most recent release is available from <a href="https://github.com/bnasr/xROI
 
 
 
-The <a href="https://cran.r-project.org/web/packages/phenocamapi/index.html" target="_blank"> *phenocamapi* R package</a> 
-is developed to simplify interacting with the 
-<a href="https://phenocam.sr.unh.edu" target="_blank">PhenoCam network</a> 
+The <a href="https://cran.r-project.org/web/packages/phenocamapi/index.html" target="_blank"> *phenocamapi* R package</a>
+is developed to simplify interacting with the
+<a href="https://phenocam.sr.unh.edu" target="_blank">PhenoCam network</a>
 dataset and perform data wrangling steps on PhenoCam sites' data and metadata.
 
 This tutorial will show you the basic commands for accessing PhenoCam data
-through the PhenoCam API. The *phenocampapi* R package is developed and maintained by 
-<a href="https://bnasr.github.io/" target="_blank">Bijan Seyednarollah</a>. 
-The most recent release is available on GitHub (<a href="https://github.com/bnasr/phenocamapi" target="_blank">PhenocamAPI</a>). 
-<a href="https://github.com/bnasr/phenocamapi/tree/master/vignettes" target ="_blank">Additional vignettes</a> 
-can be found on how to merge external time-series (e.g. Flux data) with the 
-PhenoCam time-series. 
+through the PhenoCam API. The *phenocampapi* R package is developed and maintained by
+<a href="https://bnasr.github.io/" target="_blank">Bijan Seyednarollah</a>.
+The most recent release is available on GitHub (<a href="https://github.com/bnasr/phenocamapi" target="_blank">PhenocamAPI</a>).
+<a href="https://github.com/bnasr/phenocamapi/tree/master/vignettes" target ="_blank">Additional vignettes</a>
+can be found on how to merge external time-series (e.g. Flux data) with the
+PhenoCam time-series.
 
-We begin with several useful skills and tools for extracting PhenoCam data 
+We begin with several useful skills and tools for extracting PhenoCam data
 directly from the server:
 
 - Exploring the PhenoCam metadata
@@ -643,14 +647,14 @@ directly from the server:
 
 ## Exploring PhenoCam metadata
 
-Each PhenoCam site has specific metadata including but not limited to how a site 
-is set up and where it is located, what vegetation type is visible from the 
-camera, and its climate regime. Each PhenoCam may have zero to several Regions 
-of Interest (ROIs) per vegetation type. The *phenocamapi* package is an 
-interface to interact with the PhenoCam server to extract those data and 
+Each PhenoCam site has specific metadata including but not limited to how a site
+is set up and where it is located, what vegetation type is visible from the
+camera, and its climate regime. Each PhenoCam may have zero to several Regions
+of Interest (ROIs) per vegetation type. The *phenocamapi* package is an
+interface to interact with the PhenoCam server to extract those data and
 process them in an R environment.
 
-To explore the PhenoCam data, we'll use several packages for this tutorial. 
+To explore the PhenoCam data, we'll use several packages for this tutorial.
 
 
 ```{r}
@@ -662,8 +666,8 @@ library(jpeg)
 ```
 
 
-We can obtain an up-to-date `data.frame` of the metadata of the entire PhenoCam 
-network using the `get_phenos()` function. The returning value would be a 
+We can obtain an up-to-date `data.frame` of the metadata of the entire PhenoCam
+network using the `get_phenos()` function. The returning value would be a
 `data.table` in order to simplify further data exploration.
 
 
@@ -680,16 +684,16 @@ colnames(phenos)
 ```
 
 Now we have a better idea of the types of metadata that are available for the
-Phenocams. 
+Phenocams.
 
 ### Remove null values
 
 We may want to explore some of the patterns in the metadata before we jump into
-specific locations. 
+specific locations.
 
 Let's look at Mean Annual Precipitation (MAP) and Mean Annual
 Temperature (MAT) across the different field site and classify those by the
-primary vegetation type (`primary_veg_type`) for each site. We can find out what 
+primary vegetation type (`primary_veg_type`) for each site. We can find out what
 the abbreviations for the vegetation types mean from the following table:
 
 
@@ -710,8 +714,8 @@ the abbreviations for the vegetation types mean from the following table:
 | XX |	unspecified |
 
 
-To do this we'd first want to remove the sites where there is not data and then 
-plot the data. 
+To do this we'd first want to remove the sites where there is not data and then
+plot the data.
 
 
 ```{r}
@@ -733,8 +737,8 @@ phenos[primary_veg_type=='AG', points(MAT_worldclim, MAP_worldclim, pch = 12, co
 phenos[primary_veg_type=='SH', points(MAT_worldclim, MAP_worldclim, pch = 23, col = 'red')]
 
 
-legend('topleft', legend = c('DB','DN', 'EN','EB','AG', 'SH'), 
-       pch = c(19, 1, 17, 25, 12, 23), 
+legend('topleft', legend = c('DB','DN', 'EN','EB','AG', 'SH'),
+       pch = c(19, 1, 17, 25, 12, 23),
        col =  c('green', 'darkgreen', 'brown',  'orange',  'yellow',  'red' ))
 ```
 
@@ -745,14 +749,14 @@ legend('topleft', legend = c('DB','DN', 'EN','EB','AG', 'SH'),
 Alternatively, we may want to only include Phenocams with certain attributes in
 our datasets. For example, we may be interested only in sites with a co-located
 flux tower. For this, we'd want to filter for those with a flux tower using the
-`flux_sitenames` attribute in the metadata. 
+`flux_sitenames` attribute in the metadata.
 
 
 
 ```{r}
 # store sites with flux_data available and the FLUX site name is specified
-phenofluxsites <- phenos[flux_data==TRUE&!is.na(flux_sitenames)&flux_sitenames!='', 
-                         .(PhenoCam=site, Flux=flux_sitenames)] # return as table 
+phenofluxsites <- phenos[flux_data==TRUE&!is.na(flux_sitenames)&flux_sitenames!='',
+                         .(PhenoCam=site, Flux=flux_sitenames)] # return as table
 #and specify which variables to retain
 
 phenofluxsites <- phenofluxsites[Flux!='']
@@ -762,14 +766,14 @@ head(phenofluxsites)
 
 ```
 
-We could further identify which of those Phenocams with a flux tower and in 
-deciduous broadleaf forests (`primary_veg_type=='DB'`). 
+We could further identify which of those Phenocams with a flux tower and in
+deciduous broadleaf forests (`primary_veg_type=='DB'`).
 
 
 ```{r}
 
 #list deciduous broadleaf sites with flux tower
-DB.flux <- phenos[flux_data==TRUE&primary_veg_type=='DB', 
+DB.flux <- phenos[flux_data==TRUE&primary_veg_type=='DB',
                   site]  # return just the site names as a list
 
 # see the first few rows
@@ -779,15 +783,15 @@ head(DB.flux)
 
 ## PhenoCam time series
 
-PhenoCam time series are extracted time series data obtained from ROI's for a 
-given site. 
+PhenoCam time series are extracted time series data obtained from ROI's for a
+given site.
 
 ### Obtain ROIs
-To download the phenological time series from the PhenoCam, we need to know the 
+To download the phenological time series from the PhenoCam, we need to know the
 site name, vegetation type and ROI ID. This information can be obtained from each
-specific PhenoCam page on the 
-<a href="https://phenocam.sr.unh.edu/webcam/gallery/" target="_blank">PhenoCam website</a> 
-or by using the `get_rois()` function. 
+specific PhenoCam page on the
+<a href="https://phenocam.sr.unh.edu/webcam/gallery/" target="_blank">PhenoCam website</a>
+or by using the `get_rois()` function.
 
 
 
@@ -804,13 +808,13 @@ head(rois$roi_name)
 
 ### Download time series
 
-The `get_pheno_ts()` function can download a time series and return the result 
-as a `data.table`. 
-Let's work with the 
-<a href="https://phenocam.sr.unh.edu/data/archive/dukehw/ROI/dukehw_DB_1000.html">Duke Forest Hardwood Stand (`dukehw`) PhenoCam</a> 
-and specifically the ROI 
-<a href="https://phenocam.sr.unh.edu/data/archive/dukehw/ROI/dukehw_DB_1000.html">`DB_1000`</a> 
-we can run the following code. 
+The `get_pheno_ts()` function can download a time series and return the result
+as a `data.table`.
+Let's work with the
+<a href="https://phenocam.sr.unh.edu/data/archive/dukehw/ROI/dukehw_DB_1000.html">Duke Forest Hardwood Stand (`dukehw`) PhenoCam</a>
+and specifically the ROI
+<a href="https://phenocam.sr.unh.edu/data/archive/dukehw/ROI/dukehw_DB_1000.html">`DB_1000`</a>
+we can run the following code.
 
 
 ```{r}
@@ -825,20 +829,20 @@ str(dukehw_DB_1000)
 
 ```
 
-We now have a variety of data related to this ROI from the Hardwood Stand at Duke 
-Forest. 
+We now have a variety of data related to this ROI from the Hardwood Stand at Duke
+Forest.
 
 Green Chromatic Coordinate (GCC) is a measure of "greenness" of an area and is
 widely used in Phenocam images as an indicator of the green pigment in vegetation.
-Let's use this measure to look at changes in GCC over time at this site. Looking 
-back at the available data, we have several options for GCC. `gcc90` is the 90th 
-quantile of GCC in the pixels across the ROI (for more details, 
-<a href="https://daac.ornl.gov/VEGETATION/guides/PhenoCam_V1.html" target="_blank"> PhenoCam v1 description</a>). 
-We'll use this as it tracks the upper greenness values while not including many 
+Let's use this measure to look at changes in GCC over time at this site. Looking
+back at the available data, we have several options for GCC. `gcc90` is the 90th
+quantile of GCC in the pixels across the ROI (for more details,
+<a href="https://daac.ornl.gov/VEGETATION/guides/PhenoCam_V1.html" target="_blank"> PhenoCam v1 description</a>).
+We'll use this as it tracks the upper greenness values while not including many
 outliners.  
 
-Before we can plot `gcc-90` we do need to fix our dates and convert them from 
-Factors to Date to correctly plot. 
+Before we can plot `gcc-90` we do need to fix our dates and convert them from
+Factors to Date to correctly plot.
 
 
 ```{r}
@@ -855,8 +859,8 @@ mtext('Duke Forest, Hardwood', font = 2)
 ## Download midday images
 
 While PhenoCam sites may have many images in a given day, many simple analyses
-can use just the midday image when the sun is most directly overhead the canopy. 
-Therefore, extracting a list of midday images (only one image a day) can be useful. 
+can use just the midday image when the sun is most directly overhead the canopy.
+Therefore, extracting a list of midday images (only one image a day) can be useful.
 
 
 
@@ -870,7 +874,7 @@ head(duke_middays)
 ```
 
 Now we have a list of all the midday images from this Phenocam. Let's download
-them and plot 
+them and plot
 
 
 ```{r}
@@ -896,7 +900,7 @@ if(class(img)!='try-error'){
 
 Now we can access all the midday images and download them one at a time. However,
 we frequently want all the images within a specific time range of interest. We'll
-learn how to do that next. 
+learn how to do that next.
 
 
 ```{r}
@@ -938,11 +942,11 @@ mtext('Seasonal variation of forest at Duke Hardwood Forest', font = 2, outer = 
 The goal of this section was to show how to download a limited number of midday images from the PhenoCam server. However, more extensive datasets should be downloaded from the <a href="https://phenocam.sr.unh.edu/webcam/network/download/"> PhenoCam </a>.
 
 
-*** 
+***
 
-The *phenocamapi* R package is developed and maintained by 
-<a href="https://bnasr.github.io/">Bijan Seyednarollah</a>. 
-The most recent release is available from 
+The *phenocamapi* R package is developed and maintained by
+<a href="https://bnasr.github.io/">Bijan Seyednarollah</a>.
+The most recent release is available from
 <a href="https://github.com/bnasr/phenocamapi" target="_blank">https://github.com/bnasr/phenocamapi</a>.
 
 
@@ -1079,7 +1083,7 @@ p = plot_ly() %>%
     y = ~gcc_90,
     name = 'GCC',
     type = 'scatter',
-    color ='#07A4B5', 
+    color ='#07A4B5',
     opacity=.5
   )
 p
@@ -1114,7 +1118,7 @@ p = plot_ly() %>%
     type = 'scatter',
     mode = 'line'
   ) %>% add_markers(
-    data= spring, 
+    data= spring,
     x = ~ as.Date(spring$transition_25, origin = "1970-01-01"),
     y = ~ spring$threshold_25,
     type = 'scatter',
@@ -1127,7 +1131,7 @@ Now we can see the transition date for each year of interest and the annual patt
 
 However, if you want more control over the parameters used during processing, you can run through the three default processing steps as implemented in download_phenocam() and set parameters manually.
 
-Of particular interest is the option to specify your own threshold used in determining transition dates. 
+Of particular interest is the option to specify your own threshold used in determining transition dates.
 
 What would be a reasonable threshold for peak greenness?  Or autumn onset?  Look at the ts dataset and phenocamr package and come up with a threshold.  Use the same code to plot it here:
 
@@ -1151,7 +1155,7 @@ Let's load in a function to make plotting smoother.  I've dropped it here in the
 ```{r}
 gcc_plot = function(gcc, spring, fall){
   unix = "1970-01-01"
-  
+
   p = plot_ly(
     data = gcc,
     x = ~ date,
@@ -1222,7 +1226,7 @@ gcc_plot = function(gcc, spring, fall){
                  line = list(color = "#458B00"),
                  name = "SOS (50%) - CI"
     ) %>%
-    
+
     # EOS fall
     # 50%
     add_trace(
@@ -1288,9 +1292,9 @@ gcc_p <- gcc_p %>%
     legend = list(x = 0.9, y = 0.9),
     xaxis = list(
       type = 'date',
-      tickformat = " %B<br>%Y", 
+      tickformat = " %B<br>%Y",
       title='Year'),
-    
+
     yaxis = list(
       title = 'PhenoCam GCC'
     ))
@@ -1395,7 +1399,3 @@ data?
 **Intro to PhenoCam Culmination Activity**
 
 Write up a 1-page summary of a project that you might want to explore using PhenoCam data over the duration of this course. Include the types of PhenoCam (and other data) that you will need to implement this project. Save this summary as you will be refining and adding to your ideas over the course of the semester.
-
-
-
-
