@@ -20,7 +20,7 @@ At the end of this activity, you will be able to:
 * Explain the mission of the National Ecological Observatory Network (NEON).
 * Explain the how sites are located within the NEON project design.
 * Determine how the different types of data that are collected and provided by NEON, and how they align with your own research.
-* Pull NEON data from the API and `neonUtilities` package
+* Pull NEON data from the API and `neonUtilities` package [@R-neonUtilites]
 
  
 
@@ -460,6 +460,13 @@ Note, you must have devtools installed & loaded, prior to loading geoNEON or neo
 </div>
 
 ## What is an API?
+
+>The following material was adapted from:
+>"Using the NEON API in R"
+description: "Tutorial for getting data from the NEON API, using R and the R package httr"
+dateCreated:  2017-07-07
+authors: [Claire K. Lunch]
+contributors: [Christine Laney, Megan A. Jones]
 
 If you are unfamiliar with the concept of an API, think of  an API as a 
 ‘middle person' that provides a communication path for a software application 

@@ -1,8 +1,4 @@
----
-output:
-  html_document: default
-  pdf_document: default
----
+
 # Digital Repeat Photography Networks
 
 
@@ -19,7 +15,7 @@ address that question, that you may want to explore while pursuing this course.
 
 
 
-## Learning Objectives
+## Digital Repeat Photography Networks Learning Objectives
 
 At the end of this activity, you will be able to:
 
@@ -83,12 +79,7 @@ knitr::include_graphics('./images/repeat_photo.jpg')
 >1929 - 2016: Alpine Mountains near East Fork Toklat River, Alaska.  Credit: Denali National Park (NPS)
 
 
-*Intro text here*
-*A start for Bijan to edit/expand upon*
 
-Photography represents an important 'bookmark' in time, and is also a relevant stream of data.  Repeat photography is the practice of taking multiple photographs of the same subject, from the same location, at different times.  For ecologists, it is becoming a popular technique for observing change in a particular area, and serves as an inexpensive “time machine,” allowing us to replay the natural and historical change of a particular place.  
-
-Digital Repeat, or time-lapse Photography holds even more promise.  Through automating mounted cameras to repeatedly photograph 'subjects' ranging from plants to water gauges, digital repeat photography methods can extract a whole host of relevant data.....
 
 ## Detecting Foggy Images using the 'hazer' R Package
 

@@ -19,7 +19,7 @@ address that question, that you may want to explore while pursuing this course.
 
 
 
-## Learning Objectives
+## USA-NPN Learning Objectives
 
 At the end of this activity, you will be able to:
 
