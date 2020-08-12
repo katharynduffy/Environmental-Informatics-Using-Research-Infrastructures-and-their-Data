@@ -1,0 +1,38 @@
+---
+title: "Chapter 1 Exercises"
+author: "PUT YOUR NAME HERE"
+date: "8/12/2020"
+output: pdf_document
+---
+
+## Exercises:
+
+1. Navigate to our [course github](https://github.com/katharynduffy/katharynduffy.github.io)
+2. `git fork` our repo onto your own personal github account.
+3. `git clone` the repo onto your own personal machine in a place that is functional and not temporary *(e.g. not your downloads folder)*.
+
+```{}
+#hints
+cd `Your/Path/Here'
+git clone 'repo HTTPS'
+```
+4. Add 2-3 sentences introducing yourself in the `_Course-participants` folder.  For example:
+
+```{}
+***
+Hi, I'm Dr. Katharyn Duffy.  I have a Ph.D in Earth Science from Northern Arizona University.  Over the past two years I've worked as an open-source software engineer in the PhenoCam lab, and now I'm the coding and lab support for your course.  I really look forward to working with all of you!
+***
+```
+5. Submit a `pull request` to add your introduction to our course participants folder.
+
+```{}
+#hints
+git add ...
+git commit ...
+git status....
+git push --set-upstream
+git remote -v
+git remote add upstream...
+```
+
+**Note:** *You may complete these either on the command line or via a program like Atom.io.  If you haven't yet made commits to a remote repository or submitted pull requests please reference the resources listed above.*
