@@ -1,8 +1,7 @@
 
 # Introduction to USA-NPN & its Data
 
-
->Estimated Time: 2 hours
+> Estimated Time: 2 hours
 
 
 <div id="ds-challenge" markdown="1">

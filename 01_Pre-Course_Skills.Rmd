@@ -244,6 +244,8 @@ If you are learning these skills from scratch I estimate that you will need to d
 
 ## How we will be Conducting this Course
 
+If you find a **broken link or error** in this course text [submit an issue on the course github repository](https://github.com/katharynduffy/katharynduffy.github.io/issues).
+
 At the end of each chapter you will find a set of **Exercises**.  At the end of the assigned chapter you will be expected to submit via BBLearn two files:
 
 1. An [RMarkdown file](https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) with the naming convention:
@@ -261,6 +263,8 @@ To generate these files you have two options:
 *Note: Exercises submitted in any other format, or those missing questions will not be graded*
 
 To generate your .PDF to upload, in your RMarkdown file simply push the 'Knit' button at the top of your document.
+
+
 
 ## Exercises:
 

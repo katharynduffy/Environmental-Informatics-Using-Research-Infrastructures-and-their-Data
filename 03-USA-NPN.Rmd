@@ -1,7 +1,6 @@
 
 # Introduction to USA-NPN & its Data
 
-> Contributing Authors: Theresa Crimmins, Kathy Gerst, Lee Marsh
 > Estimated Time: 2 hours
 
 
