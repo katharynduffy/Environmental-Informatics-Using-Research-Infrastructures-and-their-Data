@@ -1097,7 +1097,7 @@ For a guide to using `neonUtilities` on data downloaded from the portal,
 look <a href="https://www.neonscience.org/neonDataStackR" target="_blank">here</a>.
 
 
-## Exercises
+## Intro to NEON Exercises
 
 ### Computational
 #### Part 1: Sign up for and Use an NEON API Token:

@@ -626,7 +626,7 @@ plot(
 )
 ```
 
-## Exercises
+## USA-NPN Exercises
 
 ### Computational
 

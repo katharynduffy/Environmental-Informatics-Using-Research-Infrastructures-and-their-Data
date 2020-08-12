@@ -3,7 +3,7 @@
 
 
 
-
+> COntributing Authors: Bijan Seyednasrollah, Andrew Richardson
 >Estimated Time: 2 hours
 
 
@@ -941,9 +941,9 @@ The most recent release is available from
 <a href="https://github.com/bnasr/phenocamapi" target="_blank">https://github.com/bnasr/phenocamapi</a>.
 
 
-## Exercises
+## Digital Repeat Photography Exercises
 
-### Computational
+### Digital Repeat Photography Computational
 First let's load some packages:
 
 
@@ -1356,7 +1356,7 @@ Once you have a subplot of grassland phenology across 2 climates answer the foll
 2. Do you think you set your thresholds correctly for transition dates/phenophases?  How might that very as a function of climate?
 3. What are the challenges of forecasting or modeling tropical versus arid grasslands?
 
-### Written
+### Digital Repeat Photography Written
 
 **Question 1:** How might or does the PhenoCam project
 intersect with your current research or future career goals? *(1 paragraph)*

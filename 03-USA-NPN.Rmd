@@ -1,8 +1,8 @@
 
 # Introduction to USA-NPN & its Data
 
-
->Estimated Time: 2 hours
+> Contributing Authors: Theresa Crimmins, Kathy Gerst, Lee Marsh
+> Estimated Time: 2 hours
 
 
 <div id="ds-challenge" markdown="1">
@@ -608,7 +608,7 @@ plot(
 )
 ```
 
-## Exercises
+## USA-NPN Exercises
 
 ### Computational
 
