@@ -1,0 +1,10 @@
+---
+title: "Chapter 1 Exercises"
+author: "Cameron Bodine"
+date: "8/13/2020"
+output: pdf_document
+---
+
+**Introduction**
+
+Hello, I'm Cameron Bodine.  I'm a second year PhD student in the Ecological Informatics Program. I worked for Florida Fish and Wildlife for 5 years mapping river bottom habitats.  I'm at NAU to develop an automated approach to mapping in-stream habitat.
