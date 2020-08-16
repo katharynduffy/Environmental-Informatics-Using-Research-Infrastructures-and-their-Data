@@ -38,3 +38,7 @@ Hello, I'm Jenna Keany. I'm a second year PhD student in Ecoinformatics working 
 
 Hi, I'm Jeralyn Poe. I am a first year PhD student in the Ecoinformatics T3 program. I graduated last spring from Michigan State University with my BS in Environmental Geography.
 
+***
+Hi, I'm Yuan Gao. I'm a second year Phd student in Ecoinformatics in Dr. Yiqi Luo's lab. I got my BS in Automation and MS in Control Science and Engineering in China. I worked in National Supercomputing Center in Wuxi, China for about 1 year as a software engineer. After that I came here to pursue my PhD degree. I'm interested in terrestrial ecosystem modeling, especially in the drylands.
+***
+
