@@ -415,16 +415,19 @@ Later in this course we will be working with NEON's LiDAR-based Canopy Height Mo
 knitr::include_graphics('./docs/images/NEON_TOS_Sampling.png')
 ```
 
-> Generalized TOS sampling schema􏰃c, showing the placement of Distributed, Tower, and Gradient Plots from the [NEON GUIDE TO WOODY PLANT VEGETATION STRUCTURE](https://www.google.com/url?sa=i&url=http%3A%2F%2Fdata.neonscience.org%2Fapi%2Fv0%2Fdocuments%2FNEON_vegStructure_userGuide_vA&psig=AOvVaw32PujoEegMkzIWVuL_Scwn&ust=1597765301177000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCOjFiN_JousCFQAAAAAdAAAAABAU)
+> Generalized TOS sampling schematic, showing the placement of Distributed, Tower, and Gradient Plots from the [NEON GUIDE TO WOODY PLANT VEGETATION STRUCTURE, 2018](https://www.google.com/url?sa=i&url=http%3A%2F%2Fdata.neonscience.org%2Fapi%2Fv0%2Fdocuments%2FNEON_vegStructure_userGuide_vA&psig=AOvVaw32PujoEegMkzIWVuL_Scwn&ust=1597765301177000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCOjFiN_JousCFQAAAAAdAAAAABAU)
 
 The [vegetation structure data](https://data.neonscience.org/data-products/DP1.10098.001) are collected by by field staff on the ground. This data product contains the quality-controlled, native sampling resolution data from in-situ measurements of live and standing dead woody individuals and shrub groups, from all terrestrial NEON sites with qualifying woody vegetation. The exact measurements collected per individual depend on growth form, and these measurements are focused on enabling biomass and productivity estimation, estimation of shrub volume and biomass, and calibration / validation of multiple NEON airborne remote-sensing data products. In general, comparatively large individuals that are visible to remote-sensing instruments are mapped, tagged and measured, and other smaller individuals are tagged and measured but not mapped. Smaller individuals may be subsampled according to a nested subplot approach in order to standardize the per plot sampling effort. Structure and mapping data are reported per individual per plot; sampling metadata, such as per growth form sampling area, are reported per plot. 
 
 ```{r, echo=FALSE}
 knitr::include_graphics('./docs/images/NEON_woody_sampling.png')
 ```
-> Illustration of a 20 m x 20 m Distributed/Gradient/Tower base plot (left), a 40 m x 40 m Tower base plot (right), and associated nested subplots used for measuring woody stem vegetation. Locations of subplots are denoted with plain text numbers, and locations of nested subplots are denoted with italic numbers from the [NEON GUIDE TO WOODY PLANT VEGETATION STRUCTURE](https://www.google.com/url?sa=i&url=http%3A%2F%2Fdata.neonscience.org%2Fapi%2Fv0%2Fdocuments%2FNEON_vegStructure_userGuide_vA&psig=AOvVaw32PujoEegMkzIWVuL_Scwn&ust=1597765301177000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCOjFiN_JousCFQAAAAAdAAAAABAU)
 
-For the purpose of this hands-on activity we will be using data from the Wind River Experimental Forest NEON field site located in Washington state *Note: this is also a core site for many other networks such as [AmeriFlux and FLUXNET](https://ameriflux.lbl.gov/sites/siteinfo/US-Wrc), which we will cover later*. The predominant vegetation there are tall evergreen conifers.
+> Illustration of a 20 m x 20 m Distributed/Gradient/Tower base plot (left), a 40 m x 40 m Tower base plot (right), and associated nested subplots used for measuring woody stem vegetation. Locations of subplots are denoted with plain text numbers, and locations of nested subplots are denoted with italic numbers from the [NEON GUIDE TO WOODY PLANT VEGETATION STRUCTURE, 2018](https://www.google.com/url?sa=i&url=http%3A%2F%2Fdata.neonscience.org%2Fapi%2Fv0%2Fdocuments%2FNEON_vegStructure_userGuide_vA&psig=AOvVaw32PujoEegMkzIWVuL_Scwn&ust=1597765301177000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCOjFiN_JousCFQAAAAAdAAAAABAU)
+
+For the purpose of this hands-on activity we will be using data from the Wind River Experimental Forest NEON field site located in Washington state.  The predominant vegetation at that site is tall evergreen conifers.
+
+*Note: this is also a core site for many other networks such as [AmeriFlux and FLUXNET](https://ameriflux.lbl.gov/sites/siteinfo/US-Wrc), which we will cover later*. 
 
 ```{r, echo=FALSE}
 knitr::include_graphics('./images/DSC_0385-scaled-photo-gallery-680x1024.jpg')
