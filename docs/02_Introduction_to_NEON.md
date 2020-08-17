@@ -174,7 +174,7 @@ with other community resources, NEON data can be accessed through the portals.
 Examples include Phenocam, BOLD, Ameriflux, and others. You can learn more in the
 documentation for individual data products.  
 
-## Hands on: Accessing NEON Data
+## Hands on: Accessing NEON Data & User Tokens
 
 ### Via the NEON API, with your User Token
 
@@ -211,8 +211,8 @@ After completing this section, you will be able to:
 
 
 ### Things You’ll Need To Complete This Tutorial
-You will need a version of R (3.4.1 or higher) and, preferably, `RStudio` 
-loaded on your computer to complete this tutorial.
+You will need a version of R (3.4.1 or higher) and `RStudio` 
+loaded on your computer.
 
 ### Install R Packages
 
@@ -242,11 +242,11 @@ sign in, and go to your My Account profile page.
 Once you have an account, you can create an API token for yourself. At 
 the bottom of the My Account page, you should see this bar: 
 
-<img src="/Users/kdw223/Research/katharynduffy.github.io/images/get-api-token-button.png" width="600" />
+<img src="./images/get-api-token-button.png" width="600" />
 
 Click the 'GET API TOKEN' button. After a moment, you should see this:
 
-<img src="/Users/kdw223/Research/katharynduffy.github.io/images/account-page-token-view.png" width="602" />
+<img src="./images/account-page-token-view.png" width="602" />
 
 Click on the Copy button to copy your API token to the clipboard.
 
@@ -407,15 +407,154 @@ foliar <- loadByProduct(dpID="DP1.10026.001", site="all",
                         token=Sys.getenv("NEON_TOKEN"))
 ```
 
+## Hands on: NEON TOS Data
+
+### Pull in Tree Data from NEON's TOS and investigate relationships
+
+> Adapted from [Claire Lunch's 'Compare tree height measured from the ground to a Lidar-based Canopy Height Model'](https://www.neonscience.org/tree-heights-veg-structure-chm) tutorial 
+
+
+Later in this course we will be working with NEON's LiDAR-based Canopy Height Model (CHM) data from their extensive Airborne Observation Platform (AOP).  In this section we will pull in **DP1.10098.001, Woody plant vegetation structure** from NEON's Terrestrial Observation Sampling (TOS) data and explore the data, from requesting it to plotting it.
+
+<img src="./docs/images/NEON_TOS_Sampling.png" width="1078" />
+
+> Generalized TOS sampling schema􏰃c, showing the placement of Distributed, Tower, and Gradient Plots from the [NEON GUIDE TO WOODY PLANT VEGETATION STRUCTURE](https://www.google.com/url?sa=i&url=http%3A%2F%2Fdata.neonscience.org%2Fapi%2Fv0%2Fdocuments%2FNEON_vegStructure_userGuide_vA&psig=AOvVaw32PujoEegMkzIWVuL_Scwn&ust=1597765301177000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCOjFiN_JousCFQAAAAAdAAAAABAU)
+
+The [vegetation structure data](https://data.neonscience.org/data-products/DP1.10098.001) are collected by by field staff on the ground. This data product contains the quality-controlled, native sampling resolution data from in-situ measurements of live and standing dead woody individuals and shrub groups, from all terrestrial NEON sites with qualifying woody vegetation. The exact measurements collected per individual depend on growth form, and these measurements are focused on enabling biomass and productivity estimation, estimation of shrub volume and biomass, and calibration / validation of multiple NEON airborne remote-sensing data products. In general, comparatively large individuals that are visible to remote-sensing instruments are mapped, tagged and measured, and other smaller individuals are tagged and measured but not mapped. Smaller individuals may be subsampled according to a nested subplot approach in order to standardize the per plot sampling effort. Structure and mapping data are reported per individual per plot; sampling metadata, such as per growth form sampling area, are reported per plot. 
+
+<img src="./docs/images/NEON_woody_sampling.png" width="1039" />
+> Illustration of a 20 m x 20 m Distributed/Gradient/Tower base plot (left), a 40 m x 40 m Tower base plot (right), and associated nested subplots used for measuring woody stem vegetation. Locations of subplots are denoted with plain text numbers, and locations of nested subplots are denoted with italic numbers from the [NEON GUIDE TO WOODY PLANT VEGETATION STRUCTURE](https://www.google.com/url?sa=i&url=http%3A%2F%2Fdata.neonscience.org%2Fapi%2Fv0%2Fdocuments%2FNEON_vegStructure_userGuide_vA&psig=AOvVaw32PujoEegMkzIWVuL_Scwn&ust=1597765301177000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCOjFiN_JousCFQAAAAAdAAAAABAU)
+
+For the purpose of this hands-on activity we will be using data from the Wind River Experimental Forest NEON field site located in Washington state *Note: this is also a core site for many other networks such as [AmeriFlux and FLUXNET](https://ameriflux.lbl.gov/sites/siteinfo/US-Wrc), which we will cover later*. The predominant vegetation there are tall evergreen conifers.
+
+<img src="./images/DSC_0385-scaled-photo-gallery-680x1024.jpg" width="340" />
+
+> Image of the Wind River Crane Flux Tower from [Ameriflux](https://ameriflux.lbl.gov/sites/siteinfo/US-Wrc)
+
+
+Let's begin by:
+
+1. Installing the `geoNEON` package
+2. Making sure that the packages that we need are loaded, and 
+3. Supressing 'stirngs as factors' in R, as factors make all sorts of functions in R 'cranky'.
+
+
+```r
+options(stringsAsFactors=F)
+
+#install.packages("devtools") #uncomment if you don't yet have devtools
+#devtools::install_github("NEONScience/NEON-geolocation/geoNEON")
+
+library(neonUtilities)
+```
+
+```
+## Warning: package 'neonUtilities' was built under R version 3.6.2
+```
+
+```r
+library(geoNEON)
+library(sp)
+```
+
+```
+## Warning: package 'sp' was built under R version 3.6.2
+```
+
+Now lets begin by pulling in the **vegetation structure data** using the `loadByProduct()` function in the `neonUtilities` package.  Inputs needed to the function are:
+
+* dpID: data product ID; (woody vegetation structure = DP1.10098.001
+
+* site: 4-letter site code; Wind River = WREF
+
+* package: basic or expanded; we'll begin with a `basic` here
+
+
+```r
+veglist <- loadByProduct(dpID="DP1.10098.001", site="WREF", package="basic", check.size=FALSE)
+```
+
+```
+## Finding available files
+##   |                                                                              |                                                                      |   0%  |                                                                              |===================================                                   |  50%  |                                                                              |======================================================================| 100%
+## 
+## Downloading files totaling approximately 315.8 KiB
+## Downloading 2 files
+##   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%
+## 
+## Unpacking zip files using 1 cores.
+## Stacking operation across a single core.
+## Stacking table vst_apparentindividual
+## Stacking table vst_mappingandtagging
+## Stacking table vst_perplotperyear
+## Copied the most recent publication of validation file to /stackedFiles
+## Copied the most recent publication of categoricalCodes file to /stackedFiles
+## Copied the most recent publication of variable definition file to /stackedFiles
+## Finished: Stacked 3 data tables and 3 metadata tables!
+## Stacking took 0.185046 secs
+## All unzipped monthly data folders have been removed.
+```
+
+Now, use the `getLocTOS()` function in the `geoNEON` package to get precise locations for the tagged plants. You can refer to the package documentation for more details.
+
+
+```r
+vegmap <- getLocTOS(veglist$vst_mappingandtagging, 
+                          "vst_mappingandtagging")
+```
+
+```
+##   |                                                                              |                                                                      |   0%  |                                                                              |=                                                                     |   1%  |                                                                              |=                                                                     |   2%  |                                                                              |==                                                                    |   2%  |                                                                              |==                                                                    |   3%  |                                                                              |===                                                                   |   4%  |                                                                              |===                                                                   |   5%  |                                                                              |====                                                                  |   6%  |                                                                              |=====                                                                 |   7%  |                                                                              |======                                                                |   8%  |                                                                              |======                                                                |   9%  |                                                                              |=======                                                               |  10%  |                                                                              |========                                                              |  11%  |                                                                              |========                                                              |  12%  |                                                                              |=========                                                             |  13%  |                                                                              |==========                                                            |  14%  |                                                                              |===========                                                           |  15%  |                                                                              |===========                                                           |  16%  |                                                                              |============                                                          |  17%  |                                                                              |============                                                          |  18%  |                                                                              |=============                                                         |  18%  |                                                                              |=============                                                         |  19%  |                                                                              |==============                                                        |  20%  |                                                                              |===============                                                       |  21%  |                                                                              |===============                                                       |  22%  |                                                                              |================                                                      |  22%  |                                                                              |================                                                      |  23%  |                                                                              |=================                                                     |  24%  |                                                                              |=================                                                     |  25%  |                                                                              |==================                                                    |  26%  |                                                                              |===================                                                   |  27%  |                                                                              |====================                                                  |  28%  |                                                                              |====================                                                  |  29%  |                                                                              |=====================                                                 |  30%  |                                                                              |======================                                                |  31%  |                                                                              |======================                                                |  32%  |                                                                              |=======================                                               |  33%  |                                                                              |========================                                              |  34%  |                                                                              |=========================                                             |  35%  |                                                                              |=========================                                             |  36%  |                                                                              |==========================                                            |  37%  |                                                                              |==========================                                            |  38%  |                                                                              |===========================                                           |  38%  |                                                                              |===========================                                           |  39%  |                                                                              |============================                                          |  40%  |                                                                              |=============================                                         |  41%  |                                                                              |=============================                                         |  42%  |                                                                              |==============================                                        |  42%  |                                                                              |==============================                                        |  43%  |                                                                              |===============================                                       |  44%  |                                                                              |===============================                                       |  45%  |                                                                              |================================                                      |  46%  |                                                                              |=================================                                     |  47%  |                                                                              |==================================                                    |  48%  |                                                                              |==================================                                    |  49%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================                                  |  51%  |                                                                              |====================================                                  |  52%  |                                                                              |=====================================                                 |  53%  |                                                                              |======================================                                |  54%  |                                                                              |=======================================                               |  55%  |                                                                              |=======================================                               |  56%  |                                                                              |========================================                              |  57%  |                                                                              |========================================                              |  58%  |                                                                              |=========================================                             |  58%  |                                                                              |=========================================                             |  59%  |                                                                              |==========================================                            |  60%  |                                                                              |===========================================                           |  61%  |                                                                              |===========================================                           |  62%  |                                                                              |============================================                          |  62%  |                                                                              |============================================                          |  63%  |                                                                              |=============================================                         |  64%  |                                                                              |=============================================                         |  65%  |                                                                              |==============================================                        |  66%  |                                                                              |===============================================                       |  67%  |                                                                              |================================================                      |  68%  |                                                                              |================================================                      |  69%  |                                                                              |=================================================                     |  70%  |                                                                              |==================================================                    |  71%  |                                                                              |==================================================                    |  72%  |                                                                              |===================================================                   |  73%  |                                                                              |====================================================                  |  74%  |                                                                              |=====================================================                 |  75%  |                                                                              |=====================================================                 |  76%  |                                                                              |======================================================                |  77%  |                                                                              |======================================================                |  78%  |                                                                              |=======================================================               |  78%  |                                                                              |=======================================================               |  79%  |                                                                              |========================================================              |  80%  |                                                                              |=========================================================             |  81%  |                                                                              |=========================================================             |  82%  |                                                                              |==========================================================            |  82%  |                                                                              |==========================================================            |  83%  |                                                                              |===========================================================           |  84%  |                                                                              |===========================================================           |  85%  |                                                                              |============================================================          |  86%  |                                                                              |=============================================================         |  87%  |                                                                              |==============================================================        |  88%  |                                                                              |==============================================================        |  89%  |                                                                              |===============================================================       |  90%  |                                                                              |================================================================      |  91%  |                                                                              |================================================================      |  92%  |                                                                              |=================================================================     |  93%  |                                                                              |==================================================================    |  94%  |                                                                              |===================================================================   |  95%  |                                                                              |===================================================================   |  96%  |                                                                              |====================================================================  |  97%  |                                                                              |====================================================================  |  98%  |                                                                              |===================================================================== |  98%  |                                                                              |===================================================================== |  99%  |                                                                              |======================================================================| 100%
+```
+
+Now we need to merge the mapped locations of individuals (the `vst_mappingandtagging table`) with the annual measurements of height, diameter, etc (the `vst_apparentindividual table`). The two tables join based on *individualID*, the identifier for each tagged plant, but we'll include namedLocation, domainID, siteID, and plotID in the list of variables to merge on, to avoid ending up with duplicates of each of those columns. Refer to the variables table and to the Data Product User Guide for Woody plant vegetation structure for more information about the contents of each data table.
+
+
+```r
+veg <- merge(veglist$vst_apparentindividual, vegmap, 
+             by=c("individualID","namedLocation",
+                  "domainID","siteID","plotID"))
+```
+
+What did you just pull in?  Are you sure you know what you're working with? A **best practice** is to *always* do a quick visualization to make sure that you have the right data and that you understand its spread:
+
+
+```r
+symbols(veg$adjEasting[which(veg$plotID=="WREF_075")], 
+        veg$adjNorthing[which(veg$plotID=="WREF_075")], 
+        circles=veg$stemDiameter[which(veg$plotID=="WREF_075")]/100/2, 
+        inches=F, xlab="Easting", ylab="Northing")
+```
+
+<img src="02_Introduction_to_NEON_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+
+A key component of any measurement, and therefore a reoccuring theme in this course, is an **estimate of uncertainty**.  Let's overlay estimates of uncertainty for the location of each stem in blue:
+
+
+```r
+symbols(veg$adjEasting[which(veg$plotID=="WREF_075")], 
+        veg$adjNorthing[which(veg$plotID=="WREF_075")], 
+        circles=veg$stemDiameter[which(veg$plotID=="WREF_075")]/100/2, 
+        inches=F, xlab="Easting", ylab="Northing")
+symbols(veg$adjEasting[which(veg$plotID=="WREF_075")], 
+        veg$adjNorthing[which(veg$plotID=="WREF_075")], 
+        circles=veg$adjCoordinateUncertainty[which(veg$plotID=="WREF_075")], 
+        inches=F, add=T, fg="lightblue")
+```
+
+<img src="02_Introduction_to_NEON_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+
+
+
 
 
 ## Part 2: Pulling NEON Data via the API
 
-This is a tutorial in pulling data from the NEON API or Application 
-Programming Interface. The tutorial uses R and the R package httr, but the core 
+This section covers pulling data from the NEON API or Application 
+Programming Interface using R and the R package httr, but the core 
 information about the API is applicable to other languages and approaches.
 
-As a reminder, there are 3 basic categories of NEON data:
+**As a reminder, there are 3 basic categories of NEON data:**
 
 1. Observational - Data collected by a human in the field, or in an analytical 
 laboratory, e.g. beetle identification, foliar isotopes
@@ -440,7 +579,7 @@ After completing this activity, you will be able to:
 
 
 
-### Things You’ll Need To Complete This Tutorial
+### Things You’ll Need To Complete This Section
 To complete this tutorial you will need the most current version of R and, 
 preferably, RStudio loaded on your computer.
 
@@ -466,6 +605,8 @@ Note, you must have devtools installed & loaded, prior to loading geoNEON or neo
 
 ## What is an API?
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/s7wmiS2mSXY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 >The following material was adapted from:
 >"Using the NEON API in R"
 description: "Tutorial for getting data from the NEON API, using R and the R package httr"
@@ -483,6 +624,8 @@ the ecological and environmental sciences, many researchers use APIs to
 programmatically pull data into their analyses. (Quoted from the NEON Observatory
 Blog story: 
 <a href="https://www.neonscience.org/observatory/observatory-blog/api-data-availability-viewer-now-live-neon-data-portal" target ="_blank"> API and data availability viewer now live on the NEON data portal</a>.)
+
+There are actually many types or constructions of APIs.  If you're interested you can [read a little more about them here](https://stoplight.io/api-types/)
 
 ### Anatomy of an API call
 
@@ -582,7 +725,7 @@ req
 
 ```
 ## Response [https://data.neonscience.org/api/v0/products/DP1.10003.001]
-##   Date: 2020-08-12 18:06
+##   Date: 2020-08-17 16:08
 ##   Status: 200
 ##   Content-Type: application/json;charset=UTF-8
 ##   Size: 24.2 kB
@@ -971,56 +1114,56 @@ brd.files$data$files
 
 ```
 ##                                                                               name
-## 1                          NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt
-## 2           NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml
-## 3      NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.basic.20191107T152331Z.csv
-## 4                      NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv
+## 1                       NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv
+## 2      NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.basic.20191107T152331Z.csv
+## 3                          NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt
+## 4           NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml
 ## 5     NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.basic.20191107T152331Z.csv
 ## 6                   NEON.D09.WOOD.DP1.10003.001.2015-07.basic.20191107T152331Z.zip
-## 7                       NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv
-## 8           NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml
-## 9                           NEON.Bird_Conservancy_of_the_Rockies.brd_personnel.csv
-## 10        NEON.D09.WOOD.DP1.10003.001.brd_references.expanded.20191107T152331Z.csv
-## 11               NEON.D09.WOOD.DP1.10003.001.2015-07.expanded.20191107T152331Z.zip
-## 12 NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.expanded.20191107T152331Z.csv
-## 13                     NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv
+## 7                      NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv
+## 8                       NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv
+## 9         NEON.D09.WOOD.DP1.10003.001.brd_references.expanded.20191107T152331Z.csv
+## 10 NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.expanded.20191107T152331Z.csv
+## 11                     NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv
+## 12                         NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt
+## 13          NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml
 ## 14  NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.expanded.20191107T152331Z.csv
-## 15                         NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt
-## 16                      NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv
+## 15               NEON.D09.WOOD.DP1.10003.001.2015-07.expanded.20191107T152331Z.zip
+## 16                          NEON.Bird_Conservancy_of_the_Rockies.brd_personnel.csv
 ##      size                              md5 crc32
-## 1   12784 d84b496cf950b5b96e762473beda563a    NA
-## 2   70539 df102cb4cfdce092cda3c0942c9d9b67    NA
-## 3   23521 f37931d46213246dccf2a161211c9afe    NA
-## 4   10084 6d15da01c03793da8fc6d871e6659ea8    NA
+## 1    7337 e67f1ae72760a63c616ec18108453aaa    NA
+## 2   23521 f37931d46213246dccf2a161211c9afe    NA
+## 3   12784 d84b496cf950b5b96e762473beda563a    NA
+## 4   70539 df102cb4cfdce092cda3c0942c9d9b67    NA
 ## 5  346679 e0adb3146b5cce59eea09864145efcb1    NA
 ## 6   67816 4438e5e050fc7be5949457f42089a397    NA
-## 7    7337 e67f1ae72760a63c616ec18108453aaa    NA
-## 8   78750 6ba91b6e109ff14d1911dcaad9febeb9    NA
-## 9   46349 a2c47410a6a0f49d0b1cf95be6238604    NA
-## 10   1012 d76cfc5443ac27a058fab1d319d31d34    NA
-## 11  79998 22e3353dabb8b154768dc2eee9873718    NA
-## 12 367402 2ad379ae44f4e87996bdc3dee70a0794    NA
-## 13  10084 6d15da01c03793da8fc6d871e6659ea8    NA
+## 7   10084 6d15da01c03793da8fc6d871e6659ea8    NA
+## 8    7337 e67f1ae72760a63c616ec18108453aaa    NA
+## 9    1012 d76cfc5443ac27a058fab1d319d31d34    NA
+## 10 367402 2ad379ae44f4e87996bdc3dee70a0794    NA
+## 11  10084 6d15da01c03793da8fc6d871e6659ea8    NA
+## 12  13063 680a2f53c0a9d1b0ab4f8814bda5b399    NA
+## 13  78750 6ba91b6e109ff14d1911dcaad9febeb9    NA
 ## 14  23521 f37931d46213246dccf2a161211c9afe    NA
-## 15  13063 680a2f53c0a9d1b0ab4f8814bda5b399    NA
-## 16   7337 e67f1ae72760a63c616ec18108453aaa    NA
+## 15  79998 22e3353dabb8b154768dc2eee9873718    NA
+## 16  46349 a2c47410a6a0f49d0b1cf95be6238604    NA
 ##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        url
-## 1                             https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200812T180639Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200812%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=92fcbc09d5539a4f5e3d5c18bb9e6f40fb73cf8ffca5ecd9dee3dd54c914586d
-## 2              https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200812T180639Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200812%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=06eadb492d5f0bd4f885db9575471391df2e003435ff6bd8c33da7e96e00a8cb
-## 3         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.basic.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200812T180639Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200812%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=353cd8aec2dca7800dce6696ad95b1cb3725fc87a9f1417fc3a20522f4b5bb52
-## 4                         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200812T180639Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200812%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=649b11e6c0eaded62b8d617b7a537b86bd69e16d7a52e247e219b0f8e9fec093
-## 5        https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.basic.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200812T180639Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200812%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=f905ff0325e63906dd113c9cb7ab5f3abca040593f71cf4131e0d2aec50e67dc
-## 6                      https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.2015-07.basic.20191107T152331Z.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200812T180639Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=pub-internal-read%2F20200812%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=4ec6f267728bb666aaa988dad2436f7df910cbbb77ad4c3ae404681d282ec174
-## 7                          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200812T180639Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200812%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=0eb1be3786da38a8bc606f1ed925b4cc23a64471613bfc3f7ba4374324f81790
-## 8           https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200812T180639Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200812%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=12ed1e67ab7f549a61b155c7946cd9f47991d1ca6852d5b312964c18cda98289
-## 9                           https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.Bird_Conservancy_of_the_Rockies.brd_personnel.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200812T180639Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200812%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=f9593c6bc41b805a88a10e24b5ed4b61c4d9e7d6b16782a2a80adc964f37b6fb
-## 10        https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_references.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200812T180639Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200812%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=be4665266457279b9b5a36d3dc22626280a85c4bc87ee67dd4f54c8104f4a812
-## 11               https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.2015-07.expanded.20191107T152331Z.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200812T180639Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=pub-internal-read%2F20200812%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=00662262bd57291ecddb8eb559373b88ec27f9e4d65b5d751d94fe58c62e3dba
-## 12 https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200812T180639Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200812%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=68ec4ba991a3af0591ba76b761dc4bb63e1793b1f8aa878b3090a4520273d9f2
-## 13                     https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200812T180639Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200812%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=37203e1ea2a26b86dd51874a8bdb6527d8d54b72bbfdceb8b73d767fc6e18072
-## 14  https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200812T180639Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200812%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=c70c2798cb84a0150e23eb64faf3f67f8c9217b33c9aac1f2e3582436b52a6e2
-## 15                         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200812T180639Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200812%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=7e2c6aebcd57f1863751eaaf2d8f948fce5ec0af7b162e370c0f4cfa7152667c
-## 16                      https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200812T180639Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200812%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=4179dc446049f6a2c05e48951e1f60605276478eb61d49f62b3be5bc335af6e1
+## 1                          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200817T160852Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200817%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=505253b9d10057fde97477f45bd8937e57fc126b6b8f37af5763c485f3d863da
+## 2         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.basic.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200817T160852Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=pub-internal-read%2F20200817%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=d2c63030565ccfd71becc515b4c871edeb45f5c46cf9b3fbcf38210b5e1708c9
+## 3                             https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200817T160852Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200817%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=9bdf4709fe0a485420e567c688f45135e5c82a41a8910ac0c7c11d9dc24253ec
+## 4              https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200817T160852Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200817%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=02cef4c62f7d559bccc7b280d60a4b2634173d67a0226f09bbc0247134a7feae
+## 5        https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.basic.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200817T160852Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200817%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=336be7b44ce42f4483b55b51a2d60c9916c6326a049c318469597434b9cfe807
+## 6                      https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.2015-07.basic.20191107T152331Z.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200817T160852Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200817%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=d192303b9a4a85b81f927705cc9abce1d5390c93761430cd0c940a304ae13336
+## 7                         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200817T160852Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200817%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=eccc340fd02decca60011c226637fd7d834fc1a175c46f5853c57d54447986b0
+## 8                       https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200817T160852Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200817%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=3aef8eec54fa216e91df77eacd170ea77214388686fb57b9ca84ba98aa5e5337
+## 9         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_references.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200817T160852Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200817%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=5e49445218380761e532f8c558bb7faa3e10c80a8c3357f9bf2adf07e0499bb3
+## 10 https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200817T160852Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200817%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=b9211007aeb81de1d6ce69280f23021e1481cb94a8db25323701921479288ccd
+## 11                     https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200817T160852Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200817%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=c3c0852124e1e5bf7be53f000314f2b6e26763c72451af8b236b257ed1a33ba5
+## 12                         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200817T160852Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200817%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=54cfa9cc1a4f6f6232061d715f3f13c1135812554e431cadb5d3c5320bd38398
+## 13          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200817T160852Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200817%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=0195377a8f005cc3afce77c8fac0d288185fa4484d11ef78a6bc63aecafe22be
+## 14  https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200817T160852Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200817%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=569b290a8f8fd8a5235f8e28883755d7d31077f2d59710e9e8949f1f388feea3
+## 15               https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.2015-07.expanded.20191107T152331Z.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200817T160852Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200817%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=3857f67759b99135ff4e324f3c3f46d3a6ec9794d52b0a65e7cfc816146f139e
+## 16                          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.Bird_Conservancy_of_the_Rockies.brd_personnel.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200817T160852Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200817%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=7646cb907ac991739ff293cdb836b2feeec82327ed55ad09490d9a4b73a765d3
 ```
 
 In this output, `name` and `url` are key fields. It provides us with the names 
@@ -1170,16 +1313,16 @@ tmp.files$data$files$name[1:10]   # Let's print the first 10
 ```
 
 ```
-##  [1] "NEON.D13.MOAB.DP1.00041.001.004.503.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
-##  [2] "NEON.D13.MOAB.DP1.00041.001.002.502.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
-##  [3] "NEON.D13.MOAB.DP1.00041.001.001.507.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
-##  [4] "NEON.D13.MOAB.DP1.00041.001.005.502.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
-##  [5] "NEON.D13.MOAB.DP1.00041.001.002.501.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
-##  [6] "NEON.D13.MOAB.DP1.00041.001.002.508.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
-##  [7] "NEON.D13.MOAB.DP1.00041.001.001.504.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
-##  [8] "NEON.D13.MOAB.DP1.00041.001.005.505.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
-##  [9] "NEON.D13.MOAB.DP1.00041.001.001.504.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
-## [10] "NEON.D13.MOAB.DP1.00041.001.001.505.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
+##  [1] "NEON.D13.MOAB.DP1.00041.001.002.506.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
+##  [2] "NEON.D13.MOAB.DP1.00041.001.004.503.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
+##  [3] "NEON.D13.MOAB.DP1.00041.001.005.506.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
+##  [4] "NEON.D13.MOAB.DP1.00041.001.005.501.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
+##  [5] "NEON.D13.MOAB.DP1.00041.001.004.506.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
+##  [6] "NEON.D13.MOAB.DP1.00041.001.001.509.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
+##  [7] "NEON.D13.MOAB.DP1.00041.001.005.508.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
+##  [8] "NEON.D13.MOAB.DP1.00041.001.005.503.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
+##  [9] "NEON.D13.MOAB.DP1.00041.001.004.504.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
+## [10] "NEON.D13.MOAB.DP1.00041.001.001.502.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv"
 ```
 
 These file names start and end the same way as the observational files, but the 
@@ -1267,16 +1410,16 @@ head(cam.files$data$files$name, 10)
 ```
 
 ```
-##  [1] "17032816_EH021656(20170328194928)-1055_ort.tif"
-##  [2] "17032816_EH021656(20170328182501)-0361_ort.tif"
-##  [3] "17032816_EH021656(20170328185435)-0585_ort.tif"
-##  [4] "17032816_EH021656(20170328194711)-1025_ort.tif"
-##  [5] "17032816_EH021656(20170328191830)-0780_ort.tif"
-##  [6] "17032816_EH021656(20170328182929)-0391_ort.tif"
-##  [7] "17032816_EH021656(20170328181826)-0305_ort.tif"
-##  [8] "17032816_EH021656(20170328174818)-0043_ort.tif"
-##  [9] "17032816_EH021656(20170328193505)-0916_ort.tif"
-## [10] "17032816_EH021656(20170328193157)-0897_ort.tif"
+##  [1] "17032816_EH021656(20170328183658)-0452_ort.tif"
+##  [2] "17032816_EH021656(20170328195753)-1125_ort.tif"
+##  [3] "17032816_EH021656(20170328185544)-0600_ort.tif"
+##  [4] "17032816_EH021656(20170328175210)-0071_ort.tif"
+##  [5] "17032816_EH021656(20170328201506)-1249_ort.tif"
+##  [6] "17032816_EH021656(20170328175059)-0055_ort.tif"
+##  [7] "17032816_EH021656(20170328184322)-0506_ort.tif"
+##  [8] "17032816_EH021656(20170328194725)-1028_ort.tif"
+##  [9] "17032816_EH021656(20170328185013)-0557_ort.tif"
+## [10] "17032816_EH021656(20170328183103)-0413_ort.tif"
 ```
 
 File names for AOP data are more variable than for IS or OS data; 
@@ -1352,9 +1495,8 @@ head(brd.point$namedLocation)
 ```
 
 ```
-## [1] WOOD_013.birdGrid.brd WOOD_013.birdGrid.brd WOOD_013.birdGrid.brd
-## [4] WOOD_013.birdGrid.brd WOOD_013.birdGrid.brd WOOD_013.birdGrid.brd
-## 7 Levels: WOOD_006.birdGrid.brd ... WOOD_020.birdGrid.brd
+## [1] "WOOD_013.birdGrid.brd" "WOOD_013.birdGrid.brd" "WOOD_013.birdGrid.brd"
+## [4] "WOOD_013.birdGrid.brd" "WOOD_013.birdGrid.brd" "WOOD_013.birdGrid.brd"
 ```
 
 Here we see the first six entries in the `namedLocation` column which tells us

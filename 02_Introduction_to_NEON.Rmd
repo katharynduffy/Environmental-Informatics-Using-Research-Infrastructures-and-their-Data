@@ -174,7 +174,7 @@ with other community resources, NEON data can be accessed through the portals.
 Examples include Phenocam, BOLD, Ameriflux, and others. You can learn more in the
 documentation for individual data products.  
 
-## Hands on: Accessing NEON Data
+## Hands on: Accessing NEON Data & User Tokens
 
 ### Via the NEON API, with your User Token
 
@@ -211,8 +211,8 @@ After completing this section, you will be able to:
 
 
 ### Things You’ll Need To Complete This Tutorial
-You will need a version of R (3.4.1 or higher) and, preferably, `RStudio` 
-loaded on your computer to complete this tutorial.
+You will need a version of R (3.4.1 or higher) and `RStudio` 
+loaded on your computer.
 
 ### Install R Packages
 
@@ -243,13 +243,13 @@ Once you have an account, you can create an API token for yourself. At
 the bottom of the My Account page, you should see this bar: 
 
 ```{r,echo=FALSE}
-knitr::include_graphics('/Users/kdw223/Research/katharynduffy.github.io/images/get-api-token-button.png')
+knitr::include_graphics('./images/get-api-token-button.png')
 ```
 
 Click the 'GET API TOKEN' button. After a moment, you should see this:
 
 ```{r,echo=FALSE}
-knitr::include_graphics('/Users/kdw223/Research/katharynduffy.github.io/images/account-page-token-view.png')
+knitr::include_graphics('./images/account-page-token-view.png')
 ```
 
 Click on the Copy button to copy your API token to the clipboard.
@@ -402,15 +402,114 @@ foliar <- loadByProduct(dpID="DP1.10026.001", site="all",
                         token=Sys.getenv("NEON_TOKEN"))
 ```
 
+## Hands on: NEON TOS Data
+
+### Pull in Tree Data from NEON's TOS and investigate relationships
+
+> Adapted from [Claire Lunch's 'Compare tree height measured from the ground to a Lidar-based Canopy Height Model'](https://www.neonscience.org/tree-heights-veg-structure-chm) tutorial 
+
+
+Later in this course we will be working with NEON's LiDAR-based Canopy Height Model (CHM) data from their extensive Airborne Observation Platform (AOP).  In this section we will pull in **DP1.10098.001, Woody plant vegetation structure** from NEON's Terrestrial Observation Sampling (TOS) data and explore the data, from requesting it to plotting it.
+
+```{r, echo=FALSE}
+knitr::include_graphics('./docs/images/NEON_TOS_Sampling.png')
+```
+
+> Generalized TOS sampling schema􏰃c, showing the placement of Distributed, Tower, and Gradient Plots from the [NEON GUIDE TO WOODY PLANT VEGETATION STRUCTURE](https://www.google.com/url?sa=i&url=http%3A%2F%2Fdata.neonscience.org%2Fapi%2Fv0%2Fdocuments%2FNEON_vegStructure_userGuide_vA&psig=AOvVaw32PujoEegMkzIWVuL_Scwn&ust=1597765301177000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCOjFiN_JousCFQAAAAAdAAAAABAU)
+
+The [vegetation structure data](https://data.neonscience.org/data-products/DP1.10098.001) are collected by by field staff on the ground. This data product contains the quality-controlled, native sampling resolution data from in-situ measurements of live and standing dead woody individuals and shrub groups, from all terrestrial NEON sites with qualifying woody vegetation. The exact measurements collected per individual depend on growth form, and these measurements are focused on enabling biomass and productivity estimation, estimation of shrub volume and biomass, and calibration / validation of multiple NEON airborne remote-sensing data products. In general, comparatively large individuals that are visible to remote-sensing instruments are mapped, tagged and measured, and other smaller individuals are tagged and measured but not mapped. Smaller individuals may be subsampled according to a nested subplot approach in order to standardize the per plot sampling effort. Structure and mapping data are reported per individual per plot; sampling metadata, such as per growth form sampling area, are reported per plot. 
+
+```{r, echo=FALSE}
+knitr::include_graphics('./docs/images/NEON_woody_sampling.png')
+```
+> Illustration of a 20 m x 20 m Distributed/Gradient/Tower base plot (left), a 40 m x 40 m Tower base plot (right), and associated nested subplots used for measuring woody stem vegetation. Locations of subplots are denoted with plain text numbers, and locations of nested subplots are denoted with italic numbers from the [NEON GUIDE TO WOODY PLANT VEGETATION STRUCTURE](https://www.google.com/url?sa=i&url=http%3A%2F%2Fdata.neonscience.org%2Fapi%2Fv0%2Fdocuments%2FNEON_vegStructure_userGuide_vA&psig=AOvVaw32PujoEegMkzIWVuL_Scwn&ust=1597765301177000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCOjFiN_JousCFQAAAAAdAAAAABAU)
+
+For the purpose of this hands-on activity we will be using data from the Wind River Experimental Forest NEON field site located in Washington state *Note: this is also a core site for many other networks such as [AmeriFlux and FLUXNET](https://ameriflux.lbl.gov/sites/siteinfo/US-Wrc), which we will cover later*. The predominant vegetation there are tall evergreen conifers.
+
+```{r, echo=FALSE}
+knitr::include_graphics('./images/DSC_0385-scaled-photo-gallery-680x1024.jpg')
+```
+
+> Image of the Wind River Crane Flux Tower from [Ameriflux](https://ameriflux.lbl.gov/sites/siteinfo/US-Wrc)
+
+
+Let's begin by:
+
+1. Installing the `geoNEON` package
+2. Making sure that the packages that we need are loaded, and 
+3. Supressing 'stirngs as factors' in R, as factors make all sorts of functions in R 'cranky'.
+
+```{r}
+options(stringsAsFactors=F)
+
+#install.packages("devtools") #uncomment if you don't yet have devtools
+#devtools::install_github("NEONScience/NEON-geolocation/geoNEON")
+
+library(neonUtilities)
+library(geoNEON)
+library(sp)
+```
+
+Now lets begin by pulling in the **vegetation structure data** using the `loadByProduct()` function in the `neonUtilities` package.  Inputs needed to the function are:
+
+* dpID: data product ID; (woody vegetation structure = DP1.10098.001
+
+* site: 4-letter site code; Wind River = WREF
+
+* package: basic or expanded; we'll begin with a `basic` here
+
+```{r}
+veglist <- loadByProduct(dpID="DP1.10098.001", site="WREF", package="basic", check.size=FALSE)
+```
+
+Now, use the `getLocTOS()` function in the `geoNEON` package to get precise locations for the tagged plants. You can refer to the package documentation for more details.
+
+```{r}
+vegmap <- getLocTOS(veglist$vst_mappingandtagging, 
+                          "vst_mappingandtagging")
+```
+
+Now we need to merge the mapped locations of individuals (the `vst_mappingandtagging table`) with the annual measurements of height, diameter, etc (the `vst_apparentindividual table`). The two tables join based on *individualID*, the identifier for each tagged plant, but we'll include namedLocation, domainID, siteID, and plotID in the list of variables to merge on, to avoid ending up with duplicates of each of those columns. Refer to the variables table and to the Data Product User Guide for Woody plant vegetation structure for more information about the contents of each data table.
+
+```{r}
+veg <- merge(veglist$vst_apparentindividual, vegmap, 
+             by=c("individualID","namedLocation",
+                  "domainID","siteID","plotID"))
+```
+
+What did you just pull in?  Are you sure you know what you're working with? A **best practice** is to *always* do a quick visualization to make sure that you have the right data and that you understand its spread:
+
+```{r}
+symbols(veg$adjEasting[which(veg$plotID=="WREF_075")], 
+        veg$adjNorthing[which(veg$plotID=="WREF_075")], 
+        circles=veg$stemDiameter[which(veg$plotID=="WREF_075")]/100/2, 
+        inches=F, xlab="Easting", ylab="Northing")
+```
+
+A key component of any measurement, and therefore a reoccuring theme in this course, is an **estimate of uncertainty**.  Let's overlay estimates of uncertainty for the location of each stem in blue:
+
+```{r}
+symbols(veg$adjEasting[which(veg$plotID=="WREF_075")], 
+        veg$adjNorthing[which(veg$plotID=="WREF_075")], 
+        circles=veg$stemDiameter[which(veg$plotID=="WREF_075")]/100/2, 
+        inches=F, xlab="Easting", ylab="Northing")
+symbols(veg$adjEasting[which(veg$plotID=="WREF_075")], 
+        veg$adjNorthing[which(veg$plotID=="WREF_075")], 
+        circles=veg$adjCoordinateUncertainty[which(veg$plotID=="WREF_075")], 
+        inches=F, add=T, fg="lightblue")
+```
+
+
+
 
 
 ## Part 2: Pulling NEON Data via the API
 
-This is a tutorial in pulling data from the NEON API or Application 
-Programming Interface. The tutorial uses R and the R package httr, but the core 
+This section covers pulling data from the NEON API or Application 
+Programming Interface using R and the R package httr, but the core 
 information about the API is applicable to other languages and approaches.
 
-As a reminder, there are 3 basic categories of NEON data:
+**As a reminder, there are 3 basic categories of NEON data:**
 
 1. Observational - Data collected by a human in the field, or in an analytical 
 laboratory, e.g. beetle identification, foliar isotopes
@@ -435,7 +534,7 @@ After completing this activity, you will be able to:
 
 
 
-### Things You’ll Need To Complete This Tutorial
+### Things You’ll Need To Complete This Section
 To complete this tutorial you will need the most current version of R and, 
 preferably, RStudio loaded on your computer.
 
@@ -461,6 +560,8 @@ Note, you must have devtools installed & loaded, prior to loading geoNEON or neo
 
 ## What is an API?
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/s7wmiS2mSXY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 >The following material was adapted from:
 >"Using the NEON API in R"
 description: "Tutorial for getting data from the NEON API, using R and the R package httr"
@@ -478,6 +579,8 @@ the ecological and environmental sciences, many researchers use APIs to
 programmatically pull data into their analyses. (Quoted from the NEON Observatory
 Blog story: 
 <a href="https://www.neonscience.org/observatory/observatory-blog/api-data-availability-viewer-now-live-neon-data-portal" target ="_blank"> API and data availability viewer now live on the NEON data portal</a>.)
+
+There are actually many types or constructions of APIs.  If you're interested you can [read a little more about them here](https://stoplight.io/api-types/)
 
 ### Anatomy of an API call
 
