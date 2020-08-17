@@ -7,6 +7,5 @@ output: html_document
 
 ***
 
-Hi, I'm Dr. Katharyn Duffy.  I have a Ph.D in Earth Science from Northern Arizona University.  Over the past two years I've worked as an open-source software engineer in the PhenoCam lab, and now I'm the coding and lab support for your course.  I really look forward to working with all of you!
-
+Hello everyone. I'm Iván González, from Colombia. I hade a Bsc in Ecology and almost a Msc in Hydrology, both from Xaverian University in my country. Now I'm pursuing a PhD in Ecoinformatics. This is my second year. I also want to determine the effects of forest loss on water related ecosystem services.
 ***
