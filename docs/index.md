@@ -10,6 +10,7 @@ github-repo: 'katharynduffy/katharynduffy.github.io'
 description: "Course text for NAU INF 550"
 always_allow_html: true
 ---
+>2020 Edition
 
 # Preface {-}
 
