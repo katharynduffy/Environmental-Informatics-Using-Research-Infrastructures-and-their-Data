@@ -40,3 +40,9 @@ vignettes/*.pdf
 .log
 _book/
 _bookdown_files/
+
+# NEON Token
+
+neon_token_source.R
+
+NEON Field Sites Shapefile v17/
