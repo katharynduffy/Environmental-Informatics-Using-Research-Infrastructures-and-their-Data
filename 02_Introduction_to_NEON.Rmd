@@ -331,7 +331,7 @@ variable that gets loaded when you open R. This is a little harder to set
 up initially, but once it's done, it's done globally, and it will work in 
 every script you run.
 
-#### Option 1: Save token in a local file
+#### OPtion 1: Save token in a local file
 
 Open a new, empty R script (.R). Put a single line of code in the script:
 
@@ -355,58 +355,10 @@ source('neon_token_source.R')
 Then you'll be able to use `token=NEON_TOKEN` when you run `neonUtilities` 
 functions, and you can share your code without accidentally sharing your 
 token.
-```{r, echo}
-source('neon_token_source.R')
-```
 
-#### Option 2: Save token to the R environment
+#### Option 2: Save your toekn to your R environment
 
-To create a persistent environment variable, we use a `.Renviron` file. 
-Before creating a file, check which directory R is using as your home 
-directory:
-
-```{r getdir, eval=FALSE, comment=NA}
-# For Windows:
-Sys.getenv("R_USER")
-# For Mac/Linux:
-Sys.getenv("HOME")
-```
-
-Check the home directory to see if you already have a `.Renviron` file, **using 
-the file browse pane in RStudio**, or using another file browse method with 
-hidden files shown. Files that begin with `.` are hidden by default, but 
-RStudio recognizes files that begin with `.R` and displays them.
-
-<figure>
-	<a href="{{ site.baseurl }}/images/NEON-api-token/R-environ-file-browse.png">
-	<img src="{{ site.baseurl }}/images/NEON-api-token/R-environ-file-browse.png" alt="File browse pane in RStudio showing .Renviron file."></a>
-	<figcaption>Screenshot of file browse pane with .Renviron file. 
-	</figcaption>
-</figure>
-
-If you already have a `.Renviron` file, open it and follow the instructions 
-below to add to it. If you don't have one, create one using File -> New File 
--> Text File in the RStudio menus.
-
-Add one line to the text file. In this option, there are no quotes around the 
-token value.
-
-```{r Renviron, eval=FALSE, comment=NA}
-NEON_TOKEN=PASTE YOUR TOKEN HERE
-```
-
-Save the file as `.Renviron`, in the RStudio home directory identified above. 
-Double check the spelling, this will not work if you have a typo. Re-start 
-R to load the environment.
-
-Once your token is assigned to an environment variable, use the function 
-`Sys.getenv()` to access it. For example, in `loadByProduct()`:
-
-```{r useEnvtToken, eval=FALSE, comment=NA}
-foliar <- loadByProduct(dpID="DP1.10026.001", site="all", 
-                        package="expanded", check.size=F,
-                        token=Sys.getenv("NEON_TOKEN"))
-```
+Instructions for finding and editing your .Renviron can be found in this tutorial in [NEON's Data Tutorials section.](https://www.neonscience.org/neon-api-tokens-tutorial)
 
 ## Hands on: NEON TOS Data
 
@@ -466,7 +418,9 @@ Now lets begin by pulling in the **vegetation structure data** using the `loadBy
 * site: 4-letter site code; Wind River = WREF
 
 * package: basic or expanded; we'll begin with a `basic` here
-
+```{r, echo=FALSE}
+source('/Users/kdw223/Research/katharynduffy.github.io/neon_token_source.R')
+```
 ```{r}
 veglist <- loadByProduct(dpID="DP1.10098.001", site="WREF", package="basic", check.size=FALSE, token = NEON_TOKEN)
 
@@ -521,8 +475,7 @@ Example:
 ```{r}
 source('neon_token_source.R')
 veglist <- loadByProduct(dpID="DP1.10098.001", site="WREF", package="basic", check.size=FALSE, token = NEON_TOKEN)
-head(veglist)
-
+summary(veglist)
 ```
 
 #### Part 2: Further Investigation of NEON TOS Vegetation Structure Data
