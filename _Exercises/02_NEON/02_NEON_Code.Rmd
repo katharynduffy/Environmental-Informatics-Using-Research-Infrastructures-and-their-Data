@@ -5,13 +5,3 @@ date: "8/5/2020"
 output: pdf_document
 ---
 
-Lab TOS data
-
-Go explore another TOS dataset and download based on dpID
-
-
-
-stacked histogram of tree heights colored by species
-
-allometics
-pull 1 particilar species, height versus DBH

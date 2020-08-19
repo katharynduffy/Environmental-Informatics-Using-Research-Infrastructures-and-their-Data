@@ -339,19 +339,25 @@ Open a new, empty R script (.R). Put a single line of code in the script:
 NEON_TOKEN <- "PASTE YOUR TOKEN HERE"
 ```
 
-Save this file in a logical place on your machine, somewhere that won't be 
-visible publicly. Here, let's call the file `neon_token_source.R`, and 
-save it to the working directory. Then, at the start of 
-every script where you're going to use the NEON API, you would run this line 
+Save this file within your current R project and call the file `neon_token_source.R`.  So that you don't accidently push your token up to GitHub, move over to the command line or Atom.io and add it to your `.gitignore` file: 
+
+```{r}
+knitr::include_graphics('./docs/images/git_ignore.png')
+```
+
+Now, whenever you want to pull NEON data via the API, at the start of any analysis you would place this line 
 of code:
 
 ```{r source, eval=FALSE, comment=NA}
-source(paste0(wd, "/neon_token_source.R"))
+source('neon_token_source.R')
 ```
 
 Then you'll be able to use `token=NEON_TOKEN` when you run `neonUtilities` 
 functions, and you can share your code without accidentally sharing your 
 token.
+```{r, echo}
+source('neon_token_source.R')
+```
 
 #### Option 2: Save token to the R environment
 
@@ -462,7 +468,8 @@ Now lets begin by pulling in the **vegetation structure data** using the `loadBy
 * package: basic or expanded; we'll begin with a `basic` here
 
 ```{r}
-veglist <- loadByProduct(dpID="DP1.10098.001", site="WREF", package="basic", check.size=FALSE)
+veglist <- loadByProduct(dpID="DP1.10098.001", site="WREF", package="basic", check.size=FALSE, token = NEON_TOKEN)
+
 ```
 
 Now, use the `getLocTOS()` function in the `geoNEON` package to get precise locations for the tagged plants. You can refer to the package documentation for more details.
@@ -508,21 +515,29 @@ symbols(veg$adjEasting[which(veg$plotID=="WREF_075")],
 ### Computational
 #### Part 1: Sign up for and Use an NEON API Token:
 
-1. Submit via .Rmd and .pdf a script that uses a *HIDDEN* token to access NEON data.
+1. Submit via .Rmd and .pdf a simple script that uses a *HIDDEN* token to access NEON data.
+
+Example:
+```{r}
+source('neon_token_source.R')
+veglist <- loadByProduct(dpID="DP1.10098.001", site="WREF", package="basic", check.size=FALSE, token = NEON_TOKEN)
+head(veglist)
+
+```
 
 #### Part 2: Further Investigation of NEON TOS Vegetation Structure Data
 
 *In the following section all demonstration code uses the `iris` dataset for R as examples.  In this exercise the `iris` data is merely used for example code to get your started, you will complete all plots and models using the NEON TOS vegetation structure data*
 
 1. Convert the above diameter plot into a ggplot:
-If you need some refreshers on ggplot [Derek Sonderegger's Introductory Data Science using R: Graphing Part II](https://dereksonderegger.github.io/444/14-graphing-part-ii.html) is a wonderful resource.
+If you need some refreshers on ggplot [Derek Sonderegger's Introductory Data Science using R: Graphing Part II](https://dereksonderegger.github.io/444/14-graphing-part-ii.html) is a wonderful resource.  I've pulled some of his plotting examples here.
 
 ```{r}
 library(ggplot2)
 print ('your code here')
 ```
 
-2. Set species be an `as.factor`, and color your circles to be a function of each species
+2. Set the color your circles to be a function of each species:
 
 ```{r}
 #hints:
@@ -549,7 +564,7 @@ library(dplyr)
 #filter(..... !=....)
 
 ```
-5. Create a linear model that uses DBH and height to predict allometries.  Print the summary information of your model:
+5. Create a simple linear model that uses DBH and height to predict allometries.  Print the summary information of your model:
 
 ```{r, eval=FALSE}
 #hints
@@ -573,6 +588,9 @@ ggplot(iris, aes(x=Sepal.Length, y=Petal.Length, color=Species)) +
   geom_ribbon( aes( ymin=lwr, ymax=upr, fill=Species), alpha=.3 )   # alpha is the ribbon transparency
 ```
 
+7. Write one paragraph answering the following questions:
+
+* Based on your histogram, what are the 
 
 ## Part 2: Pulling NEON Data via the API
 
