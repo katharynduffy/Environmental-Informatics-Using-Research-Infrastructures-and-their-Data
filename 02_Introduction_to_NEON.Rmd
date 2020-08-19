@@ -541,9 +541,13 @@ ggplot(iris, aes(x=Sepal.Length, y=Petal.Length, color=Species)) +
   geom_ribbon( aes( ymin=lwr, ymax=upr, fill=Species), alpha=.3 )   # alpha is the ribbon transparency
 ```
 
-7. Write one paragraph answering the following questions:
+7. Answer the following questions:
 
-* Based on your histogram, what are the 
+* How many `unique` species are present at `WREF`?
+* What are the `top_5` trees based on height? Diameter?
+* What propotion of sampled trees are dead?
+
+
 
 ## Part 2: Pulling NEON Data via the API
 
