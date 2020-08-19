@@ -545,7 +545,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Petal.Length, color=Species)) +
 
 * How many `unique` species are present at `WREF`?
 * What are the `top_5` trees based on height? Diameter?
-* What propotion of sampled trees are dead?
+* What proportion of sampled trees are dead?
 
 
 
