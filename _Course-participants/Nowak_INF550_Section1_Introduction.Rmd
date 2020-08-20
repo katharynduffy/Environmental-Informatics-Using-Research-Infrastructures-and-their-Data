@@ -1,0 +1,15 @@
+---
+title: "INF 550 Chapter 1 Github Assignment"
+author: "Scooter Nowak"
+date: "`r format(Sys.time(),  '%B %d, %Y')`"
+fontsize: 12pt
+geometry: margin=1.5cm
+output:
+  pdf_document:
+editor_options: 
+  chunk_output_type: console
+---
+
+**Introduction**
+
+Hello Hello. My name is Scooter Nowak. I'm a second year Ecoinformatics PhD student at NAU in the School of Informatics, Computing, and Cyber Systems (SICCS). I have a BS in Computer Science (MTU), a BS in Fisheries and Wildlife (MSU), and a MS in Aquatic Entomology (MSU). I spent 25+ years in IT with almost 20 of those years working for the Federal Government in the intelligence community. I'm very excited about this program!
