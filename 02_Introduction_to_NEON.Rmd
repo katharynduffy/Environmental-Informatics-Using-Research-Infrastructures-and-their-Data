@@ -1014,7 +1014,7 @@ download(cam.files$data$files$url[grep("20170328192931",
 The image, below, of the San Joaquin Experimental Range should now be in your 
 working directory.
 
-```{r}
+```{r, echo=FALSE}
 knitr::include_graphics('./images/SJER_tile_20170328192931.png')
 ```
 
