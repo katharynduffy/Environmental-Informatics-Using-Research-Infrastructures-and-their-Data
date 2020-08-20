@@ -198,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.12" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#stacking-neon-data"><i class="fa fa-check"></i><b>2.12</b> Stacking NEON data</a></li>
 <li class="chapter" data-level="2.13" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#intro-to-neon-exercises"><i class="fa fa-check"></i><b>2.13</b> Intro to NEON Exercises</a><ul>
-<li class="chapter" data-level="2.13.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#computational-1"><i class="fa fa-check"></i><b>2.13.1</b> Computational</a></li>
+<li class="chapter" data-level="2.13.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#computational-part-2"><i class="fa fa-check"></i><b>2.13.1</b> Computational Part 2</a></li>
 <li class="chapter" data-level="2.13.2" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#written"><i class="fa fa-check"></i><b>2.13.2</b> Written</a></li>
 </ul></li>
 </ul></li>
@@ -274,6 +274,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.12.5" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#digital-repeat-photography-written"><i class="fa fa-check"></i><b>4.12.5</b> Digital Repeat Photography Written</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html"><i class="fa fa-check"></i>Frequently Asked Questions:</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/katharynduffy/katharynduffy.github.io" target="blank">Published with bookdown</a></li>
 
@@ -434,16 +435,16 @@ The Nature’s Notebook program has been adopted widely; data are collected at o
 <div id="basic-format-for-for-observational-data-calls" class="section level4">
 <h4><span class="header-section-number">3.7.2.1</span> Basic format for for Observational data calls</h4>
 <p>The basic format for an observational data call in the rnpn library is:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">npn_download_[NAME OF DATA TYPE] (</a>
-<a class="sourceLine" id="cb98-2" data-line-number="2">  <span class="dt">request_source =</span> [<span class="ot">NULL</span>]</a>
-<a class="sourceLine" id="cb98-3" data-line-number="3">  <span class="dt">year =</span>  [<span class="ot">NULL</span>]</a>
-<a class="sourceLine" id="cb98-4" data-line-number="4">  <span class="dt">species_ID =</span> [<span class="ot">NULL</span>]</a>
-<a class="sourceLine" id="cb98-5" data-line-number="5">)                  </a></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1">npn_download_[NAME OF DATA TYPE] (</a>
+<a class="sourceLine" id="cb99-2" data-line-number="2">  <span class="dt">request_source =</span> [<span class="ot">NULL</span>]</a>
+<a class="sourceLine" id="cb99-3" data-line-number="3">  <span class="dt">year =</span>  [<span class="ot">NULL</span>]</a>
+<a class="sourceLine" id="cb99-4" data-line-number="4">  <span class="dt">species_ID =</span> [<span class="ot">NULL</span>]</a>
+<a class="sourceLine" id="cb99-5" data-line-number="5">)                  </a></code></pre></div>
 <p>‘Request source’ should usually be populated with your full name or the name of the organization you represent. Species_ID is the unique identifier for all the available plants and animals in the USA-NPN database.
 You can create a table of all available species and their ID numbers:</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1">species &lt;-<span class="st"> </span><span class="kw">npn_species</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">species &lt;-<span class="st"> </span><span class="kw">npn_species</span>()</a></code></pre></div>
 <p>Search for a species by common name from the full list:</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">species[species<span class="op">$</span>common_name<span class="op">==</span><span class="st">&quot;red maple&quot;</span>,]</a></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">species[species<span class="op">$</span>common_name<span class="op">==</span><span class="st">&quot;red maple&quot;</span>,]</a></code></pre></div>
 <p>There are many parameters which can be set beyond these basic ones, depending on the data type, and further detailed in the other vignettes featured in this package.</p>
 </div>
 <div id="required-parameters" class="section level4">
@@ -454,29 +455,29 @@ You can create a table of all available species and their ID numbers:</p>
 <div id="find-stations-at-which-a-species-has-been-observed" class="section level4">
 <h4><span class="header-section-number">3.7.2.3</span> Find stations at which a species has been observed</h4>
 <p>You can also now look up which stations have a registered plant for a particular species. In the example below, we use the species ID for red maple, which we were able to find through the npn_species() function, to find all stations with that species.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1"><span class="kw">npn_stations_with_spp</span> (<span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="kw">npn_stations_with_spp</span> (<span class="dv">3</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="status-and-intensity-data" class="section level3">
 <h3><span class="header-section-number">3.7.3</span> Status and Intensity Data</h3>
 <p>The Status and Intensity data type is the most direct presentation of the phenology data stored in the NPDb. Each row is comprised of a single record of the status (1/present/“Yes”, 0/absent/“No” or -1/uncertain/“?”) of a single phenophase on an individual plant or species of animal at a site on a single site visit, as well as the estimated intensity or abundance e.g., percent canopy fullness or number of individual robins observed respectively.</p>
 <p>Retrieving this kind of data using this package is easy, and heavily parameterized. It’s possible to filter data using a number of including year, geographic extent and species. In this example we get all records of bird observations in the New England states from 2018.</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="kw">npn_download_status_data</span>(</a>
-<a class="sourceLine" id="cb102-2" data-line-number="2">  <span class="dt">request_source =</span> <span class="st">&#39;Your Name Here&#39;</span>,</a>
-<a class="sourceLine" id="cb102-3" data-line-number="3">  <span class="dt">years =</span> <span class="kw">c</span>(<span class="st">&#39;2018&#39;</span>),</a>
-<a class="sourceLine" id="cb102-4" data-line-number="4">  <span class="dt">states =</span> <span class="kw">c</span>(<span class="st">&quot;NY&quot;</span>,<span class="st">&quot;PA&quot;</span>,<span class="st">&quot;VT&quot;</span>,<span class="st">&quot;MA&quot;</span>),</a>
-<a class="sourceLine" id="cb102-5" data-line-number="5">  <span class="dt">functional_types =</span> <span class="st">&#39;Bird&#39;</span></a>
-<a class="sourceLine" id="cb102-6" data-line-number="6">)</a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1"><span class="kw">npn_download_status_data</span>(</a>
+<a class="sourceLine" id="cb103-2" data-line-number="2">  <span class="dt">request_source =</span> <span class="st">&#39;Your Name Here&#39;</span>,</a>
+<a class="sourceLine" id="cb103-3" data-line-number="3">  <span class="dt">years =</span> <span class="kw">c</span>(<span class="st">&#39;2018&#39;</span>),</a>
+<a class="sourceLine" id="cb103-4" data-line-number="4">  <span class="dt">states =</span> <span class="kw">c</span>(<span class="st">&quot;NY&quot;</span>,<span class="st">&quot;PA&quot;</span>,<span class="st">&quot;VT&quot;</span>,<span class="st">&quot;MA&quot;</span>),</a>
+<a class="sourceLine" id="cb103-5" data-line-number="5">  <span class="dt">functional_types =</span> <span class="st">&#39;Bird&#39;</span></a>
+<a class="sourceLine" id="cb103-6" data-line-number="6">)</a></code></pre></div>
 <p>‘states’ is an example of an optional parameter that allows you to filter data based on geographic location. Another example is ‘functional_types’ which allows you to get all available data for a group of similar species (e.g., all birds, shrubs or invasive species).
 The best place to review <strong>all</strong> available optional filters is the autogenerated package description.</p>
 <p>Another important optional parameter is called ‘download_path’. By default requests for data from the services are returned as a data frame that gets stored in memory as a variable. In some cases, it makes more sense to save the data to file for easy and fast retrieval later. The download_path parameter allows you to specify a file path to redirect the output from the service, without having to fuss with pesky I/O operations. Additionally, requests made this way streams the data returned, so if the dataset you’re working with is particularly large, it’s possible to redirect the stream of data to file instead of loading it all into memory which can be useful if your environment doesn’t have enough RAM to store the entire data set at once.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1"><span class="kw">npn_download_status_data</span>(</a>
-<a class="sourceLine" id="cb103-2" data-line-number="2">  <span class="dt">request_source =</span> <span class="st">&#39;Your Name Here&#39;</span>, </a>
-<a class="sourceLine" id="cb103-3" data-line-number="3">  <span class="dt">years =</span> <span class="kw">c</span>(<span class="st">&#39;2018&#39;</span>), </a>
-<a class="sourceLine" id="cb103-4" data-line-number="4">  <span class="dt">functional_types =</span> <span class="st">&#39;Bird&#39;</span>, </a>
-<a class="sourceLine" id="cb103-5" data-line-number="5">  <span class="dt">additional_fields =</span> <span class="st">&#39;Site_Name&#39;</span>, </a>
-<a class="sourceLine" id="cb103-6" data-line-number="6">  <span class="dt">download_path =</span><span class="st">&#39;Bird_data_2018_SiteName.csv&#39;</span></a>
-<a class="sourceLine" id="cb103-7" data-line-number="7">)</a></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1"><span class="kw">npn_download_status_data</span>(</a>
+<a class="sourceLine" id="cb104-2" data-line-number="2">  <span class="dt">request_source =</span> <span class="st">&#39;Your Name Here&#39;</span>, </a>
+<a class="sourceLine" id="cb104-3" data-line-number="3">  <span class="dt">years =</span> <span class="kw">c</span>(<span class="st">&#39;2018&#39;</span>), </a>
+<a class="sourceLine" id="cb104-4" data-line-number="4">  <span class="dt">functional_types =</span> <span class="st">&#39;Bird&#39;</span>, </a>
+<a class="sourceLine" id="cb104-5" data-line-number="5">  <span class="dt">additional_fields =</span> <span class="st">&#39;Site_Name&#39;</span>, </a>
+<a class="sourceLine" id="cb104-6" data-line-number="6">  <span class="dt">download_path =</span><span class="st">&#39;Bird_data_2018_SiteName.csv&#39;</span></a>
+<a class="sourceLine" id="cb104-7" data-line-number="7">)</a></code></pre></div>
 <p>Using this function to get observational records is the most basic presentation of the data, and is the most robust for doing analysis, but there are a number of other products offered through the data service which provide additional value to data end users, outlined in the next vignettes.</p>
 </div>
 <div id="individual-phenometrics" class="section level3">
@@ -485,97 +486,97 @@ The best place to review <strong>all</strong> available optional filters is the 
 <p>Note that more than one series may exist for a given phenophase in an individual plant or animal species within a single growing season or year, this might occur in the case of leaf bud break followed by a killing frost and second round of breaking leaf buds. It could also occur at group sites where two or more observers are reporting on the same plant on sequential days but are not in agreement on phenophase status.</p>
 <p>Any call for individual phenometrics requires chronological bounds, usually a calendar year, as determining onset and end depend on knowing what the time frame of interest is. If you query the services directly (without the benefit of this library) it’s possible to specify arbitrary dates, in contrast this library allows you to specify a series of calendar years as input.</p>
 <p>Here’s an example of how to query the services for individual phenometrics data. Note that the overall structure and parameters are very similar to the call for status data. The biggest difference in this case is that start and end date parameters are now replaced with a ‘years’ array, which predictably takes a set of year values with which to query the service.</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1"><span class="kw">npn_download_individual_phenometrics</span>(</a>
-<a class="sourceLine" id="cb104-2" data-line-number="2">  <span class="dt">request_source=</span><span class="st">&#39;Your Name Here&#39;</span>, </a>
-<a class="sourceLine" id="cb104-3" data-line-number="3">  <span class="dt">years=</span><span class="kw">c</span>(<span class="dv">2013</span>,<span class="dv">2014</span>,<span class="dv">2015</span>,<span class="dv">2016</span>), </a>
-<a class="sourceLine" id="cb104-4" data-line-number="4">  <span class="dt">species_id=</span><span class="kw">c</span>(<span class="dv">210</span>), </a>
-<a class="sourceLine" id="cb104-5" data-line-number="5">  <span class="dt">download_path=</span><span class="st">&quot;saguaro_data_2013_2016.csv&quot;</span></a>
-<a class="sourceLine" id="cb104-6" data-line-number="6">)</a></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw">npn_download_individual_phenometrics</span>(</a>
+<a class="sourceLine" id="cb105-2" data-line-number="2">  <span class="dt">request_source=</span><span class="st">&#39;Your Name Here&#39;</span>, </a>
+<a class="sourceLine" id="cb105-3" data-line-number="3">  <span class="dt">years=</span><span class="kw">c</span>(<span class="dv">2013</span>,<span class="dv">2014</span>,<span class="dv">2015</span>,<span class="dv">2016</span>), </a>
+<a class="sourceLine" id="cb105-4" data-line-number="4">  <span class="dt">species_id=</span><span class="kw">c</span>(<span class="dv">210</span>), </a>
+<a class="sourceLine" id="cb105-5" data-line-number="5">  <span class="dt">download_path=</span><span class="st">&quot;saguaro_data_2013_2016.csv&quot;</span></a>
+<a class="sourceLine" id="cb105-6" data-line-number="6">)</a></code></pre></div>
 <p>In this example, we’re able to see individual saguaro phenology for 2013 through 2016. The results returned from the service is a tabular set of records, giving start and end date by individual saguaro plant. By default, each record contains information about the location, species, phenophase, and start and end dates.</p>
 <p>Climate data from DayMet can also be acquired with Status &amp; Intensity, Individual Phenometrics and Site Phenometric data types, by setting the climate_data parameter to true. In this example, we are getting colored leaves (phenophase ID is 498) data for birches, using the four birch species IDs, for 2015:</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw">npn_download_individual_phenometrics</span>(</a>
-<a class="sourceLine" id="cb105-2" data-line-number="2">  <span class="dt">request_source =</span> <span class="st">&#39;Your Name Here&#39;</span>, </a>
-<a class="sourceLine" id="cb105-3" data-line-number="3">  <span class="dt">years =</span> <span class="kw">c</span>(<span class="st">&#39;2015&#39;</span>), </a>
-<a class="sourceLine" id="cb105-4" data-line-number="4">  <span class="dt">species_ids =</span> <span class="kw">c</span>(<span class="dv">97</span>, <span class="dv">98</span>, <span class="dv">99</span>, <span class="dv">430</span>), </a>
-<a class="sourceLine" id="cb105-5" data-line-number="5">  <span class="dt">phenophase_ids =</span> <span class="kw">c</span>(<span class="dv">498</span>), </a>
-<a class="sourceLine" id="cb105-6" data-line-number="6">  <span class="dt">climate_data =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb105-7" data-line-number="7">  <span class="dt">download_path =</span> <span class="st">&#39;Betula_data_2015.csv&#39;</span></a>
-<a class="sourceLine" id="cb105-8" data-line-number="8">)</a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="kw">npn_download_individual_phenometrics</span>(</a>
+<a class="sourceLine" id="cb106-2" data-line-number="2">  <span class="dt">request_source =</span> <span class="st">&#39;Your Name Here&#39;</span>, </a>
+<a class="sourceLine" id="cb106-3" data-line-number="3">  <span class="dt">years =</span> <span class="kw">c</span>(<span class="st">&#39;2015&#39;</span>), </a>
+<a class="sourceLine" id="cb106-4" data-line-number="4">  <span class="dt">species_ids =</span> <span class="kw">c</span>(<span class="dv">97</span>, <span class="dv">98</span>, <span class="dv">99</span>, <span class="dv">430</span>), </a>
+<a class="sourceLine" id="cb106-5" data-line-number="5">  <span class="dt">phenophase_ids =</span> <span class="kw">c</span>(<span class="dv">498</span>), </a>
+<a class="sourceLine" id="cb106-6" data-line-number="6">  <span class="dt">climate_data =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb106-7" data-line-number="7">  <span class="dt">download_path =</span> <span class="st">&#39;Betula_data_2015.csv&#39;</span></a>
+<a class="sourceLine" id="cb106-8" data-line-number="8">)</a></code></pre></div>
 <p>To show what this looks like, we can plot the day of year of the first observation of colored leaves in birches (genus Betula) against summer Tmax.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1">BetulaLeaf &lt;-<span class="kw">read.csv</span>(</a>
-<a class="sourceLine" id="cb106-2" data-line-number="2">  <span class="st">&#39;Betula_data_2015.csv&#39;</span>, </a>
-<a class="sourceLine" id="cb106-3" data-line-number="3">  <span class="dt">header =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb106-4" data-line-number="4">  <span class="dt">na=</span><span class="op">-</span><span class="dv">9999</span>, </a>
-<a class="sourceLine" id="cb106-5" data-line-number="5">  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb106-6" data-line-number="6">)</a>
-<a class="sourceLine" id="cb106-7" data-line-number="7"><span class="kw">plot</span>(</a>
-<a class="sourceLine" id="cb106-8" data-line-number="8">  first_yes_doy<span class="op">~</span>tmax_summer, </a>
-<a class="sourceLine" id="cb106-9" data-line-number="9">  <span class="dt">data=</span>BetulaLeaf, </a>
-<a class="sourceLine" id="cb106-10" data-line-number="10">  <span class="dt">ylab=</span><span class="kw">c</span>(<span class="st">&quot;Day of Year&quot;</span>), </a>
-<a class="sourceLine" id="cb106-11" data-line-number="11">  <span class="dt">xlab=</span><span class="kw">c</span>(<span class="st">&quot;Tmax Summer&quot;</span>),</a>
-<a class="sourceLine" id="cb106-12" data-line-number="12">  <span class="dt">cex=</span><span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb106-13" data-line-number="13">  <span class="dt">cex.axis=</span><span class="fl">1.5</span>, </a>
-<a class="sourceLine" id="cb106-14" data-line-number="14">  <span class="dt">cex.lab=</span><span class="fl">1.5</span>, </a>
-<a class="sourceLine" id="cb106-15" data-line-number="15">  <span class="dt">pch=</span><span class="dv">21</span></a>
-<a class="sourceLine" id="cb106-16" data-line-number="16">)</a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">BetulaLeaf &lt;-<span class="kw">read.csv</span>(</a>
+<a class="sourceLine" id="cb107-2" data-line-number="2">  <span class="st">&#39;Betula_data_2015.csv&#39;</span>, </a>
+<a class="sourceLine" id="cb107-3" data-line-number="3">  <span class="dt">header =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb107-4" data-line-number="4">  <span class="dt">na=</span><span class="op">-</span><span class="dv">9999</span>, </a>
+<a class="sourceLine" id="cb107-5" data-line-number="5">  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb107-6" data-line-number="6">)</a>
+<a class="sourceLine" id="cb107-7" data-line-number="7"><span class="kw">plot</span>(</a>
+<a class="sourceLine" id="cb107-8" data-line-number="8">  first_yes_doy<span class="op">~</span>tmax_summer, </a>
+<a class="sourceLine" id="cb107-9" data-line-number="9">  <span class="dt">data=</span>BetulaLeaf, </a>
+<a class="sourceLine" id="cb107-10" data-line-number="10">  <span class="dt">ylab=</span><span class="kw">c</span>(<span class="st">&quot;Day of Year&quot;</span>), </a>
+<a class="sourceLine" id="cb107-11" data-line-number="11">  <span class="dt">xlab=</span><span class="kw">c</span>(<span class="st">&quot;Tmax Summer&quot;</span>),</a>
+<a class="sourceLine" id="cb107-12" data-line-number="12">  <span class="dt">cex=</span><span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb107-13" data-line-number="13">  <span class="dt">cex.axis=</span><span class="fl">1.5</span>, </a>
+<a class="sourceLine" id="cb107-14" data-line-number="14">  <span class="dt">cex.lab=</span><span class="fl">1.5</span>, </a>
+<a class="sourceLine" id="cb107-15" data-line-number="15">  <span class="dt">pch=</span><span class="dv">21</span></a>
+<a class="sourceLine" id="cb107-16" data-line-number="16">)</a></code></pre></div>
 </div>
 <div id="site-phenometrics" class="section level3">
 <h3><span class="header-section-number">3.7.5</span> Site Phenometrics</h3>
 <p>Site Phenometrics, derived from Individual Phenometrics, provide summary metrics of the onset and end date of phenophase activity for a species at a site. Observers are directed to create sites that represent uniform habitat and are no larger than 15 acres. For plants, this metric is calculated as an average for all individuals of a species at the site. For animals, where individuals are not tracked, this metric represents the first and last recorded appearance of the species during the season of interest. For instance, if you asked for red maple leafing data, and there was a site with three red maple trees being observed, then the data would be the average onset date for all three of those red maple trees at that site.</p>
 <p>Here’s an example of how to query the services for site phenometrics data, for cloned lilacs, breaking leaf buds, 2013. The call is very similar to the call for individual phenometrics data, however, in addition you can supply the quality control filter for the number of days between a yes record and preceding no record (also applies to the last yes and following no), for the observation to be included in the calculations. Typically this is set to 7, 14 or 30, as when downloading data using the USA-NPN Phenology Observation Portal. If you do not set this parameter, it defaults to 30 days. Note that in this example the results are stored in memory, rather than output as a file.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">LilacLeafPoints2013&lt;-<span class="kw">npn_download_site_phenometrics</span>(</a>
-<a class="sourceLine" id="cb107-2" data-line-number="2">  <span class="dt">request_source =</span> <span class="st">&#39;Your Name Here&#39;</span>, </a>
-<a class="sourceLine" id="cb107-3" data-line-number="3">  <span class="dt">years =</span> <span class="kw">c</span>(<span class="st">&#39;2013&#39;</span>),</a>
-<a class="sourceLine" id="cb107-4" data-line-number="4">  <span class="dt">num_days_quality_filter =</span> <span class="st">&#39;30&#39;</span>,</a>
-<a class="sourceLine" id="cb107-5" data-line-number="5">  <span class="dt">species_ids =</span> <span class="st">&#39;35&#39;</span>,</a>
-<a class="sourceLine" id="cb107-6" data-line-number="6">  <span class="dt">phenophase_ids =</span> <span class="st">&#39;373&#39;</span></a>
-<a class="sourceLine" id="cb107-7" data-line-number="7">)</a></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">LilacLeafPoints2013&lt;-<span class="kw">npn_download_site_phenometrics</span>(</a>
+<a class="sourceLine" id="cb108-2" data-line-number="2">  <span class="dt">request_source =</span> <span class="st">&#39;Your Name Here&#39;</span>, </a>
+<a class="sourceLine" id="cb108-3" data-line-number="3">  <span class="dt">years =</span> <span class="kw">c</span>(<span class="st">&#39;2013&#39;</span>),</a>
+<a class="sourceLine" id="cb108-4" data-line-number="4">  <span class="dt">num_days_quality_filter =</span> <span class="st">&#39;30&#39;</span>,</a>
+<a class="sourceLine" id="cb108-5" data-line-number="5">  <span class="dt">species_ids =</span> <span class="st">&#39;35&#39;</span>,</a>
+<a class="sourceLine" id="cb108-6" data-line-number="6">  <span class="dt">phenophase_ids =</span> <span class="st">&#39;373&#39;</span></a>
+<a class="sourceLine" id="cb108-7" data-line-number="7">)</a></code></pre></div>
 <p>In this example we’re able to see the date of the first observation of breaking leaf buds for cloned lilacs, averaged across individuals within sites. If any observation did not have a preceding no record within 30 days it was excluded from the calculations.</p>
 <p>We can now plot our cloned lilac site phenometric onset data by latitude.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1"><span class="kw">plot</span>(</a>
-<a class="sourceLine" id="cb108-2" data-line-number="2">  mean_first_yes_doy<span class="op">~</span>latitude, </a>
-<a class="sourceLine" id="cb108-3" data-line-number="3">  <span class="dt">data=</span>LilacLeafPoints2013, </a>
-<a class="sourceLine" id="cb108-4" data-line-number="4">  <span class="dt">ylab=</span><span class="kw">c</span>(<span class="st">&quot;Day of Year&quot;</span>), </a>
-<a class="sourceLine" id="cb108-5" data-line-number="5">  <span class="dt">xlab=</span><span class="kw">c</span>(<span class="st">&quot;Latitude&quot;</span>),</a>
-<a class="sourceLine" id="cb108-6" data-line-number="6">  <span class="dt">cex=</span><span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb108-7" data-line-number="7">  <span class="dt">cex.axis=</span><span class="fl">1.5</span>, </a>
-<a class="sourceLine" id="cb108-8" data-line-number="8">  <span class="dt">cex.lab=</span><span class="fl">1.5</span>, </a>
-<a class="sourceLine" id="cb108-9" data-line-number="9">  <span class="dt">pch=</span><span class="dv">21</span>, </a>
-<a class="sourceLine" id="cb108-10" data-line-number="10">  <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">30</span>,<span class="dv">55</span>), </a>
-<a class="sourceLine" id="cb108-11" data-line-number="11">  <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">200</span>)</a>
-<a class="sourceLine" id="cb108-12" data-line-number="12">)</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">plot</span>(</a>
+<a class="sourceLine" id="cb109-2" data-line-number="2">  mean_first_yes_doy<span class="op">~</span>latitude, </a>
+<a class="sourceLine" id="cb109-3" data-line-number="3">  <span class="dt">data=</span>LilacLeafPoints2013, </a>
+<a class="sourceLine" id="cb109-4" data-line-number="4">  <span class="dt">ylab=</span><span class="kw">c</span>(<span class="st">&quot;Day of Year&quot;</span>), </a>
+<a class="sourceLine" id="cb109-5" data-line-number="5">  <span class="dt">xlab=</span><span class="kw">c</span>(<span class="st">&quot;Latitude&quot;</span>),</a>
+<a class="sourceLine" id="cb109-6" data-line-number="6">  <span class="dt">cex=</span><span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb109-7" data-line-number="7">  <span class="dt">cex.axis=</span><span class="fl">1.5</span>, </a>
+<a class="sourceLine" id="cb109-8" data-line-number="8">  <span class="dt">cex.lab=</span><span class="fl">1.5</span>, </a>
+<a class="sourceLine" id="cb109-9" data-line-number="9">  <span class="dt">pch=</span><span class="dv">21</span>, </a>
+<a class="sourceLine" id="cb109-10" data-line-number="10">  <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">30</span>,<span class="dv">55</span>), </a>
+<a class="sourceLine" id="cb109-11" data-line-number="11">  <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb109-12" data-line-number="12">)</a></code></pre></div>
 </div>
 <div id="magnitude-phenometrics" class="section level3">
 <h3><span class="header-section-number">3.7.6</span> Magnitude Phenometrics</h3>
 <p>Magnitude Phenometrics are a suite of eight metrics derived from Status and Intensity data. This data type provides information on the extent to which a phenophase is expressed across multiple individuals or sites, for a given set of sequential time intervals. The data user may select a weekly, bi-weekly, monthly, or custom time interval to summarize the metrics. Two metrics are available for both plants and animals, one metric is available for plants alone and five metrics are available for animals alone (table 1). Three of the five animal metrics correct animal abundance values for observer effort in time and space.</p>
 <p>Here’s an example of how to query for Magnitude Phenometrics, for the active individuals phenophase for black-capped chickadee data, in 2018. Requirements are similar to other data types. You must additionally specify the time interval by which the data should be summarized. Typically this is weekly, biweekly or monthly, as in the POP and Visualization Tool. The interval chosen in this example is 7 days.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">npn_download_magnitude_phenometrics</span>(</a>
-<a class="sourceLine" id="cb109-2" data-line-number="2">  <span class="dt">request_source =</span> <span class="st">&#39;Your Name Here&#39;</span>, </a>
-<a class="sourceLine" id="cb109-3" data-line-number="3">  <span class="dt">years =</span> <span class="st">&#39;2018&#39;</span>,</a>
-<a class="sourceLine" id="cb109-4" data-line-number="4">  <span class="dt">period_frequency =</span> <span class="st">&quot;7&quot;</span>,</a>
-<a class="sourceLine" id="cb109-5" data-line-number="5">  <span class="dt">species_ids =</span> <span class="st">&#39;245&#39;</span>, </a>
-<a class="sourceLine" id="cb109-6" data-line-number="6">  <span class="dt">phenophase_ids =</span> <span class="st">&#39;292&#39;</span>, </a>
-<a class="sourceLine" id="cb109-7" data-line-number="7">  <span class="dt">download_path =</span> <span class="st">&#39;MPM_BCC_ActInd_2018.csv&#39;</span></a>
-<a class="sourceLine" id="cb109-8" data-line-number="8">)</a></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="kw">npn_download_magnitude_phenometrics</span>(</a>
+<a class="sourceLine" id="cb110-2" data-line-number="2">  <span class="dt">request_source =</span> <span class="st">&#39;Your Name Here&#39;</span>, </a>
+<a class="sourceLine" id="cb110-3" data-line-number="3">  <span class="dt">years =</span> <span class="st">&#39;2018&#39;</span>,</a>
+<a class="sourceLine" id="cb110-4" data-line-number="4">  <span class="dt">period_frequency =</span> <span class="st">&quot;7&quot;</span>,</a>
+<a class="sourceLine" id="cb110-5" data-line-number="5">  <span class="dt">species_ids =</span> <span class="st">&#39;245&#39;</span>, </a>
+<a class="sourceLine" id="cb110-6" data-line-number="6">  <span class="dt">phenophase_ids =</span> <span class="st">&#39;292&#39;</span>, </a>
+<a class="sourceLine" id="cb110-7" data-line-number="7">  <span class="dt">download_path =</span> <span class="st">&#39;MPM_BCC_ActInd_2018.csv&#39;</span></a>
+<a class="sourceLine" id="cb110-8" data-line-number="8">)</a></code></pre></div>
 <p>In this example we’re able to see all of the magnitude phenometric fields, including proportion_yes_records, and mean_num_animals_in-phase. See the <a href="Open%20File%20Report%20on%20USA-NPN%20Observational%20Data">https://pubs.usgs.gov/of/2018/1060/ofr20181060.pdf</a> for full field descriptions.</p>
 <p>From this dataset we can view the Proportion_Yes_Records (of all the records submitted on this species, what proportion are positive/yes records) by weekly interval:</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1">BCC_AI&lt;-<span class="kw">read.csv</span>(</a>
-<a class="sourceLine" id="cb110-2" data-line-number="2">  <span class="st">&#39;MPM_BCC_ActInd_2018.csv&#39;</span>, </a>
-<a class="sourceLine" id="cb110-3" data-line-number="3">  <span class="dt">header =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb110-4" data-line-number="4">  <span class="dt">na=</span><span class="op">-</span><span class="dv">9999</span>, </a>
-<a class="sourceLine" id="cb110-5" data-line-number="5">  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb110-6" data-line-number="6">)</a>
-<a class="sourceLine" id="cb110-7" data-line-number="7"><span class="kw">plot</span>(</a>
-<a class="sourceLine" id="cb110-8" data-line-number="8">  BCC_AI<span class="op">$</span>proportion_yes_record<span class="op">~</span><span class="kw">as.Date</span>(BCC_AI<span class="op">$</span>start_date,<span class="st">&quot;%Y-%m-%d&quot;</span>), </a>
-<a class="sourceLine" id="cb110-9" data-line-number="9">  <span class="dt">ylab=</span><span class="kw">c</span>(<span class="st">&quot;Proportion Yes Records&quot;</span>), </a>
-<a class="sourceLine" id="cb110-10" data-line-number="10">  <span class="dt">xlab=</span><span class="kw">c</span>(<span class="st">&quot;Date&quot;</span>),</a>
-<a class="sourceLine" id="cb110-11" data-line-number="11">  <span class="dt">cex=</span><span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb110-12" data-line-number="12">  <span class="dt">cex.axis=</span><span class="fl">1.5</span>, </a>
-<a class="sourceLine" id="cb110-13" data-line-number="13">  <span class="dt">cex.lab=</span><span class="fl">1.5</span>, </a>
-<a class="sourceLine" id="cb110-14" data-line-number="14">  <span class="dt">pch=</span><span class="dv">21</span>,</a>
-<a class="sourceLine" id="cb110-15" data-line-number="15">  <span class="dt">xlim=</span><span class="kw">as.Date</span>(<span class="kw">c</span>(<span class="st">&quot;2018-01-01&quot;</span>, <span class="st">&quot;2018-08-01&quot;</span>)),</a>
-<a class="sourceLine" id="cb110-16" data-line-number="16">  <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb110-17" data-line-number="17">)</a></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">BCC_AI&lt;-<span class="kw">read.csv</span>(</a>
+<a class="sourceLine" id="cb111-2" data-line-number="2">  <span class="st">&#39;MPM_BCC_ActInd_2018.csv&#39;</span>, </a>
+<a class="sourceLine" id="cb111-3" data-line-number="3">  <span class="dt">header =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb111-4" data-line-number="4">  <span class="dt">na=</span><span class="op">-</span><span class="dv">9999</span>, </a>
+<a class="sourceLine" id="cb111-5" data-line-number="5">  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb111-6" data-line-number="6">)</a>
+<a class="sourceLine" id="cb111-7" data-line-number="7"><span class="kw">plot</span>(</a>
+<a class="sourceLine" id="cb111-8" data-line-number="8">  BCC_AI<span class="op">$</span>proportion_yes_record<span class="op">~</span><span class="kw">as.Date</span>(BCC_AI<span class="op">$</span>start_date,<span class="st">&quot;%Y-%m-%d&quot;</span>), </a>
+<a class="sourceLine" id="cb111-9" data-line-number="9">  <span class="dt">ylab=</span><span class="kw">c</span>(<span class="st">&quot;Proportion Yes Records&quot;</span>), </a>
+<a class="sourceLine" id="cb111-10" data-line-number="10">  <span class="dt">xlab=</span><span class="kw">c</span>(<span class="st">&quot;Date&quot;</span>),</a>
+<a class="sourceLine" id="cb111-11" data-line-number="11">  <span class="dt">cex=</span><span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb111-12" data-line-number="12">  <span class="dt">cex.axis=</span><span class="fl">1.5</span>, </a>
+<a class="sourceLine" id="cb111-13" data-line-number="13">  <span class="dt">cex.lab=</span><span class="fl">1.5</span>, </a>
+<a class="sourceLine" id="cb111-14" data-line-number="14">  <span class="dt">pch=</span><span class="dv">21</span>,</a>
+<a class="sourceLine" id="cb111-15" data-line-number="15">  <span class="dt">xlim=</span><span class="kw">as.Date</span>(<span class="kw">c</span>(<span class="st">&quot;2018-01-01&quot;</span>, <span class="st">&quot;2018-08-01&quot;</span>)),</a>
+<a class="sourceLine" id="cb111-16" data-line-number="16">  <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb111-17" data-line-number="17">)</a></code></pre></div>
 </div>
 <div id="usa-npn-geospatial-data" class="section level3">
 <h3><span class="header-section-number">3.7.7</span> USA-NPN Geospatial Data</h3>
@@ -592,114 +593,114 @@ The best place to review <strong>all</strong> available optional filters is the 
 </ul></li>
 </ul>
 <p>All of these products can be downloaded using the npn_download_geospatial call. There is a number of other products and permutations of the above listed AGDD and Spring Index products, so you can get a complete list of available layers and additional details about them including resolution, extent and the abstract/layer description.</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">layers &lt;-<span class="st"> </span><span class="kw">npn_get_layer_details</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1">layers &lt;-<span class="st"> </span><span class="kw">npn_get_layer_details</span>()</a></code></pre></div>
 <p>The following sections describe how to parameterize calls for both AGDD and Spring Index layers. These calls result in raster data sets for the contiguous United States.</p>
 <p>If you are interested in how many GDDs had accumulated when the red maple in your backyard leafed out, or what day the Spring Index requirements for leaf out were met for your location, you may wish to query the layers for these values, based on location and date. There are two ways to accomplish this, using the npn_get_point_data function which works for all layers and the npn_get_AGDD_point_data function, which only works for AGDD layers and provides a more precise result.</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1"><span class="kw">npn_get_agdd_point_data</span>(</a>
-<a class="sourceLine" id="cb112-2" data-line-number="2"> <span class="st">&#39;gdd:agdd_50f&#39;</span>, </a>
-<a class="sourceLine" id="cb112-3" data-line-number="3"> <span class="st">&#39;38&#39;</span>, </a>
-<a class="sourceLine" id="cb112-4" data-line-number="4"> <span class="st">&#39;-90&#39;</span>, </a>
-<a class="sourceLine" id="cb112-5" data-line-number="5"> <span class="st">&#39;2019-02-25&#39;</span></a>
-<a class="sourceLine" id="cb112-6" data-line-number="6">)</a></code></pre></div>
-<p>This returns a value of 7.64098 GDD, base 50F, for the coordinates 38 north, -90 west on February 25th, 2019.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1"><span class="kw">npn_get_point_data</span>(</a>
-<a class="sourceLine" id="cb113-2" data-line-number="2"> <span class="st">&#39;si-x:lilac_bloom_ncep&#39;</span>, </a>
-<a class="sourceLine" id="cb113-3" data-line-number="3"> <span class="st">&#39;30&#39;</span>, </a>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1"><span class="kw">npn_get_agdd_point_data</span>(</a>
+<a class="sourceLine" id="cb113-2" data-line-number="2"> <span class="st">&#39;gdd:agdd_50f&#39;</span>, </a>
+<a class="sourceLine" id="cb113-3" data-line-number="3"> <span class="st">&#39;38&#39;</span>, </a>
 <a class="sourceLine" id="cb113-4" data-line-number="4"> <span class="st">&#39;-90&#39;</span>, </a>
 <a class="sourceLine" id="cb113-5" data-line-number="5"> <span class="st">&#39;2019-02-25&#39;</span></a>
 <a class="sourceLine" id="cb113-6" data-line-number="6">)</a></code></pre></div>
+<p>This returns a value of 7.64098 GDD, base 50F, for the coordinates 38 north, -90 west on February 25th, 2019.</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1"><span class="kw">npn_get_point_data</span>(</a>
+<a class="sourceLine" id="cb114-2" data-line-number="2"> <span class="st">&#39;si-x:lilac_bloom_ncep&#39;</span>, </a>
+<a class="sourceLine" id="cb114-3" data-line-number="3"> <span class="st">&#39;30&#39;</span>, </a>
+<a class="sourceLine" id="cb114-4" data-line-number="4"> <span class="st">&#39;-90&#39;</span>, </a>
+<a class="sourceLine" id="cb114-5" data-line-number="5"> <span class="st">&#39;2019-02-25&#39;</span></a>
+<a class="sourceLine" id="cb114-6" data-line-number="6">)</a></code></pre></div>
 <p>This returns a value for lilac bloom of day 48, for the coordinates 30 north, -90 west, as of February 25th, 2019.</p>
 <p>The above mentioned AGDD products use base temperatures of 32F or 50F and are managed through WCS services. There is also a function to get dynamic AGDD calculations based on a user defined base temperature and a number of other parameters.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1">custom_agdd_raster &lt;-<span class="st"> </span><span class="kw">npn_get_custom_agdd_raster</span>(</a>
-<a class="sourceLine" id="cb114-2" data-line-number="2"> <span class="dt">method =</span> <span class="st">&#39;double-sine&#39;</span>,</a>
-<a class="sourceLine" id="cb114-3" data-line-number="3"> <span class="dt">climate_data_source =</span> <span class="st">&#39;NCEP&#39;</span>,</a>
-<a class="sourceLine" id="cb114-4" data-line-number="4"> <span class="dt">temp_unit =</span> <span class="st">&#39;fahrenheit&#39;</span>,</a>
-<a class="sourceLine" id="cb114-5" data-line-number="5"> <span class="dt">start_date =</span> <span class="st">&#39;2019-01-01&#39;</span>,</a>
-<a class="sourceLine" id="cb114-6" data-line-number="6"> <span class="dt">end_date =</span> <span class="st">&#39;2019-05-10&#39;</span>,</a>
-<a class="sourceLine" id="cb114-7" data-line-number="7"> <span class="dt">base_temp =</span> <span class="dv">20</span>,</a>
-<a class="sourceLine" id="cb114-8" data-line-number="8"> <span class="dt">upper_threshold =</span> <span class="dv">90</span></a>
-<a class="sourceLine" id="cb114-9" data-line-number="9">)</a></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">custom_agdd_raster &lt;-<span class="st"> </span><span class="kw">npn_get_custom_agdd_raster</span>(</a>
+<a class="sourceLine" id="cb115-2" data-line-number="2"> <span class="dt">method =</span> <span class="st">&#39;double-sine&#39;</span>,</a>
+<a class="sourceLine" id="cb115-3" data-line-number="3"> <span class="dt">climate_data_source =</span> <span class="st">&#39;NCEP&#39;</span>,</a>
+<a class="sourceLine" id="cb115-4" data-line-number="4"> <span class="dt">temp_unit =</span> <span class="st">&#39;fahrenheit&#39;</span>,</a>
+<a class="sourceLine" id="cb115-5" data-line-number="5"> <span class="dt">start_date =</span> <span class="st">&#39;2019-01-01&#39;</span>,</a>
+<a class="sourceLine" id="cb115-6" data-line-number="6"> <span class="dt">end_date =</span> <span class="st">&#39;2019-05-10&#39;</span>,</a>
+<a class="sourceLine" id="cb115-7" data-line-number="7"> <span class="dt">base_temp =</span> <span class="dv">20</span>,</a>
+<a class="sourceLine" id="cb115-8" data-line-number="8"> <span class="dt">upper_threshold =</span> <span class="dv">90</span></a>
+<a class="sourceLine" id="cb115-9" data-line-number="9">)</a></code></pre></div>
 </div>
 </div>
 <div id="accumulated-growing-degree-day-products" class="section level2">
 <h2><span class="header-section-number">3.8</span> Accumulated Growing Degree Day Products</h2>
 <p>Heat accumulation is commonly used as a way of predicting the timing of phenological transitions in plants and animals, including when plants exhibit leaf out, flowering, or fruit ripening, or when insects emerge from dormancy. This is typically expressed as accumulated heat units, either Growing Degree Hours or Growing Degree Days. Growing degree day thresholds have been established for many species, and are commonly used in agriculture, horticulture, and pest management to schedule activities such as harvesting, pesticide treatment, and flower collection. The USA-NPN is currently generating Accumulated Growing Degree Days (AGDD) rasters using a January 1 start date, calculated using simple averaging. These are available calculated using two base temperatures, 32 degrees Fahrenheit (F) and 50 F.</p>
 <p>When querying certain layers, the underlying data is agnostic about the specific year, and in these cases it makes sense to use the day of year to request data, since that will provide a standardized result, (i.e., April 1st is day 91 in some years and day 92 in others).</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1"><span class="kw">npn_download_geospatial</span>(</a>
-<a class="sourceLine" id="cb115-2" data-line-number="2"> <span class="st">&#39;gdd:30yr_avg_agdd_50f&#39;</span>, </a>
-<a class="sourceLine" id="cb115-3" data-line-number="3"> <span class="dv">95</span></a>
-<a class="sourceLine" id="cb115-4" data-line-number="4">)</a></code></pre></div>
-<p>But if you’re looking at a specific year, such as a current year layer, it makes sense to use a specific calendar date (formatted YYYY-MM-DD). It’s also possible to save the raster directly to file instead of loading it into memory.</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="kw">npn_download_geospatial</span>(</a>
-<a class="sourceLine" id="cb116-2" data-line-number="2"> <span class="st">&#39;gdd:agdd&#39;</span>, </a>
-<a class="sourceLine" id="cb116-3" data-line-number="3"> <span class="st">&#39;2018-05-05&#39;</span>,</a>
-<a class="sourceLine" id="cb116-4" data-line-number="4"> <span class="dt">output_path=</span><span class="st">&#39;20180505-agdd-value.tiff&#39;</span></a>
-<a class="sourceLine" id="cb116-5" data-line-number="5">)</a></code></pre></div>
-<p>In the case of the historic Spring Index layers, however, the product represents the overall outcome for the entire year, so while the year component of the date matters, the month and day do not. In this case, specify January 1 as the month and date.</p>
+<a class="sourceLine" id="cb116-2" data-line-number="2"> <span class="st">&#39;gdd:30yr_avg_agdd_50f&#39;</span>, </a>
+<a class="sourceLine" id="cb116-3" data-line-number="3"> <span class="dv">95</span></a>
+<a class="sourceLine" id="cb116-4" data-line-number="4">)</a></code></pre></div>
+<p>But if you’re looking at a specific year, such as a current year layer, it makes sense to use a specific calendar date (formatted YYYY-MM-DD). It’s also possible to save the raster directly to file instead of loading it into memory.</p>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="kw">npn_download_geospatial</span>(</a>
-<a class="sourceLine" id="cb117-2" data-line-number="2"> <span class="st">&quot;si-x:average_bloom_prism&quot;</span>,</a>
-<a class="sourceLine" id="cb117-3" data-line-number="3"> <span class="st">&quot;1995-01-01&quot;</span></a>
-<a class="sourceLine" id="cb117-4" data-line-number="4">)</a></code></pre></div>
+<a class="sourceLine" id="cb117-2" data-line-number="2"> <span class="st">&#39;gdd:agdd&#39;</span>, </a>
+<a class="sourceLine" id="cb117-3" data-line-number="3"> <span class="st">&#39;2018-05-05&#39;</span>,</a>
+<a class="sourceLine" id="cb117-4" data-line-number="4"> <span class="dt">output_path=</span><span class="st">&#39;20180505-agdd-value.tiff&#39;</span></a>
+<a class="sourceLine" id="cb117-5" data-line-number="5">)</a></code></pre></div>
+<p>In the case of the historic Spring Index layers, however, the product represents the overall outcome for the entire year, so while the year component of the date matters, the month and day do not. In this case, specify January 1 as the month and date.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1"><span class="kw">npn_download_geospatial</span>(</a>
+<a class="sourceLine" id="cb118-2" data-line-number="2"> <span class="st">&quot;si-x:average_bloom_prism&quot;</span>,</a>
+<a class="sourceLine" id="cb118-3" data-line-number="3"> <span class="st">&quot;1995-01-01&quot;</span></a>
+<a class="sourceLine" id="cb118-4" data-line-number="4">)</a></code></pre></div>
 <p>The dimension.range value, returned in the npn_get_layer_details() function, clarifies the full set of applicable dates for each layer.</p>
 <p>Of course, it’s also easy to grab raster data and load it into a visual plot as in this example, showing a map of AGDD base 50 on 2019-06-25:</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1">AGDDJun2019&lt;-<span class="kw">npn_download_geospatial</span>(</a>
-<a class="sourceLine" id="cb118-2" data-line-number="2"> <span class="st">&#39;gdd:agdd_50f&#39;</span>, </a>
-<a class="sourceLine" id="cb118-3" data-line-number="3"> <span class="st">&#39;2019-06-25&#39;</span></a>
-<a class="sourceLine" id="cb118-4" data-line-number="4">)</a></code></pre></div>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="kw">plot</span>(</a>
-<a class="sourceLine" id="cb119-2" data-line-number="2"> AGDDJun2019, </a>
-<a class="sourceLine" id="cb119-3" data-line-number="3"> <span class="dt">main =</span> <span class="st">&quot;AGDD base 50 on June 25th, 2019&quot;</span></a>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1">AGDDJun2019&lt;-<span class="kw">npn_download_geospatial</span>(</a>
+<a class="sourceLine" id="cb119-2" data-line-number="2"> <span class="st">&#39;gdd:agdd_50f&#39;</span>, </a>
+<a class="sourceLine" id="cb119-3" data-line-number="3"> <span class="st">&#39;2019-06-25&#39;</span></a>
 <a class="sourceLine" id="cb119-4" data-line-number="4">)</a></code></pre></div>
-<p>An important layer to know of is the 30 year average for AGDD products. This is useful for many comparative analyses. This layer takes DOY as the date input, since it’s the average AGDD value for each day of year for 1981 - 2010.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1">average_30yr &lt;-<span class="st"> </span><span class="kw">npn_download_geospatial</span>(</a>
-<a class="sourceLine" id="cb120-2" data-line-number="2"> <span class="st">&quot;gdd:30yr_avg_agdd&quot;</span>,</a>
-<a class="sourceLine" id="cb120-3" data-line-number="3"> <span class="dv">45</span></a>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1"><span class="kw">plot</span>(</a>
+<a class="sourceLine" id="cb120-2" data-line-number="2"> AGDDJun2019, </a>
+<a class="sourceLine" id="cb120-3" data-line-number="3"> <span class="dt">main =</span> <span class="st">&quot;AGDD base 50 on June 25th, 2019&quot;</span></a>
 <a class="sourceLine" id="cb120-4" data-line-number="4">)</a></code></pre></div>
+<p>An important layer to know of is the 30 year average for AGDD products. This is useful for many comparative analyses. This layer takes DOY as the date input, since it’s the average AGDD value for each day of year for 1981 - 2010.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1">average_30yr &lt;-<span class="st"> </span><span class="kw">npn_download_geospatial</span>(</a>
+<a class="sourceLine" id="cb121-2" data-line-number="2"> <span class="st">&quot;gdd:30yr_avg_agdd&quot;</span>,</a>
+<a class="sourceLine" id="cb121-3" data-line-number="3"> <span class="dv">45</span></a>
+<a class="sourceLine" id="cb121-4" data-line-number="4">)</a></code></pre></div>
 </div>
 <div id="extended-spring-indices" class="section level2">
 <h2><span class="header-section-number">3.9</span> Extended Spring Indices</h2>
 <p>The Extended Spring Indices are mathematical models that predict the “start of spring” (timing of first leaf or first bloom) at a particular location. These models were constructed using historical observations of the timing of first leaf and first bloom in a cloned lilac cultivar (Syringa X chinensis ‘Red Rothomagensis’) and two cloned honeysuckle cultivars (Lonicera tatarica L. ‘Arnold Red’ and Lonicera korolkowii Stapf, also known as ‘Zabelii’), which were selected based on the availability of historical observations from across a wide geographic area. Primary inputs to the model are temperature and weather events, beginning January 1 of each year. The model outputs are first leaf and first bloom date for a given location.</p>
 <p>Data for the Spring Index is available through an enumeration of layers that represents each of the three sub-models as well as an ‘average’ model which represents the aggregation of the three sub-models. These layers are further enumerated by both of the represented phenophases, leaf and bloom. In the example below, first the layer representing only the Arnold Red model for 1987 is retrieved, while the second function call gets the model averaging all three of the models for the same year.</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="kw">npn_download_geospatial</span>(</a>
-<a class="sourceLine" id="cb121-2" data-line-number="2"> <span class="st">&quot;si-x:arnoldred_bloom_prism&quot;</span>,</a>
-<a class="sourceLine" id="cb121-3" data-line-number="3"> <span class="st">&quot;1987-01-01&quot;</span></a>
-<a class="sourceLine" id="cb121-4" data-line-number="4">)</a>
-<a class="sourceLine" id="cb121-5" data-line-number="5">average_model &lt;-<span class="st"> </span><span class="kw">npn_download_geospatial</span>(</a>
-<a class="sourceLine" id="cb121-6" data-line-number="6"> <span class="st">&quot;si-x:average_bloom_prism&quot;</span>,</a>
-<a class="sourceLine" id="cb121-7" data-line-number="7"> <span class="st">&quot;1987-01-01&quot;</span></a>
-<a class="sourceLine" id="cb121-8" data-line-number="8">)</a></code></pre></div>
-<p>The Spring Indices are also unique in that the algorithm has been run against the BEST climate data set, so historic data going back to 1880 is available.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">BESTSIxData1905 &lt;-<span class="st"> </span><span class="kw">npn_download_geospatial</span>(</a>
-<a class="sourceLine" id="cb122-2" data-line-number="2"> <span class="st">&#39;si-x:average_bloom_best&#39;</span>, </a>
-<a class="sourceLine" id="cb122-3" data-line-number="3"> <span class="st">&#39;1905-01-01&#39;</span></a>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1"><span class="kw">npn_download_geospatial</span>(</a>
+<a class="sourceLine" id="cb122-2" data-line-number="2"> <span class="st">&quot;si-x:arnoldred_bloom_prism&quot;</span>,</a>
+<a class="sourceLine" id="cb122-3" data-line-number="3"> <span class="st">&quot;1987-01-01&quot;</span></a>
 <a class="sourceLine" id="cb122-4" data-line-number="4">)</a>
-<a class="sourceLine" id="cb122-5" data-line-number="5"><span class="kw">NAvalue</span>(BESTSIxData1905) &lt;-<span class="st"> </span><span class="dv">-9999</span></a></code></pre></div>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="kw">plot</span>(</a>
-<a class="sourceLine" id="cb123-2" data-line-number="2"> BESTSIxData1905, </a>
-<a class="sourceLine" id="cb123-3" data-line-number="3"> <span class="dt">main =</span> <span class="st">&quot;Spring Index, 1905&quot;</span></a>
-<a class="sourceLine" id="cb123-4" data-line-number="4">)</a></code></pre></div>
+<a class="sourceLine" id="cb122-5" data-line-number="5">average_model &lt;-<span class="st"> </span><span class="kw">npn_download_geospatial</span>(</a>
+<a class="sourceLine" id="cb122-6" data-line-number="6"> <span class="st">&quot;si-x:average_bloom_prism&quot;</span>,</a>
+<a class="sourceLine" id="cb122-7" data-line-number="7"> <span class="st">&quot;1987-01-01&quot;</span></a>
+<a class="sourceLine" id="cb122-8" data-line-number="8">)</a></code></pre></div>
+<p>The Spring Indices are also unique in that the algorithm has been run against the BEST climate data set, so historic data going back to 1880 is available.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1">BESTSIxData1905 &lt;-<span class="st"> </span><span class="kw">npn_download_geospatial</span>(</a>
+<a class="sourceLine" id="cb123-2" data-line-number="2"> <span class="st">&#39;si-x:average_bloom_best&#39;</span>, </a>
+<a class="sourceLine" id="cb123-3" data-line-number="3"> <span class="st">&#39;1905-01-01&#39;</span></a>
+<a class="sourceLine" id="cb123-4" data-line-number="4">)</a>
+<a class="sourceLine" id="cb123-5" data-line-number="5"><span class="kw">NAvalue</span>(BESTSIxData1905) &lt;-<span class="st"> </span><span class="dv">-9999</span></a></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1"><span class="kw">plot</span>(</a>
+<a class="sourceLine" id="cb124-2" data-line-number="2"> BESTSIxData1905, </a>
+<a class="sourceLine" id="cb124-3" data-line-number="3"> <span class="dt">main =</span> <span class="st">&quot;Spring Index, 1905&quot;</span></a>
+<a class="sourceLine" id="cb124-4" data-line-number="4">)</a></code></pre></div>
 <div id="other-layers" class="section level3">
 <h3><span class="header-section-number">3.9.1</span> Other Layers</h3>
 <p>Besides the AGDD and Spring Index layers there are a number of other useful layers available through these services, including daily temperature minimum and maximums and aggregated MODISv6 phenometrics.</p>
 <p>The daily temperature minimum and maximum values are the underlying climate data used to generate current year AGDD and Spring Index maps. These data are generated by NOAA’s National Centers for Environmental Prediction (NCEP) and are reserved through NPN’s geospatial services.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1">daily_max_<span class="dv">20190505</span> &lt;-<span class="st"> </span><span class="kw">npn_download_geospatial</span>(</a>
-<a class="sourceLine" id="cb124-2" data-line-number="2"> <span class="st">&#39;climate:tmax&#39;</span>, </a>
-<a class="sourceLine" id="cb124-3" data-line-number="3"> <span class="st">&#39;2019-05-05&#39;</span></a>
-<a class="sourceLine" id="cb124-4" data-line-number="4">)</a>
-<a class="sourceLine" id="cb124-5" data-line-number="5"><span class="kw">plot</span>(</a>
-<a class="sourceLine" id="cb124-6" data-line-number="6"> daily_max_<span class="dv">20190505</span>, </a>
-<a class="sourceLine" id="cb124-7" data-line-number="7"> <span class="dt">main =</span> <span class="st">&quot;Daily Temperature Max (C), May 5th, 2019&quot;</span></a>
-<a class="sourceLine" id="cb124-8" data-line-number="8">)</a></code></pre></div>
-<p>The MODISv6 layers are aggregate values for remote sensing values from the MODISv6 data set, representing a subset of the following phenometrics, aggregated across 2001 - 2017: EVI Area, Mid-Greenup, Mid-Greendown. The available aggregate values for each layer are: median, TSslope, and mean absolute deviation.
-This example shows the median green up value, as DOY. Note that because this layer has a fixed date, the date parameter is input as a blank string.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">median_greenup &lt;-<span class="st"> </span><span class="kw">npn_download_geospatial</span>(</a>
-<a class="sourceLine" id="cb125-2" data-line-number="2"> <span class="st">&#39;inca:midgup_median_nad83_02deg&#39;</span>,</a>
-<a class="sourceLine" id="cb125-3" data-line-number="3"> <span class="st">&#39;&#39;</span></a>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">daily_max_<span class="dv">20190505</span> &lt;-<span class="st"> </span><span class="kw">npn_download_geospatial</span>(</a>
+<a class="sourceLine" id="cb125-2" data-line-number="2"> <span class="st">&#39;climate:tmax&#39;</span>, </a>
+<a class="sourceLine" id="cb125-3" data-line-number="3"> <span class="st">&#39;2019-05-05&#39;</span></a>
 <a class="sourceLine" id="cb125-4" data-line-number="4">)</a>
 <a class="sourceLine" id="cb125-5" data-line-number="5"><span class="kw">plot</span>(</a>
-<a class="sourceLine" id="cb125-6" data-line-number="6"> median_greenup, </a>
-<a class="sourceLine" id="cb125-7" data-line-number="7"> <span class="dt">main =</span> <span class="st">&quot;MODIS Median Mid-Greenup, 2001 - 2017&quot;</span></a>
+<a class="sourceLine" id="cb125-6" data-line-number="6"> daily_max_<span class="dv">20190505</span>, </a>
+<a class="sourceLine" id="cb125-7" data-line-number="7"> <span class="dt">main =</span> <span class="st">&quot;Daily Temperature Max (C), May 5th, 2019&quot;</span></a>
 <a class="sourceLine" id="cb125-8" data-line-number="8">)</a></code></pre></div>
+<p>The MODISv6 layers are aggregate values for remote sensing values from the MODISv6 data set, representing a subset of the following phenometrics, aggregated across 2001 - 2017: EVI Area, Mid-Greenup, Mid-Greendown. The available aggregate values for each layer are: median, TSslope, and mean absolute deviation.
+This example shows the median green up value, as DOY. Note that because this layer has a fixed date, the date parameter is input as a blank string.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1">median_greenup &lt;-<span class="st"> </span><span class="kw">npn_download_geospatial</span>(</a>
+<a class="sourceLine" id="cb126-2" data-line-number="2"> <span class="st">&#39;inca:midgup_median_nad83_02deg&#39;</span>,</a>
+<a class="sourceLine" id="cb126-3" data-line-number="3"> <span class="st">&#39;&#39;</span></a>
+<a class="sourceLine" id="cb126-4" data-line-number="4">)</a>
+<a class="sourceLine" id="cb126-5" data-line-number="5"><span class="kw">plot</span>(</a>
+<a class="sourceLine" id="cb126-6" data-line-number="6"> median_greenup, </a>
+<a class="sourceLine" id="cb126-7" data-line-number="7"> <span class="dt">main =</span> <span class="st">&quot;MODIS Median Mid-Greenup, 2001 - 2017&quot;</span></a>
+<a class="sourceLine" id="cb126-8" data-line-number="8">)</a></code></pre></div>
 </div>
 </div>
 <div id="usa-npn-exercises" class="section level2">
