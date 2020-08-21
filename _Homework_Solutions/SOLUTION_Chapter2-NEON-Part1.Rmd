@@ -99,7 +99,6 @@ vegLIVE=veg%>%
 filter(plantStatus != c("Standing dead","Dead, broken bole"))
 
 ```
-
 Now a couple of important and quick 'common sense' checks to make sure I really did filter out the dead trees:
 
 First I'll just check how many rows I removed using the base function `nrow` (number of rows)
@@ -141,35 +140,37 @@ summary(vegTop3)
 ```
 Now I'll filter my main data.frame based on this top 3 data.frame:
 
+
 ```{r}
-vegLIVE=vegLIVE%>%
+vegLIVEtop3=vegLIVE%>%
   filter(is.element(vegLIVE$taxonID, vegTop3$`vegLIVE$taxonID`))
 ```
 
 5. Create a simple linear model that uses DBH and height to predict allometries.  Print the summary information of your model:
 ```{r}
-mdl=lm(height ~ stemDiameter * taxonID, data=vegLIVE) 
+mdl=lm(height ~ stemDiameter * taxonID, data=vegLIVEtop3) 
 print(mdl)
 ```
 
 Now I'll tack on my model predictions to my data.frame:
 ```{r, message=FALSE, warning=FALSE, include=FALSE}
 
-vegLIVE <- vegLIVE %>%
+vegLIVEtop3 <- vegLIVEtop3 %>%
   cbind( predict(mdl, newdata=., interval='confidence') )
-summary(vegLIVE)
+summary(vegLIVEtop3)
 ```
 Let's take a look.  First let's plot our NEON data:
 
 ```{r, message=FALSE, warning=FALSE}
-ggplot(data=vegLIVE, aes(x=stemDiameter, y=height, color=taxonID)) +
+ggplot(data=vegLIVEtop3, aes(x=stemDiameter, y=height, color=taxonID)) +
   geom_point()+
   facet_wrap(~ taxonID)
 ```
+
 Now let's plot our model:
 ```{r, message=FALSE, warning=FALSE}
 
-ggplot(data=vegLIVE, aes(x=stemDiameter, y=height, color=taxonID)) +
+ggplot(data=vegLIVEtop3, aes(x=stemDiameter, y=height, color=taxonID)) +
   geom_point() +
   geom_line( aes(y=fit) ) +
   geom_ribbon( aes( ymin=lwr, ymax=upr, fill=taxonID), alpha=.1 )+
@@ -216,13 +217,18 @@ head(vegTop5_diameter)
 ggplot(vegTop5_diameter, aes(x=adjEasting, y=adjNorthing, color=taxonID, size=stemDiameter)) +
   geom_point(alpha=.4 )
 ```
-Interesting.  Also mostly Douglas Firs, but not the ones who are the tallest.  I bet that's why our linear model failed.
+Interesting.  Also mostly Douglas Firs, but (mostly) not the ones who are the tallest.  I bet that's *part* why our linear model failed (even though we had removed the dead trees). 
 
 
 * What proportion of sampled trees are dead?
 
-```{r}
-length(veg)/length(vegLIVE)
-```
 
-Or ~4%
+```{r}
+1-nrow(vegLIVE)/nrow(veg)
+```
+Or ~18%
+
+We can also make a table to see what percentage of each plantStatus class are shown in our data
+```{r}
+veg %>% group_by(plantStatus) %>% count() %>% mutate(pct=round(100*n/nrow(veg), 2))
+```
