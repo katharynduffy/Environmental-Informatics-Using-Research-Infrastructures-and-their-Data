@@ -1,0 +1,228 @@
+---
+title: "NEON TOS Coding Lab Solution"
+author: "K Duffy"
+date: "8/19/2020"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+Loading the libraries that we need:
+```{r, message=FALSE, warning=FALSE}
+library(neonUtilities)
+library(geoNEON)
+library(sp)
+library(dplyr)
+library(ggplot2)
+```
+
+Pulling in the code referenced in the textbook:
+```{r, message=FALSE, warning=FALSE, include=FALSE}
+source('/Users/kdw223/Research/katharynduffy.github.io/neon_token_source.R')
+veglist <- loadByProduct(dpID="DP1.10098.001", site="WREF", package="basic", check.size=FALSE, token = NEON_TOKEN)
+summary(veglist)
+
+```
+```{r}
+vegmap <- getLocTOS(veglist$vst_mappingandtagging, 
+                          "vst_mappingandtagging")
+```
+
+```{r}
+veg <- merge(veglist$vst_apparentindividual, vegmap, 
+             by=c("individualID","namedLocation",
+                  "domainID","siteID","plotID"))
+```
+
+
+Here's our original plot from the textbook:
+```{r}
+symbols(veg$adjEasting[which(veg$plotID=="WREF_075")], 
+        veg$adjNorthing[which(veg$plotID=="WREF_075")], 
+        circles=veg$stemDiameter[which(veg$plotID=="WREF_075")]/100/2, 
+        inches=F, xlab="Easting", ylab="Northing")
+```
+
+**SOLUTIONS: NEON Part 1**
+
+1. Convert the above diameter plot into a ggplot:
+2. Set the color of your circles to be a function of each species:
+```{r, message=FALSE, warning=FALSE}
+ggplot(veg[which(veg$plotID=="WREF_075"),], aes(x=adjEasting, y=adjNorthing, color=taxonID, size=stemDiameter)) +
+  geom_point()
+
+```
+
+3. Generate a histogram of tree heights for each plot.  Color your stacked bar as a function of each species:
+
+First, I'll just make a general histogram:
+```{r, message=FALSE}
+#I'll remove NA values because they will mess up my model later in this code and give me a bunch of warnings:
+
+veg=veg%>%
+  filter(!is.na(stemDiameter))%>%
+  filter(!is.na(height))
+
+ggplot(veg, aes(x=height)) + 
+  geom_histogram()
+
+```
+Now I'll add color as a function of species:
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(veg, aes(x=height, fill=taxonID)) + 
+  geom_histogram()
+
+```
+
+And now I will facet_wrap as a function of plotID:
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(veg, aes(x=height, fill=taxonID)) + 
+  geom_histogram()+
+  facet_wrap(~ plotID)
+
+```
+
+4. Use `dplyr` to remove dead trees:
+
+First I've looked at the data and metadata.  I'm going to figure out all the `unique` values of `plantStatus` at this site:
+
+```{r}
+unique(veg$plantStatus)
+```
+Given that check, it looks like I need to filter for "Dead, broken bole" and "Standing dead":
+
+```{r}
+
+vegLIVE=veg%>%
+filter(plantStatus != c("Standing dead","Dead, broken bole"))
+
+```
+
+Now a couple of important and quick 'common sense' checks to make sure I really did filter out the dead trees:
+
+First I'll just check how many rows I removed using the base function `nrow` (number of rows)
+```{r}
+nrow(veg)-nrow(vegLIVE)
+```
+
+Okay!  I removed >100 observations, but I'm getting an error message. Let's just check what all the `plantStatus` values look like now:
+```{r}
+unique(vegLIVE$plantStatus)
+```
+
+Oh no!  I still have dead trees!  This is *exactly* why we always check. 
+
+From here we have a couple of options for filtering. I'll use a `string compare` function from `tidyverse`.  Also, I find `dplyr::filter` to be problematic when searching for multiple things at the same time, so I've broken those filters up for readability/ease:
+
+```{r, message=FALSE, warning=FALSE,}
+library(tidyverse)
+vegLIVE=vegLIVE %>%
+  filter(!str_detect(plantStatus, 'Standing dead'))%>%
+  filter(!str_detect(plantStatus, 'Dead, broken bole'))
+```
+
+Let's do another common sense check:
+```{r}
+unique(vegLIVE$plantStatus)
+```
+
+No dead trees, success!
+
+**To make things a little easier from here on out I'll just plot the top 3 species**
+
+```{r}
+
+vegTop3=vegLIVE%>%
+  count(vegLIVE$taxonID) %>% 
+  top_n(3)
+summary(vegTop3)
+```
+Now I'll filter my main data.frame based on this top 3 data.frame:
+
+```{r}
+vegLIVE=vegLIVE%>%
+  filter(is.element(vegLIVE$taxonID, vegTop3$`vegLIVE$taxonID`))
+```
+
+5. Create a simple linear model that uses DBH and height to predict allometries.  Print the summary information of your model:
+```{r}
+mdl=lm(height ~ stemDiameter * taxonID, data=vegLIVE) 
+print(mdl)
+```
+
+Now I'll tack on my model predictions to my data.frame:
+```{r, message=FALSE, warning=FALSE, include=FALSE}
+
+vegLIVE <- vegLIVE %>%
+  cbind( predict(mdl, newdata=., interval='confidence') )
+summary(vegLIVE)
+```
+Let's take a look.  First let's plot our NEON data:
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(data=vegLIVE, aes(x=stemDiameter, y=height, color=taxonID)) +
+  geom_point()+
+  facet_wrap(~ taxonID)
+```
+Now let's plot our model:
+```{r, message=FALSE, warning=FALSE}
+
+ggplot(data=vegLIVE, aes(x=stemDiameter, y=height, color=taxonID)) +
+  geom_point() +
+  geom_line( aes(y=fit) ) +
+  geom_ribbon( aes( ymin=lwr, ymax=upr, fill=taxonID), alpha=.1 )+
+  facet_wrap(~ taxonID)# alpha is the ribbon transparency
+```
+
+What do you think about our simple linear model?  To me it looks like we're failing to constrain the fact that trees have a height limit.  I guess gravity isn't just a 'theory'.  In this case I would certainy look at non-linear methods such as splines or a GAM, but we'll apply those methods later in this course.
+
+7. Answer the following questions:
+
+* How many `unique` species are present at `WREF`?
+
+```{r}
+print(length(unique(veg$taxonID)))
+```
+* What are the `top_5` trees based on height? 
+```{r}
+
+vegTop5_height=veg%>%
+  slice_max(height, n=5)
+head(vegTop5_height)
+```
+
+```{r}
+vegTop5_height%>%
+  select(plotID, plantStatus, taxonID, scientificName, adjNorthing, adjEasting, height)
+
+```
+Cool.  My native state tree, the Douglas Fir, dominates the height record (Go Oregon!).  I wonder if these trees are all together in an old growth stand, or if they're distributed throughout the area?
+
+```{r}
+ggplot(vegTop5_height, aes(x=adjEasting, y=adjNorthing, color=taxonID, size=height)) +
+  geom_point(alpha=.4 )
+```
+It looks to me like we have a small old growth patch of Douglas Fir.  That would be super fun to study.
+
+* Diameter?
+```{r}
+vegTop5_diameter=veg%>%
+  slice_max(stemDiameter, n=5)
+head(vegTop5_diameter)
+```
+```{r}
+ggplot(vegTop5_diameter, aes(x=adjEasting, y=adjNorthing, color=taxonID, size=stemDiameter)) +
+  geom_point(alpha=.4 )
+```
+Interesting.  Also mostly Douglas Firs, but not the ones who are the tallest.  I bet that's why our linear model failed.
+
+
+* What proportion of sampled trees are dead?
+
+```{r}
+length(veg)/length(vegLIVE)
+```
+
+Or ~4%
