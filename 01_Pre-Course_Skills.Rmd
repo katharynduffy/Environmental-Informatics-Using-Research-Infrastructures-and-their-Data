@@ -5,7 +5,7 @@
 
 Ecology is increasingly becoming a data-intensive science, relying on massive amounts of data collected by both remote-sensing platforms and sensor networks  embedded in the environment. New observatory networks, such as the US National Ecological Observatory Network (NEON), provide research platforms that enable scientists to examine phenomena across diverse ecosystem types through access to thousands of sensors collecting diverse environmental observations. These networks spatially and temporaly overlap with a number of other networks and infrastructures ranging from remote sensing, to citizen science, and so on.  
 
-It has been proposed that **data-intensive science represents the fourth scientific paradigm** following the empirical *(i.e. description of natural phenomena)*, theoretical *(e.g. modeling and generalization)* and computational *(e.g. simulation)* scientific approaches, and comprises an approach for unifying theory, experimentation and simulation.
+It has been argued that **data-intensive science represents the fourth scientific paradigm** following the empirical *(i.e. description of natural phenomena)*, theoretical *(e.g. modeling and generalization)* and computational *(e.g. simulation)* scientific approaches, and comprises an approach for unifying theory, experimentation and simulation.
 
 Ecologists increasingly address questions at broader scales that have both scientific and societal relevance. For example, the [40 top priorities for science that can inform conservation and management policy in the USA](https://academic.oup.com/bioscience/article/61/4/290/324883) rely principally on a sound foundation of ecological research, and the ability to scale knowledge and inter-connect data. 
 

@@ -174,7 +174,7 @@ with other community resources, NEON data can be accessed through the portals.
 Examples include Phenocam, BOLD, Ameriflux, and others. You can learn more in the
 documentation for individual data products.  
 
-## Hands on: Accessing NEON Data
+## Hands on: Accessing NEON Data & User Tokens
 
 ### Via the NEON API, with your User Token
 
@@ -211,8 +211,8 @@ After completing this section, you will be able to:
 
 
 ### Things You’ll Need To Complete This Tutorial
-You will need a version of R (3.4.1 or higher) and, preferably, `RStudio` 
-loaded on your computer to complete this tutorial.
+You will need a version of R (3.4.1 or higher) and `RStudio` 
+loaded on your computer.
 
 ### Install R Packages
 
@@ -243,13 +243,13 @@ Once you have an account, you can create an API token for yourself. At
 the bottom of the My Account page, you should see this bar: 
 
 ```{r,echo=FALSE}
-knitr::include_graphics('/Users/kdw223/Research/katharynduffy.github.io/images/get-api-token-button.png')
+knitr::include_graphics('./images/get-api-token-button.png')
 ```
 
 Click the 'GET API TOKEN' button. After a moment, you should see this:
 
 ```{r,echo=FALSE}
-knitr::include_graphics('/Users/kdw223/Research/katharynduffy.github.io/images/account-page-token-view.png')
+knitr::include_graphics('./images/account-page-token-view.png')
 ```
 
 Click on the Copy button to copy your API token to the clipboard.
@@ -339,78 +339,223 @@ Open a new, empty R script (.R). Put a single line of code in the script:
 NEON_TOKEN <- "PASTE YOUR TOKEN HERE"
 ```
 
-Save this file in a logical place on your machine, somewhere that won't be 
-visible publicly. Here, let's call the file `neon_token_source.R`, and 
-save it to the working directory. Then, at the start of 
-every script where you're going to use the NEON API, you would run this line 
+Save this file within your current R project and call the file `neon_token_source.R`.  So that you don't accidently push your token up to GitHub, move over to the command line or Atom.io and add it to your `.gitignore` file: 
+
+```{r}
+knitr::include_graphics('./docs/images/git_ignore.png')
+```
+
+Now, whenever you want to pull NEON data via the API, at the start of any analysis you would place this line 
 of code:
 
 ```{r source, eval=FALSE, comment=NA}
-source(paste0(wd, "/neon_token_source.R"))
+source('neon_token_source.R')
 ```
 
 Then you'll be able to use `token=NEON_TOKEN` when you run `neonUtilities` 
 functions, and you can share your code without accidentally sharing your 
 token.
 
-#### Option 2: Save token to the R environment
+#### Option 2: Save your toekn to your R environment
 
-To create a persistent environment variable, we use a `.Renviron` file. 
-Before creating a file, check which directory R is using as your home 
-directory:
+Instructions for finding and editing your .Renviron can be found in this tutorial in [NEON's Data Tutorials section.](https://www.neonscience.org/neon-api-tokens-tutorial)
 
-```{r getdir, eval=FALSE, comment=NA}
-# For Windows:
-Sys.getenv("R_USER")
-# For Mac/Linux:
-Sys.getenv("HOME")
+## Hands on: NEON TOS Data
+
+### Pull in Tree Data from NEON's TOS and investigate relationships
+
+> Adapted from [Claire Lunch's 'Compare tree height measured from the ground to a Lidar-based Canopy Height Model'](https://www.neonscience.org/tree-heights-veg-structure-chm) tutorial 
+
+
+Later in this course we will be working with NEON's LiDAR-based Canopy Height Model (CHM) data from their extensive Airborne Observation Platform (AOP).  In this section we will pull in **DP1.10098.001, Woody plant vegetation structure** from NEON's Terrestrial Observation Sampling (TOS) data and explore the data, from requesting it to plotting it.
+
+```{r, echo=FALSE}
+knitr::include_graphics('./docs/images/NEON_TOS_Sampling.png')
 ```
 
-Check the home directory to see if you already have a `.Renviron` file, **using 
-the file browse pane in RStudio**, or using another file browse method with 
-hidden files shown. Files that begin with `.` are hidden by default, but 
-RStudio recognizes files that begin with `.R` and displays them.
+> Generalized TOS sampling schematic, showing the placement of Distributed, Tower, and Gradient Plots from the [NEON GUIDE TO WOODY PLANT VEGETATION STRUCTURE, 2018](https://www.google.com/url?sa=i&url=http%3A%2F%2Fdata.neonscience.org%2Fapi%2Fv0%2Fdocuments%2FNEON_vegStructure_userGuide_vA&psig=AOvVaw32PujoEegMkzIWVuL_Scwn&ust=1597765301177000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCOjFiN_JousCFQAAAAAdAAAAABAU)
 
-<figure>
-	<a href="{{ site.baseurl }}/images/NEON-api-token/R-environ-file-browse.png">
-	<img src="{{ site.baseurl }}/images/NEON-api-token/R-environ-file-browse.png" alt="File browse pane in RStudio showing .Renviron file."></a>
-	<figcaption>Screenshot of file browse pane with .Renviron file. 
-	</figcaption>
-</figure>
+The [vegetation structure data](https://data.neonscience.org/data-products/DP1.10098.001) are collected by by field staff on the ground. This data product contains the quality-controlled, native sampling resolution data from in-situ measurements of live and standing dead woody individuals and shrub groups, from all terrestrial NEON sites with qualifying woody vegetation. The exact measurements collected per individual depend on growth form, and these measurements are focused on enabling biomass and productivity estimation, estimation of shrub volume and biomass, and calibration / validation of multiple NEON airborne remote-sensing data products. In general, comparatively large individuals that are visible to remote-sensing instruments are mapped, tagged and measured, and other smaller individuals are tagged and measured but not mapped. Smaller individuals may be subsampled according to a nested subplot approach in order to standardize the per plot sampling effort. Structure and mapping data are reported per individual per plot; sampling metadata, such as per growth form sampling area, are reported per plot. 
 
-If you already have a `.Renviron` file, open it and follow the instructions 
-below to add to it. If you don't have one, create one using File -> New File 
--> Text File in the RStudio menus.
-
-Add one line to the text file. In this option, there are no quotes around the 
-token value.
-
-```{r Renviron, eval=FALSE, comment=NA}
-NEON_TOKEN=PASTE YOUR TOKEN HERE
+```{r, echo=FALSE}
+knitr::include_graphics('./docs/images/NEON_woody_sampling.png')
 ```
 
-Save the file as `.Renviron`, in the RStudio home directory identified above. 
-Double check the spelling, this will not work if you have a typo. Re-start 
-R to load the environment.
+> Illustration of a 20 m x 20 m Distributed/Gradient/Tower base plot (left), a 40 m x 40 m Tower base plot (right), and associated nested subplots used for measuring woody stem vegetation. Locations of subplots are denoted with plain text numbers, and locations of nested subplots are denoted with italic numbers from the [NEON GUIDE TO WOODY PLANT VEGETATION STRUCTURE, 2018](https://www.google.com/url?sa=i&url=http%3A%2F%2Fdata.neonscience.org%2Fapi%2Fv0%2Fdocuments%2FNEON_vegStructure_userGuide_vA&psig=AOvVaw32PujoEegMkzIWVuL_Scwn&ust=1597765301177000&source=images&cd=vfe&ved=0CA0QjhxqFwoTCOjFiN_JousCFQAAAAAdAAAAABAU)
 
-Once your token is assigned to an environment variable, use the function 
-`Sys.getenv()` to access it. For example, in `loadByProduct()`:
+For the purpose of this hands-on activity we will be using data from the Wind River Experimental Forest NEON field site located in Washington state.  The predominant vegetation at that site is tall evergreen conifers.
 
-```{r useEnvtToken, eval=FALSE, comment=NA}
-foliar <- loadByProduct(dpID="DP1.10026.001", site="all", 
-                        package="expanded", check.size=F,
-                        token=Sys.getenv("NEON_TOKEN"))
+*Note: this is also a core site for many other networks such as [AmeriFlux and FLUXNET](https://ameriflux.lbl.gov/sites/siteinfo/US-Wrc), which we will cover later*. 
+
+```{r, echo=FALSE}
+knitr::include_graphics('./images/DSC_0385-scaled-photo-gallery-680x1024.jpg')
 ```
+
+> Image of the Wind River Crane Flux Tower from [Ameriflux](https://ameriflux.lbl.gov/sites/siteinfo/US-Wrc)
+
+
+Let's begin by:
+
+1. Installing the `geoNEON` package
+2. Making sure that the packages that we need are loaded, and 
+3. Supressing 'stirngs as factors' in R, as factors make all sorts of functions in R 'cranky'.
+
+```{r}
+options(stringsAsFactors=F)
+
+#install.packages("devtools") #uncomment if you don't yet have devtools
+#devtools::install_github("NEONScience/NEON-geolocation/geoNEON")
+
+library(neonUtilities)
+library(geoNEON)
+library(sp)
+```
+
+Now lets begin by pulling in the **vegetation structure data** using the `loadByProduct()` function in the `neonUtilities` package.  Inputs needed to the function are:
+
+* dpID: data product ID; (woody vegetation structure = DP1.10098.001
+
+* site: 4-letter site code; Wind River = WREF
+
+* package: basic or expanded; we'll begin with a `basic` here
+```{r, echo=FALSE}
+source('/Users/kdw223/Research/katharynduffy.github.io/neon_token_source.R')
+```
+```{r}
+veglist <- loadByProduct(dpID="DP1.10098.001", site="WREF", package="basic", check.size=FALSE, token = NEON_TOKEN)
+
+```
+
+Now, use the `getLocTOS()` function in the `geoNEON` package to get precise locations for the tagged plants. You can refer to the package documentation for more details.
+
+```{r}
+vegmap <- getLocTOS(veglist$vst_mappingandtagging, 
+                          "vst_mappingandtagging")
+```
+
+Now we need to merge the mapped locations of individuals (the `vst_mappingandtagging table`) with the annual measurements of height, diameter, etc (the `vst_apparentindividual table`). The two tables join based on *individualID*, the identifier for each tagged plant, but we'll include namedLocation, domainID, siteID, and plotID in the list of variables to merge on, to avoid ending up with duplicates of each of those columns. Refer to the variables table and to the Data Product User Guide for Woody plant vegetation structure for more information about the contents of each data table.
+
+```{r}
+veg <- merge(veglist$vst_apparentindividual, vegmap, 
+             by=c("individualID","namedLocation",
+                  "domainID","siteID","plotID"))
+```
+
+What did you just pull in?  Are you sure you know what you're working with? A **best practice** is to *always* do a quick visualization to make sure that you have the right data and that you understand its spread:
+
+```{r}
+symbols(veg$adjEasting[which(veg$plotID=="WREF_075")], 
+        veg$adjNorthing[which(veg$plotID=="WREF_075")], 
+        circles=veg$stemDiameter[which(veg$plotID=="WREF_075")]/100/2, 
+        inches=F, xlab="Easting", ylab="Northing")
+```
+
+A key component of any measurement, and therefore a reoccuring theme in this course, is an **estimate of uncertainty**.  Let's overlay estimates of uncertainty for the location of each stem in blue:
+
+```{r}
+symbols(veg$adjEasting[which(veg$plotID=="WREF_075")], 
+        veg$adjNorthing[which(veg$plotID=="WREF_075")], 
+        circles=veg$stemDiameter[which(veg$plotID=="WREF_075")]/100/2, 
+        inches=F, xlab="Easting", ylab="Northing")
+symbols(veg$adjEasting[which(veg$plotID=="WREF_075")], 
+        veg$adjNorthing[which(veg$plotID=="WREF_075")], 
+        circles=veg$adjCoordinateUncertainty[which(veg$plotID=="WREF_075")], 
+        inches=F, add=T, fg="lightblue")
+```
+
+
+## Intro to NEON Exercises Part 1
+
+### Computational
+#### Part 1: Sign up for and Use an NEON API Token:
+
+1. Submit via .Rmd and .pdf a simple script that uses a *HIDDEN* token to access NEON data.
+
+Example:
+```{r}
+source('neon_token_source.R')
+veglist <- loadByProduct(dpID="DP1.10098.001", site="WREF", package="basic", check.size=FALSE, token = NEON_TOKEN)
+summary(veglist)
+```
+
+#### Part 2: Further Investigation of NEON TOS Vegetation Structure Data
+
+*In the following section all demonstration code uses the `iris` dataset for R as examples.  In this exercise the `iris` data is merely used for example code to get your started, you will complete all plots and models using the NEON TOS vegetation structure data*
+
+1. Convert the above diameter plot into a ggplot:
+If you need some refreshers on ggplot [Derek Sonderegger's Introductory Data Science using R: Graphing Part II](https://dereksonderegger.github.io/444/14-graphing-part-ii.html) is a wonderful resource.  I've pulled some of his plotting examples here.
+
+```{r}
+library(ggplot2)
+print ('your code here')
+```
+
+2. Set the color your circles to be a function of each species:
+
+```{r}
+#hints:
+data("iris")
+ggplot(iris, aes(x=Sepal.Length, y=Petal.Length, color=Species)) +
+  geom_point() 
+```
+
+3. Generate a histogram of tree heights for each plot.  Color your stacked bar as a function of each species:
+
+```{r}
+#hints for faceting: 
+ggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) +
+  geom_point() +
+  facet_grid( . ~ Species )
+```
+
+4. Use `dplyr` to remove dead trees:
+
+```{r}
+library(dplyr)
+#hints:
+#veg=veg%>%
+#filter(..... !=....)
+
+```
+5. Create a simple linear model that uses DBH and height to predict allometries.  Print the summary information of your model:
+
+```{r, eval=FALSE}
+#hints
+mdl=lm(Some_diameter + Some_height, data=something) #Question: looking at the metadata which 'height' and 'diameter' variables should you use?
+print(mdl)
+```
+
+6.  Plot your linear model:
+
+```{r}
+# hints:
+mdl <- lm( Petal.Length ~ Sepal.Length * Species, data = iris ) 
+iris <- iris %>%
+  select( -matches('fit'), -matches('lwr'), -matches('upr') ) %>%
+  cbind( predict(mdl, newdata=., interval='confidence') )       
+
+head(iris, n=3)
+ggplot(iris, aes(x=Sepal.Length, y=Petal.Length, color=Species)) +
+  geom_point() +
+  geom_line( aes(y=fit) ) +
+  geom_ribbon( aes( ymin=lwr, ymax=upr, fill=Species), alpha=.3 )   # alpha is the ribbon transparency
+```
+
+7. Answer the following questions:
+
+* How many `unique` species are present at `WREF`?
+* What are the `top_5` trees based on height? Diameter?
+* What proportion of sampled trees are dead?
 
 
 
 ## Part 2: Pulling NEON Data via the API
 
-This is a tutorial in pulling data from the NEON API or Application 
-Programming Interface. The tutorial uses R and the R package httr, but the core 
+This section covers pulling data from the NEON API or Application 
+Programming Interface using R and the R package httr, but the core 
 information about the API is applicable to other languages and approaches.
 
-As a reminder, there are 3 basic categories of NEON data:
+**As a reminder, there are 3 basic categories of NEON data:**
 
 1. Observational - Data collected by a human in the field, or in an analytical 
 laboratory, e.g. beetle identification, foliar isotopes
@@ -435,7 +580,7 @@ After completing this activity, you will be able to:
 
 
 
-### Things You’ll Need To Complete This Tutorial
+### Things You’ll Need To Complete This Section
 To complete this tutorial you will need the most current version of R and, 
 preferably, RStudio loaded on your computer.
 
@@ -461,6 +606,8 @@ Note, you must have devtools installed & loaded, prior to loading geoNEON or neo
 
 ## What is an API?
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/s7wmiS2mSXY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 >The following material was adapted from:
 >"Using the NEON API in R"
 description: "Tutorial for getting data from the NEON API, using R and the R package httr"
@@ -478,6 +625,8 @@ the ecological and environmental sciences, many researchers use APIs to
 programmatically pull data into their analyses. (Quoted from the NEON Observatory
 Blog story: 
 <a href="https://www.neonscience.org/observatory/observatory-blog/api-data-availability-viewer-now-live-neon-data-portal" target ="_blank"> API and data availability viewer now live on the NEON data portal</a>.)
+
+There are actually many types or constructions of APIs.  If you're interested you can [read a little more about them here](https://stoplight.io/api-types/)
 
 ### Anatomy of an API call
 
@@ -735,7 +884,7 @@ Wow! There are lots of *Agelaius phoeniceus* (Red-winged Blackbirds) at WOOD in 
 ### Instrumentation data (IS)
 
 The process is essentially the same for sensor data. We'll do the same series of 
-queries for Soil Temperature, DP1.00041.001. Let's use data from Moab in March 
+queries for Soil Temperature, DP1.00041.001. Let's use data from Moab in June 
 2017 this time.
 
 ```{r soil-data}
@@ -845,14 +994,10 @@ different AOP data products use different naming conventions.
 File formats differ by product as well.
 
 This particular product, camera imagery, is stored in TIFF files. 
-For a full list of AOP data products, their naming conventions, and 
-their file formats, see **update from NEON?**.
+
 
 Instead of reading a TIFF into R, we'll download it to the working 
-directory. This is one option for getting AOP files from the API; if 
-you plan to work with the files in R, you'll need to know how to 
-read the relevant file types into R. We hope to add tutorials for 
-this in the near future.
+directory. This is one option for getting AOP files from the API.
 
 To download the TIFF file, we use the `downloader` package, and we'll 
 select a file based on the time stamp in the file name: `20170328192931`
@@ -869,13 +1014,12 @@ download(cam.files$data$files$url[grep("20170328192931",
 The image, below, of the San Joaquin Experimental Range should now be in your 
 working directory.
 
-<figure>
-	<a href="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/neon-aop/SJER_tile_20170328192931.png">
-	<img src="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/neon-aop/SJER_tile_20170328192931.png"></a>
-	<figcaption> An example of camera data (DP1.30010.001) from the San Joaquin 
-	Experimental Range. Source: National Ecological Observatory Network (NEON) 
-	</figcaption>
-</figure>
+```{r, echo=FALSE}
+knitr::include_graphics('./images/SJER_tile_20170328192931.png')
+```
+
+> An example of camera data (DP1.30010.001) from the San Joaquin Experimental Range. Source: National Ecological Observatory Network (NEON) 
+
 
 ### Geolocation data
 
@@ -1099,23 +1243,23 @@ look <a href="https://www.neonscience.org/neonDataStackR" target="_blank">here</
 
 ## Intro to NEON Exercises
 
-### Computational
-#### Part 1: Sign up for and Use an NEON API Token:
+### Computational Part 2
 
-*Code to come*
-
+*code to come*
 
 ### Written
 
-**Question 1:** How might or does the NEON project
+**Question 1:** How does NEON address ‘dark data’ (Chapter 1)?
+
+**Question 2:** How might or does the NEON project
 intersect with your current research or future career goals? *(1 paragraph)*
 </div>
 
 
 
 <div id="ds-challenge" markdown="1">
-**Question 2:**
-Use the map in week 2:Intro to NEON to answer the following questions. Consider the research question that you may explore as your final semester project or a current project that you are working on and answer each of the following questions:
+**Question 3:**
+Use the map in **Chapter 2:Intro to NEON** to answer the following questions. Consider the research question that you may explore as your final semester project or a current project that you are working on and answer each of the following questions:
 
 * Are there NEON field sites that are in study regions of interest to you?  
 * What domains are the sites located in?  
@@ -1128,9 +1272,9 @@ interested in? What kind of data are available?
 </div>
 
 <div id="ds-challenge" markdown="1">
-**Question 3:**
+**Question 4:**
 Consider either your current or future research, or a question you’d like to
-address durring this course:
+address durring this course and answer *each* of the following questions:
 
 * Which types of NEON data may be more useful to address these questions?
 * What non-NEON data resources could be combined with NEON data to help address your question?
@@ -1139,9 +1283,9 @@ data?
 </div>
 
 <div id="ds-challenge" markdown="1">
-**Question 4:**
+**Question 5:**
 Use the Data Portal tools to investigate the data availability for the field
-sites you’ve already identified in the previous questions:
+sites you’ve already identified in the previous sections and answer *each* of the following questions:
 
 * What types of aquatic or terrestrial data are currently available? Remote sensing data?  
 * Of these, what type of data are you most interested in working with for your project during this course?  
