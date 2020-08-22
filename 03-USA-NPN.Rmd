@@ -609,12 +609,12 @@ plot(
 
 ## USA-NPN Exercises
 
-### Computational
+### USA-NPN Computational
 
 
 <div id="ds-challenge" markdown="1">
 
-### Written
+### USA-NPN Written
 
 **Question 1:** How might or does USA-NPN
 intersect with your current research or future career goals? *(1 paragraph)*
@@ -623,11 +623,25 @@ intersect with your current research or future career goals? *(1 paragraph)*
 
 
 <div id="ds-challenge" markdown="1">
-**Question 2:**
+
+**Question 2:**  Use the USA-NPN visualization tool (www.usanpn.org/data/visualizations) to answer the following questions. Consider the research question that you may explore as your final semester project or a current project that you are working on and answer each of the following questions:
+
+·      Are there species, regions, or phenophases of interest to you?
+
+·      Is there geospatial phenology data that is useful for your work (e.g. Spring Indices or Growing Degree Days)?
+
+·      What is the timeframe of data you will need to address your research interests?
+
+·      What is the spatial extent of data you will need?
 
 
-<div id="ds-challenge" markdown="1">
-**Question 4:**
+
+**Question 3:** Consider either your current or future research, or a question you’d like to address during this course:
+
+·       What climate data or additional phenological datasets would be valuable to address your research interests?
+
+·       What challenges, if any, could you foresee when beginning to work with these data?
+
 
 
 

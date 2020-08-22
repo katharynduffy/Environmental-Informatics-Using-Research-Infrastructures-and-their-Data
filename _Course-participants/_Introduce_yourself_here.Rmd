@@ -11,14 +11,21 @@ Hi, I'm Dr. Katharyn Duffy.  I have a Ph.D in Earth Science from Northern Arizon
 
 ***
 
+Hi, I'm Paul Roman. I am a second year ecoinformatics PhD student in the Carbone/Richardson Lab. My research interest is in studying ecosystem carbon cycles with a specific focus on movement of carbon between the soil and the atmosphere through processes such as soil respiration.
+
+
+***
+
 
 ***
 Hi, I'm Ethan Yackulic. I received a Masters in Environmental Science & Policy from NAU and have spent the past two years working for USGS, located here in Flagstaff. Most recently, I have worked with plant ecologists to identify how cost partitioning affects success in ecological restoration projects in the state of Utah. I'm a first year PhD student in the T3 program working with Nick McKay (Geology/EnvSci) to develop techniques for processing hyperspectral images of lake sediment cores that may shed light on long term changes in climate and water quality.
 
 
-
+**
 
 Hi, I'm Rohan David Boone. I am a second-year Ph.D student in the T3 Ecoinformatics program. I have a BS in Plant Biology with an emphasis in Ecology, Evolution, and Systematics. I'm currently studying tree and forest "memory" in Kiona Ogle's lab using Bayesian statistical models.
+
+***
 
 Hello! I'm Emma Reich. I have a BS in Molecular Environmental Biology from UC Berkeley and a background in plant ecophysiology and stable isotope analysis. I also used to work as a field tech for NEON. I'm a first year PhD student in the T3 program in Kiona Ogle's lab and I'm interested in evapotranspiration partitioning and Bayesian analysis.
 
@@ -40,7 +47,16 @@ Hi, I'm Jeralyn Poe. I am a first year PhD student in the Ecoinformatics T3 prog
 
 ***
 
+Hi, I'm Yuan Gao. I'm a second year Phd student in Ecoinformatics in Dr. Yiqi Luo's lab. I got my BS in Automation and MS in Control Science and Engineering in China. I worked in National Supercomputing Center in Wuxi, China for about 1 year as a software engineer. After that I came here to pursue my PhD degree. I'm interested in terrestrial ecosystem modeling, especially in the drylands.
+
+***
+
 Hi everyone - David Failing, a first year Ecoinformatics PhD Student in the Ogle Lab. I'm the glutton for punishment who decided that the first round of graduate school (also during a recession) wasn't enough. I have a PhD in Mathematics from Iowa State (earned in 2013), and spent the last 6 years as a tenure-track professor of mathematics.
+
+
+***
+
+Hi, I'm Laura Puckett, a second year Ecoinformatics PhD student in Scott Goetz' lab. I have a BS in Forest Resources and Environmental Conservation from Virginia Tech. I'm currently studying boreal forest wildfires using remote sensing.
 
 ***
 
