@@ -398,7 +398,7 @@ Let's begin by:
 
 1. Installing the `geoNEON` package
 2. Making sure that the packages that we need are loaded, and 
-3. Supressing 'stirngs as factors' in R, as factors make all sorts of functions in R 'cranky'.
+3. Supressing 'strings as factors' in R, as factors make all sorts of functions in R 'cranky'.
 
 ```{r}
 options(stringsAsFactors=F)
@@ -1030,18 +1030,65 @@ This section describes how to get spatial data and what to do with it depends on
 data you're working with.
 
 #### Instrumentation data (both aquatic and terrestrial)
-Stay tuned - spatial data for instruments are in the process of entry into 
-the NEON database.
 
-#### Observational data - Aquatic
-Latitude, longitude, elevation, and associated uncertainties are included in 
-data downloads. Most products also include an "additional coordinate uncertainty" 
-that should be added to the provided uncertainty. Additional spatial data, such 
-as northing and easting, can be downloaded from the API.
+Downloads of instrument system (IS) data include a file called sensor_positions.csv. The sensor positions file contains information about the coordinates of each sensor, relative to a reference location.
+
+While the specifics vary, techniques are generalizable for working with sensor data and the sensor_positions.csv file. Let's look at the sensor locations for photosynthetically active radiation (PAR; DP1.00024.001) at the NEON Treehaven site (TREE) in July 2018. To reduce our file size, we'll use the 30 minute averaging interval. Our final product from this section is to create a spatially explicit picture of light attenuation through the canopy.
+
+```{r}
+# load PAR data of interest 
+par <- loadByProduct(dpID="DP1.00024.001", site="TREE",
+                    startdate="2018-07", enddate="2018-07",
+                    avg=30, check.size=F, token=NEON_TOKEN)
+```
+
+**Now we can specifically look at the sensor positions file:**
+
+```{r}
+# create object for sens. pos. file
+pos <- par$sensor_positions_00024
+
+# view names
+names(pos)
+
+```
+
+The sensor locations are indexed by the [HOR.VER variable](https://data.neonscience.org/file-naming-conventions) - see the file naming conventions page for more details.
+
+Using unique() we can view all the locations indexes in this file.
+
+```{r}
+# view names
+unique(pos$HOR.VER)
+```
+
+PAR data are collected at multiple levels of the NEON tower but along a single vertical plane. We see this reflected in the data where HOR=000 (all data collected) at the tower location. The VER index varies (VER = 010 to 060) showing that the vertical position is changing and that PAR is measured at six different levels.
+
+The x, y, and z offsets in the sensor positions file are the relative distance, in meters, to the reference latitude, longitude, and elevation in the file.
+
+The HOR and VER indices in the sensor positions file correspond to the verticalPosition and horizontalPosition fields in par$PARPAR_30min.
+
+Say we wanted to plot a profile of the PAR through the canopy, we would need to start by using the aggregate() function to calculate mean PAR at each vertical position on the tower over the month:
+
+```{r}
+# calc mean PAR at each level
+parMean <- aggregate(par$PARPAR_30min$PARMean, 
+                   by=list(par$PARPAR_30min$verticalPosition),
+                   FUN=mean, na.rm=T)
+```
+
+Now we can plot mean PAR relative to height on the tower (or the zOffset):
+
+```{r}
+# plot PAR
+plot(parMean$x, parMean$Group.1, type="b", pch=20,
+     xlab="Photosynthetically active radiation",
+     ylab="Height above tower base (m)")
+```
 
 #### Observational data - Terrestrial
 Latitude, longitude, elevation, and associated uncertainties are included in 
-data downloads. These are the coordinates and uncertainty of the sampling plot; 
+data downloads  *(Remember NEON COding Lab part 1?)*. These are the coordinates and uncertainty of the sampling plot; 
 for many protocols it is possible to calculate a more precise location. 
 Instructions for doing this are in the respective data product user guides, and 
 code is in the `geoNEON` package on GitHub.
@@ -1109,9 +1156,9 @@ brd.point.pt <- getLocTOS(brd.point, "brd_perpoint")
 
 # plot bird point locations 
 # note that decimal degrees is also an option in the data
-# symbols(brd.point.pt$easting, brd.point.pt$northing, 
-#         circles=brd.point.pt$adjCoordinateUncertainty, 
-#         xlab="Easting", ylab="Northing", tck=0.01, inches=F)
+symbols(brd.point.pt$adjEasting, brd.point.pt$adjNorthing,
+        circles=brd.point.pt$adjCoordinateUncertainty,
+        xlab="Easting", ylab="Northing", tck=0.01, inches=F)
 
 ```
 
@@ -1122,7 +1169,7 @@ located.
 
 NEON maintains accepted taxonomies for many of the taxonomic identification 
 data we collect. NEON taxonomies are available for query via the API; they 
-are also provided via an interactive user interface, the <a href="http://data.neonscience.org/static/taxon.html" target="_blank">Taxon Viewer</a>.
+are also provided via an interactive user interface, the [Taxon Viewer](http://data.neonscience.org/static/taxon.html).
 
 NEON taxonomy data provides the reference information for how NEON 
 validates taxa; an identification must appear in the taxonomy lists 
@@ -1234,18 +1281,13 @@ At the top of this tutorial, we installed the `neonUtilities` package.
 This is a custom R package that stacks the monthly files provided by 
 the NEON data portal into a single continuous file for each type of 
 data table in the download. It currently handles files downloaded from 
-the data portal, but not files pulled from the API. That functionality 
-will be added soon!
+the data portal, but not files pulled from the API. 
 
 For a guide to using `neonUtilities` on data downloaded from the portal, 
 look <a href="https://www.neonscience.org/neonDataStackR" target="_blank">here</a>.
 
 
-## Intro to NEON Exercises
-
-### Computational Part 2
-
-*code to come*
+## Intro to NEON Exercises Part 2
 
 ### Written
 
@@ -1296,6 +1338,35 @@ sites you’ve already identified in the previous sections and answer *each* of 
 
 
 <div id="ds-challenge" markdown="1">
+
+### NEON Coding Lab Part 2
+
+1.  Use the answers that you've provided above to select a *single* NEON site.
+
+e.g. `ONAQ`
+
+2.  Use the answers that you've provided above to select **3 NEON data products** from either the TOS, TIS or ARS (AOP) collection methods.  Sumarize each product with its NEON identifier, along with a sumarry.
+
+e.g.:
+
+`**DP1.10055.001**: Plant phenology observations: phenophase status and insensity of tagged plants.  This data product contains the quality-controlled, native sampling resolution data from in-situ observations of plant leaf development and reproductive phenophases, at **D15.ONAQ**.`
+
+3.  Using the NEON Ulitites package or the API pull in those data along with metadata.
+
+
+4. Organize your data into `data.frames` and produce summaries for each of your data:
+
+5.  Filter your data based on metadata and quality flags:
+
+6.  Create minimum of 1 plot per data type (minimum of 3 plots total).  These will vary based on that data that you've chosen.
+
+A non-exhastive list of ideas: 
+1. Your data as a function of height on the tower (FPAR example)
+2. A map of the locations where your data is sampled (TOS tree example, bird example)
+3. A model based on the data you're interested in working work (Coding lab 1 example)
+4. A timeseries of your data (example below)
+
+7.  What is the frequency of the data you decided was of interest?  How do the data align to answer a central question?  What challenges did you run into when investigating these data? How will you address these challenges and document your code? *One to two paragraphs*
 
 **Intro to NEON Culmination Activity**
 
