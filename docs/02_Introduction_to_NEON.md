@@ -331,7 +331,7 @@ variable that gets loaded when you open R. This is a little harder to set
 up initially, but once it's done, it's done globally, and it will work in 
 every script you run.
 
-#### OPtion 1: Save token in a local file
+#### Option 1: Save token in a local file
 
 Open a new, empty R script (.R). Put a single line of code in the script:
 
@@ -397,7 +397,7 @@ Let's begin by:
 
 1. Installing the `geoNEON` package
 2. Making sure that the packages that we need are loaded, and 
-3. Supressing 'stirngs as factors' in R, as factors make all sorts of functions in R 'cranky'.
+3. Supressing 'strings as factors' in R, as factors make all sorts of functions in R 'cranky'.
 
 
 ```r
@@ -452,7 +452,7 @@ veglist <- loadByProduct(dpID="DP1.10098.001", site="WREF", package="basic", che
 ## Copied the most recent publication of categoricalCodes file to /stackedFiles
 ## Copied the most recent publication of variable definition file to /stackedFiles
 ## Finished: Stacked 3 data tables and 3 metadata tables!
-## Stacking took 0.2176471 secs
+## Stacking took 0.2122722 secs
 ## All unzipped monthly data folders have been removed.
 ```
 
@@ -537,7 +537,7 @@ veglist <- loadByProduct(dpID="DP1.10098.001", site="WREF", package="basic", che
 ## Copied the most recent publication of categoricalCodes file to /stackedFiles
 ## Copied the most recent publication of variable definition file to /stackedFiles
 ## Finished: Stacked 3 data tables and 3 metadata tables!
-## Stacking took 0.09085798 secs
+## Stacking took 0.1162362 secs
 ## All unzipped monthly data folders have been removed.
 ```
 
@@ -840,7 +840,7 @@ req
 
 ```
 ## Response [https://data.neonscience.org/api/v0/products/DP1.10003.001]
-##   Date: 2020-08-19 18:32
+##   Date: 2020-08-24 19:25
 ##   Status: 200
 ##   Content-Type: application/json;charset=UTF-8
 ##   Size: 24.2 kB
@@ -1229,56 +1229,56 @@ brd.files$data$files
 
 ```
 ##                                                                               name
-## 1                   NEON.D09.WOOD.DP1.10003.001.2015-07.basic.20191107T152331Z.zip
-## 2      NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.basic.20191107T152331Z.csv
-## 3                       NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv
-## 4                          NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt
-## 5                      NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv
-## 6     NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.basic.20191107T152331Z.csv
-## 7           NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml
-## 8         NEON.D09.WOOD.DP1.10003.001.brd_references.expanded.20191107T152331Z.csv
-## 9                          NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt
-## 10               NEON.D09.WOOD.DP1.10003.001.2015-07.expanded.20191107T152331Z.zip
-## 11                      NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv
-## 12  NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.expanded.20191107T152331Z.csv
-## 13 NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.expanded.20191107T152331Z.csv
-## 14          NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml
-## 15                     NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv
+## 1                      NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv
+## 2     NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.basic.20191107T152331Z.csv
+## 3           NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml
+## 4                   NEON.D09.WOOD.DP1.10003.001.2015-07.basic.20191107T152331Z.zip
+## 5                       NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv
+## 6      NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.basic.20191107T152331Z.csv
+## 7                          NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt
+## 8   NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.expanded.20191107T152331Z.csv
+## 9         NEON.D09.WOOD.DP1.10003.001.brd_references.expanded.20191107T152331Z.csv
+## 10                      NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv
+## 11 NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.expanded.20191107T152331Z.csv
+## 12          NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml
+## 13               NEON.D09.WOOD.DP1.10003.001.2015-07.expanded.20191107T152331Z.zip
+## 14                     NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv
+## 15                         NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt
 ## 16                          NEON.Bird_Conservancy_of_the_Rockies.brd_personnel.csv
 ##      size                              md5 crc32
-## 1   67816 4438e5e050fc7be5949457f42089a397    NA
-## 2   23521 f37931d46213246dccf2a161211c9afe    NA
-## 3    7337 e67f1ae72760a63c616ec18108453aaa    NA
-## 4   12784 d84b496cf950b5b96e762473beda563a    NA
-## 5   10084 6d15da01c03793da8fc6d871e6659ea8    NA
-## 6  346679 e0adb3146b5cce59eea09864145efcb1    NA
-## 7   70539 df102cb4cfdce092cda3c0942c9d9b67    NA
-## 8    1012 d76cfc5443ac27a058fab1d319d31d34    NA
-## 9   13063 680a2f53c0a9d1b0ab4f8814bda5b399    NA
-## 10  79998 22e3353dabb8b154768dc2eee9873718    NA
-## 11   7337 e67f1ae72760a63c616ec18108453aaa    NA
-## 12  23521 f37931d46213246dccf2a161211c9afe    NA
-## 13 367402 2ad379ae44f4e87996bdc3dee70a0794    NA
-## 14  78750 6ba91b6e109ff14d1911dcaad9febeb9    NA
-## 15  10084 6d15da01c03793da8fc6d871e6659ea8    NA
+## 1   10084 6d15da01c03793da8fc6d871e6659ea8    NA
+## 2  346679 e0adb3146b5cce59eea09864145efcb1    NA
+## 3   70539 df102cb4cfdce092cda3c0942c9d9b67    NA
+## 4   67816 4438e5e050fc7be5949457f42089a397    NA
+## 5    7337 e67f1ae72760a63c616ec18108453aaa    NA
+## 6   23521 f37931d46213246dccf2a161211c9afe    NA
+## 7   12784 d84b496cf950b5b96e762473beda563a    NA
+## 8   23521 f37931d46213246dccf2a161211c9afe    NA
+## 9    1012 d76cfc5443ac27a058fab1d319d31d34    NA
+## 10   7337 e67f1ae72760a63c616ec18108453aaa    NA
+## 11 367402 2ad379ae44f4e87996bdc3dee70a0794    NA
+## 12  78750 6ba91b6e109ff14d1911dcaad9febeb9    NA
+## 13  79998 22e3353dabb8b154768dc2eee9873718    NA
+## 14  10084 6d15da01c03793da8fc6d871e6659ea8    NA
+## 15  13063 680a2f53c0a9d1b0ab4f8814bda5b399    NA
 ## 16  46349 a2c47410a6a0f49d0b1cf95be6238604    NA
 ##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        url
-## 1                      https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.2015-07.basic.20191107T152331Z.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200819T183258Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200819%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=2725bbdbbd84a42c4efcb352e9a3c7cc2d972f67f5688b786e778bd01bba26ea
-## 2         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.basic.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200819T183258Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200819%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=b77172768805c00f31cb275c65de31b5958005cc412d56ff7709daad201a126e
-## 3                          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200819T183258Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200819%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=761685f2e56be768c2bdcc9db7635935cd19c3f53b27383d35ad13c5a2749faa
-## 4                             https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200819T183258Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200819%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=115cc47e0115f3aa382f80272b87577add9294e01e8064c69e2472eb47d02958
-## 5                         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200819T183258Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200819%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=1786dd39bc46965816295a7deb43a13cbbf9811ffc2fa074f8901bdcc3fd3a53
-## 6        https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.basic.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200819T183258Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200819%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=768565b6e8f8b89343fe654359d309d94e59ab97b53f8e52b3d7f7833aacfa51
-## 7              https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200819T183258Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200819%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=60e37e3c138bbb5888c38cc23da97c8ab19a2fd75384379ff856b3bb33c54b03
-## 8         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_references.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200819T183258Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200819%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=02ce35f9b2e353380703bfc87292611648b5d4b03368948ae07b42b422b3c866
-## 9                          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200819T183258Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=pub-internal-read%2F20200819%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=d3a3ddc6477c1a5c03260ad3100688095d96be6fd3d922ad3e2b5847b3ff50c3
-## 10               https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.2015-07.expanded.20191107T152331Z.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200819T183258Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200819%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=50548bb18dab94abadaeb66e597d5df92cfabc53158dcef703cd12feb854a193
-## 11                      https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200819T183258Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200819%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=25f0e3a27f4f726ac19391c27efbc48fa7cc53ba4e7798dffd0918f0aac6b60f
-## 12  https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200819T183258Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200819%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=f0928786c8ba9f844459ccf718c129e794daf5b1c9e06a417a0ed6c9f6ca4535
-## 13 https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200819T183258Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200819%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=2ca20c1c5f719065e69ad01e10acc01e04bfcad696c311219bc63e91df7a1e08
-## 14          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200819T183258Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200819%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=a65e968a7c2939aae7e7b8fe18914858e867b335c7590297e6ed72f6283a8266
-## 15                     https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200819T183258Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200819%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=8b01069ae34464e18a15d1500667f1495c4cd5e148c1c16b39900c6c35b43b25
-## 16                          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.Bird_Conservancy_of_the_Rockies.brd_personnel.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200819T183258Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200819%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=df133246a90d0bbdef8259b3630b8df16e72d17bce633cbad9b18d37aaafe9e2
+## 1                         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200824T192530Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200824%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=33262ea353e028f1e7b21aea1ed4078c66020780497fcbde37c8345c6838d703
+## 2        https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.basic.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200824T192530Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200824%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=0ebb3514431d98fe7d2d820a094e442c03ff530ea435a55ed646fce3c998baef
+## 3              https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200824T192530Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200824%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=f82be7d68e3161461f0bfa2e1ff6828b3d9da088677c6a9b39f7b089d4e9f856
+## 4                      https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.2015-07.basic.20191107T152331Z.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200824T192530Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200824%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=04c547c0d6a684f1dae3e714affdf259e065360e4ebfa2a6d8c7d2d03645807c
+## 5                          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200824T192530Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200824%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=588ffe1793f9a875c649572ba74d32aa7087fbf28315b23c3da9b6e674ef154f
+## 6         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.basic.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200824T192530Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200824%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=af2638a0a4ea5f7e3f3a570c1ad31c3dc9f317826c03ca7c56c0409d4cfa68bb
+## 7                             https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/basic/NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200824T192530Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200824%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=d2e18b4bf38d950f21d15688228f4c61e1d26dd1cd4c38046403814590371a8e
+## 8   https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_perpoint.2015-07.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200824T192530Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200824%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=b8ab481573c02768f3b2db758c478cef18a10f89faf1f1f789d94fa21aa7002c
+## 9         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_references.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200824T192530Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200824%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=843ecb731668d4791a7063490a1b886f7e199a0e82447cf183295503f877c0f1
+## 10                      https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.variables.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200824T192530Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200824%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=f2f69f32b09b8494803e4fd631461464106340d8a736a85652dab58d57a93856
+## 11 https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.brd_countdata.2015-07.expanded.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200824T192530Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200824%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=e803430ac5713ce91437f38e4fcf55e6c603e409e03b6b4162893c3bd9ded877
+## 12          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.EML.20150701-20150705.20191107T152331Z.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200824T192530Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200824%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=89b3611f9e1beacac2823b628030915135f162889be6b55cd4da902e657fdff4
+## 13               https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.2015-07.expanded.20191107T152331Z.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200824T192530Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=pub-internal-read%2F20200824%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=74f37355bc4c817766508dde920610acc052f0ca87265aa01d680a55d0cce234
+## 14                     https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP0.10003.001.validation.20191107T152331Z.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200824T192530Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200824%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=42354a60cb357ba174d1293df43507de7910437d2988f290f3f185aafacba435
+## 15                         https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.D09.WOOD.DP1.10003.001.readme.20191107T152331Z.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200824T192530Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200824%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=678588a5b3735da0fdea237cd3ba0456e09446e0acca08319cc063b0f820627f
+## 16                          https://neon-prod-pub-1.s3.data.neonscience.org/NEON.DOM.SITE.DP1.10003.001/PROV/WOOD/20150701T000000--20150801T000000/expanded/NEON.Bird_Conservancy_of_the_Rockies.brd_personnel.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200824T192530Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=pub-internal-read%2F20200824%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=75d8a046dbc51164358fdc1657f6a9566f7269339953fd90cecbf2c09520b61b
 ```
 
 In this output, `name` and `url` are key fields. It provides us with the names 
@@ -1398,7 +1398,7 @@ Wow! There are lots of *Agelaius phoeniceus* (Red-winged Blackbirds) at WOOD in 
 ### Instrumentation data (IS)
 
 The process is essentially the same for sensor data. We'll do the same series of 
-queries for Soil Temperature, DP1.00041.001. Let's use data from Moab in March 
+queries for Soil Temperature, DP1.00041.001. Let's use data from Moab in June 
 2017 this time.
 
 
@@ -1428,16 +1428,16 @@ tmp.files$data$files$name[1:10]   # Let's print the first 10
 ```
 
 ```
-##  [1] "NEON.D13.MOAB.DP1.00041.001.003.504.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
-##  [2] "NEON.D13.MOAB.DP1.00041.001.002.505.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
-##  [3] "NEON.D13.MOAB.DP1.00041.001.003.502.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
-##  [4] "NEON.D13.MOAB.DP1.00041.001.001.507.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
-##  [5] "NEON.D13.MOAB.DP1.00041.001.004.507.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
-##  [6] "NEON.D13.MOAB.DP1.00041.001.004.508.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
-##  [7] "NEON.D13.MOAB.DP1.00041.001.003.501.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
-##  [8] "NEON.D13.MOAB.DP1.00041.001.001.503.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
-##  [9] "NEON.D13.MOAB.DP1.00041.001.002.503.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
-## [10] "NEON.D13.MOAB.DP1.00041.001.002.509.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
+##  [1] "NEON.D13.MOAB.DP1.00041.001.004.502.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
+##  [2] "NEON.D13.MOAB.DP1.00041.001.005.503.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
+##  [3] "NEON.D13.MOAB.DP1.00041.001.005.503.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
+##  [4] "NEON.D13.MOAB.DP1.00041.001.005.508.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
+##  [5] "NEON.D13.MOAB.DP1.00041.001.001.505.030.ST_30_minute.2017-06.expanded.20200620T070859Z.csv"
+##  [6] "NEON.D13.MOAB.DP1.00041.001.003.509.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
+##  [7] "NEON.D13.MOAB.DP1.00041.001.005.501.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
+##  [8] "NEON.D13.MOAB.DP1.00041.001.004.504.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
+##  [9] "NEON.D13.MOAB.DP1.00041.001.004.506.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv" 
+## [10] "NEON.D13.MOAB.DP1.00041.001.005.508.001.ST_1_minute.2017-06.expanded.20200620T070859Z.csv"
 ```
 
 These file names start and end the same way as the observational files, but the 
@@ -1525,16 +1525,16 @@ head(cam.files$data$files$name, 10)
 ```
 
 ```
-##  [1] "17032816_EH021656(20170328184854)-0540_ort.tif"
-##  [2] "17032816_EH021656(20170328195828)-1133_ort.tif"
-##  [3] "17032816_EH021656(20170328192358)-0821_ort.tif"
-##  [4] "17032816_EH021656(20170328200520)-1192_ort.tif"
-##  [5] "17032816_EH021656(20170328175352)-0095_ort.tif"
-##  [6] "17032816_EH021656(20170328185327)-0570_ort.tif"
-##  [7] "17032816_EH021656(20170328184940)-0550_ort.tif"
-##  [8] "17032816_EH021656(20170328195353)-1092_ort.tif"
-##  [9] "17032816_EH021656(20170328184931)-0548_ort.tif"
-## [10] "17032816_EH021656(20170328195645)-1111_ort.tif"
+##  [1] "17032816_EH021656(20170328182837)-0379_ort.tif"
+##  [2] "17032816_EH021656(20170328193206)-0899_ort.tif"
+##  [3] "17032816_EH021656(20170328195511)-1110_ort.tif"
+##  [4] "17032816_EH021656(20170328191250)-0734_ort.tif"
+##  [5] "17032816_EH021656(20170328184058)-0473_ort.tif"
+##  [6] "17032816_EH021656(20170328184826)-0534_ort.tif"
+##  [7] "17032816_EH021656(20170328194113)-0969_ort.tif"
+##  [8] "17032816_EH021656(20170328201257)-1221_ort.tif"
+##  [9] "17032816_EH021656(20170328193804)-0954_ort.tif"
+## [10] "17032816_EH021656(20170328194702)-1023_ort.tif"
 ```
 
 File names for AOP data are more variable than for IS or OS data; 
@@ -1542,14 +1542,10 @@ different AOP data products use different naming conventions.
 File formats differ by product as well.
 
 This particular product, camera imagery, is stored in TIFF files. 
-For a full list of AOP data products, their naming conventions, and 
-their file formats, see **update from NEON?**.
+
 
 Instead of reading a TIFF into R, we'll download it to the working 
-directory. This is one option for getting AOP files from the API; if 
-you plan to work with the files in R, you'll need to know how to 
-read the relevant file types into R. We hope to add tutorials for 
-this in the near future.
+directory. This is one option for getting AOP files from the API.
 
 To download the TIFF file, we use the `downloader` package, and we'll 
 select a file based on the time stamp in the file name: `20170328192931`
@@ -1565,13 +1561,10 @@ download(cam.files$data$files$url[grep("20170328192931",
 The image, below, of the San Joaquin Experimental Range should now be in your 
 working directory.
 
-<figure>
-	<a href="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/neon-aop/SJER_tile_20170328192931.png">
-	<img src="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/neon-aop/SJER_tile_20170328192931.png"></a>
-	<figcaption> An example of camera data (DP1.30010.001) from the San Joaquin 
-	Experimental Range. Source: National Ecological Observatory Network (NEON) 
-	</figcaption>
-</figure>
+<img src="./images/SJER_tile_20170328192931.png" width="500" />
+
+> An example of camera data (DP1.30010.001) from the San Joaquin Experimental Range. Source: National Ecological Observatory Network (NEON) 
+
 
 ### Geolocation data
 
@@ -1582,18 +1575,102 @@ This section describes how to get spatial data and what to do with it depends on
 data you're working with.
 
 #### Instrumentation data (both aquatic and terrestrial)
-Stay tuned - spatial data for instruments are in the process of entry into 
-the NEON database.
 
-#### Observational data - Aquatic
-Latitude, longitude, elevation, and associated uncertainties are included in 
-data downloads. Most products also include an "additional coordinate uncertainty" 
-that should be added to the provided uncertainty. Additional spatial data, such 
-as northing and easting, can be downloaded from the API.
+Downloads of instrument system (IS) data include a file called sensor_positions.csv. The sensor positions file contains information about the coordinates of each sensor, relative to a reference location.
+
+While the specifics vary, techniques are generalizable for working with sensor data and the sensor_positions.csv file. Let's look at the sensor locations for photosynthetically active radiation (PAR; DP1.00024.001) at the NEON Treehaven site (TREE) in July 2018. To reduce our file size, we'll use the 30 minute averaging interval. Our final product from this section is to create a spatially explicit picture of light attenuation through the canopy.
+
+
+```r
+# load PAR data of interest 
+par <- loadByProduct(dpID="DP1.00024.001", site="TREE",
+                    startdate="2018-07", enddate="2018-07",
+                    avg=30, check.size=F, token=NEON_TOKEN)
+```
+
+```
+## Finding available files
+##   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%
+## 
+## Downloading files totaling approximately 934.7 KiB
+## Downloading 9 files
+##   |                                                                              |                                                                      |   0%  |                                                                              |=========                                                             |  12%  |                                                                              |==================                                                    |  25%  |                                                                              |==========================                                            |  38%  |                                                                              |===================================                                   |  50%  |                                                                              |============================================                          |  62%  |                                                                              |====================================================                  |  75%  |                                                                              |=============================================================         |  88%  |                                                                              |======================================================================| 100%
+## 
+## Stacking operation across a single core.
+## Stacking table PARPAR_30min
+## Merged the most recent publication of sensor position files for each site and saved to /stackedFiles
+## Copied the most recent publication of variable definition file to /stackedFiles
+## Finished: Stacked 1 data tables and 2 metadata tables!
+## Stacking took 0.138412 secs
+## All unzipped monthly data folders have been removed.
+```
+
+**Now we can specifically look at the sensor positions file:**
+
+
+```r
+# create object for sens. pos. file
+pos <- par$sensor_positions_00024
+
+# view names
+names(pos)
+```
+
+```
+##  [1] "siteID"               "HOR.VER"              "name"                
+##  [4] "description"          "start"                "end"                 
+##  [7] "referenceName"        "referenceDescription" "referenceStart"      
+## [10] "referenceEnd"         "xOffset"              "yOffset"             
+## [13] "zOffset"              "pitch"                "roll"                
+## [16] "azimuth"              "referenceLatitude"    "referenceLongitude"  
+## [19] "referenceElevation"   "publicationDate"
+```
+
+The sensor locations are indexed by the [HOR.VER variable](https://data.neonscience.org/file-naming-conventions) - see the file naming conventions page for more details.
+
+Using unique() we can view all the locations indexes in this file.
+
+
+```r
+# view names
+unique(pos$HOR.VER)
+```
+
+```
+## [1] "000.010" "000.020" "000.030" "000.040" "000.050" "000.060"
+```
+
+PAR data are collected at multiple levels of the NEON tower but along a single vertical plane. We see this reflected in the data where HOR=000 (all data collected) at the tower location. The VER index varies (VER = 010 to 060) showing that the vertical position is changing and that PAR is measured at six different levels.
+
+The x, y, and z offsets in the sensor positions file are the relative distance, in meters, to the reference latitude, longitude, and elevation in the file.
+
+The HOR and VER indices in the sensor positions file correspond to the verticalPosition and horizontalPosition fields in par$PARPAR_30min.
+
+Say we wanted to plot a profile of the PAR through the canopy, we would need to start by using the aggregate() function to calculate mean PAR at each vertical position on the tower over the month:
+
+
+```r
+# calc mean PAR at each level
+parMean <- aggregate(par$PARPAR_30min$PARMean, 
+                   by=list(par$PARPAR_30min$verticalPosition),
+                   FUN=mean, na.rm=T)
+```
+
+Now we can plot mean PAR relative to height on the tower (or the zOffset):
+
+
+```r
+# plot PAR
+plot(parMean$x, parMean$Group.1, type="b", pch=20,
+     xlab="Photosynthetically active radiation",
+     ylab="Height above tower base (m)")
+```
+
+<img src="02_Introduction_to_NEON_files/figure-html/unnamed-chunk-26-1.png" width="672" />
 
 #### Observational data - Terrestrial
 Latitude, longitude, elevation, and associated uncertainties are included in 
-data downloads. These are the coordinates and uncertainty of the sampling plot; 
+data downloads  *(Remember NEON COding Lab part 1?)*. These are the coordinates and uncertainty of the sampling plot; 
 for many protocols it is possible to calculate a more precise location. 
 Instructions for doing this are in the respective data product user guides, and 
 code is in the `geoNEON` package on GitHub.
@@ -1789,10 +1866,12 @@ brd.point.pt <- getLocTOS(brd.point, "brd_perpoint")
 ```r
 # plot bird point locations 
 # note that decimal degrees is also an option in the data
-# symbols(brd.point.pt$easting, brd.point.pt$northing, 
-#         circles=brd.point.pt$adjCoordinateUncertainty, 
-#         xlab="Easting", ylab="Northing", tck=0.01, inches=F)
+symbols(brd.point.pt$adjEasting, brd.point.pt$adjNorthing,
+        circles=brd.point.pt$adjCoordinateUncertainty,
+        xlab="Easting", ylab="Northing", tck=0.01, inches=F)
 ```
+
+<img src="02_Introduction_to_NEON_files/figure-html/brd-calc-NL-1.png" width="672" />
 
 Now you can see the individual points where the respective point counts were 
 located. 
@@ -1801,7 +1880,7 @@ located.
 
 NEON maintains accepted taxonomies for many of the taxonomic identification 
 data we collect. NEON taxonomies are available for query via the API; they 
-are also provided via an interactive user interface, the <a href="http://data.neonscience.org/static/taxon.html" target="_blank">Taxon Viewer</a>.
+are also provided via an interactive user interface, the [Taxon Viewer](http://data.neonscience.org/static/taxon.html).
 
 NEON taxonomy data provides the reference information for how NEON 
 validates taxa; an identification must appear in the taxonomy lists 
@@ -2093,20 +2172,13 @@ At the top of this tutorial, we installed the `neonUtilities` package.
 This is a custom R package that stacks the monthly files provided by 
 the NEON data portal into a single continuous file for each type of 
 data table in the download. It currently handles files downloaded from 
-the data portal, but not files pulled from the API. That functionality 
-will be added soon!
+the data portal, but not files pulled from the API. 
 
 For a guide to using `neonUtilities` on data downloaded from the portal, 
 look <a href="https://www.neonscience.org/neonDataStackR" target="_blank">here</a>.
 
 
-## Intro to NEON Exercises
-
-### Computational
-#### Part 1: Sign up for and Use an NEON API Token:
-
-*Code to come*
-
+## Intro to NEON Exercises Part 2
 
 ### Written
 
@@ -2157,6 +2229,35 @@ sites you’ve already identified in the previous sections and answer *each* of 
 
 
 <div id="ds-challenge" markdown="1">
+
+### NEON Coding Lab Part 2
+
+1.  Use the answers that you've provided above to select a *single* NEON site.
+
+e.g. `ONAQ`
+
+2.  Use the answers that you've provided above to select **3 NEON data products** from either the TOS, TIS or ARS (AOP) collection methods.  Sumarize each product with its NEON identifier, along with a sumarry.
+
+e.g.:
+
+`**DP1.10055.001**: Plant phenology observations: phenophase status and insensity of tagged plants.  This data product contains the quality-controlled, native sampling resolution data from in-situ observations of plant leaf development and reproductive phenophases, at **D15.ONAQ**.`
+
+3.  Using the NEON Ulitites package or the API pull in those data along with metadata.
+
+
+4. Organize your data into `data.frame`s and produce summaries of your data:
+
+5.  Filter your data based on metadata and quality flags:
+
+6.  Create minimum of 1 plot per data type (minimum of 3 plots total).  These will vary based on that data that you've chosen.
+
+A non-exhastive list of ideas: 
+1. Your data as a function of height on the tower (FPAR example)
+2. A map of the locations where your data is sampled (TOS tree example, bird example)
+3. A model based on the data you're interested in working work (Coding lab 1 example)
+4. A timeseries of your data (example below)
+
+7.  What is the frequency of the data you decided was of interest?  How do the data align to answer a central question?  What challenges did you run into when investigating these data? How will you address these challenges and document your code? *One to two paragraphs*
 
 **Intro to NEON Culmination Activity**
 
