@@ -1349,7 +1349,7 @@ e.g. `ONAQ`
 
 e.g.:
 
-> **DP1.10055.001**: Plant phenology observations: phenophase status and insensity of tagged plants.  This data product contains the quality-controlled, native sampling resolution data from in-situ observations of plant leaf development and reproductive phenophases, at **D15.ONAQ**.
+`**DP1.10055.001**: Plant phenology observations: phenophase status and insensity of tagged plants.  This data product contains the quality-controlled, native sampling resolution data from in-situ observations of plant leaf development and reproductive phenophases, at **D15.ONAQ**.`
 
 3.  Using the NEON Ulitites package or the API pull in those data along with metadata.
 
