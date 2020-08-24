@@ -1354,7 +1354,7 @@ e.g.:
 3.  Using the NEON Ulitites package or the API pull in those data along with metadata.
 
 
-4. Organize your data into `data.frame`s and produce summaries of your data:
+4. Organize your data into `data.frames` and produce summaries for each of your data:
 
 5.  Filter your data based on metadata and quality flags:
 
