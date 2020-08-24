@@ -1345,18 +1345,57 @@ sites you’ve already identified in the previous sections and answer *each* of 
 
 e.g. `ONAQ`
 
+
+
 2.  Use the answers that you've provided above to select **3 NEON data products** from either the TOS, TIS or ARS (AOP) collection methods.  Sumarize each product with its NEON identifier, along with a sumarry.
 
 e.g.:
 
-`**DP1.10055.001**: Plant phenology observations: phenophase status and insensity of tagged plants.  This data product contains the quality-controlled, native sampling resolution data from in-situ observations of plant leaf development and reproductive phenophases, at **D15.ONAQ**.`
+> **DP1.10055.001**: Plant phenology observations: phenophase status and intensity of tagged plants.  This data product contains the quality-controlled, native sampling resolution data from in-situ observations of plant leaf development and reproductive phenophases, at **D15.ONAQ**.  Here I will focus on the phenophase intensity data, which is a measure of how prevalent that particular phenophase is in the sampled plants.
 
 3.  Using the NEON Ulitites package or the API pull in those data along with metadata.
+```{r, eval=FALSE}
+sitesOfInterest <- c("ONAQ")
 
+dpid <- as.character('DP1.10055.001') #phe data
+ 
+pheDat <- loadByProduct(dpID="DP1.10055.001",
+                     site = sitesOfInterest,
+                     package = "basic",
+                     check.size = FALSE, 
+                     token=NEON_TOKEN)
+```
 
 4. Organize your data into `data.frames` and produce summaries for each of your data:
 
-5.  Filter your data based on metadata and quality flags:
+```{r, eval=FALSE}
+#NEON sends the data as a nested list, so I need to undo that
+# unlist all data frames
+list2env(pheDat ,.GlobalEnv)
+summary(phe_perindividualperyear)
+summary(phe_statusintensity)
+```
+
+
+5.  Filter and format your data based on metadata and quality flags:
+
+```{r, eval=FALSE}
+#remove duplicate records
+phe_statusintensity <- select(phe_statusintensity, -uid)
+phe_statusintensity <- distinct(phe_statusintensity)
+#Format dates (native format is 'factor' silly R)
+phe_statusintensity$date <- as.Date(phe_statusintensity$date, "%Y-%m-%d")
+phe_statusintensity$editedDate <- as.Date(phe_statusintensity$editedDate, "%Y-%m-%d")
+phe_statusintensity$year <- substr(phe_statusintensity$date, 1, 4)
+phe_statusintensity$monthDay <- format(phe_statusintensity$date, format="%m-%d")
+```
+
+Now I want to remove NA values so I can see what's really going on:
+
+```{r, eval=FALSE}
+phe_statusintensity=phe_statusintensity%>%
+  filter(!is.na(phe_statusintensity$phenophaseIntensity))
+```
 
 6.  Create minimum of 1 plot per data type (minimum of 3 plots total).  These will vary based on that data that you've chosen.
 
