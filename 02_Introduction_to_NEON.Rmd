@@ -1348,6 +1348,7 @@ e.g. `ONAQ`
 2.  Use the answers that you've provided above to select **3 NEON data products** from either the TOS, TIS or ARS (AOP) collection methods.  Sumarize each product with its NEON identifier, along with a sumarry.
 
 e.g.:
+
 > **DP1.10055.001**: Plant phenology observations: phenophase status and insensity of tagged plants.  This data product contains the quality-controlled, native sampling resolution data from in-situ observations of plant leaf development and reproductive phenophases, at **D15.ONAQ**.
 
 3.  Using the NEON Ulitites package or the API pull in those data along with metadata.
