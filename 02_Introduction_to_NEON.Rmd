@@ -1405,7 +1405,7 @@ A non-exhastive list of ideas:
 3. A model based on the data you're interested in working work (Coding lab 1 example)
 4. A timeseries of your data (example below)
 
-7.  What is the frequency of the data you decided was of interest?  How do the data align to answer a central question?  What challenges did you run into when investigating these data? How will you address these challenges and document your code? *One to two paragraphs*
+7.  What is the temporal frequency of observations in the data you decided was of interest?  How do the data align to answer a central question?  What challenges did you run into when investigating these data? How will you address these challenges and document your code? *One to two paragraphs*
 
 **Intro to NEON Culmination Activity**
 
