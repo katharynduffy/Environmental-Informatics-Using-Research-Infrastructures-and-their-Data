@@ -1,20 +1,24 @@
 # Frequently Asked Questions: {-}
 
-1. Where can I find due dates for assignments?
+## Where can I find due dates for assignments?
 
 *BBLearn*
 
-2. How do I submit assignments?
+## How do I know when assignments are due?
+
+*All assignment deadlines can be found in BBLearn.  Within this textbook we have suggestions for the timing of all writen questions, coding labs and final culmination writes ups.  All material by infrastructure is due before we begin the next infrastructure.*
+
+## How do I submit assignments?
 
 *All assignments (except the very first git assignment) are submitted via BBLearn as both .Rmds and .pdfs*
 
-3.  Do I still have to submit written exercises as .Rmd and .pdf?
+## Do I still have to submit written exercises as .Rmd and .pdf?
 
 *Yes.*
 
-4. What's better for code, conciseness or readability?
+## What's better for code, conciseness or readability?
 
-`Readability>Conciseness`
+`Readability > Conciseness`
 
 *I personally almost always use dplyr, my thoughts, pulled largely from Dr. Derek Sonderegger's Statistical Computing Course are below:*
 
@@ -40,3 +44,17 @@ foo_foo %>%
 ```
 
 In dplyr, all the functions take a data set as its first argument and outputs an appropriately modified data set. This allows me to chain together commands in a readable fashion.  Then in 3 months I don't have to wonder what on earth I was doing last time I opened this project, if I filtered the data, etc etc.  Your future self will sincerely thank your past self.
+
+## How find I find resources to navigate the NEON Data Portal?
+
+A fantastic powerpoint giving you step-by-step directions [can be found here](https://www.neonscience.org/sites/default/files/Access_NEON_Data_%20Visual_Guide_6Feb2020.pptx).
+
+## How can I best prepare for class and succeed?
+
+1. Read the textbook, click on linked resources including videos, review materials as we go or read ahead.
+
+2. Complete assignments as we go or ahead of time. Do not wait until the last minute.
+
+3. Pick a 'coding buddy' and help each other tackle errors that arise.
+
+4. Reach out to your instructors if you need clarification on assignments.
