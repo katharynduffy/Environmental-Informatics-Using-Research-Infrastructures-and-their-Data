@@ -480,6 +480,8 @@ summary(veglist)
 
 #### Part 2: Further Investigation of NEON TOS Vegetation Structure Data
 
+**Suggested Timing: Complete this exercise before our next class session**
+
 *In the following section all demonstration code uses the `iris` dataset for R as examples.  In this exercise the `iris` data is merely used for example code to get your started, you will complete all plots and models using the NEON TOS vegetation structure data*
 
 1. Convert the above diameter plot into a ggplot:
@@ -517,7 +519,7 @@ library(dplyr)
 #filter(..... !=....)
 
 ```
-5. Create a simple linear model that uses DBH and height to predict allometries.  Print the summary information of your model:
+5. Create a simple linear model that uses Diameter at Breast Height (DBH) and height to predict allometries.  Print the summary information of your model:
 
 ```{r, eval=FALSE}
 #hints
@@ -542,7 +544,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Petal.Length, color=Species)) +
 ```
 
 7. Answer the following questions:
-
+* What do you think about your simile linear model?  What are its limitations?
 * How many `unique` species are present at `WREF`?
 * What are the `top_5` trees based on height? Diameter?
 * What proportion of sampled trees are dead?
@@ -1286,10 +1288,9 @@ the data portal, but not files pulled from the API.
 For a guide to using `neonUtilities` on data downloaded from the portal, 
 look <a href="https://www.neonscience.org/neonDataStackR" target="_blank">here</a>.
 
+## Intro to NEON Exercises: Written Questions
 
-## Intro to NEON Exercises Part 2
-
-### Written
+**Suggested Timing: Complete this exercise before our next class meeting**
 
 **Question 1:** How does NEON address ‘dark data’ (Chapter 1)?
 
@@ -1339,7 +1340,9 @@ sites you’ve already identified in the previous sections and answer *each* of 
 
 <div id="ds-challenge" markdown="1">
 
-### NEON Coding Lab Part 2
+## NEON Coding Lab Part 2
+
+**Suggested Timing: Complete this exercise a few days before your NEON clumination write up**
 
 1.  Use the answers that you've provided above to select a *single* NEON site.
 
@@ -1407,7 +1410,9 @@ A non-exhastive list of ideas:
 
 7.  What is the temporal frequency of observations in the data you decided was of interest?  How do the data align to answer a central question?  What challenges did you run into when investigating these data? How will you address these challenges and document your code? *One to two paragraphs*
 
-**Intro to NEON Culmination Activity**
+## Intro to NEON Culmination Activity
+
+**Due before we start Chapter 3: USA-NPN**
 
 Write up a 1-page summary of a project that you might want to explore using NEON data over the duration of this course. Include the types of NEON (and other data) that you will need to implement this project. Save this summary as you will be refining and adding to your ideas over the course of the semester.
 
