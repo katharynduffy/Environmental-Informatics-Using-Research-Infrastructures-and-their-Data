@@ -117,7 +117,7 @@ From here we have a couple of options for filtering. I'll use a `string compare`
 
 ```{r, message=FALSE, warning=FALSE,}
 library(tidyverse)
-vegLIVE=vegLIVE %>%
+vegLIVE=veg %>%
   filter(!str_detect(plantStatus, 'Standing dead'))%>%
   filter(!str_detect(plantStatus, 'Dead, broken bole'))
 ```
@@ -226,7 +226,7 @@ Interesting.  Also mostly Douglas Firs, but (mostly) not the ones who are the ta
 ```{r}
 1-nrow(vegLIVE)/nrow(veg)
 ```
-Or ~18%
+Or ~14%
 
 We can also make a table to see what percentage of each plantStatus class are shown in our data
 ```{r}

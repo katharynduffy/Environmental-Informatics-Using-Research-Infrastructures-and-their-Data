@@ -1414,6 +1414,13 @@ A non-exhastive list of ideas:
 
 **Due before we start Chapter 3: USA-NPN**
 
-Write up a 1-page summary of a project that you might want to explore using NEON data over the duration of this course. Include the types of NEON (and other data) that you will need to implement this project. Save this summary as you will be refining and adding to your ideas over the course of the semester.
+Write up a 1-page summary of **a project that you might want to explore using NEON** data over the duration of this course. Include:
+
+1. the types of NEON (and other data) that you will need to implement this project, including data product id numbers.
+2. If in your NEON coding lab part 2 you highlighted challenges to using these data, discuss methods to address those challenges.
+  *e.g. If your site doesn't yet have a long data recocrd, is it located close to a longer lived site from another network? (LTER, Ameriflux, LTAR etc)
+3. One high-level summary graphic including all of your data from the NEON Coding Lab Part 2
+
+Save this summary as you will be refining and adding to your ideas over the course of the semester.
 
 
