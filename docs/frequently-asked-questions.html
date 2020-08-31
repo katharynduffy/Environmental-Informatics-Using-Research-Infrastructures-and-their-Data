@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="digital-repeat-photography-networks.html"/>
-
+<link rel="next" href="yes-.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -58,6 +58,68 @@
 <script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -113,128 +175,97 @@
 </ul></li>
 <li class="chapter" data-level="2.7" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#hands-on-accessing-neon-data-user-tokens"><i class="fa fa-check"></i><b>2.7</b> Hands on: Accessing NEON Data &amp; User Tokens</a><ul>
 <li class="chapter" data-level="2.7.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#via-the-neon-api-with-your-user-token"><i class="fa fa-check"></i><b>2.7.1</b> Via the NEON API, with your User Token</a></li>
-<li class="chapter" data-level="2.7.2" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#objectives"><i class="fa fa-check"></i><b>2.7.2</b> Objectives</a></li>
-<li class="chapter" data-level="2.7.3" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#things-youll-need-to-complete-this-tutorial"><i class="fa fa-check"></i><b>2.7.3</b> Things You’ll Need To Complete This Tutorial</a></li>
-<li class="chapter" data-level="2.7.4" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#install-r-packages"><i class="fa fa-check"></i><b>2.7.4</b> Install R Packages</a></li>
+<li class="chapter" data-level="2.7.2" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#get-a-neon-api-token"><i class="fa fa-check"></i><b>2.7.2</b> Get a NEON API Token</a></li>
+<li class="chapter" data-level="2.7.3" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#use-the-api-token-in-neonutilities"><i class="fa fa-check"></i><b>2.7.3</b> Use the API token in neonUtilities</a></li>
+<li class="chapter" data-level="2.7.4" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#token-management-for-open-code"><i class="fa fa-check"></i><b>2.7.4</b> Token management for open code</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#additional-resources"><i class="fa fa-check"></i><b>2.8</b> Additional Resources</a><ul>
-<li class="chapter" data-level="2.8.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#get-a-neon-api-token"><i class="fa fa-check"></i><b>2.8.1</b> Get a NEON API Token</a></li>
-<li class="chapter" data-level="2.8.2" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#use-the-api-token-in-neonutilities"><i class="fa fa-check"></i><b>2.8.2</b> Use the API token in neonUtilities</a></li>
-<li class="chapter" data-level="2.8.3" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#token-management-for-open-code"><i class="fa fa-check"></i><b>2.8.3</b> Token management for open code</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#hands-on-neon-tos-data"><i class="fa fa-check"></i><b>2.8</b> Hands on: NEON TOS Data</a><ul>
+<li class="chapter" data-level="2.8.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#pull-in-tree-data-from-neons-tos-and-investigate-relationships"><i class="fa fa-check"></i><b>2.8.1</b> Pull in Tree Data from NEON’s TOS and investigate relationships</a></li>
 </ul></li>
-<li class="chapter" data-level="2.9" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#hands-on-neon-tos-data"><i class="fa fa-check"></i><b>2.9</b> Hands on: NEON TOS Data</a><ul>
-<li class="chapter" data-level="2.9.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#pull-in-tree-data-from-neons-tos-and-investigate-relationships"><i class="fa fa-check"></i><b>2.9.1</b> Pull in Tree Data from NEON’s TOS and investigate relationships</a></li>
+<li class="chapter" data-level="2.9" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#intro-to-neon-exercises-part-1"><i class="fa fa-check"></i><b>2.9</b> Intro to NEON Exercises Part 1</a><ul>
+<li class="chapter" data-level="2.9.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#computational"><i class="fa fa-check"></i><b>2.9.1</b> Computational</a></li>
 </ul></li>
-<li class="chapter" data-level="2.10" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#intro-to-neon-exercises-part-1"><i class="fa fa-check"></i><b>2.10</b> Intro to NEON Exercises Part 1</a><ul>
-<li class="chapter" data-level="2.10.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#computational"><i class="fa fa-check"></i><b>2.10.1</b> Computational</a></li>
+<li class="chapter" data-level="2.10" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#part-2-pulling-neon-data-via-the-api"><i class="fa fa-check"></i><b>2.10</b> Part 2: Pulling NEON Data via the API</a></li>
+<li class="chapter" data-level="2.11" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#what-is-an-api"><i class="fa fa-check"></i><b>2.11</b> What is an API?</a><ul>
+<li class="chapter" data-level="2.11.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#anatomy-of-an-api-call"><i class="fa fa-check"></i><b>2.11.1</b> Anatomy of an API call</a></li>
+<li class="chapter" data-level="2.11.2" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#targets"><i class="fa fa-check"></i><b>2.11.2</b> Targets:</a></li>
+<li class="chapter" data-level="2.11.3" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#observational-data-os"><i class="fa fa-check"></i><b>2.11.3</b> Observational data (OS)</a></li>
+<li class="chapter" data-level="2.11.4" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#instrumentation-data-is"><i class="fa fa-check"></i><b>2.11.4</b> Instrumentation data (IS)</a></li>
+<li class="chapter" data-level="2.11.5" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#remote-sensing-data-aop"><i class="fa fa-check"></i><b>2.11.5</b> Remote sensing data (AOP)</a></li>
+<li class="chapter" data-level="2.11.6" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#geolocation-data"><i class="fa fa-check"></i><b>2.11.6</b> Geolocation data</a></li>
+<li class="chapter" data-level="2.11.7" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#querying-a-single-named-location"><i class="fa fa-check"></i><b>2.11.7</b> Querying a single named location</a></li>
+<li class="chapter" data-level="2.11.8" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#taxonomy"><i class="fa fa-check"></i><b>2.11.8</b> Taxonomy</a></li>
 </ul></li>
-<<<<<<< HEAD
 <li class="chapter" data-level="2.12" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#stacking-neon-data"><i class="fa fa-check"></i><b>2.12</b> Stacking NEON data</a></li>
-<li class="chapter" data-level="2.13" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#intro-to-neon-exercises-part-2"><i class="fa fa-check"></i><b>2.13</b> Intro to NEON Exercises Part 2</a><ul>
-<li class="chapter" data-level="2.13.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#written"><i class="fa fa-check"></i><b>2.13.1</b> Written</a></li>
-<li class="chapter" data-level="2.13.2" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#neon-coding-lab-part-2"><i class="fa fa-check"></i><b>2.13.2</b> NEON Coding Lab Part 2</a></li>
-=======
-<li class="chapter" data-level="2.11" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#part-2-pulling-neon-data-via-the-api"><i class="fa fa-check"></i><b>2.11</b> Part 2: Pulling NEON Data via the API</a><ul>
-<li class="chapter" data-level="2.11.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#objectives-1"><i class="fa fa-check"></i><b>2.11.1</b> Objectives</a></li>
-<li class="chapter" data-level="2.11.2" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#things-youll-need-to-complete-this-section"><i class="fa fa-check"></i><b>2.11.2</b> Things You’ll Need To Complete This Section</a></li>
->>>>>>> upstream/master
+<li class="chapter" data-level="2.13" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#intro-to-neon-exercises-written-questions"><i class="fa fa-check"></i><b>2.13</b> Intro to NEON Exercises: Written Questions</a></li>
 </ul></li>
-<li class="chapter" data-level="2.12" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#what-is-an-api"><i class="fa fa-check"></i><b>2.12</b> What is an API?</a><ul>
-<li class="chapter" data-level="2.12.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#anatomy-of-an-api-call"><i class="fa fa-check"></i><b>2.12.1</b> Anatomy of an API call</a></li>
-<li class="chapter" data-level="2.12.2" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#targets"><i class="fa fa-check"></i><b>2.12.2</b> Targets:</a></li>
-<li class="chapter" data-level="2.12.3" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#observational-data-os"><i class="fa fa-check"></i><b>2.12.3</b> Observational data (OS)</a></li>
-<li class="chapter" data-level="2.12.4" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#instrumentation-data-is"><i class="fa fa-check"></i><b>2.12.4</b> Instrumentation data (IS)</a></li>
-<li class="chapter" data-level="2.12.5" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#remote-sensing-data-aop"><i class="fa fa-check"></i><b>2.12.5</b> Remote sensing data (AOP)</a></li>
-<li class="chapter" data-level="2.12.6" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#geolocation-data"><i class="fa fa-check"></i><b>2.12.6</b> Geolocation data</a></li>
-<li class="chapter" data-level="2.12.7" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#querying-a-single-named-location"><i class="fa fa-check"></i><b>2.12.7</b> Querying a single named location</a></li>
-<li class="chapter" data-level="2.12.8" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#taxonomy"><i class="fa fa-check"></i><b>2.12.8</b> Taxonomy</a></li>
+<li class="chapter" data-level="3" data-path="written.html"><a href="written.html"><i class="fa fa-check"></i><b>3</b> ### Written</a></li>
+<li class="chapter" data-level="4" data-path="head.html"><a href="head.html"><i class="fa fa-check"></i><b>4</b> &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</a></li>
+<li class="chapter" data-level="5" data-path="intro-to-neon-culmination-activity.html"><a href="intro-to-neon-culmination-activity.html"><i class="fa fa-check"></i><b>5</b> <strong>Intro to NEON Culmination Activity</strong></a><ul>
+<li class="chapter" data-level="5.1" data-path="intro-to-neon-culmination-activity.html"><a href="intro-to-neon-culmination-activity.html#intro-to-neon-culmination-activity-1"><i class="fa fa-check"></i><b>5.1</b> Intro to NEON Culmination Activity</a></li>
 </ul></li>
-<li class="chapter" data-level="2.13" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#stacking-neon-data"><i class="fa fa-check"></i><b>2.13</b> Stacking NEON data</a></li>
-<li class="chapter" data-level="2.14" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#intro-to-neon-exercises-written-questions"><i class="fa fa-check"></i><b>2.14</b> Intro to NEON Exercises: Written Questions</a></li>
-<li class="chapter" data-level="2.15" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#neon-coding-lab-part-2"><i class="fa fa-check"></i><b>2.15</b> NEON Coding Lab Part 2</a></li>
-<li class="chapter" data-level="2.16" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#intro-to-neon-culmination-activity"><i class="fa fa-check"></i><b>2.16</b> Intro to NEON Culmination Activity</a></li>
+<li class="chapter" data-level="6" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html"><i class="fa fa-check"></i><b>6</b> Introduction to USA-NPN &amp; its Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#hands-on-accessing-usa-npn-data-via-rnpn"><i class="fa fa-check"></i><b>6.1</b> Hands on: Accessing USA-NPN Data via rNPN</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#introduction"><i class="fa fa-check"></i><b>6.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.1.2" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#accessing-usa-npn-observational-data"><i class="fa fa-check"></i><b>6.1.2</b> Accessing USA-NPN Observational Data</a></li>
+<li class="chapter" data-level="6.1.3" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#status-and-intensity-data"><i class="fa fa-check"></i><b>6.1.3</b> Status and Intensity Data</a></li>
+<li class="chapter" data-level="6.1.4" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#individual-phenometrics"><i class="fa fa-check"></i><b>6.1.4</b> Individual Phenometrics</a></li>
+<li class="chapter" data-level="6.1.5" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#site-phenometrics"><i class="fa fa-check"></i><b>6.1.5</b> Site Phenometrics</a></li>
+<li class="chapter" data-level="6.1.6" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#magnitude-phenometrics"><i class="fa fa-check"></i><b>6.1.6</b> Magnitude Phenometrics</a></li>
+<li class="chapter" data-level="6.1.7" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#usa-npn-geospatial-data"><i class="fa fa-check"></i><b>6.1.7</b> USA-NPN Geospatial Data</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html"><i class="fa fa-check"></i><b>3</b> Introduction to USA-NPN &amp; its Data</a><ul>
-<li class="chapter" data-level="3.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#usa-npn-learning-objectives"><i class="fa fa-check"></i><b>3.1</b> USA-NPN Learning Objectives</a></li>
-<li class="chapter" data-level="3.2" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#usa-npn-project-mission-design"><i class="fa fa-check"></i><b>3.2</b> USA-NPN Project Mission &amp; Design:</a></li>
-<li class="chapter" data-level="3.3" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#vision-mission"><i class="fa fa-check"></i><b>3.3</b> Vision &amp; Mission</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#relevant-documents-background-information"><i class="fa fa-check"></i><b>3.3.1</b> Relevant documents &amp; background information:</a></li>
+<li class="chapter" data-level="6.2" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#accumulated-growing-degree-day-products"><i class="fa fa-check"></i><b>6.2</b> Accumulated Growing Degree Day Products</a></li>
+<li class="chapter" data-level="6.3" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#extended-spring-indices"><i class="fa fa-check"></i><b>6.3</b> Extended Spring Indices</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#other-layers"><i class="fa fa-check"></i><b>6.3.1</b> Other Layers</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#usa-npns-spatial-design"><i class="fa fa-check"></i><b>3.4</b> USA-NPN’s Spatial design:</a></li>
-<li class="chapter" data-level="3.5" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#types-of-usa-npn-data"><i class="fa fa-check"></i><b>3.5</b> Types of USA-NPN Data:</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#observational"><i class="fa fa-check"></i><b>3.5.1</b> Observational</a></li>
-<li class="chapter" data-level="3.5.2" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#status-intensity-data"><i class="fa fa-check"></i><b>3.5.2</b> Status &amp; Intensity Data</a></li>
-<li class="chapter" data-level="3.5.3" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#gridded-raster-data"><i class="fa fa-check"></i><b>3.5.3</b> Gridded Raster Data</a></li>
-<li class="chapter" data-level="3.5.4" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#pheno-forecasts"><i class="fa fa-check"></i><b>3.5.4</b> Pheno-Forecasts</a></li>
+<li class="chapter" data-level="6.4" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#usa-npn-coding-lab"><i class="fa fa-check"></i><b>6.4</b> USA-NPN Coding Lab</a></li>
+<li class="chapter" data-level="6.5" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#usa-npn-exercises"><i class="fa fa-check"></i><b>6.5</b> USA-NPN Exercises</a></li>
+<li class="chapter" data-level="6.6" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#intro-to-usa-npn-culmination-activity"><i class="fa fa-check"></i><b>6.6</b> <strong>Intro to USA-NPN Culmination Activity</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#how-to-access-usa-npn-data"><i class="fa fa-check"></i><b>3.6</b> How to Access USA-NPN Data:</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#the-usa-npn-landing-page"><i class="fa fa-check"></i><b>3.6.1</b> The USA-NPN Landing page</a></li>
-<li class="chapter" data-level="3.6.2" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#apis"><i class="fa fa-check"></i><b>3.6.2</b> APIs</a></li>
-<li class="chapter" data-level="3.6.3" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#rnpn-package"><i class="fa fa-check"></i><b>3.6.3</b> Rnpn package</a></li>
-<li class="chapter" data-level="3.6.4" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#phenology-observation-portal-for-observational-data"><i class="fa fa-check"></i><b>3.6.4</b> Phenology Observation Portal (for observational data)</a></li>
-<li class="chapter" data-level="3.6.5" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#geospatial-request-builder-for-raster-data-and-image-files"><i class="fa fa-check"></i><b>3.6.5</b> Geospatial Request Builder (for raster data and image files)</a></li>
-<li class="chapter" data-level="3.6.6" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#visualization-tool"><i class="fa fa-check"></i><b>3.6.6</b> Visualization Tool</a></li>
+<li class="chapter" data-level="7" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html"><i class="fa fa-check"></i><b>7</b> Digital Repeat Photography Networks</a><ul>
+<li class="chapter" data-level="7.1" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#digital-repeat-photography-networks-learning-objectives"><i class="fa fa-check"></i><b>7.1</b> Digital Repeat Photography Networks Learning Objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#introduction-to-digital-repeat-photography-methods"><i class="fa fa-check"></i><b>7.2</b> Introduction to Digital Repeat Photography Methods</a></li>
+<li class="chapter" data-level="7.3" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#detecting-foggy-images-using-the-hazer-r-package"><i class="fa fa-check"></i><b>7.3</b> Detecting Foggy Images using the ‘hazer’ R Package</a></li>
+<li class="chapter" data-level="7.4" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#extracting-timeseries-from-images-using-the-xroi-r-package"><i class="fa fa-check"></i><b>7.4</b> Extracting Timeseries from Images using the xROI R Package</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#xroi-design"><i class="fa fa-check"></i><b>7.4.1</b> xROI Design</a></li>
+<li class="chapter" data-level="7.4.2" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#install-xroi"><i class="fa fa-check"></i><b>7.4.2</b> Install xROI</a></li>
+<li class="chapter" data-level="7.4.3" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#launch-xroi"><i class="fa fa-check"></i><b>7.4.3</b> Launch xROI</a></li>
+<li class="chapter" data-level="7.4.4" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#end-xroi"><i class="fa fa-check"></i><b>7.4.4</b> End xROI</a></li>
+<li class="chapter" data-level="7.4.5" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#use-xroi"><i class="fa fa-check"></i><b>7.4.5</b> Use xROI</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#hands-on-accessing-usa-npn-data-via-rnpn"><i class="fa fa-check"></i><b>3.7</b> Hands on: Accessing USA-NPN Data via rNPN</a><ul>
-<li class="chapter" data-level="3.7.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#introduction"><i class="fa fa-check"></i><b>3.7.1</b> Introduction</a></li>
-<li class="chapter" data-level="3.7.2" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#accessing-usa-npn-observational-data"><i class="fa fa-check"></i><b>3.7.2</b> Accessing USA-NPN Observational Data</a></li>
-<li class="chapter" data-level="3.7.3" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#status-and-intensity-data"><i class="fa fa-check"></i><b>3.7.3</b> Status and Intensity Data</a></li>
-<li class="chapter" data-level="3.7.4" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#individual-phenometrics"><i class="fa fa-check"></i><b>3.7.4</b> Individual Phenometrics</a></li>
-<li class="chapter" data-level="3.7.5" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#site-phenometrics"><i class="fa fa-check"></i><b>3.7.5</b> Site Phenometrics</a></li>
-<li class="chapter" data-level="3.7.6" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#magnitude-phenometrics"><i class="fa fa-check"></i><b>3.7.6</b> Magnitude Phenometrics</a></li>
-<li class="chapter" data-level="3.7.7" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#usa-npn-geospatial-data"><i class="fa fa-check"></i><b>3.7.7</b> USA-NPN Geospatial Data</a></li>
+<li class="chapter" data-level="7.5" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#documentation-and-citation"><i class="fa fa-check"></i><b>7.5</b> Documentation and Citation</a></li>
+<li class="chapter" data-level="7.6" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#challenge-use-xroi"><i class="fa fa-check"></i><b>7.6</b> Challenge: Use xROI</a></li>
+<li class="chapter" data-level="7.7" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#the-phenocam-network-mission-design"><i class="fa fa-check"></i><b>7.7</b> The PhenoCam Network Mission &amp; Design</a></li>
+<li class="chapter" data-level="7.8" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#pulling-data-via-the-phenocamapi-package"><i class="fa fa-check"></i><b>7.8</b> Pulling Data via the <em>phenocamapi</em> Package</a></li>
+<li class="chapter" data-level="7.9" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#exploring-phenocam-metadata"><i class="fa fa-check"></i><b>7.9</b> Exploring PhenoCam metadata</a><ul>
+<li class="chapter" data-level="7.9.1" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#remove-null-values"><i class="fa fa-check"></i><b>7.9.1</b> Remove null values</a></li>
+<li class="chapter" data-level="7.9.2" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#filtering-using-attributes"><i class="fa fa-check"></i><b>7.9.2</b> Filtering using attributes</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#accumulated-growing-degree-day-products"><i class="fa fa-check"></i><b>3.8</b> Accumulated Growing Degree Day Products</a></li>
-<li class="chapter" data-level="3.9" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#extended-spring-indices"><i class="fa fa-check"></i><b>3.9</b> Extended Spring Indices</a><ul>
-<li class="chapter" data-level="3.9.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#other-layers"><i class="fa fa-check"></i><b>3.9.1</b> Other Layers</a></li>
+<li class="chapter" data-level="7.10" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#phenocam-time-series"><i class="fa fa-check"></i><b>7.10</b> PhenoCam time series</a><ul>
+<li class="chapter" data-level="7.10.1" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#obtain-rois"><i class="fa fa-check"></i><b>7.10.1</b> Obtain ROIs</a></li>
+<li class="chapter" data-level="7.10.2" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#download-time-series"><i class="fa fa-check"></i><b>7.10.2</b> Download time series</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#usa-npn-exercises"><i class="fa fa-check"></i><b>3.10</b> USA-NPN Exercises</a><ul>
-<li class="chapter" data-level="3.10.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#usa-npn-computational"><i class="fa fa-check"></i><b>3.10.1</b> USA-NPN Computational</a></li>
-<li class="chapter" data-level="3.10.2" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#usa-npn-written"><i class="fa fa-check"></i><b>3.10.2</b> USA-NPN Written</a></li>
+<li class="chapter" data-level="7.11" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#download-midday-images"><i class="fa fa-check"></i><b>7.11</b> Download midday images</a><ul>
+<li class="chapter" data-level="7.11.1" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#download-midday-images-for-a-given-time-range"><i class="fa fa-check"></i><b>7.11.1</b> Download midday images for a given time range</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html"><i class="fa fa-check"></i><b>4</b> Digital Repeat Photography Networks</a><ul>
-<li class="chapter" data-level="4.1" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#digital-repeat-photography-networks-learning-objectives"><i class="fa fa-check"></i><b>4.1</b> Digital Repeat Photography Networks Learning Objectives</a></li>
-<li class="chapter" data-level="4.2" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#introduction-to-digital-repeat-photography-methods"><i class="fa fa-check"></i><b>4.2</b> Introduction to Digital Repeat Photography Methods</a></li>
-<li class="chapter" data-level="4.3" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#detecting-foggy-images-using-the-hazer-r-package"><i class="fa fa-check"></i><b>4.3</b> Detecting Foggy Images using the ‘hazer’ R Package</a></li>
-<li class="chapter" data-level="4.4" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#extracting-timeseries-from-images-using-the-xroi-r-package"><i class="fa fa-check"></i><b>4.4</b> Extracting Timeseries from Images using the xROI R Package</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#xroi-design"><i class="fa fa-check"></i><b>4.4.1</b> xROI Design</a></li>
-<li class="chapter" data-level="4.4.2" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#install-xroi"><i class="fa fa-check"></i><b>4.4.2</b> Install xROI</a></li>
-<li class="chapter" data-level="4.4.3" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#launch-xroi"><i class="fa fa-check"></i><b>4.4.3</b> Launch xROI</a></li>
-<li class="chapter" data-level="4.4.4" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#end-xroi"><i class="fa fa-check"></i><b>4.4.4</b> End xROI</a></li>
-<li class="chapter" data-level="4.4.5" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#use-xroi"><i class="fa fa-check"></i><b>4.4.5</b> Use xROI</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#documentation-and-citation"><i class="fa fa-check"></i><b>4.5</b> Documentation and Citation</a></li>
-<li class="chapter" data-level="4.6" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#challenge-use-xroi"><i class="fa fa-check"></i><b>4.6</b> Challenge: Use xROI</a></li>
-<li class="chapter" data-level="4.7" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#the-phenocam-network-mission-design"><i class="fa fa-check"></i><b>4.7</b> The PhenoCam Network Mission &amp; Design</a></li>
-<li class="chapter" data-level="4.8" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#pulling-data-via-the-phenocamapi-package"><i class="fa fa-check"></i><b>4.8</b> Pulling Data via the <em>phenocamapi</em> Package</a></li>
-<li class="chapter" data-level="4.9" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#exploring-phenocam-metadata"><i class="fa fa-check"></i><b>4.9</b> Exploring PhenoCam metadata</a><ul>
-<li class="chapter" data-level="4.9.1" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#remove-null-values"><i class="fa fa-check"></i><b>4.9.1</b> Remove null values</a></li>
-<li class="chapter" data-level="4.9.2" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#filtering-using-attributes"><i class="fa fa-check"></i><b>4.9.2</b> Filtering using attributes</a></li>
-</ul></li>
-<li class="chapter" data-level="4.10" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#phenocam-time-series"><i class="fa fa-check"></i><b>4.10</b> PhenoCam time series</a><ul>
-<li class="chapter" data-level="4.10.1" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#obtain-rois"><i class="fa fa-check"></i><b>4.10.1</b> Obtain ROIs</a></li>
-<li class="chapter" data-level="4.10.2" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#download-time-series"><i class="fa fa-check"></i><b>4.10.2</b> Download time series</a></li>
-</ul></li>
-<li class="chapter" data-level="4.11" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#download-midday-images"><i class="fa fa-check"></i><b>4.11</b> Download midday images</a><ul>
-<li class="chapter" data-level="4.11.1" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#download-midday-images-for-a-given-time-range"><i class="fa fa-check"></i><b>4.11.1</b> Download midday images for a given time range</a></li>
-</ul></li>
-<li class="chapter" data-level="4.12" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#digital-repeat-photography-exercises"><i class="fa fa-check"></i><b>4.12</b> Digital Repeat Photography Exercises</a><ul>
-<li class="chapter" data-level="4.12.1" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#digital-repeat-photography-computational"><i class="fa fa-check"></i><b>4.12.1</b> Digital Repeat Photography Computational</a></li>
-<li class="chapter" data-level="4.12.2" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#threshold-values"><i class="fa fa-check"></i><b>4.12.2</b> Threshold values</a></li>
-<li class="chapter" data-level="4.12.3" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#comparing-phenology-across-vegetation-types"><i class="fa fa-check"></i><b>4.12.3</b> Comparing phenology across vegetation types</a></li>
-<li class="chapter" data-level="4.12.4" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#comparing-phenology-of-the-same-plant-function-type-pft-across-climate-space"><i class="fa fa-check"></i><b>4.12.4</b> Comparing phenology of the same plant function type (PFT) across climate space</a></li>
-<li class="chapter" data-level="4.12.5" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#digital-repeat-photography-written"><i class="fa fa-check"></i><b>4.12.5</b> Digital Repeat Photography Written</a></li>
+<li class="chapter" data-level="7.12" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#digital-repeat-photography-exercises"><i class="fa fa-check"></i><b>7.12</b> Digital Repeat Photography Exercises</a><ul>
+<li class="chapter" data-level="7.12.1" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#digital-repeat-photography-computational"><i class="fa fa-check"></i><b>7.12.1</b> Digital Repeat Photography Computational</a></li>
+<li class="chapter" data-level="7.12.2" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#threshold-values"><i class="fa fa-check"></i><b>7.12.2</b> Threshold values</a></li>
+<li class="chapter" data-level="7.12.3" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#comparing-phenology-across-vegetation-types"><i class="fa fa-check"></i><b>7.12.3</b> Comparing phenology across vegetation types</a></li>
+<li class="chapter" data-level="7.12.4" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#comparing-phenology-of-the-same-plant-function-type-pft-across-climate-space"><i class="fa fa-check"></i><b>7.12.4</b> Comparing phenology of the same plant function type (PFT) across climate space</a></li>
+<li class="chapter" data-level="7.12.5" data-path="digital-repeat-photography-networks.html"><a href="digital-repeat-photography-networks.html#digital-repeat-photography-written"><i class="fa fa-check"></i><b>7.12.5</b> Digital Repeat Photography Written</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html"><i class="fa fa-check"></i>Frequently Asked Questions:</a><ul>
-<li class="chapter" data-level="4.13" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#where-can-i-find-due-dates-for-assignments"><i class="fa fa-check"></i><b>4.13</b> Where can I find due dates for assignments?</a></li>
-<li class="chapter" data-level="4.14" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#how-do-i-know-when-assignments-are-due"><i class="fa fa-check"></i><b>4.14</b> How do I know when assignments are due?</a></li>
-<li class="chapter" data-level="4.15" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#how-do-i-submit-assignments"><i class="fa fa-check"></i><b>4.15</b> How do I submit assignments?</a></li>
-<li class="chapter" data-level="4.16" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#do-i-still-have-to-submit-written-exercises-as-.rmd-and-.pdf"><i class="fa fa-check"></i><b>4.16</b> Do I still have to submit written exercises as .Rmd and .pdf?</a></li>
-<li class="chapter" data-level="4.17" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#whats-better-for-code-conciseness-or-readability"><i class="fa fa-check"></i><b>4.17</b> What’s better for code, conciseness or readability?</a></li>
-<li class="chapter" data-level="4.18" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#how-find-i-find-resources-to-navigate-the-neon-data-portal"><i class="fa fa-check"></i><b>4.18</b> How find I find resources to navigate the NEON Data Portal?</a></li>
-<li class="chapter" data-level="4.19" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#how-can-i-best-prepare-for-class-and-succeed"><i class="fa fa-check"></i><b>4.19</b> How can I best prepare for class and succeed?</a></li>
+<li class="chapter" data-level="7.13" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#where-can-i-find-due-dates-for-assignments"><i class="fa fa-check"></i><b>7.13</b> Where can I find due dates for assignments?</a></li>
+<li class="chapter" data-level="7.14" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#how-do-i-know-when-assignments-are-due"><i class="fa fa-check"></i><b>7.14</b> How do I know when assignments are due?</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="yes-.html"><a href="yes-.html"><i class="fa fa-check"></i><b>8</b> <em>Yes.</em></a><ul>
+<li class="chapter" data-level="8.1" data-path="yes-.html"><a href="yes-.html#how-do-i-submit-assignments"><i class="fa fa-check"></i><b>8.1</b> How do I submit assignments?</a></li>
+<li class="chapter" data-level="8.2" data-path="yes-.html"><a href="yes-.html#do-i-still-have-to-submit-written-exercises-as-.rmd-and-.pdf"><i class="fa fa-check"></i><b>8.2</b> Do I still have to submit written exercises as .Rmd and .pdf?</a></li>
+<li class="chapter" data-level="8.3" data-path="yes-.html"><a href="yes-.html#whats-better-for-code-conciseness-or-readability"><i class="fa fa-check"></i><b>8.3</b> What’s better for code, conciseness or readability?</a></li>
+<li class="chapter" data-level="8.4" data-path="yes-.html"><a href="yes-.html#how-find-i-find-resources-to-navigate-the-neon-data-portal"><i class="fa fa-check"></i><b>8.4</b> How find I find resources to navigate the NEON Data Portal?</a></li>
+<li class="chapter" data-level="8.5" data-path="yes-.html"><a href="yes-.html#how-can-i-best-prepare-for-class-and-succeed"><i class="fa fa-check"></i><b>8.5</b> How can I best prepare for class and succeed?</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/katharynduffy/katharynduffy.github.io" target="blank">Published with bookdown</a></li>
@@ -259,60 +290,16 @@
 <div id="frequently-asked-questions" class="section level1 unnumbered">
 <h1>Frequently Asked Questions:</h1>
 <div id="where-can-i-find-due-dates-for-assignments" class="section level2">
-<h2><span class="header-section-number">4.13</span> Where can I find due dates for assignments?</h2>
+<h2><span class="header-section-number">7.13</span> Where can I find due dates for assignments?</h2>
 <p><em>BBLearn</em></p>
 </div>
 <div id="how-do-i-know-when-assignments-are-due" class="section level2">
-<h2><span class="header-section-number">4.14</span> How do I know when assignments are due?</h2>
-<p><em>All assignment deadlines can be found in BBLearn. Within this textbook we have suggestions for the timing of all writen questions, coding labs and final culmination writes ups. All material by infrastructure is due before we begin the next infrastructure.</em></p>
-</div>
-<div id="how-do-i-submit-assignments" class="section level2">
-<h2><span class="header-section-number">4.15</span> How do I submit assignments?</h2>
-<p><em>All assignments (except the very first git assignment) are submitted via BBLearn as both .Rmds and .pdfs</em></p>
-<<<<<<< HEAD
+<h2><span class="header-section-number">7.14</span> How do I know when assignments are due?</h2>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+<em>All assignments (except the very first git assignment) are submitted via BBLearn as both .Rmds and .pdfs</em></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Do I still have to submit written exercises as .Rmd and .pdf?</li>
 </ol>
-<p><em>Yes.</em></p>
-=======
-</div>
-<div id="do-i-still-have-to-submit-written-exercises-as-.rmd-and-.pdf" class="section level2">
-<h2><span class="header-section-number">4.16</span> Do I still have to submit written exercises as .Rmd and .pdf?</h2>
-<p><em>Yes.</em></p>
-</div>
-<div id="whats-better-for-code-conciseness-or-readability" class="section level2">
-<h2><span class="header-section-number">4.17</span> What’s better for code, conciseness or readability?</h2>
-<p><code>Readability &gt; Conciseness</code></p>
-<p><em>I personally almost always use dplyr, my thoughts, pulled largely from Dr. Derek Sonderegger’s Statistical Computing Course are below:</em></p>
-<p>The pipe command in <code>dplyr</code> <code>%&gt;%</code> allows for very readable code. The idea is that the <code>%&gt;%</code> operator works by translating the command <em>a</em> <code>%&gt;%</code> <em>f(b)</em> to the expression <em>f(a,b)</em>. This operator works on <strong>any function</strong> and was introduced in the <code>magrittr</code> package. The beauty of this comes when you have a suite of functions that take input arguments of the same type as their output. They are human readable!</p>
-<p>For example if we wanted to start with <em>x</em>, and first apply function <em>f()</em>, then <em>g()</em>, and then <em>h()</em>, the usual R command would be <em>h(g(f(x)))</em> which is hard to read because you have to start reading at the innermost set of parentheses. Using the pipe command <code>%&gt;%</code>, this sequence of operations becomes <em>x</em> <code>%&gt;%</code> <em>f()</em> <code>%&gt;%</code> <em>g()</em> <code>%&gt;%</code> <em>h()</em>.</p>
-<p>Dr. Hadley Wickham (aka R genius) gave the following example of readability:</p>
-<pre><code>bopping(
-  scooping_up(
-    hopping_through(foo_foo),
-    field_mice),
-  head)</code></pre>
-<p>is more readably written:</p>
-<pre><code>foo_foo %&gt;% 
-  hopping_through(forest) %&gt;%
-  scooping_up( field_mice) %&gt;%
-  bopping( head )</code></pre>
-<p>In dplyr, all the functions take a data set as its first argument and outputs an appropriately modified data set. This allows me to chain together commands in a readable fashion. Then in 3 months I don’t have to wonder what on earth I was doing last time I opened this project, if I filtered the data, etc etc. Your future self will sincerely thank your past self.</p>
-</div>
-<div id="how-find-i-find-resources-to-navigate-the-neon-data-portal" class="section level2">
-<h2><span class="header-section-number">4.18</span> How find I find resources to navigate the NEON Data Portal?</h2>
-<p>A fantastic powerpoint giving you step-by-step directions <a href="https://www.neonscience.org/sites/default/files/Access_NEON_Data_%20Visual_Guide_6Feb2020.pptx">can be found here</a>.</p>
-</div>
-<div id="how-can-i-best-prepare-for-class-and-succeed" class="section level2">
-<h2><span class="header-section-number">4.19</span> How can I best prepare for class and succeed?</h2>
-<ol style="list-style-type: decimal">
-<li><p>Read the textbook, click on linked resources including videos, review materials as we go or read ahead.</p></li>
-<li><p>Complete assignments as we go or ahead of time. Do not wait until the last minute.</p></li>
-<li><p>Pick a ‘coding buddy’ and help each other tackle errors that arise.</p></li>
-<li><p>Reach out to your instructors if you need clarification on assignments.</p></li>
-</ol>
->>>>>>> upstream/master
-
 </div>
 </div>
             </section>
@@ -320,8 +307,8 @@
           </div>
         </div>
       </div>
-<a href="digital-repeat-photography-networks.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="digital-repeat-photography-networks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="yes-.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

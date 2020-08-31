@@ -6,17 +6,19 @@
 
 ## How do I know when assignments are due?
 
+<<<<<<< HEAD
+*All assignments (except the very first git assignment) are submitted via BBLearn as both .Rmds and .pdfs*
+
+3.  Do I still have to submit written exercises as .Rmd and .pdf?
+
+*Yes.*
+=======
 *All assignment deadlines can be found in BBLearn.  Within this textbook we have suggestions for the timing of all writen questions, coding labs and final culmination writes ups.  All material by infrastructure is due before we begin the next infrastructure.*
 
 ## How do I submit assignments?
 
 *All assignments (except the very first git assignment) are submitted via BBLearn as both .Rmds and .pdfs*
 
-<<<<<<< HEAD
-3.  Do I still have to submit written exercises as .Rmd and .pdf?
-
-*Yes.*
-=======
 ## Do I still have to submit written exercises as .Rmd and .pdf?
 
 *Yes.*
