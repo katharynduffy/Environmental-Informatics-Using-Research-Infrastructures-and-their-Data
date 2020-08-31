@@ -851,4 +851,18 @@ Hints:
 
 ## **Intro to USA-NPN Culmination Activity**
 
-Write up a 1-page summary of a project that you might want to explore using USA-NPN data over the duration of this course. Include the types of USA-NPN (and other data) that you will need to implement this project. Save this summary as you will be refining and adding to your ideas over the course of the semester.
+*Note: I fully realize that phenology data may not be relevant to all of you.  Two suggestions:*
+
+*1. Be creative, example: Say you work with ground water hydrology, how could leaves on trees perhaps be relevant to groundwater recharge rate?  Might there be a lag?  Etc etc.*
+
+*2. I will fully accept alternate citizen-science-based datasets and project proposals based on those.  The challenge of taking this option is that we have not covered that data.*
+
+Write up a 1-page **derived data product or research pipeline proposal** summary of a project that you might want to explore using USA-NPN data. Include the types of USA-NPN (and other data) that you will need to implement this project. Save this summary as you will be refining and adding to your ideas over the course of the semester.  
+
+Sugestions: 
+
+1. Tables or bullet lists of **specific** data products
+
+2. An **overarching high-quality figure** to show how these data align
+
+3. One paragaph summarizing *how* this data or analysis is use to **you and/or the infrastructure**.
