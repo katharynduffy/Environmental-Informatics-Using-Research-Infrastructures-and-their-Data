@@ -1,0 +1,10 @@
+---
+title: "Chapter 1 Exercises"
+author: "David Failing"
+date: "8/17/2020"
+output: pdf_document
+---
+
+**Introduction**
+
+Hi everyone - I'm David Failing, a first year Ecoinformatics PhD Student in the Ogle Lab. I'm the glutton for punishment who decided that the first round of graduate school (also during a recession) wasn't enough. I have a PhD in Mathematics from Iowa State (earned in 2013), and spent the last 6 years as a tenure-track professor of mathematics.

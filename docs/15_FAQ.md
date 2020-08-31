@@ -12,6 +12,11 @@
 
 *All assignments (except the very first git assignment) are submitted via BBLearn as both .Rmds and .pdfs*
 
+<<<<<<< HEAD
+3.  Do I still have to submit written exercises as .Rmd and .pdf?
+
+*Yes.*
+=======
 ## Do I still have to submit written exercises as .Rmd and .pdf?
 
 *Yes.*
@@ -58,3 +63,4 @@ A fantastic powerpoint giving you step-by-step directions [can be found here](ht
 3. Pick a 'coding buddy' and help each other tackle errors that arise.
 
 4. Reach out to your instructors if you need clarification on assignments.
+>>>>>>> upstream/master
