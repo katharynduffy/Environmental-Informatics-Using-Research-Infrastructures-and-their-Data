@@ -1290,11 +1290,11 @@ look <a href="https://www.neonscience.org/neonDataStackR" target="_blank">here</
 
 ## Intro to NEON Exercises: Written Questions
 
-<<<<<<< HEAD
+
 ## Intro to NEON Exercises Part 2
 
 ### Written
-=======
+
 **Suggested Timing: Complete this exercise before our next class meeting**
 >>>>>>> upstream/master
 
@@ -1346,23 +1346,18 @@ sites you’ve already identified in the previous sections and answer *each* of 
 
 <div id="ds-challenge" markdown="1">
 
-<<<<<<< HEAD
 ### NEON Coding Lab Part 2
-=======
+
 ## NEON Coding Lab Part 2
 
 **Suggested Timing: Complete this exercise a few days before your NEON clumination write up**
->>>>>>> upstream/master
+
 
 1.  Use the answers that you've provided above to select a *single* NEON site.
 
 e.g. `ONAQ`
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> upstream/master
 2.  Use the answers that you've provided above to select **3 NEON data products** from either the TOS, TIS or ARS (AOP) collection methods.  Sumarize each product with its NEON identifier, along with a sumarry.
 
 e.g.:
@@ -1376,7 +1371,7 @@ e.g.:
 4. Organize your data into `data.frames` and produce summaries for each of your data:
 
 5.  Filter your data based on metadata and quality flags:
-=======
+
 > **DP1.10055.001**: Plant phenology observations: phenophase status and intensity of tagged plants.  This data product contains the quality-controlled, native sampling resolution data from in-situ observations of plant leaf development and reproductive phenophases, at **D15.ONAQ**.  Here I will focus on the phenophase intensity data, which is a measure of how prevalent that particular phenophase is in the sampled plants.
 
 3.  Using the NEON Ulitites package or the API pull in those data along with metadata.
@@ -1422,7 +1417,7 @@ Now I want to remove NA values so I can see what's really going on:
 phe_statusintensity=phe_statusintensity%>%
   filter(!is.na(phe_statusintensity$phenophaseIntensity))
 ```
->>>>>>> upstream/master
+
 
 6.  Create minimum of 1 plot per data type (minimum of 3 plots total).  These will vary based on that data that you've chosen.
 
@@ -1432,11 +1427,11 @@ A non-exhastive list of ideas:
 3. A model based on the data you're interested in working work (Coding lab 1 example)
 4. A timeseries of your data (example below)
 
-<<<<<<< HEAD
+
 7.  What is the frequency of the data you decided was of interest?  How do the data align to answer a central question?  What challenges did you run into when investigating these data? How will you address these challenges and document your code? *One to two paragraphs*
 
 **Intro to NEON Culmination Activity**
-=======
+
 7.  What is the temporal frequency of observations in the data you decided was of interest?  How do the data align to answer a central question?  What challenges did you run into when investigating these data? How will you address these challenges and document your code? *One to two paragraphs*
 
 ## Intro to NEON Culmination Activity
