@@ -645,13 +645,6 @@ plot(
 
 ## Putting it all together:
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(RColorBrewer)
-library(rnpn)
-library(rgdal)
-library(raster)
-```
 
 
 ## Combine Point and Raster Data
