@@ -88,6 +88,74 @@ Over the duration of this course we will survey a wide array of observation plat
     
 At the conclusion of each network's section you will be asked to write a 1-page summary reviewing the above framework for each network, and highlight how it potentially aligns with your own research.  These series of 1-page summaries will then culminate into a final presentation where you propose to derive your own data product for your own research *touching upon multiple networks* and *accounting for differences in spatial footprints, frequency of observations, and important data cross-walks*.
 
+## Final Course Project: Proposed Derived Data Product
+
+
+For your final project, you will present a **4-6 minute IGNITE-style derived data product pitch**, followed by *2-3 minutes of questions from your audience* (which will include members from the infrastrures we've covered).  Think of this project as your *‘sales pitch’* to the research infrastructure whose data you are using, and/or the scientific community as a whole.  In the IGNITE theme of *‘Enlighten us but make it quick’*, you will construct a series of slides that auto-advance every 30 seconds.  Specific instructions for the content of each slide are below.
+
+Ideally, this final presentation will feed upon a number of the ‘culmination write-ups’ you have conducted over the course of the semester.  Ideally, this derived data product will utilize data from a number of sources, either covered within this course or external to it.  Ideally, it will also convince your audience that your idea is **novel, useful,** *and* **possible**.
+
+In order to complete this presentation, you will need to have worked with the various data products you propose, have an in-depth understanding of them, and their challenges, along with original, clean, high-level summary graphics.  Further, giving an IGNITE-style presentation takes practice.  IGNITE-style presentations are powerful, as they keep *you* moving forward, and give your audience a *high-level understanding* of your topic.  We fully recommend rehearsing your presentation **many times** before giving it live and recording yourself to learn how you can improve.
+
+**In your derived data product pitch you will cover these themes:**
+
+1. The need for the derived data that you are proposing to produce.
+
+2. What data you will use to derive this product, including the justification for this exact data.
+
+3. The processing pipeline for this product, along with estimates for a timeline.  
+
+4. Potential hurdles you will have to overcome.
+
+5. How this product will serve the infrastructure and/or the scientific community.
+
+
+**Specific slide criteria are as follows:**
+
+**Slide 1:** Title, authors (including contacts at infrastructures covered if applicable)
+
+**Slide 2:** Justification for the derived data product; the gap or need that it fills
+
+**Slides 3-x: **
+
+1 slide per data product used including:
+
+* The exact data product (e.g. NEON data product id and full title)
+
+* A 1 sentence summary of the data product and it’s justification for this purpose
+
+* An original, clean, polished high-level plot of the data
+
+**Slide x + 1:** A high-level workflow diagram of the processing pipeline *E.g.: Original data and how you pull it in (API, r-package etc)*
+
+* Filtering process using QA/QC or metadata
+
+* Orthorectification in time or space
+
+Example:
+
+```{r, echo=FALSE}
+knitr::include_graphics('./images/APIS_usecase2_v2 (4).png')
+```
+
+**Slide x + 2:** A clean plot of all of the data you mentioned together, and/or the derived data product itself with a 1 sentence summary
+
+**Slide x+3:** Summary: Circle back on how this derived data product serves your research, the infrastructure, and the wider science community (no more than 10 words, suggestion: graphics or bullet points)
+
+**Slide x + 4:** Data citations for all data used in proposed derived data product
+
+
+**The rubric for your final presentation grade is as follows:**
+
+Presentation meets all requirements and criteria: 60%
+
+Aesthetics and craft of presentation: 10%
+
+Live presentation of materials: 30%
+
+
+
+
 ## EcoInformatics Tools
 
 The purpose of this course is to train you in key ecoinformatics practices.
