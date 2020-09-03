@@ -737,11 +737,119 @@ legend(
 )
 ```
 
+## Live Demo Code with Lee Marsh of USA-NPN
+
+
+### Basic Utility Functions
+```{r}
+species <- npn_species()
+phenophases <- npn_phenophases()
+
+layer_details <- npn_get_layer_details()
+```
+
+```{r}
+quick_get_phenophase <- function(species_id, date,phenophase_name){
+  phenophases<-npn_phenophases_by_species(c(species_id),date=date)
+  phenophases_species <- phenophases[phenophases$species_id==species_id]$phenophases[[1]]
+  phenophases_species[phenophases_species$phenophase_name==phenophase_name,]$phenophase_id
+}
+
+quick_get_species <- function(species_name){
+  species[species$common_name==species_name,]$species_id
+}
+```
+
+### Download Observational Data
+
+```{r}
+white_oak_id <- quick_get_species("white oak")
+fruits_id<- quick_get_phenophase(white_oak_id,"2017-05-15","Fruits")
+
+# Raw data download
+s2017_white_oak_raw <- npn_download_status_data(
+  request_source = "R Demo",
+  years = c(2017),
+  species_ids = c(white_oak_id),
+  phenophase_ids = c(fruits_id)
+)
+```
+
+### Magnitude Data
+```{r}
+m2017_white_oak_magnitude <- npn_download_magnitude_phenometrics(
+  request_source = "R Demo",
+  years = c(2017),
+  species_ids = c(white_oak_id),
+  phenophase_ids = c(fruits_id),
+  period_frequency = "14"
+)
+
+datasets <- npn_datasets()
+
+# NEON data, file download, additional fields
+npn_download_status_data(
+  request_source = "R Demo",
+  years = c(2018:2020),
+  states = c("CO"),
+  dataset_ids = c(16),
+  additional_fields = c("Site_Name"),
+  download_path = "NEON_CO_Data_2018-2010.csv"
+)
+
+```
+
+### Downloading Geospatial Data
+```{r}
+SIXBloom2018 <- npn_download_geospatial(
+  'si-x:average_bloom_ncep', 
+  '2018-12-31'
+)
+
+
+npn_download_geospatial(
+  'gdd:agdd', 
+  '2018-04-15',
+  output_path = "20180415-32-agdd.tiff"
+)
+
+
+my_point <- npn_get_point_data("gdd:agdd_50f", 33.649, -111.861, "2017-05-15")
+
+```
+
+### Putting it together
+```{r}
+
+dogwood_id <- quick_get_species("flowering dogwood")
+dogwood_flowering_id <-
+  quick_get_phenophase(dogwood_id,"2018-05-05","Flowers or flower buds")
+
+dogwood_data <- npn_download_site_phenometrics(
+  request_source = 'Demo', 
+  years = '2018',
+  species_ids = dogwood_id,
+  phenophase_ids = dogwood_flowering_id, 
+  six_leaf_layer = TRUE,
+  agdd=32
+)
+```
+
+### Other Data Sources, e.g. Daymet, MODIS
+
+```{r}
+
+add_fields <- npn_download_status_data(
+  request_source = "Demo",
+  years = c(2014),
+  species_id = c(4),
+  additional_fields = c("tmaxf","Greenup_0","MidGreenup_0")
+)
+
+```
+
 ## USA-NPN Coding Lab
 
-For the purposes of this exercise we will be focusing on two NEON sites: `HARV` and `CPER`.
-
-1.  Define AGGD and write the equation using LaTeX
 
 ```{r}
 library(rnpn)
@@ -939,7 +1047,11 @@ Hints:
 
 <div id="ds-challenge" markdown="1">
 
+## NEON TOS Phenology Data Lecture
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aSapVSBoUA8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+> Please watch the recorded lecture with Dr. Katie Jones, lead plant ecologist with NEON Battelle
 
 ## **Intro to USA-NPN Culmination Activity**
 
