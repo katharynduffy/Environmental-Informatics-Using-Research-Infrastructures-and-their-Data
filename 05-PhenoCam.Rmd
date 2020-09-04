@@ -1153,7 +1153,7 @@ gcc_plot = function(gcc, spring, fall){
     y = ~ gcc_90,
     showlegend = FALSE,
     type = 'scatter',
-    mode = 'markers'
+    mode = 'line'
   ) %>%
     add_trace(
       y = ~ smooth_gcc_90,
