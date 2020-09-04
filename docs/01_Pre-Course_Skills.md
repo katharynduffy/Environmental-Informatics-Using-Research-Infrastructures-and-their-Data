@@ -1,4 +1,4 @@
-# Pre-Course Setup: EcoInformatics Tools
+# Pre-Course Setup: EcoInformatics Tools {-}
 
 The purpose of this course is to train you in key ecoinformatics practices.
 
