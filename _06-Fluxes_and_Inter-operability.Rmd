@@ -97,7 +97,7 @@ Inputs to the `zipsByProduct()` function:
 The download may take a while, especially if you're on a slow network.
 
 
-```{r loadStuff, eval=FALSE}
+```{r, eval=FALSE}
 zipsByProduct(dpID="DP4.00200.001", package="basic", 
               site=c("NIWO", "HARV"), 
               startdate="2018-06", enddate="2018-07",
@@ -151,7 +151,7 @@ including the `filestoStack00200` folder created by the function, and
 `dp04`:
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 flux <- stackEddy(filepath="/data/filesToStack00200/",
                  level="dp04")
 ```
@@ -169,7 +169,7 @@ tables: one table for each site's data, and `variables` and `objDesc`
 tables.
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 names(flux)
 ```
 
@@ -186,7 +186,7 @@ names(flux)
 Let's look at the contents of one of the site data files:
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 head(flux$NIWO)
 ```
 
@@ -216,7 +216,7 @@ complete. To get the terms of interest, we'll break up the column headers
 into individual terms and look for them in the `objDesc` table:
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 term <- unlist(strsplit(names(flux$NIWO), split=".", fixed=T))
 flux$objDesc[which(flux$objDesc$Object %in% term),]
 ```
@@ -250,7 +250,7 @@ are self-explanatory. The flux components are
 The `variables` table contains the units for each field:
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 flux$variables
 ```
 
@@ -314,7 +314,7 @@ specified, R will default to the local time zone it detects on your
 operating system.
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 timeB <- as.POSIXct(flux$NIWO$timeBgn, 
                     format="%Y-%m-%dT%H:%M:%S", 
                     tz="GMT")
@@ -322,7 +322,7 @@ flux$NIWO <- cbind(timeB, flux$NIWO)
 ```
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 plot(flux$NIWO$data.fluxCo2.nsae.flux~timeB, 
      pch=".", xlab="Date", ylab="CO2 flux",
      xaxt="n")
@@ -340,7 +340,7 @@ is a clear diurnal pattern going into the growing season.
 Let's trim down to just two days of data to see a few other details.
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 plot(flux$NIWO$data.fluxCo2.nsae.flux~timeB, 
      pch=20, xlab="Date", ylab="CO2 flux",
      xlim=c(as.POSIXct("2018-07-07", tz="GMT"),
@@ -390,7 +390,7 @@ download time by disregarding the 1-minute data files (which are of course
 all available averaging intervals.
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 pr <- loadByProduct("DP1.00024.001", site="NIWO", avg=30,
                     startdate="2018-06", enddate="2018-07",
                     package="basic", check.size=F)
@@ -418,7 +418,7 @@ first tower level, and 20, 30, etc going up the tower.
 We'll connect PAR data from the tower top to the flux data.
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 pr.top <- pr$PARPAR_30min[which(pr$PARPAR_30min$verticalPosition==
                                 max(pr$PARPAR_30min$verticalPosition)),]
 ```
@@ -428,7 +428,7 @@ data, so here we just need to indicate which time field to use to
 merge the flux and PAR data.
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 timeB <- pr.top$startDateTime
 pr.top <- cbind(timeB, pr.top)
 ```
@@ -436,12 +436,12 @@ pr.top <- cbind(timeB, pr.top)
 And merge the two datasets:
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 fx.pr <- merge(pr.top, flux$NIWO, by="timeB")
 ```
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 plot(fx.pr$data.fluxCo2.nsae.flux~fx.pr$PARMean,
      pch=".", ylim=c(-20,20),
      xlab="PAR", ylab="CO2 flux")
@@ -465,7 +465,7 @@ Extract the Level 3 data from the HDF5 file using `stackEddy()` with
 the same syntax as for the Level 4 data.
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 prof <- stackEddy(filepath="/data/filesToStack00200/",
                  level="dp03")
 ```
@@ -479,7 +479,7 @@ prof <- stackEddy(filepath="/data/filesToStack00200/",
 
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 head(prof$NIWO)
 ```
 
@@ -511,7 +511,7 @@ Again, they can be extracted from the HDF5 files using `stackEddy()`
 with the same syntax:
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 prof.l2 <- stackEddy(filepath="/data/filesToStack00200/",
                  level="dp02")
 ```
@@ -525,7 +525,7 @@ prof.l2 <- stackEddy(filepath="/data/filesToStack00200/",
 
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 head(prof.l2$HARV)
 ```
 
@@ -572,7 +572,7 @@ a list of HDF5 file contents. It requires only one input, a filepath
 to a single NEON HDF5 file:
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 vars <- getVarsEddy("/data/filesToStack00200/NEON.D01.HARV.DP4.00200.001.nsae.2018-07.basic.h5")
 head(vars)
 ```
@@ -604,7 +604,7 @@ for these data, since deeper canopies generally have more interesting
 profiles:
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 iso <- stackEddy(filepath="/data/filesToStack00200/",
                level="dp01", var=c("rtioMoleDryCo2","rtioMoleDryH2o",
                                    "dlta13CCo2","dlta18OH2o"), avg=30)
@@ -619,7 +619,7 @@ iso <- stackEddy(filepath="/data/filesToStack00200/",
 
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 head(iso$HARV)
 ```
 
@@ -651,7 +651,7 @@ we want using `grep()`. And discard the `verticalPosition` values that are
 string values - those are the calibration gases.
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 iso.d <- iso$HARV[grep("2018-06-25", iso$HARV$timeBgn, fixed=T),]
 iso.d <- iso.d[-which(is.na(as.numeric(iso.d$verticalPosition))),]
 ```
@@ -664,12 +664,12 @@ iso.d <- iso.d[-which(is.na(as.numeric(iso.d$verticalPosition))),]
 the profiles.
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 library(ggplot2)
 ```
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 g <- ggplot(iso.d, aes(y=verticalPosition)) + 
   geom_path(aes(x=data.co2Stor.rtioMoleDryCo2.mean, 
                 group=timeBgn, col=timeBgn)) + 
@@ -688,7 +688,7 @@ knitr::include_graphics('./images/eddy_intro_50_1.png')
 
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 g <- ggplot(iso.d, aes(y=verticalPosition)) + 
   geom_path(aes(x=data.isoCo2.dlta13CCo2.mean, 
                 group=timeBgn, col=timeBgn)) + 
@@ -714,7 +714,7 @@ of day the different colors represent.
 
 Install and load packages
 
-```{ r, loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 
 
 #Install NEONprocIS.base from GitHub, this package is a dependency of eddy4R.base
@@ -754,7 +754,7 @@ lapply(packReq, function(x) {
 Select sites to be converted. All sites are listed below, uncomment the site/sites to be run. Running all sites will take a while!
 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 site <- "KONZ"
   
   #"BARR","CLBJ","MLBS","DSNY","NIWO","ORNL","OSBS",
@@ -770,7 +770,7 @@ site <- "KONZ"
 
 If you would like to download a set range of dates, define the following paramemters. If these are not defined, it will default to the entire record at the site
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 #Year
 year <-  c("2020")
 #Month
@@ -788,7 +788,7 @@ ver = paste0("v",format(Sys.time(), "%Y%m%dT%H%m"))
 
 Specify Download directory for HDF5 files from the NEON data portal and output directory to save the resulting csv files. Change save paths to where you want the files on your computer. 
 
-``` {r loadStuff, eval = FALSE}
+``` {r, eval = FALSE}
 
 #download directory
 DirDnld=tempdir()
@@ -799,7 +799,7 @@ DirOutBase <-paste0("~/eddy/data/Ameriflux/",ver)
 
 Specify Data Product number, for the Bundled Eddy-Covariance files, this is DP4.00200.001 
 
-```{r loadStuff, eval = FALSE}
+```{r, eval = FALSE}
 #DP number
 idDpMain <- 'DP4.00200.001'
 ```
@@ -807,7 +807,7 @@ idDpMain <- 'DP4.00200.001'
 
 Get metadata from Ameriflux Site Info BADM sheets for the site of interest
   
-```{r loadStuff, eval=FALSE}
+```{r, eval=FALSE}
   #Grab a list of all Ameriflux sites, containing site ID and site description
   sites_web <- jsonlite::fromJSON("http://ameriflux-data.lbl.gov/AmeriFlux/SiteSearch.svc/SiteList/AmeriFlux")
   
@@ -824,7 +824,7 @@ Get metadata from Ameriflux Site Info BADM sheets for the site of interest
   
   
 Use Ameriflux site IDs to name metadata lists
-```{r loadStuff, eval=FALSE}
+```{r, eval=FALSE}
 #use NEON ID as list name
   names(metaSite) <- site 
 #Use Ameriflux site ID as list name  
@@ -833,7 +833,7 @@ Use Ameriflux site IDs to name metadata lists
 
 Check if dateBgn is defined, if not make it the initial operations date "IOCR" of the site
 
-```{r loadStuff, eval=FALSE}
+```{r, eval=FALSE}
 
   if(!exists("dateBgnArg") || is.na(dateBgnArg) || is.null(dateBgnArg)){
     dateBgn <- as.Date(metaSite[[idxSite]]$values$GRP_FLUX_MEASUREMENTS[[1]]$FLUX_MEASUREMENTS_DATE_START, "%Y%m%d")
@@ -850,12 +850,12 @@ Check if dateBgn is defined, if not make it the initial operations date "IOCR" o
 ```
 
 Grab the UTC time offset from the Ameriflux API
-```{r loadStuff, eval=FALSE}
+```{r, eval=FALSE}
   timeOfstUtc <- as.integer(metaSite[[idxSite]]$values$GRP_UTC_OFFSET[[1]]$UTC_OFFSET)
 ```
 
 Create the method for date sequence based off of the package chosen, the basic package contains monthly files while the expanded package contains daily files
-```{r loadStuff, eval=FALSE}
+```{r, eval=FALSE}
   MethDateSeq <- ifelse(test = Pack == "basic", yes = "month", no = "day")
   
   #If monthly files from basic chosen round to the beginning and end of the month for dateBgn and dateEnd
@@ -869,12 +869,12 @@ Create the method for date sequence based off of the package chosen, the basic p
   
 
 Start processing the site time range specified, verify that the site and date range are specified as intended
-```{r loadStuff, eval=FALSE}
+```{r, eval=FALSE}
   msg <- paste0("Starting Ameriflux FP standard conversion processing workflow for ", site, " for ", dateBgn, " to ", dateEnd)
 ```
 
 Create output directory by checking if the download directory exists and create it if not
-```{r loadStuff, eval=FALSE}
+```{r, eval=FALSE}
   if(dir.exists(DirDnld) == FALSE) dir.create(DirDnld, recursive = TRUE)
   #Append the site to the base output directory
   DirOut <- paste0(DirOutBase, "/", siteNeon$SITE_ID)
