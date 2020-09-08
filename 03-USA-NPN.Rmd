@@ -1069,4 +1069,4 @@ Sugestions:
 
 2. An **overarching high-quality figure** to show how these data align
 
-3. One paragaph summarizing *how* this data or analysis is use to **you and/or the infrastructure**.
+3. One paragaph summarizing *how* this data or analysis is useful to **you and/or the infrastructure**.
