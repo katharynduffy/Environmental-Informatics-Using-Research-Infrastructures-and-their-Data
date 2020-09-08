@@ -1008,8 +1008,8 @@ ggplot(data=data, aes(x=date, y=AGDD, group=1)) +
   geom_smooth()
 ```
 Your plot should resemble *something* like this (intentionally a little vague):
-```{r}
-knitr::include_graphics('./images/Screen Shot 2020-08-31 at 8.15.42 AM.png')
+```{r, echo=FALSE}
+knitr::include_graphics('/Users/kdw223/Research/katharynduffy.github.io/images/Screen Shot 2020-08-31 at 8.15.42 AM.png')
 ```
 
 6. Now we're going to build a model to see how AGGD impacts phenological status.  But Wait.  Is phenology **all** driven by temperature?  Should you consider any other variables?  What about AGGD **and** just plain temperature?   Also, we have one very temperate site, and another that is a semi-arid grassland.  Should water availability of any sort be considered?  Create a [GAM (Generalized Additive Model)](https://dereksonderegger.github.io/578/7-beyond-linearity.html#gams) for your phenological data including any variables you think might be relevant.  
@@ -1032,17 +1032,17 @@ mgcv::plot.gam(model, pages=1 )
 
 Hints:
 
-1. Feeding a state or other region will make the data more congruent
-2. You'll likely need to either request the phenophase that you selected from NEON, or filter again.
-3. It might make your life easier to request the NEON data from `rnpn` as they host it as well.
+* Feeding a state or other region will make the data more congruent
+* You'll likely need to either request the phenophase that you selected from NEON, or filter again.
+* It might make your life easier to request the NEON data from `rnpn` as they host it as well.
 
 8. Pull AGGD from USA-NPN based on the observations you just pulled.
 
 9. Combine your NEON and USA-NPN data into the same data.frame and re-fit your GAM.  
 
-1. Summarize your new model
-2. Plot your new model
-3. Comment on your new model: was it improved?  If so how?
+* Summarize your new model
+* Plot your new model
+* Comment on your new model: was it improved?  If so how?
 
 
 <div id="ds-challenge" markdown="1">
