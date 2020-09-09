@@ -1057,9 +1057,15 @@ Hints:
 
 > The following information was adapted from Zachmann et al. (in prep) and is not to be distributed or used beyond this course.
 
-One significant barrier to advancing our understanding and utilization of phenology information is wrapped up in the ability of existing models to represent drivers of phenology and phenological shifts appropriately. The specific timing of phenological events, such as first leaf or first flower in plants, is affected by multiple, potentially interacting climatic and geophysical factors. For example, soil moisture supply, atmospheric demand for water, frost events, day length, and terrain have all been shown to influence species’ phenology. Many of these factors vary over time as well as space. Additionally, some of their effects may themselves vary over time as a result of interactions among controls on phenology. 
+One significant barrier to advancing our understanding and utilization of phenology information is wrapped up in the ability of existing models to represent drivers of phenology and phenological shifts appropriately. 
 
-For instance:
+```{r, echo=FALSE}
+knitr::include_graphics('/Users/kdw223/Research/katharynduffy.github.io/images/700phenology.jpg')
+```
+
+The specific timing of phenological events, such as first leaf or first flower in plants, is affected by multiple, potentially interacting climatic and geophysical factors. For example, soil moisture supply, atmospheric demand for water, frost events, day length, and terrain have all been shown to influence species’ phenology. **Many of these factors vary over time as well as space.** Additionally, some of their *effects may themselves* vary over time as a result of interactions among controls on phenology. 
+
+**For instance:**
 
 * Precipitation and temperature likely interact to initiate phenological events; 
 
@@ -1067,7 +1073,7 @@ For instance:
 
 Phenological predictions, specifically, consist of estimates of the anticipated onset dates of key events: *bud break and the arrival of spring, for example,  or plant senescence in the fall*. 
 
-In order to track anomalies in real-time, we need forecasts of phenology.  Further, we need forecasts of long-term shifts in phenology as a result of climate change. However, making any such predictions requires both reasonable and skillful models of phenology. 
+In order to track anomalies in real-time, we need forecasts of phenology.  Further, we need forecasts of long-term shifts in phenology as a result of climate change. However, making any such predictions requires both **reasonable** *and* **skillful** models of phenology. 
 
 >By “reasonable” we refer to models that are appropriate for the data – including any “nonignorable” aspects of the sampling design, Gelman et al. (2013) – and the underlying ecological process, while by “skillful” we mean that the model has adequate predictive performance. 
 
