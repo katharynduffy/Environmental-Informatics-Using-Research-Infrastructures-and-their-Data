@@ -308,7 +308,7 @@ Ideally, this final presentation will feed upon a number of the ‘culmination w
 
 In order to complete this presentation, you will need to have worked with the various data products you propose, have an in-depth understanding of them, and their challenges, along with original, clean, high-level summary graphics.  Further, giving an IGNITE-style presentation takes practice.  IGNITE-style presentations are powerful, as they keep *you* moving forward, and give your audience a *high-level understanding* of your topic.  We fully recommend rehearsing your presentation **many times** before giving it live and recording yourself to learn how you can improve.
 
-Here are a few example (of even faster) ignite talks from one of your authors and other leading NEON scientists:
+Here's an example (of an even faster) ignite talk from one of your book's authors:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/JOlVcHrtl8M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -364,6 +364,7 @@ knitr::include_graphics('./images/mased_APIS_2.png')
 
 **Slide x + 4:** Data citations for all data used in proposed derived data product
 
+**An example slide deck with specific ideas** [**can be found here**](https://docs.google.com/presentation/d/16vRomNXmdyGrKQ_bdsGaOfbbU-CW_ZGi5-MPhzDBclY/edit?usp=sharing)
 
 **The rubric for your final presentation grade is as follows:**
 
