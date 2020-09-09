@@ -1063,18 +1063,17 @@ Hint:</p>
 <blockquote>
 <p>Illustration of the types of censoring that are relevant to analyses of phenological data. Although shown extending from zero to positive infinity, the x-axis for most phenological events spans the length of a growing season and starts on Jan. 1. The timing, ti, of the event (e.g., first leaf), in relation to interval boundaries li and ri, is indicated by the position of the leaf along the x- axis, while actual site visits are represented by the presence of the person. Note that - in the case of right-censoring – the event need not occur, hence the question mark. Phenological observations are almost never observed exactly, as depicted on the bottom-most timeline for uncensored observations. (Zachmann et al, in prep)</p>
 </blockquote>
-<p>Taking first leaf as an example, a deciduous shrub at site i might be completely leafless at the time of the first visit, li, but could have several emerging leaves at time of the second visit ri. The size of the interval depends on how frequently the site is visited, and may span days or weeks2. All that is known is that the event of interest happened in (li,ri), rather than an exact time.</p>
+<p>Taking first leaf as an example, a deciduous shrub at site i might be completely leafless at the time of the first visit, li, but could have several emerging leaves at time of the second visit ri. The size of the interval depends on how frequently the site is visited, and may span days or weeks. All that is known is that the event of interest happened in (li,ri), rather than an exact time.</p>
 <p>Censoring is often ignored in analysis, or it is addressed, potentially inappropriately, using imputation techniques. When the intervals are small relative to the full timespan of interest, the bias introduced by interval censored observations may be small enough to be safely ignored. Either such assumptions must be tested or statistical methods that account for this feature of the sampling design must be used.</p>
 </div>
 </div>
 <div id="so-then-how-can-we-model-censored-data" class="section level2">
 <h2><span class="header-section-number">2.10</span> So then how can we model censored data?</h2>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&#39;./images/Screen Shot 2020-09-09 at 12.49.52 PM.png&#39;</span>)</a></code></pre></div>
 <blockquote>
 <p>An extension of the ontology developed above, this figure shows a simulated set of observations for eight sites chosen at random from the N = 100 sites used to develop the concept figures. Three types of censoring can be seen in this figure. Not all phenological observations are created equally, nor systematically! (Zachmann et al, in prep)</p>
 </blockquote>
 <p>For logistical or other reasons, record-keeping at some sites starts earlier than others. Additionally, some of the observers make visits to sites more frequently than others. Analyses that do not account for this sampling process explicitly are somewhat impaired — they must filter the observations for known events (times represented by visits shown in purple) and must discard others (e.g., the data for sites 30 and 77), or must impute times using single-point imputation techniques, which have been shown to lead to invalid inference.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&#39;./images/Screen Shot 2020-09-09 at 12.50.14 PM.png&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&#39;./images/cens3.png&#39;</span>)</a></code></pre></div>
 <blockquote>
 <p>The histogram seen in the upper panel is constructed on the basis of the true, unobserved leaf out dates. Metaphorically speaking, it is the pile of leaves that would be formed if each leaf (in addition to the other 92 sites not shown) were to fall straight to the bottom of the plot. The histogram on the bottom (in purple) is created using actual first leaf observations (the event dates corresponding to the purple “botanists” above). (Zachmann et al, in prep)</p>
 </blockquote>
@@ -1082,7 +1081,8 @@ Hint:</p>
 </div>
 <div id="intro-to-usa-npn-culmination-activity" class="section level2">
 <h2><span class="header-section-number">2.11</span> <strong>Intro to USA-NPN Culmination Activity</strong></h2>
-<p><em>Note: I fully realize that phenology data may not be relevant to all of you. Two suggestions:</em></p>
+<p><strong>Note: I fully realize that phenology data may not be relevant to all of you.</strong></p>
+<p><em>Two suggestions:</em></p>
 <p><em>1. Be creative, example: Say you work with ground water hydrology, how could leaves on trees perhaps be relevant to groundwater recharge rate? Might there be a lag? Etc etc.</em></p>
 <p><em>2. I will fully accept alternate citizen-science-based datasets and project proposals based on those. The challenge of taking this option is that we have not covered that data.</em></p>
 <p>Write up a 1-page <strong>derived data product or research pipeline proposal</strong> summary of a project that you might want to explore using USA-NPN data. Include the types of USA-NPN (and other data) that you will need to implement this project. Save this summary as you will be refining and adding to your ideas over the course of the semester.</p>

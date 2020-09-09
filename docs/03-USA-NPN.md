@@ -1109,16 +1109,14 @@ Time-to-event data are rarely recorded accurately, in which case observations ar
 
 > Illustration of the types of censoring that are relevant to analyses of phenological data. Although shown extending from zero to positive infinity, the x-axis for most phenological events spans the length of a growing season and starts on Jan. 1. The timing, ti, of the event (e.g., first leaf), in relation to interval boundaries li and ri, is indicated by the position of the leaf along the x- axis, while actual site visits are represented by the presence of the person. Note that - in the case of right-censoring – the event need not occur, hence the question mark. Phenological observations are almost never observed exactly, as depicted on the bottom-most timeline for uncensored observations. (Zachmann et al, in prep)
 
-Taking first leaf as an example, a deciduous shrub at site i might be completely leafless at the time of the first visit, li, but could have several emerging leaves at time of the second visit ri. The size of the interval depends on how frequently the site is visited, and may span days or weeks2. All that is known is that the event of interest happened in (li,ri), rather than an exact time. 
+Taking first leaf as an example, a deciduous shrub at site i might be completely leafless at the time of the first visit, li, but could have several emerging leaves at time of the second visit ri. The size of the interval depends on how frequently the site is visited, and may span days or weeks. All that is known is that the event of interest happened in (li,ri), rather than an exact time. 
 
 Censoring is often ignored in analysis, or it is addressed, potentially inappropriately, using imputation techniques. When the intervals are small relative to the full timespan of interest, the bias introduced by interval censored observations may be small enough to be safely ignored. Either such assumptions must be tested or statistical methods that account for this feature of the sampling design must be used.
 
 ## So then how can we model censored data?
 
 
-```r
-knitr::include_graphics('./images/Screen Shot 2020-09-09 at 12.49.52 PM.png')
-```
+
 >An extension of the ontology developed above, this figure shows a simulated set of observations for eight sites chosen at random from the N = 100 sites used to develop the concept figures. Three types of censoring can be seen in this figure. Not all phenological observations are created equally, nor systematically! (Zachmann et al, in prep)
 
 
@@ -1126,8 +1124,9 @@ For logistical or other reasons, record-keeping at some sites starts earlier tha
 
 
 ```r
-knitr::include_graphics('./images/Screen Shot 2020-09-09 at 12.50.14 PM.png')
+knitr::include_graphics('./images/cens3.png')
 ```
+
 >The histogram seen in the upper panel is constructed on the basis of the true, unobserved leaf out dates. Metaphorically speaking, it is the pile of leaves that would be formed if each leaf (in addition to the other 92 sites not shown) were to fall straight to the bottom of the plot. The histogram on the bottom (in purple) is created using actual first leaf observations (the event dates corresponding to the purple “botanists” above). (Zachmann et al, in prep)
 
 
@@ -1135,7 +1134,9 @@ Here the authors seek to model the latent distribution of event times (the green
 
 ## **Intro to USA-NPN Culmination Activity**
 
-*Note: I fully realize that phenology data may not be relevant to all of you.  Two suggestions:*
+**Note: I fully realize that phenology data may not be relevant to all of you.**  
+
+*Two suggestions:*
 
 *1. Be creative, example: Say you work with ground water hydrology, how could leaves on trees perhaps be relevant to groundwater recharge rate?  Might there be a lag?  Etc etc.*
 
