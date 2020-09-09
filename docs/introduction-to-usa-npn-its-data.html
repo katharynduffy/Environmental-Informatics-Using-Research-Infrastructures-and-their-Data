@@ -237,7 +237,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#usa-npn-coding-lab"><i class="fa fa-check"></i><b>3.7</b> USA-NPN Coding Lab</a></li>
 <li class="chapter" data-level="3.8" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#neon-tos-phenology-data-lecture"><i class="fa fa-check"></i><b>3.8</b> NEON TOS Phenology Data Lecture</a></li>
-<li class="chapter" data-level="3.9" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#intro-to-usa-npn-culmination-activity"><i class="fa fa-check"></i><b>3.9</b> <strong>Intro to USA-NPN Culmination Activity</strong></a></li>
+<li class="chapter" data-level="3.9" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#understanding-observation-biases-and-censoring-in-citizen-science-data"><i class="fa fa-check"></i><b>3.9</b> Understanding Observation Biases and Censoring in Citizen Science Data</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#many-existing-modeling-approaches-fail-in-one-or-both-regards."><i class="fa fa-check"></i><b>3.9.1</b> Many existing modeling approaches fail in one (or both) regards.</a></li>
+<li class="chapter" data-level="3.9.2" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#censoring"><i class="fa fa-check"></i><b>3.9.2</b> Censoring</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#so-then-how-can-we-model-censored-data"><i class="fa fa-check"></i><b>3.10</b> So then how can we model censored data?</a></li>
+<li class="chapter" data-level="3.11" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#intro-to-usa-npn-culmination-activity"><i class="fa fa-check"></i><b>3.11</b> <strong>Intro to USA-NPN Culmination Activity</strong></a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="digital-repeat-photography-networks-methods.html"><a href="digital-repeat-photography-networks-methods.html"><i class="fa fa-check"></i><b>4</b> Digital Repeat Photography Networks &amp; Methods</a><ul>
 <li class="chapter" data-level="4.1" data-path="digital-repeat-photography-networks-methods.html"><a href="digital-repeat-photography-networks-methods.html#digital-repeat-photography-networks-learning-objectives"><i class="fa fa-check"></i><b>4.1</b> Digital Repeat Photography Networks Learning Objectives</a></li>
@@ -1025,8 +1030,51 @@ Hint:</p>
 <p>Please watch the recorded lecture with Dr. Katie Jones, lead plant ecologist with NEON Battelle</p>
 </blockquote>
 </div>
+<div id="understanding-observation-biases-and-censoring-in-citizen-science-data" class="section level2">
+<h2><span class="header-section-number">3.9</span> Understanding Observation Biases and Censoring in Citizen Science Data</h2>
+<blockquote>
+<p>The following information was adapted from Zachmann et al. (in prep) and is not to be distributed or used beyond this course.</p>
+</blockquote>
+<p>One significant barrier to advancing our understanding and utilization of phenology information is wrapped up in the ability of existing models to represent drivers of phenology and phenological shifts appropriately. The specific timing of phenological events, such as first leaf or first flower in plants, is affected by multiple, potentially interacting climatic and geophysical factors. For example, soil moisture supply, atmospheric demand for water, frost events, day length, and terrain have all been shown to influence species’ phenology. Many of these factors vary over time as well as space. Additionally, some of their effects may themselves vary over time as a result of interactions among controls on phenology.</p>
+<p>For instance:</p>
+<ul>
+<li><p>Precipitation and temperature likely interact to initiate phenological events;</p></li>
+<li><p>Precipitation triggers a state change only after enough heat has accumulated at a given site over the course of the growing season.</p></li>
+</ul>
+<p>Phenological predictions, specifically, consist of estimates of the anticipated onset dates of key events: <em>bud break and the arrival of spring, for example, or plant senescence in the fall</em>.</p>
+<p>In order to track anomalies in real-time, we need forecasts of phenology. Further, we need forecasts of long-term shifts in phenology as a result of climate change. However, making any such predictions requires both reasonable and skillful models of phenology.</p>
+<blockquote>
+<p>By “reasonable” we refer to models that are appropriate for the data – including any “nonignorable” aspects of the sampling design, Gelman et al. (2013) – and the underlying ecological process, while by “skillful” we mean that the model has adequate predictive performance.</p>
+</blockquote>
+<div id="many-existing-modeling-approaches-fail-in-one-or-both-regards." class="section level3">
+<h3><span class="header-section-number">3.9.1</span> Many existing modeling approaches fail in one (or both) regards.</h3>
+<p>Much of the existing work relies on models that implicitly or explicitly ignore key characteristics of phenological data and the ecological process of phenology. For example, many studies ignore censoring and other aspects of the sampling design underlying observations, including the location and nestedness of sampling units, or incompletely account for the dynamic nature of phenological drivers. Efforts that fail to account for these features of the data are liable to misrepresent the ecological process, thereby making predictions that are demonstrably wrong and potentially biased. Though it can be argued that some information is better than no information, scientific understanding and consequential management actions require the right information. In other words, <strong>it is better to be ignorant than misled.</strong></p>
+</div>
+<div id="censoring" class="section level3">
+<h3><span class="header-section-number">3.9.2</span> Censoring</h3>
+<p>Time-to-event data are rarely recorded accurately, in which case observations are said to be censored. There are several types of censoring we must consider. In the context of plant phenology, perhaps the most common is <strong>interval censoring</strong>, which occurs when a <strong>phenological event transpires between visits to a site</strong>.</p>
+<blockquote>
+<p>Illustration of the types of censoring that are relevant to analyses of phenological data. Although shown extending from zero to positive infinity, the x-axis for most phenological events spans the length of a growing season and starts on Jan. 1. The timing, ti, of the event (e.g., first leaf), in relation to interval boundaries li and ri, is indicated by the position of the leaf along the x- axis, while actual site visits are represented by the presence of the person. Note that - in the case of right-censoring – the event need not occur, hence the question mark. Phenological observations are almost never observed exactly, as depicted on the bottom-most timeline for uncensored observations. (Zachmann et al, in prep)</p>
+</blockquote>
+<p>Taking first leaf as an example, a deciduous shrub at site i might be completely leafless at the time of the first visit, li, but could have several emerging leaves at time of the second visit ri. The size of the interval depends on how frequently the site is visited, and may span days or weeks2. All that is known is that the event of interest happened in (li,ri), rather than an exact time.</p>
+<p>Censoring is often ignored in analysis, or it is addressed, potentially inappropriately, using imputation techniques. When the intervals are small relative to the full timespan of interest, the bias introduced by interval censored observations may be small enough to be safely ignored. Either such assumptions must be tested or statistical methods that account for this feature of the sampling design must be used.</p>
+</div>
+</div>
+<div id="so-then-how-can-we-model-censored-data" class="section level2">
+<h2><span class="header-section-number">3.10</span> So then how can we model censored data?</h2>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&#39;./images/Screen Shot 2020-09-09 at 12.49.52 PM.png&#39;</span>)</a></code></pre></div>
+<blockquote>
+<p>An extension of the ontology developed above, this figure shows a simulated set of observations for eight sites chosen at random from the N = 100 sites used to develop the concept figures. Three types of censoring can be seen in this figure. Not all phenological observations are created equally, nor systematically! (Zachmann et al, in prep)</p>
+</blockquote>
+<p>For logistical or other reasons, record-keeping at some sites starts earlier than others. Additionally, some of the observers make visits to sites more frequently than others. Analyses that do not account for this sampling process explicitly are somewhat impaired — they must filter the observations for known events (times represented by visits shown in purple) and must discard others (e.g., the data for sites 30 and 77), or must impute times using single-point imputation techniques, which have been shown to lead to invalid inference.</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&#39;./images/Screen Shot 2020-09-09 at 12.50.14 PM.png&#39;</span>)</a></code></pre></div>
+<blockquote>
+<p>The histogram seen in the upper panel is constructed on the basis of the true, unobserved leaf out dates. Metaphorically speaking, it is the pile of leaves that would be formed if each leaf (in addition to the other 92 sites not shown) were to fall straight to the bottom of the plot. The histogram on the bottom (in purple) is created using actual first leaf observations (the event dates corresponding to the purple “botanists” above). (Zachmann et al, in prep)</p>
+</blockquote>
+<p>Here the authors seek to model the latent distribution of event times (the green line overlaying the histogram in the upper panel) that gives rise to the observations seen in the lower panel. As they begin to introduce both greater complexity, realism, and utility, they can model the moments (or parameters) of the latent distribution using well-established deterministic models involving climatic and other phenological forcings.</p>
+</div>
 <div id="intro-to-usa-npn-culmination-activity" class="section level2">
-<h2><span class="header-section-number">3.9</span> <strong>Intro to USA-NPN Culmination Activity</strong></h2>
+<h2><span class="header-section-number">3.11</span> <strong>Intro to USA-NPN Culmination Activity</strong></h2>
 <p><em>Note: I fully realize that phenology data may not be relevant to all of you. Two suggestions:</em></p>
 <p><em>1. Be creative, example: Say you work with ground water hydrology, how could leaves on trees perhaps be relevant to groundwater recharge rate? Might there be a lag? Etc etc.</em></p>
 <p><em>2. I will fully accept alternate citizen-science-based datasets and project proposals based on those. The challenge of taking this option is that we have not covered that data.</em></p>
