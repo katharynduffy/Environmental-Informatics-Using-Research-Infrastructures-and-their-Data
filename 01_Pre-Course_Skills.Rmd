@@ -308,6 +308,10 @@ Ideally, this final presentation will feed upon a number of the ‘culmination w
 
 In order to complete this presentation, you will need to have worked with the various data products you propose, have an in-depth understanding of them, and their challenges, along with original, clean, high-level summary graphics.  Further, giving an IGNITE-style presentation takes practice.  IGNITE-style presentations are powerful, as they keep *you* moving forward, and give your audience a *high-level understanding* of your topic.  We fully recommend rehearsing your presentation **many times** before giving it live and recording yourself to learn how you can improve.
 
+Here are a few example (of even faster) ignite talks from one of your authors and other leading NEON scientists:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JOlVcHrtl8M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 **In your derived data product pitch you will cover these themes:**
 
 1. The need for the derived data that you are proposing to produce.
@@ -333,9 +337,9 @@ In order to complete this presentation, you will need to have worked with the va
 
 * The exact data product (e.g. NEON data product id and full title)
 
-* A 1 sentence summary of the data product and it’s justification for this purpose
+* A 1 sentence summary of the data product and its justification for this purpose
 
-* An original, clean, polished high-level plot of the data
+* An original, clean, polished high-level plot, gif or .mp4 of the data
 
 **Slide x + 1:** A high-level workflow diagram of the processing pipeline *E.g.: Original data and how you pull it in (API, r-package etc)*
 
@@ -343,7 +347,7 @@ In order to complete this presentation, you will need to have worked with the va
 
 * Orthorectification in time or space
 
-Example:
+Example generated using [draw.io](https://app.diagrams.net/):
 
 ```{r, echo=FALSE}
 knitr::include_graphics('./images/APIS_usecase2_v2 (4).png')
