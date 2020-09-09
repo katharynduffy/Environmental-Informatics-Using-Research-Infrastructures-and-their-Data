@@ -1106,7 +1106,7 @@ knitr::include_graphics('./images/cens2.png')
 
 For logistical or other reasons, record-keeping at some sites starts earlier than others. Additionally, some of the observers make visits to sites more frequently than others. Analyses that do not account for this sampling process explicitly are somewhat impaired — they must filter the observations for known events (times represented by visits shown in purple) and must discard others (e.g., the data for sites 30 and 77), or must impute times using single-point imputation techniques, which have been shown to lead to invalid inference.
 
-```{r, ECHO=FALSE}
+```{r, echo=FALSE}
 knitr::include_graphics('./images/cens3.png')
 ```
 
