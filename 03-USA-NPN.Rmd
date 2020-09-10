@@ -893,12 +893,15 @@ summary(phe_statusintensity)
 #remove duplicate records
 phe_statusintensity <- select(phe_statusintensity, -uid)
 phe_statusintensity <- distinct(phe_statusintensity)
+```
 
-#Format dates (native format is 'factor' silly R)
+```{r}
+library(lubridate)
+#Format dates
 phe_statusintensity$date <- as.Date(phe_statusintensity$date, "%Y-%m-%d")
 phe_statusintensity$editedDate <- as.Date(phe_statusintensity$editedDate, "%Y-%m-%d")
-phe_statusintensity$year <- substr(phe_statusintensity$date, 1, 4)
-phe_statusintensity$monthDay <- format(phe_statusintensity$date, format="%m-%d")
+phe_statusintensity$year <- as.numeric(substr(phe_statusintensity$date, 1, 4))
+phe_statusintensity$month <- as.numeric(format(phe_statusintensity$date, format="%m"))
 ```
 
 
@@ -943,35 +946,42 @@ df <- tempDat$SAAT_30min
 
 ```
 
-```{r , eval=FALSE}
+```{r}
 
 # GDD typically reported in F
 # define function to convert temp c to f 
-c_to_f <- function(x)  (x * 1.8 + 32)
+#c_to_f <- function(x)  (x * 1.8 + 32)
 
+#Or calculate mutate F in dyplyr
 # convert df temps
-df$meanTempF <- c_to_f(df$tempSingleMean)
+df=df%>%
+  dplyr::mutate(meanTempF=tempSingleMean*1.8+32)
 
 #pull date value from dateTime
 df$date <- substr(df$endDateTime, 1, 10)
+```
 
-# group data and summarize values
-# Here, we will group the 30-minute temperature averages by data (to get daily values)
+**Group data and summarize values**
 
-# You will want to consider which vertical position is most appropriate to use for your analysis.
+Here, I will group the 30-minute temperature averages by data (to get daily values)
+
+**You will want to consider which vertical position is most appropriate to use for your analysis.**
   
-# You can view the sensor position data in the sensor_positions table downloaded above,
-# where HOR.VER are the horizontal and vertical position indices (separated by a period),
-# and zOffset is in meters above the ground
+You can view the sensor position data in the sensor_positions table downloaded above, where HOR.VER are the horizontal and vertical position indices (separated by a period),and zOffset is in meters above the ground:
+
+```{r}
   select(tempDat$sensor_positions_00002, c(HOR.VER, zOffset))
-  
-# (you can also view all of the sensor position info with the following line:)
-# View(tempDat$sensor_positions_00002)
-  
-# For example, the lowest position sensor (verticalPosition == 010) may be most appropriate for 
-# comparison with the phenological state of very short plants, while the highest verticalPosition
-# may be better for comparison with canopy trees. Selected level 1 for demonstration
-  
+``` 
+
+you can also view all of the sensor position info with the following line:
+
+```{r}
+head(tempDat$sensor_positions_00002)
+``` 
+For example, the lowest position sensor (verticalPosition == 010) may be most appropriate for comparison with the phenological state of very short plants, while the highest verticalPosition may be better for comparison with canopy trees. 
+
+Here I'll select level 1 for demonstration
+```{r}
 day_temp <- df%>%
   filter(verticalPosition=="010")%>%
   group_by(siteID, date)%>%
@@ -983,12 +993,21 @@ day_temp <- df%>%
 ##alternative, simplified mean, consistent with many GDD calculations 
 ### does accumulation differ for true mean vs. simplified mean?
 day_temp$mean2 <- (day_temp$dayMinTemp + day_temp$dayMaxTemp)/2
+```
 
-#caluculate daily GDD for true mean
-## 50 degrees F is a common base temperature used to calculate plant specific GDD. When might you select a differnt base temp?
+**Caluculate daily GDD for a true mean**
 
-day_temp$GDD <- ifelse(day_temp$dayMeanTemp-50 < 0, 0, round(day_temp$mean2-50, 0))
+*50 degrees F is a common base temperature used to calculate plant specific GDD. When might you select a different base temp?*
 
+*How might you want to deal with different 'means' of temperature?  A couple of options below:*
+```{r}
+day_temp$GDD1 <- ifelse(day_temp$dayMeanTemp-50 < 0, 0, round(day_temp$dayMeanTemp-50, 0))
+day_temp$GDD2 <- ifelse(day_temp$mean2-50 < 0, 0, round(day_temp$mean2-50, 0))
+day_temp$GDD3 <- ifelse(day_temp$dayMeanTemp-50 < 0, 0, round(day_temp$mean2-50, 0))
+
+```
+
+```{r}
 # define year
 day_temp$year <- substr(day_temp$date, 1, 4)
 
@@ -998,29 +1017,59 @@ sumr.2 <- function(x) {
 }
 
 #calculate Accumlated GDD
-day_temp$AGDD <- sumr.2(x=day_temp$GDD)
-
+day_temp$AGDD3 <- sumr.2(x=day_temp$GDD3)
+day_temp$AGDD2 <- sumr.2(x=day_temp$GDD2)
+day_temp$AGDD1 <- sumr.2(x=day_temp$GDD1)
 day_temp <- ungroup(day_temp)
 
 ```
 
 
+```{r}
+library(plotly)
+
+
+p = plot_ly() %>%
+    add_trace(
+      x= ~day_temp$date,
+      y = ~ day_temp$AGDD1,
+      type= 'scatter',
+      mode = "lines",
+      line = list(width = 1, color = "rgb(120,120,120)"),
+      name = "Calculated Mean Temp",
+      showlegend = TRUE, 
+      opacity=.5
+    )%>%
+  add_trace(
+      data = day_temp,
+    x = ~ date,
+    y = ~ AGDD2,
+    name= 'Simplified Mean Temp',
+    showlegend = TRUE,
+    type = 'scatter',
+    mode = 'lines',
+    line = list(width = 1),
+    opacity=.5)%>%
+  add_trace(
+      data = day_temp,
+    x = ~ date,
+    y = ~ AGDD3,
+    name= 'Filtered Using Both',
+    showlegend = TRUE,
+    type = 'scatter',
+    mode = 'lines',
+    line = list(width = 1),
+    opacity=.2)
+p
+```
+
 5.  Plot your calculated AGGD and comment on your calculations.  Do you need to revise your time horizon or sensor height?
 
-Hint:
-```
-ggplot(data=data, aes(x=date, y=AGDD, group=1)) +
-  geom_point()+
-  geom_smooth()
-```
 
-Your plot should resemble *something* like this (intentionally a little vague):
 
-```{r, echo=FALSE}
-knitr::include_graphics('./images/Screen Shot 2020-08-31 at 8.15.42 AM.png')
-```
+6. Now we're going to build a model to see how AGGD impacts phenological status.  But Wait.  Is phenology **all** driven by temperature?  Should you consider any other variables?  What about AGGD **and** just plain temperature?   Also, we have one very temperate site, and another that is a semi-arid grassland.  Should water availability of any sort be considered?  Any other variables or data?
 
-6. Now we're going to build a model to see how AGGD impacts phenological status.  But Wait.  Is phenology **all** driven by temperature?  Should you consider any other variables?  What about AGGD **and** just plain temperature?   Also, we have one very temperate site, and another that is a semi-arid grassland.  Should water availability of any sort be considered?  Create a [GAM (Generalized Additive Model)](https://dereksonderegger.github.io/578/7-beyond-linearity.html#gams) for your phenological data including any variables you think might be relevant.  
+Create a [GAM (Generalized Additive Model)](https://dereksonderegger.github.io/578/7-beyond-linearity.html#gams) for your phenological data including any variables you think might be relevant.  
 
 One of the bonuses of a GAM is that it will tell you which variables are relevant and which aren't so you can iterate a bit on your model and revise it.  You might want to test a few positions on your asipirated air temperature, or a few other additional variables.  Your selection is up to you, but you must document and justify your decision.
 

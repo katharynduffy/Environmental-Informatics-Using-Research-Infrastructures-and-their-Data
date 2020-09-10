@@ -1083,7 +1083,7 @@ pheDat <- loadByProduct(dpID="DP1.10055.001",
 ## Copied the most recent publication of categoricalCodes file to /stackedFiles
 ## Copied the most recent publication of variable definition file to /stackedFiles
 ## Finished: Stacked 3 data tables and 3 metadata tables!
-## Stacking took 1.338731 secs
+## Stacking took 1.24983 secs
 ## All unzipped monthly data folders have been removed.
 ```
 
