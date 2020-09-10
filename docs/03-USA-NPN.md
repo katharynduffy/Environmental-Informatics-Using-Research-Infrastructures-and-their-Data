@@ -1107,7 +1107,7 @@ Time-to-event data are rarely recorded accurately, in which case observations ar
 
 
 ```r
-knitr::include_graphics('/Users/kdw223/Research/katharynduffy.github.io/images/cens1.png')
+knitr::include_graphics('./docs/images/cens1.png')
 ```
 
 > Illustration of the types of censoring that are relevant to analyses of phenological data. Although shown extending from zero to positive infinity, the x-axis for most phenological events spans the length of a growing season and starts on Jan. 1. The timing, ti, of the event (e.g., first leaf), in relation to interval boundaries li and ri, is indicated by the position of the leaf along the x- axis, while actual site visits are represented by the presence of the person. Note that - in the case of right-censoring – the event need not occur, hence the question mark. Phenological observations are almost never observed exactly, as depicted on the bottom-most timeline for uncensored observations. (Zachmann et al, in prep)
