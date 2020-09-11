@@ -945,480 +945,144 @@ This example shows the median green up value, as DOY. Note that because this lay
 <a class="sourceLine" id="cb187-7" data-line-number="7">                     <span class="dt">site =</span> sitesOfInterest,</a>
 <a class="sourceLine" id="cb187-8" data-line-number="8">                     <span class="dt">package =</span> <span class="st">&quot;basic&quot;</span>,</a>
 <a class="sourceLine" id="cb187-9" data-line-number="9">                     <span class="dt">check.size =</span> <span class="ot">FALSE</span>, </a>
-<a class="sourceLine" id="cb187-10" data-line-number="10">                     <span class="dt">token=</span>NEON_TOKEN)</a></code></pre></div>
-<pre><code>## Finding available files
+<a class="sourceLine" id="cb187-10" data-line-number="10">                     <span class="dt">token=</span>NEON_TOKEN)</a>
+<a class="sourceLine" id="cb187-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb187-12" data-line-number="12"><span class="co">#NEON sends the data as a nested list, so I need to undo that</span></a>
+<a class="sourceLine" id="cb187-13" data-line-number="13"><span class="co"># unlist all data frames</span></a>
+<a class="sourceLine" id="cb187-14" data-line-number="14"><span class="kw">list2env</span>(pheDat ,.GlobalEnv)</a>
+<a class="sourceLine" id="cb187-15" data-line-number="15"><span class="kw">summary</span>(phe_perindividualperyear)</a>
+<a class="sourceLine" id="cb187-16" data-line-number="16"><span class="kw">summary</span>(phe_statusintensity)</a>
+<a class="sourceLine" id="cb187-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb187-18" data-line-number="18"><span class="co">#remove duplicate records</span></a>
+<a class="sourceLine" id="cb187-19" data-line-number="19">phe_statusintensity &lt;-<span class="st"> </span><span class="kw">select</span>(phe_statusintensity, <span class="op">-</span>uid)</a>
+<a class="sourceLine" id="cb187-20" data-line-number="20">phe_statusintensity &lt;-<span class="st"> </span><span class="kw">distinct</span>(phe_statusintensity)</a></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1"><span class="kw">library</span>(lubridate)</a></code></pre></div>
+<pre><code>## Warning: package &#39;lubridate&#39; was built under R version 3.6.2</code></pre>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
-  |                                                                            
-  |                                                                      |   0%
-  |                                                                            
-  |=                                                                     |   2%
-  |                                                                            
-  |==                                                                    |   3%
-  |                                                                            
-  |====                                                                  |   5%
-  |                                                                            
-  |=====                                                                 |   7%
-  |                                                                            
-  |======                                                                |   8%
-  |                                                                            
-  |=======                                                               |  10%
-  |                                                                            
-  |========                                                              |  12%
-  |                                                                            
-  |=========                                                             |  14%
-  |                                                                            
-  |===========                                                           |  15%
-  |                                                                            
-  |============                                                          |  17%
-  |                                                                            
-  |=============                                                         |  19%
-  |                                                                            
-  |==============                                                        |  20%
-  |                                                                            
-  |===============                                                       |  22%
-  |                                                                            
-  |=================                                                     |  24%
-  |                                                                            
-  |==================                                                    |  25%
-  |                                                                            
-  |===================                                                   |  27%
-  |                                                                            
-  |====================                                                  |  29%
-  |                                                                            
-  |=====================                                                 |  31%
-  |                                                                            
-  |=======================                                               |  32%
-  |                                                                            
-  |========================                                              |  34%
-  |                                                                            
-  |=========================                                             |  36%
-  |                                                                            
-  |==========================                                            |  37%
-  |                                                                            
-  |===========================                                           |  39%
-  |                                                                            
-  |============================                                          |  41%
-  |                                                                            
-  |==============================                                        |  42%
-  |                                                                            
-  |===============================                                       |  44%
-  |                                                                            
-  |================================                                      |  46%
-  |                                                                            
-  |=================================                                     |  47%
-  |                                                                            
-  |==================================                                    |  49%
-  |                                                                            
-  |====================================                                  |  51%
-  |                                                                            
-  |=====================================                                 |  53%
-  |                                                                            
-  |======================================                                |  54%
-  |                                                                            
-  |=======================================                               |  56%
-  |                                                                            
-  |========================================                              |  58%
-  |                                                                            
-  |==========================================                            |  59%
-  |                                                                            
-  |===========================================                           |  61%
-  |                                                                            
-  |============================================                          |  63%
-  |                                                                            
-  |=============================================                         |  64%
-  |                                                                            
-  |==============================================                        |  66%
-  |                                                                            
-  |===============================================                       |  68%
-  |                                                                            
-  |=================================================                     |  69%
-  |                                                                            
-  |==================================================                    |  71%
-  |                                                                            
-  |===================================================                   |  73%
-  |                                                                            
-  |====================================================                  |  75%
-  |                                                                            
-  |=====================================================                 |  76%
-  |                                                                            
-  |=======================================================               |  78%
-  |                                                                            
-  |========================================================              |  80%
-  |                                                                            
-  |=========================================================             |  81%
-  |                                                                            
-  |==========================================================            |  83%
-  |                                                                            
-  |===========================================================           |  85%
-  |                                                                            
-  |=============================================================         |  86%
-  |                                                                            
-  |==============================================================        |  88%
-  |                                                                            
-  |===============================================================       |  90%
-  |                                                                            
-  |================================================================      |  92%
-  |                                                                            
-  |=================================================================     |  93%
-  |                                                                            
-  |==================================================================    |  95%
-  |                                                                            
-  |====================================================================  |  97%
-  |                                                                            
-  |===================================================================== |  98%
-  |                                                                            
-  |======================================================================| 100%
-## 
-## Downloading files totaling approximately 7.4 MiB
-## Downloading 59 files
-## 
-  |                                                                            
-  |                                                                      |   0%
-  |                                                                            
-  |=                                                                     |   2%
-  |                                                                            
-  |==                                                                    |   3%
-  |                                                                            
-  |====                                                                  |   5%
-  |                                                                            
-  |=====                                                                 |   7%
-  |                                                                            
-  |======                                                                |   9%
-  |                                                                            
-  |=======                                                               |  10%
-  |                                                                            
-  |========                                                              |  12%
-  |                                                                            
-  |==========                                                            |  14%
-  |                                                                            
-  |===========                                                           |  16%
-  |                                                                            
-  |============                                                          |  17%
-  |                                                                            
-  |=============                                                         |  19%
-  |                                                                            
-  |==============                                                        |  21%
-  |                                                                            
-  |================                                                      |  22%
-  |                                                                            
-  |=================                                                     |  24%
-  |                                                                            
-  |==================                                                    |  26%
-  |                                                                            
-  |===================                                                   |  28%
-  |                                                                            
-  |=====================                                                 |  29%
-  |                                                                            
-  |======================                                                |  31%
-  |                                                                            
-  |=======================                                               |  33%
-  |                                                                            
-  |========================                                              |  34%
-  |                                                                            
-  |=========================                                             |  36%
-  |                                                                            
-  |===========================                                           |  38%
-  |                                                                            
-  |============================                                          |  40%
-  |                                                                            
-  |=============================                                         |  41%
-  |                                                                            
-  |==============================                                        |  43%
-  |                                                                            
-  |===============================                                       |  45%
-  |                                                                            
-  |=================================                                     |  47%
-  |                                                                            
-  |==================================                                    |  48%
-  |                                                                            
-  |===================================                                   |  50%
-  |                                                                            
-  |====================================                                  |  52%
-  |                                                                            
-  |=====================================                                 |  53%
-  |                                                                            
-  |=======================================                               |  55%
-  |                                                                            
-  |========================================                              |  57%
-  |                                                                            
-  |=========================================                             |  59%
-  |                                                                            
-  |==========================================                            |  60%
-  |                                                                            
-  |===========================================                           |  62%
-  |                                                                            
-  |=============================================                         |  64%
-  |                                                                            
-  |==============================================                        |  66%
-  |                                                                            
-  |===============================================                       |  67%
-  |                                                                            
-  |================================================                      |  69%
-  |                                                                            
-  |=================================================                     |  71%
-  |                                                                            
-  |===================================================                   |  72%
-  |                                                                            
-  |====================================================                  |  74%
-  |                                                                            
-  |=====================================================                 |  76%
-  |                                                                            
-  |======================================================                |  78%
-  |                                                                            
-  |========================================================              |  79%
-  |                                                                            
-  |=========================================================             |  81%
-  |                                                                            
-  |==========================================================            |  83%
-  |                                                                            
-  |===========================================================           |  84%
-  |                                                                            
-  |============================================================          |  86%
-  |                                                                            
-  |==============================================================        |  88%
-  |                                                                            
-  |===============================================================       |  90%
-  |                                                                            
-  |================================================================      |  91%
-  |                                                                            
-  |=================================================================     |  93%
-  |                                                                            
-  |==================================================================    |  95%
-  |                                                                            
-  |====================================================================  |  97%
-  |                                                                            
-  |===================================================================== |  98%
-  |                                                                            
-  |======================================================================| 100%
-## 
-## Unpacking zip files using 1 cores.
-## Stacking operation across a single core.
-## Stacking table phe_perindividual
-## Stacking table phe_statusintensity
-## Stacking table phe_perindividualperyear
-## Copied the most recent publication of validation file to /stackedFiles
-## Copied the most recent publication of categoricalCodes file to /stackedFiles
-## Copied the most recent publication of variable definition file to /stackedFiles
-## Finished: Stacked 3 data tables and 3 metadata tables!
-## Stacking took 1.24983 secs
-## All unzipped monthly data folders have been removed.</code></pre>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1"><span class="co">#NEON sends the data as a nested list, so I need to undo that</span></a>
-<a class="sourceLine" id="cb189-2" data-line-number="2"><span class="co"># unlist all data frames</span></a>
-<a class="sourceLine" id="cb189-3" data-line-number="3"><span class="kw">list2env</span>(pheDat ,.GlobalEnv)</a></code></pre></div>
-<pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" data-line-number="1"><span class="kw">summary</span>(phe_perindividualperyear)</a></code></pre></div>
-<pre><code>##      uid            namedLocation        domainID            siteID         
-##  Length:623         Length:623         Length:623         Length:623        
-##  Class :character   Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-##                                                                             
-##                                                                             
-##                                                                             
-##                                                                             
-##     plotID               date                       editedDate                 
-##  Length:623         Min.   :2013-09-05 00:00:00   Min.   :2013-08-20 00:00:00  
-##  Class :character   1st Qu.:2014-10-03 00:00:00   1st Qu.:2015-03-27 00:00:00  
-##  Mode  :character   Median :2016-09-20 00:00:00   Median :2015-10-01 00:00:00  
-##                     Mean   :2016-09-20 22:32:10   Mean   :2016-05-29 14:01:20  
-##                     3rd Qu.:2018-08-14 00:00:00   3rd Qu.:2018-03-15 00:00:00  
-##                     Max.   :2019-09-10 00:00:00   Max.   :2019-08-13 00:00:00  
-##                                                                                
-##  individualID       patchOrIndividual  canopyPosition     plantStatus       
-##  Length:623         Length:623         Length:623         Length:623        
-##  Class :character   Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-##                                                                             
-##                                                                             
-##                                                                             
-##                                                                             
-##   stemDiameter    measurementHeight maxCanopyDiameter ninetyCanopyDiameter
-##  Min.   :  2.00   Min.   : 20.0     Min.   : 0.100    Min.   : 0.100      
-##  1st Qu.: 15.00   1st Qu.:130.0     1st Qu.: 1.500    1st Qu.: 1.300      
-##  Median : 25.15   Median :130.0     Median : 6.800    Median : 4.900      
-##  Mean   : 29.90   Mean   :129.8     Mean   : 7.063    Mean   : 5.423      
-##  3rd Qu.: 45.02   3rd Qu.:130.0     3rd Qu.:10.600    3rd Qu.: 8.100      
-##  Max.   :100.00   Max.   :140.0     Max.   :21.700    Max.   :20.000      
-##  NA&#39;s   :197      NA&#39;s   :197       NA&#39;s   :58        NA&#39;s   :58          
-##    patchSize    percentCover     height      diseaseType       
-##  Min.   : NA   Min.   : NA   Min.   : 0.10   Length:623        
-##  1st Qu.: NA   1st Qu.: NA   1st Qu.: 0.40   Class :character  
-##  Median : NA   Median : NA   Median :13.30   Mode  :character  
-##  Mean   :NaN   Mean   :NaN   Mean   :12.44                     
-##  3rd Qu.: NA   3rd Qu.: NA   3rd Qu.:21.10                     
-##  Max.   : NA   Max.   : NA   Max.   :27.10                     
-##  NA&#39;s   :623   NA&#39;s   :623   NA&#39;s   :30                        
-##  samplingProtocolVersion  measuredBy         recordedBy       
-##  Length:623              Length:623         Length:623        
-##  Class :character        Class :character   Class :character  
-##  Mode  :character        Mode  :character   Mode  :character  
-##                                                               
-##                                                               
-##                                                               
-##                                                               
-##    remarks             dataQF          publicationDate   
-##  Length:623         Length:623         Length:623        
-##  Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character  
-##                                                          
-##                                                          
-##                                                          
-## </code></pre>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" data-line-number="1"><span class="kw">summary</span>(phe_statusintensity)</a></code></pre></div>
-<pre><code>##      uid            namedLocation        domainID            siteID         
-##  Length:138102      Length:138102      Length:138102      Length:138102     
-##  Class :character   Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-##                                                                             
-##                                                                             
-##                                                                             
-##                                                                             
-##     plotID               date                       editedDate                 
-##  Length:138102      Min.   :2013-08-23 00:00:00   Min.   :2015-03-19 00:00:00  
-##  Class :character   1st Qu.:2015-06-10 00:00:00   1st Qu.:2015-06-25 00:00:00  
-##  Mode  :character   Median :2017-03-13 00:00:00   Median :2017-03-13 00:00:00  
-##                     Mean   :2017-01-15 23:41:35   Mean   :2017-03-22 03:23:57  
-##                     3rd Qu.:2018-08-20 00:00:00   3rd Qu.:2018-08-20 00:00:00  
-##                     Max.   :2020-08-03 00:00:00   Max.   :2020-08-03 00:00:00  
-##                                                   NA&#39;s   :450                  
-##    dayOfYear     individualID       phenophaseName     phenophaseStatus  
-##  Min.   : 59.0   Length:138102      Length:138102      Length:138102     
-##  1st Qu.:125.0   Class :character   Class :character   Class :character  
-##  Median :191.0   Mode  :character   Mode  :character   Mode  :character  
-##  Mean   :188.2                                                           
-##  3rd Qu.:251.0                                                           
-##  Max.   :331.0                                                           
-##  NA&#39;s   :3846                                                            
-##  phenophaseIntensityDefinition phenophaseIntensity samplingProtocolVersion
-##  Length:138102                 Length:138102       Length:138102          
-##  Class :character              Class :character    Class :character       
-##  Mode  :character              Mode  :character    Mode  :character       
-##                                                                           
-##                                                                           
-##                                                                           
-##                                                                           
-##   measuredBy         recordedBy          remarks             dataQF         
-##  Length:138102      Length:138102      Length:138102      Length:138102     
-##  Class :character   Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-##                                                                             
-##                                                                             
-##                                                                             
-##                                                                             
-##  publicationDate   
-##  Length:138102     
-##  Class :character  
-##  Mode  :character  
-##                    
-##                    
-##                    
-## </code></pre>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" data-line-number="1"><span class="co">#remove duplicate records</span></a>
-<a class="sourceLine" id="cb195-2" data-line-number="2">phe_statusintensity &lt;-<span class="st"> </span><span class="kw">select</span>(phe_statusintensity, <span class="op">-</span>uid)</a>
-<a class="sourceLine" id="cb195-3" data-line-number="3">phe_statusintensity &lt;-<span class="st"> </span><span class="kw">distinct</span>(phe_statusintensity)</a>
-<a class="sourceLine" id="cb195-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb195-5" data-line-number="5"><span class="co">#Format dates (native format is &#39;factor&#39; silly R)</span></a>
-<a class="sourceLine" id="cb195-6" data-line-number="6">phe_statusintensity<span class="op">$</span>date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(phe_statusintensity<span class="op">$</span>date, <span class="st">&quot;%Y-%m-%d&quot;</span>)</a></code></pre></div>
+##     date, intersect, setdiff, union</code></pre>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1"><span class="co">#Format dates</span></a>
+<a class="sourceLine" id="cb192-2" data-line-number="2">phe_statusintensity<span class="op">$</span>date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(phe_statusintensity<span class="op">$</span>date, <span class="st">&quot;%Y-%m-%d&quot;</span>)</a></code></pre></div>
 <pre><code>## Warning in as.POSIXlt.POSIXct(x, tz = tz): unknown timezone &#39;%Y-%m-%d&#39;</code></pre>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" data-line-number="1">phe_statusintensity<span class="op">$</span>editedDate &lt;-<span class="st"> </span><span class="kw">as.Date</span>(phe_statusintensity<span class="op">$</span>editedDate, <span class="st">&quot;%Y-%m-%d&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" data-line-number="1">phe_statusintensity<span class="op">$</span>editedDate &lt;-<span class="st"> </span><span class="kw">as.Date</span>(phe_statusintensity<span class="op">$</span>editedDate, <span class="st">&quot;%Y-%m-%d&quot;</span>)</a></code></pre></div>
 <pre><code>## Warning in as.POSIXlt.POSIXct(x, tz = tz): unknown timezone &#39;%Y-%m-%d&#39;</code></pre>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" data-line-number="1">phe_statusintensity<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">substr</span>(phe_statusintensity<span class="op">$</span>date, <span class="dv">1</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb199-2" data-line-number="2">phe_statusintensity<span class="op">$</span>monthDay &lt;-<span class="st"> </span><span class="kw">format</span>(phe_statusintensity<span class="op">$</span>date, <span class="dt">format=</span><span class="st">&quot;%m-%d&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" data-line-number="1">phe_statusintensity<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">substr</span>(phe_statusintensity<span class="op">$</span>date, <span class="dv">1</span>, <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb196-2" data-line-number="2">phe_statusintensity<span class="op">$</span>month &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">format</span>(phe_statusintensity<span class="op">$</span>date, <span class="dt">format=</span><span class="st">&quot;%m&quot;</span>))</a></code></pre></div>
 <p>In your <code>phe_statusintensity</code> data.frame pick a phenophase name of interest:</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1"><span class="kw">unique</span>(phe_statusintensity<span class="op">$</span>phenophaseName)</a></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" data-line-number="1"><span class="kw">unique</span>(phe_statusintensity<span class="op">$</span>phenophaseName)</a></code></pre></div>
 <pre><code>## [1] &quot;Falling leaves&quot;       &quot;Colored leaves&quot;       &quot;Leaves&quot;              
 ## [4] &quot;Increasing leaf size&quot; &quot;Open flowers&quot;         &quot;Breaking leaf buds&quot;  
 ## [7] &quot;Initial growth&quot;</code></pre>
 <p>And select a single taxon:</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" data-line-number="1"><span class="kw">unique</span>(phe_perindividual<span class="op">$</span>taxonID)</a></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" data-line-number="1"><span class="kw">unique</span>(phe_perindividual<span class="op">$</span>taxonID)</a></code></pre></div>
 <pre><code>## [1] &quot;QURU&quot;  &quot;ACRU&quot;  &quot;ARNU2&quot;</code></pre>
 <p>Now create a new, filtered <code>dataframe</code> only including those observations and print a summary. You’ll also want to filter for typical things like <code>NA</code> values, and think about how you’ll work with data that comes in factors or strings. Are there ways you could extract numerical values for plotting? Could you <code>count</code> data? Summarize your strategy.</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Using dpid <strong>DP1.00002.001</strong> Single Aspirated Air Temperature calculate AGGD based on NEON tower data over the time period you decidided upon in question 1. To save you time and frustration I’ve placed some <strong>mostly complete</strong> example code for <em>one</em> height on the tower <em>just for Harvard</em>. <strong>You will need to determine which height you think it best and conmplete these calculations for both sites.</strong> You will also need to consder things like filtering your temperature data for quality flags, and converting from GMT (Greenwich Mean Time) to <a href="https://stackoverflow.com/questions/1395117/how-do-you-convert-dates-times-from-one-time-zone-to-another-in-r">your location’s time</a>:</li>
 </ol>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1"><span class="co">##load libraries</span></a>
-<a class="sourceLine" id="cb204-2" data-line-number="2"><span class="co">#library(tidyverse)</span></a>
-<a class="sourceLine" id="cb204-3" data-line-number="3"><span class="kw">library</span>(neonUtilities)</a>
-<a class="sourceLine" id="cb204-4" data-line-number="4"><span class="co">#install.packages(&#39;mgcv&#39;)</span></a>
-<a class="sourceLine" id="cb204-5" data-line-number="5"><span class="kw">library</span>(mgcv)</a></code></pre></div>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1">dpid &lt;-<span class="st"> </span><span class="kw">as.character</span>(<span class="st">&#39;DP1.00002.001&#39;</span>)  <span class="co">##single aspirated air temperature</span></a>
-<a class="sourceLine" id="cb205-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb205-3" data-line-number="3">tempDat &lt;-<span class="st"> </span><span class="kw">loadByProduct</span>(<span class="dt">dpID=</span>dpid,</a>
-<a class="sourceLine" id="cb205-4" data-line-number="4">                        <span class="dt">site =</span> <span class="st">&quot;HARV&quot;</span>, </a>
-<a class="sourceLine" id="cb205-5" data-line-number="5">                        <span class="dt">startdate =</span> <span class="st">&quot;2017-01&quot;</span>,</a>
-<a class="sourceLine" id="cb205-6" data-line-number="6">                        <span class="dt">enddate=</span><span class="st">&quot;2017-12&quot;</span>,</a>
-<a class="sourceLine" id="cb205-7" data-line-number="7">                        <span class="dt">avg=</span><span class="dv">30</span>,</a>
-<a class="sourceLine" id="cb205-8" data-line-number="8">                        <span class="dt">package =</span> <span class="st">&quot;basic&quot;</span>,</a>
-<a class="sourceLine" id="cb205-9" data-line-number="9">                        <span class="dt">check.size =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb205-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb205-11" data-line-number="11">df &lt;-<span class="st"> </span>tempDat<span class="op">$</span>SAAT_30min</a></code></pre></div>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1"><span class="co"># GDD typically reported in F</span></a>
-<a class="sourceLine" id="cb206-2" data-line-number="2"><span class="co"># define function to convert temp c to f </span></a>
-<a class="sourceLine" id="cb206-3" data-line-number="3">c_to_f &lt;-<span class="st"> </span><span class="cf">function</span>(x)  (x <span class="op">*</span><span class="st"> </span><span class="fl">1.8</span> <span class="op">+</span><span class="st"> </span><span class="dv">32</span>)</a>
-<a class="sourceLine" id="cb206-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb206-5" data-line-number="5"><span class="co"># convert df temps</span></a>
-<a class="sourceLine" id="cb206-6" data-line-number="6">df<span class="op">$</span>meanTempF &lt;-<span class="st"> </span><span class="kw">c_to_f</span>(df<span class="op">$</span>tempSingleMean)</a>
-<a class="sourceLine" id="cb206-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb206-8" data-line-number="8"><span class="co">#pull date value from dateTime</span></a>
-<a class="sourceLine" id="cb206-9" data-line-number="9">df<span class="op">$</span>date &lt;-<span class="st"> </span><span class="kw">substr</span>(df<span class="op">$</span>endDateTime, <span class="dv">1</span>, <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb206-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb206-11" data-line-number="11"><span class="co"># group data and summarize values</span></a>
-<a class="sourceLine" id="cb206-12" data-line-number="12"><span class="co"># Here, we will group the 30-minute temperature averages by data (to get daily values)</span></a>
-<a class="sourceLine" id="cb206-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb206-14" data-line-number="14"><span class="co"># You will want to consider which vertical position is most appropriate to use for your analysis.</span></a>
-<a class="sourceLine" id="cb206-15" data-line-number="15">  </a>
-<a class="sourceLine" id="cb206-16" data-line-number="16"><span class="co"># You can view the sensor position data in the sensor_positions table downloaded above,</span></a>
-<a class="sourceLine" id="cb206-17" data-line-number="17"><span class="co"># where HOR.VER are the horizontal and vertical position indices (separated by a period),</span></a>
-<a class="sourceLine" id="cb206-18" data-line-number="18"><span class="co"># and zOffset is in meters above the ground</span></a>
-<a class="sourceLine" id="cb206-19" data-line-number="19">  <span class="kw">select</span>(tempDat<span class="op">$</span>sensor_positions_<span class="dv">00002</span>, <span class="kw">c</span>(HOR.VER, zOffset))</a>
-<a class="sourceLine" id="cb206-20" data-line-number="20">  </a>
-<a class="sourceLine" id="cb206-21" data-line-number="21"><span class="co"># (you can also view all of the sensor position info with the following line:)</span></a>
-<a class="sourceLine" id="cb206-22" data-line-number="22"><span class="co"># View(tempDat$sensor_positions_00002)</span></a>
-<a class="sourceLine" id="cb206-23" data-line-number="23">  </a>
-<a class="sourceLine" id="cb206-24" data-line-number="24"><span class="co"># For example, the lowest position sensor (verticalPosition == 010) may be most appropriate for </span></a>
-<a class="sourceLine" id="cb206-25" data-line-number="25"><span class="co"># comparison with the phenological state of very short plants, while the highest verticalPosition</span></a>
-<a class="sourceLine" id="cb206-26" data-line-number="26"><span class="co"># may be better for comparison with canopy trees. Selected level 1 for demonstration</span></a>
-<a class="sourceLine" id="cb206-27" data-line-number="27">  </a>
-<a class="sourceLine" id="cb206-28" data-line-number="28">day_temp &lt;-<span class="st"> </span>df<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb206-29" data-line-number="29"><span class="st">  </span><span class="kw">filter</span>(verticalPosition<span class="op">==</span><span class="st">&quot;010&quot;</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb206-30" data-line-number="30"><span class="st">  </span><span class="kw">group_by</span>(siteID, date)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb206-31" data-line-number="31"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dayMaxTemp=</span><span class="kw">max</span>(meanTempF), <span class="dt">dayMinTemp=</span><span class="kw">min</span>(meanTempF),</a>
-<a class="sourceLine" id="cb206-32" data-line-number="32">         <span class="dt">dayMeanTemp=</span><span class="kw">mean</span>(meanTempF))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb206-33" data-line-number="33"><span class="st">  </span><span class="kw">select</span>(siteID, date, dayMaxTemp, dayMinTemp, dayMeanTemp)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb206-34" data-line-number="34"><span class="st">  </span><span class="kw">distinct</span>()</a>
-<a class="sourceLine" id="cb206-35" data-line-number="35"></a>
-<a class="sourceLine" id="cb206-36" data-line-number="36"><span class="co">##alternative, simplified mean, consistent with many GDD calculations </span></a>
-<a class="sourceLine" id="cb206-37" data-line-number="37"><span class="co">### does accumulation differ for true mean vs. simplified mean?</span></a>
-<a class="sourceLine" id="cb206-38" data-line-number="38">day_temp<span class="op">$</span>mean2 &lt;-<span class="st"> </span>(day_temp<span class="op">$</span>dayMinTemp <span class="op">+</span><span class="st"> </span>day_temp<span class="op">$</span>dayMaxTemp)<span class="op">/</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb206-39" data-line-number="39"></a>
-<a class="sourceLine" id="cb206-40" data-line-number="40"><span class="co">#caluculate daily GDD for true mean</span></a>
-<a class="sourceLine" id="cb206-41" data-line-number="41"><span class="co">## 50 degrees F is a common base temperature used to calculate plant specific GDD. When might you select a differnt base temp?</span></a>
-<a class="sourceLine" id="cb206-42" data-line-number="42"></a>
-<a class="sourceLine" id="cb206-43" data-line-number="43">day_temp<span class="op">$</span>GDD &lt;-<span class="st"> </span><span class="kw">ifelse</span>(day_temp<span class="op">$</span>dayMeanTemp<span class="dv">-50</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">0</span>, <span class="kw">round</span>(day_temp<span class="op">$</span>mean2<span class="dv">-50</span>, <span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb206-44" data-line-number="44"></a>
-<a class="sourceLine" id="cb206-45" data-line-number="45"><span class="co"># define year</span></a>
-<a class="sourceLine" id="cb206-46" data-line-number="46">day_temp<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">substr</span>(day_temp<span class="op">$</span>date, <span class="dv">1</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb206-47" data-line-number="47"></a>
-<a class="sourceLine" id="cb206-48" data-line-number="48"><span class="co">#function to add daily GDD values</span></a>
-<a class="sourceLine" id="cb206-49" data-line-number="49">sumr<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb206-50" data-line-number="50">	<span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x), <span class="cf">function</span>(i) <span class="kw">sum</span>(x[<span class="dv">1</span><span class="op">:</span>i]))</a>
-<a class="sourceLine" id="cb206-51" data-line-number="51">}</a>
-<a class="sourceLine" id="cb206-52" data-line-number="52"></a>
-<a class="sourceLine" id="cb206-53" data-line-number="53"><span class="co">#calculate Accumlated GDD</span></a>
-<a class="sourceLine" id="cb206-54" data-line-number="54">day_temp<span class="op">$</span>AGDD &lt;-<span class="st"> </span><span class="kw">sumr.2</span>(<span class="dt">x=</span>day_temp<span class="op">$</span>GDD)</a>
-<a class="sourceLine" id="cb206-55" data-line-number="55"></a>
-<a class="sourceLine" id="cb206-56" data-line-number="56">day_temp &lt;-<span class="st"> </span><span class="kw">ungroup</span>(day_temp)</a></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" data-line-number="1"><span class="co">##load libraries</span></a>
+<a class="sourceLine" id="cb201-2" data-line-number="2"><span class="co">#library(tidyverse)</span></a>
+<a class="sourceLine" id="cb201-3" data-line-number="3"><span class="kw">library</span>(neonUtilities)</a>
+<a class="sourceLine" id="cb201-4" data-line-number="4"><span class="co">#install.packages(&#39;mgcv&#39;)</span></a>
+<a class="sourceLine" id="cb201-5" data-line-number="5"><span class="kw">library</span>(mgcv)</a></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" data-line-number="1">dpid &lt;-<span class="st"> </span><span class="kw">as.character</span>(<span class="st">&#39;DP1.00002.001&#39;</span>)  <span class="co">##single aspirated air temperature</span></a>
+<a class="sourceLine" id="cb202-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb202-3" data-line-number="3">tempDat &lt;-<span class="st"> </span><span class="kw">loadByProduct</span>(<span class="dt">dpID=</span>dpid,</a>
+<a class="sourceLine" id="cb202-4" data-line-number="4">                        <span class="dt">site =</span> <span class="st">&quot;HARV&quot;</span>, </a>
+<a class="sourceLine" id="cb202-5" data-line-number="5">                        <span class="dt">startdate =</span> <span class="st">&quot;2017-01&quot;</span>,</a>
+<a class="sourceLine" id="cb202-6" data-line-number="6">                        <span class="dt">enddate=</span><span class="st">&quot;2017-12&quot;</span>,</a>
+<a class="sourceLine" id="cb202-7" data-line-number="7">                        <span class="dt">avg=</span><span class="dv">30</span>,</a>
+<a class="sourceLine" id="cb202-8" data-line-number="8">                        <span class="dt">package =</span> <span class="st">&quot;basic&quot;</span>,</a>
+<a class="sourceLine" id="cb202-9" data-line-number="9">                        <span class="dt">check.size =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb202-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb202-11" data-line-number="11">df &lt;-<span class="st"> </span>tempDat<span class="op">$</span>SAAT_30min</a></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1"><span class="co"># GDD typically reported in F</span></a>
+<a class="sourceLine" id="cb203-2" data-line-number="2"><span class="co"># convert df temps</span></a>
+<a class="sourceLine" id="cb203-3" data-line-number="3">df<span class="op">$</span>meanTempF=df<span class="op">$</span>tempSingleMean<span class="op">*</span><span class="fl">1.8</span><span class="op">+</span><span class="dv">32</span></a>
+<a class="sourceLine" id="cb203-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb203-5" data-line-number="5"><span class="co">#pull date value from dateTime</span></a>
+<a class="sourceLine" id="cb203-6" data-line-number="6">df<span class="op">$</span>date &lt;-<span class="st"> </span><span class="kw">substr</span>(df<span class="op">$</span>endDateTime, <span class="dv">1</span>, <span class="dv">10</span>)</a></code></pre></div>
+<p><strong>Group data and summarize values</strong></p>
+<p>Here, I will group the 30-minute temperature averages by data (to get daily values)</p>
+<p><strong>You will want to consider which vertical position is most appropriate to use for your analysis.</strong></p>
+<p>You can view the sensor position data in the sensor_positions table downloaded above, where HOR.VER are the horizontal and vertical position indices (separated by a period),and zOffset is in meters above the ground:</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1">  <span class="kw">select</span>(tempDat<span class="op">$</span>sensor_positions_<span class="dv">00002</span>, <span class="kw">c</span>(HOR.VER, zOffset))</a></code></pre></div>
+<p>you can also view all of the sensor position info with the following line:</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1"><span class="kw">head</span>(tempDat<span class="op">$</span>sensor_positions_<span class="dv">00002</span>)</a></code></pre></div>
+<p>For example, the lowest position sensor (verticalPosition == 010) may be most appropriate for comparison with the phenological state of very short plants, while the highest verticalPosition may be better for comparison with canopy trees.</p>
+<p>Here I’ll select level 1 for demonstration</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1">day_temp &lt;-<span class="st"> </span>df<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb206-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(verticalPosition<span class="op">==</span><span class="st">&quot;010&quot;</span>)<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb206-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(siteID, date)<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb206-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dayMaxTemp=</span><span class="kw">max</span>(meanTempF), <span class="dt">dayMinTemp=</span><span class="kw">min</span>(meanTempF),</a>
+<a class="sourceLine" id="cb206-5" data-line-number="5">         <span class="dt">dayMeanTemp=</span><span class="kw">mean</span>(meanTempF))<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb206-6" data-line-number="6"><span class="st">  </span><span class="kw">select</span>(siteID, date, dayMaxTemp, dayMinTemp, dayMeanTemp)<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb206-7" data-line-number="7"><span class="st">  </span><span class="kw">distinct</span>()</a>
+<a class="sourceLine" id="cb206-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb206-9" data-line-number="9"><span class="co">##alternative, simplified mean, consistent with many GDD calculations </span></a>
+<a class="sourceLine" id="cb206-10" data-line-number="10"><span class="co">### does accumulation differ for true mean vs. simplified mean?</span></a>
+<a class="sourceLine" id="cb206-11" data-line-number="11">day_temp<span class="op">$</span>mean2 &lt;-<span class="st"> </span>(day_temp<span class="op">$</span>dayMinTemp <span class="op">+</span><span class="st"> </span>day_temp<span class="op">$</span>dayMaxTemp)<span class="op">/</span><span class="dv">2</span></a></code></pre></div>
+<p><strong>Caluculate daily GDD for a true mean</strong></p>
+<p><em>50 degrees F is a common base temperature used to calculate plant specific GDD. When might you select a different base temp?</em></p>
+<p><em>How might you want to deal with different ‘means’ of temperature? A couple of options below:</em></p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" data-line-number="1">day_temp<span class="op">$</span>GDD1 &lt;-<span class="st"> </span><span class="kw">ifelse</span>(day_temp<span class="op">$</span>dayMeanTemp<span class="dv">-50</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">0</span>, <span class="kw">round</span>(day_temp<span class="op">$</span>dayMeanTemp<span class="dv">-50</span>, <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb207-2" data-line-number="2">day_temp<span class="op">$</span>GDD2 &lt;-<span class="st"> </span><span class="kw">ifelse</span>(day_temp<span class="op">$</span>mean2<span class="dv">-50</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">0</span>, <span class="kw">round</span>(day_temp<span class="op">$</span>mean2<span class="dv">-50</span>, <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb207-3" data-line-number="3">day_temp<span class="op">$</span>GDD3 &lt;-<span class="st"> </span><span class="kw">ifelse</span>(day_temp<span class="op">$</span>dayMeanTemp<span class="dv">-50</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">0</span>, <span class="kw">round</span>(day_temp<span class="op">$</span>mean2<span class="dv">-50</span>, <span class="dv">0</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" data-line-number="1"><span class="co"># define year</span></a>
+<a class="sourceLine" id="cb208-2" data-line-number="2">day_temp<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">substr</span>(day_temp<span class="op">$</span>date, <span class="dv">1</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb208-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb208-4" data-line-number="4"><span class="co">#function to add daily GDD values</span></a>
+<a class="sourceLine" id="cb208-5" data-line-number="5">sumr<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb208-6" data-line-number="6">	<span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x), <span class="cf">function</span>(i) <span class="kw">sum</span>(x[<span class="dv">1</span><span class="op">:</span>i]))</a>
+<a class="sourceLine" id="cb208-7" data-line-number="7">}</a>
+<a class="sourceLine" id="cb208-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb208-9" data-line-number="9"><span class="co">#calculate Accumlated GDD</span></a>
+<a class="sourceLine" id="cb208-10" data-line-number="10">day_temp<span class="op">$</span>AGDD3 &lt;-<span class="st"> </span><span class="kw">sumr.2</span>(<span class="dt">x=</span>day_temp<span class="op">$</span>GDD3)</a>
+<a class="sourceLine" id="cb208-11" data-line-number="11">day_temp<span class="op">$</span>AGDD2 &lt;-<span class="st"> </span><span class="kw">sumr.2</span>(<span class="dt">x=</span>day_temp<span class="op">$</span>GDD2)</a>
+<a class="sourceLine" id="cb208-12" data-line-number="12">day_temp<span class="op">$</span>AGDD1 &lt;-<span class="st"> </span><span class="kw">sumr.2</span>(<span class="dt">x=</span>day_temp<span class="op">$</span>GDD1)</a>
+<a class="sourceLine" id="cb208-13" data-line-number="13">day_temp &lt;-<span class="st"> </span><span class="kw">ungroup</span>(day_temp)</a></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1"><span class="kw">library</span>(plotly)</a>
+<a class="sourceLine" id="cb209-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb209-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb209-4" data-line-number="4">p =<span class="st"> </span><span class="kw">plot_ly</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb209-5" data-line-number="5"><span class="st">    </span><span class="kw">add_trace</span>(</a>
+<a class="sourceLine" id="cb209-6" data-line-number="6">      <span class="dt">x=</span> <span class="op">~</span>day_temp<span class="op">$</span>date,</a>
+<a class="sourceLine" id="cb209-7" data-line-number="7">      <span class="dt">y =</span> <span class="op">~</span><span class="st"> </span>day_temp<span class="op">$</span>AGDD1,</a>
+<a class="sourceLine" id="cb209-8" data-line-number="8">      <span class="dt">type=</span> <span class="st">&#39;scatter&#39;</span>,</a>
+<a class="sourceLine" id="cb209-9" data-line-number="9">      <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</a>
+<a class="sourceLine" id="cb209-10" data-line-number="10">      <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">1</span>, <span class="dt">color =</span> <span class="st">&quot;rgb(120,120,120)&quot;</span>),</a>
+<a class="sourceLine" id="cb209-11" data-line-number="11">      <span class="dt">name =</span> <span class="st">&quot;Calculated Mean Temp&quot;</span>,</a>
+<a class="sourceLine" id="cb209-12" data-line-number="12">      <span class="dt">showlegend =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb209-13" data-line-number="13">      <span class="dt">opacity=</span>.<span class="dv">5</span></a>
+<a class="sourceLine" id="cb209-14" data-line-number="14">    )<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb209-15" data-line-number="15"><span class="st">  </span><span class="kw">add_trace</span>(</a>
+<a class="sourceLine" id="cb209-16" data-line-number="16">      <span class="dt">data =</span> day_temp,</a>
+<a class="sourceLine" id="cb209-17" data-line-number="17">    <span class="dt">x =</span> <span class="op">~</span><span class="st"> </span>date,</a>
+<a class="sourceLine" id="cb209-18" data-line-number="18">    <span class="dt">y =</span> <span class="op">~</span><span class="st"> </span>AGDD2,</a>
+<a class="sourceLine" id="cb209-19" data-line-number="19">    <span class="dt">name=</span> <span class="st">&#39;Simplified Mean Temp&#39;</span>,</a>
+<a class="sourceLine" id="cb209-20" data-line-number="20">    <span class="dt">showlegend =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb209-21" data-line-number="21">    <span class="dt">type =</span> <span class="st">&#39;scatter&#39;</span>,</a>
+<a class="sourceLine" id="cb209-22" data-line-number="22">    <span class="dt">mode =</span> <span class="st">&#39;lines&#39;</span>,</a>
+<a class="sourceLine" id="cb209-23" data-line-number="23">    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb209-24" data-line-number="24">    <span class="dt">opacity=</span>.<span class="dv">5</span>)<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb209-25" data-line-number="25"><span class="st">  </span><span class="kw">add_trace</span>(</a>
+<a class="sourceLine" id="cb209-26" data-line-number="26">      <span class="dt">data =</span> day_temp,</a>
+<a class="sourceLine" id="cb209-27" data-line-number="27">    <span class="dt">x =</span> <span class="op">~</span><span class="st"> </span>date,</a>
+<a class="sourceLine" id="cb209-28" data-line-number="28">    <span class="dt">y =</span> <span class="op">~</span><span class="st"> </span>AGDD3,</a>
+<a class="sourceLine" id="cb209-29" data-line-number="29">    <span class="dt">name=</span> <span class="st">&#39;Filtered Using Both&#39;</span>,</a>
+<a class="sourceLine" id="cb209-30" data-line-number="30">    <span class="dt">showlegend =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb209-31" data-line-number="31">    <span class="dt">type =</span> <span class="st">&#39;scatter&#39;</span>,</a>
+<a class="sourceLine" id="cb209-32" data-line-number="32">    <span class="dt">mode =</span> <span class="st">&#39;lines&#39;</span>,</a>
+<a class="sourceLine" id="cb209-33" data-line-number="33">    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb209-34" data-line-number="34">    <span class="dt">opacity=</span>.<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb209-35" data-line-number="35">p</a></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
-<li>Plot your calculated AGGD and comment on your calculations. Do you need to revise your time horizon or sensor height?</li>
+<li><p>Plot your calculated AGGD and comment on your calculations. Do you need to revise your time horizon or sensor height?</p></li>
+<li><p>Now we’re going to build a model to see how AGGD impacts phenological status. But Wait. Is phenology <strong>all</strong> driven by temperature? Should you consider any other variables? What about AGGD <strong>and</strong> just plain temperature? Also, we have one very temperate site, and another that is a semi-arid grassland. Should water availability of any sort be considered? Any other variables or data?</p></li>
 </ol>
-<p>Hint:</p>
-<pre><code>ggplot(data=data, aes(x=date, y=AGDD, group=1)) +
-  geom_point()+
-  geom_smooth()</code></pre>
-<p>Your plot should resemble <em>something</em> like this (intentionally a little vague):</p>
-<p><img src="images/Screen%20Shot%202020-08-31%20at%208.15.42%20AM.png" width="1045" /></p>
-<ol start="6" style="list-style-type: decimal">
-<li>Now we’re going to build a model to see how AGGD impacts phenological status. But Wait. Is phenology <strong>all</strong> driven by temperature? Should you consider any other variables? What about AGGD <strong>and</strong> just plain temperature? Also, we have one very temperate site, and another that is a semi-arid grassland. Should water availability of any sort be considered? Create a <a href="https://dereksonderegger.github.io/578/7-beyond-linearity.html#gams">GAM (Generalized Additive Model)</a> for your phenological data including any variables you think might be relevant.</li>
-</ol>
+<p>Create a <a href="https://dereksonderegger.github.io/578/7-beyond-linearity.html#gams">GAM (Generalized Additive Model)</a> for your phenological data including any variables you think might be relevant.</p>
 <p>One of the bonuses of a GAM is that it will tell you which variables are relevant and which aren’t so you can iterate a bit on your model and revise it. You might want to test a few positions on your asipirated air temperature, or a few other additional variables. Your selection is up to you, but you must document and justify your decision.</p>
 <p>Hints:</p>
 <pre><code>library(mgcv)

@@ -857,7 +857,7 @@ add_fields <- npn_download_status_data(
 ## USA-NPN Coding Lab
 
 
-```{r}
+```{r, results=FALSE}
 library(rnpn)
 library(ggplot2)
 library(neonUtilities)
@@ -872,7 +872,7 @@ source('/Users/kdw223/Research/katharynduffy.github.io/neon_token_source.R')
 3. Use the `neonUtilities` package to pull plant phenology observations (DP1.10055.001).  We will work with the `statusintensity` data:
 
 Hints:
-```{r}
+```{r, results=FALSE}
 #TOS Phenology Data
 sitesOfInterest <- c("HARV")
 
@@ -946,16 +946,10 @@ df <- tempDat$SAAT_30min
 
 ```
 
-```{r}
-
+```{r, eval=FALSE}
 # GDD typically reported in F
-# define function to convert temp c to f 
-#c_to_f <- function(x)  (x * 1.8 + 32)
-
-#Or calculate mutate F in dyplyr
 # convert df temps
-df=df%>%
-  dplyr::mutate(meanTempF=tempSingleMean*1.8+32)
+df$meanTempF=df$tempSingleMean*1.8+32
 
 #pull date value from dateTime
 df$date <- substr(df$endDateTime, 1, 10)
@@ -969,19 +963,19 @@ Here, I will group the 30-minute temperature averages by data (to get daily valu
   
 You can view the sensor position data in the sensor_positions table downloaded above, where HOR.VER are the horizontal and vertical position indices (separated by a period),and zOffset is in meters above the ground:
 
-```{r}
+```{r, eval=FALSE}
   select(tempDat$sensor_positions_00002, c(HOR.VER, zOffset))
 ``` 
 
 you can also view all of the sensor position info with the following line:
 
-```{r}
+```{r, eval=FALSE}
 head(tempDat$sensor_positions_00002)
 ``` 
 For example, the lowest position sensor (verticalPosition == 010) may be most appropriate for comparison with the phenological state of very short plants, while the highest verticalPosition may be better for comparison with canopy trees. 
 
 Here I'll select level 1 for demonstration
-```{r}
+```{r, eval=FALSE}
 day_temp <- df%>%
   filter(verticalPosition=="010")%>%
   group_by(siteID, date)%>%
@@ -1000,14 +994,14 @@ day_temp$mean2 <- (day_temp$dayMinTemp + day_temp$dayMaxTemp)/2
 *50 degrees F is a common base temperature used to calculate plant specific GDD. When might you select a different base temp?*
 
 *How might you want to deal with different 'means' of temperature?  A couple of options below:*
-```{r}
+```{r, eval=FALSE}
 day_temp$GDD1 <- ifelse(day_temp$dayMeanTemp-50 < 0, 0, round(day_temp$dayMeanTemp-50, 0))
 day_temp$GDD2 <- ifelse(day_temp$mean2-50 < 0, 0, round(day_temp$mean2-50, 0))
 day_temp$GDD3 <- ifelse(day_temp$dayMeanTemp-50 < 0, 0, round(day_temp$mean2-50, 0))
 
 ```
 
-```{r}
+```{r, eval=FALSE}
 # define year
 day_temp$year <- substr(day_temp$date, 1, 4)
 
@@ -1025,7 +1019,7 @@ day_temp <- ungroup(day_temp)
 ```
 
 
-```{r}
+```{r, eval=FALSE}
 library(plotly)
 
 

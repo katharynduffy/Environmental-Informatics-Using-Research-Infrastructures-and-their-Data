@@ -1064,163 +1064,40 @@ pheDat <- loadByProduct(dpID="DP1.10055.001",
                      package = "basic",
                      check.size = FALSE, 
                      token=NEON_TOKEN)
-```
 
-```
-## Finding available files
-##   |                                                                              |                                                                      |   0%  |                                                                              |=                                                                     |   2%  |                                                                              |==                                                                    |   3%  |                                                                              |====                                                                  |   5%  |                                                                              |=====                                                                 |   7%  |                                                                              |======                                                                |   8%  |                                                                              |=======                                                               |  10%  |                                                                              |========                                                              |  12%  |                                                                              |=========                                                             |  14%  |                                                                              |===========                                                           |  15%  |                                                                              |============                                                          |  17%  |                                                                              |=============                                                         |  19%  |                                                                              |==============                                                        |  20%  |                                                                              |===============                                                       |  22%  |                                                                              |=================                                                     |  24%  |                                                                              |==================                                                    |  25%  |                                                                              |===================                                                   |  27%  |                                                                              |====================                                                  |  29%  |                                                                              |=====================                                                 |  31%  |                                                                              |=======================                                               |  32%  |                                                                              |========================                                              |  34%  |                                                                              |=========================                                             |  36%  |                                                                              |==========================                                            |  37%  |                                                                              |===========================                                           |  39%  |                                                                              |============================                                          |  41%  |                                                                              |==============================                                        |  42%  |                                                                              |===============================                                       |  44%  |                                                                              |================================                                      |  46%  |                                                                              |=================================                                     |  47%  |                                                                              |==================================                                    |  49%  |                                                                              |====================================                                  |  51%  |                                                                              |=====================================                                 |  53%  |                                                                              |======================================                                |  54%  |                                                                              |=======================================                               |  56%  |                                                                              |========================================                              |  58%  |                                                                              |==========================================                            |  59%  |                                                                              |===========================================                           |  61%  |                                                                              |============================================                          |  63%  |                                                                              |=============================================                         |  64%  |                                                                              |==============================================                        |  66%  |                                                                              |===============================================                       |  68%  |                                                                              |=================================================                     |  69%  |                                                                              |==================================================                    |  71%  |                                                                              |===================================================                   |  73%  |                                                                              |====================================================                  |  75%  |                                                                              |=====================================================                 |  76%  |                                                                              |=======================================================               |  78%  |                                                                              |========================================================              |  80%  |                                                                              |=========================================================             |  81%  |                                                                              |==========================================================            |  83%  |                                                                              |===========================================================           |  85%  |                                                                              |=============================================================         |  86%  |                                                                              |==============================================================        |  88%  |                                                                              |===============================================================       |  90%  |                                                                              |================================================================      |  92%  |                                                                              |=================================================================     |  93%  |                                                                              |==================================================================    |  95%  |                                                                              |====================================================================  |  97%  |                                                                              |===================================================================== |  98%  |                                                                              |======================================================================| 100%
-## 
-## Downloading files totaling approximately 7.4 MiB
-## Downloading 59 files
-##   |                                                                              |                                                                      |   0%  |                                                                              |=                                                                     |   2%  |                                                                              |==                                                                    |   3%  |                                                                              |====                                                                  |   5%  |                                                                              |=====                                                                 |   7%  |                                                                              |======                                                                |   9%  |                                                                              |=======                                                               |  10%  |                                                                              |========                                                              |  12%  |                                                                              |==========                                                            |  14%  |                                                                              |===========                                                           |  16%  |                                                                              |============                                                          |  17%  |                                                                              |=============                                                         |  19%  |                                                                              |==============                                                        |  21%  |                                                                              |================                                                      |  22%  |                                                                              |=================                                                     |  24%  |                                                                              |==================                                                    |  26%  |                                                                              |===================                                                   |  28%  |                                                                              |=====================                                                 |  29%  |                                                                              |======================                                                |  31%  |                                                                              |=======================                                               |  33%  |                                                                              |========================                                              |  34%  |                                                                              |=========================                                             |  36%  |                                                                              |===========================                                           |  38%  |                                                                              |============================                                          |  40%  |                                                                              |=============================                                         |  41%  |                                                                              |==============================                                        |  43%  |                                                                              |===============================                                       |  45%  |                                                                              |=================================                                     |  47%  |                                                                              |==================================                                    |  48%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================                                  |  52%  |                                                                              |=====================================                                 |  53%  |                                                                              |=======================================                               |  55%  |                                                                              |========================================                              |  57%  |                                                                              |=========================================                             |  59%  |                                                                              |==========================================                            |  60%  |                                                                              |===========================================                           |  62%  |                                                                              |=============================================                         |  64%  |                                                                              |==============================================                        |  66%  |                                                                              |===============================================                       |  67%  |                                                                              |================================================                      |  69%  |                                                                              |=================================================                     |  71%  |                                                                              |===================================================                   |  72%  |                                                                              |====================================================                  |  74%  |                                                                              |=====================================================                 |  76%  |                                                                              |======================================================                |  78%  |                                                                              |========================================================              |  79%  |                                                                              |=========================================================             |  81%  |                                                                              |==========================================================            |  83%  |                                                                              |===========================================================           |  84%  |                                                                              |============================================================          |  86%  |                                                                              |==============================================================        |  88%  |                                                                              |===============================================================       |  90%  |                                                                              |================================================================      |  91%  |                                                                              |=================================================================     |  93%  |                                                                              |==================================================================    |  95%  |                                                                              |====================================================================  |  97%  |                                                                              |===================================================================== |  98%  |                                                                              |======================================================================| 100%
-## 
-## Unpacking zip files using 1 cores.
-## Stacking operation across a single core.
-## Stacking table phe_perindividual
-## Stacking table phe_statusintensity
-## Stacking table phe_perindividualperyear
-## Copied the most recent publication of validation file to /stackedFiles
-## Copied the most recent publication of categoricalCodes file to /stackedFiles
-## Copied the most recent publication of variable definition file to /stackedFiles
-## Finished: Stacked 3 data tables and 3 metadata tables!
-## Stacking took 1.24983 secs
-## All unzipped monthly data folders have been removed.
-```
-
-```r
 #NEON sends the data as a nested list, so I need to undo that
 # unlist all data frames
 list2env(pheDat ,.GlobalEnv)
-```
-
-```
-## <environment: R_GlobalEnv>
-```
-
-```r
 summary(phe_perindividualperyear)
-```
-
-```
-##      uid            namedLocation        domainID            siteID         
-##  Length:623         Length:623         Length:623         Length:623        
-##  Class :character   Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-##                                                                             
-##                                                                             
-##                                                                             
-##                                                                             
-##     plotID               date                       editedDate                 
-##  Length:623         Min.   :2013-09-05 00:00:00   Min.   :2013-08-20 00:00:00  
-##  Class :character   1st Qu.:2014-10-03 00:00:00   1st Qu.:2015-03-27 00:00:00  
-##  Mode  :character   Median :2016-09-20 00:00:00   Median :2015-10-01 00:00:00  
-##                     Mean   :2016-09-20 22:32:10   Mean   :2016-05-29 14:01:20  
-##                     3rd Qu.:2018-08-14 00:00:00   3rd Qu.:2018-03-15 00:00:00  
-##                     Max.   :2019-09-10 00:00:00   Max.   :2019-08-13 00:00:00  
-##                                                                                
-##  individualID       patchOrIndividual  canopyPosition     plantStatus       
-##  Length:623         Length:623         Length:623         Length:623        
-##  Class :character   Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-##                                                                             
-##                                                                             
-##                                                                             
-##                                                                             
-##   stemDiameter    measurementHeight maxCanopyDiameter ninetyCanopyDiameter
-##  Min.   :  2.00   Min.   : 20.0     Min.   : 0.100    Min.   : 0.100      
-##  1st Qu.: 15.00   1st Qu.:130.0     1st Qu.: 1.500    1st Qu.: 1.300      
-##  Median : 25.15   Median :130.0     Median : 6.800    Median : 4.900      
-##  Mean   : 29.90   Mean   :129.8     Mean   : 7.063    Mean   : 5.423      
-##  3rd Qu.: 45.02   3rd Qu.:130.0     3rd Qu.:10.600    3rd Qu.: 8.100      
-##  Max.   :100.00   Max.   :140.0     Max.   :21.700    Max.   :20.000      
-##  NA's   :197      NA's   :197       NA's   :58        NA's   :58          
-##    patchSize    percentCover     height      diseaseType       
-##  Min.   : NA   Min.   : NA   Min.   : 0.10   Length:623        
-##  1st Qu.: NA   1st Qu.: NA   1st Qu.: 0.40   Class :character  
-##  Median : NA   Median : NA   Median :13.30   Mode  :character  
-##  Mean   :NaN   Mean   :NaN   Mean   :12.44                     
-##  3rd Qu.: NA   3rd Qu.: NA   3rd Qu.:21.10                     
-##  Max.   : NA   Max.   : NA   Max.   :27.10                     
-##  NA's   :623   NA's   :623   NA's   :30                        
-##  samplingProtocolVersion  measuredBy         recordedBy       
-##  Length:623              Length:623         Length:623        
-##  Class :character        Class :character   Class :character  
-##  Mode  :character        Mode  :character   Mode  :character  
-##                                                               
-##                                                               
-##                                                               
-##                                                               
-##    remarks             dataQF          publicationDate   
-##  Length:623         Length:623         Length:623        
-##  Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character  
-##                                                          
-##                                                          
-##                                                          
-## 
-```
-
-```r
 summary(phe_statusintensity)
-```
 
-```
-##      uid            namedLocation        domainID            siteID         
-##  Length:138102      Length:138102      Length:138102      Length:138102     
-##  Class :character   Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-##                                                                             
-##                                                                             
-##                                                                             
-##                                                                             
-##     plotID               date                       editedDate                 
-##  Length:138102      Min.   :2013-08-23 00:00:00   Min.   :2015-03-19 00:00:00  
-##  Class :character   1st Qu.:2015-06-10 00:00:00   1st Qu.:2015-06-25 00:00:00  
-##  Mode  :character   Median :2017-03-13 00:00:00   Median :2017-03-13 00:00:00  
-##                     Mean   :2017-01-15 23:41:35   Mean   :2017-03-22 03:23:57  
-##                     3rd Qu.:2018-08-20 00:00:00   3rd Qu.:2018-08-20 00:00:00  
-##                     Max.   :2020-08-03 00:00:00   Max.   :2020-08-03 00:00:00  
-##                                                   NA's   :450                  
-##    dayOfYear     individualID       phenophaseName     phenophaseStatus  
-##  Min.   : 59.0   Length:138102      Length:138102      Length:138102     
-##  1st Qu.:125.0   Class :character   Class :character   Class :character  
-##  Median :191.0   Mode  :character   Mode  :character   Mode  :character  
-##  Mean   :188.2                                                           
-##  3rd Qu.:251.0                                                           
-##  Max.   :331.0                                                           
-##  NA's   :3846                                                            
-##  phenophaseIntensityDefinition phenophaseIntensity samplingProtocolVersion
-##  Length:138102                 Length:138102       Length:138102          
-##  Class :character              Class :character    Class :character       
-##  Mode  :character              Mode  :character    Mode  :character       
-##                                                                           
-##                                                                           
-##                                                                           
-##                                                                           
-##   measuredBy         recordedBy          remarks             dataQF         
-##  Length:138102      Length:138102      Length:138102      Length:138102     
-##  Class :character   Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-##                                                                             
-##                                                                             
-##                                                                             
-##                                                                             
-##  publicationDate   
-##  Length:138102     
-##  Class :character  
-##  Mode  :character  
-##                    
-##                    
-##                    
-## 
-```
-
-```r
 #remove duplicate records
 phe_statusintensity <- select(phe_statusintensity, -uid)
 phe_statusintensity <- distinct(phe_statusintensity)
+```
 
-#Format dates (native format is 'factor' silly R)
+
+```r
+library(lubridate)
+```
+
+```
+## Warning: package 'lubridate' was built under R version 3.6.2
+```
+
+```
+## 
+## Attaching package: 'lubridate'
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     date, intersect, setdiff, union
+```
+
+```r
+#Format dates
 phe_statusintensity$date <- as.Date(phe_statusintensity$date, "%Y-%m-%d")
 ```
 
@@ -1237,8 +1114,8 @@ phe_statusintensity$editedDate <- as.Date(phe_statusintensity$editedDate, "%Y-%m
 ```
 
 ```r
-phe_statusintensity$year <- substr(phe_statusintensity$date, 1, 4)
-phe_statusintensity$monthDay <- format(phe_statusintensity$date, format="%m-%d")
+phe_statusintensity$year <- as.numeric(substr(phe_statusintensity$date, 1, 4))
+phe_statusintensity$month <- as.numeric(format(phe_statusintensity$date, format="%m"))
 ```
 
 
@@ -1296,32 +1173,37 @@ df <- tempDat$SAAT_30min
 
 ```r
 # GDD typically reported in F
-# define function to convert temp c to f 
-c_to_f <- function(x)  (x * 1.8 + 32)
-
 # convert df temps
-df$meanTempF <- c_to_f(df$tempSingleMean)
+df$meanTempF=df$tempSingleMean*1.8+32
 
 #pull date value from dateTime
 df$date <- substr(df$endDateTime, 1, 10)
+```
 
-# group data and summarize values
-# Here, we will group the 30-minute temperature averages by data (to get daily values)
+**Group data and summarize values**
 
-# You will want to consider which vertical position is most appropriate to use for your analysis.
+Here, I will group the 30-minute temperature averages by data (to get daily values)
+
+**You will want to consider which vertical position is most appropriate to use for your analysis.**
   
-# You can view the sensor position data in the sensor_positions table downloaded above,
-# where HOR.VER are the horizontal and vertical position indices (separated by a period),
-# and zOffset is in meters above the ground
+You can view the sensor position data in the sensor_positions table downloaded above, where HOR.VER are the horizontal and vertical position indices (separated by a period),and zOffset is in meters above the ground:
+
+
+```r
   select(tempDat$sensor_positions_00002, c(HOR.VER, zOffset))
-  
-# (you can also view all of the sensor position info with the following line:)
-# View(tempDat$sensor_positions_00002)
-  
-# For example, the lowest position sensor (verticalPosition == 010) may be most appropriate for 
-# comparison with the phenological state of very short plants, while the highest verticalPosition
-# may be better for comparison with canopy trees. Selected level 1 for demonstration
-  
+```
+
+you can also view all of the sensor position info with the following line:
+
+
+```r
+head(tempDat$sensor_positions_00002)
+```
+For example, the lowest position sensor (verticalPosition == 010) may be most appropriate for comparison with the phenological state of very short plants, while the highest verticalPosition may be better for comparison with canopy trees. 
+
+Here I'll select level 1 for demonstration
+
+```r
 day_temp <- df%>%
   filter(verticalPosition=="010")%>%
   group_by(siteID, date)%>%
@@ -1333,12 +1215,22 @@ day_temp <- df%>%
 ##alternative, simplified mean, consistent with many GDD calculations 
 ### does accumulation differ for true mean vs. simplified mean?
 day_temp$mean2 <- (day_temp$dayMinTemp + day_temp$dayMaxTemp)/2
+```
 
-#caluculate daily GDD for true mean
-## 50 degrees F is a common base temperature used to calculate plant specific GDD. When might you select a differnt base temp?
+**Caluculate daily GDD for a true mean**
 
-day_temp$GDD <- ifelse(day_temp$dayMeanTemp-50 < 0, 0, round(day_temp$mean2-50, 0))
+*50 degrees F is a common base temperature used to calculate plant specific GDD. When might you select a different base temp?*
 
+*How might you want to deal with different 'means' of temperature?  A couple of options below:*
+
+```r
+day_temp$GDD1 <- ifelse(day_temp$dayMeanTemp-50 < 0, 0, round(day_temp$dayMeanTemp-50, 0))
+day_temp$GDD2 <- ifelse(day_temp$mean2-50 < 0, 0, round(day_temp$mean2-50, 0))
+day_temp$GDD3 <- ifelse(day_temp$dayMeanTemp-50 < 0, 0, round(day_temp$mean2-50, 0))
+```
+
+
+```r
 # define year
 day_temp$year <- substr(day_temp$date, 1, 4)
 
@@ -1348,26 +1240,59 @@ sumr.2 <- function(x) {
 }
 
 #calculate Accumlated GDD
-day_temp$AGDD <- sumr.2(x=day_temp$GDD)
-
+day_temp$AGDD3 <- sumr.2(x=day_temp$GDD3)
+day_temp$AGDD2 <- sumr.2(x=day_temp$GDD2)
+day_temp$AGDD1 <- sumr.2(x=day_temp$GDD1)
 day_temp <- ungroup(day_temp)
 ```
 
 
+
+```r
+library(plotly)
+
+
+p = plot_ly() %>%
+    add_trace(
+      x= ~day_temp$date,
+      y = ~ day_temp$AGDD1,
+      type= 'scatter',
+      mode = "lines",
+      line = list(width = 1, color = "rgb(120,120,120)"),
+      name = "Calculated Mean Temp",
+      showlegend = TRUE, 
+      opacity=.5
+    )%>%
+  add_trace(
+      data = day_temp,
+    x = ~ date,
+    y = ~ AGDD2,
+    name= 'Simplified Mean Temp',
+    showlegend = TRUE,
+    type = 'scatter',
+    mode = 'lines',
+    line = list(width = 1),
+    opacity=.5)%>%
+  add_trace(
+      data = day_temp,
+    x = ~ date,
+    y = ~ AGDD3,
+    name= 'Filtered Using Both',
+    showlegend = TRUE,
+    type = 'scatter',
+    mode = 'lines',
+    line = list(width = 1),
+    opacity=.2)
+p
+```
+
 5.  Plot your calculated AGGD and comment on your calculations.  Do you need to revise your time horizon or sensor height?
 
-Hint:
-```
-ggplot(data=data, aes(x=date, y=AGDD, group=1)) +
-  geom_point()+
-  geom_smooth()
-```
 
-Your plot should resemble *something* like this (intentionally a little vague):
 
-<img src="./images/Screen Shot 2020-08-31 at 8.15.42 AM.png" width="1045" />
+6. Now we're going to build a model to see how AGGD impacts phenological status.  But Wait.  Is phenology **all** driven by temperature?  Should you consider any other variables?  What about AGGD **and** just plain temperature?   Also, we have one very temperate site, and another that is a semi-arid grassland.  Should water availability of any sort be considered?  Any other variables or data?
 
-6. Now we're going to build a model to see how AGGD impacts phenological status.  But Wait.  Is phenology **all** driven by temperature?  Should you consider any other variables?  What about AGGD **and** just plain temperature?   Also, we have one very temperate site, and another that is a semi-arid grassland.  Should water availability of any sort be considered?  Create a [GAM (Generalized Additive Model)](https://dereksonderegger.github.io/578/7-beyond-linearity.html#gams) for your phenological data including any variables you think might be relevant.  
+Create a [GAM (Generalized Additive Model)](https://dereksonderegger.github.io/578/7-beyond-linearity.html#gams) for your phenological data including any variables you think might be relevant.  
 
 One of the bonuses of a GAM is that it will tell you which variables are relevant and which aren't so you can iterate a bit on your model and revise it.  You might want to test a few positions on your asipirated air temperature, or a few other additional variables.  Your selection is up to you, but you must document and justify your decision.
 
