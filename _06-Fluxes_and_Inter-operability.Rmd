@@ -893,16 +893,16 @@ Download and extract data
     dataIdx <- rhdf5::h5read(file = paste0(DirDnld, "/filesToStack00200/", max(files[grep(pattern = paste0(site,".*.", date,".*.h5"), x = files)])), name = paste0(site, "/"))
                       
     if(!is.null(dataIdx)){ 
-       dataIdx[[site]]$dp0p <- NULL 
-       dataIdx[[site]]$dp02 <- NULL 
-       dataIdx[[site]]$dp03 <- NULL
-       dataIdx[[site]]$dp01$ucrt <- NULL 
-       dataIdx[[site]]$dp04$ucrt <- NULL 
-       dataIdx[[site]]$dp01$data <- lapply(dataIdx[[site]]$dp01$data,FUN=function(var){ 
+       dataIdx$dp0p <- NULL 
+       dataIdx$dp02 <- NULL 
+       dataIdx$dp03 <- NULL
+       dataIdx$dp01$ucrt <- NULL 
+       dataIdx$dp04$ucrt <- NULL 
+       dataIdx$dp01$data <- lapply(dataIdx$dp01$data,FUN=function(var){ 
          nameTmi <- names(var) 
          var <- var[grepl('_30m',nameTmi)] 
          return(var)})
-       dataIdx[[site]]$dp01$qfqm <- lapply(dataIdx[[site]]$dp01$qfqm,FUN=function(var){ 
+       dataIdx$dp01$qfqm <- lapply(dataIdx$dp01$qfqm,FUN=function(var){ 
          nameTmi <- names(var)
          var <- var[grepl('_30m',nameTmi)]
          return(var)})
@@ -920,22 +920,21 @@ Add names to list for year/month combinations
   
 ```{r, eval = FALSE}
   
-  names(dataList) <- paste0(lubridate::year(setDate),sprintf("%02d",lubridate::month(setDate))
+names(dataList) <- paste0(lubridate::year(setDate),sprintf("%02d",lubridate::month(setDate)))
                             
 ```
   
   
-  #Remove NULL elements from list
-  dataList <- dataList[vapply(dataList, Negate(is.null), NA)]
-  
-  #Check if any data is available from the API, if not move to next site
-  if(length(dataList) > 0){
-    ##############################################################################
-    #Determine HOR & VER indices
-    ##############################################################################
+Remove NULL elements from list
+```{r, eval = FALSE}
+dataList <- dataList[vapply(dataList, Negate(is.null), NA)]
+```
+
+Determine tower horizontal & vertical indices
+``` {r, eval=FALSE}
     
-    #Tower top level
-    LvlTowr <- grep(pattern = "_30m", names(dataList[[1]][[idxSite]]$dp01$data$co2Turb), value = TRUE)
+    #Find the tower top level by looking at the vertical index of the turbulent CO2 concentration measurements 
+    LvlTowr <- grep(pattern = "_30m", names(dataList[[1]]$dp01$data$co2Turb), value = TRUE)
     LvlTowr <- gsub(x = LvlTowr, pattern = "_30m", replacement = "")
     
     #get tower top level
@@ -953,53 +952,53 @@ Add names to list for year/month combinations
     
     #Ameriflux horizontal index
     idxHorAmfx <- 1
+```
     
-    
-    
-    #Subset to the Ameriflux variables to deliver
+Subset to the Ameriflux variables to convert
+```{r, eval = FALSE}
     dataListFlux <- lapply(names(dataList), function(x) {
       data.frame(
-        "TIMESTAMP_START" = as.POSIXlt(dataList[[x]][[idxSite]]$dp04$data$fluxCo2$turb$timeBgn, format="%Y-%m-%dT%H:%M:%OSZ", tz = "GMT"),
-        "TIMESTAMP_END" = as.POSIXlt(dataList[[x]][[idxSite]]$dp04$data$fluxCo2$turb$timeEnd, format="%Y-%m-%dT%H:%M:%OSZ", tz = "GMT"),
+        "TIMESTAMP_START" = as.POSIXlt(dataList[[x]]$dp04$data$fluxCo2$turb$timeBgn, format="%Y-%m-%dT%H:%M:%OSZ", tz = "GMT"),
+        "TIMESTAMP_END" = as.POSIXlt(dataList[[x]]$dp04$data$fluxCo2$turb$timeEnd, format="%Y-%m-%dT%H:%M:%OSZ", tz = "GMT"),
         # "TIMESTAMP_START" = strftime(as.POSIXlt(dataList[[x]][[idxSite]]$dp04$data$fluxCo2$turb$timeBgn, format="%Y-%m-%dT%H:%M:%OSZ"), format = "%Y%m%d%H%M"),
         # "TIMESTAMP_END" = strftime(as.POSIXlt(dataList[[x]][[idxSite]]$dp04$data$fluxCo2$turb$timeEnd, format="%Y-%m-%dT%H:%M:%OSZ") + 60, format = "%Y%m%d%H%M"),
-        "FC"= dataList[[x]][[idxSite]]$dp04$data$fluxCo2$turb$flux,
-        "SC"= dataList[[x]][[idxSite]]$dp04$data$fluxCo2$stor$flux,
-        "NEE"= dataList[[x]][[idxSite]]$dp04$data$fluxCo2$nsae$flux,
-        "LE" = dataList[[x]][[idxSite]]$dp04$data$fluxH2o$turb$flux,
-        "SLE" = dataList[[x]][[idxSite]]$dp04$data$fluxH2o$stor$flux,
-        "USTAR" = dataList[[x]][[idxSite]]$dp04$data$fluxMome$turb$veloFric,
+        "FC"= dataList[[x]]$dp04$data$fluxCo2$turb$flux,
+        "SC"= dataList[[x]]$dp04$data$fluxCo2$stor$flux,
+        "NEE"= dataList[[x]]$dp04$data$fluxCo2$nsae$flux,
+        "LE" = dataList[[x]]$dp04$data$fluxH2o$turb$flux,
+        "SLE" = dataList[[x]]$dp04$data$fluxH2o$stor$flux,
+        "USTAR" = dataList[[x]]$dp04$data$fluxMome$turb$veloFric,
         
-        "H" = dataList[[x]][[idxSite]]$dp04$data$fluxTemp$turb$flux,
-        "SH" = dataList[[x]][[idxSite]]$dp04$data$fluxTemp$stor$flux,
-        "FETCH_90" = dataList[[x]][[idxSite]]$dp04$data$foot$stat$distXaxs90,
-        "FETCH_MAX" = dataList[[x]][[idxSite]]$dp04$data$foot$stat$distXaxsMax,
-        "V_SIGMA" = dataList[[x]][[idxSite]]$dp04$data$foot$stat$veloYaxsHorSd,
-        #"W_SIGMA" = dataList[[x]][[idxSite]]$dp04$data$foot$stat$veloZaxsHorSd,
-        "CO2_1_1_1" = dataList[[x]][[idxSite]]$dp01$data$co2Turb[[paste0(LvlTowr,"_30m")]]$rtioMoleDryCo2$mean,
-        "H2O_1_1_1" = dataList[[x]][[idxSite]]$dp01$data$h2oTurb[[paste0(LvlTowr,"_30m")]]$rtioMoleDryH2o$mean,
-        "qfFinlH2oTurbFrt00Samp" = dataList[[x]][[idxSite]]$dp01$qfqm$h2oTurb[[paste0(LvlTowr,"_30m")]]$frt00Samp$qfFinl,
-        "qfH2O_1_1_1" = dataList[[x]][[idxSite]]$dp01$qfqm$h2oTurb[[paste0(LvlTowr,"_30m")]]$rtioMoleDryH2o$qfFinl,
-        "qfCO2_1_1_1" = dataList[[x]][[idxSite]]$dp01$qfqm$co2Turb[[paste0(LvlTowr,"_30m")]]$rtioMoleDryCo2$qfFinl,
-        "qfSC" = dataList[[x]][[idxSite]]$dp04$qfqm$fluxCo2$stor$qfFinl,
-        "qfSLE" = dataList[[x]][[idxSite]]$dp04$qfqm$fluxH2o$stor$qfFinl,
-        "qfSH" = dataList[[x]][[idxSite]]$dp04$qfqm$fluxTemp$stor$qfFinl,
-        "qfT_SONIC" = dataList[[x]][[idxSite]]$dp01$qfqm$soni[[paste0(LvlTowr,"_30m")]]$tempSoni$qfFinl,
-        "qfWS_1_1_1" = dataList[[x]][[idxSite]]$dp01$qfqm$soni[[paste0(LvlTowr,"_30m")]]$veloXaxsYaxsErth$qfFinl,
+        "H" = dataList[[x]]$dp04$data$fluxTemp$turb$flux,
+        "SH" = dataList[[x]]$dp04$data$fluxTemp$stor$flux,
+        "FETCH_90" = dataList[[x]]$dp04$data$foot$stat$distXaxs90,
+        "FETCH_MAX" = dataList[[x]]$dp04$data$foot$stat$distXaxsMax,
+        "V_SIGMA" = dataList[[x]]$dp04$data$foot$stat$veloYaxsHorSd,
+        #"W_SIGMA" = dataList[[x]]$dp04$data$foot$stat$veloZaxsHorSd,
+        "CO2_1_1_1" = dataList[[x]]$dp01$data$co2Turb[[paste0(LvlTowr,"_30m")]]$rtioMoleDryCo2$mean,
+        "H2O_1_1_1" = dataList[[x]]$dp01$data$h2oTurb[[paste0(LvlTowr,"_30m")]]$rtioMoleDryH2o$mean,
+        "qfFinlH2oTurbFrt00Samp" = dataList[[x]]$dp01$qfqm$h2oTurb[[paste0(LvlTowr,"_30m")]]$frt00Samp$qfFinl,
+        "qfH2O_1_1_1" = dataList[[x]]$dp01$qfqm$h2oTurb[[paste0(LvlTowr,"_30m")]]$rtioMoleDryH2o$qfFinl,
+        "qfCO2_1_1_1" = dataList[[x]]$dp01$qfqm$co2Turb[[paste0(LvlTowr,"_30m")]]$rtioMoleDryCo2$qfFinl,
+        "qfSC" = dataList[[x]]$dp04$qfqm$fluxCo2$stor$qfFinl,
+        "qfSLE" = dataList[[x]]$dp04$qfqm$fluxH2o$stor$qfFinl,
+        "qfSH" = dataList[[x]]$dp04$qfqm$fluxTemp$stor$qfFinl,
+        "qfT_SONIC" = dataList[[x]]$dp01$qfqm$soni[[paste0(LvlTowr,"_30m")]]$tempSoni$qfFinl,
+        "qfWS_1_1_1" = dataList[[x]]$dp01$qfqm$soni[[paste0(LvlTowr,"_30m")]]$veloXaxsYaxsErth$qfFinl,
         rbind.data.frame(lapply(names(idxVerAmfx), function(y) {
           tryCatch({rlog$debug(y)}, error=function(cond){print(y)})
           rpt <- list()
-          rpt[[paste0("CO2_1_",idxVerAmfx[y],"_2")]] <- dataList[[x]][[idxSite]]$dp01$data$co2Stor[[paste0(y,"_30m")]]$rtioMoleDryCo2$mean
+          rpt[[paste0("CO2_1_",idxVerAmfx[y],"_2")]] <- dataList[[x]]$dp01$data$co2Stor[[paste0(y,"_30m")]]$rtioMoleDryCo2$mean
           
           
-          rpt[[paste0("H2O_1_",idxVerAmfx[y],"_2")]] <- dataList[[x]][[idxSite]]$dp01$data$h2oStor[[paste0(y,"_30m")]]$rtioMoleDryH2o$mean
-          rpt[[paste0("CO2_1_",idxVerAmfx[y],"_3")]] <- dataList[[x]][[idxSite]]$dp01$data$isoCo2[[paste0(y,"_30m")]]$rtioMoleDryCo2$mean
+          rpt[[paste0("H2O_1_",idxVerAmfx[y],"_2")]] <- dataList[[x]]$dp01$data$h2oStor[[paste0(y,"_30m")]]$rtioMoleDryH2o$mean
+          rpt[[paste0("CO2_1_",idxVerAmfx[y],"_3")]] <- dataList[[x]]$dp01$data$isoCo2[[paste0(y,"_30m")]]$rtioMoleDryCo2$mean
           
-          rpt[[paste0("H2O_1_",idxVerAmfx[y],"_3")]] <- dataList[[x]][[idxSite]]$dp01$data$isoCo2[[paste0(y,"_30m")]]$rtioMoleDryH2o$mean
-          rpt[[paste0("qfCO2_1_",idxVerAmfx[y],"_2")]] <- dataList[[x]][[idxSite]]$dp01$qfqm$co2Stor[[paste0(LvlTowr,"_30m")]]$rtioMoleDryCo2$qfFinl
-          rpt[[paste0("qfH2O_1_",idxVerAmfx[y],"_2")]] <- dataList[[x]][[idxSite]]$dp01$qfqm$h2oStor[[paste0(LvlTowr,"_30m")]]$rtioMoleDryH2o$qfFinl
-          rpt[[paste0("qfCO2_1_",idxVerAmfx[y],"_3")]] <- dataList[[x]][[idxSite]]$dp01$qfqm$isoCo2[[paste0(LvlTowr,"_30m")]]$rtioMoleDryCo2$qfFinl
-          rpt[[paste0("qfH2O_1_",idxVerAmfx[y],"_3")]] <- dataList[[x]][[idxSite]]$dp01$qfqm$isoH2o[[paste0(LvlTowr,"_30m")]]$rtioMoleDryH2o$qfFinl
+          rpt[[paste0("H2O_1_",idxVerAmfx[y],"_3")]] <- dataList[[x]]$dp01$data$isoCo2[[paste0(y,"_30m")]]$rtioMoleDryH2o$mean
+          rpt[[paste0("qfCO2_1_",idxVerAmfx[y],"_2")]] <- dataList[[x]]$dp01$qfqm$co2Stor[[paste0(LvlTowr,"_30m")]]$rtioMoleDryCo2$qfFinl
+          rpt[[paste0("qfH2O_1_",idxVerAmfx[y],"_2")]] <- dataList[[x]]$dp01$qfqm$h2oStor[[paste0(LvlTowr,"_30m")]]$rtioMoleDryH2o$qfFinl
+          rpt[[paste0("qfCO2_1_",idxVerAmfx[y],"_3")]] <- dataList[[x]]$dp01$qfqm$isoCo2[[paste0(LvlTowr,"_30m")]]$rtioMoleDryCo2$qfFinl
+          rpt[[paste0("qfH2O_1_",idxVerAmfx[y],"_3")]] <- dataList[[x]]$dp01$qfqm$isoH2o[[paste0(LvlTowr,"_30m")]]$rtioMoleDryH2o$qfFinl
           
           rpt <- rbind.data.frame(rpt)
           return(rpt)
@@ -1007,22 +1006,26 @@ Add names to list for year/month combinations
         )),
         
         
-        "WS_1_1_1" = dataList[[x]][[idxSite]]$dp01$data$soni[[paste0(LvlTowr,"_30m")]]$veloXaxsYaxsErth$mean,
-        "WS_MAX_1_1_1" = dataList[[x]][[idxSite]]$dp01$data$soni[[paste0(LvlTowr,"_30m")]]$veloXaxsYaxsErth$max,
-        "WD_1_1_1" = dataList[[x]][[idxSite]]$dp01$data$soni[[paste0(LvlTowr,"_30m")]]$angZaxsErth$mean,
-        "T_SONIC" = dataList[[x]][[idxSite]]$dp01$data$soni[[paste0(LvlTowr,"_30m")]]$tempSoni$mean,
-        "T_SONIC_SIGMA" = base::sqrt(dataList[[x]][[idxSite]]$dp01$data$soni[[paste0(LvlTowr,"_30m")]]$tempSoni$mean)
+        "WS_1_1_1" = dataList[[x]]$dp01$data$soni[[paste0(LvlTowr,"_30m")]]$veloXaxsYaxsErth$mean,
+        "WS_MAX_1_1_1" = dataList[[x]]$dp01$data$soni[[paste0(LvlTowr,"_30m")]]$veloXaxsYaxsErth$max,
+        "WD_1_1_1" = dataList[[x]]$dp01$data$soni[[paste0(LvlTowr,"_30m")]]$angZaxsErth$mean,
+        "T_SONIC" = dataList[[x]]$dp01$data$soni[[paste0(LvlTowr,"_30m")]]$tempSoni$mean,
+        "T_SONIC_SIGMA" = base::sqrt(dataList[[x]]$dp01$data$soni[[paste0(LvlTowr,"_30m")]]$tempSoni$mean)
         , stringsAsFactors = FALSE)
     })
     
     names(dataListFlux) <- names(dataList)
-    
-    #Combine the monthly data into a single dataframe
+```
+
+Combine the monthly data into a single dataframe, remove lists and clean memory
+```{r, eval=FALSE}    
     dataDfFlux <- do.call(rbind.data.frame,dataListFlux)
     rm(list=c("dataListFlux","dataList"))
     gc()
-    
-    # Regularize timeseries to 30 minutes in case missing data after CI processing
+```
+
+Regularize timeseries to 30 minutes in case timestamps are missing from NEON files due to processing errors
+``` {r, eval=FALSE}
     timeRglr <- eddy4R.base::def.rglr(timeMeas = as.POSIXlt(dataDfFlux$TIMESTAMP_START), dataMeas = dataDfFlux, BgnRglr = as.POSIXlt(dataDfFlux$TIMESTAMP_START[1]), EndRglr = as.POSIXlt(dataDfFlux$TIMESTAMP_END[length(dataDfFlux$TIMESTAMP_END)]), TzRglr = "UTC", FreqRglr = 1/(60*30))
     
     #Reassign data to data.frame
@@ -1030,13 +1033,12 @@ Add names to list for year/month combinations
     #Format timestamps
     dataDfFlux$TIMESTAMP_START <- strftime(timeRglr$timeRglr + lubridate::hours(timeOfstUtc), format = "%Y%m%d%H%M")
     dataDfFlux$TIMESTAMP_END <- strftime(timeRglr$timeRglr + lubridate::hours(timeOfstUtc) + lubridate::minutes(30), format = "%Y%m%d%H%M")
-    
-    #############################################################################
-    #Sequence for Validations
-    # valiPos <- seq(from = 17, to = nrow(dataDfFlux), by = 47)
-    # # #Remove the validation periods from data
-    # dataDfFlux[valiPos, c("FC","LE","CO2", "H2O","H")] <- NaN
-    
+```
+
+Define validation times, and remove this data from the dataset. At NEON sites, validations with a series of gasses of known concentration are run every 23.5 hours. These values are used to correct for measurment drift and are run every 23.5 hours to achive daily resolution while also spreading the impact of lost measurements throughout the day. 
+
+```{r, eval=FALSE}
+
     #Remove co2Turb and h2oTurb data based off of qfFlow (qfFinl frt00)
     dataDfFlux$FC[(which(dataDfFlux$qfCO2_1_1_1 == 1))] <- NaN
     dataDfFlux$LE[(which(dataDfFlux$qfH2O_1_1_1 == 1))] <- NaN
@@ -1061,12 +1063,17 @@ Add names to list for year/month combinations
       dataDfFlux[[paste0("CO2_1_",x,"_2")]][(which(dataDfFlux[[paste0("qfCO2_1_",x,"_2")]] == 1))] <<- NaN
       dataDfFlux[[paste0("CO2_1_",x,"_3")]][(which(dataDfFlux[[paste0("qfCO2_1_",x,"_3")]] == 1))] <<- NaN
     })
-    
-    #Remove flagging variables from output
+ 
+```
+
+Remove quality flagging variables from output
+```{r, eval = FALSE}
     setIdxQf <- grep("qf", names(dataDfFlux))
     dataDfFlux[,setIdxQf] <- NULL
-    
-    #Set Rng thresholds
+```
+
+Set range thresholds
+```{r, eval=FALSE}
     #assign list
     Rng <- list()
     
@@ -1084,9 +1091,11 @@ Add names to list for year/month combinations
       "WD_1_1_1" = -0.1,      #[deg]
       "T_SONIC" = -55.0       #[C]
     )
+```
+
     
-    
-    #Set Max thresholds
+Set Max thresholds
+```{r, eval=FALSE}
     Rng$Max <- data.frame(
       "FC" = 100,            #[umol m-2 s-1]
       "SC" = 100,            #[umol m-2 s-1]
@@ -1101,8 +1110,11 @@ Add names to list for year/month combinations
       "WD_1_1_1" = 360,      #[deg]
       "T_SONIC" = 45.0       #[C]
     )
+```
+
+Grab all CO2/H2O columns to apply same thresholds, replace missing values with -9999
+```{r, eval = FALSE}
     
-    #Grab all CO2/H2O columns to apply same threshold
     nameCO2 <- grep("CO2",names(dataDfFlux),value = TRUE)
     nameH2O <- grep("H2O",names(dataDfFlux),value = TRUE)
     #Apply the CO2/H2O threshold to all variables in HOR_VER_REP
@@ -1120,23 +1132,22 @@ Add names to list for year/month combinations
     
     #Change NA to -9999
     dataDfFlux[is.na(dataDfFlux)] <- -9999
-    
-    
-    ######################################################################################################################
-    #Write output data
-    ######################################################################################################################
-    
+```
+
+Write output data to csv
+``` {r, eval = FALSE}
     #Create output filename based off of Ameriflux file naming convention
     nameFileOut <- base::paste0(DirOut,"/",siteNeon$SITE_ID,'_HH_',dataDfFlux$TIMESTAMP_START[1],'_',utils::tail(dataDfFlux$TIMESTAMP_END,n=1),'_flux.csv')
     
     #Write output to .csv
     write.csv(x = dataDfFlux, file = nameFileOut, row.names = FALSE)
-    
-  }#End of if statement to check for available data
-  
+```
+
+Clean up environment
+``` {r, eval=FALSE}
   rm(list="dataDfFlux")
   gc()
-} #End loop around sites
+```
 
 
 ## Exercises
