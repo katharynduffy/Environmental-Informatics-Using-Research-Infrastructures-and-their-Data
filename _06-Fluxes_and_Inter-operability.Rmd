@@ -756,8 +756,7 @@ lapply(packReq, function(x) {
 ```
 
 
-Select sites to be converted. All sites are listed below, uncomment the site/sites to be run. Running all sites will take a while!
-
+Select your site of interest from the list of NEON sites below.  
 
 ```{r, eval = FALSE}
 site <- "KONZ"
@@ -1153,6 +1152,11 @@ Clean up environment
 ## Exercises
 
 ### Computational
+
+
+1) NEON data are submitted to AmeriFlux quarterly after one year of non-quality flagged or otherwise missing data are available. Use the workflow above to extend the data coverage of an already submitted NEON site by downloading existing data from the AmeriFlux site and recently published HDF5 files from the NEON data portal OR pick a site that is not yet on AmeriFlux and convert from NEON to AmeriFlux format.  
+
+2) Using metScanR package, find co-located NEON and AmeriFlux sites. Download data for an overlapping time period, and compare FC and H values by making a scatter plot and seeing how far off the data are from a 1:1 line. 
 
 
 <div id="ds-challenge" markdown="1">
