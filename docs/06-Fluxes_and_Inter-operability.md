@@ -54,11 +54,9 @@ Now, data from the NEON project is available through the AmeriFlux data portal. 
 
 With 47 flux towers at terrestrial field sites across the U.S., the NEON program is now the largest single contributor of flux tower data to the AmeriFlux network. NEON field sites are located in 20 ecoclimatic zones across the U.S., representing many distinct ecosystems. Eddy covariance data will be served using the same methods at each site for the entire 30-year life of the Observatory, allowing for unprecedented comparability across both time and space.
 
-## Hands On: Working with NEON Flux Data
+## Hands On: Introduction to working with NEON eddy flux data
 
-### Introduction to working with NEON eddy flux data
-
-## 1. Setup
+### Setup
 
 Start by installing and loading packages and setting options. 
 To work with the NEON flux data, we need the `rhdf5` package, 
@@ -66,17 +64,23 @@ which is hosted on Bioconductor, and requires a different
 installation process than CRAN packages:
 
 
-```R
+```
 install.packages('BiocManager')
 BiocManager::install('rhdf5')
-install.packages('neonUtilities')
 ```
 
+```
+## Warning: package 'kableExtra' was built under R version 3.6.2
+```
 
-```R
+```r
 options(stringsAsFactors=F)
 
 library(neonUtilities)
+```
+
+```
+## Warning: package 'neonUtilities' was built under R version 3.6.2
 ```
 
 Use the `zipsByProduct()` function from the `neonUtilities` package to 
@@ -98,7 +102,8 @@ Inputs to the `zipsByProduct()` function:
 The download may take a while, especially if you're on a slow network.
 
 
-```{r, eval=FALSE}
+
+```r
 zipsByProduct(dpID="DP4.00200.001", package="basic", 
               site=c("NIWO", "HARV"), 
               startdate="2018-06", enddate="2018-07",
@@ -112,7 +117,7 @@ zipsByProduct(dpID="DP4.00200.001", package="basic",
     4 files downloaded to /data/filesToStack00200
 
 
-## 2. Data Levels
+### Data Levels
 
 There are five levels of data contained in the eddy flux bundle. For full 
 details, refer to the <a href="http://data.neonscience.org/api/v0/documents/NEON.DOC.004571vA" target="_blank">NEON algorithm document</a>.
@@ -132,7 +137,7 @@ The dp02 and dp03 data are used in storage calculations, and the dp04 data
 include both the storage and turbulent components. Since many users will 
 want to focus on the net flux data, we'll start there.
 
-## 3. Extract Level 4 data (Fluxes!)
+### Extract Level 4 data (Fluxes!)
 
 To extract the Level 4 data from the HDF5 files and merge them into a 
 single table, we'll use the `stackEddy()` function from the `neonUtilities` 
@@ -152,7 +157,8 @@ including the `filestoStack00200` folder created by the function, and
 `dp04`:
 
 
-```{r, eval = FALSE}
+
+```r
 flux <- stackEddy(filepath="/data/filesToStack00200/",
                  level="dp04")
 ```
@@ -170,7 +176,8 @@ tables: one table for each site's data, and `variables` and `objDesc`
 tables.
 
 
-```{r, eval = FALSE}
+
+```r
 names(flux)
 ```
 
@@ -180,14 +187,16 @@ names(flux)
 	<li>'NIWO'</li>
 	<li>'variables'</li>
 	<li>'objDesc'</li>
-</ol>
+</ol>)
+
 
 
 
 Let's look at the contents of one of the site data files:
 
 
-```{r, eval = FALSE}
+
+```r
 head(flux$NIWO)
 ```
 
@@ -217,7 +226,8 @@ complete. To get the terms of interest, we'll break up the column headers
 into individual terms and look for them in the `objDesc` table:
 
 
-```{r, eval = FALSE}
+
+```r
 term <- unlist(strsplit(names(flux$NIWO), split=".", fixed=T))
 flux$objDesc[which(flux$objDesc$Object %in% term),]
 ```
@@ -251,7 +261,8 @@ are self-explanatory. The flux components are
 The `variables` table contains the units for each field:
 
 
-```{r, eval = FALSE}
+
+```r
 flux$variables
 ```
 
@@ -315,7 +326,8 @@ specified, R will default to the local time zone it detects on your
 operating system.
 
 
-```{r, eval = FALSE}
+
+```r
 timeB <- as.POSIXct(flux$NIWO$timeBgn, 
                     format="%Y-%m-%dT%H:%M:%S", 
                     tz="GMT")
@@ -323,16 +335,15 @@ flux$NIWO <- cbind(timeB, flux$NIWO)
 ```
 
 
-```{r, eval = FALSE}
+
+```r
 plot(flux$NIWO$data.fluxCo2.nsae.flux~timeB, 
      pch=".", xlab="Date", ylab="CO2 flux",
      xaxt="n")
 axis.POSIXct(1, x=timeB, format="%Y-%m-%d")
 ```
 
-```{r,echo=FALSE}
-knitr::include_graphics('./images/eddy_intro_20_0.png')
-```
+<img src="./images/eddy_intro_20_0.png" width="420" />
 
 
 Like a lot of flux data, these data have some stray spikes, but there 
@@ -341,7 +352,8 @@ is a clear diurnal pattern going into the growing season.
 Let's trim down to just two days of data to see a few other details.
 
 
-```{r, eval = FALSE}
+
+```r
 plot(flux$NIWO$data.fluxCo2.nsae.flux~timeB, 
      pch=20, xlab="Date", ylab="CO2 flux",
      xlim=c(as.POSIXct("2018-07-07", tz="GMT"),
@@ -351,15 +363,13 @@ axis.POSIXct(1, x=timeB, format="%Y-%m-%d %H:%M:%S")
 ```
 
 
-```{r,echo=FALSE}
-knitr::include_graphics('./images/eddy_intro_22_0.png')
-```
+<img src="./images/eddy_intro_22_0.png" width="420" />
 
 
 Note the timing of C uptake; the UTC time zone is clear here, where 
 uptake occurs at times that appear to be during the night.
 
-## 4. Merge flux data with other sensor data
+### Merge flux data with other sensor data
 
 Many of the data sets we would use to interpret and model flux data are 
 measured as part of the NEON project, but are not present in the eddy flux 
@@ -367,7 +377,7 @@ data product bundle. In this section, we'll download PAR data and merge
 them with the flux data; the steps taken here can be applied to any of the 
 NEON instrumented (IS) data products.
 
-### Download PAR data
+#### Download PAR data
 
 To get NEON PAR data, use the `loadByProduct()` function from the 
 `neonUtilities` package. `loadByProduct()` takes the same inputs as 
@@ -391,7 +401,8 @@ download time by disregarding the 1-minute data files (which are of course
 all available averaging intervals.
 
 
-```{r, eval = FALSE}
+
+```r
 pr <- loadByProduct("DP1.00024.001", site="NIWO", avg=30,
                     startdate="2018-06", enddate="2018-07",
                     package="basic", check.size=F)
@@ -414,12 +425,13 @@ the `variables` table. The `PARPAR_30min` table contains a `verticalPosition`
 field. This field indicates the position on the tower, with 10 being the 
 first tower level, and 20, 30, etc going up the tower.
 
-### Join PAR to flux data
+#### Join PAR to flux data
 
 We'll connect PAR data from the tower top to the flux data.
 
 
-```{r, eval = FALSE}
+
+```r
 pr.top <- pr$PARPAR_30min[which(pr$PARPAR_30min$verticalPosition==
                                 max(pr$PARPAR_30min$verticalPosition)),]
 ```
@@ -429,7 +441,8 @@ data, so here we just need to indicate which time field to use to
 merge the flux and PAR data.
 
 
-```{r, eval = FALSE}
+
+```r
 timeB <- pr.top$startDateTime
 pr.top <- cbind(timeB, pr.top)
 ```
@@ -437,28 +450,28 @@ pr.top <- cbind(timeB, pr.top)
 And merge the two datasets:
 
 
-```{r, eval = FALSE}
+
+```r
 fx.pr <- merge(pr.top, flux$NIWO, by="timeB")
 ```
 
 
-```{r, eval = FALSE}
+
+```r
 plot(fx.pr$data.fluxCo2.nsae.flux~fx.pr$PARMean,
      pch=".", ylim=c(-20,20),
      xlab="PAR", ylab="CO2 flux")
 ```
 
 
-```{r,echo=FALSE}
-knitr::include_graphics('./images/eddy_intro_33_0.png')
-```
+<img src="./images/eddy_intro_33_0.png" width="420" />
 
 
 If you're interested in data in the eddy covariance bundle besides the 
 net flux data, the rest of this tutorial will guide you through how to 
 get those data out of the bundle.
 
-## 5. Vertical profile data (Level 3)
+### Vertical profile data (Level 3)
 
 The Level 3 (`dp03`) data are the spatially interpolated profiles of 
 the rates of change of CO<sub>2</sub>, H<sub>2</sub>O, and temperature.
@@ -466,7 +479,8 @@ Extract the Level 3 data from the HDF5 file using `stackEddy()` with
 the same syntax as for the Level 4 data.
 
 
-```{r, eval = FALSE}
+
+```r
 prof <- stackEddy(filepath="/data/filesToStack00200/",
                  level="dp03")
 ```
@@ -480,7 +494,8 @@ prof <- stackEddy(filepath="/data/filesToStack00200/",
 
 
 
-```{r, eval = FALSE}
+
+```r
 head(prof$NIWO)
 ```
 
@@ -503,7 +518,7 @@ head(prof$NIWO)
 
 
 
-## 6. Un-interpolated vertical profile data (Level 2)
+### Un-interpolated vertical profile data (Level 2)
 
 The Level 2 data are interpolated in time but not in space. They 
 contain the rates of change at the measurement heights.
@@ -512,7 +527,8 @@ Again, they can be extracted from the HDF5 files using `stackEddy()`
 with the same syntax:
 
 
-```{r, eval = FALSE}
+
+```r
 prof.l2 <- stackEddy(filepath="/data/filesToStack00200/",
                  level="dp02")
 ```
@@ -526,7 +542,8 @@ prof.l2 <- stackEddy(filepath="/data/filesToStack00200/",
 
 
 
-```{r, eval = FALSE}
+
+```r
 head(prof.l2$HARV)
 ```
 
@@ -553,7 +570,7 @@ Note that here, as in the PAR data, there is a `verticalPosition` field.
 It has the same meaning as in the PAR data, indicating the tower level of 
 the measurement.
 
-## 7. Calibrated raw data (Level 1)
+### Calibrated raw data (Level 1)
 
 Level 1 (`dp01`) data are calibrated, and aggregated in time, but 
 otherwise untransformed. Use Level 1 data for raw gas 
@@ -573,7 +590,8 @@ a list of HDF5 file contents. It requires only one input, a filepath
 to a single NEON HDF5 file:
 
 
-```{r, eval = FALSE}
+
+```r
 vars <- getVarsEddy("/data/filesToStack00200/NEON.D01.HARV.DP4.00200.001.nsae.2018-07.basic.h5")
 head(vars)
 ```
@@ -605,7 +623,8 @@ for these data, since deeper canopies generally have more interesting
 profiles:
 
 
-```{r, eval = FALSE}
+
+```r
 iso <- stackEddy(filepath="/data/filesToStack00200/",
                level="dp01", var=c("rtioMoleDryCo2","rtioMoleDryH2o",
                                    "dlta13CCo2","dlta18OH2o"), avg=30)
@@ -620,7 +639,8 @@ iso <- stackEddy(filepath="/data/filesToStack00200/",
 
 
 
-```{r, eval = FALSE}
+
+```r
 head(iso$HARV)
 ```
 
@@ -652,7 +672,8 @@ we want using `grep()`. And discard the `verticalPosition` values that are
 string values - those are the calibration gases.
 
 
-```{r, eval = FALSE}
+
+```r
 iso.d <- iso$HARV[grep("2018-06-25", iso$HARV$timeBgn, fixed=T),]
 iso.d <- iso.d[-which(is.na(as.numeric(iso.d$verticalPosition))),]
 ```
@@ -665,12 +686,14 @@ iso.d <- iso.d[-which(is.na(as.numeric(iso.d$verticalPosition))),]
 the profiles.
 
 
-```{r, eval = FALSE}
+
+```r
 library(ggplot2)
 ```
 
 
-```{r, eval = FALSE}
+
+```r
 g <- ggplot(iso.d, aes(y=verticalPosition)) + 
   geom_path(aes(x=data.co2Stor.rtioMoleDryCo2.mean, 
                 group=timeBgn, col=timeBgn)) + 
@@ -683,13 +706,12 @@ g
     “Removed 2 rows containing missing values (geom_path).”
 
 
-```{r,echo=FALSE}
-knitr::include_graphics('./images/eddy_intro_50_1.png')
-```
+<img src="./images/eddy_intro_50_1.png" width="420" />
 
 
 
-```{r, eval = FALSE}
+
+```r
 g <- ggplot(iso.d, aes(y=verticalPosition)) + 
   geom_path(aes(x=data.isoCo2.dlta13CCo2.mean, 
                 group=timeBgn, col=timeBgn)) + 
@@ -702,9 +724,7 @@ g
     “Removed 55 rows containing missing values (geom_path).”
     
 
-```{r,echo=FALSE}
-knitr::include_graphics('./images/eddy_intro_51_1.png')
-```
+<img src="./images/eddy_intro_51_1.png" width="420" />
 
 
 The legends are omitted for space, see if you can work out the times 
@@ -715,9 +735,8 @@ of day the different colors represent.
 
 Install and load packages
 
-```{r, eval = FALSE}
 
-
+```r
 #Install NEONprocIS.base from GitHub, this package is a dependency of eddy4R.base
 
 devtools::install_github(repo="NEONScience/NEON-IS-data-processing",
@@ -748,13 +767,13 @@ lapply(packReq, function(x) {
     install.packages(x)
     library(x, character.only = TRUE)
   }})
-  
 ```
 
 
 Select your site of interest from the list of NEON sites below.  
 
-```{r, eval = FALSE}
+
+```r
 site <- "KONZ"
   
   #"BARR","CLBJ","MLBS","DSNY","NIWO","ORNL","OSBS",
@@ -765,12 +784,12 @@ site <- "KONZ"
   #"SRER","ONAQ","ABBY","WREF","SJER","SOAP","TEAK",
   #"TOOL","BONA","DEJU","HEAL","PUUM"
 }
-
 ```
 
 If you would like to download a set range of dates, define the following paramemters. If these are not defined, it will default to the entire record at the site
 
-```{r, eval = FALSE}
+
+```r
 #define start and end dates, optional, defaults to entire period of site operation. Use %Y-%m-%d format.
 dateBgn <- "2020-03-01"
 dateEnd <- "2020-05-31"
@@ -784,8 +803,8 @@ ver = paste0("v",format(Sys.time(), "%Y%m%dT%H%m"))
 
 Specify Download directory for HDF5 files from the NEON data portal and output directory to save the resulting csv files. Change save paths to where you want the files on your computer. 
 
-``` {r, eval = FALSE}
 
+```r
 #download directory
 DirDnld=tempdir()
 
@@ -795,7 +814,8 @@ DirOutBase <-paste0("~/eddy/data/Ameriflux/",ver)
 
 Specify Data Product number, for the Bundled Eddy-Covariance files, this is DP4.00200.001 
 
-```{r, eval = FALSE}
+
+```r
 #DP number
 dpID <- 'DP4.00200.001'
 ```
@@ -803,7 +823,8 @@ dpID <- 'DP4.00200.001'
 
 Get metadata from Ameriflux Site Info BADM sheets for the site of interest
   
-```{r, eval=FALSE}
+
+```r
   #Grab a list of all Ameriflux sites, containing site ID and site description
   sites_web <- jsonlite::fromJSON("http://ameriflux-data.lbl.gov/AmeriFlux/SiteSearch.svc/SiteList/AmeriFlux")
   
@@ -820,7 +841,8 @@ Get metadata from Ameriflux Site Info BADM sheets for the site of interest
   
   
 Use Ameriflux site IDs to name metadata lists
-```{r, eval=FALSE}
+
+```r
 #use NEON ID as list name
   names(metaSite) <- site 
 #Use Ameriflux site ID as list name  
@@ -829,8 +851,8 @@ Use Ameriflux site IDs to name metadata lists
 
 Check if dateBgn is defined, if not make it the initial operations date "IOCR" of the site
 
-```{r, eval=FALSE}
 
+```r
   if(!exists("dateBgn") || is.na(dateBgn) || is.null(dateBgn)){
     dateBgn <- as.Date(metaSite[[site]]$values$GRP_FLUX_MEASUREMENTS[[1]]$FLUX_MEASUREMENTS_DATE_START, "%Y%m%d")
   } else {
@@ -846,24 +868,28 @@ Check if dateBgn is defined, if not make it the initial operations date "IOCR" o
 ```
 
 Grab the UTC time offset from the Ameriflux API
-```{r, eval=FALSE}
+
+```r
   timeOfstUtc <- as.integer(metaSite[[site]]$values$GRP_UTC_OFFSET[[1]]$UTC_OFFSET)
 ```
 
 Create the date sequence
-```{r, eval=FALSE}
+
+```r
   setDate <- seq(from = as.Date(dateBgn), to = as.Date(dateEnd), by = "month")
-```  
+```
   
 
 Start processing the site time range specified, verify that the site and date range are specified as intended
-```{r, eval=FALSE}
+
+```r
   msg <- paste0("Starting Ameriflux FP standard conversion processing workflow for ", site, " for ", dateBgn, " to ", dateEnd)
   print(msg)
 ```
 
 Create output directory by checking if the download directory exists and create it if not
-```{r, eval=FALSE}
+
+```r
   if(dir.exists(DirDnld) == FALSE) dir.create(DirDnld, recursive = TRUE)
   #Append the site to the base output directory
   DirOut <- paste0(DirOutBase, "/", siteNeon$SITE_ID)
@@ -872,7 +898,8 @@ Create output directory by checking if the download directory exists and create 
 ```
 
 Download and extract data
-```{r, eval = FALSE}
+
+```r
   #Initialize data List
   dataList <- list()
   
@@ -904,30 +931,26 @@ Download and extract data
     }
     return(dataIdx)
   })
-  
-     
-
-    
 ```
 
   
 Add names to list for year/month combinations
   
-```{r, eval = FALSE}
-  
+
+```r
 names(dataList) <- paste0(lubridate::year(setDate),sprintf("%02d",lubridate::month(setDate)))
-                            
 ```
   
   
 Remove NULL elements from list
-```{r, eval = FALSE}
+
+```r
 dataList <- dataList[vapply(dataList, Negate(is.null), NA)]
 ```
 
 Determine tower horizontal & vertical indices
-``` {r, eval=FALSE}
-    
+
+```r
     #Find the tower top level by looking at the vertical index of the turbulent CO2 concentration measurements 
     LvlTowr <- grep(pattern = "_30m", names(dataList[[1]]$dp01$data$co2Turb), value = TRUE)
     LvlTowr <- gsub(x = LvlTowr, pattern = "_30m", replacement = "")
@@ -950,7 +973,8 @@ Determine tower horizontal & vertical indices
 ```
     
 Subset to the Ameriflux variables to convert
-```{r, eval = FALSE}
+
+```r
     dataListFlux <- lapply(names(dataList), function(x) {
       data.frame(
         "TIMESTAMP_START" = as.POSIXlt(dataList[[x]]$dp04$data$fluxCo2$turb$timeBgn, format="%Y-%m-%dT%H:%M:%OSZ", tz = "GMT"),
@@ -1013,14 +1037,16 @@ Subset to the Ameriflux variables to convert
 ```
 
 Combine the monthly data into a single dataframe, remove lists and clean memory
-```{r, eval=FALSE}    
+
+```r
     dataDfFlux <- do.call(rbind.data.frame,dataListFlux)
     rm(list=c("dataListFlux","dataList"))
     gc()
 ```
 
 Regularize timeseries to 30 minutes in case timestamps are missing from NEON files due to processing errors
-``` {r, eval=FALSE}
+
+```r
     timeRglr <- eddy4R.base::def.rglr(timeMeas = as.POSIXlt(dataDfFlux$TIMESTAMP_START), dataMeas = dataDfFlux, BgnRglr = as.POSIXlt(dataDfFlux$TIMESTAMP_START[1]), EndRglr = as.POSIXlt(dataDfFlux$TIMESTAMP_END[length(dataDfFlux$TIMESTAMP_END)]), TzRglr = "UTC", FreqRglr = 1/(60*30))
     
     #Reassign data to data.frame
@@ -1032,8 +1058,8 @@ Regularize timeseries to 30 minutes in case timestamps are missing from NEON fil
 
 Define validation times, and remove this data from the dataset. At NEON sites, validations with a series of gasses of known concentration are run every 23.5 hours. These values are used to correct for measurment drift and are run every 23.5 hours to achive daily resolution while also spreading the impact of lost measurements throughout the day. 
 
-```{r, eval=FALSE}
 
+```r
     #Remove co2Turb and h2oTurb data based off of qfFlow (qfFinl frt00)
     dataDfFlux$FC[(which(dataDfFlux$qfCO2_1_1_1 == 1))] <- NaN
     dataDfFlux$LE[(which(dataDfFlux$qfH2O_1_1_1 == 1))] <- NaN
@@ -1058,17 +1084,18 @@ Define validation times, and remove this data from the dataset. At NEON sites, v
       dataDfFlux[[paste0("CO2_1_",x,"_2")]][(which(dataDfFlux[[paste0("qfCO2_1_",x,"_2")]] == 1))] <<- NaN
       dataDfFlux[[paste0("CO2_1_",x,"_3")]][(which(dataDfFlux[[paste0("qfCO2_1_",x,"_3")]] == 1))] <<- NaN
     })
- 
 ```
 
 Remove quality flagging variables from output
-```{r, eval = FALSE}
+
+```r
     setIdxQf <- grep("qf", names(dataDfFlux))
     dataDfFlux[,setIdxQf] <- NULL
 ```
 
 Set range thresholds
-```{r, eval=FALSE}
+
+```r
     #assign list
     Rng <- list()
     
@@ -1090,7 +1117,8 @@ Set range thresholds
 
     
 Set Max thresholds
-```{r, eval=FALSE}
+
+```r
     Rng$Max <- data.frame(
       "FC" = 100,            #[umol m-2 s-1]
       "SC" = 100,            #[umol m-2 s-1]
@@ -1108,8 +1136,8 @@ Set Max thresholds
 ```
 
 Grab all CO2/H2O columns to apply same thresholds, replace missing values with -9999
-```{r, eval = FALSE}
-    
+
+```r
     nameCO2 <- grep("CO2",names(dataDfFlux),value = TRUE)
     nameH2O <- grep("H2O",names(dataDfFlux),value = TRUE)
     #Apply the CO2/H2O threshold to all variables in HOR_VER_REP
@@ -1130,7 +1158,8 @@ Grab all CO2/H2O columns to apply same thresholds, replace missing values with -
 ```
 
 Write output data to csv
-``` {r, eval = FALSE}
+
+```r
     #Create output filename based off of Ameriflux file naming convention
     nameFileOut <- base::paste0(DirOut,"/",siteNeon$SITE_ID,'_HH_',dataDfFlux$TIMESTAMP_START[1],'_',utils::tail(dataDfFlux$TIMESTAMP_END,n=1),'_flux.csv')
     
@@ -1139,7 +1168,8 @@ Write output data to csv
 ```
 
 Clean up environment
-``` {r, eval=FALSE}
+
+```r
   rm(list="dataDfFlux")
   gc()
 ```

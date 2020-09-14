@@ -54,11 +54,9 @@ Now, data from the NEON project is available through the AmeriFlux data portal. 
 
 With 47 flux towers at terrestrial field sites across the U.S., the NEON program is now the largest single contributor of flux tower data to the AmeriFlux network. NEON field sites are located in 20 ecoclimatic zones across the U.S., representing many distinct ecosystems. Eddy covariance data will be served using the same methods at each site for the entire 30-year life of the Observatory, allowing for unprecedented comparability across both time and space.
 
-## Hands On: Working with NEON Flux Data
+## Hands On: Introduction to working with NEON eddy flux data
 
-### Introduction to working with NEON eddy flux data
-
-## 1. Setup
+### Setup
 
 Start by installing and loading packages and setting options. 
 To work with the NEON flux data, we need the `rhdf5` package, 
@@ -66,14 +64,14 @@ which is hosted on Bioconductor, and requires a different
 installation process than CRAN packages:
 
 
-```R
+```
 install.packages('BiocManager')
 BiocManager::install('rhdf5')
-install.packages('neonUtilities')
 ```
-
-
-```R
+```{r, echo=FALSE}
+library(kableExtra)
+```
+```{r, results=FALSE}
 options(stringsAsFactors=F)
 
 library(neonUtilities)
@@ -112,7 +110,7 @@ zipsByProduct(dpID="DP4.00200.001", package="basic",
     4 files downloaded to /data/filesToStack00200
 
 
-## 2. Data Levels
+### Data Levels
 
 There are five levels of data contained in the eddy flux bundle. For full 
 details, refer to the <a href="http://data.neonscience.org/api/v0/documents/NEON.DOC.004571vA" target="_blank">NEON algorithm document</a>.
@@ -132,7 +130,7 @@ The dp02 and dp03 data are used in storage calculations, and the dp04 data
 include both the storage and turbulent components. Since many users will 
 want to focus on the net flux data, we'll start there.
 
-## 3. Extract Level 4 data (Fluxes!)
+### Extract Level 4 data (Fluxes!)
 
 To extract the Level 4 data from the HDF5 files and merge them into a 
 single table, we'll use the `stackEddy()` function from the `neonUtilities` 
@@ -180,7 +178,8 @@ names(flux)
 	<li>'NIWO'</li>
 	<li>'variables'</li>
 	<li>'objDesc'</li>
-</ol>
+</ol>)
+
 
 
 
@@ -359,7 +358,7 @@ knitr::include_graphics('./images/eddy_intro_22_0.png')
 Note the timing of C uptake; the UTC time zone is clear here, where 
 uptake occurs at times that appear to be during the night.
 
-## 4. Merge flux data with other sensor data
+### Merge flux data with other sensor data
 
 Many of the data sets we would use to interpret and model flux data are 
 measured as part of the NEON project, but are not present in the eddy flux 
@@ -367,7 +366,7 @@ data product bundle. In this section, we'll download PAR data and merge
 them with the flux data; the steps taken here can be applied to any of the 
 NEON instrumented (IS) data products.
 
-### Download PAR data
+#### Download PAR data
 
 To get NEON PAR data, use the `loadByProduct()` function from the 
 `neonUtilities` package. `loadByProduct()` takes the same inputs as 
@@ -414,7 +413,7 @@ the `variables` table. The `PARPAR_30min` table contains a `verticalPosition`
 field. This field indicates the position on the tower, with 10 being the 
 first tower level, and 20, 30, etc going up the tower.
 
-### Join PAR to flux data
+#### Join PAR to flux data
 
 We'll connect PAR data from the tower top to the flux data.
 
@@ -458,7 +457,7 @@ If you're interested in data in the eddy covariance bundle besides the
 net flux data, the rest of this tutorial will guide you through how to 
 get those data out of the bundle.
 
-## 5. Vertical profile data (Level 3)
+### Vertical profile data (Level 3)
 
 The Level 3 (`dp03`) data are the spatially interpolated profiles of 
 the rates of change of CO<sub>2</sub>, H<sub>2</sub>O, and temperature.
@@ -503,7 +502,7 @@ head(prof$NIWO)
 
 
 
-## 6. Un-interpolated vertical profile data (Level 2)
+### Un-interpolated vertical profile data (Level 2)
 
 The Level 2 data are interpolated in time but not in space. They 
 contain the rates of change at the measurement heights.
@@ -553,7 +552,7 @@ Note that here, as in the PAR data, there is a `verticalPosition` field.
 It has the same meaning as in the PAR data, indicating the tower level of 
 the measurement.
 
-## 7. Calibrated raw data (Level 1)
+### Calibrated raw data (Level 1)
 
 Level 1 (`dp01`) data are calibrated, and aggregated in time, but 
 otherwise untransformed. Use Level 1 data for raw gas 

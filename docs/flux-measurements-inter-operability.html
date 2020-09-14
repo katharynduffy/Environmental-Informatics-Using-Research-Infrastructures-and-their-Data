@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Flux Measurements &amp; Inter-Operability | Environmental Informatics Using Research Infrastructures and their Data</title>
+  <meta name="description" content="Course text for NAU INF 550" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Flux Measurements &amp; Inter-Operability | Environmental Informatics Using Research Infrastructures and their Data" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/Users/kdw223/Research/katharynduffy.github.io/images/EcoInfo4.png" />
+  <meta property="og:description" content="Course text for NAU INF 550" />
+  <meta name="github-repo" content="katharynduffy/katharynduffy.github.io" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Flux Measurements &amp; Inter-Operability | Environmental Informatics Using Research Infrastructures and their Data" />
+  
+  <meta name="twitter:description" content="Course text for NAU INF 550" />
+  <meta name="twitter:image" content="/Users/kdw223/Research/katharynduffy.github.io/images/EcoInfo4.png" />
+
+<meta name="author" content="Dr. Katharyn Duffy, Dr. Ben Ruddell" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="phenocam-digital-repeat-photography-networks-methods.html"/>
+<link rel="next" href="frequently-asked-questions.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">INF550: EcoInformatics data collection tools & products, </a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#key-contributors"><i class="fa fa-check"></i>Key Contributors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="pre-course-setup-ecoinformatics-tools.html"><a href="pre-course-setup-ecoinformatics-tools.html"><i class="fa fa-check"></i>Pre-Course Setup: EcoInformatics Tools</a><ul>
+<li class="chapter" data-level="0.1" data-path="pre-course-setup-ecoinformatics-tools.html"><a href="pre-course-setup-ecoinformatics-tools.html#pre-course-skills-setup"><i class="fa fa-check"></i><b>0.1</b> Pre-Course Skills &amp; Setup</a><ul>
+<li class="chapter" data-level="0.1.1" data-path="pre-course-setup-ecoinformatics-tools.html"><a href="pre-course-setup-ecoinformatics-tools.html#installing-or-updating-r"><i class="fa fa-check"></i><b>0.1.1</b> Installing or Updating R</a></li>
+<li class="chapter" data-level="0.1.2" data-path="pre-course-setup-ecoinformatics-tools.html"><a href="pre-course-setup-ecoinformatics-tools.html#windows-rrstudio-setup"><i class="fa fa-check"></i><b>0.1.2</b> Windows R/RStudio Setup</a></li>
+<li class="chapter" data-level="0.1.3" data-path="pre-course-setup-ecoinformatics-tools.html"><a href="pre-course-setup-ecoinformatics-tools.html#mac-rrstudio-setup"><i class="fa fa-check"></i><b>0.1.3</b> Mac R/RStudio Setup</a></li>
+</ul></li>
+<li class="chapter" data-level="0.2" data-path="pre-course-setup-ecoinformatics-tools.html"><a href="pre-course-setup-ecoinformatics-tools.html#linux-rrstudio-setup"><i class="fa fa-check"></i><b>0.2</b> Linux R/RStudio Setup</a><ul>
+<li class="chapter" data-level="0.2.1" data-path="pre-course-setup-ecoinformatics-tools.html"><a href="pre-course-setup-ecoinformatics-tools.html#install-basic-packages-for-this-course"><i class="fa fa-check"></i><b>0.2.1</b> Install basic packages for this course</a></li>
+</ul></li>
+<li class="chapter" data-level="0.3" data-path="pre-course-setup-ecoinformatics-tools.html"><a href="pre-course-setup-ecoinformatics-tools.html#installing-and-setting-up-git-github-on-your-machine"><i class="fa fa-check"></i><b>0.3</b> Installing and Setting up Git &amp; Github on Your Machine</a></li>
+<li class="chapter" data-level="0.4" data-path="pre-course-setup-ecoinformatics-tools.html"><a href="pre-course-setup-ecoinformatics-tools.html#installing-atom"><i class="fa fa-check"></i><b>0.4</b> Installing Atom</a></li>
+<li class="chapter" data-level="0.5" data-path="pre-course-setup-ecoinformatics-tools.html"><a href="pre-course-setup-ecoinformatics-tools.html#linking-rstudio-to-git"><i class="fa fa-check"></i><b>0.5</b> Linking RStudio to Git</a></li>
+<li class="chapter" data-level="0.6" data-path="pre-course-setup-ecoinformatics-tools.html"><a href="pre-course-setup-ecoinformatics-tools.html#how-we-will-be-conducting-this-course"><i class="fa fa-check"></i><b>0.6</b> How we will be Conducting this Course</a></li>
+<li class="chapter" data-level="0.7" data-path="pre-course-setup-ecoinformatics-tools.html"><a href="pre-course-setup-ecoinformatics-tools.html#exercises"><i class="fa fa-check"></i><b>0.7</b> Exercises:</a></li>
+<li class="chapter" data-level="0.8" data-path="pre-course-setup-ecoinformatics-tools.html"><a href="pre-course-setup-ecoinformatics-tools.html#the-framework-of-this-course"><i class="fa fa-check"></i><b>0.8</b> The Framework of this Course</a></li>
+<li class="chapter" data-level="0.9" data-path="pre-course-setup-ecoinformatics-tools.html"><a href="pre-course-setup-ecoinformatics-tools.html#final-course-project-proposed-derived-data-product"><i class="fa fa-check"></i><b>0.9</b> Final Course Project: Proposed Derived Data Product</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html"><i class="fa fa-check"></i><b>1</b> Introduction to NEON &amp; its Data</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#learning-objectives"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#the-neon-project-mission-design"><i class="fa fa-check"></i><b>1.2</b> The NEON Project Mission &amp; Design</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#the-science-and-design-of-neon"><i class="fa fa-check"></i><b>1.3</b> The Science and Design of NEON</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#neons-spatial-design"><i class="fa fa-check"></i><b>1.4</b> NEON’s Spatial Design</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#neon-samples-all-20-eco-regions"><i class="fa fa-check"></i><b>1.4.1</b> NEON Samples All 20 Eco-Regions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#how-neon-collects-data"><i class="fa fa-check"></i><b>1.5</b> How NEON Collects Data</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#specimens-samples"><i class="fa fa-check"></i><b>1.5.1</b> Specimens &amp; Samples</a></li>
+<li class="chapter" data-level="1.5.2" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#airborne-remote-sensing"><i class="fa fa-check"></i><b>1.5.2</b> Airborne Remote Sensing</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#accessing-neon-data"><i class="fa fa-check"></i><b>1.6</b> Accessing NEON Data</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#pathways-to-access-neon-data"><i class="fa fa-check"></i><b>1.6.1</b> Pathways to access NEON Data</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#hands-on-accessing-neon-data-user-tokens"><i class="fa fa-check"></i><b>1.7</b> Hands on: Accessing NEON Data &amp; User Tokens</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#via-the-neon-api-with-your-user-token"><i class="fa fa-check"></i><b>1.7.1</b> Via the NEON API, with your User Token</a></li>
+<li class="chapter" data-level="1.7.2" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#objectives"><i class="fa fa-check"></i><b>1.7.2</b> Objectives</a></li>
+<li class="chapter" data-level="1.7.3" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#things-youll-need-to-complete-this-tutorial"><i class="fa fa-check"></i><b>1.7.3</b> Things You’ll Need To Complete This Tutorial</a></li>
+<li class="chapter" data-level="1.7.4" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#install-r-packages"><i class="fa fa-check"></i><b>1.7.4</b> Install R Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#additional-resources"><i class="fa fa-check"></i><b>1.8</b> Additional Resources</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#get-a-neon-api-token"><i class="fa fa-check"></i><b>1.8.1</b> Get a NEON API Token</a></li>
+<li class="chapter" data-level="1.8.2" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#use-the-api-token-in-neonutilities"><i class="fa fa-check"></i><b>1.8.2</b> Use the API token in neonUtilities</a></li>
+<li class="chapter" data-level="1.8.3" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#token-management-for-open-code"><i class="fa fa-check"></i><b>1.8.3</b> Token management for open code</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#hands-on-neon-tos-data"><i class="fa fa-check"></i><b>1.9</b> Hands on: NEON TOS Data</a><ul>
+<li class="chapter" data-level="1.9.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#pull-in-tree-data-from-neons-tos-and-investigate-relationships"><i class="fa fa-check"></i><b>1.9.1</b> Pull in Tree Data from NEON’s TOS and investigate relationships</a></li>
+</ul></li>
+<li class="chapter" data-level="1.10" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#intro-to-neon-exercises-part-1"><i class="fa fa-check"></i><b>1.10</b> Intro to NEON Exercises Part 1</a><ul>
+<li class="chapter" data-level="1.10.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#computational"><i class="fa fa-check"></i><b>1.10.1</b> Computational</a></li>
+</ul></li>
+<li class="chapter" data-level="1.11" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#part-2-pulling-neon-data-via-the-api"><i class="fa fa-check"></i><b>1.11</b> Part 2: Pulling NEON Data via the API</a><ul>
+<li class="chapter" data-level="1.11.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#objectives-1"><i class="fa fa-check"></i><b>1.11.1</b> Objectives</a></li>
+<li class="chapter" data-level="1.11.2" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#things-youll-need-to-complete-this-section"><i class="fa fa-check"></i><b>1.11.2</b> Things You’ll Need To Complete This Section</a></li>
+</ul></li>
+<li class="chapter" data-level="1.12" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#what-is-an-api"><i class="fa fa-check"></i><b>1.12</b> What is an API?</a><ul>
+<li class="chapter" data-level="1.12.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#anatomy-of-an-api-call"><i class="fa fa-check"></i><b>1.12.1</b> Anatomy of an API call</a></li>
+<li class="chapter" data-level="1.12.2" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#targets"><i class="fa fa-check"></i><b>1.12.2</b> Targets:</a></li>
+<li class="chapter" data-level="1.12.3" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#observational-data-os"><i class="fa fa-check"></i><b>1.12.3</b> Observational data (OS)</a></li>
+<li class="chapter" data-level="1.12.4" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#instrumentation-data-is"><i class="fa fa-check"></i><b>1.12.4</b> Instrumentation data (IS)</a></li>
+<li class="chapter" data-level="1.12.5" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#remote-sensing-data-aop"><i class="fa fa-check"></i><b>1.12.5</b> Remote sensing data (AOP)</a></li>
+<li class="chapter" data-level="1.12.6" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#geolocation-data"><i class="fa fa-check"></i><b>1.12.6</b> Geolocation data</a></li>
+<li class="chapter" data-level="1.12.7" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#querying-a-single-named-location"><i class="fa fa-check"></i><b>1.12.7</b> Querying a single named location</a></li>
+<li class="chapter" data-level="1.12.8" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#taxonomy"><i class="fa fa-check"></i><b>1.12.8</b> Taxonomy</a></li>
+</ul></li>
+<li class="chapter" data-level="1.13" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#stacking-neon-data"><i class="fa fa-check"></i><b>1.13</b> Stacking NEON data</a></li>
+<li class="chapter" data-level="1.14" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#intro-to-neon-exercises-written-questions"><i class="fa fa-check"></i><b>1.14</b> Intro to NEON Exercises: Written Questions</a></li>
+<li class="chapter" data-level="1.15" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#intro-to-neon-exercises-part-2"><i class="fa fa-check"></i><b>1.15</b> Intro to NEON Exercises Part 2</a><ul>
+<li class="chapter" data-level="1.15.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#written"><i class="fa fa-check"></i><b>1.15.1</b> Written</a></li>
+<li class="chapter" data-level="1.15.2" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#neon-coding-lab-part-2"><i class="fa fa-check"></i><b>1.15.2</b> NEON Coding Lab Part 2</a></li>
+</ul></li>
+<li class="chapter" data-level="1.16" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#neon-coding-lab-part-2-1"><i class="fa fa-check"></i><b>1.16</b> NEON Coding Lab Part 2</a></li>
+<li class="chapter" data-level="1.17" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#intro-to-neon-culmination-activity"><i class="fa fa-check"></i><b>1.17</b> Intro to NEON Culmination Activity</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html"><i class="fa fa-check"></i><b>2</b> Introduction to USA-NPN &amp; its Data</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#usa-npn-learning-objectives"><i class="fa fa-check"></i><b>2.1</b> USA-NPN Learning Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#usa-npn-project-mission-design"><i class="fa fa-check"></i><b>2.2</b> USA-NPN Project Mission &amp; Design:</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#vision-mission"><i class="fa fa-check"></i><b>2.3</b> Vision &amp; Mission</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#relevant-documents-background-information"><i class="fa fa-check"></i><b>2.3.1</b> Relevant documents &amp; background information:</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#usa-npns-spatial-design"><i class="fa fa-check"></i><b>2.4</b> USA-NPN’s Spatial design:</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#types-of-usa-npn-data"><i class="fa fa-check"></i><b>2.5</b> Types of USA-NPN Data:</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#observational"><i class="fa fa-check"></i><b>2.5.1</b> Observational</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#status-intensity-data"><i class="fa fa-check"></i><b>2.5.2</b> Status &amp; Intensity Data</a></li>
+<li class="chapter" data-level="2.5.3" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#gridded-raster-data"><i class="fa fa-check"></i><b>2.5.3</b> Gridded Raster Data</a></li>
+<li class="chapter" data-level="2.5.4" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#pheno-forecasts"><i class="fa fa-check"></i><b>2.5.4</b> Pheno-Forecasts</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#how-to-access-usa-npn-data"><i class="fa fa-check"></i><b>2.6</b> How to Access USA-NPN Data:</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#the-usa-npn-landing-page"><i class="fa fa-check"></i><b>2.6.1</b> The USA-NPN Landing page</a></li>
+<li class="chapter" data-level="2.6.2" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#apis"><i class="fa fa-check"></i><b>2.6.2</b> APIs</a></li>
+<li class="chapter" data-level="2.6.3" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#rnpn-package"><i class="fa fa-check"></i><b>2.6.3</b> Rnpn package</a></li>
+<li class="chapter" data-level="2.6.4" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#phenology-observation-portal-for-observational-data"><i class="fa fa-check"></i><b>2.6.4</b> Phenology Observation Portal (for observational data)</a></li>
+<li class="chapter" data-level="2.6.5" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#geospatial-request-builder-for-raster-data-and-image-files"><i class="fa fa-check"></i><b>2.6.5</b> Geospatial Request Builder (for raster data and image files)</a></li>
+<li class="chapter" data-level="2.6.6" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#visualization-tool"><i class="fa fa-check"></i><b>2.6.6</b> Visualization Tool</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#usa-npn-written-questions"><i class="fa fa-check"></i><b>2.7</b> USA-NPN Written Questions</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#hands-on-accessing-usa-npn-data-via-rnpn"><i class="fa fa-check"></i><b>2.8</b> Hands on: Accessing USA-NPN Data via rNPN</a><ul>
+<li class="chapter" data-level="2.8.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#introduction"><i class="fa fa-check"></i><b>2.8.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.8.2" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#accessing-usa-npn-observational-data"><i class="fa fa-check"></i><b>2.8.2</b> Accessing USA-NPN Observational Data</a></li>
+<li class="chapter" data-level="2.8.3" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#status-and-intensity-data"><i class="fa fa-check"></i><b>2.8.3</b> Status and Intensity Data</a></li>
+<li class="chapter" data-level="2.8.4" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#individual-phenometrics"><i class="fa fa-check"></i><b>2.8.4</b> Individual Phenometrics</a></li>
+<li class="chapter" data-level="2.8.5" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#site-phenometrics"><i class="fa fa-check"></i><b>2.8.5</b> Site Phenometrics</a></li>
+<li class="chapter" data-level="2.8.6" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#magnitude-phenometrics"><i class="fa fa-check"></i><b>2.8.6</b> Magnitude Phenometrics</a></li>
+<li class="chapter" data-level="2.8.7" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#usa-npn-geospatial-data"><i class="fa fa-check"></i><b>2.8.7</b> USA-NPN Geospatial Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#accumulated-growing-degree-day-products"><i class="fa fa-check"></i><b>2.9</b> Accumulated Growing Degree Day Products</a></li>
+<li class="chapter" data-level="2.10" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#extended-spring-indices"><i class="fa fa-check"></i><b>2.10</b> Extended Spring Indices</a><ul>
+<li class="chapter" data-level="2.10.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#other-layers"><i class="fa fa-check"></i><b>2.10.1</b> Other Layers</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#putting-it-all-together"><i class="fa fa-check"></i><b>2.11</b> Putting it all together:</a></li>
+<li class="chapter" data-level="2.12" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#combine-point-and-raster-data"><i class="fa fa-check"></i><b>2.12</b> Combine Point and Raster Data</a><ul>
+<li class="chapter" data-level="2.12.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#step-1-get-the-data"><i class="fa fa-check"></i><b>2.12.1</b> Step 1: Get the data</a></li>
+<li class="chapter" data-level="2.12.2" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#step-2-preparing-the-data"><i class="fa fa-check"></i><b>2.12.2</b> Step 2: Preparing the data</a></li>
+<li class="chapter" data-level="2.12.3" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#step-3-define-style-options-and-create-graph"><i class="fa fa-check"></i><b>2.12.3</b> Step 3: Define style options and create graph</a></li>
+</ul></li>
+<li class="chapter" data-level="2.13" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#live-demo-code-with-lee-marsh-of-usa-npn"><i class="fa fa-check"></i><b>2.13</b> Live Demo Code with Lee Marsh of USA-NPN</a><ul>
+<li class="chapter" data-level="2.13.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#basic-utility-functions"><i class="fa fa-check"></i><b>2.13.1</b> Basic Utility Functions</a></li>
+<li class="chapter" data-level="2.13.2" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#download-observational-data"><i class="fa fa-check"></i><b>2.13.2</b> Download Observational Data</a></li>
+<li class="chapter" data-level="2.13.3" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#magnitude-data"><i class="fa fa-check"></i><b>2.13.3</b> Magnitude Data</a></li>
+<li class="chapter" data-level="2.13.4" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#downloading-geospatial-data"><i class="fa fa-check"></i><b>2.13.4</b> Downloading Geospatial Data</a></li>
+<li class="chapter" data-level="2.13.5" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#putting-it-together"><i class="fa fa-check"></i><b>2.13.5</b> Putting it together</a></li>
+<li class="chapter" data-level="2.13.6" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#other-data-sources-e.g.daymet-modis"><i class="fa fa-check"></i><b>2.13.6</b> Other Data Sources, e.g. Daymet, MODIS</a></li>
+</ul></li>
+<li class="chapter" data-level="2.14" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#usa-npn-coding-lab"><i class="fa fa-check"></i><b>2.14</b> USA-NPN Coding Lab</a></li>
+<li class="chapter" data-level="2.15" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#neon-tos-phenology-data-lecture"><i class="fa fa-check"></i><b>2.15</b> NEON TOS Phenology Data Lecture</a></li>
+<li class="chapter" data-level="2.16" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#understanding-observation-biases-and-censoring-in-citizen-science-data"><i class="fa fa-check"></i><b>2.16</b> Understanding Observation Biases and Censoring in Citizen Science Data</a><ul>
+<li class="chapter" data-level="2.16.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#many-existing-modeling-approaches-fail-in-one-or-both-regards."><i class="fa fa-check"></i><b>2.16.1</b> Many existing modeling approaches fail in one (or both) regards.</a></li>
+<li class="chapter" data-level="2.16.2" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#censoring"><i class="fa fa-check"></i><b>2.16.2</b> Censoring</a></li>
+</ul></li>
+<li class="chapter" data-level="2.17" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#so-then-how-can-we-model-censored-data"><i class="fa fa-check"></i><b>2.17</b> So then how can we model censored data?</a></li>
+<li class="chapter" data-level="2.18" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#intro-to-usa-npn-culmination-activity"><i class="fa fa-check"></i><b>2.18</b> <strong>Intro to USA-NPN Culmination Activity</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html"><i class="fa fa-check"></i><b>3</b> PhenoCam: Digital Repeat Photography Networks &amp; Methods</a><ul>
+<li class="chapter" data-level="3.1" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#digital-repeat-photography-networks-learning-objectives"><i class="fa fa-check"></i><b>3.1</b> Digital Repeat Photography Networks Learning Objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#the-phenocam-network-mission-design"><i class="fa fa-check"></i><b>3.2</b> The PhenoCam Network Mission &amp; Design</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="introduction-to-usa-npn-its-data.html"><a href="introduction-to-usa-npn-its-data.html#relevant-documents-background-information"><i class="fa fa-check"></i><b>3.2.1</b> Relevant documents &amp; background information:</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#phenocams-spatial-design"><i class="fa fa-check"></i><b>3.3</b> PhenoCam’s Spatial design:</a></li>
+<li class="chapter" data-level="3.4" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#phenocam-as-a-near-surface-remote-sensing-technique"><i class="fa fa-check"></i><b>3.4</b> PhenoCam as a Near Surface Remote Sensing Technique</a></li>
+<li class="chapter" data-level="3.5" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#how-phenocams-pull-data"><i class="fa fa-check"></i><b>3.5</b> How PhenoCams Pull Data</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#leveraging-camera-near-infrared-nir-capabilities"><i class="fa fa-check"></i><b>3.5.1</b> Leveraging camera near-infrared (NIR) capabilities</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#pulling-data-via-the-phenocamapi-package"><i class="fa fa-check"></i><b>3.6</b> Pulling Data via the <em>phenocamapi</em> Package</a></li>
+<li class="chapter" data-level="3.7" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#exploring-phenocam-metadata"><i class="fa fa-check"></i><b>3.7</b> Exploring PhenoCam metadata</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#remove-null-values"><i class="fa fa-check"></i><b>3.7.1</b> Remove null values</a></li>
+<li class="chapter" data-level="3.7.2" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#filtering-using-attributes"><i class="fa fa-check"></i><b>3.7.2</b> Filtering using attributes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#phenocam-time-series"><i class="fa fa-check"></i><b>3.8</b> PhenoCam time series</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#obtain-rois"><i class="fa fa-check"></i><b>3.8.1</b> Obtain ROIs</a></li>
+<li class="chapter" data-level="3.8.2" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#download-time-series"><i class="fa fa-check"></i><b>3.8.2</b> Download time series</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#download-midday-images"><i class="fa fa-check"></i><b>3.9</b> Download midday images</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#download-midday-images-for-a-given-time-range"><i class="fa fa-check"></i><b>3.9.1</b> Download midday images for a given time range</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#introduction-to-digital-repeat-photography-methods"><i class="fa fa-check"></i><b>3.10</b> Introduction to Digital Repeat Photography Methods</a></li>
+<li class="chapter" data-level="3.11" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#detecting-foggy-images-using-the-hazer-r-package"><i class="fa fa-check"></i><b>3.11</b> Detecting Foggy Images using the ‘hazer’ R Package</a></li>
+<li class="chapter" data-level="3.12" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#extracting-timeseries-from-images-using-the-xroi-r-package"><i class="fa fa-check"></i><b>3.12</b> Extracting Timeseries from Images using the xROI R Package</a><ul>
+<li class="chapter" data-level="3.12.1" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#xroi-design"><i class="fa fa-check"></i><b>3.12.1</b> xROI Design</a></li>
+<li class="chapter" data-level="3.12.2" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#install-xroi"><i class="fa fa-check"></i><b>3.12.2</b> Install xROI</a></li>
+<li class="chapter" data-level="3.12.3" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#launch-xroi"><i class="fa fa-check"></i><b>3.12.3</b> Launch xROI</a></li>
+<li class="chapter" data-level="3.12.4" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#end-xroi"><i class="fa fa-check"></i><b>3.12.4</b> End xROI</a></li>
+<li class="chapter" data-level="3.12.5" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#use-xroi"><i class="fa fa-check"></i><b>3.12.5</b> Use xROI</a></li>
+</ul></li>
+<li class="chapter" data-level="3.13" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#documentation-and-citation"><i class="fa fa-check"></i><b>3.13</b> Documentation and Citation</a></li>
+<li class="chapter" data-level="3.14" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#challenge-use-xroi"><i class="fa fa-check"></i><b>3.14</b> Challenge: Use xROI</a></li>
+<li class="chapter" data-level="3.15" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#digital-repeat-photography-exercises"><i class="fa fa-check"></i><b>3.15</b> Digital Repeat Photography Exercises</a></li>
+<li class="chapter" data-level="3.16" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#the-phenocam-network-mission-design-1"><i class="fa fa-check"></i><b>3.16</b> The PhenoCam Network Mission &amp; Design</a></li>
+<li class="chapter" data-level="3.17" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#pulling-data-via-the-phenocamapi-package-1"><i class="fa fa-check"></i><b>3.17</b> Pulling Data via the <em>phenocamapi</em> Package</a></li>
+<li class="chapter" data-level="3.18" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#exploring-phenocam-metadata-1"><i class="fa fa-check"></i><b>3.18</b> Exploring PhenoCam metadata</a><ul>
+<li class="chapter" data-level="3.18.1" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#remove-null-values-1"><i class="fa fa-check"></i><b>3.18.1</b> Remove null values</a></li>
+<li class="chapter" data-level="3.18.2" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#filtering-using-attributes-1"><i class="fa fa-check"></i><b>3.18.2</b> Filtering using attributes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.19" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#phenocam-time-series-1"><i class="fa fa-check"></i><b>3.19</b> PhenoCam time series</a><ul>
+<li class="chapter" data-level="3.19.1" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#obtain-rois-1"><i class="fa fa-check"></i><b>3.19.1</b> Obtain ROIs</a></li>
+<li class="chapter" data-level="3.19.2" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#download-time-series-1"><i class="fa fa-check"></i><b>3.19.2</b> Download time series</a></li>
+</ul></li>
+<li class="chapter" data-level="3.20" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#download-midday-images-1"><i class="fa fa-check"></i><b>3.20</b> Download midday images</a><ul>
+<li class="chapter" data-level="3.20.1" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#download-midday-images-for-a-given-time-range-1"><i class="fa fa-check"></i><b>3.20.1</b> Download midday images for a given time range</a></li>
+<li class="chapter" data-level="3.20.2" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#digital-repeat-photography-computational"><i class="fa fa-check"></i><b>3.20.2</b> Digital Repeat Photography Computational</a></li>
+<li class="chapter" data-level="3.20.3" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#threshold-values"><i class="fa fa-check"></i><b>3.20.3</b> Threshold values</a></li>
+<li class="chapter" data-level="3.20.4" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#comparing-phenology-across-vegetation-types"><i class="fa fa-check"></i><b>3.20.4</b> Comparing phenology across vegetation types</a></li>
+<li class="chapter" data-level="3.20.5" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#comparing-phenology-of-the-same-plant-function-type-pft-across-climate-space"><i class="fa fa-check"></i><b>3.20.5</b> Comparing phenology of the same plant function type (PFT) across climate space</a></li>
+<li class="chapter" data-level="3.20.6" data-path="phenocam-digital-repeat-photography-networks-methods.html"><a href="phenocam-digital-repeat-photography-networks-methods.html#digital-repeat-photography-written"><i class="fa fa-check"></i><b>3.20.6</b> Digital Repeat Photography Written</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="flux-measurements-inter-operability.html"><a href="flux-measurements-inter-operability.html"><i class="fa fa-check"></i><b>4</b> Flux Measurements &amp; Inter-Operability</a><ul>
+<li class="chapter" data-level="4.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#learning-objectives"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="flux-measurements-inter-operability.html"><a href="flux-measurements-inter-operability.html#eddy-co_variance-data-what-does-it-actually-measure"><i class="fa fa-check"></i><b>4.2</b> Eddy Co_variance Data: What does it actually measure?</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="flux-measurements-inter-operability.html"><a href="flux-measurements-inter-operability.html#example-eddy-site"><i class="fa fa-check"></i><b>4.2.1</b> Example Eddy Site</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="flux-measurements-inter-operability.html"><a href="flux-measurements-inter-operability.html#qaqc-flags"><i class="fa fa-check"></i><b>4.3</b> QA/QC Flags</a></li>
+<li class="chapter" data-level="4.4" data-path="flux-measurements-inter-operability.html"><a href="flux-measurements-inter-operability.html#examples-of-other-flux-networks-ameriflux-fluxnet"><i class="fa fa-check"></i><b>4.4</b> Examples of Other Flux Networks: AMERIFLUX &amp; FLUXNET</a></li>
+<li class="chapter" data-level="4.5" data-path="flux-measurements-inter-operability.html"><a href="flux-measurements-inter-operability.html#the-power-of-networked-ecology-bridging-to-ameriflux-and-beyond"><i class="fa fa-check"></i><b>4.5</b> The Power of Networked Ecology: Bridging to AMERIFLUX and Beyond</a></li>
+<li class="chapter" data-level="4.6" data-path="flux-measurements-inter-operability.html"><a href="flux-measurements-inter-operability.html#hands-on-introduction-to-working-with-neon-eddy-flux-data"><i class="fa fa-check"></i><b>4.6</b> Hands On: Introduction to working with NEON eddy flux data</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="flux-measurements-inter-operability.html"><a href="flux-measurements-inter-operability.html#setup"><i class="fa fa-check"></i><b>4.6.1</b> Setup</a></li>
+<li class="chapter" data-level="4.6.2" data-path="flux-measurements-inter-operability.html"><a href="flux-measurements-inter-operability.html#data-levels"><i class="fa fa-check"></i><b>4.6.2</b> Data Levels</a></li>
+<li class="chapter" data-level="4.6.3" data-path="flux-measurements-inter-operability.html"><a href="flux-measurements-inter-operability.html#extract-level-4-data-fluxes"><i class="fa fa-check"></i><b>4.6.3</b> Extract Level 4 data (Fluxes!)</a></li>
+<li class="chapter" data-level="4.6.4" data-path="flux-measurements-inter-operability.html"><a href="flux-measurements-inter-operability.html#time-stamps"><i class="fa fa-check"></i><b>4.6.4</b> Time stamps</a></li>
+<li class="chapter" data-level="4.6.5" data-path="flux-measurements-inter-operability.html"><a href="flux-measurements-inter-operability.html#merge-flux-data-with-other-sensor-data"><i class="fa fa-check"></i><b>4.6.5</b> Merge flux data with other sensor data</a></li>
+<li class="chapter" data-level="4.6.6" data-path="flux-measurements-inter-operability.html"><a href="flux-measurements-inter-operability.html#vertical-profile-data-level-3"><i class="fa fa-check"></i><b>4.6.6</b> Vertical profile data (Level 3)</a></li>
+<li class="chapter" data-level="4.6.7" data-path="flux-measurements-inter-operability.html"><a href="flux-measurements-inter-operability.html#un-interpolated-vertical-profile-data-level-2"><i class="fa fa-check"></i><b>4.6.7</b> Un-interpolated vertical profile data (Level 2)</a></li>
+<li class="chapter" data-level="4.6.8" data-path="flux-measurements-inter-operability.html"><a href="flux-measurements-inter-operability.html#calibrated-raw-data-level-1"><i class="fa fa-check"></i><b>4.6.8</b> Calibrated raw data (Level 1)</a></li>
+<li class="chapter" data-level="4.6.9" data-path="flux-measurements-inter-operability.html"><a href="flux-measurements-inter-operability.html#convert-neon-flux-data-variables-to-ameriflux-fp-standard"><i class="fa fa-check"></i><b>4.6.9</b> Convert NEON flux data variables to AmeriFlux FP standard</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="pre-course-setup-ecoinformatics-tools.html"><a href="pre-course-setup-ecoinformatics-tools.html#exercises"><i class="fa fa-check"></i><b>4.7</b> Exercises</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#computational"><i class="fa fa-check"></i><b>4.7.1</b> Computational</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html"><i class="fa fa-check"></i>Frequently Asked Questions:</a><ul>
+<li class="chapter" data-level="4.8" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#where-can-i-find-due-dates-for-assignments"><i class="fa fa-check"></i><b>4.8</b> Where can I find due dates for assignments?</a></li>
+<li class="chapter" data-level="4.9" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#how-do-i-submit-assignments"><i class="fa fa-check"></i><b>4.9</b> How do I submit assignments?</a></li>
+<li class="chapter" data-level="4.10" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#do-i-still-have-to-submit-written-exercises-as-.rmd-and-.pdf"><i class="fa fa-check"></i><b>4.10</b> Do I still have to submit written exercises as .Rmd and .pdf?</a></li>
+<li class="chapter" data-level="4.11" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#whats-better-for-code-conciseness-or-readability"><i class="fa fa-check"></i><b>4.11</b> What’s better for code, conciseness or readability?</a></li>
+<li class="chapter" data-level="4.12" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#how-find-i-find-resources-to-navigate-the-neon-data-portal"><i class="fa fa-check"></i><b>4.12</b> How find I find resources to navigate the NEON Data Portal?</a></li>
+<li class="chapter" data-level="4.13" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#how-can-i-best-prepare-for-class-and-succeed"><i class="fa fa-check"></i><b>4.13</b> How can I best prepare for class and succeed?</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/katharynduffy/katharynduffy.github.io" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Environmental Informatics Using Research Infrastructures and their Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="flux-measurements-inter-operability" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Flux Measurements &amp; Inter-Operability</h1>
+<blockquote>
+<p>Estimated Time: 3 hours</p>
+</blockquote>
+<div id="ds-challenge" markdown="1">
+
+
+<div id="ds-challenge" markdown="1">
+<p><strong>Course participants</strong>: As you review this information, please
+consider the final course project
+that you will work on at the over this semester. At the end of this section, you will
+document an initial research question or idea and associated data needed to
+address that question, that you may want to explore while pursuing this course.</p>
+<div id="learning-objectives" class="section level2">
+<h2><span class="header-section-number">4.1</span> Learning Objectives</h2>
+<p>At the end of this activity, you will be able to:</p>
+<p><em>These should align with the labs and written questions that we ask</em></p>
+</div>
+<div id="eddy-co_variance-data-what-does-it-actually-measure" class="section level2">
+<h2><span class="header-section-number">4.2</span> Eddy Co_variance Data: What does it actually measure?</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CR4Anc8Mkas" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<div id="example-eddy-site" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Example Eddy Site</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XrxZy7Dp4ko" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+</div>
+<div id="qaqc-flags" class="section level2">
+<h2><span class="header-section-number">4.3</span> QA/QC Flags</h2>
+</div>
+<div id="examples-of-other-flux-networks-ameriflux-fluxnet" class="section level2">
+<h2><span class="header-section-number">4.4</span> Examples of Other Flux Networks: AMERIFLUX &amp; FLUXNET</h2>
+<p>AmeriFlux is a <a href="">network of PI-managed sites</a> measuring ecosystem CO2, water, and energy fluxes in <a href="https://ameriflux.lbl.gov/sites/site-search/#filter-type=all&amp;has-data=All&amp;site_id=">North, Central and South America</a>. It was established to connect research on field sites representing major climate and ecological biomes, including tundra, grasslands, savanna, crops, and conifer, deciduous, and tropical forests. As a grassroots, investigator-driven network, the AmeriFlux community has tailored instrumentation to suit each unique ecosystem. This “coalition of the willing” is diverse in its interests, use of technologies and collaborative approaches. As a result, the AmeriFlux Network continually pioneers new ground.</p>
+<p>The network was launched in 1996, after an international workshop on flux measurements in La Thuile, Italy, in 1995, where some of the first year-long flux measurements were presented. Early support for the network came from many sources, including the U.S. Department of Energy’s Terrestrial Carbon Program, the DOE’s National Institute of Global Environmental Change (NIGEC), NASA, NOAA and the US Forest Service. The network grew from about 15 sites in 1997 to more than 110 active sites registered today. Sixty-one other sites, now inactive, have flux data stored in the network’s database. In 2012, the U.S. DOE established the AmeriFlux Management Project (AMP) at Lawrence Berkeley National Laboratory (LBNL) to support the broad AmeriFlux community and the AmeriFlux sites.</p>
+<p><a href="https://ameriflux.lbl.gov/about/network-at-a-glance/">View the AMERIFLUX Network-at-a-Glance</a></p>
+<p>AmeriFlux is now one of the DOE Office of Biological and Environmental Research’s (BER) best-known and most highly regarded brands in climate and ecological research. AmeriFlux datasets, and the understanding derived from them, provide crucial linkages between terrestrial ecosystem processes and climate-relevant responses at landscape, regional, and continental scales.</p>
+</div>
+<div id="the-power-of-networked-ecology-bridging-to-ameriflux-and-beyond" class="section level2">
+<h2><span class="header-section-number">4.5</span> The Power of Networked Ecology: Bridging to AMERIFLUX and Beyond</h2>
+<p>Given that <a href="https://ameriflux.lbl.gov/">AmeriFlux</a> has been collecting and coordinating eddy covariance data across the Americas since 1996. The network provides a common platform for data sharing and collaboration for organizations and individual private investigators collecting flux tower data. There are now &gt;470 registered flux tower sites in North, Central, and South America in the AmeriFlux network, many operated by individual researchers or universities. The towers collect eddy covariance data across a broad range of climate zones and ecosystem types, from Chile to Alaska and everywhere in between.</p>
+<p>Now, data from the NEON project is available through the AmeriFlux data portal. The NEON team has formatted data from the NEON flux towers to make it fully compatible with AmeriFlux data. This allows researchers to view, download and analyze data from the NEON flux towers alongside data from all of the other flux towers in the AmeriFlux network.</p>
+<p>With 47 flux towers at terrestrial field sites across the U.S., the NEON program is now the largest single contributor of flux tower data to the AmeriFlux network. NEON field sites are located in 20 ecoclimatic zones across the U.S., representing many distinct ecosystems. Eddy covariance data will be served using the same methods at each site for the entire 30-year life of the Observatory, allowing for unprecedented comparability across both time and space.</p>
+</div>
+<div id="hands-on-introduction-to-working-with-neon-eddy-flux-data" class="section level2">
+<h2><span class="header-section-number">4.6</span> Hands On: Introduction to working with NEON eddy flux data</h2>
+<div id="setup" class="section level3">
+<h3><span class="header-section-number">4.6.1</span> Setup</h3>
+<p>Start by installing and loading packages and setting options.
+To work with the NEON flux data, we need the <code>rhdf5</code> package,
+which is hosted on Bioconductor, and requires a different
+installation process than CRAN packages:</p>
+<pre><code>install.packages(&#39;BiocManager&#39;)
+BiocManager::install(&#39;rhdf5&#39;)</code></pre>
+<pre><code>## Warning: package &#39;kableExtra&#39; was built under R version 3.6.2</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">stringsAsFactors=</span>F)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">library</span>(neonUtilities)</a></code></pre></div>
+<pre><code>## Warning: package &#39;neonUtilities&#39; was built under R version 3.6.2</code></pre>
+<p>Use the <code>zipsByProduct()</code> function from the <code>neonUtilities</code> package to
+download flux data from two sites and two months. The transformations
+and functions below will work on any time range and site(s), but two
+sites and two months allows us to see all the available functionality
+while minimizing download size.</p>
+<p>Inputs to the <code>zipsByProduct()</code> function:</p>
+<ul>
+<li><code>dpID</code>: DP4.00200.001, the bundled eddy covariance product</li>
+<li><code>package</code>: basic (the expanded package is not covered in this tutorial)</li>
+<li><code>site</code>: NIWO = Niwot Ridge and HARV = Harvard Forest</li>
+<li><code>startdate</code>: 2018-06 (both dates are inclusive)</li>
+<li><code>enddate</code>: 2018-07 (both dates are inclusive)</li>
+<li><code>savepath</code>: modify this to something logical on your machine</li>
+<li><code>check.size</code>: T if you want to see file size before downloading, otherwise F</li>
+</ul>
+<p>The download may take a while, especially if you’re on a slow network.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">zipsByProduct</span>(<span class="dt">dpID=</span><span class="st">&quot;DP4.00200.001&quot;</span>, <span class="dt">package=</span><span class="st">&quot;basic&quot;</span>, </a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">              <span class="dt">site=</span><span class="kw">c</span>(<span class="st">&quot;NIWO&quot;</span>, <span class="st">&quot;HARV&quot;</span>), </a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">              <span class="dt">startdate=</span><span class="st">&quot;2018-06&quot;</span>, <span class="dt">enddate=</span><span class="st">&quot;2018-07&quot;</span>,</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">              <span class="dt">savepath=</span><span class="st">&quot;/data&quot;</span>, </a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">              <span class="dt">check.size=</span>F)</a></code></pre></div>
+<pre><code>Downloading files totaling approximately 313.289221 MB
+Downloading 4 files
+  |======================================================================| 100%
+4 files downloaded to /data/filesToStack00200</code></pre>
+</div>
+<div id="data-levels" class="section level3">
+<h3><span class="header-section-number">4.6.2</span> Data Levels</h3>
+<p>There are five levels of data contained in the eddy flux bundle. For full
+details, refer to the <a href="http://data.neonscience.org/api/v0/documents/NEON.DOC.004571vA" target="_blank">NEON algorithm document</a>.</p>
+<p>Briefly, the data levels are:</p>
+<ul>
+<li>Level 0’ (dp0p): Calibrated raw observations</li>
+<li>Level 1 (dp01): Time-aggregated observations, e.g. 30-minute mean gas concentrations</li>
+<li>Level 2 (dp02): Time-interpolated data, e.g. rate of change of a gas concentration</li>
+<li>Level 3 (dp03): Spatially interpolated data, i.e. vertical profiles</li>
+<li>Level 4 (dp04): Fluxes</li>
+</ul>
+<p>The dp0p data are available in the expanded data package and are beyond
+the scope of this tutorial.</p>
+<p>The dp02 and dp03 data are used in storage calculations, and the dp04 data
+include both the storage and turbulent components. Since many users will
+want to focus on the net flux data, we’ll start there.</p>
+</div>
+<div id="extract-level-4-data-fluxes" class="section level3">
+<h3><span class="header-section-number">4.6.3</span> Extract Level 4 data (Fluxes!)</h3>
+<p>To extract the Level 4 data from the HDF5 files and merge them into a
+single table, we’ll use the <code>stackEddy()</code> function from the <code>neonUtilities</code>
+package.</p>
+<p><code>stackEddy()</code> requires two inputs:</p>
+<ul>
+<li><code>filepath</code>: Path to a file or folder, which can be any one of:
+<ol style="list-style-type: decimal">
+<li>A zip file of eddy flux data downloaded from the NEON data portal</li>
+<li>A folder of eddy flux data downloaded by the <code>zipsByProduct()</code> function</li>
+<li>The folder of files resulting from unzipping either of 1 or 2</li>
+<li>A single HDF5 file of NEON eddy flux data</li>
+</ol></li>
+<li><code>level</code>: dp01-4</li>
+</ul>
+<p>Input the filepath you downloaded to using <code>zipsByProduct()</code> earlier,
+including the <code>filestoStack00200</code> folder created by the function, and
+<code>dp04</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">flux &lt;-<span class="st"> </span><span class="kw">stackEddy</span>(<span class="dt">filepath=</span><span class="st">&quot;/data/filesToStack00200/&quot;</span>,</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">                 <span class="dt">level=</span><span class="st">&quot;dp04&quot;</span>)</a></code></pre></div>
+<pre><code>Extracting data
+  |======================================================================| 100%
+Stacking data tables by month
+  |======================================================================| 100%
+Joining data variables
+  |======================================================================| 100%</code></pre>
+<p>We now have an object called <code>flux</code>. It’s a named list containing four
+tables: one table for each site’s data, and <code>variables</code> and <code>objDesc</code>
+tables.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">names</span>(flux)</a></code></pre></div>
+<ol class="list-inline">
+<pre><code>&lt;li&gt;&#39;HARV&#39;&lt;/li&gt;
+&lt;li&gt;&#39;NIWO&#39;&lt;/li&gt;
+&lt;li&gt;&#39;variables&#39;&lt;/li&gt;
+&lt;li&gt;&#39;objDesc&#39;&lt;/li&gt;</code></pre>
+</ol>
+<p>)</p>
+<p>Let’s look at the contents of one of the site data files:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">head</span>(flux<span class="op">$</span>NIWO)</a></code></pre></div>
+<table>
+<caption>
+A data.frame: 6 × 26
+</caption>
+<thead>
+<pre><code>&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th scope=col&gt;timeBgn&lt;/th&gt;&lt;th scope=col&gt;timeEnd&lt;/th&gt;&lt;th scope=col&gt;data.fluxCo2.nsae.flux&lt;/th&gt;&lt;th scope=col&gt;data.fluxCo2.stor.flux&lt;/th&gt;&lt;th scope=col&gt;data.fluxCo2.turb.flux&lt;/th&gt;&lt;th scope=col&gt;data.fluxH2o.nsae.flux&lt;/th&gt;&lt;th scope=col&gt;data.fluxH2o.stor.flux&lt;/th&gt;&lt;th scope=col&gt;data.fluxH2o.turb.flux&lt;/th&gt;&lt;th scope=col&gt;data.fluxMome.turb.veloFric&lt;/th&gt;&lt;th scope=col&gt;data.fluxTemp.nsae.flux&lt;/th&gt;&lt;th scope=col&gt;⋯&lt;/th&gt;&lt;th scope=col&gt;data.foot.stat.veloFric&lt;/th&gt;&lt;th scope=col&gt;data.foot.stat.distZaxsMeasDisp&lt;/th&gt;&lt;th scope=col&gt;data.foot.stat.distZaxsRgh&lt;/th&gt;&lt;th scope=col&gt;data.foot.stat.distZaxsAbl&lt;/th&gt;&lt;th scope=col&gt;data.foot.stat.distXaxs90&lt;/th&gt;&lt;th scope=col&gt;data.foot.stat.distXaxsMax&lt;/th&gt;&lt;th scope=col&gt;data.foot.stat.distYaxs90&lt;/th&gt;&lt;th scope=col&gt;qfqm.fluxCo2.stor.qfFinl&lt;/th&gt;&lt;th scope=col&gt;qfqm.fluxH2o.stor.qfFinl&lt;/th&gt;&lt;th scope=col&gt;qfqm.fluxTemp.stor.qfFinl&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;⋯&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;int&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;int&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;int&amp;gt;&lt;/th&gt;&lt;/tr&gt;</code></pre>
+</thead>
+<tbody>
+<pre><code>&lt;tr&gt;&lt;th scope=row&gt;1&lt;/th&gt;&lt;td&gt;2018-06-01T00:00:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T00:29:59.000Z&lt;/td&gt;&lt;td&gt;0.1111935&lt;/td&gt;&lt;td&gt;-0.06191186&lt;/td&gt;&lt;td&gt;0.1731053&lt;/td&gt;&lt;td&gt;19.401824&lt;/td&gt;&lt;td&gt; 3.2511265&lt;/td&gt;&lt;td&gt;16.150697&lt;/td&gt;&lt;td&gt;0.19707045&lt;/td&gt;&lt;td&gt;  4.1712006&lt;/td&gt;&lt;td&gt;⋯&lt;/td&gt;&lt;td&gt;0.2&lt;/td&gt;&lt;td&gt;8.34&lt;/td&gt;&lt;td&gt;0.03221479&lt;/td&gt;&lt;td&gt;1000&lt;/td&gt;&lt;td&gt;333.60&lt;/td&gt;&lt;td&gt;133.44&lt;/td&gt;&lt;td&gt;25.02&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;2&lt;/th&gt;&lt;td&gt;2018-06-01T00:30:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T00:59:59.000Z&lt;/td&gt;&lt;td&gt;0.9328922&lt;/td&gt;&lt;td&gt; 0.08534117&lt;/td&gt;&lt;td&gt;0.8475510&lt;/td&gt;&lt;td&gt;10.444936&lt;/td&gt;&lt;td&gt;-1.1768333&lt;/td&gt;&lt;td&gt;11.621770&lt;/td&gt;&lt;td&gt;0.19699723&lt;/td&gt;&lt;td&gt; -0.9163691&lt;/td&gt;&lt;td&gt;⋯&lt;/td&gt;&lt;td&gt;0.2&lt;/td&gt;&lt;td&gt;8.34&lt;/td&gt;&lt;td&gt;0.33007082&lt;/td&gt;&lt;td&gt;1000&lt;/td&gt;&lt;td&gt;258.54&lt;/td&gt;&lt;td&gt;108.42&lt;/td&gt;&lt;td&gt;50.04&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;3&lt;/th&gt;&lt;td&gt;2018-06-01T01:00:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T01:29:59.000Z&lt;/td&gt;&lt;td&gt;0.4673682&lt;/td&gt;&lt;td&gt; 0.02177216&lt;/td&gt;&lt;td&gt;0.4455960&lt;/td&gt;&lt;td&gt; 5.140617&lt;/td&gt;&lt;td&gt;-4.3112673&lt;/td&gt;&lt;td&gt; 9.451884&lt;/td&gt;&lt;td&gt;0.06518208&lt;/td&gt;&lt;td&gt; -2.9814957&lt;/td&gt;&lt;td&gt;⋯&lt;/td&gt;&lt;td&gt;0.2&lt;/td&gt;&lt;td&gt;8.34&lt;/td&gt;&lt;td&gt;0.12876068&lt;/td&gt;&lt;td&gt;1000&lt;/td&gt;&lt;td&gt;308.58&lt;/td&gt;&lt;td&gt;125.10&lt;/td&gt;&lt;td&gt;58.38&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;4&lt;/th&gt;&lt;td&gt;2018-06-01T01:30:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T01:59:59.000Z&lt;/td&gt;&lt;td&gt;0.7263614&lt;/td&gt;&lt;td&gt; 0.24944366&lt;/td&gt;&lt;td&gt;0.4769178&lt;/td&gt;&lt;td&gt; 9.017467&lt;/td&gt;&lt;td&gt; 0.1980776&lt;/td&gt;&lt;td&gt; 8.819389&lt;/td&gt;&lt;td&gt;0.12964000&lt;/td&gt;&lt;td&gt;-13.3556222&lt;/td&gt;&lt;td&gt;⋯&lt;/td&gt;&lt;td&gt;0.2&lt;/td&gt;&lt;td&gt;8.34&lt;/td&gt;&lt;td&gt;0.83400000&lt;/td&gt;&lt;td&gt;1000&lt;/td&gt;&lt;td&gt;208.50&lt;/td&gt;&lt;td&gt; 83.40&lt;/td&gt;&lt;td&gt;75.06&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;5&lt;/th&gt;&lt;td&gt;2018-06-01T02:00:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T02:29:59.000Z&lt;/td&gt;&lt;td&gt;0.4740572&lt;/td&gt;&lt;td&gt; 0.22524363&lt;/td&gt;&lt;td&gt;0.2488136&lt;/td&gt;&lt;td&gt; 3.180386&lt;/td&gt;&lt;td&gt; 0.1316297&lt;/td&gt;&lt;td&gt; 3.048756&lt;/td&gt;&lt;td&gt;0.17460706&lt;/td&gt;&lt;td&gt; -5.3406503&lt;/td&gt;&lt;td&gt;⋯&lt;/td&gt;&lt;td&gt;0.2&lt;/td&gt;&lt;td&gt;8.34&lt;/td&gt;&lt;td&gt;0.83400000&lt;/td&gt;&lt;td&gt;1000&lt;/td&gt;&lt;td&gt;208.50&lt;/td&gt;&lt;td&gt; 83.40&lt;/td&gt;&lt;td&gt;66.72&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;6&lt;/th&gt;&lt;td&gt;2018-06-01T02:30:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T02:59:59.000Z&lt;/td&gt;&lt;td&gt;0.8807022&lt;/td&gt;&lt;td&gt; 0.07078007&lt;/td&gt;&lt;td&gt;0.8099221&lt;/td&gt;&lt;td&gt; 4.398761&lt;/td&gt;&lt;td&gt;-0.2989443&lt;/td&gt;&lt;td&gt; 4.697706&lt;/td&gt;&lt;td&gt;0.10477970&lt;/td&gt;&lt;td&gt; -7.2739206&lt;/td&gt;&lt;td&gt;⋯&lt;/td&gt;&lt;td&gt;0.2&lt;/td&gt;&lt;td&gt;8.34&lt;/td&gt;&lt;td&gt;0.83400000&lt;/td&gt;&lt;td&gt;1000&lt;/td&gt;&lt;td&gt;208.50&lt;/td&gt;&lt;td&gt; 83.40&lt;/td&gt;&lt;td&gt;41.70&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;</code></pre>
+</tbody>
+</table>
+<p>The <code>variables</code> and <code>objDesc</code> tables can help you interpret the column
+headers in the data table. The <code>objDesc</code> table contains definitions for
+many of the terms used in the eddy flux data product, but it isn’t
+complete. To get the terms of interest, we’ll break up the column headers
+into individual terms and look for them in the <code>objDesc</code> table:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">term &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">strsplit</span>(<span class="kw">names</span>(flux<span class="op">$</span>NIWO), <span class="dt">split=</span><span class="st">&quot;.&quot;</span>, <span class="dt">fixed=</span>T))</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">flux<span class="op">$</span>objDesc[<span class="kw">which</span>(flux<span class="op">$</span>objDesc<span class="op">$</span>Object <span class="op">%in%</span><span class="st"> </span>term),]</a></code></pre></div>
+<table>
+<caption>
+A data.frame: 6 × 2
+</caption>
+<thead>
+<pre><code>&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th scope=col&gt;Object&lt;/th&gt;&lt;th scope=col&gt;Description&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;/tr&gt;</code></pre>
+</thead>
+<tbody>
+<pre><code>&lt;tr&gt;&lt;th scope=row&gt;138&lt;/th&gt;&lt;td&gt;angZaxsErth&lt;/td&gt;&lt;td&gt;Wind direction                                                                                                 &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;171&lt;/th&gt;&lt;td&gt;data       &lt;/td&gt;&lt;td&gt;Represents data fields                                                                                         &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;343&lt;/th&gt;&lt;td&gt;qfFinl     &lt;/td&gt;&lt;td&gt;The final quality flag indicating if the data are valid for the given aggregation period (1=fail, 0=pass)      &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;420&lt;/th&gt;&lt;td&gt;qfqm       &lt;/td&gt;&lt;td&gt;Quality flag and quality metrics, represents quality flags and quality metrics that accompany the provided data&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;604&lt;/th&gt;&lt;td&gt;timeBgn    &lt;/td&gt;&lt;td&gt;The beginning time of the aggregation period                                                                   &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;605&lt;/th&gt;&lt;td&gt;timeEnd    &lt;/td&gt;&lt;td&gt;The end time of the aggregation period                                                                         &lt;/td&gt;&lt;/tr&gt;</code></pre>
+</tbody>
+</table>
+<p>For the terms that aren’t captured here, <code>fluxCo2</code>, <code>fluxH2o</code>, and <code>fluxTemp</code>
+are self-explanatory. The flux components are</p>
+<ul>
+<li><code>turb</code>: Turbulent flux</li>
+<li><code>stor</code>: Storage</li>
+<li><code>nsae</code>: Net surface-atmosphere exchange</li>
+</ul>
+<p>The <code>variables</code> table contains the units for each field:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">flux<span class="op">$</span>variables</a></code></pre></div>
+<table>
+<caption>
+A data.frame: 24 × 5
+</caption>
+<thead>
+<pre><code>&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th scope=col&gt;category&lt;/th&gt;&lt;th scope=col&gt;system&lt;/th&gt;&lt;th scope=col&gt;variable&lt;/th&gt;&lt;th scope=col&gt;stat&lt;/th&gt;&lt;th scope=col&gt;units&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;/tr&gt;</code></pre>
+</thead>
+<tbody>
+<pre><code>&lt;tr&gt;&lt;th scope=row&gt;1&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;fluxCo2 &lt;/td&gt;&lt;td&gt;nsae&lt;/td&gt;&lt;td&gt;                &lt;/td&gt;&lt;td&gt;umolCo2 m-2 s-1&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;2&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;fluxCo2 &lt;/td&gt;&lt;td&gt;stor&lt;/td&gt;&lt;td&gt;                &lt;/td&gt;&lt;td&gt;umolCo2 m-2 s-1&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;3&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;fluxCo2 &lt;/td&gt;&lt;td&gt;turb&lt;/td&gt;&lt;td&gt;                &lt;/td&gt;&lt;td&gt;umolCo2 m-2 s-1&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;4&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;fluxH2o &lt;/td&gt;&lt;td&gt;nsae&lt;/td&gt;&lt;td&gt;                &lt;/td&gt;&lt;td&gt;W m-2          &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;5&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;fluxH2o &lt;/td&gt;&lt;td&gt;stor&lt;/td&gt;&lt;td&gt;                &lt;/td&gt;&lt;td&gt;W m-2          &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;6&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;fluxH2o &lt;/td&gt;&lt;td&gt;turb&lt;/td&gt;&lt;td&gt;                &lt;/td&gt;&lt;td&gt;W m-2          &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;7&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;fluxMome&lt;/td&gt;&lt;td&gt;turb&lt;/td&gt;&lt;td&gt;                &lt;/td&gt;&lt;td&gt;m s-1          &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;8&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;fluxTemp&lt;/td&gt;&lt;td&gt;nsae&lt;/td&gt;&lt;td&gt;                &lt;/td&gt;&lt;td&gt;W m-2          &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;9&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;fluxTemp&lt;/td&gt;&lt;td&gt;stor&lt;/td&gt;&lt;td&gt;                &lt;/td&gt;&lt;td&gt;W m-2          &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;10&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;fluxTemp&lt;/td&gt;&lt;td&gt;turb&lt;/td&gt;&lt;td&gt;                &lt;/td&gt;&lt;td&gt;W m-2          &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;11&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;foot    &lt;/td&gt;&lt;td&gt;stat&lt;/td&gt;&lt;td&gt;angZaxsErth     &lt;/td&gt;&lt;td&gt;deg            &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;12&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;foot    &lt;/td&gt;&lt;td&gt;stat&lt;/td&gt;&lt;td&gt;distReso        &lt;/td&gt;&lt;td&gt;m              &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;13&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;foot    &lt;/td&gt;&lt;td&gt;stat&lt;/td&gt;&lt;td&gt;veloYaxsHorSd   &lt;/td&gt;&lt;td&gt;m s-1          &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;14&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;foot    &lt;/td&gt;&lt;td&gt;stat&lt;/td&gt;&lt;td&gt;veloZaxsHorSd   &lt;/td&gt;&lt;td&gt;m s-1          &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;15&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;foot    &lt;/td&gt;&lt;td&gt;stat&lt;/td&gt;&lt;td&gt;veloFric        &lt;/td&gt;&lt;td&gt;m s-1          &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;16&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;foot    &lt;/td&gt;&lt;td&gt;stat&lt;/td&gt;&lt;td&gt;distZaxsMeasDisp&lt;/td&gt;&lt;td&gt;m              &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;17&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;foot    &lt;/td&gt;&lt;td&gt;stat&lt;/td&gt;&lt;td&gt;distZaxsRgh     &lt;/td&gt;&lt;td&gt;m              &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;18&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;foot    &lt;/td&gt;&lt;td&gt;stat&lt;/td&gt;&lt;td&gt;distZaxsAbl     &lt;/td&gt;&lt;td&gt;m              &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;19&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;foot    &lt;/td&gt;&lt;td&gt;stat&lt;/td&gt;&lt;td&gt;distXaxs90      &lt;/td&gt;&lt;td&gt;m              &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;20&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;foot    &lt;/td&gt;&lt;td&gt;stat&lt;/td&gt;&lt;td&gt;distXaxsMax     &lt;/td&gt;&lt;td&gt;m              &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;21&lt;/th&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;foot    &lt;/td&gt;&lt;td&gt;stat&lt;/td&gt;&lt;td&gt;distYaxs90      &lt;/td&gt;&lt;td&gt;m              &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;22&lt;/th&gt;&lt;td&gt;qfqm&lt;/td&gt;&lt;td&gt;fluxCo2 &lt;/td&gt;&lt;td&gt;stor&lt;/td&gt;&lt;td&gt;                &lt;/td&gt;&lt;td&gt;NA             &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;23&lt;/th&gt;&lt;td&gt;qfqm&lt;/td&gt;&lt;td&gt;fluxH2o &lt;/td&gt;&lt;td&gt;stor&lt;/td&gt;&lt;td&gt;                &lt;/td&gt;&lt;td&gt;NA             &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;24&lt;/th&gt;&lt;td&gt;qfqm&lt;/td&gt;&lt;td&gt;fluxTemp&lt;/td&gt;&lt;td&gt;stor&lt;/td&gt;&lt;td&gt;                &lt;/td&gt;&lt;td&gt;NA             &lt;/td&gt;&lt;/tr&gt;</code></pre>
+</tbody>
+</table>
+<p>Let’s plot some data! First, we’ll need to convert the time stamps
+to an R date-time format (right now they’re just character fields).</p>
+</div>
+<div id="time-stamps" class="section level3">
+<h3><span class="header-section-number">4.6.4</span> Time stamps</h3>
+<p>NEON sensor data come with time stamps for both the start and end of
+the averaging period. Depending on the analysis you’re doing, you may
+want to use one or the other; for general plotting, re-formatting, and
+transformations, I prefer to use the start time, because there
+are some small inconsistencies between data products in a few of the
+end time stamps.</p>
+<p>Note that <strong>all</strong> NEON data use UTC time, noted as
+<code>tz=&quot;GMT&quot;</code> in the code below. This is true across NEON’s instrumented,
+observational, and airborne measurements. When working with NEON data,
+it’s best to keep everything in UTC as much as possible, otherwise it’s
+very easy to end up with data in mismatched times, which can cause
+insidious and hard-to-detect problems. Be sure to include the <code>tz</code>
+argument in all the lines of code below - if there is no time zone
+specified, R will default to the local time zone it detects on your
+operating system.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">timeB &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(flux<span class="op">$</span>NIWO<span class="op">$</span>timeBgn, </a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">                    <span class="dt">format=</span><span class="st">&quot;%Y-%m-%dT%H:%M:%S&quot;</span>, </a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">                    <span class="dt">tz=</span><span class="st">&quot;GMT&quot;</span>)</a>
+<a class="sourceLine" id="cb20-4" data-line-number="4">flux<span class="op">$</span>NIWO &lt;-<span class="st"> </span><span class="kw">cbind</span>(timeB, flux<span class="op">$</span>NIWO)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">plot</span>(flux<span class="op">$</span>NIWO<span class="op">$</span>data.fluxCo2.nsae.flux<span class="op">~</span>timeB, </a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">     <span class="dt">pch=</span><span class="st">&quot;.&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Date&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;CO2 flux&quot;</span>,</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3">     <span class="dt">xaxt=</span><span class="st">&quot;n&quot;</span>)</a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="kw">axis.POSIXct</span>(<span class="dv">1</span>, <span class="dt">x=</span>timeB, <span class="dt">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)</a></code></pre></div>
+<p><img src="images/eddy_intro_20_0.png" width="420" /></p>
+<p>Like a lot of flux data, these data have some stray spikes, but there
+is a clear diurnal pattern going into the growing season.</p>
+<p>Let’s trim down to just two days of data to see a few other details.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">plot</span>(flux<span class="op">$</span>NIWO<span class="op">$</span>data.fluxCo2.nsae.flux<span class="op">~</span>timeB, </a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">     <span class="dt">pch=</span><span class="dv">20</span>, <span class="dt">xlab=</span><span class="st">&quot;Date&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;CO2 flux&quot;</span>,</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="kw">as.POSIXct</span>(<span class="st">&quot;2018-07-07&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;GMT&quot;</span>),</a>
+<a class="sourceLine" id="cb22-4" data-line-number="4">            <span class="kw">as.POSIXct</span>(<span class="st">&quot;2018-07-09&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;GMT&quot;</span>)),</a>
+<a class="sourceLine" id="cb22-5" data-line-number="5">    <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">20</span>), <span class="dt">xaxt=</span><span class="st">&quot;n&quot;</span>)</a>
+<a class="sourceLine" id="cb22-6" data-line-number="6"><span class="kw">axis.POSIXct</span>(<span class="dv">1</span>, <span class="dt">x=</span>timeB, <span class="dt">format=</span><span class="st">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)</a></code></pre></div>
+<p><img src="images/eddy_intro_22_0.png" width="420" /></p>
+<p>Note the timing of C uptake; the UTC time zone is clear here, where
+uptake occurs at times that appear to be during the night.</p>
+</div>
+<div id="merge-flux-data-with-other-sensor-data" class="section level3">
+<h3><span class="header-section-number">4.6.5</span> Merge flux data with other sensor data</h3>
+<p>Many of the data sets we would use to interpret and model flux data are
+measured as part of the NEON project, but are not present in the eddy flux
+data product bundle. In this section, we’ll download PAR data and merge
+them with the flux data; the steps taken here can be applied to any of the
+NEON instrumented (IS) data products.</p>
+<div id="download-par-data" class="section level4">
+<h4><span class="header-section-number">4.6.5.1</span> Download PAR data</h4>
+<p>To get NEON PAR data, use the <code>loadByProduct()</code> function from the
+<code>neonUtilities</code> package. <code>loadByProduct()</code> takes the same inputs as
+<code>zipsByProduct()</code>, but it loads the downloaded data directly into the
+current R environment.</p>
+<p>Let’s download PAR data matching the Niwot Ridge flux data. The inputs
+needed are:</p>
+<ul>
+<li><code>dpID</code>: DP1.00024.001</li>
+<li><code>site</code>: NIWO</li>
+<li><code>startdate</code>: 2018-06</li>
+<li><code>enddate</code>: 2018-07</li>
+<li><code>package</code>: basic</li>
+<li><code>avg</code>: 30</li>
+</ul>
+<p>The new input here is <code>avg=30</code>, which downloads only the 30-minute data.
+Since the flux data are at a 30-minute resolution, we can save on
+download time by disregarding the 1-minute data files (which are of course
+30 times larger). The <code>avg</code> input can be left off if you want to download
+all available averaging intervals.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">pr &lt;-<span class="st"> </span><span class="kw">loadByProduct</span>(<span class="st">&quot;DP1.00024.001&quot;</span>, <span class="dt">site=</span><span class="st">&quot;NIWO&quot;</span>, <span class="dt">avg=</span><span class="dv">30</span>,</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">                    <span class="dt">startdate=</span><span class="st">&quot;2018-06&quot;</span>, <span class="dt">enddate=</span><span class="st">&quot;2018-07&quot;</span>,</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3">                    <span class="dt">package=</span><span class="st">&quot;basic&quot;</span>, <span class="dt">check.size=</span>F)</a></code></pre></div>
+<pre><code>Downloading files totaling approximately 1.281789 MB
+Downloading 11 files
+  |======================================================================| 100%
+
+Stacking operation across a single core.
+Stacking table PARPAR_30min
+Merged the most recent publication of sensor position files for each site and saved to /stackedFiles
+Copied the most recent publication of variable definition file to /stackedFiles
+Finished: Stacked 1 data tables and 2 metadata tables!
+Stacking took 0.2982938 secs</code></pre>
+<p><code>pr</code> is another named list, and again, metadata and units can be found in
+the <code>variables</code> table. The <code>PARPAR_30min</code> table contains a <code>verticalPosition</code>
+field. This field indicates the position on the tower, with 10 being the
+first tower level, and 20, 30, etc going up the tower.</p>
+</div>
+<div id="join-par-to-flux-data" class="section level4">
+<h4><span class="header-section-number">4.6.5.2</span> Join PAR to flux data</h4>
+<p>We’ll connect PAR data from the tower top to the flux data.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">pr.top &lt;-<span class="st"> </span>pr<span class="op">$</span>PARPAR_30min[<span class="kw">which</span>(pr<span class="op">$</span>PARPAR_30min<span class="op">$</span>verticalPosition<span class="op">==</span></a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="st">                                </span><span class="kw">max</span>(pr<span class="op">$</span>PARPAR_30min<span class="op">$</span>verticalPosition)),]</a></code></pre></div>
+<p><code>loadByProduct()</code> automatically converts time stamps when it reads the
+data, so here we just need to indicate which time field to use to
+merge the flux and PAR data.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">timeB &lt;-<span class="st"> </span>pr.top<span class="op">$</span>startDateTime</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2">pr.top &lt;-<span class="st"> </span><span class="kw">cbind</span>(timeB, pr.top)</a></code></pre></div>
+<p>And merge the two datasets:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">fx.pr &lt;-<span class="st"> </span><span class="kw">merge</span>(pr.top, flux<span class="op">$</span>NIWO, <span class="dt">by=</span><span class="st">&quot;timeB&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">plot</span>(fx.pr<span class="op">$</span>data.fluxCo2.nsae.flux<span class="op">~</span>fx.pr<span class="op">$</span>PARMean,</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">     <span class="dt">pch=</span><span class="st">&quot;.&quot;</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">20</span>),</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3">     <span class="dt">xlab=</span><span class="st">&quot;PAR&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;CO2 flux&quot;</span>)</a></code></pre></div>
+<p><img src="images/eddy_intro_33_0.png" width="420" /></p>
+<p>If you’re interested in data in the eddy covariance bundle besides the
+net flux data, the rest of this tutorial will guide you through how to
+get those data out of the bundle.</p>
+</div>
+</div>
+<div id="vertical-profile-data-level-3" class="section level3">
+<h3><span class="header-section-number">4.6.6</span> Vertical profile data (Level 3)</h3>
+<p>The Level 3 (<code>dp03</code>) data are the spatially interpolated profiles of
+the rates of change of CO<sub>2</sub>, H<sub>2</sub>O, and temperature.
+Extract the Level 3 data from the HDF5 file using <code>stackEddy()</code> with
+the same syntax as for the Level 4 data.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">prof &lt;-<span class="st"> </span><span class="kw">stackEddy</span>(<span class="dt">filepath=</span><span class="st">&quot;/data/filesToStack00200/&quot;</span>,</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">                 <span class="dt">level=</span><span class="st">&quot;dp03&quot;</span>)</a></code></pre></div>
+<pre><code>Extracting data
+  |======================================================================| 100%
+Stacking data tables by month
+  |======================================================================| 100%
+Joining data variables
+  |======================================================================| 100%</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">head</span>(prof<span class="op">$</span>NIWO)</a></code></pre></div>
+<table>
+<caption>
+A data.frame: 6 × 506
+</caption>
+<thead>
+<pre><code>&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th scope=col&gt;timeBgn&lt;/th&gt;&lt;th scope=col&gt;timeEnd&lt;/th&gt;&lt;th scope=col&gt;data.co2Stor.rateRtioMoleDryCo2.0.1 m&lt;/th&gt;&lt;th scope=col&gt;data.co2Stor.rateRtioMoleDryCo2.0.2 m&lt;/th&gt;&lt;th scope=col&gt;data.co2Stor.rateRtioMoleDryCo2.0.3 m&lt;/th&gt;&lt;th scope=col&gt;data.co2Stor.rateRtioMoleDryCo2.0.4 m&lt;/th&gt;&lt;th scope=col&gt;data.co2Stor.rateRtioMoleDryCo2.0.5 m&lt;/th&gt;&lt;th scope=col&gt;data.co2Stor.rateRtioMoleDryCo2.0.6 m&lt;/th&gt;&lt;th scope=col&gt;data.co2Stor.rateRtioMoleDryCo2.0.7 m&lt;/th&gt;&lt;th scope=col&gt;data.co2Stor.rateRtioMoleDryCo2.0.8 m&lt;/th&gt;&lt;th scope=col&gt;⋯&lt;/th&gt;&lt;th scope=col&gt;qfqm.tempStor.rateTemp.7.5 m&lt;/th&gt;&lt;th scope=col&gt;qfqm.tempStor.rateTemp.7.6 m&lt;/th&gt;&lt;th scope=col&gt;qfqm.tempStor.rateTemp.7.7 m&lt;/th&gt;&lt;th scope=col&gt;qfqm.tempStor.rateTemp.7.8 m&lt;/th&gt;&lt;th scope=col&gt;qfqm.tempStor.rateTemp.7.9 m&lt;/th&gt;&lt;th scope=col&gt;qfqm.tempStor.rateTemp.8 m&lt;/th&gt;&lt;th scope=col&gt;qfqm.tempStor.rateTemp.8.1 m&lt;/th&gt;&lt;th scope=col&gt;qfqm.tempStor.rateTemp.8.2 m&lt;/th&gt;&lt;th scope=col&gt;qfqm.tempStor.rateTemp.8.3 m&lt;/th&gt;&lt;th scope=col&gt;qfqm.tempStor.rateTemp.8.4 m&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;⋯&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;int&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;int&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;int&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;int&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;int&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;int&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;int&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;int&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;int&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;int&amp;gt;&lt;/th&gt;&lt;/tr&gt;</code></pre>
+</thead>
+<tbody>
+<pre><code>&lt;tr&gt;&lt;th scope=row&gt;1&lt;/th&gt;&lt;td&gt;2018-06-01T00:00:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T00:29:59.000Z&lt;/td&gt;&lt;td&gt;-0.0002681938&lt;/td&gt;&lt;td&gt;-0.0002681938&lt;/td&gt;&lt;td&gt;-0.0002681938&lt;/td&gt;&lt;td&gt;-0.0002681938&lt;/td&gt;&lt;td&gt;-0.0002681938&lt;/td&gt;&lt;td&gt;-0.0002681938&lt;/td&gt;&lt;td&gt;-0.0002681938&lt;/td&gt;&lt;td&gt;-0.0002681938&lt;/td&gt;&lt;td&gt;⋯&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;2&lt;/th&gt;&lt;td&gt;2018-06-01T00:30:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T00:59:59.000Z&lt;/td&gt;&lt;td&gt; 0.0004878799&lt;/td&gt;&lt;td&gt; 0.0004878799&lt;/td&gt;&lt;td&gt; 0.0004878799&lt;/td&gt;&lt;td&gt; 0.0004878799&lt;/td&gt;&lt;td&gt; 0.0004878799&lt;/td&gt;&lt;td&gt; 0.0004673503&lt;/td&gt;&lt;td&gt; 0.0004331343&lt;/td&gt;&lt;td&gt; 0.0003989183&lt;/td&gt;&lt;td&gt;⋯&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;3&lt;/th&gt;&lt;td&gt;2018-06-01T01:00:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T01:29:59.000Z&lt;/td&gt;&lt;td&gt; 0.0005085725&lt;/td&gt;&lt;td&gt; 0.0005085725&lt;/td&gt;&lt;td&gt; 0.0005085725&lt;/td&gt;&lt;td&gt; 0.0005085725&lt;/td&gt;&lt;td&gt; 0.0005085725&lt;/td&gt;&lt;td&gt; 0.0005025472&lt;/td&gt;&lt;td&gt; 0.0004925052&lt;/td&gt;&lt;td&gt; 0.0004824631&lt;/td&gt;&lt;td&gt;⋯&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;4&lt;/th&gt;&lt;td&gt;2018-06-01T01:30:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T01:59:59.000Z&lt;/td&gt;&lt;td&gt; 0.0013276966&lt;/td&gt;&lt;td&gt; 0.0013276966&lt;/td&gt;&lt;td&gt; 0.0013276966&lt;/td&gt;&lt;td&gt; 0.0013276966&lt;/td&gt;&lt;td&gt; 0.0013276966&lt;/td&gt;&lt;td&gt; 0.0013735225&lt;/td&gt;&lt;td&gt; 0.0014498989&lt;/td&gt;&lt;td&gt; 0.0015262753&lt;/td&gt;&lt;td&gt;⋯&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;5&lt;/th&gt;&lt;td&gt;2018-06-01T02:00:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T02:29:59.000Z&lt;/td&gt;&lt;td&gt; 0.0007344040&lt;/td&gt;&lt;td&gt; 0.0007344040&lt;/td&gt;&lt;td&gt; 0.0007344040&lt;/td&gt;&lt;td&gt; 0.0007344040&lt;/td&gt;&lt;td&gt; 0.0007344040&lt;/td&gt;&lt;td&gt; 0.0008510161&lt;/td&gt;&lt;td&gt; 0.0010453695&lt;/td&gt;&lt;td&gt; 0.0012397230&lt;/td&gt;&lt;td&gt;⋯&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;6&lt;/th&gt;&lt;td&gt;2018-06-01T02:30:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T02:59:59.000Z&lt;/td&gt;&lt;td&gt;-0.0009449785&lt;/td&gt;&lt;td&gt;-0.0009449785&lt;/td&gt;&lt;td&gt;-0.0009449785&lt;/td&gt;&lt;td&gt;-0.0009449785&lt;/td&gt;&lt;td&gt;-0.0009449785&lt;/td&gt;&lt;td&gt;-0.0007653319&lt;/td&gt;&lt;td&gt;-0.0004659209&lt;/td&gt;&lt;td&gt;-0.0001665099&lt;/td&gt;&lt;td&gt;⋯&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;</code></pre>
+</tbody>
+</table>
+</div>
+<div id="un-interpolated-vertical-profile-data-level-2" class="section level3">
+<h3><span class="header-section-number">4.6.7</span> Un-interpolated vertical profile data (Level 2)</h3>
+<p>The Level 2 data are interpolated in time but not in space. They
+contain the rates of change at the measurement heights.</p>
+<p>Again, they can be extracted from the HDF5 files using <code>stackEddy()</code>
+with the same syntax:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">prof.l2 &lt;-<span class="st"> </span><span class="kw">stackEddy</span>(<span class="dt">filepath=</span><span class="st">&quot;/data/filesToStack00200/&quot;</span>,</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">                 <span class="dt">level=</span><span class="st">&quot;dp02&quot;</span>)</a></code></pre></div>
+<pre><code>Extracting data
+  |======================================================================| 100%
+Stacking data tables by month
+  |======================================================================| 100%
+Joining data variables
+  |======================================================================| 100%</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">head</span>(prof.l2<span class="op">$</span>HARV)</a></code></pre></div>
+<table>
+<caption>
+A data.frame: 6 × 9
+</caption>
+<thead>
+<pre><code>&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th scope=col&gt;verticalPosition&lt;/th&gt;&lt;th scope=col&gt;timeBgn&lt;/th&gt;&lt;th scope=col&gt;timeEnd&lt;/th&gt;&lt;th scope=col&gt;data.co2Stor.rateRtioMoleDryCo2.mean&lt;/th&gt;&lt;th scope=col&gt;data.h2oStor.rateRtioMoleDryH2o.mean&lt;/th&gt;&lt;th scope=col&gt;data.tempStor.rateTemp.mean&lt;/th&gt;&lt;th scope=col&gt;qfqm.co2Stor.rateRtioMoleDryCo2.qfFinl&lt;/th&gt;&lt;th scope=col&gt;qfqm.h2oStor.rateRtioMoleDryH2o.qfFinl&lt;/th&gt;&lt;th scope=col&gt;qfqm.tempStor.rateTemp.qfFinl&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;int&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;int&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;int&amp;gt;&lt;/th&gt;&lt;/tr&gt;</code></pre>
+</thead>
+<tbody>
+<pre><code>&lt;tr&gt;&lt;th scope=row&gt;1&lt;/th&gt;&lt;td&gt;010&lt;/td&gt;&lt;td&gt;2018-06-01T00:00:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T00:29:59.000Z&lt;/td&gt;&lt;td&gt;         NaN&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt; 2.583333e-05&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;2&lt;/th&gt;&lt;td&gt;010&lt;/td&gt;&lt;td&gt;2018-06-01T00:30:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T00:59:59.000Z&lt;/td&gt;&lt;td&gt; 0.002194788&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;-2.008056e-04&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;3&lt;/th&gt;&lt;td&gt;010&lt;/td&gt;&lt;td&gt;2018-06-01T01:00:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T01:29:59.000Z&lt;/td&gt;&lt;td&gt;-0.010752434&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;-1.901111e-04&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;4&lt;/th&gt;&lt;td&gt;010&lt;/td&gt;&lt;td&gt;2018-06-01T01:30:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T01:59:59.000Z&lt;/td&gt;&lt;td&gt; 0.002556148&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;-7.419444e-05&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;5&lt;/th&gt;&lt;td&gt;010&lt;/td&gt;&lt;td&gt;2018-06-01T02:00:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T02:29:59.000Z&lt;/td&gt;&lt;td&gt;-0.015977747&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;-1.537083e-04&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;6&lt;/th&gt;&lt;td&gt;010&lt;/td&gt;&lt;td&gt;2018-06-01T02:30:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T02:59:59.000Z&lt;/td&gt;&lt;td&gt;-0.000537461&lt;/td&gt;&lt;td&gt;NaN&lt;/td&gt;&lt;td&gt;-1.874861e-04&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;/tr&gt;</code></pre>
+</tbody>
+</table>
+<p>Note that here, as in the PAR data, there is a <code>verticalPosition</code> field.
+It has the same meaning as in the PAR data, indicating the tower level of
+the measurement.</p>
+</div>
+<div id="calibrated-raw-data-level-1" class="section level3">
+<h3><span class="header-section-number">4.6.8</span> Calibrated raw data (Level 1)</h3>
+<p>Level 1 (<code>dp01</code>) data are calibrated, and aggregated in time, but
+otherwise untransformed. Use Level 1 data for raw gas
+concentrations and atmospheric stable isotopes.</p>
+<p>Using <code>stackEddy()</code> to extract Level 1 data requires additional
+inputs. The Level 1 files are too large to simply pull out all the
+variables by default, and they include mutiple averaging intervals,
+which can’t be merged. So two additional inputs are needed:</p>
+<ul>
+<li><code>avg</code>: The averaging interval to extract</li>
+<li><code>var</code>: One or more variables to extract</li>
+</ul>
+<p>What variables are available, at what averaging intervals? Another
+function in the <code>neonUtilities</code> package, <code>getVarsEddy()</code>, returns
+a list of HDF5 file contents. It requires only one input, a filepath
+to a single NEON HDF5 file:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">vars &lt;-<span class="st"> </span><span class="kw">getVarsEddy</span>(<span class="st">&quot;/data/filesToStack00200/NEON.D01.HARV.DP4.00200.001.nsae.2018-07.basic.h5&quot;</span>)</a>
+<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="kw">head</span>(vars)</a></code></pre></div>
+<table>
+<caption>
+A data.frame: 6 × 12
+</caption>
+<thead>
+<pre><code>&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th scope=col&gt;site&lt;/th&gt;&lt;th scope=col&gt;level&lt;/th&gt;&lt;th scope=col&gt;category&lt;/th&gt;&lt;th scope=col&gt;system&lt;/th&gt;&lt;th scope=col&gt;hor&lt;/th&gt;&lt;th scope=col&gt;ver&lt;/th&gt;&lt;th scope=col&gt;tmi&lt;/th&gt;&lt;th scope=col&gt;name&lt;/th&gt;&lt;th scope=col&gt;otype&lt;/th&gt;&lt;th scope=col&gt;dclass&lt;/th&gt;&lt;th scope=col&gt;dim&lt;/th&gt;&lt;th scope=col&gt;oth&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;/tr&gt;</code></pre>
+</thead>
+<tbody>
+<pre><code>&lt;tr&gt;&lt;th scope=row&gt;5&lt;/th&gt;&lt;td&gt;HARV&lt;/td&gt;&lt;td&gt;dp01&lt;/td&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;amrs&lt;/td&gt;&lt;td&gt;000&lt;/td&gt;&lt;td&gt;060&lt;/td&gt;&lt;td&gt;01m&lt;/td&gt;&lt;td&gt;angNedXaxs&lt;/td&gt;&lt;td&gt;H5I_DATASET&lt;/td&gt;&lt;td&gt;COMPOUND&lt;/td&gt;&lt;td&gt;44640&lt;/td&gt;&lt;td&gt;NA&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;6&lt;/th&gt;&lt;td&gt;HARV&lt;/td&gt;&lt;td&gt;dp01&lt;/td&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;amrs&lt;/td&gt;&lt;td&gt;000&lt;/td&gt;&lt;td&gt;060&lt;/td&gt;&lt;td&gt;01m&lt;/td&gt;&lt;td&gt;angNedYaxs&lt;/td&gt;&lt;td&gt;H5I_DATASET&lt;/td&gt;&lt;td&gt;COMPOUND&lt;/td&gt;&lt;td&gt;44640&lt;/td&gt;&lt;td&gt;NA&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;7&lt;/th&gt;&lt;td&gt;HARV&lt;/td&gt;&lt;td&gt;dp01&lt;/td&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;amrs&lt;/td&gt;&lt;td&gt;000&lt;/td&gt;&lt;td&gt;060&lt;/td&gt;&lt;td&gt;01m&lt;/td&gt;&lt;td&gt;angNedZaxs&lt;/td&gt;&lt;td&gt;H5I_DATASET&lt;/td&gt;&lt;td&gt;COMPOUND&lt;/td&gt;&lt;td&gt;44640&lt;/td&gt;&lt;td&gt;NA&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;9&lt;/th&gt;&lt;td&gt;HARV&lt;/td&gt;&lt;td&gt;dp01&lt;/td&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;amrs&lt;/td&gt;&lt;td&gt;000&lt;/td&gt;&lt;td&gt;060&lt;/td&gt;&lt;td&gt;30m&lt;/td&gt;&lt;td&gt;angNedXaxs&lt;/td&gt;&lt;td&gt;H5I_DATASET&lt;/td&gt;&lt;td&gt;COMPOUND&lt;/td&gt;&lt;td&gt;1488 &lt;/td&gt;&lt;td&gt;NA&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;10&lt;/th&gt;&lt;td&gt;HARV&lt;/td&gt;&lt;td&gt;dp01&lt;/td&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;amrs&lt;/td&gt;&lt;td&gt;000&lt;/td&gt;&lt;td&gt;060&lt;/td&gt;&lt;td&gt;30m&lt;/td&gt;&lt;td&gt;angNedYaxs&lt;/td&gt;&lt;td&gt;H5I_DATASET&lt;/td&gt;&lt;td&gt;COMPOUND&lt;/td&gt;&lt;td&gt;1488 &lt;/td&gt;&lt;td&gt;NA&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;11&lt;/th&gt;&lt;td&gt;HARV&lt;/td&gt;&lt;td&gt;dp01&lt;/td&gt;&lt;td&gt;data&lt;/td&gt;&lt;td&gt;amrs&lt;/td&gt;&lt;td&gt;000&lt;/td&gt;&lt;td&gt;060&lt;/td&gt;&lt;td&gt;30m&lt;/td&gt;&lt;td&gt;angNedZaxs&lt;/td&gt;&lt;td&gt;H5I_DATASET&lt;/td&gt;&lt;td&gt;COMPOUND&lt;/td&gt;&lt;td&gt;1488 &lt;/td&gt;&lt;td&gt;NA&lt;/td&gt;&lt;/tr&gt;</code></pre>
+</tbody>
+</table>
+<p>Inputs to <code>var</code> can be any values from the <code>name</code> field in the table
+returned by <code>getVarsEddy()</code>. Let’s take a look at CO<sub>2</sub> and
+H<sub>2</sub>O, <sup>13</sup>C in CO<sub>2</sub> and <sup>18</sup>O in
+H<sub>2</sub>O, at 30-minute aggregation. Let’s look at Harvard Forest
+for these data, since deeper canopies generally have more interesting
+profiles:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">iso &lt;-<span class="st"> </span><span class="kw">stackEddy</span>(<span class="dt">filepath=</span><span class="st">&quot;/data/filesToStack00200/&quot;</span>,</a>
+<a class="sourceLine" id="cb42-2" data-line-number="2">               <span class="dt">level=</span><span class="st">&quot;dp01&quot;</span>, <span class="dt">var=</span><span class="kw">c</span>(<span class="st">&quot;rtioMoleDryCo2&quot;</span>,<span class="st">&quot;rtioMoleDryH2o&quot;</span>,</a>
+<a class="sourceLine" id="cb42-3" data-line-number="3">                                   <span class="st">&quot;dlta13CCo2&quot;</span>,<span class="st">&quot;dlta18OH2o&quot;</span>), <span class="dt">avg=</span><span class="dv">30</span>)</a></code></pre></div>
+<pre><code>Extracting data
+  |======================================================================| 100%
+Stacking data tables by month
+  |======================================================================| 100%
+Joining data variables
+  |======================================================================| 100%</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">head</span>(iso<span class="op">$</span>HARV)</a></code></pre></div>
+<table>
+<caption>
+A data.frame: 6 × 84
+</caption>
+<thead>
+<pre><code>&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th scope=col&gt;verticalPosition&lt;/th&gt;&lt;th scope=col&gt;timeBgn&lt;/th&gt;&lt;th scope=col&gt;timeEnd&lt;/th&gt;&lt;th scope=col&gt;data.co2Stor.rtioMoleDryCo2.mean&lt;/th&gt;&lt;th scope=col&gt;data.co2Stor.rtioMoleDryCo2.min&lt;/th&gt;&lt;th scope=col&gt;data.co2Stor.rtioMoleDryCo2.max&lt;/th&gt;&lt;th scope=col&gt;data.co2Stor.rtioMoleDryCo2.vari&lt;/th&gt;&lt;th scope=col&gt;data.co2Stor.rtioMoleDryCo2.numSamp&lt;/th&gt;&lt;th scope=col&gt;data.co2Turb.rtioMoleDryCo2.mean&lt;/th&gt;&lt;th scope=col&gt;data.co2Turb.rtioMoleDryCo2.min&lt;/th&gt;&lt;th scope=col&gt;⋯&lt;/th&gt;&lt;th scope=col&gt;ucrt.isoCo2.rtioMoleDryCo2.se&lt;/th&gt;&lt;th scope=col&gt;ucrt.isoCo2.rtioMoleDryH2o.mean&lt;/th&gt;&lt;th scope=col&gt;ucrt.isoCo2.rtioMoleDryH2o.vari&lt;/th&gt;&lt;th scope=col&gt;ucrt.isoCo2.rtioMoleDryH2o.se&lt;/th&gt;&lt;th scope=col&gt;ucrt.isoH2o.dlta18OH2o.mean&lt;/th&gt;&lt;th scope=col&gt;ucrt.isoH2o.dlta18OH2o.vari&lt;/th&gt;&lt;th scope=col&gt;ucrt.isoH2o.dlta18OH2o.se&lt;/th&gt;&lt;th scope=col&gt;ucrt.isoH2o.rtioMoleDryH2o.mean&lt;/th&gt;&lt;th scope=col&gt;ucrt.isoH2o.rtioMoleDryH2o.vari&lt;/th&gt;&lt;th scope=col&gt;ucrt.isoH2o.rtioMoleDryH2o.se&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;chr&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;int&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;⋯&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;th scope=col&gt;&amp;lt;dbl&amp;gt;&lt;/th&gt;&lt;/tr&gt;</code></pre>
+</thead>
+<tbody>
+<pre><code>&lt;tr&gt;&lt;th scope=row&gt;1&lt;/th&gt;&lt;td&gt;010&lt;/td&gt;&lt;td&gt;2018-06-01T00:00:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T00:29:59.000Z&lt;/td&gt;&lt;td&gt;509.3375&lt;/td&gt;&lt;td&gt;451.4786&lt;/td&gt;&lt;td&gt;579.3518&lt;/td&gt;&lt;td&gt;845.0795&lt;/td&gt;&lt;td&gt;235&lt;/td&gt;&lt;td&gt;NA&lt;/td&gt;&lt;td&gt;NA&lt;/td&gt;&lt;td&gt;⋯&lt;/td&gt;&lt;td&gt;      NA&lt;/td&gt;&lt;td&gt;       NaN&lt;/td&gt;&lt;td&gt;       NaN&lt;/td&gt;&lt;td&gt;         NA&lt;/td&gt;&lt;td&gt;       NaN&lt;/td&gt;&lt;td&gt;        NaN&lt;/td&gt;&lt;td&gt;         NA&lt;/td&gt;&lt;td&gt;       NaN&lt;/td&gt;&lt;td&gt;        NaN&lt;/td&gt;&lt;td&gt;         NA&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;2&lt;/th&gt;&lt;td&gt;010&lt;/td&gt;&lt;td&gt;2018-06-01T00:30:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T00:59:59.000Z&lt;/td&gt;&lt;td&gt;502.2736&lt;/td&gt;&lt;td&gt;463.5470&lt;/td&gt;&lt;td&gt;533.6622&lt;/td&gt;&lt;td&gt;161.3652&lt;/td&gt;&lt;td&gt;175&lt;/td&gt;&lt;td&gt;NA&lt;/td&gt;&lt;td&gt;NA&lt;/td&gt;&lt;td&gt;⋯&lt;/td&gt;&lt;td&gt;1.764965&lt;/td&gt;&lt;td&gt;0.08848440&lt;/td&gt;&lt;td&gt;0.01226428&lt;/td&gt;&lt;td&gt;0.014335993&lt;/td&gt;&lt;td&gt;0.02544454&lt;/td&gt;&lt;td&gt;0.003017400&lt;/td&gt;&lt;td&gt;0.008116413&lt;/td&gt;&lt;td&gt;0.06937514&lt;/td&gt;&lt;td&gt;0.009640249&lt;/td&gt;&lt;td&gt;0.006855142&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;3&lt;/th&gt;&lt;td&gt;010&lt;/td&gt;&lt;td&gt;2018-06-01T01:00:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T01:29:59.000Z&lt;/td&gt;&lt;td&gt;521.6139&lt;/td&gt;&lt;td&gt;442.8649&lt;/td&gt;&lt;td&gt;563.0518&lt;/td&gt;&lt;td&gt;547.9924&lt;/td&gt;&lt;td&gt;235&lt;/td&gt;&lt;td&gt;NA&lt;/td&gt;&lt;td&gt;NA&lt;/td&gt;&lt;td&gt;⋯&lt;/td&gt;&lt;td&gt;      NA&lt;/td&gt;&lt;td&gt;       NaN&lt;/td&gt;&lt;td&gt;       NaN&lt;/td&gt;&lt;td&gt;         NA&lt;/td&gt;&lt;td&gt;       NaN&lt;/td&gt;&lt;td&gt;        NaN&lt;/td&gt;&lt;td&gt;         NA&lt;/td&gt;&lt;td&gt;       NaN&lt;/td&gt;&lt;td&gt;        NaN&lt;/td&gt;&lt;td&gt;         NA&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;4&lt;/th&gt;&lt;td&gt;010&lt;/td&gt;&lt;td&gt;2018-06-01T01:30:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T01:59:59.000Z&lt;/td&gt;&lt;td&gt;469.6317&lt;/td&gt;&lt;td&gt;432.6588&lt;/td&gt;&lt;td&gt;508.7463&lt;/td&gt;&lt;td&gt;396.8379&lt;/td&gt;&lt;td&gt;175&lt;/td&gt;&lt;td&gt;NA&lt;/td&gt;&lt;td&gt;NA&lt;/td&gt;&lt;td&gt;⋯&lt;/td&gt;&lt;td&gt;1.149078&lt;/td&gt;&lt;td&gt;0.08917388&lt;/td&gt;&lt;td&gt;0.01542679&lt;/td&gt;&lt;td&gt;0.017683602&lt;/td&gt;&lt;td&gt;0.01373503&lt;/td&gt;&lt;td&gt;0.002704220&lt;/td&gt;&lt;td&gt;0.008582764&lt;/td&gt;&lt;td&gt;0.08489408&lt;/td&gt;&lt;td&gt;0.008572288&lt;/td&gt;&lt;td&gt;0.005710986&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;5&lt;/th&gt;&lt;td&gt;010&lt;/td&gt;&lt;td&gt;2018-06-01T02:00:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T02:29:59.000Z&lt;/td&gt;&lt;td&gt;484.7725&lt;/td&gt;&lt;td&gt;436.2842&lt;/td&gt;&lt;td&gt;537.4641&lt;/td&gt;&lt;td&gt;662.9449&lt;/td&gt;&lt;td&gt;235&lt;/td&gt;&lt;td&gt;NA&lt;/td&gt;&lt;td&gt;NA&lt;/td&gt;&lt;td&gt;⋯&lt;/td&gt;&lt;td&gt;      NA&lt;/td&gt;&lt;td&gt;       NaN&lt;/td&gt;&lt;td&gt;       NaN&lt;/td&gt;&lt;td&gt;         NA&lt;/td&gt;&lt;td&gt;       NaN&lt;/td&gt;&lt;td&gt;        NaN&lt;/td&gt;&lt;td&gt;         NA&lt;/td&gt;&lt;td&gt;       NaN&lt;/td&gt;&lt;td&gt;        NaN&lt;/td&gt;&lt;td&gt;         NA&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th scope=row&gt;6&lt;/th&gt;&lt;td&gt;010&lt;/td&gt;&lt;td&gt;2018-06-01T02:30:00.000Z&lt;/td&gt;&lt;td&gt;2018-06-01T02:59:59.000Z&lt;/td&gt;&lt;td&gt;476.8554&lt;/td&gt;&lt;td&gt;443.7055&lt;/td&gt;&lt;td&gt;515.6598&lt;/td&gt;&lt;td&gt;246.6969&lt;/td&gt;&lt;td&gt;175&lt;/td&gt;&lt;td&gt;NA&lt;/td&gt;&lt;td&gt;NA&lt;/td&gt;&lt;td&gt;⋯&lt;/td&gt;&lt;td&gt;0.670111&lt;/td&gt;&lt;td&gt;        NA&lt;/td&gt;&lt;td&gt;        NA&lt;/td&gt;&lt;td&gt;0.005890447&lt;/td&gt;&lt;td&gt;0.01932110&lt;/td&gt;&lt;td&gt;0.002095066&lt;/td&gt;&lt;td&gt;0.008049170&lt;/td&gt;&lt;td&gt;0.02813808&lt;/td&gt;&lt;td&gt;0.002551672&lt;/td&gt;&lt;td&gt;0.002654748&lt;/td&gt;&lt;/tr&gt;</code></pre>
+</tbody>
+</table>
+<p>Let’s plot vertical profiles of CO<sub>2</sub> and <sup>13</sup>C in CO<sub>2</sub>
+on a single day.</p>
+<p>Here, for convenience, instead of converting the time stamps
+to a time format, it’s easy to use the character format to extract the ones
+we want using <code>grep()</code>. And discard the <code>verticalPosition</code> values that are
+string values - those are the calibration gases.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">iso.d &lt;-<span class="st"> </span>iso<span class="op">$</span>HARV[<span class="kw">grep</span>(<span class="st">&quot;2018-06-25&quot;</span>, iso<span class="op">$</span>HARV<span class="op">$</span>timeBgn, <span class="dt">fixed=</span>T),]</a>
+<a class="sourceLine" id="cb47-2" data-line-number="2">iso.d &lt;-<span class="st"> </span>iso.d[<span class="op">-</span><span class="kw">which</span>(<span class="kw">is.na</span>(<span class="kw">as.numeric</span>(iso.d<span class="op">$</span>verticalPosition))),]</a></code></pre></div>
+<pre><code>Warning message in which(is.na(as.numeric(iso.d$verticalPosition))):
+“NAs introduced by coercion”</code></pre>
+<p><code>ggplot</code> is well suited to these types of data, let’s use it to plot
+the profiles.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iso.d, <span class="kw">aes</span>(<span class="dt">y=</span>verticalPosition)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_path</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data.co2Stor.rtioMoleDryCo2.mean, </a>
+<a class="sourceLine" id="cb50-3" data-line-number="3">                <span class="dt">group=</span>timeBgn, <span class="dt">col=</span>timeBgn)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb50-4" data-line-number="4"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb50-5" data-line-number="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;CO2&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Tower level&quot;</span>)</a>
+<a class="sourceLine" id="cb50-6" data-line-number="6">g</a></code></pre></div>
+<pre><code>Warning message:
+“Removed 2 rows containing missing values (geom_path).”</code></pre>
+<p><img src="images/eddy_intro_50_1.png" width="420" /></p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iso.d, <span class="kw">aes</span>(<span class="dt">y=</span>verticalPosition)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_path</span>(<span class="kw">aes</span>(<span class="dt">x=</span>data.isoCo2.dlta13CCo2.mean, </a>
+<a class="sourceLine" id="cb52-3" data-line-number="3">                <span class="dt">group=</span>timeBgn, <span class="dt">col=</span>timeBgn)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb52-4" data-line-number="4"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb52-5" data-line-number="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;d13C&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Tower level&quot;</span>)</a>
+<a class="sourceLine" id="cb52-6" data-line-number="6">g</a></code></pre></div>
+<pre><code>Warning message:
+“Removed 55 rows containing missing values (geom_path).”</code></pre>
+<p><img src="images/eddy_intro_51_1.png" width="420" /></p>
+<p>The legends are omitted for space, see if you can work out the times
+of day the different colors represent.</p>
+</div>
+<div id="convert-neon-flux-data-variables-to-ameriflux-fp-standard" class="section level3">
+<h3><span class="header-section-number">4.6.9</span> Convert NEON flux data variables to AmeriFlux FP standard</h3>
+<p>Install and load packages</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="co">#Install NEONprocIS.base from GitHub, this package is a dependency of eddy4R.base</span></a>
+<a class="sourceLine" id="cb54-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb54-3" data-line-number="3">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="dt">repo=</span><span class="st">&quot;NEONScience/NEON-IS-data-processing&quot;</span>,</a>
+<a class="sourceLine" id="cb54-4" data-line-number="4">                         <span class="dt">ref=</span><span class="st">&quot;master&quot;</span>,</a>
+<a class="sourceLine" id="cb54-5" data-line-number="5">                         <span class="dt">subdir=</span><span class="st">&quot;pack/NEONprocIS.base&quot;</span>,</a>
+<a class="sourceLine" id="cb54-6" data-line-number="6">                         <span class="dt">dependencies=</span><span class="kw">c</span>(<span class="ot">NA</span>, <span class="ot">TRUE</span>)[<span class="dv">2</span>],</a>
+<a class="sourceLine" id="cb54-7" data-line-number="7">                         <span class="dt">repos=</span><span class="kw">c</span>(BiocManager<span class="op">::</span><span class="kw">repositories</span>(),   <span class="co"># for dependencies on Bioconductor packages</span></a>
+<a class="sourceLine" id="cb54-8" data-line-number="8">                                 <span class="st">&quot;https://cran.rstudio.com/&quot;</span>)       <span class="co"># for CRAN</span></a>
+<a class="sourceLine" id="cb54-9" data-line-number="9">)</a>
+<a class="sourceLine" id="cb54-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb54-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb54-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb54-13" data-line-number="13"><span class="co">#Install eddy4R.base from GitHub</span></a>
+<a class="sourceLine" id="cb54-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb54-15" data-line-number="15">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="dt">repo=</span><span class="st">&quot;NEONScience/eddy4R&quot;</span>,</a>
+<a class="sourceLine" id="cb54-16" data-line-number="16">                         <span class="dt">ref=</span><span class="st">&quot;master&quot;</span>,</a>
+<a class="sourceLine" id="cb54-17" data-line-number="17">                         <span class="dt">subdir=</span><span class="st">&quot;pack/eddy4R.base&quot;</span>,</a>
+<a class="sourceLine" id="cb54-18" data-line-number="18">                         <span class="dt">dependencies=</span><span class="kw">c</span>(<span class="ot">NA</span>, <span class="ot">TRUE</span>)[<span class="dv">2</span>],</a>
+<a class="sourceLine" id="cb54-19" data-line-number="19">                         <span class="dt">repos=</span><span class="kw">c</span>(BiocManager<span class="op">::</span><span class="kw">repositories</span>(),   <span class="co"># for dependencies on Bioconductor packages</span></a>
+<a class="sourceLine" id="cb54-20" data-line-number="20">                                 <span class="st">&quot;https://cran.rstudio.com/&quot;</span>)       <span class="co"># for CRAN</span></a>
+<a class="sourceLine" id="cb54-21" data-line-number="21">)</a>
+<a class="sourceLine" id="cb54-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb54-23" data-line-number="23">packReq &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rhdf5&quot;</span>, <span class="st">&quot;eddy4R.base&quot;</span>, <span class="st">&quot;jsonlite&quot;</span>, <span class="st">&quot;lubridate&quot;</span>)</a>
+<a class="sourceLine" id="cb54-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb54-25" data-line-number="25"><span class="kw">lapply</span>(packReq, <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb54-26" data-line-number="26">  <span class="kw">print</span>(x)</a>
+<a class="sourceLine" id="cb54-27" data-line-number="27">  <span class="cf">if</span>(<span class="kw">require</span>(x, <span class="dt">character.only =</span> <span class="ot">TRUE</span>) <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>) {</a>
+<a class="sourceLine" id="cb54-28" data-line-number="28">    <span class="kw">install.packages</span>(x)</a>
+<a class="sourceLine" id="cb54-29" data-line-number="29">    <span class="kw">library</span>(x, <span class="dt">character.only =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb54-30" data-line-number="30">  }})</a></code></pre></div>
+<p>Select your site of interest from the list of NEON sites below.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">site &lt;-<span class="st"> &quot;KONZ&quot;</span></a>
+<a class="sourceLine" id="cb55-2" data-line-number="2">  </a>
+<a class="sourceLine" id="cb55-3" data-line-number="3">  <span class="co">#&quot;BARR&quot;,&quot;CLBJ&quot;,&quot;MLBS&quot;,&quot;DSNY&quot;,&quot;NIWO&quot;,&quot;ORNL&quot;,&quot;OSBS&quot;,</span></a>
+<a class="sourceLine" id="cb55-4" data-line-number="4">  <span class="co">#&quot;SCBI&quot;,&quot;LENO&quot;,&quot;TALL&quot;,&quot;CPER&quot;,&quot;BART&quot;,&quot;HARV&quot;,&quot;BLAN&quot;,</span></a>
+<a class="sourceLine" id="cb55-5" data-line-number="5">  <span class="co">#&quot;SERC&quot;,&quot;JERC&quot;,&quot;GUAN&quot;,&quot;LAJA&quot;,&quot;STEI&quot;,&quot;TREE&quot;,&quot;UNDE&quot;,</span></a>
+<a class="sourceLine" id="cb55-6" data-line-number="6">  <span class="co">#&quot;KONA&quot;,&quot;KONZ&quot;,&quot;UKFS&quot;,&quot;GRSM&quot;,&quot;DELA&quot;,&quot;DCFS&quot;,&quot;NOGP&quot;,</span></a>
+<a class="sourceLine" id="cb55-7" data-line-number="7">  <span class="co">#&quot;WOOD&quot;,&quot;RMNP&quot;,&quot;OAES&quot;,&quot;YELL&quot;,&quot;MOAB&quot;,&quot;STER&quot;,&quot;JORN&quot;,</span></a>
+<a class="sourceLine" id="cb55-8" data-line-number="8">  <span class="co">#&quot;SRER&quot;,&quot;ONAQ&quot;,&quot;ABBY&quot;,&quot;WREF&quot;,&quot;SJER&quot;,&quot;SOAP&quot;,&quot;TEAK&quot;,</span></a>
+<a class="sourceLine" id="cb55-9" data-line-number="9">  <span class="co">#&quot;TOOL&quot;,&quot;BONA&quot;,&quot;DEJU&quot;,&quot;HEAL&quot;,&quot;PUUM&quot;</span></a>
+<a class="sourceLine" id="cb55-10" data-line-number="10"><span class="er">}</span></a></code></pre></div>
+<p>If you would like to download a set range of dates, define the following paramemters. If these are not defined, it will default to the entire record at the site</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="co">#define start and end dates, optional, defaults to entire period of site operation. Use %Y-%m-%d format.</span></a>
+<a class="sourceLine" id="cb56-2" data-line-number="2">dateBgn &lt;-<span class="st"> &quot;2020-03-01&quot;</span></a>
+<a class="sourceLine" id="cb56-3" data-line-number="3">dateEnd &lt;-<span class="st"> &quot;2020-05-31&quot;</span></a>
+<a class="sourceLine" id="cb56-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb56-5" data-line-number="5"><span class="co"># Data package from the portal</span></a>
+<a class="sourceLine" id="cb56-6" data-line-number="6">Pack &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;basic&#39;</span>,<span class="st">&#39;expanded&#39;</span>)[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb56-7" data-line-number="7"><span class="co">#The version data for the FP standard conversion processing</span></a>
+<a class="sourceLine" id="cb56-8" data-line-number="8">ver =<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;v&quot;</span>,<span class="kw">format</span>(<span class="kw">Sys.time</span>(), <span class="st">&quot;%Y%m%dT%H%m&quot;</span>))</a></code></pre></div>
+<p>Specify Download directory for HDF5 files from the NEON data portal and output directory to save the resulting csv files. Change save paths to where you want the files on your computer.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="co">#download directory</span></a>
+<a class="sourceLine" id="cb57-2" data-line-number="2">DirDnld=<span class="kw">tempdir</span>()</a>
+<a class="sourceLine" id="cb57-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb57-4" data-line-number="4"><span class="co">#Output directory, change this to where you want to save the output csv</span></a>
+<a class="sourceLine" id="cb57-5" data-line-number="5">DirOutBase &lt;-<span class="kw">paste0</span>(<span class="st">&quot;~/eddy/data/Ameriflux/&quot;</span>,ver)</a></code></pre></div>
+<p>Specify Data Product number, for the Bundled Eddy-Covariance files, this is DP4.00200.001</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="co">#DP number</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2">dpID &lt;-<span class="st"> &#39;DP4.00200.001&#39;</span></a></code></pre></div>
+<p>Get metadata from Ameriflux Site Info BADM sheets for the site of interest</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">  <span class="co">#Grab a list of all Ameriflux sites, containing site ID and site description</span></a>
+<a class="sourceLine" id="cb59-2" data-line-number="2">  sites_web &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&quot;http://ameriflux-data.lbl.gov/AmeriFlux/SiteSearch.svc/SiteList/AmeriFlux&quot;</span>)</a>
+<a class="sourceLine" id="cb59-3" data-line-number="3">  </a>
+<a class="sourceLine" id="cb59-4" data-line-number="4">  <span class="co">#Grab only NEON sites</span></a>
+<a class="sourceLine" id="cb59-5" data-line-number="5">  sitesNeon &lt;-<span class="st"> </span>sites_web[<span class="kw">grep</span>(<span class="dt">pattern =</span> <span class="kw">paste0</span>(<span class="st">&quot;NEON.*&quot;</span>,site), <span class="dt">x =</span> sites_web<span class="op">$</span>SITE_NAME),] <span class="co">#For all NEON sites</span></a>
+<a class="sourceLine" id="cb59-6" data-line-number="6">  siteNeon &lt;-<span class="st"> </span>sites_web[<span class="kw">grep</span>(<span class="dt">pattern =</span> <span class="kw">paste0</span>(<span class="st">&quot;NEON.*&quot;</span>,site), <span class="dt">x =</span> sites_web<span class="op">$</span>SITE_NAME),]</a>
+<a class="sourceLine" id="cb59-7" data-line-number="7">  </a>
+<a class="sourceLine" id="cb59-8" data-line-number="8">  metaSite &lt;-<span class="st"> </span><span class="kw">lapply</span>(siteNeon<span class="op">$</span>SITE_ID, <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb59-9" data-line-number="9">    pathSite &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;http://ameriflux-data.lbl.gov/BADM/Anc/SiteInfo/&quot;</span>,x)</a>
+<a class="sourceLine" id="cb59-10" data-line-number="10">    tmp &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(pathSite)</a>
+<a class="sourceLine" id="cb59-11" data-line-number="11">    <span class="kw">return</span>(tmp)</a>
+<a class="sourceLine" id="cb59-12" data-line-number="12">    }) </a></code></pre></div>
+<p>Use Ameriflux site IDs to name metadata lists</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="co">#use NEON ID as list name</span></a>
+<a class="sourceLine" id="cb60-2" data-line-number="2">  <span class="kw">names</span>(metaSite) &lt;-<span class="st"> </span>site </a>
+<a class="sourceLine" id="cb60-3" data-line-number="3"><span class="co">#Use Ameriflux site ID as list name  </span></a>
+<a class="sourceLine" id="cb60-4" data-line-number="4">  <span class="co">#names(metaSite) &lt;- sitesNeon$SITE_ID </span></a></code></pre></div>
+<p>Check if dateBgn is defined, if not make it the initial operations date “IOCR” of the site</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">  <span class="cf">if</span>(<span class="op">!</span><span class="kw">exists</span>(<span class="st">&quot;dateBgn&quot;</span>) <span class="op">||</span><span class="st"> </span><span class="kw">is.na</span>(dateBgn) <span class="op">||</span><span class="st"> </span><span class="kw">is.null</span>(dateBgn)){</a>
+<a class="sourceLine" id="cb61-2" data-line-number="2">    dateBgn &lt;-<span class="st"> </span><span class="kw">as.Date</span>(metaSite[[site]]<span class="op">$</span>values<span class="op">$</span>GRP_FLUX_MEASUREMENTS[[<span class="dv">1</span>]]<span class="op">$</span>FLUX_MEASUREMENTS_DATE_START, <span class="st">&quot;%Y%m%d&quot;</span>)</a>
+<a class="sourceLine" id="cb61-3" data-line-number="3">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb61-4" data-line-number="4">    dateBgn &lt;-<span class="st"> </span>dateBgn</a>
+<a class="sourceLine" id="cb61-5" data-line-number="5">  }<span class="co">#End of checks for missing dateBgn</span></a>
+<a class="sourceLine" id="cb61-6" data-line-number="6">  </a>
+<a class="sourceLine" id="cb61-7" data-line-number="7">  <span class="co">#Check if dateEnd is defined, if not make it the system date</span></a>
+<a class="sourceLine" id="cb61-8" data-line-number="8">  <span class="cf">if</span>(<span class="op">!</span><span class="kw">exists</span>(<span class="st">&quot;dateEnd&quot;</span>) <span class="op">||</span><span class="st"> </span><span class="kw">is.na</span>(dateEnd) <span class="op">||</span><span class="st"> </span><span class="kw">is.null</span>(dateEnd)){</a>
+<a class="sourceLine" id="cb61-9" data-line-number="9">    dateEnd &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="kw">Sys.Date</span>())</a>
+<a class="sourceLine" id="cb61-10" data-line-number="10">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb61-11" data-line-number="11">    dateEnd &lt;-<span class="st"> </span>dateEnd</a>
+<a class="sourceLine" id="cb61-12" data-line-number="12">  }<span class="co">#End of checks for missing dateEnd</span></a></code></pre></div>
+<p>Grab the UTC time offset from the Ameriflux API</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">  timeOfstUtc &lt;-<span class="st"> </span><span class="kw">as.integer</span>(metaSite[[site]]<span class="op">$</span>values<span class="op">$</span>GRP_UTC_OFFSET[[<span class="dv">1</span>]]<span class="op">$</span>UTC_OFFSET)</a></code></pre></div>
+<p>Create the date sequence</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">  setDate &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="kw">as.Date</span>(dateBgn), <span class="dt">to =</span> <span class="kw">as.Date</span>(dateEnd), <span class="dt">by =</span> <span class="st">&quot;month&quot;</span>)</a></code></pre></div>
+<p>Start processing the site time range specified, verify that the site and date range are specified as intended</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">  msg &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Starting Ameriflux FP standard conversion processing workflow for &quot;</span>, site, <span class="st">&quot; for &quot;</span>, dateBgn, <span class="st">&quot; to &quot;</span>, dateEnd)</a>
+<a class="sourceLine" id="cb64-2" data-line-number="2">  <span class="kw">print</span>(msg)</a></code></pre></div>
+<p>Create output directory by checking if the download directory exists and create it if not</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">  <span class="cf">if</span>(<span class="kw">dir.exists</span>(DirDnld) <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>) <span class="kw">dir.create</span>(DirDnld, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb65-2" data-line-number="2">  <span class="co">#Append the site to the base output directory</span></a>
+<a class="sourceLine" id="cb65-3" data-line-number="3">  DirOut &lt;-<span class="st"> </span><span class="kw">paste0</span>(DirOutBase, <span class="st">&quot;/&quot;</span>, siteNeon<span class="op">$</span>SITE_ID)</a>
+<a class="sourceLine" id="cb65-4" data-line-number="4">  <span class="co">#Check if directory exists and create if not</span></a>
+<a class="sourceLine" id="cb65-5" data-line-number="5">  <span class="cf">if</span>(<span class="op">!</span><span class="kw">dir.exists</span>(DirOut)) <span class="kw">dir.create</span>(DirOut, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Download and extract data</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">  <span class="co">#Initialize data List</span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2">  dataList &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
+<a class="sourceLine" id="cb66-3" data-line-number="3">  </a>
+<a class="sourceLine" id="cb66-4" data-line-number="4">  <span class="co">#Read data from the API</span></a>
+<a class="sourceLine" id="cb66-5" data-line-number="5">  dataList &lt;-<span class="st"> </span><span class="kw">lapply</span>(setDate, <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb66-6" data-line-number="6">    <span class="co"># year &lt;- lubridate::year(x)</span></a>
+<a class="sourceLine" id="cb66-7" data-line-number="7">    <span class="co"># mnth &lt;- lubridate::month(x)</span></a>
+<a class="sourceLine" id="cb66-8" data-line-number="8">    date &lt;-<span class="st"> </span>stringr<span class="op">::</span><span class="kw">str_extract</span>(x, <span class="dt">pattern =</span> <span class="kw">paste0</span>(<span class="st">&quot;[0-9]{4}&quot;</span>, <span class="st">&quot;-&quot;</span>, <span class="st">&quot;[0-9]{2}&quot;</span>))</a>
+<a class="sourceLine" id="cb66-9" data-line-number="9">    <span class="kw">tryCatch</span>(neonUtilities<span class="op">::</span><span class="kw">zipsByProduct</span>(<span class="dt">dpID =</span> dpID, <span class="dt">site =</span> site, <span class="dt">startdate =</span> date, <span class="dt">enddate =</span> date, <span class="dt">package =</span> <span class="st">&quot;basic&quot;</span>, <span class="dt">savepath =</span> DirDnld, <span class="dt">check.size =</span> <span class="ot">FALSE</span>), <span class="dt">error=</span><span class="cf">function</span>(e) <span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb66-10" data-line-number="10">    files &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="kw">paste0</span>(DirDnld, <span class="st">&quot;/filesToStack00200&quot;</span>))</a>
+<a class="sourceLine" id="cb66-11" data-line-number="11">    utils<span class="op">::</span><span class="kw">unzip</span>(<span class="kw">paste0</span>(DirDnld, <span class="st">&quot;/filesToStack00200/&quot;</span>, files[<span class="kw">grep</span>(<span class="dt">pattern =</span> <span class="kw">paste0</span>(site,<span class="st">&quot;.*.&quot;</span>, date, <span class="st">&quot;.*.zip&quot;</span>), <span class="dt">x =</span> files)]), <span class="dt">exdir =</span> <span class="kw">paste0</span>(DirDnld, <span class="st">&quot;/filesToStack00200&quot;</span>))</a>
+<a class="sourceLine" id="cb66-12" data-line-number="12">    files &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="kw">paste0</span>(DirDnld, <span class="st">&quot;/filesToStack00200&quot;</span>))</a>
+<a class="sourceLine" id="cb66-13" data-line-number="13">    dataIdx &lt;-<span class="st"> </span>rhdf5<span class="op">::</span><span class="kw">h5read</span>(<span class="dt">file =</span> <span class="kw">paste0</span>(DirDnld, <span class="st">&quot;/filesToStack00200/&quot;</span>, <span class="kw">max</span>(files[<span class="kw">grep</span>(<span class="dt">pattern =</span> <span class="kw">paste0</span>(site,<span class="st">&quot;.*.&quot;</span>, date,<span class="st">&quot;.*.h5&quot;</span>), <span class="dt">x =</span> files)])), <span class="dt">name =</span> <span class="kw">paste0</span>(site, <span class="st">&quot;/&quot;</span>))</a>
+<a class="sourceLine" id="cb66-14" data-line-number="14">                      </a>
+<a class="sourceLine" id="cb66-15" data-line-number="15">    <span class="cf">if</span>(<span class="op">!</span><span class="kw">is.null</span>(dataIdx)){ </a>
+<a class="sourceLine" id="cb66-16" data-line-number="16">       dataIdx<span class="op">$</span>dp0p &lt;-<span class="st"> </span><span class="ot">NULL</span> </a>
+<a class="sourceLine" id="cb66-17" data-line-number="17">       dataIdx<span class="op">$</span>dp02 &lt;-<span class="st"> </span><span class="ot">NULL</span> </a>
+<a class="sourceLine" id="cb66-18" data-line-number="18">       dataIdx<span class="op">$</span>dp03 &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb66-19" data-line-number="19">       dataIdx<span class="op">$</span>dp01<span class="op">$</span>ucrt &lt;-<span class="st"> </span><span class="ot">NULL</span> </a>
+<a class="sourceLine" id="cb66-20" data-line-number="20">       dataIdx<span class="op">$</span>dp04<span class="op">$</span>ucrt &lt;-<span class="st"> </span><span class="ot">NULL</span> </a>
+<a class="sourceLine" id="cb66-21" data-line-number="21">       dataIdx<span class="op">$</span>dp01<span class="op">$</span>data &lt;-<span class="st"> </span><span class="kw">lapply</span>(dataIdx<span class="op">$</span>dp01<span class="op">$</span>data,<span class="dt">FUN=</span><span class="cf">function</span>(var){ </a>
+<a class="sourceLine" id="cb66-22" data-line-number="22">         nameTmi &lt;-<span class="st"> </span><span class="kw">names</span>(var) </a>
+<a class="sourceLine" id="cb66-23" data-line-number="23">         var &lt;-<span class="st"> </span>var[<span class="kw">grepl</span>(<span class="st">&#39;_30m&#39;</span>,nameTmi)] </a>
+<a class="sourceLine" id="cb66-24" data-line-number="24">         <span class="kw">return</span>(var)})</a>
+<a class="sourceLine" id="cb66-25" data-line-number="25">       dataIdx<span class="op">$</span>dp01<span class="op">$</span>qfqm &lt;-<span class="st"> </span><span class="kw">lapply</span>(dataIdx<span class="op">$</span>dp01<span class="op">$</span>qfqm,<span class="dt">FUN=</span><span class="cf">function</span>(var){ </a>
+<a class="sourceLine" id="cb66-26" data-line-number="26">         nameTmi &lt;-<span class="st"> </span><span class="kw">names</span>(var)</a>
+<a class="sourceLine" id="cb66-27" data-line-number="27">         var &lt;-<span class="st"> </span>var[<span class="kw">grepl</span>(<span class="st">&#39;_30m&#39;</span>,nameTmi)]</a>
+<a class="sourceLine" id="cb66-28" data-line-number="28">         <span class="kw">return</span>(var)})</a>
+<a class="sourceLine" id="cb66-29" data-line-number="29">    }</a>
+<a class="sourceLine" id="cb66-30" data-line-number="30">    <span class="kw">return</span>(dataIdx)</a>
+<a class="sourceLine" id="cb66-31" data-line-number="31">  })</a></code></pre></div>
+<p>Add names to list for year/month combinations</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="kw">names</span>(dataList) &lt;-<span class="st"> </span><span class="kw">paste0</span>(lubridate<span class="op">::</span><span class="kw">year</span>(setDate),<span class="kw">sprintf</span>(<span class="st">&quot;%02d&quot;</span>,lubridate<span class="op">::</span><span class="kw">month</span>(setDate)))</a></code></pre></div>
+<p>Remove NULL elements from list</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">dataList &lt;-<span class="st"> </span>dataList[<span class="kw">vapply</span>(dataList, <span class="kw">Negate</span>(is.null), <span class="ot">NA</span>)]</a></code></pre></div>
+<p>Determine tower horizontal &amp; vertical indices</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">    <span class="co">#Find the tower top level by looking at the vertical index of the turbulent CO2 concentration measurements </span></a>
+<a class="sourceLine" id="cb69-2" data-line-number="2">    LvlTowr &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="dt">pattern =</span> <span class="st">&quot;_30m&quot;</span>, <span class="kw">names</span>(dataList[[<span class="dv">1</span>]]<span class="op">$</span>dp01<span class="op">$</span>data<span class="op">$</span>co2Turb), <span class="dt">value =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb69-3" data-line-number="3">    LvlTowr &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="dt">x =</span> LvlTowr, <span class="dt">pattern =</span> <span class="st">&quot;_30m&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb69-4" data-line-number="4">    </a>
+<a class="sourceLine" id="cb69-5" data-line-number="5">    <span class="co">#get tower top level</span></a>
+<a class="sourceLine" id="cb69-6" data-line-number="6">    LvlTop &lt;-<span class="st"> </span><span class="kw">strsplit</span>(LvlTowr,<span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb69-7" data-line-number="7">    LvlTop &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">as.numeric</span>(LvlTop[[<span class="dv">1</span>]][<span class="dv">6</span>])</a>
+<a class="sourceLine" id="cb69-8" data-line-number="8">    </a>
+<a class="sourceLine" id="cb69-9" data-line-number="9">    <span class="co">#Ameriflux vertical levels based off of https://ameriflux.lbl.gov/data/aboutdata/data-variables/ section 3.3.1 &quot;Indices must be in order, starting with the highest.&quot;</span></a>
+<a class="sourceLine" id="cb69-10" data-line-number="10">    idxVerAmfx &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> LvlTop, <span class="dt">by =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb69-11" data-line-number="11">    <span class="co">#get the sequence from top to first level</span></a>
+<a class="sourceLine" id="cb69-12" data-line-number="12">    LvlMeas &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">seq</span>(<span class="dt">from =</span> LvlTop, <span class="dt">to =</span> <span class="dv">1</span>, <span class="dt">by =</span> <span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb69-13" data-line-number="13">    <span class="co">#Recreate NEON naming conventions</span></a>
+<a class="sourceLine" id="cb69-14" data-line-number="14">    LvlMeas &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;000_0&quot;</span>,LvlMeas,<span class="st">&quot;0&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb69-15" data-line-number="15">    <span class="co">#Give NEON naming conventions to Ameriflux vertical levels</span></a>
+<a class="sourceLine" id="cb69-16" data-line-number="16">    <span class="kw">names</span>(idxVerAmfx) &lt;-<span class="st"> </span>LvlMeas</a>
+<a class="sourceLine" id="cb69-17" data-line-number="17">    </a>
+<a class="sourceLine" id="cb69-18" data-line-number="18">    <span class="co">#Ameriflux horizontal index</span></a>
+<a class="sourceLine" id="cb69-19" data-line-number="19">    idxHorAmfx &lt;-<span class="st"> </span><span class="dv">1</span></a></code></pre></div>
+<p>Subset to the Ameriflux variables to convert</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">    dataListFlux &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="kw">names</span>(dataList), <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb70-2" data-line-number="2">      <span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb70-3" data-line-number="3">        <span class="st">&quot;TIMESTAMP_START&quot;</span> =<span class="st"> </span><span class="kw">as.POSIXlt</span>(dataList[[x]]<span class="op">$</span>dp04<span class="op">$</span>data<span class="op">$</span>fluxCo2<span class="op">$</span>turb<span class="op">$</span>timeBgn, <span class="dt">format=</span><span class="st">&quot;%Y-%m-%dT%H:%M:%OSZ&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;GMT&quot;</span>),</a>
+<a class="sourceLine" id="cb70-4" data-line-number="4">        <span class="st">&quot;TIMESTAMP_END&quot;</span> =<span class="st"> </span><span class="kw">as.POSIXlt</span>(dataList[[x]]<span class="op">$</span>dp04<span class="op">$</span>data<span class="op">$</span>fluxCo2<span class="op">$</span>turb<span class="op">$</span>timeEnd, <span class="dt">format=</span><span class="st">&quot;%Y-%m-%dT%H:%M:%OSZ&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;GMT&quot;</span>),</a>
+<a class="sourceLine" id="cb70-5" data-line-number="5">        <span class="co"># &quot;TIMESTAMP_START&quot; = strftime(as.POSIXlt(dataList[[x]][[idxSite]]$dp04$data$fluxCo2$turb$timeBgn, format=&quot;%Y-%m-%dT%H:%M:%OSZ&quot;), format = &quot;%Y%m%d%H%M&quot;),</span></a>
+<a class="sourceLine" id="cb70-6" data-line-number="6">        <span class="co"># &quot;TIMESTAMP_</span><span class="re">END</span><span class="co">&quot; = strftime(as.POSIXlt(dataList[[x]][[idxSite]]$dp04$data$fluxCo2$turb$timeEnd, format=&quot;%Y-%m-%dT%H:%M:%OSZ&quot;) + 60, format = &quot;%Y%m%d%H%M&quot;),</span></a>
+<a class="sourceLine" id="cb70-7" data-line-number="7">        <span class="st">&quot;FC&quot;</span>=<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp04<span class="op">$</span>data<span class="op">$</span>fluxCo2<span class="op">$</span>turb<span class="op">$</span>flux,</a>
+<a class="sourceLine" id="cb70-8" data-line-number="8">        <span class="st">&quot;SC&quot;</span>=<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp04<span class="op">$</span>data<span class="op">$</span>fluxCo2<span class="op">$</span>stor<span class="op">$</span>flux,</a>
+<a class="sourceLine" id="cb70-9" data-line-number="9">        <span class="st">&quot;NEE&quot;</span>=<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp04<span class="op">$</span>data<span class="op">$</span>fluxCo2<span class="op">$</span>nsae<span class="op">$</span>flux,</a>
+<a class="sourceLine" id="cb70-10" data-line-number="10">        <span class="st">&quot;LE&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp04<span class="op">$</span>data<span class="op">$</span>fluxH2o<span class="op">$</span>turb<span class="op">$</span>flux,</a>
+<a class="sourceLine" id="cb70-11" data-line-number="11">        <span class="st">&quot;SLE&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp04<span class="op">$</span>data<span class="op">$</span>fluxH2o<span class="op">$</span>stor<span class="op">$</span>flux,</a>
+<a class="sourceLine" id="cb70-12" data-line-number="12">        <span class="st">&quot;USTAR&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp04<span class="op">$</span>data<span class="op">$</span>fluxMome<span class="op">$</span>turb<span class="op">$</span>veloFric,</a>
+<a class="sourceLine" id="cb70-13" data-line-number="13">        </a>
+<a class="sourceLine" id="cb70-14" data-line-number="14">        <span class="st">&quot;H&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp04<span class="op">$</span>data<span class="op">$</span>fluxTemp<span class="op">$</span>turb<span class="op">$</span>flux,</a>
+<a class="sourceLine" id="cb70-15" data-line-number="15">        <span class="st">&quot;SH&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp04<span class="op">$</span>data<span class="op">$</span>fluxTemp<span class="op">$</span>stor<span class="op">$</span>flux,</a>
+<a class="sourceLine" id="cb70-16" data-line-number="16">        <span class="st">&quot;FETCH_90&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp04<span class="op">$</span>data<span class="op">$</span>foot<span class="op">$</span>stat<span class="op">$</span>distXaxs90,</a>
+<a class="sourceLine" id="cb70-17" data-line-number="17">        <span class="st">&quot;FETCH_MAX&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp04<span class="op">$</span>data<span class="op">$</span>foot<span class="op">$</span>stat<span class="op">$</span>distXaxsMax,</a>
+<a class="sourceLine" id="cb70-18" data-line-number="18">        <span class="st">&quot;V_SIGMA&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp04<span class="op">$</span>data<span class="op">$</span>foot<span class="op">$</span>stat<span class="op">$</span>veloYaxsHorSd,</a>
+<a class="sourceLine" id="cb70-19" data-line-number="19">        <span class="co">#&quot;W_SIGMA&quot; = dataList[[x]]$dp04$data$foot$stat$veloZaxsHorSd,</span></a>
+<a class="sourceLine" id="cb70-20" data-line-number="20">        <span class="st">&quot;CO2_1_1_1&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>data<span class="op">$</span>co2Turb[[<span class="kw">paste0</span>(LvlTowr,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>rtioMoleDryCo2<span class="op">$</span>mean,</a>
+<a class="sourceLine" id="cb70-21" data-line-number="21">        <span class="st">&quot;H2O_1_1_1&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>data<span class="op">$</span>h2oTurb[[<span class="kw">paste0</span>(LvlTowr,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>rtioMoleDryH2o<span class="op">$</span>mean,</a>
+<a class="sourceLine" id="cb70-22" data-line-number="22">        <span class="st">&quot;qfFinlH2oTurbFrt00Samp&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>qfqm<span class="op">$</span>h2oTurb[[<span class="kw">paste0</span>(LvlTowr,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>frt00Samp<span class="op">$</span>qfFinl,</a>
+<a class="sourceLine" id="cb70-23" data-line-number="23">        <span class="st">&quot;qfH2O_1_1_1&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>qfqm<span class="op">$</span>h2oTurb[[<span class="kw">paste0</span>(LvlTowr,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>rtioMoleDryH2o<span class="op">$</span>qfFinl,</a>
+<a class="sourceLine" id="cb70-24" data-line-number="24">        <span class="st">&quot;qfCO2_1_1_1&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>qfqm<span class="op">$</span>co2Turb[[<span class="kw">paste0</span>(LvlTowr,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>rtioMoleDryCo2<span class="op">$</span>qfFinl,</a>
+<a class="sourceLine" id="cb70-25" data-line-number="25">        <span class="st">&quot;qfSC&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp04<span class="op">$</span>qfqm<span class="op">$</span>fluxCo2<span class="op">$</span>stor<span class="op">$</span>qfFinl,</a>
+<a class="sourceLine" id="cb70-26" data-line-number="26">        <span class="st">&quot;qfSLE&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp04<span class="op">$</span>qfqm<span class="op">$</span>fluxH2o<span class="op">$</span>stor<span class="op">$</span>qfFinl,</a>
+<a class="sourceLine" id="cb70-27" data-line-number="27">        <span class="st">&quot;qfSH&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp04<span class="op">$</span>qfqm<span class="op">$</span>fluxTemp<span class="op">$</span>stor<span class="op">$</span>qfFinl,</a>
+<a class="sourceLine" id="cb70-28" data-line-number="28">        <span class="st">&quot;qfT_SONIC&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>qfqm<span class="op">$</span>soni[[<span class="kw">paste0</span>(LvlTowr,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>tempSoni<span class="op">$</span>qfFinl,</a>
+<a class="sourceLine" id="cb70-29" data-line-number="29">        <span class="st">&quot;qfWS_1_1_1&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>qfqm<span class="op">$</span>soni[[<span class="kw">paste0</span>(LvlTowr,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>veloXaxsYaxsErth<span class="op">$</span>qfFinl,</a>
+<a class="sourceLine" id="cb70-30" data-line-number="30">        <span class="kw">rbind.data.frame</span>(<span class="kw">lapply</span>(<span class="kw">names</span>(idxVerAmfx), <span class="cf">function</span>(y) {</a>
+<a class="sourceLine" id="cb70-31" data-line-number="31">          <span class="kw">tryCatch</span>({rlog<span class="op">$</span><span class="kw">debug</span>(y)}, <span class="dt">error=</span><span class="cf">function</span>(cond){<span class="kw">print</span>(y)})</a>
+<a class="sourceLine" id="cb70-32" data-line-number="32">          rpt &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
+<a class="sourceLine" id="cb70-33" data-line-number="33">          rpt[[<span class="kw">paste0</span>(<span class="st">&quot;CO2_1_&quot;</span>,idxVerAmfx[y],<span class="st">&quot;_2&quot;</span>)]] &lt;-<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>data<span class="op">$</span>co2Stor[[<span class="kw">paste0</span>(y,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>rtioMoleDryCo2<span class="op">$</span>mean</a>
+<a class="sourceLine" id="cb70-34" data-line-number="34">          </a>
+<a class="sourceLine" id="cb70-35" data-line-number="35">          </a>
+<a class="sourceLine" id="cb70-36" data-line-number="36">          rpt[[<span class="kw">paste0</span>(<span class="st">&quot;H2O_1_&quot;</span>,idxVerAmfx[y],<span class="st">&quot;_2&quot;</span>)]] &lt;-<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>data<span class="op">$</span>h2oStor[[<span class="kw">paste0</span>(y,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>rtioMoleDryH2o<span class="op">$</span>mean</a>
+<a class="sourceLine" id="cb70-37" data-line-number="37">          rpt[[<span class="kw">paste0</span>(<span class="st">&quot;CO2_1_&quot;</span>,idxVerAmfx[y],<span class="st">&quot;_3&quot;</span>)]] &lt;-<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>data<span class="op">$</span>isoCo2[[<span class="kw">paste0</span>(y,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>rtioMoleDryCo2<span class="op">$</span>mean</a>
+<a class="sourceLine" id="cb70-38" data-line-number="38">          </a>
+<a class="sourceLine" id="cb70-39" data-line-number="39">          rpt[[<span class="kw">paste0</span>(<span class="st">&quot;H2O_1_&quot;</span>,idxVerAmfx[y],<span class="st">&quot;_3&quot;</span>)]] &lt;-<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>data<span class="op">$</span>isoCo2[[<span class="kw">paste0</span>(y,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>rtioMoleDryH2o<span class="op">$</span>mean</a>
+<a class="sourceLine" id="cb70-40" data-line-number="40">          rpt[[<span class="kw">paste0</span>(<span class="st">&quot;qfCO2_1_&quot;</span>,idxVerAmfx[y],<span class="st">&quot;_2&quot;</span>)]] &lt;-<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>qfqm<span class="op">$</span>co2Stor[[<span class="kw">paste0</span>(LvlTowr,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>rtioMoleDryCo2<span class="op">$</span>qfFinl</a>
+<a class="sourceLine" id="cb70-41" data-line-number="41">          rpt[[<span class="kw">paste0</span>(<span class="st">&quot;qfH2O_1_&quot;</span>,idxVerAmfx[y],<span class="st">&quot;_2&quot;</span>)]] &lt;-<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>qfqm<span class="op">$</span>h2oStor[[<span class="kw">paste0</span>(LvlTowr,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>rtioMoleDryH2o<span class="op">$</span>qfFinl</a>
+<a class="sourceLine" id="cb70-42" data-line-number="42">          rpt[[<span class="kw">paste0</span>(<span class="st">&quot;qfCO2_1_&quot;</span>,idxVerAmfx[y],<span class="st">&quot;_3&quot;</span>)]] &lt;-<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>qfqm<span class="op">$</span>isoCo2[[<span class="kw">paste0</span>(LvlTowr,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>rtioMoleDryCo2<span class="op">$</span>qfFinl</a>
+<a class="sourceLine" id="cb70-43" data-line-number="43">          rpt[[<span class="kw">paste0</span>(<span class="st">&quot;qfH2O_1_&quot;</span>,idxVerAmfx[y],<span class="st">&quot;_3&quot;</span>)]] &lt;-<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>qfqm<span class="op">$</span>isoH2o[[<span class="kw">paste0</span>(LvlTowr,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>rtioMoleDryH2o<span class="op">$</span>qfFinl</a>
+<a class="sourceLine" id="cb70-44" data-line-number="44">          </a>
+<a class="sourceLine" id="cb70-45" data-line-number="45">          rpt &lt;-<span class="st"> </span><span class="kw">rbind.data.frame</span>(rpt)</a>
+<a class="sourceLine" id="cb70-46" data-line-number="46">          <span class="kw">return</span>(rpt)</a>
+<a class="sourceLine" id="cb70-47" data-line-number="47">        }</a>
+<a class="sourceLine" id="cb70-48" data-line-number="48">        )),</a>
+<a class="sourceLine" id="cb70-49" data-line-number="49">        </a>
+<a class="sourceLine" id="cb70-50" data-line-number="50">        </a>
+<a class="sourceLine" id="cb70-51" data-line-number="51">        <span class="st">&quot;WS_1_1_1&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>data<span class="op">$</span>soni[[<span class="kw">paste0</span>(LvlTowr,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>veloXaxsYaxsErth<span class="op">$</span>mean,</a>
+<a class="sourceLine" id="cb70-52" data-line-number="52">        <span class="st">&quot;WS_MAX_1_1_1&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>data<span class="op">$</span>soni[[<span class="kw">paste0</span>(LvlTowr,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>veloXaxsYaxsErth<span class="op">$</span>max,</a>
+<a class="sourceLine" id="cb70-53" data-line-number="53">        <span class="st">&quot;WD_1_1_1&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>data<span class="op">$</span>soni[[<span class="kw">paste0</span>(LvlTowr,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>angZaxsErth<span class="op">$</span>mean,</a>
+<a class="sourceLine" id="cb70-54" data-line-number="54">        <span class="st">&quot;T_SONIC&quot;</span> =<span class="st"> </span>dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>data<span class="op">$</span>soni[[<span class="kw">paste0</span>(LvlTowr,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>tempSoni<span class="op">$</span>mean,</a>
+<a class="sourceLine" id="cb70-55" data-line-number="55">        <span class="st">&quot;T_SONIC_SIGMA&quot;</span> =<span class="st"> </span>base<span class="op">::</span><span class="kw">sqrt</span>(dataList[[x]]<span class="op">$</span>dp01<span class="op">$</span>data<span class="op">$</span>soni[[<span class="kw">paste0</span>(LvlTowr,<span class="st">&quot;_30m&quot;</span>)]]<span class="op">$</span>tempSoni<span class="op">$</span>mean)</a>
+<a class="sourceLine" id="cb70-56" data-line-number="56">        , <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb70-57" data-line-number="57">    })</a>
+<a class="sourceLine" id="cb70-58" data-line-number="58">    </a>
+<a class="sourceLine" id="cb70-59" data-line-number="59">    <span class="kw">names</span>(dataListFlux) &lt;-<span class="st"> </span><span class="kw">names</span>(dataList)</a></code></pre></div>
+<p>Combine the monthly data into a single dataframe, remove lists and clean memory</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">    dataDfFlux &lt;-<span class="st"> </span><span class="kw">do.call</span>(rbind.data.frame,dataListFlux)</a>
+<a class="sourceLine" id="cb71-2" data-line-number="2">    <span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">c</span>(<span class="st">&quot;dataListFlux&quot;</span>,<span class="st">&quot;dataList&quot;</span>))</a>
+<a class="sourceLine" id="cb71-3" data-line-number="3">    <span class="kw">gc</span>()</a></code></pre></div>
+<p>Regularize timeseries to 30 minutes in case timestamps are missing from NEON files due to processing errors</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1">    timeRglr &lt;-<span class="st"> </span>eddy4R.base<span class="op">::</span><span class="kw">def.rglr</span>(<span class="dt">timeMeas =</span> <span class="kw">as.POSIXlt</span>(dataDfFlux<span class="op">$</span>TIMESTAMP_START), <span class="dt">dataMeas =</span> dataDfFlux, <span class="dt">BgnRglr =</span> <span class="kw">as.POSIXlt</span>(dataDfFlux<span class="op">$</span>TIMESTAMP_START[<span class="dv">1</span>]), <span class="dt">EndRglr =</span> <span class="kw">as.POSIXlt</span>(dataDfFlux<span class="op">$</span>TIMESTAMP_END[<span class="kw">length</span>(dataDfFlux<span class="op">$</span>TIMESTAMP_END)]), <span class="dt">TzRglr =</span> <span class="st">&quot;UTC&quot;</span>, <span class="dt">FreqRglr =</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">60</span><span class="op">*</span><span class="dv">30</span>))</a>
+<a class="sourceLine" id="cb72-2" data-line-number="2">    </a>
+<a class="sourceLine" id="cb72-3" data-line-number="3">    <span class="co">#Reassign data to data.frame</span></a>
+<a class="sourceLine" id="cb72-4" data-line-number="4">    dataDfFlux &lt;-<span class="st"> </span>timeRglr<span class="op">$</span>dataRglr</a>
+<a class="sourceLine" id="cb72-5" data-line-number="5">    <span class="co">#Format timestamps</span></a>
+<a class="sourceLine" id="cb72-6" data-line-number="6">    dataDfFlux<span class="op">$</span>TIMESTAMP_START &lt;-<span class="st"> </span><span class="kw">strftime</span>(timeRglr<span class="op">$</span>timeRglr <span class="op">+</span><span class="st"> </span>lubridate<span class="op">::</span><span class="kw">hours</span>(timeOfstUtc), <span class="dt">format =</span> <span class="st">&quot;%Y%m%d%H%M&quot;</span>)</a>
+<a class="sourceLine" id="cb72-7" data-line-number="7">    dataDfFlux<span class="op">$</span>TIMESTAMP_END &lt;-<span class="st"> </span><span class="kw">strftime</span>(timeRglr<span class="op">$</span>timeRglr <span class="op">+</span><span class="st"> </span>lubridate<span class="op">::</span><span class="kw">hours</span>(timeOfstUtc) <span class="op">+</span><span class="st"> </span>lubridate<span class="op">::</span><span class="kw">minutes</span>(<span class="dv">30</span>), <span class="dt">format =</span> <span class="st">&quot;%Y%m%d%H%M&quot;</span>)</a></code></pre></div>
+<p>Define validation times, and remove this data from the dataset. At NEON sites, validations with a series of gasses of known concentration are run every 23.5 hours. These values are used to correct for measurment drift and are run every 23.5 hours to achive daily resolution while also spreading the impact of lost measurements throughout the day.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1">    <span class="co">#Remove co2Turb and h2oTurb data based off of qfFlow (qfFinl frt00)</span></a>
+<a class="sourceLine" id="cb73-2" data-line-number="2">    dataDfFlux<span class="op">$</span>FC[(<span class="kw">which</span>(dataDfFlux<span class="op">$</span>qfCO2_<span class="dv">1</span>_<span class="dv">1</span>_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))] &lt;-<span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb73-3" data-line-number="3">    dataDfFlux<span class="op">$</span>LE[(<span class="kw">which</span>(dataDfFlux<span class="op">$</span>qfH2O_<span class="dv">1</span>_<span class="dv">1</span>_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))] &lt;-<span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb73-4" data-line-number="4">    dataDfFlux<span class="op">$</span>USTAR[(<span class="kw">which</span>(dataDfFlux<span class="op">$</span>qfWS_<span class="dv">1</span>_<span class="dv">1</span>_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))] &lt;-<span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb73-5" data-line-number="5">    dataDfFlux<span class="op">$</span>H[(<span class="kw">which</span>(dataDfFlux<span class="op">$</span>qfT_SONIC_<span class="dv">1</span>_<span class="dv">1</span>_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))] &lt;-<span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb73-6" data-line-number="6">    dataDfFlux<span class="op">$</span>SC[(<span class="kw">which</span>(dataDfFlux<span class="op">$</span>qfSC <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))] &lt;-<span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb73-7" data-line-number="7">    dataDfFlux<span class="op">$</span>SLE[(<span class="kw">which</span>(dataDfFlux<span class="op">$</span>qfSLE <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))] &lt;-<span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb73-8" data-line-number="8">    dataDfFlux<span class="op">$</span>SH[(<span class="kw">which</span>(dataDfFlux<span class="op">$</span>qfSH <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))] &lt;-<span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb73-9" data-line-number="9">    dataDfFlux<span class="op">$</span>T_SONIC[(<span class="kw">which</span>(dataDfFlux<span class="op">$</span>qfT_SONIC_<span class="dv">1</span>_<span class="dv">1</span>_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))] &lt;-<span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb73-10" data-line-number="10">    dataDfFlux<span class="op">$</span>T_SONIC_SIGMA[(<span class="kw">which</span>(dataDfFlux<span class="op">$</span>qfT_SONIC_<span class="dv">1</span>_<span class="dv">1</span>_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))] &lt;-<span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb73-11" data-line-number="11">    dataDfFlux<span class="op">$</span>WS_<span class="dv">1</span>_<span class="dv">1</span>_<span class="dv">1</span>[(<span class="kw">which</span>(dataDfFlux<span class="op">$</span>qfWS_<span class="dv">1</span>_<span class="dv">1</span>_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))] &lt;-<span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb73-12" data-line-number="12">    dataDfFlux<span class="op">$</span>WS_MAX_<span class="dv">1</span>_<span class="dv">1</span>_<span class="dv">1</span>[(<span class="kw">which</span>(dataDfFlux<span class="op">$</span>qfWS_<span class="dv">1</span>_<span class="dv">1</span>_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))] &lt;-<span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb73-13" data-line-number="13">    dataDfFlux<span class="op">$</span>WD_<span class="dv">1</span>_<span class="dv">1</span>_<span class="dv">1</span>[(<span class="kw">which</span>(dataDfFlux<span class="op">$</span>qfWS_<span class="dv">1</span>_<span class="dv">1</span>_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))] &lt;-<span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb73-14" data-line-number="14">    </a>
+<a class="sourceLine" id="cb73-15" data-line-number="15">    dataDfFlux<span class="op">$</span>H2O_<span class="dv">1</span>_<span class="dv">1</span>_<span class="dv">1</span>[(<span class="kw">which</span>(dataDfFlux<span class="op">$</span>qfH2O_<span class="dv">1</span>_<span class="dv">1</span>_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))] &lt;-<span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb73-16" data-line-number="16">    dataDfFlux<span class="op">$</span>CO2_<span class="dv">1</span>_<span class="dv">1</span>_<span class="dv">1</span>[(<span class="kw">which</span>(dataDfFlux<span class="op">$</span>qfCO2_<span class="dv">1</span>_<span class="dv">1</span>_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))] &lt;-<span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb73-17" data-line-number="17">    </a>
+<a class="sourceLine" id="cb73-18" data-line-number="18">    <span class="kw">lapply</span>(idxVerAmfx, <span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb73-19" data-line-number="19">      <span class="co">#x &lt;- 1</span></a>
+<a class="sourceLine" id="cb73-20" data-line-number="20">      dataDfFlux[[<span class="kw">paste0</span>(<span class="st">&quot;H2O_1_&quot;</span>,x,<span class="st">&quot;_2&quot;</span>)]][(<span class="kw">which</span>(dataDfFlux[[<span class="kw">paste0</span>(<span class="st">&quot;qfH2O_1_&quot;</span>,x,<span class="st">&quot;_2&quot;</span>)]] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))] &lt;&lt;-<span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb73-21" data-line-number="21">      dataDfFlux[[<span class="kw">paste0</span>(<span class="st">&quot;H2O_1_&quot;</span>,x,<span class="st">&quot;_3&quot;</span>)]][(<span class="kw">which</span>(dataDfFlux[[<span class="kw">paste0</span>(<span class="st">&quot;qfH2O_1_&quot;</span>,x,<span class="st">&quot;_3&quot;</span>)]] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))] &lt;&lt;-<span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb73-22" data-line-number="22">      dataDfFlux[[<span class="kw">paste0</span>(<span class="st">&quot;CO2_1_&quot;</span>,x,<span class="st">&quot;_2&quot;</span>)]][(<span class="kw">which</span>(dataDfFlux[[<span class="kw">paste0</span>(<span class="st">&quot;qfCO2_1_&quot;</span>,x,<span class="st">&quot;_2&quot;</span>)]] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))] &lt;&lt;-<span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb73-23" data-line-number="23">      dataDfFlux[[<span class="kw">paste0</span>(<span class="st">&quot;CO2_1_&quot;</span>,x,<span class="st">&quot;_3&quot;</span>)]][(<span class="kw">which</span>(dataDfFlux[[<span class="kw">paste0</span>(<span class="st">&quot;qfCO2_1_&quot;</span>,x,<span class="st">&quot;_3&quot;</span>)]] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))] &lt;&lt;-<span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb73-24" data-line-number="24">    })</a></code></pre></div>
+<p>Remove quality flagging variables from output</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1">    setIdxQf &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&quot;qf&quot;</span>, <span class="kw">names</span>(dataDfFlux))</a>
+<a class="sourceLine" id="cb74-2" data-line-number="2">    dataDfFlux[,setIdxQf] &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
+<p>Set range thresholds</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1">    <span class="co">#assign list</span></a>
+<a class="sourceLine" id="cb75-2" data-line-number="2">    Rng &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
+<a class="sourceLine" id="cb75-3" data-line-number="3">    </a>
+<a class="sourceLine" id="cb75-4" data-line-number="4">    Rng<span class="op">$</span>Min &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb75-5" data-line-number="5">      <span class="st">&quot;FC&quot;</span> =<span class="st"> </span><span class="dv">-100</span>,            <span class="co">#[umol m-2 s-1]</span></a>
+<a class="sourceLine" id="cb75-6" data-line-number="6">      <span class="st">&quot;SC&quot;</span> =<span class="st"> </span><span class="dv">-100</span>,            <span class="co">#[umol m-2 s-1]</span></a>
+<a class="sourceLine" id="cb75-7" data-line-number="7">      <span class="st">&quot;NEE&quot;</span> =<span class="st"> </span><span class="dv">-100</span>,            <span class="co">#[umol m-2 s-1]</span></a>
+<a class="sourceLine" id="cb75-8" data-line-number="8">      <span class="st">&quot;LE&quot;</span> =<span class="st"> </span><span class="dv">-500</span>,            <span class="co">#[W m-2]</span></a>
+<a class="sourceLine" id="cb75-9" data-line-number="9">      <span class="st">&quot;H&quot;</span> =<span class="st"> </span><span class="dv">-500</span>,             <span class="co">#[W m-2]</span></a>
+<a class="sourceLine" id="cb75-10" data-line-number="10">      <span class="st">&quot;USTAR&quot;</span> =<span class="st"> </span><span class="dv">0</span>,            <span class="co">#[m s-1]</span></a>
+<a class="sourceLine" id="cb75-11" data-line-number="11">      <span class="st">&quot;CO2&quot;</span> =<span class="st"> </span><span class="dv">200</span>,            <span class="co">#[umol mol-1]</span></a>
+<a class="sourceLine" id="cb75-12" data-line-number="12">      <span class="st">&quot;H2O&quot;</span> =<span class="st"> </span><span class="dv">0</span>,              <span class="co">#[mmol mol-1]</span></a>
+<a class="sourceLine" id="cb75-13" data-line-number="13">      <span class="st">&quot;WS_1_1_1&quot;</span> =<span class="st"> </span><span class="dv">0</span>,         <span class="co">#[m s-1]</span></a>
+<a class="sourceLine" id="cb75-14" data-line-number="14">      <span class="st">&quot;WS_MAX_1_1_1&quot;</span> =<span class="st"> </span><span class="dv">0</span>,     <span class="co">#[m s-1]</span></a>
+<a class="sourceLine" id="cb75-15" data-line-number="15">      <span class="st">&quot;WD_1_1_1&quot;</span> =<span class="st"> </span><span class="fl">-0.1</span>,      <span class="co">#[deg]</span></a>
+<a class="sourceLine" id="cb75-16" data-line-number="16">      <span class="st">&quot;T_SONIC&quot;</span> =<span class="st"> </span><span class="fl">-55.0</span>       <span class="co">#[C]</span></a>
+<a class="sourceLine" id="cb75-17" data-line-number="17">    )</a></code></pre></div>
+<p>Set Max thresholds</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1">    Rng<span class="op">$</span>Max &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb76-2" data-line-number="2">      <span class="st">&quot;FC&quot;</span> =<span class="st"> </span><span class="dv">100</span>,            <span class="co">#[umol m-2 s-1]</span></a>
+<a class="sourceLine" id="cb76-3" data-line-number="3">      <span class="st">&quot;SC&quot;</span> =<span class="st"> </span><span class="dv">100</span>,            <span class="co">#[umol m-2 s-1]</span></a>
+<a class="sourceLine" id="cb76-4" data-line-number="4">      <span class="st">&quot;NEE&quot;</span> =<span class="st"> </span><span class="dv">100</span>,            <span class="co">#[umol m-2 s-1]</span></a>
+<a class="sourceLine" id="cb76-5" data-line-number="5">      <span class="st">&quot;LE&quot;</span> =<span class="st"> </span><span class="dv">1000</span>,            <span class="co">#[W m-2]</span></a>
+<a class="sourceLine" id="cb76-6" data-line-number="6">      <span class="st">&quot;H&quot;</span> =<span class="st"> </span><span class="dv">1000</span>,             <span class="co">#[W m-2]</span></a>
+<a class="sourceLine" id="cb76-7" data-line-number="7">      <span class="st">&quot;USTAR&quot;</span> =<span class="st"> </span><span class="dv">5</span>,            <span class="co">#[m s-1]</span></a>
+<a class="sourceLine" id="cb76-8" data-line-number="8">      <span class="st">&quot;CO2&quot;</span> =<span class="st"> </span><span class="dv">800</span>,            <span class="co">#[umol mol-1]</span></a>
+<a class="sourceLine" id="cb76-9" data-line-number="9">      <span class="st">&quot;H2O&quot;</span> =<span class="st"> </span><span class="dv">100</span>,              <span class="co">#[mmol mol-1]</span></a>
+<a class="sourceLine" id="cb76-10" data-line-number="10">      <span class="st">&quot;WS_1_1_1&quot;</span> =<span class="st"> </span><span class="dv">50</span>,         <span class="co">#[m s-1]</span></a>
+<a class="sourceLine" id="cb76-11" data-line-number="11">      <span class="st">&quot;WS_MAX_1_1_1&quot;</span> =<span class="st"> </span><span class="dv">50</span>,     <span class="co">#[m s-1]</span></a>
+<a class="sourceLine" id="cb76-12" data-line-number="12">      <span class="st">&quot;WD_1_1_1&quot;</span> =<span class="st"> </span><span class="dv">360</span>,      <span class="co">#[deg]</span></a>
+<a class="sourceLine" id="cb76-13" data-line-number="13">      <span class="st">&quot;T_SONIC&quot;</span> =<span class="st"> </span><span class="fl">45.0</span>       <span class="co">#[C]</span></a>
+<a class="sourceLine" id="cb76-14" data-line-number="14">    )</a></code></pre></div>
+<p>Grab all CO2/H2O columns to apply same thresholds, replace missing values with -9999</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1">    nameCO2 &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&quot;CO2&quot;</span>,<span class="kw">names</span>(dataDfFlux),<span class="dt">value =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb77-2" data-line-number="2">    nameH2O &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&quot;H2O&quot;</span>,<span class="kw">names</span>(dataDfFlux),<span class="dt">value =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb77-3" data-line-number="3">    <span class="co">#Apply the CO2/H2O threshold to all variables in HOR_VER_REP</span></a>
+<a class="sourceLine" id="cb77-4" data-line-number="4">    Rng<span class="op">$</span>Min[nameCO2] &lt;-<span class="st"> </span>Rng<span class="op">$</span>Min<span class="op">$</span>CO2</a>
+<a class="sourceLine" id="cb77-5" data-line-number="5">    Rng<span class="op">$</span>Min[nameH2O] &lt;-<span class="st"> </span>Rng<span class="op">$</span>Min<span class="op">$</span>H2O</a>
+<a class="sourceLine" id="cb77-6" data-line-number="6">    Rng<span class="op">$</span>Max[nameCO2] &lt;-<span class="st"> </span>Rng<span class="op">$</span>Max<span class="op">$</span>CO2</a>
+<a class="sourceLine" id="cb77-7" data-line-number="7">    Rng<span class="op">$</span>Max[nameH2O] &lt;-<span class="st"> </span>Rng<span class="op">$</span>Max<span class="op">$</span>H2O</a>
+<a class="sourceLine" id="cb77-8" data-line-number="8">    </a>
+<a class="sourceLine" id="cb77-9" data-line-number="9">    <span class="co">#Apply the range test to the output, and replace values with NaN</span></a>
+<a class="sourceLine" id="cb77-10" data-line-number="10">    <span class="kw">lapply</span>(<span class="kw">names</span>(dataDfFlux), <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb77-11" data-line-number="11">      dataDfFlux[<span class="kw">which</span>(dataDfFlux[,x]<span class="op">&lt;</span>Rng<span class="op">$</span>Min[[x]] <span class="op">|</span><span class="st"> </span>dataDfFlux[,x]<span class="op">&gt;</span>Rng<span class="op">$</span>Max[[x]]),x] &lt;&lt;-<span class="st"> </span><span class="ot">NaN</span>})</a>
+<a class="sourceLine" id="cb77-12" data-line-number="12">    </a>
+<a class="sourceLine" id="cb77-13" data-line-number="13">    <span class="co"># Delete any NEE that have either FC or SC removed</span></a>
+<a class="sourceLine" id="cb77-14" data-line-number="14">    dataDfFlux[<span class="kw">is.na</span>(dataDfFlux<span class="op">$</span>FC) <span class="op">|</span><span class="st"> </span><span class="kw">is.na</span>(dataDfFlux<span class="op">$</span>SC),<span class="st">&quot;NEE&quot;</span>] &lt;-<span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb77-15" data-line-number="15">    </a>
+<a class="sourceLine" id="cb77-16" data-line-number="16">    <span class="co">#Change NA to -9999</span></a>
+<a class="sourceLine" id="cb77-17" data-line-number="17">    dataDfFlux[<span class="kw">is.na</span>(dataDfFlux)] &lt;-<span class="st"> </span><span class="dv">-9999</span></a></code></pre></div>
+<p>Write output data to csv</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1">    <span class="co">#Create output filename based off of Ameriflux file naming convention</span></a>
+<a class="sourceLine" id="cb78-2" data-line-number="2">    nameFileOut &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">paste0</span>(DirOut,<span class="st">&quot;/&quot;</span>,siteNeon<span class="op">$</span>SITE_ID,<span class="st">&#39;_HH_&#39;</span>,dataDfFlux<span class="op">$</span>TIMESTAMP_START[<span class="dv">1</span>],<span class="st">&#39;_&#39;</span>,utils<span class="op">::</span><span class="kw">tail</span>(dataDfFlux<span class="op">$</span>TIMESTAMP_END,<span class="dt">n=</span><span class="dv">1</span>),<span class="st">&#39;_flux.csv&#39;</span>)</a>
+<a class="sourceLine" id="cb78-3" data-line-number="3">    </a>
+<a class="sourceLine" id="cb78-4" data-line-number="4">    <span class="co">#Write output to .csv</span></a>
+<a class="sourceLine" id="cb78-5" data-line-number="5">    <span class="kw">write.csv</span>(<span class="dt">x =</span> dataDfFlux, <span class="dt">file =</span> nameFileOut, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>Clean up environment</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1">  <span class="kw">rm</span>(<span class="dt">list=</span><span class="st">&quot;dataDfFlux&quot;</span>)</a>
+<a class="sourceLine" id="cb79-2" data-line-number="2">  <span class="kw">gc</span>()</a></code></pre></div>
+</div>
+</div>
+<div id="exercises" class="section level2">
+<h2><span class="header-section-number">4.7</span> Exercises</h2>
+<div id="computational" class="section level3">
+<h3><span class="header-section-number">4.7.1</span> Computational</h3>
+<ol style="list-style-type: decimal">
+<li><p>NEON data are submitted to AmeriFlux quarterly after one year of non-quality flagged or otherwise missing data are available. Use the workflow above to extend the data coverage of an already submitted NEON site by downloading existing data from the AmeriFlux site and recently published HDF5 files from the NEON data portal OR pick a site that is not yet on AmeriFlux and convert from NEON to AmeriFlux format.</p></li>
+<li><p>Using metScanR package, find co-located NEON and AmeriFlux sites. Download data for an overlapping time period, and compare FC and H values by making a scatter plot and seeing how far off the data are from a 1:1 line.</p></li>
+</ol>
+<div id="ds-challenge" markdown="1">
+<h3 id="written"><span class="header-section-number">4.7.1</span> Written</h3>
+<p><strong>Question 1:</strong> How might or does NEON flux data
+intersect with your current research or future career goals? <em>(1 paragraph)</em></p>
+</div>
+<div id="ds-challenge" markdown="1">
+<p><strong>Question 2:</strong></p>
+</div>
+<div id="ds-challenge" markdown="1">
+<p><strong>Question 3:</strong></p>
+<div id="ds-challenge" markdown="1">
+<p><strong>Question 4:</strong></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="phenocam-digital-repeat-photography-networks-methods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="frequently-asked-questions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"],
+"google": false,
+"instapper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/katharynduffy/katharynduffy.github.io/edit/master/06-Fluxes_and_Inter-operability.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Environmental Informatics Using Research Infrastructures and their Data.pdf", "Environmental Informatics Using Research Infrastructures and their Data.epub"],
+"toc": {
+"collapse": "subsection"
+},
+"search": true
+});
+});
+</script>
+
+</body>
+
+</html>
