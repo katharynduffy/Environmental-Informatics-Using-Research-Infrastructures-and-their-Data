@@ -857,7 +857,7 @@ add_fields <- npn_download_status_data(
 ## USA-NPN Coding Lab
 
 
-```{r, results=FALSE}
+```{r, quiet=TRUE, warnings=FALSE, results=FALSE}
 library(rnpn)
 library(ggplot2)
 library(neonUtilities)
@@ -872,7 +872,7 @@ source('/Users/kdw223/Research/katharynduffy.github.io/neon_token_source.R')
 3. Use the `neonUtilities` package to pull plant phenology observations (DP1.10055.001).  We will work with the `statusintensity` data:
 
 Hints:
-```{r, results=FALSE}
+```{r, quiet=TRUE, results=FALSE}
 #TOS Phenology Data
 sitesOfInterest <- c("HARV")
 

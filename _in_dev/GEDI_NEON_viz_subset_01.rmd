@@ -65,7 +65,7 @@ First, we will load the required libraries and set our working directory:
 
 ```{r load-libraries, warning=FALSE}
 
-library(rGEDI)
+#library(rGEDI)
 library(raster)
 library(sp)
 library(sf)
@@ -75,8 +75,8 @@ library(neonUtilities)
 library(viridis)
 library(maptools)
 
-wd <- "~/Downloads/" # This will depend on your local environment
-setwd(wd)
+# wd <- "./data" # This will depend on your local environment
+# setwd(wd)
 
 ```
 
@@ -90,7 +90,7 @@ SITECODE <- "WREF"
 
 byTileAOP(dpID = "DP3.30015.001", site = SITECODE, year = 2017, 
           easting = 580000, northing = 5075000, check.size = F,
-          savepath = wd)
+          savepath = './data')
 
 chm <- raster(paste0(wd, "/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/L3/DiscreteLidar/CanopyHeightModelGtif/NEON_D16_WREF_DP3_580000_5075000_CHM.tif"))
 
