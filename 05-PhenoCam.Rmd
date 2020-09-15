@@ -183,7 +183,7 @@ Consider either your current or future research, or a question you’d like to
 address durring this course:
 
 * Which types of PhenoCam data may be more useful to address these questions?
-* What non-PhenoCam data resources could be combined with NEON data to help address your question?
+* What non-PhenoCam data resources could be combined to help address your question?
 * What challenges, if any, could you foresee when beginning to work with these
 data?
 
@@ -556,16 +556,6 @@ image processing tools and then to phenocam-based software applications.
 For more details about digital repeat photogrpahy you can check out the following publications:
 - <a href="https://bnasr.github.io/papers/Seyednasrollah_et_al_2019_SciData.pdf">Seyednarollah, et al. 2019, "Tracking vegetation phenology across diverse biomes using Version 2.0 of the PhenoCam Dataset "</a>.
 - <a href="https://bnasr.github.io/papers/Seyednasrollah_et_al_2019_PRS.pdf">Seyednarollah, et al. 2019, "Data extraction from digital repeat photography using xROI: An interactive framework to facilitate the process"</a>.
-
-
-```{r, echo=FALSE}
-knitr::include_graphics('./images/repeat_photo.jpg')
-```
-
-
->1929 - 2016: Alpine Mountains near East Fork Toklat River, Alaska.  Credit: Denali National Park (NPS)
-
-
 
 
 ## Detecting Foggy Images using the 'hazer' R Package
@@ -1090,14 +1080,6 @@ and follow the above steps to extract the time-series.
 The *xROI* R package is developed and maintained by
 <a href="https://bnasr.github.io/">Bijan Seyednarollah</a>.
 The most recent release is available from <a href="https://github.com/bnasr/xROI" target="_blank">https://github.com/bnasr/xROI</a>.
-
-
-
-
-## Digital Repeat Photography Exercises
-## The PhenoCam Network Mission & Design
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_4uHLXL1yZA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ## Pulling Data via the *phenocamapi* Package
