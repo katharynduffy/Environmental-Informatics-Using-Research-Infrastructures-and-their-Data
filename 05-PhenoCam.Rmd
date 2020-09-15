@@ -16,7 +16,7 @@ address that question, that you may want to explore while pursuing this course.
 
 At the end of this activity, you will be able to:
 
-  1. Understand the benefits of digital repeat photography
+  1. Understand biosphere-atmosphere interactions, and how phenology is a sensitive indicator of cliamte change.
   
   2. Summarize data which can be pulled out of repeat imagery
   
@@ -151,7 +151,41 @@ Potential applications:
 knitr::include_graphics(c("./images/phenocamFALSE1.png","./images/phenocamFALSE2.png"))
 ``` 
 
+### Digital Repeat Photography Written
 
+*Suggested completion: Before Digital Repeat Photography methods (day 2 PhenoCam)*
+
+**Question 1:** What do you see as the value of the images themselves?  The 1 or 3-day products, the transition dates?  How could they be used for different applications?
+
+**Question 2:** Why does PhenoCam take photos every 15-30 minutes, but summarize to 1 or 3-day products?
+
+**Question 3:** Why does canopy color coordiante with photosynthesis in many ecosystems?  Name an example of a situation where it wouldn't and explain why.
+
+**Question 4:** Why are there sometimes multiple **Regions of Interest (ROIs)** for a PhenoCam?
+
+**Question 5:** How might or does the PhenoCam project
+intersect with your current research or future career goals? *(1 paragraph)*
+</div>
+
+
+<div id="ds-challenge" markdown="1">
+**Question 6:**
+Use the map on the [PhenoCam website](https://phenocam.sr.unh.edu/webcam/network/map/) to answer the following questions. Consider the research question that you may explore as your final semester project or a current project that you are working on and answer each of the following questions:
+
+* Are there PhenoCams that are in study regions of interest to you?  
+* Which PhenoCam sites does your current research or final project ideas
+coincide with?  
+* Are they connected to other networks (e.g. LTAR, NEON, Fluxnet)?  
+* What is the data record length for the sites you're interested in?
+
+**Question 7:**
+Consider either your current or future research, or a question you’d like to
+address durring this course:
+
+* Which types of PhenoCam data may be more useful to address these questions?
+* What non-PhenoCam data resources could be combined with NEON data to help address your question?
+* What challenges, if any, could you foresee when beginning to work with these
+data?
 
 ## Pulling Data via the *phenocamapi* Package
 
@@ -1485,7 +1519,7 @@ phenocamr::download_phenocam(
   frequency = 3,
   veg_type = 'DB',
   roi_id = 1000,
-  site = 'harvard$',
+  site = 'harvard',
   phenophase = TRUE,
   out_dir = "data/"
 )
@@ -1778,16 +1812,16 @@ Generate a plot of smoothed gcc and transition dates for your two sites and subp
 #p
 ```
 
-### Comparing phenology of the same plant function type (PFT) across climate space
+### In Class Hands-on Coding: Comparing phenology of the same plant function type (PFT) across climate space
 
-As Dr. Richardson mentioned in his introduction lecture, the same plant functional types (e.g. grasslands) can have very different phenologogical cycles.  Let's pick two phenocam grassland sites: one from a tropical climate (kamuela), and one from an arid climate (konza) here in Arizona:
+As Dr. Richardson mentioned in his introduction lecture, the same plant functional types (e.g. grasslands) can have very different phenologogical cycles.  Let's pick two phenocam grassland sites: one from a tropical climate (kamuela), and one from an arid climate (konza):
 
 
-```{r}
-GrassSites=GrassSites[c(27,32),]
+```{r, eval=FALSE}
+GrassSites=GrassSites['filter for your sites']
 ```
 
-Now use the code you've generated above to pull in data from those sites:
+Now pull data for those sites via `phenocamr` or the `phenocamapi`
 
 
 ```{r}
@@ -1804,42 +1838,36 @@ Now let's create a subplot of your grasslands to compare phenology, some hint co
 #p
 ```
 
-Once you have a subplot of grassland phenology across 2 climates answer the following questions your markdown:
+Once you have a subplot of grassland phenology across 2 climates answer the following questions in your markdown:
 1. What seasonal patterns do you see?
 2. Do you think you set your thresholds correctly for transition dates/phenophases?  How might that very as a function of climate?
 3. What are the challenges of forecasting or modeling tropical versus arid grasslands?
 
-### Digital Repeat Photography Written
 
-**Question 1:** How might or does the PhenoCam project
-intersect with your current research or future career goals? *(1 paragraph)*
-</div>
+## Digital Repeat Photography Coding Lab
 
 
+### Quantifying haze and redness to evaluate California wildfires
 
-<div id="ds-challenge" markdown="1">
-**Question 2:**
-Use the map on the [PhenoCam website](https://phenocam.sr.unh.edu/webcam/network/map/) to answer the following questions. Consider the research question that you may explore as your final semester project or a current project that you are working on and answer each of the following questions:
+1. Pull mid-day imagery for September 1-11th, 2019 and 2020 for the canopy-level camera `NEON.D17.SJER.DP1.00033`.  Create a 2-panel plot showing those images in 2019 (left) and 2020 (right).
 
-* Are there PhenoCams that are in study regions of interest to you?  
-* Which PhenoCam sites does your current research or final project ideas
-coincide with?  
-* Are they connected to other networks (e.g. LTAR, NEON, Fluxnet)?  
-* What is the data record length for the sites you're interested in?
+2. Use the `hazeR` package to quantify the haze in each of those images.  Print a summary of your results.
 
-**Question 3:**
-Consider either your current or future research, or a question you’d like to
-address durring this course:
+3. Generate a density function RGB plot for your haziest image in 2020, and one for the same date in 2019.  Create a 2-panel plot showing 2019 on the left and 2020 on the right.  
 
-* Which types of PhenoCam data may be more useful to address these questions?
-* What non-PhenoCam data resources could be combined with NEON data to help address your question?
-* What challenges, if any, could you foresee when beginning to work with these
-data?
+4. Calculate the difference in the rcc90 between 2019 and 2020.
 
-**Question 4:**
+5. Create a summary plot showing haze as a bar and the differenece in rcc90 from *question 4* as a timersies.
 
+6. Answer the following questions:
 
-
-**Intro to PhenoCam Culmination Activity**
+  + Does the `hazeR` package pick up smokey images?
+  
+  + If you were to use color coordinates, which color band would be most useful to highlight smoke and why?
+  
+  **Optional Bonus Points:** 
+  Repeat the above calculations for the understory camera on the same tower `NEON.D17.SJER.DP1.00042` and produce the same plots.  Which camera is 'better' and capturing wildfire?  Why do you think that is so?
+  
+## **Intro to PhenoCam Culmination Activity**
 
 Write up a 1-page summary of a project that you might want to explore using PhenoCam data over the duration of this course. Include the types of PhenoCam (and other data) that you will need to implement this project. Save this summary as you will be refining and adding to your ideas over the course of the semester.
