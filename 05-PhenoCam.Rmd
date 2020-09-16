@@ -250,7 +250,6 @@ directly from the server:
 
 - Exploring the PhenoCam metadata
 - Filtering the dataset by site attributes
-- Downloading PhenoCam time-series data
 - Extracting the list of midday images
 - Downloading midday images for a given time range
 
@@ -1158,7 +1157,7 @@ library(phenocamr)
 
 
 Use the dataframe of sites that you want to analyze to feed the phenocamr package.
-Note: you can choose either a daily or 3 day product
+*Note: you can choose either a 1 or 3 day product*
 
 
 ```{r}
