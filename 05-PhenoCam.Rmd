@@ -71,7 +71,7 @@ Anyone can buy a relatively inexpensive camera, run some simple scripts to corre
 
 
 
-## PhenoCam as a Near Surface Remote Sensing Technique
+### PhenoCam as a Near Surface Remote Sensing Technique
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/l3d3shbF2_s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -135,6 +135,7 @@ knitr::include_graphics('./images/Screen Shot 2020-09-13 at 5.46.32 PM.png')
 [Petach et al., Agricultural & Forest Meteorology 2014](http://harvardforest.fas.harvard.edu/publications/pdfs/Petach_AgriForestMeteor_2014.pdf)
 
 CMOS sensor is sensitive to \lambda > 700 nm
+
 ```{r, echo=FALSE}
 knitr::include_graphics('./images/phenocamNIR.png')
 ```
@@ -168,10 +169,7 @@ knitr::include_graphics(c("./images/phenocamFALSE1.png","./images/phenocamFALSE2
 
 **Question 5:** How might or does the PhenoCam project
 intersect with your current research or future career goals? *(1 paragraph)*
-</div>
 
-
-<div id="ds-challenge" markdown="1">
 **Question 6:**
 Use the map on the [PhenoCam website](https://phenocam.sr.unh.edu/webcam/network/map/) to answer the following questions. Consider the research question that you may explore as your final semester project or a current project that you are working on and answer each of the following questions:
 
@@ -233,8 +231,6 @@ For more details about digital repeat photogrpahy you can check out the followin
 - <a href="https://bnasr.github.io/papers/Seyednasrollah_et_al_2019_PRS.pdf">Seyednarollah, et al. 2019, "Data extraction from digital repeat photography using xROI: An interactive framework to facilitate the process"</a>.
 
 ## Pulling Data via the *phenocamapi* Package
-
-
 
 The <a href="https://cran.r-project.org/web/packages/phenocamapi/index.html" target="_blank"> *phenocamapi* R package</a>
 is developed to simplify interacting with the
@@ -393,80 +389,6 @@ DB.flux <- phenos[flux_data==TRUE&primary_veg_type=='DB',
 head(DB.flux)
 ```
 
-
-## PhenoCam time series
-
-PhenoCam time series are extracted time series data obtained from ROI's for a
-given site.
-
-### Obtain ROIs
-To download the phenological time series from the PhenoCam, we need to know the
-site name, vegetation type and ROI ID. This information can be obtained from each
-specific PhenoCam page on the
-<a href="https://phenocam.sr.unh.edu/webcam/gallery/" target="_blank">PhenoCam website</a>
-or by using the `get_rois()` function.
-
-
-
-```{r}
-# obtaining the list of all the available ROI's on the PhenoCam server
-rois <- get_rois()
-
-# view what information is returned
-colnames(rois)
-
-# view first few locations
-head(rois$roi_name)
-```
-
-### Download time series
-
-The `get_pheno_ts()` function can download a time series and return the result
-as a `data.table`.
-Let's work with the
-<a href="https://phenocam.sr.unh.edu/data/archive/dukehw/ROI/dukehw_DB_1000.html">Duke Forest Hardwood Stand (`dukehw`) PhenoCam</a>
-and specifically the ROI
-<a href="https://phenocam.sr.unh.edu/data/archive/dukehw/ROI/dukehw_DB_1000.html">`DB_1000`</a>
-we can run the following code.
-
-
-```{r}
-# list ROIs for dukehw
-rois[site=='dukehw',]
-
-# to obtain the DB 1000 from dukehw
-dukehw_DB_1000 <- get_pheno_ts(site = 'dukehw', vegType = 'DB', roiID = 1000, type = '3day')
-
-# what data are available
-str(dukehw_DB_1000)
-
-```
-
-We now have a variety of data related to this ROI from the Hardwood Stand at Duke
-Forest.
-
-Green Chromatic Coordinate (GCC) is a measure of "greenness" of an area and is
-widely used in Phenocam images as an indicator of the green pigment in vegetation.
-Let's use this measure to look at changes in GCC over time at this site. Looking
-back at the available data, we have several options for GCC. `gcc90` is the 90th
-quantile of GCC in the pixels across the ROI (for more details,
-<a href="https://daac.ornl.gov/VEGETATION/guides/PhenoCam_V1.html" target="_blank"> PhenoCam v1 description</a>).
-We'll use this as it tracks the upper greenness values while not including many
-outliners.  
-
-Before we can plot `gcc-90` we do need to fix our dates and convert them from
-Factors to Date to correctly plot.
-
-
-```{r}
-# date variable into date format
-dukehw_DB_1000[,date:=as.Date(date)]
-
-# plot gcc_90
-dukehw_DB_1000[,plot(date, gcc_90, col = 'green', type = 'b')]
-
-mtext('Duke Forest, Hardwood', font = 2)
-```
 
 
 ## Download midday images
@@ -1124,6 +1046,79 @@ To familiarize yourself with the phenocam API, let's explore the structure:
 
 Explore the options for filtering, file type and so forth.
 
+### PhenoCam time series
+
+PhenoCam time series are extracted time series data obtained from ROI's for a
+given site.
+
+### Obtain ROIs
+To download the phenological time series from the PhenoCam, we need to know the
+site name, vegetation type and ROI ID. This information can be obtained from each
+specific PhenoCam page on the
+<a href="https://phenocam.sr.unh.edu/webcam/gallery/" target="_blank">PhenoCam website</a>
+or by using the `get_rois()` function.
+
+
+
+```{r}
+# obtaining the list of all the available ROI's on the PhenoCam server
+rois <- get_rois()
+
+# view what information is returned
+colnames(rois)
+
+# view first few locations
+head(rois$roi_name)
+```
+
+### Download time series
+
+The `get_pheno_ts()` function can download a time series and return the result
+as a `data.table`.
+Let's work with the
+<a href="https://phenocam.sr.unh.edu/data/archive/dukehw/ROI/dukehw_DB_1000.html">Duke Forest Hardwood Stand (`dukehw`) PhenoCam</a>
+and specifically the ROI
+<a href="https://phenocam.sr.unh.edu/data/archive/dukehw/ROI/dukehw_DB_1000.html">`DB_1000`</a>
+we can run the following code.
+
+
+```{r}
+# list ROIs for dukehw
+rois[site=='dukehw',]
+
+# to obtain the DB 1000 from dukehw
+dukehw_DB_1000 <- get_pheno_ts(site = 'dukehw', vegType = 'DB', roiID = 1000, type = '3day')
+
+# what data are available
+str(dukehw_DB_1000)
+
+```
+
+We now have a variety of data related to this ROI from the Hardwood Stand at Duke
+Forest.
+
+Green Chromatic Coordinate (GCC) is a measure of "greenness" of an area and is
+widely used in Phenocam images as an indicator of the green pigment in vegetation.
+Let's use this measure to look at changes in GCC over time at this site. Looking
+back at the available data, we have several options for GCC. `gcc90` is the 90th
+quantile of GCC in the pixels across the ROI (for more details,
+<a href="https://daac.ornl.gov/VEGETATION/guides/PhenoCam_V1.html" target="_blank"> PhenoCam v1 description</a>).
+We'll use this as it tracks the upper greenness values while not including many
+outliners.  
+
+Before we can plot `gcc-90` we do need to fix our dates and convert them from
+Factors to Date to correctly plot.
+
+
+```{r}
+# date variable into date format
+dukehw_DB_1000[,date:=as.Date(date)]
+
+# plot gcc_90
+dukehw_DB_1000[,plot(date, gcc_90, col = 'green', type = 'b')]
+
+mtext('Duke Forest, Hardwood', font = 2)
+```
 
 Now, based on either direct API access or via the phenocamapi package, generate a dataframe of phenocam sites.  Select two phenocam sites from *different* plant functional types to explore (e.g. one grassland site and one evergreen needleleaf site)
 
