@@ -152,7 +152,9 @@ knitr::include_graphics(c("./images/phenocamFALSE1.png","./images/phenocamFALSE2
 ``` 
 
 
+
 ## Digital Repeat Photography Written Questions
+
 
 *Suggested completion: Before Digital Repeat Photography methods (day 2 PhenoCam)*
 
