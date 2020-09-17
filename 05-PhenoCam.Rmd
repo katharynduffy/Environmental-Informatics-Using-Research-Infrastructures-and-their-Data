@@ -16,9 +16,9 @@ address that question, that you may want to explore while pursuing this course.
 
 At the end of this activity, you will be able to:
 
-  1. Understand biosphere-atmosphere interactions, and how phenology is a sensitive indicator of cliamte change.
+  1. Understand how phenology is a large driver of biosphere-atmosphere interactions, and is a sensitive indicator of climate change.
   
-  2. Summarize data which can be pulled out of repeat imagery
+  2. Summarize data which can be pulled out of digital repeat imagery
   
   3. Describe basic processing of digital repeat photography
   
@@ -65,9 +65,9 @@ The PhenoCam Network is:
   
 
 
-The project is largely run by the Richardson Lab at NAU, with supported from key collaborators at the University of New Hampshire who provide server and website management.
+The project is largely run by the Richardson Lab at NAU, with support from key collaborators at the University of New Hampshire who provide server and website management.
 
-Anyone can buy a relatively inexpensive camera, run some simple scripts to correct for things like auto-white balance (which we will cover later), and patch in to the netowrk.  PhenoCam then
+Anyone can buy a relatively inexpensive camera, run some simple scripts to correct for things like auto-white balance (which we will cover later), and patch in to the netowrk.  PhenoCam then retrieves, archieves and processess imagery for distribution.
 
 
 
@@ -988,17 +988,14 @@ knitr::include_graphics('docs/images/xROI-ms2019.png')
 ```
 >xROI published in ISPRS Journal of Photogrammetry and Remote Sensing, 2019
 
-## Challenge: Use xROI
+### Challenge: Use xROI
 
 Let's use xROI on a little more challenging site with field of view shifts.
 
 Download and extract the data set from
 <a href="http://bit.ly/2DrZgA1">this link (direct download, 218 MB)</a>
 and follow the above steps to extract the time-series.
-</div>
 
-
-***
 
 The *xROI* R package is developed and maintained by
 <a href="https://bnasr.github.io/">Bijan Seyednarollah</a>.
@@ -1503,7 +1500,7 @@ Once you have a subplot of grassland phenology across 2 climates answer the foll
 
 3. Generate a density function RGB plot for your haziest image in 2020, and one for the same date in 2019.  Create a 2-panel plot showing 2019 on the left and 2020 on the right.  
 
-4. Calculate the difference in the rcc90 between 2019 and 2020.
+4. Pull timesseries data via the `phenocamapi` package.  Calculate the difference in the rcc90 between 2019 and 2020 over the same time period as your images.
 
 5. Create a summary plot showing haze as a bar and the differenece in rcc90 from *question 4* as a timersies.
 
