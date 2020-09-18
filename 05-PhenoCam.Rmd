@@ -1494,7 +1494,7 @@ Once you have a subplot of grassland phenology across 2 climates answer the foll
 
 ### Quantifying haze and redness to evaluate California wildfires
 
-1. Pull mid-day imagery for September 1-7th, 2019 and 2020 for the canopy-level camera `NEON.D17.SOAP.DP1.00042`.  Create a 2-panel plot showing those images in 2019 (left) and 2020 (right).
+1. Pull mid-day imagery for September 1-7th, 2019 and 2020 for the canopy-level camera `NEON.D17.SOAP.DP1.00033`.  Create a 2-panel plot showing those images in 2019 (left) and 2020 (right).
 
 2. Use the `hazeR` package to quantify the haze in each of those images.  Print a summary of your results.
 
@@ -1511,7 +1511,7 @@ Once you have a subplot of grassland phenology across 2 climates answer the foll
   + If you were to use color coordinates, which color band would be most useful to highlight smoke and why?
   
   **Optional Bonus Points:** 
-  Repeat the above calculations for the understory camera on the same tower `NEON.D17.SOAP.DP1.00033` and produce the same plots.  Which camera is 'better' and capturing wildfire?  Why do you think that is so?
+  Repeat the above calculations for the understory camera on the same tower `NEON.D17.SOAP.DP1.00042` and produce the same plots.  Which camera is 'better' and capturing wildfire?  Why do you think that is so?
   
 ## **Intro to PhenoCam Culmination Activity**
 

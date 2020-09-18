@@ -1,0 +1,999 @@
+# NEON AOP Introduction
+
+> Estimated Time: 3 hours
+
+## Learning Objectives
+After completing this tutorial, you will be able to:
+
+* Define hyperspectral remote sensing. 
+* Explain the fundamental principles of hyperspectral remote sensing data.
+* Describe the key attributes that are required to effectively work with 
+  hyperspectral remote sensing data in tools like R or Python.
+* Describe what a "band" is.
+
+
+#### Mapping the Invisible
+
+<iframe width="640" height="360" src="https://www.youtube.com/embed/3iaFzafWJQE?rel=0" frameborder="0" allowfullscreen></iframe>
+
+
+## About Hyperspectral Remote Sensing Data
+
+The electromagnetic spectrum is composed of thousands of bands representing 
+different types of light energy. Imaging spectrometers (instruments that collect 
+hyperspectral data) break the electromagnetic spectrum into groups of bands 
+that support classification of objects by their spectral properties on the 
+earth's surface. Hyperspectral data consists of many bands -- up to hundreds of 
+bands -- that cover the electromagnetic spectrum.
+
+The NEON imaging spectrometer collects data within the 380nm to 2510nm portions 
+of the electromagnetic spectrum within bands that are approximately 5nm in 
+width. This results in a hyperspectral data cube that contains approximately 
+426 bands - which means big, big data.
+
+## Key Metadata for Hyperspectral Data
+
+### Bands and Wavelengths
+
+A *band* represents a group of wavelengths. For example, the wavelength values 
+between 695nm and 700nm might be one band as captured by an imaging spectrometer. 
+The imaging spectrometer collects reflected light energy in a pixel for light 
+in that band. Often when you work with a multi or hyperspectral dataset, the 
+band information is reported as the center wavelength value. This value 
+represents the center point value of the wavelengths represented in that band. 
+Thus in a band spanning 695-700 nm, the center would be 697.5).
+
+<figure>
+    <a href="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/hyperspectral-general/spectrumZoomed.png">
+    <img src="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/hyperspectral-general/spectrumZoomed.png"
+    alt="Graphic showing an example of how bands or regions of visible light, within the electromagnetic spectrum, are devided when captured by imaging spectrometers.">
+    </a>
+    <figcaption>Imaging spectrometers collect reflected light information within 
+    defined bands or regions of the electromagnetic spectrum. Source: National 
+    Ecological Observatory Network (NEON) </figcaption>
+</figure>
+
+### Spectral Resolution
+The spectral resolution of a dataset that has more than one band, refers to the 
+width of each band in the dataset. In the example above, a band was defined as 
+spanning 695-700nm. The width or spatial resolution of the band is thus 5 
+nanometers. To see an example of this, check out the band widths for the 
+<a href="https://www.usgs.gov/faqs/what-are-band-designations-landsat-satellites?qt-news_science_products=0#qt-news_science_products" target="_blank">Landsat sensors</a>.
+
+ 
+### Full Width Half Max (FWHM)
+The full width half max (FWHM) will also often be reported in a multi or 
+hyperspectral dataset. This value represents the spread of the band around that 
+center point. 
+
+<figure>
+    <a href="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/hyperspectral-general/FWHM2.png">
+    <img src="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/hyperspectral-general/FWHM2.png"
+    alt="Graphic showing an example of the Full Width Half Max value of a band. The full width half band value is determined by the relative distance in nanometers between the band center and the edge of the band.">
+    </a>
+    <figcaption>The Full Width Half Max (FWHM) of a band relates to the distance 
+    in nanometers between the band center and the edge of the band. In this 
+    case, the FWHM for Band C is 5 nm.</figcaption>
+</figure>
+
+In the illustration above, the band that covers 695-700nm has a FWHM of 5 nm. 
+While a general spectral resolution of the sensor is often provided, not all 
+sensors create bands of uniform widths. For instance bands 1-9 of Landsat 8 are 
+listed below (Courtesy of <a href="http://landsat.usgs.gov" target="_blank">USGS</a>)
+
+
+| Band | Wavelength range (microns) | Spatial Resolution (m) | Spectral Width (microns)|
+|-------------------------------------|------------------|--------------------|----------------|
+| Band 1 - Coastal aerosol | 0.43 - 0.45 | 30 | 0.02 |
+| Band 2 - Blue | 0.45 - 0.51 | 30 | 0.06 |
+| Band 3 - Green | 0.53 - 0.59 | 30 | 0.06 |
+| Band 4 - Red | 0.64 - 0.67 | 30 | 0.03 |
+| Band 5 - Near Infrared (NIR) | 0.85 - 0.88 | 30 | 0.03 |
+| Band 6 - SWIR 1 | 1.57 - 1.65 | 30 | 0.08  |
+| Band 7 - SWIR 2 | 2.11 - 2.29 | 30 | 0.18 |
+| Band 8 - Panchromatic | 0.50 - 0.68 | 15 | 0.18 |
+| Band 9 - Cirrus | 1.36 - 1.38 | 30 | 0.02 |
+
+
+
+## Plot Spectral Signatures Derived from Hyperspectral Remote Sensing Data in HDF5 Format
+
+
+## Learning Objectives
+After completing this tutorial, you will be able to:
+
+* Extract and plot a single spectral signature from an HDF5 file.
+* Work with groups and datasets within an HDF5 file.
+
+
+## Things You’ll Need To Complete This Tutorial
+To complete this tutorial you will need the most current version of R and, 
+preferably, RStudio loaded on your computer.
+
+### R Libraries to Install:
+
+* **rhdf5**: `install.packages("BiocManager")`, `BiocManager::install("rhdf5")`
+* **plyr**: `install.packages('plyr')`
+* **ggplot2**: `install.packages('ggplot2')`
+
+<a href="https://www.neonscience.org/packages-in-r" target="_blank"> More on Packages in
+ R - Adapted from Software Carpentry.</a>
+
+
+### Data to Download
+<h3><a href="https://ndownloader.figshare.com/files/21754221">
+Download NEON Teaching Data Subset: Imaging Spectrometer Data - HDF5 </a></h3>
+
+These hyperspectral remote sensing data provide information on the
+<a href="https://www.neonscience.org/" target="_blank"> National Ecological Observatory Network's</a> 
+<a href="https://www.neonscience.org/field-sites/field-sites-map/SJER" target="_blank" > San Joaquin 
+Exerimental Range field site</a> in March of 2019.
+The data were collected over the San Joaquin field site located in California 
+(Domain 17) and processed at NEON headquarters. This data subset is derived from 
+the mosaic tile named NEON_D17_SJER_DP3_257000_4112000_reflectance.h5. 
+The entire dataset can be accessed by request from the 
+<a href="http://data.neonscience.org" target="_blank"> NEON Data Portal</a>.
+
+<a href="https://ndownloader.figshare.com/files/21754221" class="link--button link--arrow">
+Download Dataset</a>
+
+**Remember** that the example dataset linked here only has 1 out of every 4 bands
+included in a full NEON hyperspectral dataset (this substantially reduces the file 
+size!). When we refer to bands in this tutorial, we will note the band numbers for 
+this example dataset, which are different from NEON production data. To convert 
+a band number (b) from this example data subset to the equivalent band in a full 
+NEON hyperspectral file (b'), use the following equation: b' = 1+4*(b-1).
+
+
+
+
+
+***
+**Set Working Directory:** This lesson assumes that you have set your working 
+directory to the location of the downloaded and unzipped data subsets. 
+
+<a href="https://www.neonscience.org/set-working-directory-r" target="_blank"> An overview
+of setting the working directory in R can be found here.</a>
+
+**R Script & Challenge Code:** NEON data lessons often contain challenges that reinforce 
+learned skills. If available, the code for challenge solutions is found in the
+downloadable R script of the entire lesson, available in the footer of each lesson page.
+
+
+***
+### Recommended Skills
+
+For this tutorial, you should be comfortable reading data from a HDF5 file and 
+have a general familiarity with hyperspectral data. If you aren't familiar with 
+these steps already, we highly recommend you work through the 
+<a href="https://www.neonscience.org/hsi-hdf5-r" target="_blank"> 
+*Introduction to Working with Hyperspectral Data in HDF5 Format in R* tutorial</a>
+before moving on to this tutorial.
+
+</div> 
+
+Everything on our planet reflects electromagnetic radiation from the Sun, and 
+different types of land cover often have dramatically different refelectance 
+properties across the spectrum. One of the most powerful aspects of the NEON 
+Imaging Spectrometer (a.k.a. NEON's hyperspectral imager) is that it can 
+accurately measure these reflectance properties at a very high spectral resolution. 
+When you plot the reflectance values across the observed spectrum, you will see 
+that different land cover types (vegetation, pavement, bare soils, etc.) have 
+distinct patterns in their reflectance values, a feature that we call the 
+'spectral signature' of a particular land cover class. 
+
+In this tutorial, we will extract a single pixel's worth of reflectance 
+values to plot a spectral signature for that pixel. In order to plot the 
+spectral signature for a given pixel in this hyperspectral dataset, we will 
+need to extract the reflectance values for that pixel, and pair those with the 
+wavelengths that are represented in those measurements. We will also need to 
+adjust the reflectance values by the scaling factor that is saved as an 
+'attribute' in the HDF5 file. First, let's start by defining the working 
+directory and reading in the example dataset.
+
+```{r call-libraries, results="hide" }
+
+# Call required packages
+library(rhdf5)
+library(plyr)
+library(ggplot2)
+
+# set working directory to ensure R can find the file we wish to import and where
+# we want to save our files. Be sure to move the download into your working directory!
+wd <- "./data/" #This will depend on your local environment
+
+
+```
+
+Now, we need to access the H5 file.
+
+```{r open-H5-file }
+
+# Define the file name to be opened
+f <- paste0(wd,"NEON_hyperspectral_tutorial_example_subset.h5")
+# look at the HDF5 file structure 
+h5ls(f,all=T) 
+
+```
+
+
+## Read Wavelength Values
+
+Next, let's read in the wavelength center associated with each band in the HDF5 
+file. We will later match these with the reflectance values and show both in 
+our final spectral signature plot.
+
+```{r read-band-wavelengths }
+
+# read in the wavelength information from the HDF5 file
+wavelengths <- h5read(f,"/SJER/Reflectance/Metadata/Spectral_Data/Wavelength")
+
+```
+
+
+## Extract Z-dimension data slice
+
+Next, we will extract all reflectance values for one pixel. This makes up the 
+spectral signature or profile of the pixel. To do that, we'll use the `h5read()` 
+function. Here we pick an arbitrary pixel at `(100,35)`, and use the `NULL` 
+value to select *all* bands from that location.
+
+```{r extract-spectra }
+
+# extract all bands from a single pixel
+aPixel <- h5read(f,"/SJER/Reflectance/Reflectance_Data",index=list(NULL,100,35))
+
+# The line above generates a vector of reflectance values.
+# Next, we reshape the data and turn them into a dataframe
+b <- adply(aPixel,c(1))
+
+# create clean data frame
+aPixeldf <- b[2]
+
+# add wavelength data to matrix
+aPixeldf$Wavelength <- wavelengths
+
+head(aPixeldf)
+
+```
+
+## Scale Factor
+
+Then, we can pull the spatial attributes that we'll need to adjust the reflectance 
+values. Often, large raster data contain floating point (values with decimals) information.
+However, floating point data consume more space (yield a larger file size) compared
+to integer values. Thus, to keep the file sizes smaller, the data will be scaled
+by a factor of 10, 100, 10000, etc. This `scale factor` will be noted in the data attributes.
+
+```{r pull-scale-factor }
+
+# grab scale factor from the Reflectance attributes
+reflectanceAttr <- h5readAttributes(f,"/SJER/Reflectance/Reflectance_Data" )
+
+scaleFact <- reflectanceAttr$Scale_Factor
+
+# add scaled data column to DF
+aPixeldf$scaled <- (aPixeldf$V1/as.vector(scaleFact))
+
+# make nice column names
+names(aPixeldf) <- c('Reflectance','Wavelength','ScaledReflectance')
+head(aPixeldf)
+
+```
+
+## Plot Spectral Signature
+
+Now we're ready to plot our spectral signature!
+
+```{r plot-spectra, fig.width=9, fig.height=6, fig.cap="Spectral signature plot with wavelength in nanometers on the x-axis and reflectance on the y-axis."}
+
+ggplot(data=aPixeldf)+
+   geom_line(aes(x=Wavelength, y=ScaledReflectance))+
+   xlab("Wavelength (nm)")+
+   ylab("Reflectance")
+
+```
+
+
+## Creating a Raster Stack from Hyperspectral Imagery in HDF5 Format in R"
+
+
+
+In this tutorial, we will learn how to create multi (3) band images from hyperspectral 
+data. We will also learn how to perform some basic raster calculations 
+(known as raster math in the GIS world).
+
+<div id="ds-objectives" markdown="1">
+
+### Learning Objectives
+
+After completing this activity, you will be able to:
+
+* Extract a "slice" of data from a hyperspectral data cube.
+* Create a rasterstack in R which can then be used to create RGB images from bands in a hyperspectral data cube.
+* Plot data spatially on a map.
+* Create basic vegetation indices like NDVI using raster-based calculations in R.
+
+### Things You’ll Need To Complete This Tutorial
+To complete this tutorial you will need the most current version of R and, 
+preferably, RStudio loaded on your computer.
+
+#### R Libraries to Install:
+
+* **rhdf5**: `install.packages("BiocManager")`, `BiocManager::install("rhdf5")`
+* **raster**: `install.packages('raster')`
+* **rgdal**: `install.packages('rgdal')`
+* **maps**: `install.packages('maps')`
+
+<a href="https://www.neonscience.org/packages-in-r" target="_blank"> More on Packages in
+ R - Adapted from Software Carpentry.</a>
+
+### Data to Download
+
+<h3><a href="https://ndownloader.figshare.com/files/21754221">
+Download NEON Teaching Data Subset: Imaging Spectrometer Data - HDF5 </a></h3>
+
+These hyperspectral remote sensing data provide information on the
+<a href="https://www.neonscience.org/" target="_blank"> National Ecological Observatory Network's</a> 
+<a href="https://www.neonscience.org/field-sites/field-sites-map/SJER" target="_blank" > San Joaquin 
+Exerimental Range field site</a> in March of 2019.
+The data were collected over the San Joaquin field site located in California 
+(Domain 17) and processed at NEON headquarters. This data subset is derived from 
+the mosaic tile named NEON_D17_SJER_DP3_257000_4112000_reflectance.h5. 
+The entire dataset can be accessed by request from the 
+<a href="http://data.neonscience.org" target="_blank"> NEON Data Portal</a>.
+
+<a href="https://ndownloader.figshare.com/files/21754221" class="link--button link--arrow">
+Download Dataset</a>
+
+**Remember** that the example dataset linked here only has 1 out of every 4 bands
+included in a full NEON hyperspectral dataset (this substantially reduces the file 
+size!). When we refer to bands in this tutorial, we will note the band numbers for 
+this example dataset, which are different from NEON production data. To convert 
+a band number (b) from this example data subset to the equivalent band in a full 
+NEON hyperspectral file (b'), use the following equation: b' = 1+4*(b-1).
+
+
+
+**Set Working Directory:** This lesson assumes that you have set your working 
+directory to the location of the downloaded and unzipped data subsets. 
+
+<a href="https://www.neonscience.org/set-working-directory-r" target="_blank"> An overview
+of setting the working directory in R can be found here.</a>
+
+**R Script & Challenge Code:** NEON data lessons often contain challenges that reinforce 
+learned skills. If available, the code for challenge solutions is found in the
+downloadable R script of the entire lesson, available in the footer of each lesson page.
+
+
+### Recommended Skills
+
+For this tutorial you should be comfortable working with HDF5 files that 
+contain hyperspectral data, including reading in reflectance values and 
+associated metadata and attributes. 
+
+If you aren't familiar with these steps already, we highly recommend you work 
+through the <a href="https://www.neonscience.org/hsi-hdf5-r" target="_blank"> 
+*Introduction to Working with Hyperspectral Data in HDF5 Format in R* tutorial</a>
+before moving on to this tutorial.
+
+</div>
+
+
+## About Hyperspectral Data 
+We often want to generate a 3 band image from multi or hyperspectral data. The 
+most commonly recognized band combination is RGB which stands for Red, Green and 
+Blue. RGB images are just like the images that your camera takes. But there are 
+other band combinations that are useful too. For example, near infrared images 
+emphasize vegetation and help us classify or identify where vegetation is located 
+on the ground.
+
+<figure >
+    <a href="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/hyperspectral-general/RGBImage_2.png"><img src="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/hyperspectral-general/RGBImage_2.png"
+    alt="An image showing portion of the San Joaquin Experimental Range field site using red, green and blue bands. The example dataset bands are 14,9,4; bands 58,34,19 in the full NEON dataset.">
+    </a>
+<figcaption> A portion of the SJER field site using red, green and blue (example dataset bands 14,9,4; bands 58,34,19 in the full NEON dataset).</figcaption>
+</figure>
+
+<figure>
+    <a href="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/hyperspectral-general/NIR_G_B.png"><img src="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/hyperspectral-general/NIR_G_B.png"
+    alt="Image showing the same portion of the San Joaquin Experimental Range field site mentioned above, but using near infrared, green and blue bands to create an infra red image. The example dataset bands are 22,9,4; bands 90,34,19 in the full NEON dataset.">
+    </a>
+<figcaption> Here is the same section of SJER but with other bands highlighted to create a colored infrared image – near infrared, green and blue (example dataset bands 22, 9, 4; bands 90, 34, 19 in the full NEON dataset).</figcaption>
+</figure>
+
+<div id="ds-dataTip" markdown="1">
+<i class="fa fa-star"></i>**Data Tip - Band Combinations:** The Biodiversity 
+Informatics group created a great interactive tool that lets you explore band 
+combinations. Check it out. Learn more about band combinations 
+<a href="http://biodiversityinformatics.amnh.org/interactives/bandcombination.php" target="_blank">using a great online tool from the American Museum of Natural History!</a> (The tool requires Flash player.) </div>
+
+
+## Create a Raster Stack in R
+
+In the 
+<a href="https://www.neonscience.org/hsi-hdf5-r" target="_blank">previous activity</a>, 
+we exported a single band of the NEON Reflectance data from a HDF5 file. In this 
+activity, we will create a full color image using 3 (red, green and blue - RGB) 
+bands. We will follow many of the steps we followed in the 
+<a href="https://www.neonscience.org/hsi-hdf5-r" target="_blank">Intro to Working with Hyperspectral Remote Sensing Data in HDF5 Format in R</a> tutorial. 
+These steps included loading required packages, reading in our file and viewing 
+the file structure.
+
+```{r load-libraries}
+
+# Load required packages
+library(raster)
+library(rhdf5)
+
+# create path to file name
+f <- paste0(wd,"NEON_hyperspectral_tutorial_example_subset.h5")
+
+```
+
+```{r view-file-structure, eval=FALSE, comment=NA}
+# View HDF5 file structure 
+View(h5ls(f,all=T))
+
+```
+
+To spatially locate our raster data, we need a few key attributes:
+
+* The coordinate reference system
+* The spatial extent of the raster
+   
+We'll begin by grabbing these key attributes from the H5 file.   
+
+```{r get-spatial-attributes }
+
+# define coordinate reference system from the EPSG code provided in the HDF5 file
+myEPSG <- h5read(f,"/SJER/Reflectance/Metadata/Coordinate_System/EPSG Code" )
+myCRS <- crs(paste0("+init=epsg:",myEPSG))
+
+# get the Reflectance_Data attributes
+reflInfo <- h5readAttributes(f,"/SJER/Reflectance/Reflectance_Data" )
+
+# Grab the UTM coordinates of the spatial extent
+xMin <- reflInfo$Spatial_Extent_meters[1]
+xMax <- reflInfo$Spatial_Extent_meters[2]
+yMin <- reflInfo$Spatial_Extent_meters[3]
+yMax <- reflInfo$Spatial_Extent_meters[4]
+
+# define the extent (left, right, top, bottom)
+rasExt <- extent(xMin,xMax,yMin,yMax)
+
+# view the extent to make sure that it looks right
+rasExt
+
+# Finally, define the no data value for later
+myNoDataValue <- as.integer(reflInfo$Data_Ignore_Value)
+myNoDataValue
+```
+
+Next, we'll write a function that will perform the processing that we did step by 
+step in the 
+<a href="https://www.neonscience.org/hsi-hdf5-r" target="_blank">Intro to Working with Hyperspectral Remote Sensing Data in HDF5 Format in R</a>.
+This will allow us to process multiple bands in bulk.
+
+The function `band2Rast` slices a band of data from the HDF5 file, and
+extracts the reflectance. It then converts the data into a matrix, converts it to
+a raster, and finally returns a spatially corrected raster for the specified band. 
+
+The function requires the following variables:
+
+* file: the file
+* band: the band number we wish to extract
+* noDataValue: the noDataValue for the raster
+* extent: a raster `Extent` object .
+* crs: the Coordinate Reference System for the raster
+
+The function output is a spatially referenced, R raster object.
+
+```{r function-read-refl-data }
+
+# file: the hdf file
+# band: the band you want to process
+# returns: a matrix containing the reflectance data for the specific band
+
+band2Raster <- function(file, band, noDataValue, extent, CRS){
+    # first, read in the raster
+    out <- h5read(file,"/SJER/Reflectance/Reflectance_Data",index=list(band,NULL,NULL))
+	  # Convert from array to matrix
+	  out <- (out[1,,])
+	  # transpose data to fix flipped row and column order 
+    # depending upon how your data are formatted you might not have to perform this
+    # step.
+	  out <- t(out)
+    # assign data ignore values to NA
+    # note, you might chose to assign values of 15000 to NA
+    out[out == myNoDataValue] <- NA
+	  
+    # turn the out object into a raster
+    outr <- raster(out,crs=CRS)
+   
+    # assign the extents to the raster
+    extent(outr) <- extent
+   
+    # return the raster object
+    return(outr)
+}
+
+```
+
+
+Now that the function is created, we can create our list of rasters. The list 
+specifies which bands (or dimensions in our hyperspectral dataset) we want to 
+include in our raster stack. Let's start with a typical RGB (red, green, blue) 
+combination. We will use bands 14, 9, and 4 (bands 58, 34, and 19 in a full 
+NEON hyperspectral dataset).
+
+<div id="ds-dataTip" markdown="1">
+<i class="fa fa-star"></i>**Data Tip - wavelengths and bands:** Remember that 
+you can look at the wavelengths dataset in the HDF5 file to determine the center 
+wavelength value for each band. Keep in mind that this data subset only includes
+every fourth band that is available in a full NEON hyperspectral dataset!
+</div>
+
+
+```{r create-raster-stack }
+
+# create a list of the bands we want in our stack
+rgb <- list(14,9,4) #list(58,34,19) when using full NEON hyperspectral dataset
+
+# lapply tells R to apply the function to each element in the list
+rgb_rast <- lapply(rgb,FUN=band2Raster, file = f,
+                   noDataValue=myNoDataValue, 
+                   extent=rasExt,
+                   CRS=myCRS)
+
+# check out the properties or rgb_rast
+# note that it displays properties of 3 rasters.
+rgb_rast
+
+# finally, create a raster stack from our list of rasters
+rgbStack <- stack(rgb_rast)
+
+```
+
+In the code chunk above, we used the `lapply()` function, which is a powerful,
+flexible way to apply a function (in this case, our `band2Raster()` fucntion)
+multiple times. You can <a href="http://www.r-bloggers.com/using-apply-sapply-lapply-in-r/" target="_blank">learn more about lapply() here</a>. 
+
+NOTE: We are using the `raster stack` object in R to store several rasters that 
+are of the same CRS and extent. This is a popular and convenient way to organize 
+co-incident rasters.
+
+Next, add the names of the bands to the raster so we can easily keep track of 
+the bands in the list.
+
+```{r plot-raster-stack, fig.cap="Raster plot of band 14 from the raster stack created. The x-axis and y-axis values represent the extent, which range from 257500 to 258000 meters easting, and 4112500 to 4113000 meters northing, respectively. The plot legend depicts the range of reflectance values, which go from 0 to 0.8."}
+
+# Create a list of band names
+bandNames <- paste("Band_",unlist(rgb),sep="")
+
+# set the rasterStack's names equal to the list of bandNames created above
+names(rgbStack) <- bandNames
+
+# check properties of the raster list - note the band names
+rgbStack
+
+# scale the data as specified in the reflInfo$Scale Factor
+rgbStack <- rgbStack/as.integer(reflInfo$Scale_Factor)
+
+# plot one raster in the stack to make sure things look OK.
+plot(rgbStack$Band_14, main="Band 14")
+
+	
+```
+
+We can play with the color ramps too if we want:
+
+```{r plot-HSI-raster, fig.cap=c("Raster plot of band 14 from the raster stack created using different colors available from the terrain.colors funtion. The x-axis and y-axis values represent the extent, which range from 257500 to 258000 meters easting, and 4112500 to 4113000 meters northing, respectively.","Raster plot of band 14 from the raster stack created with a 0.5 adjustment of the z plane, which causes the image to be stretched. The x-axis and y-axis values represent the extent, which range from 257500 to 25800 meters easting, and 4112500 to 4113000 meters northing, respectively. The plot legend depicts the range of reflectance values, which go from 0 to 0.8.","Raster plot of band 14 from the raster stack created using a different color palette. The x-axis and y-axis values represent the extent, which range from 257500 to 258000 meters easting, and 4112500 to 4113000 meters northing, respectively.")}
+
+# change the colors of our raster 
+myCol <- terrain.colors(25)
+image(rgbStack$Band_14, main="Band 14", col=myCol)
+
+# adjust the zlims or the stretch of the image
+myCol <- terrain.colors(25)
+image(rgbStack$Band_14, main="Band 14", col=myCol, zlim = c(0,.5))
+
+# try a different color palette
+myCol <- topo.colors(15, alpha = 1)
+image(rgbStack$Band_14, main="Band 14", col=myCol, zlim=c(0,.5))
+
+```
+
+
+The `plotRGB` function allows you to combine three bands to create an image. 
+
+
+```{r plot-RGB-Image, fig.cap="RGB image of a portion of the SJER field site using 3 bands fom the raster stack. Brightness values have been stretched using the stretch argument to produce a natural looking image."}
+# create a 3 band RGB image
+plotRGB(rgbStack,
+        r=1,g=2,b=3,
+        stretch = "lin")
+
+```
+
+<i class="fa fa-star"></i>**A note about image stretching:** Notice that we use the argument
+`stretch="lin"` in this plotting function, which automatically stretches the 
+brightness values for us to produce a natural-looking image.
+
+
+Once you've created your raster, you can export it as a GeoTIFF. You can bring 
+this GeoTIFF into any GIS program!
+
+```{r save-raster-geotiff, eval=FALSE, comment=NA}
+
+# write out final raster	
+# note: if you set overwrite to TRUE, then you will overwite or lose the older
+# version of the tif file! Keep this in mind.
+writeRaster(rgbStack, file=paste0(wd,"NEON_hyperspectral_tutorial_example_RGB_stack_image.tif"), format="GTiff", overwrite=TRUE)
+
+```
+
+<div id="ds-dataTip" markdown="1">
+<i class="fa fa-star"></i>**Data Tip - False color and near infrared images:** 
+Use the band combinations listed at the top of this page to modify the raster list.
+What type of image do you get when you change the band values?
+</div>
+
+<div id="ds-challenge" markdown="1">
+### Challenge: Other band combinations
+
+Use different band combinations to create other "RGB" images. Suggested band 
+combinations are below for use with the full NEON hyperspectral reflectance 
+datasets (for this example dataset, divide the band number by 4 and round to 
+the nearest whole number):
+
+* Color Infrared/False Color: rgb (90,34,19)
+* SWIR, NIR, Red Band: rgb (152,90,58)
+* False Color: rgb (363,246,55)
+
+---
+syncID: db9715ca243944fabbe81031f2ed5cec
+title: "Select pixels and compare spectral signatures in R"
+code1: HYPERSPECTRAL/Select-Pixels-Compare-Spectral-Signatures.R
+contributors: Megan Jones, Felipe Sanchez
+dateCreated: 2020-02-18
+description: Plot and comapre the spectral signatures of multiple different land cover types using an interactive click-to-extract interface to select pixels.
+estimatedTime: 0.5 Hours
+languagesTool: R
+dataProudct: DP3.30006.001
+packagesLibraries: rhdf5, raster, plyr, reshape2, ggplot2
+authors: Donal O'Leary
+topics: hyperspectral, HDF5, remote-sensing
+tutorialSeries: null
+urlTitle: select-pixels-compare-spectral-signatures-r
+---
+
+
+In this tutorial, we will learn how to plot spectral signatures of several
+different land cover types using an interactive clicking feature of the 
+`raster` package.
+
+<div id="ds-objectives" markdown="1">
+
+## Learning Objectives
+
+After completing this activity, you will be able to:
+
+* Extract and plot spectra from an HDF5 file.
+* Work with groups and datasets within an HDF5 file.
+* Use the `raster::click()` function to interact with an RGB raster image
+
+## Things You’ll Need To Complete This Tutorial
+To complete this tutorial you will need the most current version of R and, 
+preferably, RStudio loaded on your computer.
+
+### R Libraries to Install:
+
+* **rhdf5**: `install.packages("BiocManager")`, `BiocManager::install("rhdf5")`
+* **raster**: `install.packages('raster')`
+* **rgdal**: `install.packages('rgdal')`
+* **plyr**: `install.packages('plyr')`
+* **reshape2**: `install.packages('rehape2')`
+* **ggplot2**: `install.packages('ggplot2')`
+
+<a href="https://neonscience.org/packages-in-r" target="_blank"> More on Packages in
+ R - Adapted from Software Carpentry.</a>
+
+### Data to Download
+
+<h3><a href="https://ndownloader.figshare.com/files/21754221">
+Download NEON Teaching Data Subset: Imaging Spectrometer Data - HDF5 </a></h3>
+
+These hyperspectral remote sensing data provide information on the
+<a href="https://www.neonscience.org/" target="_blank"> National Ecological Observatory Network's</a> 
+<a href="https://www.neonscience.org/field-sites/field-sites-map/SJER" target="_blank" > San Joaquin 
+Exerimental Range field site</a> in March of 2019.
+The data were collected over the San Joaquin field site located in California 
+(Domain 17) and processed at NEON headquarters. This data subset is derived from 
+the mosaic tile named NEON_D17_SJER_DP3_257000_4112000_reflectance.h5. 
+The entire dataset can be accessed by request from the 
+<a href="http://data.neonscience.org" target="_blank"> NEON Data Portal</a>.
+
+<a href="https://ndownloader.figshare.com/files/21754221" class="link--button link--arrow">
+Download Dataset</a>
+
+**Remember** that the example dataset linked here only has 1 out of every 4 bands
+included in a full NEON hyperspectral dataset (this substantially reduces the file 
+size!). When we refer to bands in this tutorial, we will note the band numbers for 
+this example dataset, which are different from NEON production data. To convert 
+a band number (b) from this example data subset to the equivalent band in a full 
+NEON hyperspectral file (b'), use the following equation: b' = 1+4*(b-1).
+
+
+
+
+
+***
+<h3><a href="https://ndownloader.figshare.com/files/21767328">
+Download NEON Teaching Data Subset: RGB Image of SJER</a></h3>
+
+This RGB image is derived from hyperspectral remote sensing data collected on the
+<a href="https://www.neonscience.org/" target="_blank"> National Ecological Observatory Network's</a> 
+<a href="https://www.neonscience.org/field-sites/field-sites-map/SJER" target="_blank" > San Joaquin Exerimental Range field site</a> in March of 2019.
+The data were collected over the San Joaquin field site located in California 
+(Domain 17) and processed at NEON headquarters. The entire dataset can be accessed by request from the 
+<a href="http://data.neonscience.org" target="_blank"> NEON Data Portal</a>.
+
+<a href="https://ndownloader.figshare.com/files/21767328" class="link--button link--arrow">
+Download Dataset</a>
+
+
+
+
+
+***
+**Set Working Directory:** This lesson assumes that you have set your working 
+directory to the location of the downloaded and unzipped data subsets. 
+
+<a href="https://www.neonscience.org/set-working-directory-r" target="_blank"> An overview
+of setting the working directory in R can be found here.</a>
+
+**R Script & Challenge Code:** NEON data lessons often contain challenges that reinforce 
+learned skills. If available, the code for challenge solutions is found in the
+downloadable R script of the entire lesson, available in the footer of each lesson page.
+
+
+### Recommended Skills
+
+This tutorial will require that you be comfortable navigating HDF5 files, 
+and have an understanding of what spectral signatures are. For additional 
+information on these topics, we highly recommend you work through the 
+<a href="https://neonscience.org/intro-hsi-r-series" target="_blank"> *Introduction to Hyperspectral Remote Sensing Data* series</a>
+before moving on to this tutorial.
+
+</div>
+
+
+## Getting Started
+
+First, we need to load our required packages, and import the hyperspectral
+data (in HDF5 format). We will also collect a few other important pieces of 
+information (band wavelengths and scaling factor) while we're at it.
+
+```{r load-libraries, message=FALSE, warning=FALSE}
+
+# Load required packages
+library(rhdf5)
+library(reshape2)
+library(raster)
+library(ggplot2)
+
+# set working directory to ensure R can find the file we wish to import and where
+# we want to save our files. Be sure to move the download into your working directory!
+
+
+# define filepath to the hyperspectral dataset
+f <- paste0(wd,"NEON_hyperspectral_tutorial_example_subset.h5")
+
+# read in the wavelength information from the HDF5 file
+wavelengths <- h5read(f,"/SJER/Reflectance/Metadata/Spectral_Data/Wavelength")
+
+# grab scale factor from the Reflectance attributes
+reflInfo <- h5readAttributes(f,"/SJER/Reflectance/Reflectance_Data" )
+
+scaleFact <- reflInfo$Scale_Factor
+
+```
+
+Now, we read in the RGB image that we created in an earlier tutorial and plot it. 
+If you didn't make this image before, you can download it from the link at the top 
+of this page.
+
+```{r read-in-RGB-and-plot, fig.cap="RGB image of a portion of the SJER field site using 3 bands from the raster stack. Brightness values have been stretched using the stretch argument to produce a natural looking image. At the top right of the image, there is dark, brakish water. Scattered throughout the image, there are several trees. At the center of the image, there is a baseball field, with low grass. At the bottom left of the image, there is a parking lot and some buildings with highly reflective surfaces, and adjacent to it is a section of a gravel lot."}
+
+# Read in RGB image as a 'stack' rather than a plain 'raster'
+rgbStack <- stack(paste0(wd,"NEON_hyperspectral_tutorial_example_RGB_stack_image.tif"))
+
+# Plot as RGB image
+plotRGB(rgbStack,
+        r=1,g=2,b=3, scale=300, 
+        stretch = "lin")
+
+```
+
+## Interactive `click` Function from `raster` Package
+
+Next, we use an interactive clicking function to identify the pixels that we want
+to extract spectral signatures for. To follow along best with this tutorial, we 
+suggest the following five cover types (exact location shown below). 
+
+1. Irrigated grass
+2. Tree canopy (avoid the shaded northwestern side of the tree)
+3. Roof
+4. Bare soil (baseball diamond infield)
+5. Open water
+
+As shown here:
+<figure >
+    <a href="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/hyperspectral-general/Click_points.png"><img src="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/hyperspectral-general/Click_points.png"
+    alt="RGB image of a portion of the SJER field site using 3 bands fom the raster stack. Also displayed are points labeled with numbers one through five, representing five cover types selected using the interactive click function from the raster package. At the top right of the image, the dark, brakish water has been selected as point 5. The tops of a cluster of trees on the top left of the image has been selected as point 2. At the center of the image, the baseball field with low grass has been selected as point 1. At the bottom left of the image the top of a building has been selected as point 3, and the adjacent gravel lot has been selected as point 4. Plotting parameters have been changed to enhance visibility.">
+    </a>
+<figcaption> Five different land cover types chosen for this study (magenta dots) in the order listed above (red numbers).</figcaption>
+</figure>
+
+
+```{r click-to-select, eval=FALSE, comment=NA}
+
+# change plotting parameters to better see the points and numbers generated from clicking
+par(col="red", cex=3)
+
+# use the 'click' function
+c <- click(rgbStack, id=T, xy=T, cell=T, type="p", pch=16, col="magenta", col.lab="red")
+
+```
+
+Once you have clicked your five points, press the `ESC` key to save your
+clicked points and close the function before moving on to the next step. If 
+you make a mistake in the step, run the `plotRGB()` function again to start over.
+```{r create-c-hidden, include=FALSE, purl=FALSE}
+c <- as.data.frame(c(135750,50101,234644,242062,73477))
+names(c) <- "cell"
+```
+
+The `click()` function identifies the cell number that you clicked, but in order 
+to extract spectral signatures, we need to convert that cell number into a row
+and column, as shown here:
+
+```{r convert-cell-to-row-column}
+# convert raster cell number into row and column (used to extract spectral signature below)
+c$row <- c$cell%/%nrow(rgbStack)+1 # add 1 because R is 1-indexed
+c$col <- c$cell%%ncol(rgbStack)
+```
+
+## Extract Spectral Signatures from HDF5 file
+Next, we loop through each of the cells that we selected to use the `h5read()` 
+function to etract the reflectance values of all bands from the given row and
+column. 
+
+```{r extract-spectral-signaures}
+
+# create a new dataframe from the band wavelengths so that we can add
+# the reflectance values for each cover type
+Pixel_df <- as.data.frame(wavelengths)
+
+# loop through each of the cells that we selected
+for(i in 1:length(c$cell)){
+# extract Spectra from a single pixel
+aPixel <- h5read(f,"/SJER/Reflectance/Reflectance_Data",
+                 index=list(NULL,c$col[i],c$row[i]))
+
+# scale reflectance values from 0-1
+aPixel <- aPixel/as.vector(scaleFact)
+
+# reshape the data and turn into dataframe
+b <- adply(aPixel,c(1))
+
+# rename the column that we just created
+names(b)[2] <- paste0("Point_",i)
+
+# add reflectance values for this pixel to our combined data.frame called Pixel_df
+Pixel_df <- cbind(Pixel_df,b[2])
+}
+
+```
+
+## Plot Spectral signatures using ggplot2
+Finally, we have everything that we need to plot the spectral signatures for 
+each of the pixels that we clicked. In order to color our lines by the different
+land cover types, we will first reshape our data using the `melt()` function, then
+plot the spectral signatures.
+
+```{r plot-spectral-signatures, fig.width=9, fig.height=6, fig.cap="Plot of spectral signatures for the five different land cover types: Field, Tree, Roof, Soil, and Water. On the x-axis is wavelength in nanometers and on the y-axis is reflectance values."}
+# Use the melt() funciton to reshape the dataframe into a format that ggplot prefers
+Pixel.melt <- melt(Pixel_df, id.vars = "wavelengths", value.name = "Reflectance")
+
+# Now, let's plot some spectral signatures!
+ggplot()+
+  geom_line(data = Pixel.melt, mapping = aes(x=wavelengths, y=Reflectance, color=variable), lwd=1.5)+
+  scale_colour_manual(values = c("green2", "green4", "grey50","tan4","blue3"),
+                      labels = c("Field", "Tree", "Roof","Soil","Water"))+
+  labs(color = "Cover Type")+
+  ggtitle("Land cover spectral signatures")+
+  theme(plot.title = element_text(hjust = 0.5, size=20))+
+  xlab("Wavelength")
+```
+
+Nice! However, there seems to be something weird going on in the wavelengths 
+near 1400nm and 1850 nm...
+
+## Atmospheric Absorbtion Bands 
+Those irregularities around 1400nm and 1850 nm are two major atmospheric 
+absorbtion bands - regions where gasses in the atmosphere (primarily carbon 
+dioxide and water vapor) absorb radiation, and therefore, obscure the 
+reflected radiation that the imaging spectrometer measures. Fortunately, the 
+lower and upper bound of each of those atmopheric absopbtion bands is specified 
+in the HDF5 file. Let's read those bands and plot rectangles where the 
+reflectance measurements are obscured by atmospheric absorbtion. 
+
+```{r mask-atmospheric-absorbtion-bands, fig.width=9, fig.height=6, fig.cap="Plot of spectral signatures for the five different land cover types: Field, Tree, Roof, Soil, and Water. Added to the plot are two rectangles in regions near 1400nm and 1850nm where the reflectance measurements are obscured by atmospheric absorption. On the x-axis is wavelength in nanometers and on the y-axis is reflectance values."}
+
+# grab Reflectance metadata (which contains absorption band limits)
+reflMetadata <- h5readAttributes(f,"/SJER/Reflectance" )
+
+ab1 <- reflMetadata$Band_Window_1_Nanometers
+ab2 <- reflMetadata$Band_Window_2_Nanometers
+
+# Plot spectral signatures again with rectangles showing the absorption bands
+ggplot()+
+  geom_line(data = Pixel.melt, mapping = aes(x=wavelengths, y=Reflectance, color=variable), lwd=1.5)+
+  geom_rect(mapping=aes(ymin=min(Pixel.melt$Reflectance),ymax=max(Pixel.melt$Reflectance), xmin=ab1[1], xmax=ab1[2]), color="black", fill="grey40", alpha=0.8)+
+  geom_rect(mapping=aes(ymin=min(Pixel.melt$Reflectance),ymax=max(Pixel.melt$Reflectance), xmin=ab2[1], xmax=ab2[2]), color="black", fill="grey40", alpha=0.8)+
+  scale_colour_manual(values = c("green2", "green4", "grey50","tan4","blue3"),
+                      labels = c("Field", "Tree", "Roof","Soil","Water"))+
+  labs(color = "Cover Type")+
+  ggtitle("Land cover spectral signatures")+
+  theme(plot.title = element_text(hjust = 0.5, size=20))+
+  xlab("Wavelength")
+```
+
+Now we can clearly see that the noisy sections of each spectral signature are 
+within the atmospheric absorbtion bands. For our final step, let's take all 
+reflectance values from within each absorbtion band and set them to `NA` to 
+remove the noisy sections from the plot.
+
+```{r remove-absorbtion-band-reflectances, fig.width=9, fig.height=6, fig.cap="Plot of spectral signatures for the five different land cover types: Field, Tree, Roof, Soil, and Water. Values falling within the two rectangles from the previous image have been set to NA and ommited from the plot. On the x-axis is wavelength in nanometers and on the y-axis is reflectance values."}
+
+# Duplicate the spectral signatures into a new data.frame
+Pixel.melt.masked <- Pixel.melt
+
+# Mask out all values within each of the two atmospheric absorbtion bands
+Pixel.melt.masked[Pixel.melt.masked$wavelengths>ab1[1]&Pixel.melt.masked$wavelengths<ab1[2],]$Reflectance <- NA
+Pixel.melt.masked[Pixel.melt.masked$wavelengths>ab2[1]&Pixel.melt.masked$wavelengths<ab2[2],]$Reflectance <- NA
+
+# Plot the masked spectral signatures
+ggplot()+
+  geom_line(data = Pixel.melt.masked, mapping = aes(x=wavelengths, y=Reflectance, color=variable), lwd=1.5)+
+  scale_colour_manual(values = c("green2", "green4", "grey50","tan4","blue3"),
+                      labels = c("Field", "Tree", "Roof", "Soil", "Water"))+
+  labs(color = "Cover Type")+
+  ggtitle("Land cover spectral signatures")+
+  theme(plot.title = element_text(hjust = 0.5, size=20))+
+  xlab("Wavelength")
+
+```
+
+There you have it, spectral signatures for five different land cover types, 
+with the readings from the atmospheric absorbtion bands removed.
+
+<div id="ds-challenge" markdown="1">
+## Written Questions: Compare Spectral Signatures
+
+There are many interesting comparisons to make with spectral signatures. 
+Try these challenges to explore hyperspectral data further:
+
+1. Compare five different types of vegetation, and pick an appropriate color
+for each of their lines. A nice guide to the many different color options
+in R can be found <a href="http://sape.inf.usi.ch/quick-reference/ggplot2/colour" target="_blank"> *here*.</a>
+
+2. What happens if you only click four points? What about six? How does this
+change the spectral signature plots, and can you fix any errors that occur?
+
+3. Does shallow water have a different spectral signature than deep water?
+
+
+
