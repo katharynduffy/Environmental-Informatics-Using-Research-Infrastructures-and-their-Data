@@ -20,7 +20,14 @@ address that question, that you may want to explore while pursuing this course.
 
 At the end of this activity, you will be able to:
 
-*These should align with the labs and written questions that we ask*
+* Define the eddy covariance method
+
+* Articulate various carbon storage and flux terms
+
+* Understand the structure of bundled eddy covariance data
+
+* Be able to process NEON flux data such that it is comparable with AmeriFlux
+
 
 ## Eddy Co_variance Data: What does it actually measure?
  
@@ -1062,7 +1069,7 @@ pr <- loadByProduct("DP1.00024.001", site="NIWO", avg=30,
 ## Merged the most recent publication of sensor position files for each site and saved to /stackedFiles
 ## Copied the most recent publication of variable definition file to /stackedFiles
 ## Finished: Stacked 1 data tables and 2 metadata tables!
-## Stacking took 0.2107689 secs
+## Stacking took 0.1939242 secs
 ## All unzipped monthly data folders have been removed.
 ```
 
@@ -5457,32 +5464,12 @@ Clean up environment
 ### Computational
 
 
-1) NEON data are submitted to AmeriFlux quarterly after one year of non-quality flagged or otherwise missing data are available. Use the workflow above to extend the data coverage of an already submitted NEON site by downloading existing data from the AmeriFlux site and recently published HDF5 files from the NEON data portal OR pick a site that is not yet on AmeriFlux and convert from NEON to AmeriFlux format.  
+1) NEON data are submitted to AmeriFlux quarterly after one year of non-quality flagged or otherwise missing data are available. Use the workflow above to extend the data coverage of an already submitted NEON site by downloading existing data from the AmeriFlux website and recently published HDF5 files from the NEON data portal.  Process the NEON data such that it is in AmeriFlux format and plot the entire timerseries.
+
+*Hint: NEON sites start with US-x*
+
 
 2) Using metScanR package, find co-located NEON and AmeriFlux sites. Download data for an overlapping time period, and compare FC and H values by making a scatter plot and seeing how far off the data are from a 1:1 line. 
-
-
-<div id="ds-challenge" markdown="1">
-
-### Written
-
-**Question 1:** How might or does NEON flux data
-intersect with your current research or future career goals? *(1 paragraph)*
-</div>
-
-
-
-<div id="ds-challenge" markdown="1">
-**Question 2:**
-
-</div>
-
-<div id="ds-challenge" markdown="1">
-**Question 3:**
-
-
-<div id="ds-challenge" markdown="1">
-**Question 4:**
 
 
 
