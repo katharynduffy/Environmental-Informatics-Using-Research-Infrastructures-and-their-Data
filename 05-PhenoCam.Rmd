@@ -1007,7 +1007,7 @@ The most recent release is available from <a href="https://github.com/bnasr/xROI
 First let's load some packages:
 
 
-```{r}
+```{r, warning=FALSE, quiet=TRUE}
 library(jsonlite)
 library(phenocamapi)
 library(plotly)
@@ -1031,7 +1031,7 @@ head(cams_)
 And second, via the phenocamapi package:
 
 
-```{r}
+```{r, warnings=FALSE}
 phenos=get_phenos()
 head(phenos)
 
@@ -1145,7 +1145,7 @@ print('build your code here')
 A full description of the methodology is provided in [Scientific Data: Tracking vegetation phenology across diverse North American biomes using PhenoCam imagery (Richardson et al. 2018)](https://www.nature.com/articles/sdata201828).
 
 
-```{r}
+```{r, warnings=FALSE}
 #uncomment if you need to install via devtools
 #if(!require(devtools)){install.package(devtools)}
 #devtools::install_github("khufkens/phenocamr")
@@ -1190,7 +1190,7 @@ td <- read.table("data/harvard_DB_1000_3day_transition_dates.csv",
 Let's take a look at the data:
 
 
-```{r}
+```{r,  warnings=FALSE}
 p = plot_ly() %>%
   add_trace(
     data = df,
@@ -1230,7 +1230,7 @@ Let's create a simple plot_ly line graph of the smooth Green Chromatic Coordinat
 
 
 
-```{r}
+```{r, warnings=FALSE}
 p = plot_ly() %>%
   add_trace(
     data = df,
@@ -1275,7 +1275,7 @@ fall <- td[td$direction == "falling" & td$gcc_value == "gcc_90",]
 
 Let's load in a function to make plotting smoother.  I've dropped it here in the markdown so that you can edit it and re-run it as you see fit:
 
-```{r}
+```{r, warnings=FALSE}
 gcc_plot = function(gcc, spring, fall){
   unix = "1970-01-01"
 
@@ -1471,7 +1471,7 @@ Now pull data for those sites via `phenocamr` or the `phenocamapi`
 
 ```{r}
 print('code here')
-#> [1] "code here"
+
 ```
 
 Now let's create a subplot of your grasslands to compare phenology, some hint code below:
