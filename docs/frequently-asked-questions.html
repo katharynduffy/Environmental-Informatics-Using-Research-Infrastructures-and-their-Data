@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="flux-measurements-inter-operability.html"/>
+<link rel="prev" href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"/>
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -311,13 +311,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.7.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#computational"><i class="fa fa-check"></i><b>5.7.1</b> Computational</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><i class="fa fa-check"></i><b>6</b> Calculating Forest Structural Diversity Metrics from NEON LiDAR Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="introduction-to-neon-its-data.html"><a href="introduction-to-neon-its-data.html#learning-objectives"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html#r-libraries-to-install"><i class="fa fa-check"></i><b>6.1.1</b> R Libraries to Install:</a></li>
+<li class="chapter" data-level="6.1.2" data-path="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html#data-to-download"><i class="fa fa-check"></i><b>6.1.2</b> Data to Download</a></li>
+<li class="chapter" data-level="6.1.3" data-path="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html#recommended-skills"><i class="fa fa-check"></i><b>6.1.3</b> Recommended Skills</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html#introduction-to-structural-diversity-metrics"><i class="fa fa-check"></i><b>6.2</b> Introduction to Structural Diversity Metrics</a></li>
+<li class="chapter" data-level="6.3" data-path="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html#neon-aop-discrete-return-lidar"><i class="fa fa-check"></i><b>6.3</b> NEON AOP Discrete Return LIDAR</a></li>
+<li class="chapter" data-level="6.4" data-path="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html#loading-the-lidar-products"><i class="fa fa-check"></i><b>6.4</b> Loading the LIDAR Products</a></li>
+<li class="chapter" data-level="6.5" data-path="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html#normalizing-tree-height-to-ground"><i class="fa fa-check"></i><b>6.5</b> Normalizing Tree Height to Ground</a></li>
+<li class="chapter" data-level="6.6" data-path="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html#calculating-structural-diversity-metrics"><i class="fa fa-check"></i><b>6.6</b> Calculating Structural Diversity Metrics</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html#generate-canopy-height-model-chm"><i class="fa fa-check"></i><b>6.6.1</b> GENERATE CANOPY HEIGHT MODEL (CHM)</a></li>
+<li class="chapter" data-level="6.6.2" data-path="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html#mean-outer-canopy-height-moch"><i class="fa fa-check"></i><b>6.6.2</b> MEAN OUTER CANOPY HEIGHT (MOCH)</a></li>
+<li class="chapter" data-level="6.6.3" data-path="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html#max-canopy-height"><i class="fa fa-check"></i><b>6.6.3</b> MAX CANOPY HEIGHT</a></li>
+<li class="chapter" data-level="6.6.4" data-path="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html#rumple"><i class="fa fa-check"></i><b>6.6.4</b> RUMPLE</a></li>
+<li class="chapter" data-level="6.6.5" data-path="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html#top-rugosity"><i class="fa fa-check"></i><b>6.6.5</b> TOP RUGOSITY</a></li>
+<li class="chapter" data-level="6.6.6" data-path="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html#deep-gaps-deep-gap-fraction"><i class="fa fa-check"></i><b>6.6.6</b> DEEP GAPS &amp; DEEP GAP FRACTION</a></li>
+<li class="chapter" data-level="6.6.7" data-path="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html#cover-fraction"><i class="fa fa-check"></i><b>6.6.7</b> COVER FRACTION</a></li>
+<li class="chapter" data-level="6.6.8" data-path="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html#vci"><i class="fa fa-check"></i><b>6.6.8</b> VCI</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html#combining-everything-into-one-function"><i class="fa fa-check"></i><b>6.7</b> Combining Everything Into One Function</a></li>
+<li class="chapter" data-level="6.8" data-path="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html"><a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html#comparing-metrics-between-forests"><i class="fa fa-check"></i><b>6.8</b> Comparing Metrics Between Forests</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html"><i class="fa fa-check"></i>Frequently Asked Questions:</a><ul>
-<li class="chapter" data-level="5.8" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#where-can-i-find-due-dates-for-assignments"><i class="fa fa-check"></i><b>5.8</b> Where can I find due dates for assignments?</a></li>
-<li class="chapter" data-level="5.9" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#how-do-i-submit-assignments"><i class="fa fa-check"></i><b>5.9</b> How do I submit assignments?</a></li>
-<li class="chapter" data-level="5.10" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#do-i-still-have-to-submit-written-exercises-as-.rmd-and-.pdf"><i class="fa fa-check"></i><b>5.10</b> Do I still have to submit written exercises as .Rmd and .pdf?</a></li>
-<li class="chapter" data-level="5.11" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#whats-better-for-code-conciseness-or-readability"><i class="fa fa-check"></i><b>5.11</b> What’s better for code, conciseness or readability?</a></li>
-<li class="chapter" data-level="5.12" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#how-find-i-find-resources-to-navigate-the-neon-data-portal"><i class="fa fa-check"></i><b>5.12</b> How find I find resources to navigate the NEON Data Portal?</a></li>
-<li class="chapter" data-level="5.13" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#how-can-i-best-prepare-for-class-and-succeed"><i class="fa fa-check"></i><b>5.13</b> How can I best prepare for class and succeed?</a></li>
+<li class="chapter" data-level="6.9" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#where-can-i-find-due-dates-for-assignments"><i class="fa fa-check"></i><b>6.9</b> Where can I find due dates for assignments?</a></li>
+<li class="chapter" data-level="6.10" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#how-do-i-submit-assignments"><i class="fa fa-check"></i><b>6.10</b> How do I submit assignments?</a></li>
+<li class="chapter" data-level="6.11" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#do-i-still-have-to-submit-written-exercises-as-.rmd-and-.pdf"><i class="fa fa-check"></i><b>6.11</b> Do I still have to submit written exercises as .Rmd and .pdf?</a></li>
+<li class="chapter" data-level="6.12" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#whats-better-for-code-conciseness-or-readability"><i class="fa fa-check"></i><b>6.12</b> What’s better for code, conciseness or readability?</a></li>
+<li class="chapter" data-level="6.13" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#how-find-i-find-resources-to-navigate-the-neon-data-portal"><i class="fa fa-check"></i><b>6.13</b> How find I find resources to navigate the NEON Data Portal?</a></li>
+<li class="chapter" data-level="6.14" data-path="frequently-asked-questions.html"><a href="frequently-asked-questions.html#how-can-i-best-prepare-for-class-and-succeed"><i class="fa fa-check"></i><b>6.14</b> How can I best prepare for class and succeed?</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/katharynduffy/katharynduffy.github.io" target="blank">Published with bookdown</a></li>
@@ -342,19 +365,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="frequently-asked-questions" class="section level1 unnumbered">
 <h1>Frequently Asked Questions:</h1>
 <div id="where-can-i-find-due-dates-for-assignments" class="section level2">
-<h2><span class="header-section-number">5.8</span> Where can I find due dates for assignments?</h2>
+<h2><span class="header-section-number">6.9</span> Where can I find due dates for assignments?</h2>
 <p><em>All assignment deadlines can be found in BBLearn. Within this textbook we have suggestions for the timing of all writen questions, coding labs and final culmination writes ups. All material by infrastructure is due before we begin the next infrastructure.</em></p>
 </div>
 <div id="how-do-i-submit-assignments" class="section level2">
-<h2><span class="header-section-number">5.9</span> How do I submit assignments?</h2>
+<h2><span class="header-section-number">6.10</span> How do I submit assignments?</h2>
 <p><em>All assignments (except the very first git assignment) are submitted via BBLearn as both .Rmds and .pdfs</em></p>
 </div>
 <div id="do-i-still-have-to-submit-written-exercises-as-.rmd-and-.pdf" class="section level2">
-<h2><span class="header-section-number">5.10</span> Do I still have to submit written exercises as .Rmd and .pdf?</h2>
+<h2><span class="header-section-number">6.11</span> Do I still have to submit written exercises as .Rmd and .pdf?</h2>
 <p><em>Yes.</em></p>
 </div>
 <div id="whats-better-for-code-conciseness-or-readability" class="section level2">
-<h2><span class="header-section-number">5.11</span> What’s better for code, conciseness or readability?</h2>
+<h2><span class="header-section-number">6.12</span> What’s better for code, conciseness or readability?</h2>
 <p><code>Readability &gt; Conciseness</code></p>
 <p><em>I personally almost always use dplyr, my thoughts, pulled largely from Dr. Derek Sonderegger’s Statistical Computing Course are below:</em></p>
 <p>The pipe command in <code>dplyr</code> <code>%&gt;%</code> allows for very readable code. The idea is that the <code>%&gt;%</code> operator works by translating the command <em>a</em> <code>%&gt;%</code> <em>f(b)</em> to the expression <em>f(a,b)</em>. This operator works on <strong>any function</strong> and was introduced in the <code>magrittr</code> package. The beauty of this comes when you have a suite of functions that take input arguments of the same type as their output. They are human readable!</p>
@@ -373,11 +396,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In dplyr, all the functions take a data set as its first argument and outputs an appropriately modified data set. This allows me to chain together commands in a readable fashion. Then in 3 months I don’t have to wonder what on earth I was doing last time I opened this project, if I filtered the data, etc etc. Your future self will sincerely thank your past self.</p>
 </div>
 <div id="how-find-i-find-resources-to-navigate-the-neon-data-portal" class="section level2">
-<h2><span class="header-section-number">5.12</span> How find I find resources to navigate the NEON Data Portal?</h2>
+<h2><span class="header-section-number">6.13</span> How find I find resources to navigate the NEON Data Portal?</h2>
 <p>A fantastic powerpoint giving you step-by-step directions <a href="https://www.neonscience.org/sites/default/files/Access_NEON_Data_%20Visual_Guide_6Feb2020.pptx">can be found here</a>.</p>
 </div>
 <div id="how-can-i-best-prepare-for-class-and-succeed" class="section level2">
-<h2><span class="header-section-number">5.13</span> How can I best prepare for class and succeed?</h2>
+<h2><span class="header-section-number">6.14</span> How can I best prepare for class and succeed?</h2>
 <ol style="list-style-type: decimal">
 <li><p>Read the textbook, click on linked resources including videos, review materials as we go or read ahead.</p></li>
 <li><p>Complete assignments as we go or ahead of time. Do not wait until the last minute.</p></li>
@@ -392,7 +415,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="flux-measurements-inter-operability.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="calculating-forest-structural-diversity-metrics-from-neon-lidar-data.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

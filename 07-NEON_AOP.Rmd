@@ -82,44 +82,18 @@ To begin, we first need to load our required R packages, and set our working
 directory to the location where we saved the input LiDAR .laz files that can be 
 downloaded from the NEON Data Portal.
 
-
-```r
+```{r, warning=FALSE, results='hide'}
 library(lidR)
-```
-
-```
-## Loading required package: raster
-```
-
-```
-## Loading required package: sp
-```
-
-```r
 library(gstat)
 library(data.table)
-```
-
-```
-## 
-## Attaching package: 'data.table'
-```
-
-```
-## The following object is masked from 'package:raster':
-## 
-##     shift
-```
-
-```r
 library(kableExtra)
 ```
 
 Next, we will read in the LiDAR data using the `lidR::readLAS()` function. 
 Note that this function can read in both `.las` and `.laz` file formats.
 
+```{r}
 
-```r
 # Read in LiDAR data 
 #2017 1 km2 tile .laz file type for HARV and TEAK
 
@@ -131,6 +105,8 @@ Note that this function can read in both `.las` and `.laz` file formats.
 HARV <- lidR::readLAS('/Users/kdw223/Research/katharynduffy.github.io/data/NEON_D01_HARV_DP1_727000_4702000_classified_point_cloud_colorized.laz',filter = "-drop_z_below 150 -drop_z_above 325")
 
 TEAK <- lidR::readLAS('/Users/kdw223/Research/katharynduffy.github.io/data/NEON_D17_TEAK_DP1_316000_4091000_classified_point_cloud_colorized.laz',filter = "-drop_z_below 1694 -drop_z_above 2500")
+
+
 ```
 
 Let's check out: 
@@ -142,8 +118,7 @@ Let's check out:
 *Note that on Mac computers you may need to install 
 XQuartz for 3D plots - see xquartz.org*
 
-
-```r
+```{r, eval=FALSE, warning=FALSE}
 summary(HARV)
 lidR::plot(HARV)
 ```
@@ -192,8 +167,7 @@ Variable length records:
 
 >1 km-squared point cloud from Harvard Forest showing a gentle slope covered in a continuous canopy of mixed forest.
 
-
-```r
+```{r, eval=FALSE, warning=FALSE}
 summary(TEAK)
 lidR::plot(TEAK)
 ```
@@ -255,8 +229,8 @@ that is quite a bit larger than our area of interest to avoid edge effects.
 
 To be safe, we will clip out an area of 200 x 200 m, normalize it, and then clip out our smaller area of interest.
 
+```{r}
 
-```r
 # Correct for elevation 
 #We're going to choose a 40 x 40 m spatial extent, which is the
 #extent for NEON base plots. 
@@ -278,30 +252,11 @@ data.200m <-
 #If the function will not run, then you may need to checkfor outliers
 #by adjusting the 'drop_z_' arguments when reading in the .laz files.
 dtm <- grid_terrain(data.200m, 1, kriging(k = 10L))
-```
-
-```
-## Warning: There were 7 degenerated ground points. Some X Y coordinates were
-## repeated but with different Z coordinates. min Z were retained.
-```
-
-```r
 data.200m <- lasnormalize(data.200m, dtm)
 
 #Will often give a warning if not all points could be corrected, 
 #but visually check to see if it corrected for ground height. 
 lidR::plot(data.200m)
-```
-
-```
-## Warning in rgl.init(initValue, onlyNULL): RGL: unable to open X11 display
-```
-
-```
-## Warning: 'rgl.init' failed, running with 'rgl.useNULL = TRUE'.
-```
-
-```r
 #There's only a few uncorrected points and we'll fix these in 
 #the next step. 
 
@@ -332,8 +287,8 @@ our structural diversity metrics.
 ### GENERATE CANOPY HEIGHT MODEL (CHM) 
 (i.e. a 1 m2 raster grid of vegetations heights)
 
+```{r calculate-structural-diversity-metrics, eval=FALSE, fig.cap="Canopy Height Model (CHM) of HARV study area"}
 
-```r
 # Structural diversity metrics
 
 
@@ -343,43 +298,41 @@ chm <- grid_canopy(data.40m, res = 1, dsmtin())
 
 #visualize CHM
 lidR::plot(chm) 
+
 ```
 
 ### MEAN OUTER CANOPY HEIGHT (MOCH)
 
+```{r, eval=FALSE}
 
-```r
 #calculate MOCH, the mean CHM height value
 mean.max.canopy.ht <- mean(chm@data@values, na.rm = TRUE) 
 ```
 ### MAX CANOPY HEIGHT
 
-
-```r
+```{r, eval=FALSE}
 #calculate HMAX, the maximum CHM height value
 max.canopy.ht <- max(chm@data@values, na.rm=TRUE) 
 ```
 
 ### RUMPLE
-
-```r
+```{r, eval=FALSE}
 #calculate rumple, a ratio of outer canopy surface area to 
 #ground surface area (1600 m^2)
 rumple <- rumple_index(chm) 
+
 ```
 
 ### TOP RUGOSITY
 
-
-```r
+```{r, eval=FALSE}
 #top rugosity, the standard deviation of pixel values in chm and 
 #is a measure of outer canopy roughness
 top.rugosity <- sd(chm@data@values, na.rm = TRUE) 
 ```
 
 ### DEEP GAPS & DEEP GAP FRACTION
-
-```r
+```{r, eval=FALSE}
 #number of cells in raster (also area in m2)
 cells <- length(chm@data@values) 
 chm.0 <- chm
@@ -390,10 +343,11 @@ deepgaps <- length(zeros) #number of deep gaps
 #deep gap fraction, the number of deep gaps in the chm relative 
 #to total number of chm pixels
 deepgap.fraction <- deepgaps/cells 
+
 ```
 ### COVER FRACTION
+```{r, eval=FALSE}
 
-```r
 #cover fraction, the inverse of deep gap fraction
 cover.fraction <- 1 - deepgap.fraction 
 
@@ -449,18 +403,17 @@ VAI.AOP <- sum(LADen$lad, na.rm=TRUE)
 
 ### VCI
 A vertical complexity index, fixed normalization of entropy metric calculated above
-
-```r
+```{r, eval=FALSE}
 #set zmax comofortably above maximum canopy height
 #by = 1 assesses the metric based on 1 m horizontal slices in 
 #the canopy
 VCI.AOP <- VCI(Zs, by = 1, zmax=100) 
-```
+
+``` 
 
 We now have 13 different structural diversity metrics.  Let's organize them into a new dataframe:
 
-
-```r
+```{r, eval=FALSE}
 #OUTPUT CALCULATED METRICS INTO A TABLE
 #creates a dataframe row, out.plot, containing plot descriptors 
 #and calculated metrics
@@ -489,8 +442,7 @@ Now that we have run through how to measure each structural diversity metric, le
 convenient function to run these a little faster on the TEAK site for a comparison of structural 
 diversity with HARV. 
 
-
-```r
+```{r calculate-structural-diversity-metrics-TEAK, eval=FALSE}
 #Let's correct for elevation and measure structural diversity for TEAK
 x <- 316400 
 y <- 4091700
@@ -514,8 +466,8 @@ plot(data.40m)
 
 >40 meter by 40 meter point cloud from Lower Teakettle showing a cross-section of the forest structure with several tall, pointed conifers separated by deep gaps in the canopy.
 
+```{r structural-diversity-function, eval=FALSE}
 
-```r
 #Zip up all the code we previously used and write function to 
 #run all 13 metrics in a single function. 
 structural_diversity_metrics <- function(data.40m) {
@@ -559,13 +511,14 @@ structural_diversity_metrics <- function(data.40m) {
 }
 
 TEAK_structural_diversity <- structural_diversity_metrics(data.40m)
+
 ```
 
 ## Comparing Metrics Between Forests
 How does the structural diversity of the evergreen TEAK forest compare to the mixed deciduous/evergreen forest from HARV? Let's combine the result data.frames for a direct comparison:
 
+```{r combine results, eval=FALSE}
 
-```r
 combined_results=rbind(HARV_structural_diversity, 
                        TEAK_structural_diversity)
 
@@ -574,4 +527,5 @@ row.names(combined_results)=c("HARV","TEAK")
 
 # Take a look to compare
 combined_results
+
 ```
