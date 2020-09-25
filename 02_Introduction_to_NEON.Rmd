@@ -766,7 +766,7 @@ Note that if there were only one month of data from a site, you could leave
 off the date in the function. If you want data from more than one site/month 
 you need to iterate this code, GET fails if you give it more than one URL. 
 
-```{r os-query-bird-data-urls}
+```{r os-query-bird-data-urls, cache=TRUE}
 # get data availability for WOOD July 2015
 brd <- GET(bird.urls[grep("WOOD/2015-07", bird.urls)])
 brd.files <- jsonlite::fromJSON(content(brd, as="text"))
@@ -843,7 +843,7 @@ when getting data from other sites and other months. So we select files
 based on the data table name and the package name.
 
 
-```{r os-get-bird-data}
+```{r os-get-bird-data, cache=TRUE}
 
 # Get both files
 brd.count <- read.delim(brd.files$data$files$url
@@ -865,7 +865,7 @@ brd.point <- read.delim(brd.files$data$files$url
 Now we have the data and can access it in R. Just to show that the files we 
 pulled have actual data in them, let's make a quick graphic:
 
-```{r os-plot-bird-data}
+```{r os-plot-bird-data, cache=TRUE}
 # Cluster by species 
 clusterBySp <- brd.count %>%
   dplyr::group_by(scientificName) %>%
@@ -889,7 +889,7 @@ The process is essentially the same for sensor data. We'll do the same series of
 queries for Soil Temperature, DP1.00041.001. Let's use data from Moab in June 
 2017 this time.
 
-```{r soil-data}
+```{r soil-data, cache=TRUE}
 # Request soil temperature data availability info
 req.soil <- GET("http://data.neonscience.org/api/v0/products/DP1.00041.001")
 
@@ -936,7 +936,7 @@ Let's get data (and the URL) for only the 2nd depth described above by selecting
 
 Go get it:
 
-``` {r os-get-soil-data}
+``` {r os-get-soil-data, cache=TRUE}
 
 soil.temp <- read.delim(tmp.files$data$files$url
                         [intersect(grep("002.502.030", 
@@ -969,7 +969,7 @@ go looking for High resolution orthorectified camera imagery, DP1.30010, and
 we'll look at the flight over San Joaquin Experimental Range (SJER) in March 
 2017.
 
-```{r aop-data}
+```{r aop-data, cache=TRUE}
 # Request camera data availability info
 req.aop <- GET("http://data.neonscience.org/api/v0/products/DP1.30010.001")
 
@@ -1037,7 +1037,7 @@ Downloads of instrument system (IS) data include a file called sensor_positions.
 
 While the specifics vary, techniques are generalizable for working with sensor data and the sensor_positions.csv file. Let's look at the sensor locations for photosynthetically active radiation (PAR; DP1.00024.001) at the NEON Treehaven site (TREE) in July 2018. To reduce our file size, we'll use the 30 minute averaging interval. Our final product from this section is to create a spatially explicit picture of light attenuation through the canopy.
 
-```{r}
+```{r, cache=TRUE}
 # load PAR data of interest 
 par <- loadByProduct(dpID="DP1.00024.001", site="TREE",
                     startdate="2018-07", enddate="2018-07",
@@ -1113,7 +1113,7 @@ conducted.
 We can query the locations endpoint of the API for the first named location, 
 `WOOD_013.birdGrid.brd`. 
 
-```{r brd-ex-NL}
+```{r brd-ex-NL, cache=TRUE}
 # location data 
 req.loc <- GET("http://data.neonscience.org/api/v0/locations/WOOD_013.birdGrid.brd")
 
@@ -1151,7 +1151,7 @@ symbols(brd.point.loc$easting, brd.point.loc$northing,
 
 And use `getLocTOS()` to calculate the point locations of observations.
 
-```{r brd-calc-NL}
+```{r brd-calc-NL, cache=TRUE}
 
 brd.point.pt <- getLocTOS(brd.point, "brd_perpoint")
 
@@ -1245,7 +1245,7 @@ a more extensive list of taxon data, including many taxon ranks that
 aren't populated for these taxa. For space here, we display only 
 the first 10 taxa:
 
-```{r get-mammals}
+```{r get-mammals, cache=TRUE}
 mam.req <- GET("http://data.neonscience.org/api/v0/taxonomy/?taxonTypeCode=SMALL_MAMMAL&offset=0&limit=500&verbose=true")
 mam.list <- jsonlite::fromJSON(content(mam.req, as="text"))
 mam.list$data[1:10,]
@@ -1271,7 +1271,7 @@ search will also fail with spaces. Search for
 `offset` and `limit` because we know there can only be a single 
 result:
 
-```{r get-verbena}
+```{r get-verbena, cache=TRUE}
 am.req <- GET("http://data.neonscience.org/api/v0/taxonomy/?scientificname=Abronia%20minor%20Standl.")
 am.list <- jsonlite::fromJSON(content(am.req, as="text"))
 am.list$data
@@ -1296,7 +1296,7 @@ look <a href="https://www.neonscience.org/neonDataStackR" target="_blank">here</
 ### Written
 
 **Suggested Timing: Complete this exercise before our next class meeting**
->>>>>>> upstream/master
+
 
 **Question 1:** How does NEON address ‘dark data’ (Chapter 1)?
 

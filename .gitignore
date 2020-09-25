@@ -49,3 +49,5 @@ neon_token_source.R
 NEON Field Sites Shapefile v17/
 *.h5
 *.laz
+
+data/
