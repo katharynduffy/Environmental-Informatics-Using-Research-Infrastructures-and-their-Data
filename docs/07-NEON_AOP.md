@@ -1520,12 +1520,8 @@ This dataset describes the differences between two common standards for vertical
 <a href="https://neondata.sharefile.com/d-sf4e35e969fc43aca" class="link--button link--arrow">
 Download Dataset</a>
 
-### Working Directory
-[Donal to add text]
 
-</div>
-
-## Getting Started
+### Getting Started
 In this tutorial, we will compare NEON and GEDI LiDAR data by comparing the information that they both capture in the same location. NEON data are actually one of the datasets used by the GEDI mission to calibrate and validate GEDI waveforms, so this makes for a valuable comparison! 
 
 In order to compare these data, we will need to download GEDI data that overlap a NEON site. Fortunately, Carlos Silva et al. have made a convenient R package clled `rGEDI` and <a href="https://cran.r-project.org/web/packages/rGEDI/vignettes/tutorial.html">this excellent tutorial hosted on CRAN</a> desribing how to work with GEDI data in R. 
