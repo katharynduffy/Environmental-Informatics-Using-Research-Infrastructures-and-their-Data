@@ -703,7 +703,7 @@ output.
 > Authors: Elizabeth LaRue, Donal O'Leary
 
 
-## Learning Objectives
+### Learning Objectives
 After completing this tutorial, you will be able to:
 
 * Read a NEON LiDAR file (laz) into R
@@ -775,7 +775,7 @@ Second, we will look at <a href="https://www.neonscience.org/field-sites/field-s
 As you can imagine, these two forest types will have both similarities and differences in their structural attributes. We can quantify these attributes by calculating several different structural diversity metrics, and comparing 
 the results.
 
-## Loading the LIDAR Products
+### Loading the LIDAR Products
 To begin, we first need to load our required R packages, and set our working 
 directory to the location where we saved the input LiDAR .laz files that can be 
 downloaded from the NEON Data Portal.
@@ -916,7 +916,7 @@ Variable length records:
 >1 km-squared point cloud from Lower Teakettle showing mountainous terrain covered in a patchy conifer forest, with tall, skinny conifers clearly visible emerging from the discontinuous canopy.
 
 
-## Normalizing Tree Height to Ground
+### Normalizing Tree Height to Ground
 To begin, we will take a look at the structural diversity of the dense mixed deciduous/evergreen 
 forest of HARV. We're going to choose a 40 x 40 m spatial extent for our analysis, but first we 
 need to normalize the height values of this LiDAR point cloud from an absolute elevation 
@@ -999,21 +999,21 @@ lidR::plot(chm)
 
 ```
 
-### MEAN OUTER CANOPY HEIGHT (MOCH)
+#### MEAN OUTER CANOPY HEIGHT (MOCH)
 
 ```{r, eval=FALSE}
 
 #calculate MOCH, the mean CHM height value
 mean.max.canopy.ht <- mean(chm@data@values, na.rm = TRUE) 
 ```
-### MAX CANOPY HEIGHT
+#### MAX CANOPY HEIGHT
 
 ```{r, eval=FALSE}
 #calculate HMAX, the maximum CHM height value
 max.canopy.ht <- max(chm@data@values, na.rm=TRUE) 
 ```
 
-### RUMPLE
+#### RUMPLE
 ```{r, eval=FALSE}
 #calculate rumple, a ratio of outer canopy surface area to 
 #ground surface area (1600 m^2)
@@ -1021,7 +1021,7 @@ rumple <- rumple_index(chm)
 
 ```
 
-### TOP RUGOSITY
+#### TOP RUGOSITY
 
 ```{r, eval=FALSE}
 #top rugosity, the standard deviation of pixel values in chm and 
@@ -1029,7 +1029,7 @@ rumple <- rumple_index(chm)
 top.rugosity <- sd(chm@data@values, na.rm = TRUE) 
 ```
 
-### DEEP GAPS & DEEP GAP FRACTION
+#### DEEP GAPS & DEEP GAP FRACTION
 ```{r, eval=FALSE}
 #number of cells in raster (also area in m2)
 cells <- length(chm@data@values) 
@@ -1043,7 +1043,7 @@ deepgaps <- length(zeros) #number of deep gaps
 deepgap.fraction <- deepgaps/cells 
 
 ```
-### COVER FRACTION
+#### COVER FRACTION
 ```{r, eval=FALSE}
 
 #cover fraction, the inverse of deep gap fraction
@@ -1099,7 +1099,7 @@ LADen<-LAD(Zs, dz = 1, k=0.5, z0=3)
 VAI.AOP <- sum(LADen$lad, na.rm=TRUE) 
 ```
 
-### VCI
+#### VCI
 A vertical complexity index, fixed normalization of entropy metric calculated above
 ```{r, eval=FALSE}
 #set zmax comofortably above maximum canopy height
@@ -1135,7 +1135,7 @@ HARV_structural_diversity
 ```
 
 
-## Combining Everything Into One Function
+### Combining Everything Into One Function
 Now that we have run through how to measure each structural diversity metric, let's create a 
 convenient function to run these a little faster on the TEAK site for a comparison of structural 
 diversity with HARV. 
@@ -1212,7 +1212,7 @@ TEAK_structural_diversity <- structural_diversity_metrics(data.40m)
 
 ```
 
-## Comparing Metrics Between Forests
+### Comparing Metrics Between Forests
 How does the structural diversity of the evergreen TEAK forest compare to the mixed deciduous/evergreen forest from HARV? Let's combine the result data.frames for a direct comparison:
 
 ```{r combine results, eval=FALSE}
@@ -1238,14 +1238,14 @@ combined_results
 
 <div id="ds-objectives" markdown="1">
 
-## Learning Objectives 
+### Learning Objectives 
 After completing this section you will be able to: 
 
 * Search for GEDI data based on a NEON site bounding box
 * Extract NEON LiDAR pointcloud data corresponding to a specific GEDI footprint
 * Visualize NEON and GEDI LiDAR data together in 3D
 
-## Things You’ll Need To Complete This Tutorial
+### Things You’ll Need To Complete This GEDI Section
 
 ### R Packages to Install
 Prior to starting the tutorial ensure that the following packages are installed. 
@@ -1317,7 +1317,7 @@ plot(chm)
 
 As you can see, this particular CHM is showing a conspicuous, triangle-shaped clearcut in this section of the experimental forest, where the tree canopy is much shorter than the towering 60m+ trees in the undisturbed areas. This variation will give us a variety of forest structures to investigate.
 
-## Downloading GEDI data
+### Downloading GEDI data
 This next section on downloading and working with GEDI data is loosely based on the excellent `rGEDI` package tutorial <a href="https://cran.r-project.org/web/packages/rGEDI/vignettes/tutorial.html">posted on CRAN here</a>.
 
 The Global Ecosystem Dynamics Investigation (GEDI) is a NASA mission with the primary data collection being performed by a novel waveform lidar instrument mounted on the International Space Station (ISS). Please see <a href="https://www.sciencedirect.com/science/article/pii/S2666017220300018">this open-access paper</a> published in Science of Remote Sensing that describes this mission in detail. The ISS orbits around the world every 90 minutes, and can be tracked <a href="https://spotthestation.nasa.gov/tracking_map.cfm">on this cool NASA website</a>. 
@@ -1383,7 +1383,7 @@ head(level1bGeo)
 
 ```
 
-## Plot GEDI footprints on CHM
+### Plot GEDI footprints on CHM
 Let's visualize where the GEDI footprints are located on the CHM tile. To do so, we will need to first convert the GEDI data into a spatial object. For this example, we will use a 'spatial features' object type from the 'sp' package:
 
 ```{r GEDI-spatial-df}
@@ -1426,7 +1426,7 @@ pointLabel(st_coordinates(level1bgeo_WREF_UTM),
 
 ```
 
-## Extract Waveform for a single Shot
+### Extract Waveform for a single Shot
 Let's take a look at a waveform for a single GEDI shot. We will use the last three numbers of the shot, shown a labels in the plot above, to select a waveform of interest. In this case, let's plot the the footprint labeled '002' in the northwest of the CHM.
 
 ```{r extract-wf, warning=F}
@@ -1459,7 +1459,7 @@ par(oldpar)
 
 This waveform shows some noise above and below the main ecosystem return, with a fairly dense canopy around 370m elevation, an a characteristic ground return spike at about 340m. While the GEDI data are extremely valuable and offer a near-global coverage, it is hard to get a good sense of what the ecosystem really looks like from this GEDI waveform. Let's download some NEON AOP pointcloud data to pair up with this waveform to get a better sense of what GEDI is reporting.
 
-## Download and Plot NEON AOP LiDAR pointcloud data
+### Download and Plot NEON AOP LiDAR pointcloud data
 Here, we will use the `byTileAOP()` function from the 'neonUtilities' package to download the classified pointcloud mosaic data (DP1.30003.001). Since this is a mosaic tile like the CHM, we can just pass this function the lower left corner of the CHM tile to get the corresponding lidar pointcloud mosaic tile for our analysis.
 
 ```{r download-AOP-lidar, eval=FALSE}
@@ -1505,7 +1505,7 @@ plot(WREF_LAS)
 ```
 Ahhh, that's better.
 
-## Clip AOP LiDAR Pointcloud to GEDI footprints
+### Clip AOP LiDAR Pointcloud to GEDI footprints
 We can now use the GEDI footprint circles (that we made using the `buffer()` function) to clip out the NEON AOP LiDAR points that correspond with the GEDI footprints:
 
 ```{r clip-AOP-to-GEDI, eval=FALSE}
@@ -1519,7 +1519,7 @@ plot(WREF_GEDI_footprints[[8]])
 
 ```
 
-## Plot GEDI Waveform with AOP Pointcloud in 3D space
+### Plot GEDI Waveform with AOP Pointcloud in 3D space
 Now that we can extract individual waveforms, and the AOP LiDAR pointcloud that corresponds with each GEDI waveform, let's see if we can plot them both in 3D space. We already know how to plot the AOP LiDAR points, so let's write a function to draw the GEDI waveform, too, using the `points3d()` function:
 
 ```{r plot-lidar-together-1, eval=FALSE}
@@ -1561,18 +1561,18 @@ for(shot_n in 1:21){
 
 Whoa, it looks like there is a bad vertical mismatch between those two data sources. This is because the two data sources have a different vertical datum. The NEON AOP data are delivered in the GEOID12A, while the GEDI data are delivered in the WGS84 native datum. We will need to convert one to the other to get them to line up correctly.
 
-## Datum, Geoid, and how to best measure the Earth
+### Datum, Geoid, and how to best measure the Earth
 We are seeing a vertical mismatch between the NEON and GEDI LiDAR data sources because they are using different standards for measuring the Earth. Here, we will briefly describe the main differences between these two datum models, and then show how to correct for this discrepancy.
 
-### WGS84
+#### WGS84
 As described in <a href="https://en.wikipedia.org/wiki/World_Geodetic_System">this great Wikipedia article</a> the World Geodedic System (WGS) is a global standard for cartography, geodesy, and navigation including GPS. Most people refer to "WGS84," which is the latest revision to this system in 1984. To describe elevation, WGS84 uses an idealized mathematical model to describe the 'oblate spheroid' of the Earth (basically, it looks kind of like a sphere that is wider around the equator and shorter from pole to pole). This model, called a 'datum,' defines the relative elevational surface of the Earth. However, the Earth isn't exactly this idealized shape - it has a lot of undulations caused by topogrophy and local differences in its gravitational field. In the locations where the natural variations of the Earth do not coencide with the mathematical model, it can be harder to accurately describe the elevation of certain landforms and structures. Still, for a global datum, WGS84 does a great job overall.
 
-### GEOID12A
+#### GEOID12A
 While WGS84 is a convenient global standard, precisely describing location information is a common problem in geography, and is often remedied by using a local datum or projection. For latitude and longitude spatial information in North America, this is often done by using the <a href="https://www.ngs.noaa.gov/datums/horizontal/north-american-datum-1983.shtml">North American Datum (NAD83)</a> or various Universal Transverse Mercator (UTM) or State Plane projections based on the NAD83 datum. The NAD83 Datum was developed in 1983 as the horizontal and geometric control datum for the United States, Canada, Mexico, and Central America. This is the official datum for the government of the United States of America, and therefore many public datasets that are specific to this geographic region use this datum. In order to further refine the vertical precision over a wide geographic area, we can model the gravitational field of the Earth - this surface is called a "Geoid". <a href="https://geodesy.noaa.gov/GEOID/geoid_def.html">According to NOAA</a>, a geoid can be defined as "the equipotential surface of the Earth’s gravity field which best fits, in a least squares sense, global mean sea level." For a nice description of the North American geoid, please <a href="https://geodesy.noaa.gov/GEOID/geophysics.shtml">see this page on the NOAA website</a> written by Dr. Allen Joel Anderson. As described by Dr. Anderson, this gravitational field is changing all the time, as can global mean sea level (due to melting glaciers, etc.). Therefore local and regional geoids must be updated regularly to reflect these changes, as shown <a href="https://geodesy.noaa.gov/GEOID/models.shtml">in this list of NOAA geoids</a>. One recent standard from 2012 is <<a href="https://geodesy.noaa.gov/GEOID/GEOID12A/">GEOID12A</a> - this is the geoid selected by NEON as the vertical reference for the Z-dimension of our LiDAR data. Note that GEOID12B superscedes GEOID12A, however they are identical everywhere except for Puerto Rico and the US Virgin Islands <a href="https://geodesy.noaa.gov/GEOID/GEOID12B/">according to NOAA</a>. If you are working with any NEON data from Puerto Rico, please be aware that these data are delivered in GEOID12A format and may need to be converted to GEOID12B for some purposes.
 
 For more information about these standards, please see <a href="https://desktop.arcgis.com/en/arcmap/10.3/guide-books/map-projections/about-the-geoid-ellipsoid-spheroid-and-datum-and-h.htm">this ESRI help document</a>.
 
-## Aligning the Vertical Datum
+### Aligning the Vertical Datum
 AOP data have a relatively small area of coverage, and are therefore delivered with the coordinate reference system (CRS) in the UTM zone in which they were collected, set to the GEOID12A vertical datum (roughly equaling mean sea level). Meanwhile, GEDI data are global, so they are delivered with the common WGS84 ellipsoidal refrence datum. We need to align these vertical datums to ensure that the two data products line up correctly. However, this is not a trivial step, nor as simple as a reprojection. In this example, we will keep the NEON LiDAR data in its current datum, and convert the vertical position of the GEDI data from WGS84 into GEOID12A vertical position.
 
 NOAA has a useful <a href="https://www.ngs.noaa.gov/INFO/facts/vdatum.shtml">tool called Vdatum</a> that will convert from one datum to another. For this example, we will use Vdatum to convert from WGS84 to NAD83. Seeing as GEOID12A is based on the NAD83 datum, we can first convert the GEDI data's vertical position from WGS84 to NAD83 datum, then apply the offset between NAD83 and GEOID12A. Rather than use the Vdatum tool for each point, we will use a raster created by NEON scientists that reports the vertical difference between WGS84 and NAD83 for all points in the conterminous USA. Please <a href="https://neondata.sharefile.com/d-sf4e35e969fc43aca">visit this Sharepoint page</a> (same as the link at the top of this page) to download the raster. We will then read it into our R session:
@@ -1584,7 +1584,7 @@ datum_diff=raster('./data/WGS84_NAD83_seperation.tif')
 
 ```
 
-###GEOID12A Height Model
+#### GEOID12A Height Model
 GEOID12A is a surface model that is described in terms of its relative height compared to NAD83. You can use <a href="https://www.ngs.noaa.gov/cgi-bin/GEOID_STUFF/geoid12A_prompt1.prl">this interactive webpage</a> to find the geoid height for any location within North America. However, that would be combersome to have to use this webpage for every location. Instead, we will download a <a href="https://www.ngs.noaa.gov/GEOID/GEOID12A/GEOID12A_CONUS.shtml>binary file from the NOAA website</a> that describes this geoid's height, and convert that into a raster similar to the one that we just downloaded above. We have included comments here from the NOAA website about the structure of the binary file. We use this information to extract the dimensions of this dataset in order to construct a raster in R from these binary data.
 
 ```{r download-prep-geoid-height-binary}
@@ -1663,7 +1663,7 @@ plot(diff_resp, main="WGS84 minus NAD83 (m)")
 
 As you can see, the differences between the GEOID12A geoid, and the NAD83 sphereoid vary quite a lot across space, especially in mountainous areas. The magnitude of these differences is also large, upwards of 35m in some areas. Meanwhile, the differences between the NAD83 and WGS84 sphereoids shows a smooth gradient that is relatively small, with total difference less than 2m across the Conterminous USA. 
 
-## Extract vertical offset for GEDI shots
+### Extract vertical offset for GEDI shots
 Now that we know the relative vertical offsets between WGS84, NAD83, and GEOID12A for all of the conterminous USA, we can use the `extract()` function to retrieve those relative offsets for any location. By combining those offsets together, we can finally rectify the vertical position of the NEON and GEDI LiDAR data.
 
 ***** DO I need to convert GEDI x/y locations from WGS84 to NAD83?? *****
@@ -1685,7 +1685,7 @@ net_diff=WGS_NAD_diff+GEOID12A_NAD_diff
 ```
 
 
-## Plot vertically corrected GEDI waveform in 3D
+### Plot vertically corrected GEDI waveform in 3D
 
 Now that we have a vertical offset for each of the GEDI footprints, let's try again to plot the NEON AOP pointcloud data with the GEDI waveform.
 
@@ -1729,7 +1729,7 @@ for(shot_n in c(20)){
 
 ```
 
-##Optional - NEON base plots
+### Optional - NEON base plots
 You may also be interested to see if any of the GEDI footprints intersect a NEON base plot, which would allow for a direct comparison of the GEDI waveform with many of the datasets which are collected within the base plots, such as the vegetation structure data product containing height, DBH, and species identification of all trees >10cm DBH. While it is statistically pretty unlikely that a GEDI footprint will intersect with your base plot of interest, it is possible that _some_ GEDI footprint will intersetc with _some_ base plot in your study area, so we may as well take a look:
 
 ```{r import and plot base plots}
