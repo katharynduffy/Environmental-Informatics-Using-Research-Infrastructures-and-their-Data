@@ -2104,7 +2104,7 @@ plot(base_crop$geometry, border = 'blue', add=T)
 
 ## NEON AOP Written Questions:
 
-1) 
+ 
 
 
 ## NEON AOP Coding Lab
@@ -2116,6 +2116,7 @@ For the purpose of this coding lab we will evaluate 2 different forested sites i
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Rz9kgfPgLPo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 2) Bartlett Experimental Forest in New Hampshire:
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/zK4cEEs-8tQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 **1:** How are these two forests similar?  How are they different? *(3-5 sentences)*

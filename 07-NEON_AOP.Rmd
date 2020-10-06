@@ -1047,8 +1047,10 @@ deepgap.fraction <- deepgaps/cells
 
 #cover fraction, the inverse of deep gap fraction
 cover.fraction <- 1 - deepgap.fraction 
-
-#HEIGHT SD
+```
+#### HEIGHT SD
+The standard deviation of height values for all points in the plot point cloud
+```{r}
 #height SD, the standard deviation of height values for all points
 #in the plot point cloud
 vert.sd <- cloud_metrics(data.40m, sd(Z, na.rm = TRUE)) 
@@ -1068,17 +1070,19 @@ sd.sd <- sd(sd.1m2[,3], na.rm = TRUE)
 #to filter these out of a vector of Z points
 Zs <- data.40m@data$Z
 Zs <- Zs[!is.na(Zs)]
-
-#ENTROPY 
-#entropy, quantifies diversity & evenness of point cloud heights 
+```
+#### ENTROPY
+Quantifies diversity & evenness of point cloud heights
+```{r}
 #by = 1 partitions point cloud in 1 m tall horizontal slices 
 #ranges from 0-1, with 1 being more evenly distributed points 
 #across the 1 m tall slices 
 entro <- entropy(Zs, by = 1) 
+```
 
-#GAP FRACTION PROFILE 
-#gap fraction profile, assesses the distribution of gaps in the 
-#canopy volume 
+#### GAP FRACTION PROFILE 
+Gap fraction profile, assesses the distribution of gaps in the canopy volume
+```{r}
 #dz = 1 partitions point cloud in 1 m horizontal slices 
 #z0 is set to a reasonable height based on the age and height of 
 #the study sites 
@@ -1086,9 +1090,12 @@ gap_frac <- gap_fraction_profile(Zs, dz = 1, z0=3)
 #defines gap fraction profile as the average gap fraction in each 
 #1 m horizontal slice assessed in the previous line
 GFP.AOP <- mean(gap_frac$gf) 
+```
 
-#VAI
-#leaf area density, assesses leaf area in the canopy volume 
+#### VAI
+Leaf area density, assesses leaf area in the canopy volume
+```{r}
+ 
 #k = 0.5 is a standard extinction coefficient for foliage 
 #dz = 1 partitions point cloud in 1 m horizontal slices 
 #z0 is set to the same height as gap fraction profile above
@@ -1757,7 +1764,7 @@ plot(base_crop$geometry, border = 'blue', add=T)
 
 ## NEON AOP Written Questions:
 
-1) 
+ 
 
 
 ## NEON AOP Coding Lab
@@ -1769,6 +1776,7 @@ For the purpose of this coding lab we will evaluate 2 different forested sites i
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Rz9kgfPgLPo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 2) Bartlett Experimental Forest in New Hampshire:
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/zK4cEEs-8tQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 **1:** How are these two forests similar?  How are they different? *(3-5 sentences)*
