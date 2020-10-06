@@ -1494,85 +1494,89 @@ our structural diversity metrics.</p>
 <div id="cover-fraction" class="section level4">
 <h4><span class="header-section-number">5.6.1.6</span> COVER FRACTION</h4>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="co">#cover fraction, the inverse of deep gap fraction</span></a>
-<a class="sourceLine" id="cb63-2" data-line-number="2">cover.fraction &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>deepgap.fraction </a>
-<a class="sourceLine" id="cb63-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb63-4" data-line-number="4"><span class="co">#HEIGHT SD</span></a>
-<a class="sourceLine" id="cb63-5" data-line-number="5"><span class="co">#height SD, the standard deviation of height values for all points</span></a>
-<a class="sourceLine" id="cb63-6" data-line-number="6"><span class="co">#in the plot point cloud</span></a>
-<a class="sourceLine" id="cb63-7" data-line-number="7">vert.sd &lt;-<span class="st"> </span><span class="kw">cloud_metrics</span>(data<span class="fl">.40</span>m, <span class="kw">sd</span>(Z, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) </a>
-<a class="sourceLine" id="cb63-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb63-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb63-10" data-line-number="10"><span class="co">#SD of VERTICAL SD of HEIGHT</span></a>
-<a class="sourceLine" id="cb63-11" data-line-number="11"><span class="co">#rasterize plot point cloud and calculate the standard deviation </span></a>
-<a class="sourceLine" id="cb63-12" data-line-number="12"><span class="co">#of height values at a resolution of 1 m^2</span></a>
-<a class="sourceLine" id="cb63-13" data-line-number="13">sd<span class="fl">.1</span>m2 &lt;-<span class="st"> </span><span class="kw">grid_metrics</span>(data<span class="fl">.40</span>m, <span class="kw">sd</span>(Z), <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb63-14" data-line-number="14"><span class="co">#standard deviation of the calculated standard deviations </span></a>
-<a class="sourceLine" id="cb63-15" data-line-number="15"><span class="co">#from previous line </span></a>
-<a class="sourceLine" id="cb63-16" data-line-number="16"><span class="co">#This is a measure of internal and external canopy complexity</span></a>
-<a class="sourceLine" id="cb63-17" data-line-number="17">sd.sd &lt;-<span class="st"> </span><span class="kw">sd</span>(sd<span class="fl">.1</span>m2[,<span class="dv">3</span>], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) </a>
-<a class="sourceLine" id="cb63-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb63-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb63-20" data-line-number="20"><span class="co">#some of the next few functions won&#39;t handle NAs, so we need </span></a>
-<a class="sourceLine" id="cb63-21" data-line-number="21"><span class="co">#to filter these out of a vector of Z points</span></a>
-<a class="sourceLine" id="cb63-22" data-line-number="22">Zs &lt;-<span class="st"> </span>data<span class="fl">.40</span>m<span class="op">@</span>data<span class="op">$</span>Z</a>
-<a class="sourceLine" id="cb63-23" data-line-number="23">Zs &lt;-<span class="st"> </span>Zs[<span class="op">!</span><span class="kw">is.na</span>(Zs)]</a>
-<a class="sourceLine" id="cb63-24" data-line-number="24"></a>
-<a class="sourceLine" id="cb63-25" data-line-number="25"><span class="co">#ENTROPY </span></a>
-<a class="sourceLine" id="cb63-26" data-line-number="26"><span class="co">#entropy, quantifies diversity &amp; evenness of point cloud heights </span></a>
-<a class="sourceLine" id="cb63-27" data-line-number="27"><span class="co">#by = 1 partitions point cloud in 1 m tall horizontal slices </span></a>
-<a class="sourceLine" id="cb63-28" data-line-number="28"><span class="co">#ranges from 0-1, with 1 being more evenly distributed points </span></a>
-<a class="sourceLine" id="cb63-29" data-line-number="29"><span class="co">#across the 1 m tall slices </span></a>
-<a class="sourceLine" id="cb63-30" data-line-number="30">entro &lt;-<span class="st"> </span><span class="kw">entropy</span>(Zs, <span class="dt">by =</span> <span class="dv">1</span>) </a>
-<a class="sourceLine" id="cb63-31" data-line-number="31"></a>
-<a class="sourceLine" id="cb63-32" data-line-number="32"><span class="co">#GAP FRACTION PROFILE </span></a>
-<a class="sourceLine" id="cb63-33" data-line-number="33"><span class="co">#gap fraction profile, assesses the distribution of gaps in the </span></a>
-<a class="sourceLine" id="cb63-34" data-line-number="34"><span class="co">#canopy volume </span></a>
-<a class="sourceLine" id="cb63-35" data-line-number="35"><span class="co">#dz = 1 partitions point cloud in 1 m horizontal slices </span></a>
-<a class="sourceLine" id="cb63-36" data-line-number="36"><span class="co">#z0 is set to a reasonable height based on the age and height of </span></a>
-<a class="sourceLine" id="cb63-37" data-line-number="37"><span class="co">#the study sites </span></a>
-<a class="sourceLine" id="cb63-38" data-line-number="38">gap_frac &lt;-<span class="st"> </span><span class="kw">gap_fraction_profile</span>(Zs, <span class="dt">dz =</span> <span class="dv">1</span>, <span class="dt">z0=</span><span class="dv">3</span>) </a>
-<a class="sourceLine" id="cb63-39" data-line-number="39"><span class="co">#defines gap fraction profile as the average gap fraction in each </span></a>
-<a class="sourceLine" id="cb63-40" data-line-number="40"><span class="co">#1 m horizontal slice assessed in the previous line</span></a>
-<a class="sourceLine" id="cb63-41" data-line-number="41">GFP.AOP &lt;-<span class="st"> </span><span class="kw">mean</span>(gap_frac<span class="op">$</span>gf) </a>
-<a class="sourceLine" id="cb63-42" data-line-number="42"></a>
-<a class="sourceLine" id="cb63-43" data-line-number="43"><span class="co">#VAI</span></a>
-<a class="sourceLine" id="cb63-44" data-line-number="44"><span class="co">#leaf area density, assesses leaf area in the canopy volume </span></a>
-<a class="sourceLine" id="cb63-45" data-line-number="45"><span class="co">#k = 0.5 is a standard extinction coefficient for foliage </span></a>
-<a class="sourceLine" id="cb63-46" data-line-number="46"><span class="co">#dz = 1 partitions point cloud in 1 m horizontal slices </span></a>
-<a class="sourceLine" id="cb63-47" data-line-number="47"><span class="co">#z0 is set to the same height as gap fraction profile above</span></a>
-<a class="sourceLine" id="cb63-48" data-line-number="48">LADen&lt;-<span class="kw">LAD</span>(Zs, <span class="dt">dz =</span> <span class="dv">1</span>, <span class="dt">k=</span><span class="fl">0.5</span>, <span class="dt">z0=</span><span class="dv">3</span>) </a>
-<a class="sourceLine" id="cb63-49" data-line-number="49"><span class="co">#vegetation area index, sum of leaf area density values for </span></a>
-<a class="sourceLine" id="cb63-50" data-line-number="50"><span class="co">#all horizontal slices assessed in previous line</span></a>
-<a class="sourceLine" id="cb63-51" data-line-number="51">VAI.AOP &lt;-<span class="st"> </span><span class="kw">sum</span>(LADen<span class="op">$</span>lad, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) </a></code></pre></div>
+<a class="sourceLine" id="cb63-2" data-line-number="2">cover.fraction &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>deepgap.fraction </a></code></pre></div>
+</div>
+<div id="height-sd" class="section level4">
+<h4><span class="header-section-number">5.6.1.7</span> HEIGHT SD</h4>
+<p>The standard deviation of height values for all points in the plot point cloud</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="co">#height SD, the standard deviation of height values for all points</span></a>
+<a class="sourceLine" id="cb64-2" data-line-number="2"><span class="co">#in the plot point cloud</span></a>
+<a class="sourceLine" id="cb64-3" data-line-number="3">vert.sd &lt;-<span class="st"> </span><span class="kw">cloud_metrics</span>(data<span class="fl">.40</span>m, <span class="kw">sd</span>(Z, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) </a>
+<a class="sourceLine" id="cb64-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb64-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb64-6" data-line-number="6"><span class="co">#SD of VERTICAL SD of HEIGHT</span></a>
+<a class="sourceLine" id="cb64-7" data-line-number="7"><span class="co">#rasterize plot point cloud and calculate the standard deviation </span></a>
+<a class="sourceLine" id="cb64-8" data-line-number="8"><span class="co">#of height values at a resolution of 1 m^2</span></a>
+<a class="sourceLine" id="cb64-9" data-line-number="9">sd<span class="fl">.1</span>m2 &lt;-<span class="st"> </span><span class="kw">grid_metrics</span>(data<span class="fl">.40</span>m, <span class="kw">sd</span>(Z), <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb64-10" data-line-number="10"><span class="co">#standard deviation of the calculated standard deviations </span></a>
+<a class="sourceLine" id="cb64-11" data-line-number="11"><span class="co">#from previous line </span></a>
+<a class="sourceLine" id="cb64-12" data-line-number="12"><span class="co">#This is a measure of internal and external canopy complexity</span></a>
+<a class="sourceLine" id="cb64-13" data-line-number="13">sd.sd &lt;-<span class="st"> </span><span class="kw">sd</span>(sd<span class="fl">.1</span>m2[,<span class="dv">3</span>], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb64-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb64-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb64-16" data-line-number="16"><span class="co">#some of the next few functions won&#39;t handle NAs, so we need </span></a>
+<a class="sourceLine" id="cb64-17" data-line-number="17"><span class="co">#to filter these out of a vector of Z points</span></a>
+<a class="sourceLine" id="cb64-18" data-line-number="18">Zs &lt;-<span class="st"> </span>data<span class="fl">.40</span>m<span class="op">@</span>data<span class="op">$</span>Z</a>
+<a class="sourceLine" id="cb64-19" data-line-number="19">Zs &lt;-<span class="st"> </span>Zs[<span class="op">!</span><span class="kw">is.na</span>(Zs)]</a></code></pre></div>
+</div>
+<div id="entropy" class="section level4">
+<h4><span class="header-section-number">5.6.1.8</span> ENTROPY</h4>
+<p>Quantifies diversity &amp; evenness of point cloud heights</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="co">#by = 1 partitions point cloud in 1 m tall horizontal slices </span></a>
+<a class="sourceLine" id="cb65-2" data-line-number="2"><span class="co">#ranges from 0-1, with 1 being more evenly distributed points </span></a>
+<a class="sourceLine" id="cb65-3" data-line-number="3"><span class="co">#across the 1 m tall slices </span></a>
+<a class="sourceLine" id="cb65-4" data-line-number="4">entro &lt;-<span class="st"> </span><span class="kw">entropy</span>(Zs, <span class="dt">by =</span> <span class="dv">1</span>) </a></code></pre></div>
+</div>
+<div id="gap-fraction-profile" class="section level4">
+<h4><span class="header-section-number">5.6.1.9</span> GAP FRACTION PROFILE</h4>
+<p>Gap fraction profile, assesses the distribution of gaps in the canopy volume</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="co">#dz = 1 partitions point cloud in 1 m horizontal slices </span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="co">#z0 is set to a reasonable height based on the age and height of </span></a>
+<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="co">#the study sites </span></a>
+<a class="sourceLine" id="cb66-4" data-line-number="4">gap_frac &lt;-<span class="st"> </span><span class="kw">gap_fraction_profile</span>(Zs, <span class="dt">dz =</span> <span class="dv">1</span>, <span class="dt">z0=</span><span class="dv">3</span>) </a>
+<a class="sourceLine" id="cb66-5" data-line-number="5"><span class="co">#defines gap fraction profile as the average gap fraction in each </span></a>
+<a class="sourceLine" id="cb66-6" data-line-number="6"><span class="co">#1 m horizontal slice assessed in the previous line</span></a>
+<a class="sourceLine" id="cb66-7" data-line-number="7">GFP.AOP &lt;-<span class="st"> </span><span class="kw">mean</span>(gap_frac<span class="op">$</span>gf) </a></code></pre></div>
+</div>
+<div id="vai" class="section level4">
+<h4><span class="header-section-number">5.6.1.10</span> VAI</h4>
+<p>Leaf area density, assesses leaf area in the canopy volume</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="co">#k = 0.5 is a standard extinction coefficient for foliage </span></a>
+<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="co">#dz = 1 partitions point cloud in 1 m horizontal slices </span></a>
+<a class="sourceLine" id="cb67-3" data-line-number="3"><span class="co">#z0 is set to the same height as gap fraction profile above</span></a>
+<a class="sourceLine" id="cb67-4" data-line-number="4">LADen&lt;-<span class="kw">LAD</span>(Zs, <span class="dt">dz =</span> <span class="dv">1</span>, <span class="dt">k=</span><span class="fl">0.5</span>, <span class="dt">z0=</span><span class="dv">3</span>) </a>
+<a class="sourceLine" id="cb67-5" data-line-number="5"><span class="co">#vegetation area index, sum of leaf area density values for </span></a>
+<a class="sourceLine" id="cb67-6" data-line-number="6"><span class="co">#all horizontal slices assessed in previous line</span></a>
+<a class="sourceLine" id="cb67-7" data-line-number="7">VAI.AOP &lt;-<span class="st"> </span><span class="kw">sum</span>(LADen<span class="op">$</span>lad, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) </a></code></pre></div>
 </div>
 <div id="vci" class="section level4">
-<h4><span class="header-section-number">5.6.1.7</span> VCI</h4>
+<h4><span class="header-section-number">5.6.1.11</span> VCI</h4>
 <p>A vertical complexity index, fixed normalization of entropy metric calculated above</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="co">#set zmax comofortably above maximum canopy height</span></a>
-<a class="sourceLine" id="cb64-2" data-line-number="2"><span class="co">#by = 1 assesses the metric based on 1 m horizontal slices in </span></a>
-<a class="sourceLine" id="cb64-3" data-line-number="3"><span class="co">#the canopy</span></a>
-<a class="sourceLine" id="cb64-4" data-line-number="4">VCI.AOP &lt;-<span class="st"> </span><span class="kw">VCI</span>(Zs, <span class="dt">by =</span> <span class="dv">1</span>, <span class="dt">zmax=</span><span class="dv">100</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="co">#set zmax comofortably above maximum canopy height</span></a>
+<a class="sourceLine" id="cb68-2" data-line-number="2"><span class="co">#by = 1 assesses the metric based on 1 m horizontal slices in </span></a>
+<a class="sourceLine" id="cb68-3" data-line-number="3"><span class="co">#the canopy</span></a>
+<a class="sourceLine" id="cb68-4" data-line-number="4">VCI.AOP &lt;-<span class="st"> </span><span class="kw">VCI</span>(Zs, <span class="dt">by =</span> <span class="dv">1</span>, <span class="dt">zmax=</span><span class="dv">100</span>) </a></code></pre></div>
 <p>We now have 13 different structural diversity metrics. Let’s organize them into a new dataframe:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="co">#OUTPUT CALCULATED METRICS INTO A TABLE</span></a>
-<a class="sourceLine" id="cb65-2" data-line-number="2"><span class="co">#creates a dataframe row, out.plot, containing plot descriptors </span></a>
-<a class="sourceLine" id="cb65-3" data-line-number="3"><span class="co">#and calculated metrics</span></a>
-<a class="sourceLine" id="cb65-4" data-line-number="4">HARV_structural_diversity &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb65-5" data-line-number="5"><span class="st">   </span><span class="kw">data.frame</span>(<span class="kw">matrix</span>(<span class="kw">c</span>(x, y, mean.max.canopy.ht, max.canopy.ht, </a>
-<a class="sourceLine" id="cb65-6" data-line-number="6">                       rumple, deepgaps,deepgap.fraction,</a>
-<a class="sourceLine" id="cb65-7" data-line-number="7">                       cover.fraction,top.rugosity, vert.sd, </a>
-<a class="sourceLine" id="cb65-8" data-line-number="8">                       sd.sd, entro,GFP.AOP, VAI.AOP, VCI.AOP),</a>
-<a class="sourceLine" id="cb65-9" data-line-number="9">                     <span class="dt">ncol =</span> <span class="dv">15</span>)) </a>
-<a class="sourceLine" id="cb65-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb65-11" data-line-number="11"><span class="co">#provide descriptive names for the calculated metrics</span></a>
-<a class="sourceLine" id="cb65-12" data-line-number="12"><span class="kw">colnames</span>(HARV_structural_diversity) &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb65-13" data-line-number="13"><span class="st">   </span><span class="kw">c</span>(<span class="st">&quot;easting&quot;</span>, <span class="st">&quot;northing&quot;</span>, <span class="st">&quot;mean.max.canopy.ht.aop&quot;</span>,</a>
-<a class="sourceLine" id="cb65-14" data-line-number="14">     <span class="st">&quot;max.canopy.ht.aop&quot;</span>, <span class="st">&quot;rumple.aop&quot;</span>, <span class="st">&quot;deepgaps.aop&quot;</span>,</a>
-<a class="sourceLine" id="cb65-15" data-line-number="15">     <span class="st">&quot;deepgap.fraction.aop&quot;</span>,<span class="st">&quot;cover.fraction.aop&quot;</span>, </a>
-<a class="sourceLine" id="cb65-16" data-line-number="16">     <span class="st">&quot;top.rugosity.aop&quot;</span>, <span class="st">&quot;vert.sd.aop&quot;</span>, <span class="st">&quot;sd.sd.aop&quot;</span>, </a>
-<a class="sourceLine" id="cb65-17" data-line-number="17">     <span class="st">&quot;entropy.aop&quot;</span>, <span class="st">&quot;GFP.AOP.aop&quot;</span>, <span class="st">&quot;VAI.AOP.aop&quot;</span>, <span class="st">&quot;VCI.AOP.aop&quot;</span>) </a>
-<a class="sourceLine" id="cb65-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb65-19" data-line-number="19"><span class="co">#View the results</span></a>
-<a class="sourceLine" id="cb65-20" data-line-number="20">HARV_structural_diversity </a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="co">#OUTPUT CALCULATED METRICS INTO A TABLE</span></a>
+<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="co">#creates a dataframe row, out.plot, containing plot descriptors </span></a>
+<a class="sourceLine" id="cb69-3" data-line-number="3"><span class="co">#and calculated metrics</span></a>
+<a class="sourceLine" id="cb69-4" data-line-number="4">HARV_structural_diversity &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb69-5" data-line-number="5"><span class="st">   </span><span class="kw">data.frame</span>(<span class="kw">matrix</span>(<span class="kw">c</span>(x, y, mean.max.canopy.ht, max.canopy.ht, </a>
+<a class="sourceLine" id="cb69-6" data-line-number="6">                       rumple, deepgaps,deepgap.fraction,</a>
+<a class="sourceLine" id="cb69-7" data-line-number="7">                       cover.fraction,top.rugosity, vert.sd, </a>
+<a class="sourceLine" id="cb69-8" data-line-number="8">                       sd.sd, entro,GFP.AOP, VAI.AOP, VCI.AOP),</a>
+<a class="sourceLine" id="cb69-9" data-line-number="9">                     <span class="dt">ncol =</span> <span class="dv">15</span>)) </a>
+<a class="sourceLine" id="cb69-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb69-11" data-line-number="11"><span class="co">#provide descriptive names for the calculated metrics</span></a>
+<a class="sourceLine" id="cb69-12" data-line-number="12"><span class="kw">colnames</span>(HARV_structural_diversity) &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb69-13" data-line-number="13"><span class="st">   </span><span class="kw">c</span>(<span class="st">&quot;easting&quot;</span>, <span class="st">&quot;northing&quot;</span>, <span class="st">&quot;mean.max.canopy.ht.aop&quot;</span>,</a>
+<a class="sourceLine" id="cb69-14" data-line-number="14">     <span class="st">&quot;max.canopy.ht.aop&quot;</span>, <span class="st">&quot;rumple.aop&quot;</span>, <span class="st">&quot;deepgaps.aop&quot;</span>,</a>
+<a class="sourceLine" id="cb69-15" data-line-number="15">     <span class="st">&quot;deepgap.fraction.aop&quot;</span>,<span class="st">&quot;cover.fraction.aop&quot;</span>, </a>
+<a class="sourceLine" id="cb69-16" data-line-number="16">     <span class="st">&quot;top.rugosity.aop&quot;</span>, <span class="st">&quot;vert.sd.aop&quot;</span>, <span class="st">&quot;sd.sd.aop&quot;</span>, </a>
+<a class="sourceLine" id="cb69-17" data-line-number="17">     <span class="st">&quot;entropy.aop&quot;</span>, <span class="st">&quot;GFP.AOP.aop&quot;</span>, <span class="st">&quot;VAI.AOP.aop&quot;</span>, <span class="st">&quot;VCI.AOP.aop&quot;</span>) </a>
+<a class="sourceLine" id="cb69-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb69-19" data-line-number="19"><span class="co">#View the results</span></a>
+<a class="sourceLine" id="cb69-20" data-line-number="20">HARV_structural_diversity </a></code></pre></div>
 </div>
 </div>
 <div id="combining-everything-into-one-function" class="section level3">
@@ -1580,81 +1584,81 @@ our structural diversity metrics.</p>
 <p>Now that we have run through how to measure each structural diversity metric, let’s create a
 convenient function to run these a little faster on the TEAK site for a comparison of structural
 diversity with HARV.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="co">#Let&#39;s correct for elevation and measure structural diversity for TEAK</span></a>
-<a class="sourceLine" id="cb66-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="dv">316400</span> </a>
-<a class="sourceLine" id="cb66-3" data-line-number="3">y &lt;-<span class="st"> </span><span class="dv">4091700</span></a>
-<a class="sourceLine" id="cb66-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb66-5" data-line-number="5">data<span class="fl">.200</span>m &lt;-<span class="st"> </span><span class="kw">lasclipRectangle</span>(TEAK, </a>
-<a class="sourceLine" id="cb66-6" data-line-number="6">                              <span class="dt">xleft =</span> (x <span class="op">-</span><span class="st"> </span><span class="dv">100</span>), <span class="dt">ybottom =</span> (y <span class="op">-</span><span class="st"> </span><span class="dv">100</span>),</a>
-<a class="sourceLine" id="cb66-7" data-line-number="7">                              <span class="dt">xright =</span> (x <span class="op">+</span><span class="st"> </span><span class="dv">100</span>), <span class="dt">ytop =</span> (y <span class="op">+</span><span class="st"> </span><span class="dv">100</span>))</a>
-<a class="sourceLine" id="cb66-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb66-9" data-line-number="9">dtm &lt;-<span class="st"> </span><span class="kw">grid_terrain</span>(data<span class="fl">.200</span>m, <span class="dv">1</span>, <span class="kw">kriging</span>(<span class="dt">k =</span> 10L))</a>
-<a class="sourceLine" id="cb66-10" data-line-number="10">data<span class="fl">.200</span>m &lt;-<span class="st"> </span><span class="kw">lasnormalize</span>(data<span class="fl">.200</span>m, dtm)</a>
-<a class="sourceLine" id="cb66-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb66-12" data-line-number="12">data<span class="fl">.40</span>m &lt;-<span class="st"> </span><span class="kw">lasclipRectangle</span>(data<span class="fl">.200</span>m, </a>
-<a class="sourceLine" id="cb66-13" data-line-number="13">                             <span class="dt">xleft =</span> (x <span class="op">-</span><span class="st"> </span><span class="dv">20</span>), <span class="dt">ybottom =</span> (y <span class="op">-</span><span class="st"> </span><span class="dv">20</span>),</a>
-<a class="sourceLine" id="cb66-14" data-line-number="14">                             <span class="dt">xright =</span> (x <span class="op">+</span><span class="st"> </span><span class="dv">20</span>), <span class="dt">ytop =</span> (y <span class="op">+</span><span class="st"> </span><span class="dv">20</span>))</a>
-<a class="sourceLine" id="cb66-15" data-line-number="15">data<span class="fl">.40</span>m<span class="op">@</span>data<span class="op">$</span>Z[data<span class="fl">.40</span>m<span class="op">@</span>data<span class="op">$</span>Z <span class="op">&lt;=</span><span class="st"> </span><span class="fl">.5</span>] &lt;-<span class="st"> </span><span class="dv">0</span>  </a>
-<a class="sourceLine" id="cb66-16" data-line-number="16"><span class="kw">plot</span>(data<span class="fl">.40</span>m)</a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="co">#Let&#39;s correct for elevation and measure structural diversity for TEAK</span></a>
+<a class="sourceLine" id="cb70-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="dv">316400</span> </a>
+<a class="sourceLine" id="cb70-3" data-line-number="3">y &lt;-<span class="st"> </span><span class="dv">4091700</span></a>
+<a class="sourceLine" id="cb70-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb70-5" data-line-number="5">data<span class="fl">.200</span>m &lt;-<span class="st"> </span><span class="kw">lasclipRectangle</span>(TEAK, </a>
+<a class="sourceLine" id="cb70-6" data-line-number="6">                              <span class="dt">xleft =</span> (x <span class="op">-</span><span class="st"> </span><span class="dv">100</span>), <span class="dt">ybottom =</span> (y <span class="op">-</span><span class="st"> </span><span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb70-7" data-line-number="7">                              <span class="dt">xright =</span> (x <span class="op">+</span><span class="st"> </span><span class="dv">100</span>), <span class="dt">ytop =</span> (y <span class="op">+</span><span class="st"> </span><span class="dv">100</span>))</a>
+<a class="sourceLine" id="cb70-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb70-9" data-line-number="9">dtm &lt;-<span class="st"> </span><span class="kw">grid_terrain</span>(data<span class="fl">.200</span>m, <span class="dv">1</span>, <span class="kw">kriging</span>(<span class="dt">k =</span> 10L))</a>
+<a class="sourceLine" id="cb70-10" data-line-number="10">data<span class="fl">.200</span>m &lt;-<span class="st"> </span><span class="kw">lasnormalize</span>(data<span class="fl">.200</span>m, dtm)</a>
+<a class="sourceLine" id="cb70-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb70-12" data-line-number="12">data<span class="fl">.40</span>m &lt;-<span class="st"> </span><span class="kw">lasclipRectangle</span>(data<span class="fl">.200</span>m, </a>
+<a class="sourceLine" id="cb70-13" data-line-number="13">                             <span class="dt">xleft =</span> (x <span class="op">-</span><span class="st"> </span><span class="dv">20</span>), <span class="dt">ybottom =</span> (y <span class="op">-</span><span class="st"> </span><span class="dv">20</span>),</a>
+<a class="sourceLine" id="cb70-14" data-line-number="14">                             <span class="dt">xright =</span> (x <span class="op">+</span><span class="st"> </span><span class="dv">20</span>), <span class="dt">ytop =</span> (y <span class="op">+</span><span class="st"> </span><span class="dv">20</span>))</a>
+<a class="sourceLine" id="cb70-15" data-line-number="15">data<span class="fl">.40</span>m<span class="op">@</span>data<span class="op">$</span>Z[data<span class="fl">.40</span>m<span class="op">@</span>data<span class="op">$</span>Z <span class="op">&lt;=</span><span class="st"> </span><span class="fl">.5</span>] &lt;-<span class="st"> </span><span class="dv">0</span>  </a>
+<a class="sourceLine" id="cb70-16" data-line-number="16"><span class="kw">plot</span>(data<span class="fl">.40</span>m)</a></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/lidar-point-clouds/TEAK40mx40m.JPG" /></p>
 <blockquote>
 <p>40 meter by 40 meter point cloud from Lower Teakettle showing a cross-section of the forest structure with several tall, pointed conifers separated by deep gaps in the canopy.</p>
 </blockquote>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="co">#Zip up all the code we previously used and write function to </span></a>
-<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="co">#run all 13 metrics in a single function. </span></a>
-<a class="sourceLine" id="cb67-3" data-line-number="3">structural_diversity_metrics &lt;-<span class="st"> </span><span class="cf">function</span>(data<span class="fl">.40</span>m) {</a>
-<a class="sourceLine" id="cb67-4" data-line-number="4">   chm &lt;-<span class="st"> </span><span class="kw">grid_canopy</span>(data<span class="fl">.40</span>m, <span class="dt">res =</span> <span class="dv">1</span>, <span class="kw">dsmtin</span>()) </a>
-<a class="sourceLine" id="cb67-5" data-line-number="5">   mean.max.canopy.ht &lt;-<span class="st"> </span><span class="kw">mean</span>(chm<span class="op">@</span>data<span class="op">@</span>values, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) </a>
-<a class="sourceLine" id="cb67-6" data-line-number="6">   max.canopy.ht &lt;-<span class="st"> </span><span class="kw">max</span>(chm<span class="op">@</span>data<span class="op">@</span>values, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) </a>
-<a class="sourceLine" id="cb67-7" data-line-number="7">   rumple &lt;-<span class="st"> </span><span class="kw">rumple_index</span>(chm) </a>
-<a class="sourceLine" id="cb67-8" data-line-number="8">   top.rugosity &lt;-<span class="st"> </span><span class="kw">sd</span>(chm<span class="op">@</span>data<span class="op">@</span>values, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) </a>
-<a class="sourceLine" id="cb67-9" data-line-number="9">   cells &lt;-<span class="st"> </span><span class="kw">length</span>(chm<span class="op">@</span>data<span class="op">@</span>values) </a>
-<a class="sourceLine" id="cb67-10" data-line-number="10">   chm<span class="fl">.0</span> &lt;-<span class="st"> </span>chm</a>
-<a class="sourceLine" id="cb67-11" data-line-number="11">   chm<span class="fl">.0</span>[<span class="kw">is.na</span>(chm<span class="fl">.0</span>)] &lt;-<span class="st"> </span><span class="dv">0</span> </a>
-<a class="sourceLine" id="cb67-12" data-line-number="12">   zeros &lt;-<span class="st"> </span><span class="kw">which</span>(chm<span class="fl">.0</span><span class="op">@</span>data<span class="op">@</span>values <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) </a>
-<a class="sourceLine" id="cb67-13" data-line-number="13">   deepgaps &lt;-<span class="st"> </span><span class="kw">length</span>(zeros) </a>
-<a class="sourceLine" id="cb67-14" data-line-number="14">   deepgap.fraction &lt;-<span class="st"> </span>deepgaps<span class="op">/</span>cells </a>
-<a class="sourceLine" id="cb67-15" data-line-number="15">   cover.fraction &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>deepgap.fraction </a>
-<a class="sourceLine" id="cb67-16" data-line-number="16">   vert.sd &lt;-<span class="st"> </span><span class="kw">cloud_metrics</span>(data<span class="fl">.40</span>m, <span class="kw">sd</span>(Z, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) </a>
-<a class="sourceLine" id="cb67-17" data-line-number="17">   sd<span class="fl">.1</span>m2 &lt;-<span class="st"> </span><span class="kw">grid_metrics</span>(data<span class="fl">.40</span>m, <span class="kw">sd</span>(Z), <span class="dv">1</span>) </a>
-<a class="sourceLine" id="cb67-18" data-line-number="18">   sd.sd &lt;-<span class="st"> </span><span class="kw">sd</span>(sd<span class="fl">.1</span>m2[,<span class="dv">3</span>], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) </a>
-<a class="sourceLine" id="cb67-19" data-line-number="19">   Zs &lt;-<span class="st"> </span>data<span class="fl">.40</span>m<span class="op">@</span>data<span class="op">$</span>Z</a>
-<a class="sourceLine" id="cb67-20" data-line-number="20">   Zs &lt;-<span class="st"> </span>Zs[<span class="op">!</span><span class="kw">is.na</span>(Zs)]</a>
-<a class="sourceLine" id="cb67-21" data-line-number="21">   entro &lt;-<span class="st"> </span><span class="kw">entropy</span>(Zs, <span class="dt">by =</span> <span class="dv">1</span>) </a>
-<a class="sourceLine" id="cb67-22" data-line-number="22">   gap_frac &lt;-<span class="st"> </span><span class="kw">gap_fraction_profile</span>(Zs, <span class="dt">dz =</span> <span class="dv">1</span>, <span class="dt">z0=</span><span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb67-23" data-line-number="23">   GFP.AOP &lt;-<span class="st"> </span><span class="kw">mean</span>(gap_frac<span class="op">$</span>gf) </a>
-<a class="sourceLine" id="cb67-24" data-line-number="24">   LADen&lt;-<span class="kw">LAD</span>(Zs, <span class="dt">dz =</span> <span class="dv">1</span>, <span class="dt">k=</span><span class="fl">0.5</span>, <span class="dt">z0=</span><span class="dv">3</span>) </a>
-<a class="sourceLine" id="cb67-25" data-line-number="25">   VAI.AOP &lt;-<span class="st"> </span><span class="kw">sum</span>(LADen<span class="op">$</span>lad, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) </a>
-<a class="sourceLine" id="cb67-26" data-line-number="26">   VCI.AOP &lt;-<span class="st"> </span><span class="kw">VCI</span>(Zs, <span class="dt">by =</span> <span class="dv">1</span>, <span class="dt">zmax=</span><span class="dv">100</span>) </a>
-<a class="sourceLine" id="cb67-27" data-line-number="27">   out.plot &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb67-28" data-line-number="28">      <span class="kw">matrix</span>(<span class="kw">c</span>(x, y, mean.max.canopy.ht,max.canopy.ht, </a>
-<a class="sourceLine" id="cb67-29" data-line-number="29">               rumple,deepgaps, deepgap.fraction, </a>
-<a class="sourceLine" id="cb67-30" data-line-number="30">               cover.fraction, top.rugosity, vert.sd, </a>
-<a class="sourceLine" id="cb67-31" data-line-number="31">               sd.sd, entro, GFP.AOP, VAI.AOP,VCI.AOP),</a>
-<a class="sourceLine" id="cb67-32" data-line-number="32">             <span class="dt">ncol =</span> <span class="dv">15</span>)) </a>
-<a class="sourceLine" id="cb67-33" data-line-number="33">   <span class="kw">colnames</span>(out.plot) &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb67-34" data-line-number="34"><span class="st">      </span><span class="kw">c</span>(<span class="st">&quot;easting&quot;</span>, <span class="st">&quot;northing&quot;</span>, <span class="st">&quot;mean.max.canopy.ht.aop&quot;</span>,</a>
-<a class="sourceLine" id="cb67-35" data-line-number="35">        <span class="st">&quot;max.canopy.ht.aop&quot;</span>, <span class="st">&quot;rumple.aop&quot;</span>, <span class="st">&quot;deepgaps.aop&quot;</span>,</a>
-<a class="sourceLine" id="cb67-36" data-line-number="36">        <span class="st">&quot;deepgap.fraction.aop&quot;</span>, <span class="st">&quot;cover.fraction.aop&quot;</span>,</a>
-<a class="sourceLine" id="cb67-37" data-line-number="37">        <span class="st">&quot;top.rugosity.aop&quot;</span>,<span class="st">&quot;vert.sd.aop&quot;</span>,<span class="st">&quot;sd.sd.aop&quot;</span>, </a>
-<a class="sourceLine" id="cb67-38" data-line-number="38">        <span class="st">&quot;entropy.aop&quot;</span>, <span class="st">&quot;GFP.AOP.aop&quot;</span>,</a>
-<a class="sourceLine" id="cb67-39" data-line-number="39">        <span class="st">&quot;VAI.AOP.aop&quot;</span>, <span class="st">&quot;VCI.AOP.aop&quot;</span>) </a>
-<a class="sourceLine" id="cb67-40" data-line-number="40">   <span class="kw">print</span>(out.plot)</a>
-<a class="sourceLine" id="cb67-41" data-line-number="41">}</a>
-<a class="sourceLine" id="cb67-42" data-line-number="42"></a>
-<a class="sourceLine" id="cb67-43" data-line-number="43">TEAK_structural_diversity &lt;-<span class="st"> </span><span class="kw">structural_diversity_metrics</span>(data<span class="fl">.40</span>m)</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="co">#Zip up all the code we previously used and write function to </span></a>
+<a class="sourceLine" id="cb71-2" data-line-number="2"><span class="co">#run all 13 metrics in a single function. </span></a>
+<a class="sourceLine" id="cb71-3" data-line-number="3">structural_diversity_metrics &lt;-<span class="st"> </span><span class="cf">function</span>(data<span class="fl">.40</span>m) {</a>
+<a class="sourceLine" id="cb71-4" data-line-number="4">   chm &lt;-<span class="st"> </span><span class="kw">grid_canopy</span>(data<span class="fl">.40</span>m, <span class="dt">res =</span> <span class="dv">1</span>, <span class="kw">dsmtin</span>()) </a>
+<a class="sourceLine" id="cb71-5" data-line-number="5">   mean.max.canopy.ht &lt;-<span class="st"> </span><span class="kw">mean</span>(chm<span class="op">@</span>data<span class="op">@</span>values, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb71-6" data-line-number="6">   max.canopy.ht &lt;-<span class="st"> </span><span class="kw">max</span>(chm<span class="op">@</span>data<span class="op">@</span>values, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb71-7" data-line-number="7">   rumple &lt;-<span class="st"> </span><span class="kw">rumple_index</span>(chm) </a>
+<a class="sourceLine" id="cb71-8" data-line-number="8">   top.rugosity &lt;-<span class="st"> </span><span class="kw">sd</span>(chm<span class="op">@</span>data<span class="op">@</span>values, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb71-9" data-line-number="9">   cells &lt;-<span class="st"> </span><span class="kw">length</span>(chm<span class="op">@</span>data<span class="op">@</span>values) </a>
+<a class="sourceLine" id="cb71-10" data-line-number="10">   chm<span class="fl">.0</span> &lt;-<span class="st"> </span>chm</a>
+<a class="sourceLine" id="cb71-11" data-line-number="11">   chm<span class="fl">.0</span>[<span class="kw">is.na</span>(chm<span class="fl">.0</span>)] &lt;-<span class="st"> </span><span class="dv">0</span> </a>
+<a class="sourceLine" id="cb71-12" data-line-number="12">   zeros &lt;-<span class="st"> </span><span class="kw">which</span>(chm<span class="fl">.0</span><span class="op">@</span>data<span class="op">@</span>values <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) </a>
+<a class="sourceLine" id="cb71-13" data-line-number="13">   deepgaps &lt;-<span class="st"> </span><span class="kw">length</span>(zeros) </a>
+<a class="sourceLine" id="cb71-14" data-line-number="14">   deepgap.fraction &lt;-<span class="st"> </span>deepgaps<span class="op">/</span>cells </a>
+<a class="sourceLine" id="cb71-15" data-line-number="15">   cover.fraction &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>deepgap.fraction </a>
+<a class="sourceLine" id="cb71-16" data-line-number="16">   vert.sd &lt;-<span class="st"> </span><span class="kw">cloud_metrics</span>(data<span class="fl">.40</span>m, <span class="kw">sd</span>(Z, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) </a>
+<a class="sourceLine" id="cb71-17" data-line-number="17">   sd<span class="fl">.1</span>m2 &lt;-<span class="st"> </span><span class="kw">grid_metrics</span>(data<span class="fl">.40</span>m, <span class="kw">sd</span>(Z), <span class="dv">1</span>) </a>
+<a class="sourceLine" id="cb71-18" data-line-number="18">   sd.sd &lt;-<span class="st"> </span><span class="kw">sd</span>(sd<span class="fl">.1</span>m2[,<span class="dv">3</span>], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb71-19" data-line-number="19">   Zs &lt;-<span class="st"> </span>data<span class="fl">.40</span>m<span class="op">@</span>data<span class="op">$</span>Z</a>
+<a class="sourceLine" id="cb71-20" data-line-number="20">   Zs &lt;-<span class="st"> </span>Zs[<span class="op">!</span><span class="kw">is.na</span>(Zs)]</a>
+<a class="sourceLine" id="cb71-21" data-line-number="21">   entro &lt;-<span class="st"> </span><span class="kw">entropy</span>(Zs, <span class="dt">by =</span> <span class="dv">1</span>) </a>
+<a class="sourceLine" id="cb71-22" data-line-number="22">   gap_frac &lt;-<span class="st"> </span><span class="kw">gap_fraction_profile</span>(Zs, <span class="dt">dz =</span> <span class="dv">1</span>, <span class="dt">z0=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb71-23" data-line-number="23">   GFP.AOP &lt;-<span class="st"> </span><span class="kw">mean</span>(gap_frac<span class="op">$</span>gf) </a>
+<a class="sourceLine" id="cb71-24" data-line-number="24">   LADen&lt;-<span class="kw">LAD</span>(Zs, <span class="dt">dz =</span> <span class="dv">1</span>, <span class="dt">k=</span><span class="fl">0.5</span>, <span class="dt">z0=</span><span class="dv">3</span>) </a>
+<a class="sourceLine" id="cb71-25" data-line-number="25">   VAI.AOP &lt;-<span class="st"> </span><span class="kw">sum</span>(LADen<span class="op">$</span>lad, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb71-26" data-line-number="26">   VCI.AOP &lt;-<span class="st"> </span><span class="kw">VCI</span>(Zs, <span class="dt">by =</span> <span class="dv">1</span>, <span class="dt">zmax=</span><span class="dv">100</span>) </a>
+<a class="sourceLine" id="cb71-27" data-line-number="27">   out.plot &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb71-28" data-line-number="28">      <span class="kw">matrix</span>(<span class="kw">c</span>(x, y, mean.max.canopy.ht,max.canopy.ht, </a>
+<a class="sourceLine" id="cb71-29" data-line-number="29">               rumple,deepgaps, deepgap.fraction, </a>
+<a class="sourceLine" id="cb71-30" data-line-number="30">               cover.fraction, top.rugosity, vert.sd, </a>
+<a class="sourceLine" id="cb71-31" data-line-number="31">               sd.sd, entro, GFP.AOP, VAI.AOP,VCI.AOP),</a>
+<a class="sourceLine" id="cb71-32" data-line-number="32">             <span class="dt">ncol =</span> <span class="dv">15</span>)) </a>
+<a class="sourceLine" id="cb71-33" data-line-number="33">   <span class="kw">colnames</span>(out.plot) &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb71-34" data-line-number="34"><span class="st">      </span><span class="kw">c</span>(<span class="st">&quot;easting&quot;</span>, <span class="st">&quot;northing&quot;</span>, <span class="st">&quot;mean.max.canopy.ht.aop&quot;</span>,</a>
+<a class="sourceLine" id="cb71-35" data-line-number="35">        <span class="st">&quot;max.canopy.ht.aop&quot;</span>, <span class="st">&quot;rumple.aop&quot;</span>, <span class="st">&quot;deepgaps.aop&quot;</span>,</a>
+<a class="sourceLine" id="cb71-36" data-line-number="36">        <span class="st">&quot;deepgap.fraction.aop&quot;</span>, <span class="st">&quot;cover.fraction.aop&quot;</span>,</a>
+<a class="sourceLine" id="cb71-37" data-line-number="37">        <span class="st">&quot;top.rugosity.aop&quot;</span>,<span class="st">&quot;vert.sd.aop&quot;</span>,<span class="st">&quot;sd.sd.aop&quot;</span>, </a>
+<a class="sourceLine" id="cb71-38" data-line-number="38">        <span class="st">&quot;entropy.aop&quot;</span>, <span class="st">&quot;GFP.AOP.aop&quot;</span>,</a>
+<a class="sourceLine" id="cb71-39" data-line-number="39">        <span class="st">&quot;VAI.AOP.aop&quot;</span>, <span class="st">&quot;VCI.AOP.aop&quot;</span>) </a>
+<a class="sourceLine" id="cb71-40" data-line-number="40">   <span class="kw">print</span>(out.plot)</a>
+<a class="sourceLine" id="cb71-41" data-line-number="41">}</a>
+<a class="sourceLine" id="cb71-42" data-line-number="42"></a>
+<a class="sourceLine" id="cb71-43" data-line-number="43">TEAK_structural_diversity &lt;-<span class="st"> </span><span class="kw">structural_diversity_metrics</span>(data<span class="fl">.40</span>m)</a></code></pre></div>
 </div>
 <div id="comparing-metrics-between-forests" class="section level3">
 <h3><span class="header-section-number">5.6.3</span> Comparing Metrics Between Forests</h3>
 <p>How does the structural diversity of the evergreen TEAK forest compare to the mixed deciduous/evergreen forest from HARV? Let’s combine the result data.frames for a direct comparison:</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">combined_results=<span class="kw">rbind</span>(HARV_structural_diversity, </a>
-<a class="sourceLine" id="cb68-2" data-line-number="2">                       TEAK_structural_diversity)</a>
-<a class="sourceLine" id="cb68-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb68-4" data-line-number="4"><span class="co"># Add row names for clarity</span></a>
-<a class="sourceLine" id="cb68-5" data-line-number="5"><span class="kw">row.names</span>(combined_results)=<span class="kw">c</span>(<span class="st">&quot;HARV&quot;</span>,<span class="st">&quot;TEAK&quot;</span>)</a>
-<a class="sourceLine" id="cb68-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb68-7" data-line-number="7"><span class="co"># Take a look to compare</span></a>
-<a class="sourceLine" id="cb68-8" data-line-number="8">combined_results</a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1">combined_results=<span class="kw">rbind</span>(HARV_structural_diversity, </a>
+<a class="sourceLine" id="cb72-2" data-line-number="2">                       TEAK_structural_diversity)</a>
+<a class="sourceLine" id="cb72-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb72-4" data-line-number="4"><span class="co"># Add row names for clarity</span></a>
+<a class="sourceLine" id="cb72-5" data-line-number="5"><span class="kw">row.names</span>(combined_results)=<span class="kw">c</span>(<span class="st">&quot;HARV&quot;</span>,<span class="st">&quot;TEAK&quot;</span>)</a>
+<a class="sourceLine" id="cb72-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb72-7" data-line-number="7"><span class="co"># Take a look to compare</span></a>
+<a class="sourceLine" id="cb72-8" data-line-number="8">combined_results</a></code></pre></div>
 </div>
 </div>
 <div id="matching-gedi-waveforms-with-neon-aop-lidar-pointclouds" class="section level2">
@@ -1709,28 +1713,28 @@ Download Dataset</a></p>
 <p>In order to compare these data, we will need to download GEDI data that overlap a NEON site. Fortunately, Carlos Silva et al. have made a convenient R package clled <code>rGEDI</code> and <a href="https://cran.r-project.org/web/packages/rGEDI/vignettes/tutorial.html">this excellent tutorial hosted on CRAN</a> desribing how to work with GEDI data in R.</p>
 <p>However, GEDI data are currently only available to download per complete orbit, which means that the vast majority of the orbit’s data does not fall within a NEON site. The GEDI orbit datasets come in HDF5 data format, and contain about 7Gb of data, so you may want to run the first few sections of this tutorial to get the GEDI download started, and refresh your memory of HDF5 files with NEON’s <a href="https://www.neonscience.org/intro-hdf5-r-series">Intro to HDF5 series</a>.</p>
 <p>First, we will load the required libraries and set our working directory:</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="kw">library</span>(rGEDI)</a>
-<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="kw">library</span>(raster)</a>
-<a class="sourceLine" id="cb69-3" data-line-number="3"><span class="kw">library</span>(sp)</a>
-<a class="sourceLine" id="cb69-4" data-line-number="4"><span class="kw">library</span>(sf)</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw">library</span>(rGEDI)</a>
+<a class="sourceLine" id="cb73-2" data-line-number="2"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb73-3" data-line-number="3"><span class="kw">library</span>(sp)</a>
+<a class="sourceLine" id="cb73-4" data-line-number="4"><span class="kw">library</span>(sf)</a></code></pre></div>
 <pre><code>## Linking to GEOS 3.7.2, GDAL 2.4.2, PROJ 5.2.0</code></pre>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="kw">library</span>(rgl)</a>
-<a class="sourceLine" id="cb71-2" data-line-number="2"><span class="kw">library</span>(lidR)</a>
-<a class="sourceLine" id="cb71-3" data-line-number="3"><span class="kw">library</span>(neonUtilities)</a>
-<a class="sourceLine" id="cb71-4" data-line-number="4"><span class="kw">library</span>(viridis)</a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="kw">library</span>(rgl)</a>
+<a class="sourceLine" id="cb75-2" data-line-number="2"><span class="kw">library</span>(lidR)</a>
+<a class="sourceLine" id="cb75-3" data-line-number="3"><span class="kw">library</span>(neonUtilities)</a>
+<a class="sourceLine" id="cb75-4" data-line-number="4"><span class="kw">library</span>(viridis)</a></code></pre></div>
 <pre><code>## Loading required package: viridisLite</code></pre>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw">library</span>(maptools)</a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="kw">library</span>(maptools)</a></code></pre></div>
 <pre><code>## Checking rgeos availability: TRUE</code></pre>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="co">#wd &lt;- &quot;./data&quot; # This will depend on your local environment</span></a>
-<a class="sourceLine" id="cb75-2" data-line-number="2"><span class="co">#setwd(wd)</span></a></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="co">#wd &lt;- &quot;./data&quot; # This will depend on your local environment</span></a>
+<a class="sourceLine" id="cb79-2" data-line-number="2"><span class="co">#setwd(wd)</span></a></code></pre></div>
 <p>Next, we will download a Canopy Height Model (CHM) tile from the Wind River Experiemental Forest (WREF) using the <code>byTileAOP()</code> function to use as a preliminary map on which to overlay the GEDI data. There is one particularly interesting mosaic tile which we will select using the <code>easting</code> and <code>northing</code> arguments. We then load the raster into R and make a simple plot. For more information about CHMs, please see our tutorial <a href="https://www.neonscience.org/chm-dsm-dtm-gridded-lidar-data">What is a CHM?</a></p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="co"># Define the SITECODE as a variable because</span></a>
-<a class="sourceLine" id="cb76-2" data-line-number="2"><span class="co"># we will use it several times in this tutorial</span></a>
-<a class="sourceLine" id="cb76-3" data-line-number="3">SITECODE &lt;-<span class="st"> &quot;WREF&quot;</span></a>
-<a class="sourceLine" id="cb76-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb76-5" data-line-number="5"><span class="kw">byTileAOP</span>(<span class="dt">dpID =</span> <span class="st">&quot;DP3.30015.001&quot;</span>, <span class="dt">site =</span> SITECODE, <span class="dt">year =</span> <span class="dv">2017</span>, </a>
-<a class="sourceLine" id="cb76-6" data-line-number="6">          <span class="dt">easting =</span> <span class="dv">580000</span>, <span class="dt">northing =</span> <span class="dv">5075000</span>, <span class="dt">check.size =</span> F,</a>
-<a class="sourceLine" id="cb76-7" data-line-number="7">          <span class="dt">savepath =</span> <span class="st">&#39;./data&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="co"># Define the SITECODE as a variable because</span></a>
+<a class="sourceLine" id="cb80-2" data-line-number="2"><span class="co"># we will use it several times in this tutorial</span></a>
+<a class="sourceLine" id="cb80-3" data-line-number="3">SITECODE &lt;-<span class="st"> &quot;WREF&quot;</span></a>
+<a class="sourceLine" id="cb80-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb80-5" data-line-number="5"><span class="kw">byTileAOP</span>(<span class="dt">dpID =</span> <span class="st">&quot;DP3.30015.001&quot;</span>, <span class="dt">site =</span> SITECODE, <span class="dt">year =</span> <span class="dv">2017</span>, </a>
+<a class="sourceLine" id="cb80-6" data-line-number="6">          <span class="dt">easting =</span> <span class="dv">580000</span>, <span class="dt">northing =</span> <span class="dv">5075000</span>, <span class="dt">check.size =</span> F,</a>
+<a class="sourceLine" id="cb80-7" data-line-number="7">          <span class="dt">savepath =</span> <span class="st">&#39;./data&#39;</span>)</a></code></pre></div>
 <pre><code>## Downloading files totaling approximately 4.0 MB 
 ## Downloading 6 files
 ## 
@@ -1753,9 +1757,9 @@ Download Dataset</a></p>
 ## NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.kml downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/kmls
 ## NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.shp downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/shps
 ## NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.dbf downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/shps</code></pre>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1">chm &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="st">&#39;./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/L3/DiscreteLidar/CanopyHeightModelGtif/NEON_D16_WREF_DP3_580000_5075000_CHM.tif&#39;</span>)</a>
-<a class="sourceLine" id="cb78-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb78-3" data-line-number="3"><span class="kw">plot</span>(chm)</a></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1">chm &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="st">&#39;./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/L3/DiscreteLidar/CanopyHeightModelGtif/NEON_D16_WREF_DP3_580000_5075000_CHM.tif&#39;</span>)</a>
+<a class="sourceLine" id="cb82-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb82-3" data-line-number="3"><span class="kw">plot</span>(chm)</a></code></pre></div>
 <p><img src="07-NEON_AOP_files/figure-html/download-chm-1.png" width="672" /></p>
 <p>As you can see, this particular CHM is showing a conspicuous, triangle-shaped clearcut in this section of the experimental forest, where the tree canopy is much shorter than the towering 60m+ trees in the undisturbed areas. This variation will give us a variety of forest structures to investigate.</p>
 </div>
@@ -1765,42 +1769,42 @@ Download Dataset</a></p>
 <p>The Global Ecosystem Dynamics Investigation (GEDI) is a NASA mission with the primary data collection being performed by a novel waveform lidar instrument mounted on the International Space Station (ISS). Please see <a href="https://www.sciencedirect.com/science/article/pii/S2666017220300018">this open-access paper</a> published in Science of Remote Sensing that describes this mission in detail. The ISS orbits around the world every 90 minutes, and can be tracked <a href="https://spotthestation.nasa.gov/tracking_map.cfm">on this cool NASA website</a>.</p>
 <p>As described <a href="https://lpdaac.usgs.gov/data/get-started-data/collection-overview/missions/gedi-overview/">here</a> on the Land Processes Distributed Active Archive Center (LP DAAC), “the sole GEDI observable is the waveform from which all other data products are derived. Each waveform is captured with a nominal ~30 m diameter.”GEDI has six As of the date of publication, GEDI data are only offered in HDF5 format, with each file containing the data for a full orbit. The LP DAAC has developed a tool that allows researchers to input a bounding box, which will return a list of every orbit that has a “shot” (waveform return) that falls within that box. Unfortunately, at this time, the tool will not subset out the specific shots that fall within that bounding box; you must download the entire orbit (~7Gb). This functionality may be improved in the future.</p>
 <p>Our next few steps involve defining our bounding box, requesting the list of GEDI orbits that contain data relevant to that bounding box, and downloading those data. Let’s focus on the extent of our CHM that we downloaded above - but we will first need to re-project the CHM from its UTM projection into WGS84. To do so, we will refer to the EPSG code for WGS84. To look up any of these codes, please see the amazing resource <a href="https://spatialreference.org/ref/epsg/4326/">spatialrerference.org</a>.</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="co"># Project CHM to WGS84</span></a>
-<a class="sourceLine" id="cb79-2" data-line-number="2">chm_WGS =<span class="st"> </span><span class="kw">projectRaster</span>(chm, <span class="dt">crs=</span><span class="kw">CRS</span>(<span class="st">&quot;+init=epsg:4326&quot;</span>))</a>
-<a class="sourceLine" id="cb79-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb79-4" data-line-number="4"><span class="co"># Study area boundary box coordinates</span></a>
-<a class="sourceLine" id="cb79-5" data-line-number="5">ul_lat&lt;-<span class="st"> </span><span class="kw">extent</span>(chm_WGS)[<span class="dv">4</span>]</a>
-<a class="sourceLine" id="cb79-6" data-line-number="6">lr_lat&lt;-<span class="st"> </span><span class="kw">extent</span>(chm_WGS)[<span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb79-7" data-line-number="7">ul_lon&lt;-<span class="st"> </span><span class="kw">extent</span>(chm_WGS)[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb79-8" data-line-number="8">lr_lon&lt;-<span class="st"> </span><span class="kw">extent</span>(chm_WGS)[<span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1"><span class="co"># Project CHM to WGS84</span></a>
+<a class="sourceLine" id="cb83-2" data-line-number="2">chm_WGS =<span class="st"> </span><span class="kw">projectRaster</span>(chm, <span class="dt">crs=</span><span class="kw">CRS</span>(<span class="st">&quot;+init=epsg:4326&quot;</span>))</a>
+<a class="sourceLine" id="cb83-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb83-4" data-line-number="4"><span class="co"># Study area boundary box coordinates</span></a>
+<a class="sourceLine" id="cb83-5" data-line-number="5">ul_lat&lt;-<span class="st"> </span><span class="kw">extent</span>(chm_WGS)[<span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb83-6" data-line-number="6">lr_lat&lt;-<span class="st"> </span><span class="kw">extent</span>(chm_WGS)[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb83-7" data-line-number="7">ul_lon&lt;-<span class="st"> </span><span class="kw">extent</span>(chm_WGS)[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb83-8" data-line-number="8">lr_lon&lt;-<span class="st"> </span><span class="kw">extent</span>(chm_WGS)[<span class="dv">2</span>]</a></code></pre></div>
 <p>Next, we use that bounding box information as an input to the <code>gedifinder()</code> funciton.</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="co"># Specifying the optional date range, if desired</span></a>
-<a class="sourceLine" id="cb80-2" data-line-number="2">daterange=<span class="kw">c</span>(<span class="st">&quot;2019-03-25&quot;</span>, <span class="co">#first date of GEDI availability</span></a>
-<a class="sourceLine" id="cb80-3" data-line-number="3">           <span class="st">&quot;2020-07-15&quot;</span>)</a>
-<a class="sourceLine" id="cb80-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb80-5" data-line-number="5"><span class="co"># Get path to GEDI data</span></a>
-<a class="sourceLine" id="cb80-6" data-line-number="6"><span class="co"># These lines use an API request to determine which orbits are available </span></a>
-<a class="sourceLine" id="cb80-7" data-line-number="7"><span class="co"># that intersect the bounding box of interest.</span></a>
-<a class="sourceLine" id="cb80-8" data-line-number="8"><span class="co"># Note that you still must download the entire orbit and then subset to </span></a>
-<a class="sourceLine" id="cb80-9" data-line-number="9"><span class="co"># your area of interest!</span></a>
-<a class="sourceLine" id="cb80-10" data-line-number="10">gLevel1B &lt;-<span class="st"> </span><span class="kw">gedifinder</span>(<span class="dt">product=</span><span class="st">&quot;GEDI01_B&quot;</span>,</a>
-<a class="sourceLine" id="cb80-11" data-line-number="11">                      ul_lat, ul_lon, lr_lat,lr_lon,</a>
-<a class="sourceLine" id="cb80-12" data-line-number="12">                     <span class="dt">version=</span><span class="st">&quot;001&quot;</span>,<span class="dt">daterange=</span><span class="ot">NULL</span>)</a>
-<a class="sourceLine" id="cb80-13" data-line-number="13"><span class="co"># </span></a>
-<a class="sourceLine" id="cb80-14" data-line-number="14"><span class="co"># # View list of available data</span></a>
-<a class="sourceLine" id="cb80-15" data-line-number="15"> gLevel1B</a></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="co"># Specifying the optional date range, if desired</span></a>
+<a class="sourceLine" id="cb84-2" data-line-number="2">daterange=<span class="kw">c</span>(<span class="st">&quot;2019-03-25&quot;</span>, <span class="co">#first date of GEDI availability</span></a>
+<a class="sourceLine" id="cb84-3" data-line-number="3">           <span class="st">&quot;2020-07-15&quot;</span>)</a>
+<a class="sourceLine" id="cb84-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb84-5" data-line-number="5"><span class="co"># Get path to GEDI data</span></a>
+<a class="sourceLine" id="cb84-6" data-line-number="6"><span class="co"># These lines use an API request to determine which orbits are available </span></a>
+<a class="sourceLine" id="cb84-7" data-line-number="7"><span class="co"># that intersect the bounding box of interest.</span></a>
+<a class="sourceLine" id="cb84-8" data-line-number="8"><span class="co"># Note that you still must download the entire orbit and then subset to </span></a>
+<a class="sourceLine" id="cb84-9" data-line-number="9"><span class="co"># your area of interest!</span></a>
+<a class="sourceLine" id="cb84-10" data-line-number="10">gLevel1B &lt;-<span class="st"> </span><span class="kw">gedifinder</span>(<span class="dt">product=</span><span class="st">&quot;GEDI01_B&quot;</span>,</a>
+<a class="sourceLine" id="cb84-11" data-line-number="11">                      ul_lat, ul_lon, lr_lat,lr_lon,</a>
+<a class="sourceLine" id="cb84-12" data-line-number="12">                     <span class="dt">version=</span><span class="st">&quot;001&quot;</span>,<span class="dt">daterange=</span><span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb84-13" data-line-number="13"><span class="co"># </span></a>
+<a class="sourceLine" id="cb84-14" data-line-number="14"><span class="co"># # View list of available data</span></a>
+<a class="sourceLine" id="cb84-15" data-line-number="15"> gLevel1B</a></code></pre></div>
 <pre><code>## [1] &quot;https://e4ftl01.cr.usgs.gov/GEDI/GEDI01_B.001/2019.10.07/GEDI01_B_2019280204828_O04642_T03216_02_003_01.h5&quot;
 ## [2] &quot;https://e4ftl01.cr.usgs.gov/GEDI/GEDI01_B.001/2019.07.25/GEDI01_B_2019206022612_O03482_T00370_02_003_01.h5&quot;
 ## [3] &quot;https://e4ftl01.cr.usgs.gov/GEDI/GEDI01_B.001/2019.06.08/GEDI01_B_2019159013955_O02752_T01597_02_003_01.h5&quot;</code></pre>
 <p>Great! There are several GEDI orbits available that have at least 1 ‘shot’ within our bounding box of interest. For more information about GEDI filename conventions, and other valuable information about GEDI data, <a href="https://lpdaac.usgs.gov/data/get-started-data/collection-overview/missions/gedi-overview/#gedi-temporal-and-spatial-resolution">see this page on the LP DAAC</a>. However, as mentioned before, each of these files are quite large (~7Gb), so let’s focus on just the first one for now.</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1"><span class="co"># Downloading GEDI data, if you haven&#39;t already</span></a>
-<a class="sourceLine" id="cb82-2" data-line-number="2"><span class="co"># if(!file.exists(paste0(wd,basename(gLevel1B[2])))){</span></a>
-<a class="sourceLine" id="cb82-3" data-line-number="3"><span class="co">#   gediDownload(filepath=gLevel1B[2],outdir=wd)</span></a>
-<a class="sourceLine" id="cb82-4" data-line-number="4"><span class="co"># }</span></a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="co"># Downloading GEDI data, if you haven&#39;t already</span></a>
+<a class="sourceLine" id="cb86-2" data-line-number="2"><span class="co"># if(!file.exists(paste0(wd,basename(gLevel1B[2])))){</span></a>
+<a class="sourceLine" id="cb86-3" data-line-number="3"><span class="co">#   gediDownload(filepath=gLevel1B[2],outdir=wd)</span></a>
+<a class="sourceLine" id="cb86-4" data-line-number="4"><span class="co"># }</span></a></code></pre></div>
 <p>Next, we use the rGEDI package to read in the GEDI data. First, we need to make a ‘gedi.level1b’ object using the <code>readLevel1B()</code> function. Next, we extract the geographic position of the center of each shot from the ‘gedi.level1b’ object using the <code>getLevel1BGeo()</code> function, and display the head of the resulting table.</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1">gedilevel1b&lt;-<span class="kw">readLevel1B</span>(<span class="dt">level1Bpath =</span> <span class="kw">file.path</span>(<span class="st">&#39;./data/NEON_GEDI_subset.h5&#39;</span>))</a>
-<a class="sourceLine" id="cb83-2" data-line-number="2"><span class="co">#gedilevel1b&lt;-readLevel1B(level1Bpath = file.path(wd, &quot;GEDI01_B_2019206022612_O03482_T00370_02_003_01.h5&quot;))</span></a>
-<a class="sourceLine" id="cb83-3" data-line-number="3">level1bGeo&lt;-<span class="kw">getLevel1BGeo</span>(<span class="dt">level1b=</span>gedilevel1b,<span class="dt">select=</span><span class="kw">c</span>(<span class="st">&quot;elevation_bin0&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1">gedilevel1b&lt;-<span class="kw">readLevel1B</span>(<span class="dt">level1Bpath =</span> <span class="kw">file.path</span>(<span class="st">&#39;./data/NEON_GEDI_subset.h5&#39;</span>))</a>
+<a class="sourceLine" id="cb87-2" data-line-number="2"><span class="co">#gedilevel1b&lt;-readLevel1B(level1Bpath = file.path(wd, &quot;GEDI01_B_2019206022612_O03482_T00370_02_003_01.h5&quot;))</span></a>
+<a class="sourceLine" id="cb87-3" data-line-number="3">level1bGeo&lt;-<span class="kw">getLevel1BGeo</span>(<span class="dt">level1b=</span>gedilevel1b,<span class="dt">select=</span><span class="kw">c</span>(<span class="st">&quot;elevation_bin0&quot;</span>))</a></code></pre></div>
 <pre><code>## 
   |                                                                            
   |                                                                      |   0%
@@ -1816,7 +1820,7 @@ Download Dataset</a></p>
   |==========================================================            |  83%
   |                                                                            
   |======================================================================| 100%</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="kw">head</span>(level1bGeo)</a></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="kw">head</span>(level1bGeo)</a></code></pre></div>
 <pre><code>##    shot_number latitude_bin0 latitude_lastbin longitude_bin0 longitude_lastbin
 ## 1:           1      45.82541         45.82542      -121.9700         -121.9699
 ## 2:           2      45.82566         45.82567      -121.9693         -121.9693
@@ -1835,142 +1839,142 @@ Download Dataset</a></p>
 <div id="plot-gedi-footprints-on-chm" class="section level3">
 <h3><span class="header-section-number">5.7.7</span> Plot GEDI footprints on CHM</h3>
 <p>Let’s visualize where the GEDI footprints are located on the CHM tile. To do so, we will need to first convert the GEDI data into a spatial object. For this example, we will use a ‘spatial features’ object type from the ‘sp’ package:</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="co"># drop any shots with missing latitude/longitude values</span></a>
-<a class="sourceLine" id="cb87-2" data-line-number="2">level1bGeo =<span class="st"> </span>level1bGeo[<span class="op">!</span><span class="kw">is.na</span>(level1bGeo<span class="op">$</span>latitude_bin0)<span class="op">&amp;</span></a>
-<a class="sourceLine" id="cb87-3" data-line-number="3"><span class="st">                          </span><span class="op">!</span><span class="kw">is.na</span>(level1bGeo<span class="op">$</span>longitude_bin0),]</a>
-<a class="sourceLine" id="cb87-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb87-5" data-line-number="5"><span class="co"># Convert the GEDI data.frame into an &#39;sf&#39; object</span></a>
-<a class="sourceLine" id="cb87-6" data-line-number="6">level1bGeo_spdf&lt;-<span class="kw">st_as_sf</span>(level1bGeo, </a>
-<a class="sourceLine" id="cb87-7" data-line-number="7">                          <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;longitude_bin0&quot;</span>, <span class="st">&quot;latitude_bin0&quot;</span>),</a>
-<a class="sourceLine" id="cb87-8" data-line-number="8">                          <span class="dt">crs=</span><span class="kw">CRS</span>(<span class="st">&quot;+init=epsg:4326&quot;</span>))</a>
-<a class="sourceLine" id="cb87-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb87-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb87-11" data-line-number="11"><span class="co"># crop to the CHM that is in WGS84</span></a>
-<a class="sourceLine" id="cb87-12" data-line-number="12">level1bgeo_WREF=<span class="kw">st_crop</span>(level1bGeo_spdf, chm_WGS)</a></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="co"># drop any shots with missing latitude/longitude values</span></a>
+<a class="sourceLine" id="cb91-2" data-line-number="2">level1bGeo =<span class="st"> </span>level1bGeo[<span class="op">!</span><span class="kw">is.na</span>(level1bGeo<span class="op">$</span>latitude_bin0)<span class="op">&amp;</span></a>
+<a class="sourceLine" id="cb91-3" data-line-number="3"><span class="st">                          </span><span class="op">!</span><span class="kw">is.na</span>(level1bGeo<span class="op">$</span>longitude_bin0),]</a>
+<a class="sourceLine" id="cb91-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb91-5" data-line-number="5"><span class="co"># Convert the GEDI data.frame into an &#39;sf&#39; object</span></a>
+<a class="sourceLine" id="cb91-6" data-line-number="6">level1bGeo_spdf&lt;-<span class="kw">st_as_sf</span>(level1bGeo, </a>
+<a class="sourceLine" id="cb91-7" data-line-number="7">                          <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;longitude_bin0&quot;</span>, <span class="st">&quot;latitude_bin0&quot;</span>),</a>
+<a class="sourceLine" id="cb91-8" data-line-number="8">                          <span class="dt">crs=</span><span class="kw">CRS</span>(<span class="st">&quot;+init=epsg:4326&quot;</span>))</a>
+<a class="sourceLine" id="cb91-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb91-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb91-11" data-line-number="11"><span class="co"># crop to the CHM that is in WGS84</span></a>
+<a class="sourceLine" id="cb91-12" data-line-number="12">level1bgeo_WREF=<span class="kw">st_crop</span>(level1bGeo_spdf, chm_WGS)</a></code></pre></div>
 <pre><code>## although coordinates are longitude/latitude, st_intersection assumes that they are planar</code></pre>
 <pre><code>## Warning: attribute variables are assumed to be spatially constant throughout all
 ## geometries</code></pre>
 <p>Next, project the GEDI geospatial data into the UTM zone that the CHM is within (Zone 10 North). These data come as the point location at the center of the GEDI footprint, so we next convert the GEDI footprint center (lat/long) into a circle using the <code>buffer()</code> function. Finally, we can plot the CHM and overlay the GEDI footprint circles, and label with the last three digits of the ‘shot’ number.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1"><span class="co"># project to UTM</span></a>
-<a class="sourceLine" id="cb90-2" data-line-number="2">level1bgeo_WREF_UTM=<span class="kw">st_transform</span>(</a>
-<a class="sourceLine" id="cb90-3" data-line-number="3">  level1bgeo_WREF, <span class="dt">crs=</span>chm<span class="op">$</span>NEON_D16_WREF_DP3_<span class="dv">580000</span>_<span class="dv">5075000</span>_CHM<span class="op">@</span>crs)</a>
-<a class="sourceLine" id="cb90-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb90-5" data-line-number="5"><span class="co"># buffer the GEDI shot center by a radius of 12.5m </span></a>
-<a class="sourceLine" id="cb90-6" data-line-number="6"><span class="co"># to represent the full 25m diameter GEDI footprint</span></a>
-<a class="sourceLine" id="cb90-7" data-line-number="7">level1bgeo_WREF_UTM_buffer=<span class="kw">st_buffer</span>(level1bgeo_WREF_UTM, <span class="dt">dist=</span><span class="fl">12.5</span>)</a>
-<a class="sourceLine" id="cb90-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb90-9" data-line-number="9"><span class="co"># plot CHM and overlay GEDI data</span></a>
-<a class="sourceLine" id="cb90-10" data-line-number="10"><span class="kw">plot</span>(chm)</a>
-<a class="sourceLine" id="cb90-11" data-line-number="11"><span class="kw">plot</span>(level1bgeo_WREF_UTM_buffer, <span class="dt">add=</span>T, <span class="dt">col=</span><span class="st">&quot;transparent&quot;</span>)</a>
-<a class="sourceLine" id="cb90-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb90-13" data-line-number="13"><span class="co"># add labes with the last three digits of the GEDI shot_number</span></a>
-<a class="sourceLine" id="cb90-14" data-line-number="14"><span class="kw">pointLabel</span>(<span class="kw">st_coordinates</span>(level1bgeo_WREF_UTM),</a>
-<a class="sourceLine" id="cb90-15" data-line-number="15">           <span class="dt">labels=</span>level1bgeo_WREF_UTM<span class="op">$</span>shot_number, <span class="dt">cex=</span><span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="co"># project to UTM</span></a>
+<a class="sourceLine" id="cb94-2" data-line-number="2">level1bgeo_WREF_UTM=<span class="kw">st_transform</span>(</a>
+<a class="sourceLine" id="cb94-3" data-line-number="3">  level1bgeo_WREF, <span class="dt">crs=</span>chm<span class="op">$</span>NEON_D16_WREF_DP3_<span class="dv">580000</span>_<span class="dv">5075000</span>_CHM<span class="op">@</span>crs)</a>
+<a class="sourceLine" id="cb94-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb94-5" data-line-number="5"><span class="co"># buffer the GEDI shot center by a radius of 12.5m </span></a>
+<a class="sourceLine" id="cb94-6" data-line-number="6"><span class="co"># to represent the full 25m diameter GEDI footprint</span></a>
+<a class="sourceLine" id="cb94-7" data-line-number="7">level1bgeo_WREF_UTM_buffer=<span class="kw">st_buffer</span>(level1bgeo_WREF_UTM, <span class="dt">dist=</span><span class="fl">12.5</span>)</a>
+<a class="sourceLine" id="cb94-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb94-9" data-line-number="9"><span class="co"># plot CHM and overlay GEDI data</span></a>
+<a class="sourceLine" id="cb94-10" data-line-number="10"><span class="kw">plot</span>(chm)</a>
+<a class="sourceLine" id="cb94-11" data-line-number="11"><span class="kw">plot</span>(level1bgeo_WREF_UTM_buffer, <span class="dt">add=</span>T, <span class="dt">col=</span><span class="st">&quot;transparent&quot;</span>)</a>
+<a class="sourceLine" id="cb94-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb94-13" data-line-number="13"><span class="co"># add labes with the last three digits of the GEDI shot_number</span></a>
+<a class="sourceLine" id="cb94-14" data-line-number="14"><span class="kw">pointLabel</span>(<span class="kw">st_coordinates</span>(level1bgeo_WREF_UTM),</a>
+<a class="sourceLine" id="cb94-15" data-line-number="15">           <span class="dt">labels=</span>level1bgeo_WREF_UTM<span class="op">$</span>shot_number, <span class="dt">cex=</span><span class="dv">1</span>)</a></code></pre></div>
 <p><img src="07-NEON_AOP_files/figure-html/overly-GEDI-on-chm-1.png" width="480" /></p>
 </div>
 <div id="extract-waveform-for-a-single-shot" class="section level3">
 <h3><span class="header-section-number">5.7.8</span> Extract Waveform for a single Shot</h3>
 <p>Let’s take a look at a waveform for a single GEDI shot. We will use the last three numbers of the shot, shown a labels in the plot above, to select a waveform of interest. In this case, let’s plot the the footprint labeled ‘002’ in the northwest of the CHM.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="co"># Extracting GEDI full-waveform for a given shot_number</span></a>
-<a class="sourceLine" id="cb91-2" data-line-number="2"><span class="co">###ERROR HERE###</span></a>
-<a class="sourceLine" id="cb91-3" data-line-number="3">wf &lt;-<span class="st"> </span><span class="kw">getLevel1BWF</span>(gedilevel1b,<span class="dt">shot_number =</span> <span class="dv">20</span>)</a>
-<a class="sourceLine" id="cb91-4" data-line-number="4"><span class="co"># wf &lt;- getLevel1BWF(gedilevel1b,shot_number = level1bgeo_WREF_UTM_buffer$shot_number[which(level1bgeo_WREF_UTM_buffer$shot_number==1786)])</span></a>
-<a class="sourceLine" id="cb91-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb91-6" data-line-number="6"><span class="co"># Save current plotting parameters to revert to</span></a>
-<a class="sourceLine" id="cb91-7" data-line-number="7">oldpar &lt;-<span class="st"> </span><span class="kw">par</span>()</a>
-<a class="sourceLine" id="cb91-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb91-9" data-line-number="9"><span class="co"># Set up plotting paramters</span></a>
-<a class="sourceLine" id="cb91-10" data-line-number="10"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">cex.axis =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb91-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb91-12" data-line-number="12"><span class="co"># Plot filled-in waveform </span></a>
-<a class="sourceLine" id="cb91-13" data-line-number="13"><span class="kw">plot</span>(wf, <span class="dt">relative=</span><span class="ot">FALSE</span>, <span class="dt">polygon=</span><span class="ot">TRUE</span>, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;forestgreen&quot;</span>,</a>
-<a class="sourceLine" id="cb91-14" data-line-number="14">     <span class="dt">xlab=</span><span class="st">&quot;Waveform Amplitude&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Elevation (m)&quot;</span>)</a>
-<a class="sourceLine" id="cb91-15" data-line-number="15"><span class="kw">grid</span>() <span class="co">#add a grid to the plot</span></a>
-<a class="sourceLine" id="cb91-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb91-17" data-line-number="17"><span class="co"># Plot a simple line with no fill</span></a>
-<a class="sourceLine" id="cb91-18" data-line-number="18"><span class="kw">plot</span>(wf, <span class="dt">relative=</span><span class="ot">TRUE</span>, <span class="dt">polygon=</span><span class="ot">FALSE</span>, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;forestgreen&quot;</span>,</a>
-<a class="sourceLine" id="cb91-19" data-line-number="19">     <span class="dt">xlab=</span><span class="st">&quot;Waveform Amplitude (%)&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Elevation (m)&quot;</span>)</a>
-<a class="sourceLine" id="cb91-20" data-line-number="20"><span class="kw">grid</span>()<span class="co">#add a grid to the plot</span></a></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="co"># Extracting GEDI full-waveform for a given shot_number</span></a>
+<a class="sourceLine" id="cb95-2" data-line-number="2"><span class="co">###ERROR HERE###</span></a>
+<a class="sourceLine" id="cb95-3" data-line-number="3">wf &lt;-<span class="st"> </span><span class="kw">getLevel1BWF</span>(gedilevel1b,<span class="dt">shot_number =</span> <span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb95-4" data-line-number="4"><span class="co"># wf &lt;- getLevel1BWF(gedilevel1b,shot_number = level1bgeo_WREF_UTM_buffer$shot_number[which(level1bgeo_WREF_UTM_buffer$shot_number==1786)])</span></a>
+<a class="sourceLine" id="cb95-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb95-6" data-line-number="6"><span class="co"># Save current plotting parameters to revert to</span></a>
+<a class="sourceLine" id="cb95-7" data-line-number="7">oldpar &lt;-<span class="st"> </span><span class="kw">par</span>()</a>
+<a class="sourceLine" id="cb95-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb95-9" data-line-number="9"><span class="co"># Set up plotting paramters</span></a>
+<a class="sourceLine" id="cb95-10" data-line-number="10"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">cex.axis =</span> <span class="fl">1.5</span>)</a>
+<a class="sourceLine" id="cb95-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb95-12" data-line-number="12"><span class="co"># Plot filled-in waveform </span></a>
+<a class="sourceLine" id="cb95-13" data-line-number="13"><span class="kw">plot</span>(wf, <span class="dt">relative=</span><span class="ot">FALSE</span>, <span class="dt">polygon=</span><span class="ot">TRUE</span>, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;forestgreen&quot;</span>,</a>
+<a class="sourceLine" id="cb95-14" data-line-number="14">     <span class="dt">xlab=</span><span class="st">&quot;Waveform Amplitude&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Elevation (m)&quot;</span>)</a>
+<a class="sourceLine" id="cb95-15" data-line-number="15"><span class="kw">grid</span>() <span class="co">#add a grid to the plot</span></a>
+<a class="sourceLine" id="cb95-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb95-17" data-line-number="17"><span class="co"># Plot a simple line with no fill</span></a>
+<a class="sourceLine" id="cb95-18" data-line-number="18"><span class="kw">plot</span>(wf, <span class="dt">relative=</span><span class="ot">TRUE</span>, <span class="dt">polygon=</span><span class="ot">FALSE</span>, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;forestgreen&quot;</span>,</a>
+<a class="sourceLine" id="cb95-19" data-line-number="19">     <span class="dt">xlab=</span><span class="st">&quot;Waveform Amplitude (%)&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Elevation (m)&quot;</span>)</a>
+<a class="sourceLine" id="cb95-20" data-line-number="20"><span class="kw">grid</span>()<span class="co">#add a grid to the plot</span></a></code></pre></div>
 <p><img src="07-NEON_AOP_files/figure-html/extract-wf-1.png" width="672" /></p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1"><span class="co"># Revert plotting parameters to previous values.</span></a>
-<a class="sourceLine" id="cb92-2" data-line-number="2"><span class="kw">par</span>(oldpar)</a></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1"><span class="co"># Revert plotting parameters to previous values.</span></a>
+<a class="sourceLine" id="cb96-2" data-line-number="2"><span class="kw">par</span>(oldpar)</a></code></pre></div>
 <p>This waveform shows some noise above and below the main ecosystem return, with a fairly dense canopy around 370m elevation, an a characteristic ground return spike at about 340m. While the GEDI data are extremely valuable and offer a near-global coverage, it is hard to get a good sense of what the ecosystem really looks like from this GEDI waveform. Let’s download some NEON AOP pointcloud data to pair up with this waveform to get a better sense of what GEDI is reporting.</p>
 </div>
 <div id="download-and-plot-neon-aop-lidar-pointcloud-data" class="section level3">
 <h3><span class="header-section-number">5.7.9</span> Download and Plot NEON AOP LiDAR pointcloud data</h3>
 <p>Here, we will use the <code>byTileAOP()</code> function from the ‘neonUtilities’ package to download the classified pointcloud mosaic data (DP1.30003.001). Since this is a mosaic tile like the CHM, we can just pass this function the lower left corner of the CHM tile to get the corresponding lidar pointcloud mosaic tile for our analysis.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="co"># Download the pointcloud data if you don&#39;t have it already</span></a>
-<a class="sourceLine" id="cb93-2" data-line-number="2"><span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(<span class="st">&#39;./data/DP1.30003.001/2017/FullSite/D16/2017_WREF_1/L1/DiscreteLidar/ClassifiedPointCloud/NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.laz&#39;</span>)){</a>
-<a class="sourceLine" id="cb93-3" data-line-number="3">  <span class="kw">byTileAOP</span>(<span class="dt">dpID =</span> <span class="st">&quot;DP1.30003.001&quot;</span>, <span class="dt">site =</span> SITECODE, <span class="dt">year =</span> <span class="dv">2017</span>, </a>
-<a class="sourceLine" id="cb93-4" data-line-number="4">          <span class="dt">easting =</span> <span class="kw">extent</span>(chm)[<span class="dv">1</span>], <span class="dt">northing=</span><span class="kw">extent</span>(chm)[<span class="dv">3</span>], </a>
-<a class="sourceLine" id="cb93-5" data-line-number="5">          <span class="dt">check.size =</span> F)</a>
-<a class="sourceLine" id="cb93-6" data-line-number="6">}</a></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1"><span class="co"># Download the pointcloud data if you don&#39;t have it already</span></a>
+<a class="sourceLine" id="cb97-2" data-line-number="2"><span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(<span class="st">&#39;./data/DP1.30003.001/2017/FullSite/D16/2017_WREF_1/L1/DiscreteLidar/ClassifiedPointCloud/NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.laz&#39;</span>)){</a>
+<a class="sourceLine" id="cb97-3" data-line-number="3">  <span class="kw">byTileAOP</span>(<span class="dt">dpID =</span> <span class="st">&quot;DP1.30003.001&quot;</span>, <span class="dt">site =</span> SITECODE, <span class="dt">year =</span> <span class="dv">2017</span>, </a>
+<a class="sourceLine" id="cb97-4" data-line-number="4">          <span class="dt">easting =</span> <span class="kw">extent</span>(chm)[<span class="dv">1</span>], <span class="dt">northing=</span><span class="kw">extent</span>(chm)[<span class="dv">3</span>], </a>
+<a class="sourceLine" id="cb97-5" data-line-number="5">          <span class="dt">check.size =</span> F)</a>
+<a class="sourceLine" id="cb97-6" data-line-number="6">}</a></code></pre></div>
 <p>After downloading the point cloud data, let’s read them into our R session using the <code>readLAS()</code> function from the <code>lidaR</code> package, and plot them in 3D. Note, you may need to update your ‘XQuartz’ if you are using a Mac.</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1">WREF_LAS=<span class="kw">readLAS</span>(<span class="st">&quot;./data/DP1.30003.001/2017/FullSite/D16/2017_WREF_1/L1/DiscreteLidar/ClassifiedPointCloud/NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.laz&quot;</span>)</a>
-<a class="sourceLine" id="cb94-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb94-3" data-line-number="3">lidR<span class="op">::</span><span class="kw">plot</span>(WREF_LAS)</a></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">WREF_LAS=<span class="kw">readLAS</span>(<span class="st">&quot;./data/DP1.30003.001/2017/FullSite/D16/2017_WREF_1/L1/DiscreteLidar/ClassifiedPointCloud/NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.laz&quot;</span>)</a>
+<a class="sourceLine" id="cb98-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb98-3" data-line-number="3">lidR<span class="op">::</span><span class="kw">plot</span>(WREF_LAS)</a></code></pre></div>
 <p>Oh, yikes! There are a lot of outliers above the actual forest, and a few below. Let’s use some simple statistics to throw out those outliers. We will first calculate the mean and standard deviation for the verical axis, and then use the ‘filter’ options of the <code>readLAS()</code> function to eliminate the vertical outliers.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="co"># </span><span class="al">###</span><span class="co"> remove outlier lidar point outliers using mean and sd statistics</span></a>
-<a class="sourceLine" id="cb95-2" data-line-number="2">Z_sd=<span class="kw">sd</span>(WREF_LAS<span class="op">@</span>data<span class="op">$</span>Z)</a>
-<a class="sourceLine" id="cb95-3" data-line-number="3">Z_mean=<span class="kw">mean</span>(WREF_LAS<span class="op">@</span>data<span class="op">$</span>Z)</a>
-<a class="sourceLine" id="cb95-4" data-line-number="4"> </a>
-<a class="sourceLine" id="cb95-5" data-line-number="5"><span class="co"># make filter string in form filter = &quot;-drop_z_below 50 -drop_z_above 1000&quot;</span></a>
-<a class="sourceLine" id="cb95-6" data-line-number="6"><span class="co"># You can increase or decrease (from 4) the number of sd&#39;s to filter outliers</span></a>
-<a class="sourceLine" id="cb95-7" data-line-number="7">f =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;-drop_z_below&quot;</span>,(Z_mean<span class="dv">-4</span><span class="op">*</span>Z_sd),<span class="st">&quot;-drop_z_above&quot;</span>,(Z_mean<span class="op">+</span><span class="dv">4</span><span class="op">*</span>Z_sd))</a>
-<a class="sourceLine" id="cb95-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb95-9" data-line-number="9"><span class="co"># Read in LAS file, trimming off vertical outlier points</span></a>
-<a class="sourceLine" id="cb95-10" data-line-number="10">WREF_LAS=<span class="kw">readLAS</span>(<span class="st">&quot;./data/DP1.30003.001/2017/FullSite/D16/2017_WREF_1/L1/DiscreteLidar/ClassifiedPointCloud/NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.laz&quot;</span>,</a>
-<a class="sourceLine" id="cb95-11" data-line-number="11">                 <span class="dt">filter =</span> f)</a>
-<a class="sourceLine" id="cb95-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb95-13" data-line-number="13"><span class="co">#Plot the full LiDAR point cloud mosaic tile (1km^2)</span></a>
-<a class="sourceLine" id="cb95-14" data-line-number="14"><span class="kw">plot</span>(WREF_LAS)</a></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="co"># </span><span class="al">###</span><span class="co"> remove outlier lidar point outliers using mean and sd statistics</span></a>
+<a class="sourceLine" id="cb99-2" data-line-number="2">Z_sd=<span class="kw">sd</span>(WREF_LAS<span class="op">@</span>data<span class="op">$</span>Z)</a>
+<a class="sourceLine" id="cb99-3" data-line-number="3">Z_mean=<span class="kw">mean</span>(WREF_LAS<span class="op">@</span>data<span class="op">$</span>Z)</a>
+<a class="sourceLine" id="cb99-4" data-line-number="4"> </a>
+<a class="sourceLine" id="cb99-5" data-line-number="5"><span class="co"># make filter string in form filter = &quot;-drop_z_below 50 -drop_z_above 1000&quot;</span></a>
+<a class="sourceLine" id="cb99-6" data-line-number="6"><span class="co"># You can increase or decrease (from 4) the number of sd&#39;s to filter outliers</span></a>
+<a class="sourceLine" id="cb99-7" data-line-number="7">f =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;-drop_z_below&quot;</span>,(Z_mean<span class="dv">-4</span><span class="op">*</span>Z_sd),<span class="st">&quot;-drop_z_above&quot;</span>,(Z_mean<span class="op">+</span><span class="dv">4</span><span class="op">*</span>Z_sd))</a>
+<a class="sourceLine" id="cb99-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb99-9" data-line-number="9"><span class="co"># Read in LAS file, trimming off vertical outlier points</span></a>
+<a class="sourceLine" id="cb99-10" data-line-number="10">WREF_LAS=<span class="kw">readLAS</span>(<span class="st">&quot;./data/DP1.30003.001/2017/FullSite/D16/2017_WREF_1/L1/DiscreteLidar/ClassifiedPointCloud/NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.laz&quot;</span>,</a>
+<a class="sourceLine" id="cb99-11" data-line-number="11">                 <span class="dt">filter =</span> f)</a>
+<a class="sourceLine" id="cb99-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb99-13" data-line-number="13"><span class="co">#Plot the full LiDAR point cloud mosaic tile (1km^2)</span></a>
+<a class="sourceLine" id="cb99-14" data-line-number="14"><span class="kw">plot</span>(WREF_LAS)</a></code></pre></div>
 <p>Ahhh, that’s better.</p>
 </div>
 <div id="clip-aop-lidar-pointcloud-to-gedi-footprints" class="section level3">
 <h3><span class="header-section-number">5.7.10</span> Clip AOP LiDAR Pointcloud to GEDI footprints</h3>
 <p>We can now use the GEDI footprint circles (that we made using the <code>buffer()</code> function) to clip out the NEON AOP LiDAR points that correspond with the GEDI footprints:</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1"><span class="co"># Clip the pointcloud by the GEDI footprints created by buffering above. </span></a>
-<a class="sourceLine" id="cb96-2" data-line-number="2"><span class="co"># This makes a &#39;list&#39; of LAS objects</span></a>
-<a class="sourceLine" id="cb96-3" data-line-number="3">WREF_GEDI_footprints=<span class="kw">lasclip</span>(WREF_LAS, <span class="dt">geometry =</span> level1bgeo_WREF_UTM_buffer)</a>
-<a class="sourceLine" id="cb96-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb96-5" data-line-number="5"><span class="co"># we can now plot individual footprint clips</span></a>
-<a class="sourceLine" id="cb96-6" data-line-number="6"><span class="kw">plot</span>(WREF_GEDI_footprints[[<span class="dv">8</span>]])</a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="co"># Clip the pointcloud by the GEDI footprints created by buffering above. </span></a>
+<a class="sourceLine" id="cb100-2" data-line-number="2"><span class="co"># This makes a &#39;list&#39; of LAS objects</span></a>
+<a class="sourceLine" id="cb100-3" data-line-number="3">WREF_GEDI_footprints=<span class="kw">lasclip</span>(WREF_LAS, <span class="dt">geometry =</span> level1bgeo_WREF_UTM_buffer)</a>
+<a class="sourceLine" id="cb100-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb100-5" data-line-number="5"><span class="co"># we can now plot individual footprint clips</span></a>
+<a class="sourceLine" id="cb100-6" data-line-number="6"><span class="kw">plot</span>(WREF_GEDI_footprints[[<span class="dv">8</span>]])</a></code></pre></div>
 </div>
 <div id="plot-gedi-waveform-with-aop-pointcloud-in-3d-space" class="section level3">
 <h3><span class="header-section-number">5.7.11</span> Plot GEDI Waveform with AOP Pointcloud in 3D space</h3>
 <p>Now that we can extract individual waveforms, and the AOP LiDAR pointcloud that corresponds with each GEDI waveform, let’s see if we can plot them both in 3D space. We already know how to plot the AOP LiDAR points, so let’s write a function to draw the GEDI waveform, too, using the <code>points3d()</code> function:</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1"><span class="cf">for</span>(shot_n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">21</span>){</a>
-<a class="sourceLine" id="cb97-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb97-3" data-line-number="3">  <span class="co"># First, plot the NEON AOP LiDAR clipped to the GEDI footprint</span></a>
-<a class="sourceLine" id="cb97-4" data-line-number="4">  <span class="co"># We save the plot as an object &#39;p&#39; which gives the (x,y) offset for the lower</span></a>
-<a class="sourceLine" id="cb97-5" data-line-number="5">  <span class="co"># left corner of the plot. The &#39;rgl&#39; package offsets all (x,y) locations </span></a>
-<a class="sourceLine" id="cb97-6" data-line-number="6">  <span class="co"># to this point, so we will need to subtract these values from any other </span></a>
-<a class="sourceLine" id="cb97-7" data-line-number="7">  <span class="co"># (x,y) points that we want to add to the plot</span></a>
-<a class="sourceLine" id="cb97-8" data-line-number="8">  p=<span class="kw">plot</span>(WREF_GEDI_footprints[[shot_n]])</a>
-<a class="sourceLine" id="cb97-9" data-line-number="9">  </a>
-<a class="sourceLine" id="cb97-10" data-line-number="10">  <span class="co"># Extract the specific waveform from the GEDI data</span></a>
-<a class="sourceLine" id="cb97-11" data-line-number="11">  wf &lt;-<span class="st"> </span><span class="kw">getLevel1BWF</span>(gedilevel1b,<span class="dt">shot_number =</span> level1bgeo_WREF<span class="op">$</span>shot_number[shot_n])</a>
-<a class="sourceLine" id="cb97-12" data-line-number="12">  </a>
-<a class="sourceLine" id="cb97-13" data-line-number="13">  <span class="co"># Make a new data.frame &#39;d&#39; to convert the waveform data coordinates into 3D space</span></a>
-<a class="sourceLine" id="cb97-14" data-line-number="14">  d=wf<span class="op">@</span>dt</a>
-<a class="sourceLine" id="cb97-15" data-line-number="15">  </a>
-<a class="sourceLine" id="cb97-16" data-line-number="16">  <span class="co"># normalize rxwaveform to 0-1</span></a>
-<a class="sourceLine" id="cb97-17" data-line-number="17">  d<span class="op">$</span>rxwaveform=d<span class="op">$</span>rxwaveform<span class="op">-</span><span class="kw">min</span>(d<span class="op">$</span>rxwaveform)</a>
-<a class="sourceLine" id="cb97-18" data-line-number="18">  d<span class="op">$</span>rxwaveform=d<span class="op">$</span>rxwaveform<span class="op">/</span><span class="kw">max</span>(d<span class="op">$</span>rxwaveform)</a>
-<a class="sourceLine" id="cb97-19" data-line-number="19">  </a>
-<a class="sourceLine" id="cb97-20" data-line-number="20">  <span class="co"># Add xy data in UTMs, and offset lower left corner of &#39;p&#39;</span></a>
-<a class="sourceLine" id="cb97-21" data-line-number="21">  d<span class="op">$</span>x=<span class="kw">st_coordinates</span>(level1bgeo_WREF_UTM[shot_n,])[<span class="dv">1</span>]<span class="op">-</span>p[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb97-22" data-line-number="22">  d<span class="op">$</span>y=<span class="kw">st_coordinates</span>(level1bgeo_WREF_UTM[shot_n,])[<span class="dv">2</span>]<span class="op">-</span>p[<span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb97-23" data-line-number="23">  </a>
-<a class="sourceLine" id="cb97-24" data-line-number="24">  <span class="co"># Make a new column &#39;x_wf&#39; where we place the GEDI waveform in space with the </span></a>
-<a class="sourceLine" id="cb97-25" data-line-number="25">  <span class="co"># NEON AOP LiDAR data, we scale the waveform to 30m in the x-dimension, and </span></a>
-<a class="sourceLine" id="cb97-26" data-line-number="26">  <span class="co"># offset by 12.5m (the radius of the GEDI footprint) in the x-dimension.</span></a>
-<a class="sourceLine" id="cb97-27" data-line-number="27">  d<span class="op">$</span>x_wf=d<span class="op">$</span>x<span class="op">+</span>d<span class="op">$</span>rxwaveform<span class="op">*</span><span class="dv">30</span><span class="fl">+12.5</span></a>
-<a class="sourceLine" id="cb97-28" data-line-number="28">  </a>
-<a class="sourceLine" id="cb97-29" data-line-number="29">  <span class="co"># Add GEDI points to 3D space in &#39;green&#39; color</span></a>
-<a class="sourceLine" id="cb97-30" data-line-number="30">  <span class="kw">points3d</span>(<span class="dt">x=</span>d<span class="op">$</span>x_wf, <span class="dt">y=</span>d<span class="op">$</span>y, <span class="dt">z=</span>d<span class="op">$</span>elevation, <span class="dt">col=</span><span class="st">&quot;green&quot;</span>, <span class="dt">add=</span>T)</a>
-<a class="sourceLine" id="cb97-31" data-line-number="31"></a>
-<a class="sourceLine" id="cb97-32" data-line-number="32">}</a></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1"><span class="cf">for</span>(shot_n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">21</span>){</a>
+<a class="sourceLine" id="cb101-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb101-3" data-line-number="3">  <span class="co"># First, plot the NEON AOP LiDAR clipped to the GEDI footprint</span></a>
+<a class="sourceLine" id="cb101-4" data-line-number="4">  <span class="co"># We save the plot as an object &#39;p&#39; which gives the (x,y) offset for the lower</span></a>
+<a class="sourceLine" id="cb101-5" data-line-number="5">  <span class="co"># left corner of the plot. The &#39;rgl&#39; package offsets all (x,y) locations </span></a>
+<a class="sourceLine" id="cb101-6" data-line-number="6">  <span class="co"># to this point, so we will need to subtract these values from any other </span></a>
+<a class="sourceLine" id="cb101-7" data-line-number="7">  <span class="co"># (x,y) points that we want to add to the plot</span></a>
+<a class="sourceLine" id="cb101-8" data-line-number="8">  p=<span class="kw">plot</span>(WREF_GEDI_footprints[[shot_n]])</a>
+<a class="sourceLine" id="cb101-9" data-line-number="9">  </a>
+<a class="sourceLine" id="cb101-10" data-line-number="10">  <span class="co"># Extract the specific waveform from the GEDI data</span></a>
+<a class="sourceLine" id="cb101-11" data-line-number="11">  wf &lt;-<span class="st"> </span><span class="kw">getLevel1BWF</span>(gedilevel1b,<span class="dt">shot_number =</span> level1bgeo_WREF<span class="op">$</span>shot_number[shot_n])</a>
+<a class="sourceLine" id="cb101-12" data-line-number="12">  </a>
+<a class="sourceLine" id="cb101-13" data-line-number="13">  <span class="co"># Make a new data.frame &#39;d&#39; to convert the waveform data coordinates into 3D space</span></a>
+<a class="sourceLine" id="cb101-14" data-line-number="14">  d=wf<span class="op">@</span>dt</a>
+<a class="sourceLine" id="cb101-15" data-line-number="15">  </a>
+<a class="sourceLine" id="cb101-16" data-line-number="16">  <span class="co"># normalize rxwaveform to 0-1</span></a>
+<a class="sourceLine" id="cb101-17" data-line-number="17">  d<span class="op">$</span>rxwaveform=d<span class="op">$</span>rxwaveform<span class="op">-</span><span class="kw">min</span>(d<span class="op">$</span>rxwaveform)</a>
+<a class="sourceLine" id="cb101-18" data-line-number="18">  d<span class="op">$</span>rxwaveform=d<span class="op">$</span>rxwaveform<span class="op">/</span><span class="kw">max</span>(d<span class="op">$</span>rxwaveform)</a>
+<a class="sourceLine" id="cb101-19" data-line-number="19">  </a>
+<a class="sourceLine" id="cb101-20" data-line-number="20">  <span class="co"># Add xy data in UTMs, and offset lower left corner of &#39;p&#39;</span></a>
+<a class="sourceLine" id="cb101-21" data-line-number="21">  d<span class="op">$</span>x=<span class="kw">st_coordinates</span>(level1bgeo_WREF_UTM[shot_n,])[<span class="dv">1</span>]<span class="op">-</span>p[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb101-22" data-line-number="22">  d<span class="op">$</span>y=<span class="kw">st_coordinates</span>(level1bgeo_WREF_UTM[shot_n,])[<span class="dv">2</span>]<span class="op">-</span>p[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb101-23" data-line-number="23">  </a>
+<a class="sourceLine" id="cb101-24" data-line-number="24">  <span class="co"># Make a new column &#39;x_wf&#39; where we place the GEDI waveform in space with the </span></a>
+<a class="sourceLine" id="cb101-25" data-line-number="25">  <span class="co"># NEON AOP LiDAR data, we scale the waveform to 30m in the x-dimension, and </span></a>
+<a class="sourceLine" id="cb101-26" data-line-number="26">  <span class="co"># offset by 12.5m (the radius of the GEDI footprint) in the x-dimension.</span></a>
+<a class="sourceLine" id="cb101-27" data-line-number="27">  d<span class="op">$</span>x_wf=d<span class="op">$</span>x<span class="op">+</span>d<span class="op">$</span>rxwaveform<span class="op">*</span><span class="dv">30</span><span class="fl">+12.5</span></a>
+<a class="sourceLine" id="cb101-28" data-line-number="28">  </a>
+<a class="sourceLine" id="cb101-29" data-line-number="29">  <span class="co"># Add GEDI points to 3D space in &#39;green&#39; color</span></a>
+<a class="sourceLine" id="cb101-30" data-line-number="30">  <span class="kw">points3d</span>(<span class="dt">x=</span>d<span class="op">$</span>x_wf, <span class="dt">y=</span>d<span class="op">$</span>y, <span class="dt">z=</span>d<span class="op">$</span>elevation, <span class="dt">col=</span><span class="st">&quot;green&quot;</span>, <span class="dt">add=</span>T)</a>
+<a class="sourceLine" id="cb101-31" data-line-number="31"></a>
+<a class="sourceLine" id="cb101-32" data-line-number="32">}</a></code></pre></div>
 <p>Whoa, it looks like there is a bad vertical mismatch between those two data sources. This is because the two data sources have a different vertical datum. The NEON AOP data are delivered in the GEOID12A, while the GEDI data are delivered in the WGS84 native datum. We will need to convert one to the other to get them to line up correctly.</p>
 </div>
 <div id="datum-geoid-and-how-to-best-measure-the-earth" class="section level3">
@@ -1990,67 +1994,67 @@ Download Dataset</a></p>
 <h3><span class="header-section-number">5.7.13</span> Aligning the Vertical Datum</h3>
 <p>AOP data have a relatively small area of coverage, and are therefore delivered with the coordinate reference system (CRS) in the UTM zone in which they were collected, set to the GEOID12A vertical datum (roughly equaling mean sea level). Meanwhile, GEDI data are global, so they are delivered with the common WGS84 ellipsoidal refrence datum. We need to align these vertical datums to ensure that the two data products line up correctly. However, this is not a trivial step, nor as simple as a reprojection. In this example, we will keep the NEON LiDAR data in its current datum, and convert the vertical position of the GEDI data from WGS84 into GEOID12A vertical position.</p>
 <p>NOAA has a useful <a href="https://www.ngs.noaa.gov/INFO/facts/vdatum.shtml">tool called Vdatum</a> that will convert from one datum to another. For this example, we will use Vdatum to convert from WGS84 to NAD83. Seeing as GEOID12A is based on the NAD83 datum, we can first convert the GEDI data’s vertical position from WGS84 to NAD83 datum, then apply the offset between NAD83 and GEOID12A. Rather than use the Vdatum tool for each point, we will use a raster created by NEON scientists that reports the vertical difference between WGS84 and NAD83 for all points in the conterminous USA. Please <a href="https://neondata.sharefile.com/d-sf4e35e969fc43aca">visit this Sharepoint page</a> (same as the link at the top of this page) to download the raster. We will then read it into our R session:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1"><span class="co"># Edit this filepath as needed for your machine</span></a>
-<a class="sourceLine" id="cb98-2" data-line-number="2">datum_diff=<span class="kw">raster</span>(<span class="st">&#39;./data/WGS84_NAD83_seperation.tif&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="co"># Edit this filepath as needed for your machine</span></a>
+<a class="sourceLine" id="cb102-2" data-line-number="2">datum_diff=<span class="kw">raster</span>(<span class="st">&#39;./data/WGS84_NAD83_seperation.tif&#39;</span>)</a></code></pre></div>
 <div id="geoid12a-height-model" class="section level4">
 <h4><span class="header-section-number">5.7.13.1</span> GEOID12A Height Model</h4>
 <p>GEOID12A is a surface model that is described in terms of its relative height compared to NAD83. You can use <a href="https://www.ngs.noaa.gov/cgi-bin/GEOID_STUFF/geoid12A_prompt1.prl">this interactive webpage</a> to find the geoid height for any location within North America. However, that would be combersome to have to use this webpage for every location. Instead, we will download a &lt;a href=&quot;<a href="https://www.ngs.noaa.gov/GEOID/GEOID12A/GEOID12A_CONUS.shtml" class="uri">https://www.ngs.noaa.gov/GEOID/GEOID12A/GEOID12A_CONUS.shtml</a>&gt;binary file from the NOAA website</a> that describes this geoid’s height, and convert that into a raster similar to the one that we just downloaded above. We have included comments here from the NOAA website about the structure of the binary file. We use this information to extract the dimensions of this dataset in order to construct a raster in R from these binary data.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="co"># Download binary file of offset from GEOID12A to NAD83</span></a>
-<a class="sourceLine" id="cb99-2" data-line-number="2"><span class="cf">if</span>(<span class="op">!</span><span class="kw">file.exists</span>(<span class="st">&#39;./data/g2012au0.bin&#39;</span>)){</a>
-<a class="sourceLine" id="cb99-3" data-line-number="3">  <span class="kw">download.file</span>(<span class="st">&quot;https://www.ngs.noaa.gov/PC_PROD/GEOID12A/Format_unix/g2012au0.bin&quot;</span>, </a>
-<a class="sourceLine" id="cb99-4" data-line-number="4">                <span class="dt">destfile =</span> <span class="st">&#39;./data/g2012au0.bin&#39;</span>)</a>
-<a class="sourceLine" id="cb99-5" data-line-number="5">}</a>
-<a class="sourceLine" id="cb99-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb99-7" data-line-number="7"><span class="co"># Read header information. See https://www.ngs.noaa.gov/GEOID/GEOID12B/g2012Brme.txt</span></a>
-<a class="sourceLine" id="cb99-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb99-9" data-line-number="9"><span class="co"># File Structure</span></a>
-<a class="sourceLine" id="cb99-10" data-line-number="10"><span class="co"># ---------------</span></a>
-<a class="sourceLine" id="cb99-11" data-line-number="11"><span class="co"># The files (ASCII and binary) follow the same structure of a one-line header </span></a>
-<a class="sourceLine" id="cb99-12" data-line-number="12"><span class="co"># followed by the data in row-major format. The one-line header contains four </span></a>
-<a class="sourceLine" id="cb99-13" data-line-number="13"><span class="co"># double (real*8) words followed by three long (int*4) words. </span></a>
-<a class="sourceLine" id="cb99-14" data-line-number="14"><span class="co"># These parameters define the geographic extent of the area:</span></a>
-<a class="sourceLine" id="cb99-15" data-line-number="15"><span class="co"># </span></a>
-<a class="sourceLine" id="cb99-16" data-line-number="16"><span class="co"># SLAT:  Southernmost North latitude in whole degrees. </span></a>
-<a class="sourceLine" id="cb99-17" data-line-number="17"><span class="co">#        Use a minus sign (-) to indicate South latitudes. </span></a>
-<a class="sourceLine" id="cb99-18" data-line-number="18"><span class="co"># WLON:  Westernmost East longitude in whole degrees. </span></a>
-<a class="sourceLine" id="cb99-19" data-line-number="19"><span class="co"># DLAT:  Distance interval in latitude in whole degrees </span></a>
-<a class="sourceLine" id="cb99-20" data-line-number="20"><span class="co">#        (point spacing in E-W direction)</span></a>
-<a class="sourceLine" id="cb99-21" data-line-number="21"><span class="co"># DLON:  Distance interval in longitude in whole degrees </span></a>
-<a class="sourceLine" id="cb99-22" data-line-number="22"><span class="co">#        (point spacing in N-S direction)</span></a>
-<a class="sourceLine" id="cb99-23" data-line-number="23"><span class="co"># NLAT:  Number of rows </span></a>
-<a class="sourceLine" id="cb99-24" data-line-number="24"><span class="co">#        (starts with SLAT and moves northward DLAT to next row)</span></a>
-<a class="sourceLine" id="cb99-25" data-line-number="25"><span class="co"># NLON:  Number of columns </span></a>
-<a class="sourceLine" id="cb99-26" data-line-number="26"><span class="co">#        (starts with WLON and moves eastward DLON to next column)</span></a>
-<a class="sourceLine" id="cb99-27" data-line-number="27"><span class="co"># IKIND: Always equal to one (indicates data are real*4 and endian condition)</span></a>
-<a class="sourceLine" id="cb99-28" data-line-number="28"></a>
-<a class="sourceLine" id="cb99-29" data-line-number="29">to.read =<span class="st"> </span><span class="kw">file</span>(<span class="st">&#39;./data/g2012au0.bin&#39;</span>, <span class="st">&quot;rb&quot;</span>)</a>
-<a class="sourceLine" id="cb99-30" data-line-number="30">header1=<span class="kw">readBin</span>(to.read, <span class="kw">double</span>(), <span class="dt">endian =</span> <span class="st">&quot;big&quot;</span>, <span class="dt">n=</span><span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb99-31" data-line-number="31">header1 <span class="co">#SLAT, WLON, DLAT, DLON</span></a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1"><span class="co"># Download binary file of offset from GEOID12A to NAD83</span></a>
+<a class="sourceLine" id="cb103-2" data-line-number="2"><span class="cf">if</span>(<span class="op">!</span><span class="kw">file.exists</span>(<span class="st">&#39;./data/g2012au0.bin&#39;</span>)){</a>
+<a class="sourceLine" id="cb103-3" data-line-number="3">  <span class="kw">download.file</span>(<span class="st">&quot;https://www.ngs.noaa.gov/PC_PROD/GEOID12A/Format_unix/g2012au0.bin&quot;</span>, </a>
+<a class="sourceLine" id="cb103-4" data-line-number="4">                <span class="dt">destfile =</span> <span class="st">&#39;./data/g2012au0.bin&#39;</span>)</a>
+<a class="sourceLine" id="cb103-5" data-line-number="5">}</a>
+<a class="sourceLine" id="cb103-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb103-7" data-line-number="7"><span class="co"># Read header information. See https://www.ngs.noaa.gov/GEOID/GEOID12B/g2012Brme.txt</span></a>
+<a class="sourceLine" id="cb103-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb103-9" data-line-number="9"><span class="co"># File Structure</span></a>
+<a class="sourceLine" id="cb103-10" data-line-number="10"><span class="co"># ---------------</span></a>
+<a class="sourceLine" id="cb103-11" data-line-number="11"><span class="co"># The files (ASCII and binary) follow the same structure of a one-line header </span></a>
+<a class="sourceLine" id="cb103-12" data-line-number="12"><span class="co"># followed by the data in row-major format. The one-line header contains four </span></a>
+<a class="sourceLine" id="cb103-13" data-line-number="13"><span class="co"># double (real*8) words followed by three long (int*4) words. </span></a>
+<a class="sourceLine" id="cb103-14" data-line-number="14"><span class="co"># These parameters define the geographic extent of the area:</span></a>
+<a class="sourceLine" id="cb103-15" data-line-number="15"><span class="co"># </span></a>
+<a class="sourceLine" id="cb103-16" data-line-number="16"><span class="co"># SLAT:  Southernmost North latitude in whole degrees. </span></a>
+<a class="sourceLine" id="cb103-17" data-line-number="17"><span class="co">#        Use a minus sign (-) to indicate South latitudes. </span></a>
+<a class="sourceLine" id="cb103-18" data-line-number="18"><span class="co"># WLON:  Westernmost East longitude in whole degrees. </span></a>
+<a class="sourceLine" id="cb103-19" data-line-number="19"><span class="co"># DLAT:  Distance interval in latitude in whole degrees </span></a>
+<a class="sourceLine" id="cb103-20" data-line-number="20"><span class="co">#        (point spacing in E-W direction)</span></a>
+<a class="sourceLine" id="cb103-21" data-line-number="21"><span class="co"># DLON:  Distance interval in longitude in whole degrees </span></a>
+<a class="sourceLine" id="cb103-22" data-line-number="22"><span class="co">#        (point spacing in N-S direction)</span></a>
+<a class="sourceLine" id="cb103-23" data-line-number="23"><span class="co"># NLAT:  Number of rows </span></a>
+<a class="sourceLine" id="cb103-24" data-line-number="24"><span class="co">#        (starts with SLAT and moves northward DLAT to next row)</span></a>
+<a class="sourceLine" id="cb103-25" data-line-number="25"><span class="co"># NLON:  Number of columns </span></a>
+<a class="sourceLine" id="cb103-26" data-line-number="26"><span class="co">#        (starts with WLON and moves eastward DLON to next column)</span></a>
+<a class="sourceLine" id="cb103-27" data-line-number="27"><span class="co"># IKIND: Always equal to one (indicates data are real*4 and endian condition)</span></a>
+<a class="sourceLine" id="cb103-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb103-29" data-line-number="29">to.read =<span class="st"> </span><span class="kw">file</span>(<span class="st">&#39;./data/g2012au0.bin&#39;</span>, <span class="st">&quot;rb&quot;</span>)</a>
+<a class="sourceLine" id="cb103-30" data-line-number="30">header1=<span class="kw">readBin</span>(to.read, <span class="kw">double</span>(), <span class="dt">endian =</span> <span class="st">&quot;big&quot;</span>, <span class="dt">n=</span><span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb103-31" data-line-number="31">header1 <span class="co">#SLAT, WLON, DLAT, DLON</span></a></code></pre></div>
 <pre><code>## [1]  24.00000000 230.00000000   0.01666667   0.01666667</code></pre>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">header2=<span class="kw">readBin</span>(to.read, <span class="kw">integer</span>(), <span class="dt">endian =</span> <span class="st">&quot;big&quot;</span>, <span class="dt">n=</span><span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb101-2" data-line-number="2">header2 <span class="co">#NLAT, NLON, IKIND</span></a></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1">header2=<span class="kw">readBin</span>(to.read, <span class="kw">integer</span>(), <span class="dt">endian =</span> <span class="st">&quot;big&quot;</span>, <span class="dt">n=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb105-2" data-line-number="2">header2 <span class="co">#NLAT, NLON, IKIND</span></a></code></pre></div>
 <pre><code>## [1] 2041 4201    1</code></pre>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">GEOID12A_diff_vals=<span class="kw">readBin</span>(to.read, <span class="dt">n=</span>header2[<span class="dv">1</span>]<span class="op">*</span>header2[<span class="dv">2</span>], <span class="kw">numeric</span>(), <span class="dt">endian =</span> <span class="st">&quot;big&quot;</span>, <span class="dt">size=</span><span class="dv">4</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1"><span class="co"># Create a new raster using the dimensions extracted from the headers</span></a>
-<a class="sourceLine" id="cb104-2" data-line-number="2">GEOID12A_diff_rast &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="dt">ncol=</span>header2[<span class="dv">2</span>], <span class="dt">nrow=</span>header2[<span class="dv">1</span>], </a>
-<a class="sourceLine" id="cb104-3" data-line-number="3">                             <span class="dt">xmn=</span>header1[<span class="dv">2</span>]<span class="op">-</span><span class="dv">360</span>, <span class="dt">xmx=</span>header1[<span class="dv">2</span>]<span class="op">+</span>(header1[<span class="dv">4</span>]<span class="op">*</span>header2[<span class="dv">2</span>])<span class="op">-</span><span class="dv">360</span>, </a>
-<a class="sourceLine" id="cb104-4" data-line-number="4">                             <span class="dt">ymn=</span>header1[<span class="dv">1</span>], <span class="dt">ymx=</span>header1[<span class="dv">1</span>]<span class="op">+</span>(header1[<span class="dv">3</span>]<span class="op">*</span>header2[<span class="dv">1</span>]),</a>
-<a class="sourceLine" id="cb104-5" data-line-number="5">                             <span class="dt">crs =</span> <span class="kw">crs</span>(datum_diff))</a>
-<a class="sourceLine" id="cb104-6" data-line-number="6">GEOID12A_diff_rast &lt;-<span class="st"> </span><span class="kw">setValues</span>(GEOID12A_diff_rast, <span class="dt">values =</span> GEOID12A_diff_vals)</a>
-<a class="sourceLine" id="cb104-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb104-8" data-line-number="8"><span class="co"># we need to use the &#39;flip&#39; function to put the map &#39;upright&#39; because R expects to see raster values from the top left corner and fills by rows, but this dataset is delivered in sucha a way that it describes the bottom left corner and fills by rows up to the top of the image (this is actually the convention for most traditional remote sensing software - and leads to a similar problem that is explained in the Hyperspectral tutorial series.)</span></a>
-<a class="sourceLine" id="cb104-9" data-line-number="9">GEOID12A_diff_rast &lt;-<span class="st"> </span><span class="kw">flip</span>(GEOID12A_diff_rast, <span class="st">&#39;y&#39;</span>)</a>
-<a class="sourceLine" id="cb104-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb104-11" data-line-number="11"><span class="co">## let&#39;s crop out only CONUS for plotting purposes - we will still refer to the fill image when extracting values.</span></a>
-<a class="sourceLine" id="cb104-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb104-13" data-line-number="13">diff_resp=<span class="kw">resample</span>(datum_diff, GEOID12A_diff_rast) <span class="co"># resample to match pixel size/registration for cropping</span></a>
-<a class="sourceLine" id="cb104-14" data-line-number="14">diff_resp=<span class="kw">crop</span>(diff_resp, GEOID12A_diff_rast)</a>
-<a class="sourceLine" id="cb104-15" data-line-number="15">GEOID12A_diff_rast=<span class="kw">crop</span>(GEOID12A_diff_rast, <span class="kw">extent</span>(diff_resp))</a>
-<a class="sourceLine" id="cb104-16" data-line-number="16">GEOID12A_diff_rast_mask=<span class="kw">mask</span>(GEOID12A_diff_rast, diff_resp)</a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">GEOID12A_diff_vals=<span class="kw">readBin</span>(to.read, <span class="dt">n=</span>header2[<span class="dv">1</span>]<span class="op">*</span>header2[<span class="dv">2</span>], <span class="kw">numeric</span>(), <span class="dt">endian =</span> <span class="st">&quot;big&quot;</span>, <span class="dt">size=</span><span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1"><span class="co"># Create a new raster using the dimensions extracted from the headers</span></a>
+<a class="sourceLine" id="cb108-2" data-line-number="2">GEOID12A_diff_rast &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="dt">ncol=</span>header2[<span class="dv">2</span>], <span class="dt">nrow=</span>header2[<span class="dv">1</span>], </a>
+<a class="sourceLine" id="cb108-3" data-line-number="3">                             <span class="dt">xmn=</span>header1[<span class="dv">2</span>]<span class="op">-</span><span class="dv">360</span>, <span class="dt">xmx=</span>header1[<span class="dv">2</span>]<span class="op">+</span>(header1[<span class="dv">4</span>]<span class="op">*</span>header2[<span class="dv">2</span>])<span class="op">-</span><span class="dv">360</span>, </a>
+<a class="sourceLine" id="cb108-4" data-line-number="4">                             <span class="dt">ymn=</span>header1[<span class="dv">1</span>], <span class="dt">ymx=</span>header1[<span class="dv">1</span>]<span class="op">+</span>(header1[<span class="dv">3</span>]<span class="op">*</span>header2[<span class="dv">1</span>]),</a>
+<a class="sourceLine" id="cb108-5" data-line-number="5">                             <span class="dt">crs =</span> <span class="kw">crs</span>(datum_diff))</a>
+<a class="sourceLine" id="cb108-6" data-line-number="6">GEOID12A_diff_rast &lt;-<span class="st"> </span><span class="kw">setValues</span>(GEOID12A_diff_rast, <span class="dt">values =</span> GEOID12A_diff_vals)</a>
+<a class="sourceLine" id="cb108-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb108-8" data-line-number="8"><span class="co"># we need to use the &#39;flip&#39; function to put the map &#39;upright&#39; because R expects to see raster values from the top left corner and fills by rows, but this dataset is delivered in sucha a way that it describes the bottom left corner and fills by rows up to the top of the image (this is actually the convention for most traditional remote sensing software - and leads to a similar problem that is explained in the Hyperspectral tutorial series.)</span></a>
+<a class="sourceLine" id="cb108-9" data-line-number="9">GEOID12A_diff_rast &lt;-<span class="st"> </span><span class="kw">flip</span>(GEOID12A_diff_rast, <span class="st">&#39;y&#39;</span>)</a>
+<a class="sourceLine" id="cb108-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb108-11" data-line-number="11"><span class="co">## let&#39;s crop out only CONUS for plotting purposes - we will still refer to the fill image when extracting values.</span></a>
+<a class="sourceLine" id="cb108-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb108-13" data-line-number="13">diff_resp=<span class="kw">resample</span>(datum_diff, GEOID12A_diff_rast) <span class="co"># resample to match pixel size/registration for cropping</span></a>
+<a class="sourceLine" id="cb108-14" data-line-number="14">diff_resp=<span class="kw">crop</span>(diff_resp, GEOID12A_diff_rast)</a>
+<a class="sourceLine" id="cb108-15" data-line-number="15">GEOID12A_diff_rast=<span class="kw">crop</span>(GEOID12A_diff_rast, <span class="kw">extent</span>(diff_resp))</a>
+<a class="sourceLine" id="cb108-16" data-line-number="16">GEOID12A_diff_rast_mask=<span class="kw">mask</span>(GEOID12A_diff_rast, diff_resp)</a></code></pre></div>
 <p>Now that we have the two offset rasters, let’s plot them together to compare their spatial patterns.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>), <span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>, <span class="fl">3.5</span>,<span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb105-2" data-line-number="2"><span class="kw">plot</span>(GEOID12A_diff_rast_mask, <span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">100</span>),<span class="dt">main=</span><span class="st">&quot;GEOID12A minus NAD83 (m)&quot;</span>)</a>
-<a class="sourceLine" id="cb105-3" data-line-number="3"><span class="kw">plot</span>(diff_resp, <span class="dt">main=</span><span class="st">&quot;WGS84 minus NAD83 (m)&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>), <span class="dt">mar=</span><span class="kw">c</span>(<span class="fl">2.5</span>,<span class="fl">2.5</span>, <span class="fl">3.5</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb109-2" data-line-number="2"><span class="kw">plot</span>(GEOID12A_diff_rast_mask, <span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">100</span>),<span class="dt">main=</span><span class="st">&quot;GEOID12A minus NAD83 (m)&quot;</span>)</a>
+<a class="sourceLine" id="cb109-3" data-line-number="3"><span class="kw">plot</span>(diff_resp, <span class="dt">main=</span><span class="st">&quot;WGS84 minus NAD83 (m)&quot;</span>)</a></code></pre></div>
 <p><img src="07-NEON_AOP_files/figure-html/plot-both-diff-maps-1.png" width="576" /></p>
 <p>As you can see, the differences between the GEOID12A geoid, and the NAD83 sphereoid vary quite a lot across space, especially in mountainous areas. The magnitude of these differences is also large, upwards of 35m in some areas. Meanwhile, the differences between the NAD83 and WGS84 sphereoids shows a smooth gradient that is relatively small, with total difference less than 2m across the Conterminous USA.</p>
 </div>
@@ -2059,90 +2063,103 @@ Download Dataset</a></p>
 <h3><span class="header-section-number">5.7.14</span> Extract vertical offset for GEDI shots</h3>
 <p>Now that we know the relative vertical offsets between WGS84, NAD83, and GEOID12A for all of the conterminous USA, we can use the <code>extract()</code> function to retrieve those relative offsets for any location. By combining those offsets together, we can finally rectify the vertical position of the NEON and GEDI LiDAR data.</p>
 <p>***** DO I need to convert GEDI x/y locations from WGS84 to NAD83?? *****</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="co"># Make a new DF to store the GEDI footprint (x,y) locations, and the relative datum/geoid offsets</span></a>
-<a class="sourceLine" id="cb106-2" data-line-number="2">footprint_df=<span class="kw">as.data.frame</span>(</a>
-<a class="sourceLine" id="cb106-3" data-line-number="3">  <span class="kw">cbind</span>(level1bgeo_WREF<span class="op">$</span>longitude_lastbin, level1bgeo_WREF<span class="op">$</span>latitude_lastbin))</a>
-<a class="sourceLine" id="cb106-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb106-5" data-line-number="5">WGS_NAD_diff &lt;-<span class="st"> </span><span class="kw">extract</span>(datum_diff, footprint_df)</a>
-<a class="sourceLine" id="cb106-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb106-7" data-line-number="7">GEOID12A_NAD_diff &lt;-<span class="st"> </span><span class="kw">extract</span>(GEOID12A_diff_rast_mask,footprint_df)</a>
-<a class="sourceLine" id="cb106-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb106-9" data-line-number="9"><span class="co"># Add together the offsets to calculate a vector of net differences in elevation</span></a>
-<a class="sourceLine" id="cb106-10" data-line-number="10">net_diff=WGS_NAD_diff<span class="op">+</span>GEOID12A_NAD_diff</a></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="co"># Make a new DF to store the GEDI footprint (x,y) locations, and the relative datum/geoid offsets</span></a>
+<a class="sourceLine" id="cb110-2" data-line-number="2">footprint_df=<span class="kw">as.data.frame</span>(</a>
+<a class="sourceLine" id="cb110-3" data-line-number="3">  <span class="kw">cbind</span>(level1bgeo_WREF<span class="op">$</span>longitude_lastbin, level1bgeo_WREF<span class="op">$</span>latitude_lastbin))</a>
+<a class="sourceLine" id="cb110-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb110-5" data-line-number="5">WGS_NAD_diff &lt;-<span class="st"> </span><span class="kw">extract</span>(datum_diff, footprint_df)</a>
+<a class="sourceLine" id="cb110-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb110-7" data-line-number="7">GEOID12A_NAD_diff &lt;-<span class="st"> </span><span class="kw">extract</span>(GEOID12A_diff_rast_mask,footprint_df)</a>
+<a class="sourceLine" id="cb110-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb110-9" data-line-number="9"><span class="co"># Add together the offsets to calculate a vector of net differences in elevation</span></a>
+<a class="sourceLine" id="cb110-10" data-line-number="10">net_diff=WGS_NAD_diff<span class="op">+</span>GEOID12A_NAD_diff</a></code></pre></div>
 </div>
 <div id="plot-vertically-corrected-gedi-waveform-in-3d" class="section level3">
 <h3><span class="header-section-number">5.7.15</span> Plot vertically corrected GEDI waveform in 3D</h3>
 <p>Now that we have a vertical offset for each of the GEDI footprints, let’s try again to plot the NEON AOP pointcloud data with the GEDI waveform.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1"><span class="co"># You can enter whichever shots that you want to plot in the for loop here</span></a>
-<a class="sourceLine" id="cb107-2" data-line-number="2"><span class="co">#for(shot_n in 1:length(WREF_GEDI_footprints)){</span></a>
-<a class="sourceLine" id="cb107-3" data-line-number="3"><span class="cf">for</span>(shot_n <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">20</span>)){</a>
-<a class="sourceLine" id="cb107-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb107-5" data-line-number="5">  <span class="co"># First, plot the NEON AOP LiDAR clipped to the GEDI footprint</span></a>
-<a class="sourceLine" id="cb107-6" data-line-number="6">  <span class="co"># We save the plot as an object &#39;p&#39; which gives the (x,y) offset for the lower</span></a>
-<a class="sourceLine" id="cb107-7" data-line-number="7">  <span class="co"># left corner of the plot. The &#39;rgl&#39; package offsets all (x,y) locations </span></a>
-<a class="sourceLine" id="cb107-8" data-line-number="8">  <span class="co"># to this point, so we will need to subtract these values from any other </span></a>
-<a class="sourceLine" id="cb107-9" data-line-number="9">  <span class="co"># (x,y) points that we want to add to the plot</span></a>
-<a class="sourceLine" id="cb107-10" data-line-number="10">  p=<span class="kw">plot</span>(WREF_GEDI_footprints[[shot_n]])</a>
-<a class="sourceLine" id="cb107-11" data-line-number="11">  </a>
-<a class="sourceLine" id="cb107-12" data-line-number="12">  <span class="co"># Extract the specific waveform from the GEDI data</span></a>
-<a class="sourceLine" id="cb107-13" data-line-number="13">  wf &lt;-<span class="st"> </span><span class="kw">getLevel1BWF</span>(gedilevel1b,<span class="dt">shot_number =</span> level1bgeo_WREF<span class="op">$</span>shot_number[shot_n])</a>
-<a class="sourceLine" id="cb107-14" data-line-number="14">  </a>
-<a class="sourceLine" id="cb107-15" data-line-number="15">  <span class="co"># Make a new data.frame &#39;d&#39; to convert the waveform data coordinates into 3D space</span></a>
-<a class="sourceLine" id="cb107-16" data-line-number="16">  d=wf<span class="op">@</span>dt</a>
-<a class="sourceLine" id="cb107-17" data-line-number="17">  </a>
-<a class="sourceLine" id="cb107-18" data-line-number="18">  <span class="co"># normalize rxwaveform to 0-1</span></a>
-<a class="sourceLine" id="cb107-19" data-line-number="19">  d<span class="op">$</span>rxwaveform=d<span class="op">$</span>rxwaveform<span class="op">-</span><span class="kw">min</span>(d<span class="op">$</span>rxwaveform)</a>
-<a class="sourceLine" id="cb107-20" data-line-number="20">  d<span class="op">$</span>rxwaveform=d<span class="op">$</span>rxwaveform<span class="op">/</span><span class="kw">max</span>(d<span class="op">$</span>rxwaveform)</a>
-<a class="sourceLine" id="cb107-21" data-line-number="21">  </a>
-<a class="sourceLine" id="cb107-22" data-line-number="22">  <span class="co"># Add xy data in UTMs, and offset lower left corner of &#39;p&#39;</span></a>
-<a class="sourceLine" id="cb107-23" data-line-number="23">  d<span class="op">$</span>x=<span class="kw">st_coordinates</span>(level1bgeo_WREF_UTM[shot_n,])[<span class="dv">1</span>]<span class="op">-</span>p[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb107-24" data-line-number="24">  d<span class="op">$</span>y=<span class="kw">st_coordinates</span>(level1bgeo_WREF_UTM[shot_n,])[<span class="dv">2</span>]<span class="op">-</span>p[<span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb107-25" data-line-number="25">  </a>
-<a class="sourceLine" id="cb107-26" data-line-number="26">  <span class="co"># Make a new column &#39;x_wf&#39; where we place the GEDI waveform in space with the </span></a>
-<a class="sourceLine" id="cb107-27" data-line-number="27">  <span class="co"># NEON AOP LiDAR data, we scale the waveform to 30m in the x-dimension, and </span></a>
-<a class="sourceLine" id="cb107-28" data-line-number="28">  <span class="co"># offset by 12.5m (the radius of the GEDI footprint) in the x-dimension.</span></a>
-<a class="sourceLine" id="cb107-29" data-line-number="29">  d<span class="op">$</span>x_wf=d<span class="op">$</span>x<span class="op">+</span>d<span class="op">$</span>rxwaveform<span class="op">*</span><span class="dv">30</span><span class="fl">+12.5</span></a>
-<a class="sourceLine" id="cb107-30" data-line-number="30">  </a>
-<a class="sourceLine" id="cb107-31" data-line-number="31">  <span class="co"># Add GEDI points to 3D space in &#39;green&#39; color</span></a>
-<a class="sourceLine" id="cb107-32" data-line-number="32">  <span class="co"># This time, subtracting the elevation difference for that shot</span></a>
-<a class="sourceLine" id="cb107-33" data-line-number="33">  <span class="kw">points3d</span>(<span class="dt">x=</span>d<span class="op">$</span>x_wf, <span class="dt">y=</span>d<span class="op">$</span>y, <span class="dt">z=</span>d<span class="op">$</span>elevation<span class="op">-</span>net_diff[shot_n], <span class="dt">col=</span><span class="st">&quot;green&quot;</span>, <span class="dt">add=</span>T)</a>
-<a class="sourceLine" id="cb107-34" data-line-number="34">  </a>
-<a class="sourceLine" id="cb107-35" data-line-number="35">}</a></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1"><span class="co"># You can enter whichever shots that you want to plot in the for loop here</span></a>
+<a class="sourceLine" id="cb111-2" data-line-number="2"><span class="co">#for(shot_n in 1:length(WREF_GEDI_footprints)){</span></a>
+<a class="sourceLine" id="cb111-3" data-line-number="3"><span class="cf">for</span>(shot_n <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">20</span>)){</a>
+<a class="sourceLine" id="cb111-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb111-5" data-line-number="5">  <span class="co"># First, plot the NEON AOP LiDAR clipped to the GEDI footprint</span></a>
+<a class="sourceLine" id="cb111-6" data-line-number="6">  <span class="co"># We save the plot as an object &#39;p&#39; which gives the (x,y) offset for the lower</span></a>
+<a class="sourceLine" id="cb111-7" data-line-number="7">  <span class="co"># left corner of the plot. The &#39;rgl&#39; package offsets all (x,y) locations </span></a>
+<a class="sourceLine" id="cb111-8" data-line-number="8">  <span class="co"># to this point, so we will need to subtract these values from any other </span></a>
+<a class="sourceLine" id="cb111-9" data-line-number="9">  <span class="co"># (x,y) points that we want to add to the plot</span></a>
+<a class="sourceLine" id="cb111-10" data-line-number="10">  p=<span class="kw">plot</span>(WREF_GEDI_footprints[[shot_n]])</a>
+<a class="sourceLine" id="cb111-11" data-line-number="11">  </a>
+<a class="sourceLine" id="cb111-12" data-line-number="12">  <span class="co"># Extract the specific waveform from the GEDI data</span></a>
+<a class="sourceLine" id="cb111-13" data-line-number="13">  wf &lt;-<span class="st"> </span><span class="kw">getLevel1BWF</span>(gedilevel1b,<span class="dt">shot_number =</span> level1bgeo_WREF<span class="op">$</span>shot_number[shot_n])</a>
+<a class="sourceLine" id="cb111-14" data-line-number="14">  </a>
+<a class="sourceLine" id="cb111-15" data-line-number="15">  <span class="co"># Make a new data.frame &#39;d&#39; to convert the waveform data coordinates into 3D space</span></a>
+<a class="sourceLine" id="cb111-16" data-line-number="16">  d=wf<span class="op">@</span>dt</a>
+<a class="sourceLine" id="cb111-17" data-line-number="17">  </a>
+<a class="sourceLine" id="cb111-18" data-line-number="18">  <span class="co"># normalize rxwaveform to 0-1</span></a>
+<a class="sourceLine" id="cb111-19" data-line-number="19">  d<span class="op">$</span>rxwaveform=d<span class="op">$</span>rxwaveform<span class="op">-</span><span class="kw">min</span>(d<span class="op">$</span>rxwaveform)</a>
+<a class="sourceLine" id="cb111-20" data-line-number="20">  d<span class="op">$</span>rxwaveform=d<span class="op">$</span>rxwaveform<span class="op">/</span><span class="kw">max</span>(d<span class="op">$</span>rxwaveform)</a>
+<a class="sourceLine" id="cb111-21" data-line-number="21">  </a>
+<a class="sourceLine" id="cb111-22" data-line-number="22">  <span class="co"># Add xy data in UTMs, and offset lower left corner of &#39;p&#39;</span></a>
+<a class="sourceLine" id="cb111-23" data-line-number="23">  d<span class="op">$</span>x=<span class="kw">st_coordinates</span>(level1bgeo_WREF_UTM[shot_n,])[<span class="dv">1</span>]<span class="op">-</span>p[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb111-24" data-line-number="24">  d<span class="op">$</span>y=<span class="kw">st_coordinates</span>(level1bgeo_WREF_UTM[shot_n,])[<span class="dv">2</span>]<span class="op">-</span>p[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb111-25" data-line-number="25">  </a>
+<a class="sourceLine" id="cb111-26" data-line-number="26">  <span class="co"># Make a new column &#39;x_wf&#39; where we place the GEDI waveform in space with the </span></a>
+<a class="sourceLine" id="cb111-27" data-line-number="27">  <span class="co"># NEON AOP LiDAR data, we scale the waveform to 30m in the x-dimension, and </span></a>
+<a class="sourceLine" id="cb111-28" data-line-number="28">  <span class="co"># offset by 12.5m (the radius of the GEDI footprint) in the x-dimension.</span></a>
+<a class="sourceLine" id="cb111-29" data-line-number="29">  d<span class="op">$</span>x_wf=d<span class="op">$</span>x<span class="op">+</span>d<span class="op">$</span>rxwaveform<span class="op">*</span><span class="dv">30</span><span class="fl">+12.5</span></a>
+<a class="sourceLine" id="cb111-30" data-line-number="30">  </a>
+<a class="sourceLine" id="cb111-31" data-line-number="31">  <span class="co"># Add GEDI points to 3D space in &#39;green&#39; color</span></a>
+<a class="sourceLine" id="cb111-32" data-line-number="32">  <span class="co"># This time, subtracting the elevation difference for that shot</span></a>
+<a class="sourceLine" id="cb111-33" data-line-number="33">  <span class="kw">points3d</span>(<span class="dt">x=</span>d<span class="op">$</span>x_wf, <span class="dt">y=</span>d<span class="op">$</span>y, <span class="dt">z=</span>d<span class="op">$</span>elevation<span class="op">-</span>net_diff[shot_n], <span class="dt">col=</span><span class="st">&quot;green&quot;</span>, <span class="dt">add=</span>T)</a>
+<a class="sourceLine" id="cb111-34" data-line-number="34">  </a>
+<a class="sourceLine" id="cb111-35" data-line-number="35">}</a></code></pre></div>
 </div>
 <div id="optional---neon-base-plots" class="section level3">
 <h3><span class="header-section-number">5.7.16</span> Optional - NEON base plots</h3>
 <p>You may also be interested to see if any of the GEDI footprints intersect a NEON base plot, which would allow for a direct comparison of the GEDI waveform with many of the datasets which are collected within the base plots, such as the vegetation structure data product containing height, DBH, and species identification of all trees &gt;10cm DBH. While it is statistically pretty unlikely that a GEDI footprint will intersect with your base plot of interest, it is possible that <em>some</em> GEDI footprint will intersetc with <em>some</em> base plot in your study area, so we may as well take a look:</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1"><span class="kw">setwd</span>(<span class="st">&quot;./data/&quot;</span>)</a>
-<a class="sourceLine" id="cb108-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb108-3" data-line-number="3"><span class="co"># Download the NEON TOS plots polygons directly from the NEON website</span></a>
-<a class="sourceLine" id="cb108-4" data-line-number="4"><span class="kw">download.file</span>(<span class="dt">url=</span><span class="st">&quot;https://data.neonscience.org/api/v0/documents/All_NEON_TOS_Plots_V8&quot;</span>, </a>
-<a class="sourceLine" id="cb108-5" data-line-number="5">              <span class="dt">destfile=</span><span class="st">&quot;All_NEON_TOS_Plots_V8.zip&quot;</span>)</a>
-<a class="sourceLine" id="cb108-6" data-line-number="6"><span class="kw">unzip</span>(<span class="st">&quot;All_NEON_TOS_Plots_V8.zip&quot;</span>)</a>
-<a class="sourceLine" id="cb108-7" data-line-number="7">NEON_all_plots &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&#39;All_NEON_TOS_Plots_V8/All_NEON_TOS_Plot_Polygons_V8.shp&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1"><span class="kw">setwd</span>(<span class="st">&quot;./data/&quot;</span>)</a>
+<a class="sourceLine" id="cb112-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb112-3" data-line-number="3"><span class="co"># Download the NEON TOS plots polygons directly from the NEON website</span></a>
+<a class="sourceLine" id="cb112-4" data-line-number="4"><span class="kw">download.file</span>(<span class="dt">url=</span><span class="st">&quot;https://data.neonscience.org/api/v0/documents/All_NEON_TOS_Plots_V8&quot;</span>, </a>
+<a class="sourceLine" id="cb112-5" data-line-number="5">              <span class="dt">destfile=</span><span class="st">&quot;All_NEON_TOS_Plots_V8.zip&quot;</span>)</a>
+<a class="sourceLine" id="cb112-6" data-line-number="6"><span class="kw">unzip</span>(<span class="st">&quot;All_NEON_TOS_Plots_V8.zip&quot;</span>)</a>
+<a class="sourceLine" id="cb112-7" data-line-number="7">NEON_all_plots &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&#39;All_NEON_TOS_Plots_V8/All_NEON_TOS_Plot_Polygons_V8.shp&#39;</span>)</a></code></pre></div>
 <pre><code>## Reading layer `All_NEON_TOS_Plot_Polygons_V8&#39; from data source `/Users/kdw223/Research/katharynduffy.github.io/data/All_NEON_TOS_Plots_V8/All_NEON_TOS_Plot_Polygons_V8.shp&#39; using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 3841 features and 36 fields
 ## geometry type:  POLYGON
 ## dimension:      XY
 ## bbox:           xmin: -156.6516 ymin: 17.9514 xmax: -66.82358 ymax: 71.3169
 ## CRS:            4326</code></pre>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="co"># Select just the WREF site</span></a>
-<a class="sourceLine" id="cb110-2" data-line-number="2">SITECODE =<span class="st"> &#39;WREF&#39;</span></a>
-<a class="sourceLine" id="cb110-3" data-line-number="3">base_plots_SPDF &lt;-<span class="st"> </span>NEON_all_plots[</a>
-<a class="sourceLine" id="cb110-4" data-line-number="4">  (NEON_all_plots<span class="op">$</span>siteID <span class="op">==</span><span class="st"> </span>SITECODE)<span class="op">&amp;</span></a>
-<a class="sourceLine" id="cb110-5" data-line-number="5"><span class="st">    </span>(NEON_all_plots<span class="op">$</span>subtype <span class="op">==</span><span class="st"> &#39;basePlot&#39;</span>),]</a>
-<a class="sourceLine" id="cb110-6" data-line-number="6"><span class="kw">rm</span>(NEON_all_plots)</a>
-<a class="sourceLine" id="cb110-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb110-8" data-line-number="8">base_crop=<span class="kw">st_crop</span>(base_plots_SPDF, <span class="kw">extent</span>(chm_WGS))</a></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1"><span class="co"># Select just the WREF site</span></a>
+<a class="sourceLine" id="cb114-2" data-line-number="2">SITECODE =<span class="st"> &#39;WREF&#39;</span></a>
+<a class="sourceLine" id="cb114-3" data-line-number="3">base_plots_SPDF &lt;-<span class="st"> </span>NEON_all_plots[</a>
+<a class="sourceLine" id="cb114-4" data-line-number="4">  (NEON_all_plots<span class="op">$</span>siteID <span class="op">==</span><span class="st"> </span>SITECODE)<span class="op">&amp;</span></a>
+<a class="sourceLine" id="cb114-5" data-line-number="5"><span class="st">    </span>(NEON_all_plots<span class="op">$</span>subtype <span class="op">==</span><span class="st"> &#39;basePlot&#39;</span>),]</a>
+<a class="sourceLine" id="cb114-6" data-line-number="6"><span class="kw">rm</span>(NEON_all_plots)</a>
+<a class="sourceLine" id="cb114-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb114-8" data-line-number="8">base_crop=<span class="kw">st_crop</span>(base_plots_SPDF, <span class="kw">extent</span>(chm_WGS))</a></code></pre></div>
 <pre><code>## although coordinates are longitude/latitude, st_intersection assumes that they are planar</code></pre>
 <pre><code>## Warning: attribute variables are assumed to be spatially constant throughout all
 ## geometries</code></pre>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1"><span class="kw">plot</span>(chm_WGS)</a>
-<a class="sourceLine" id="cb113-2" data-line-number="2"><span class="kw">plot</span>(base_crop<span class="op">$</span>geometry, <span class="dt">border =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">add=</span>T)</a></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="kw">plot</span>(chm_WGS)</a>
+<a class="sourceLine" id="cb117-2" data-line-number="2"><span class="kw">plot</span>(base_crop<span class="op">$</span>geometry, <span class="dt">border =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">add=</span>T)</a></code></pre></div>
 <p><img src="07-NEON_AOP_files/figure-html/import%20and%20plot%20base%20plots-1.png" width="672" /></p>
 </div>
 </div>
 <div id="neon-aop-written-questions" class="section level2">
 <h2><span class="header-section-number">5.8</span> NEON AOP Written Questions:</h2>
+<p><em>Reminder: these questions are largely based on the assigned video lectures. I highly recommend you watching or re-watching them before tackling these questions.</em></p>
+<ol style="list-style-type: decimal">
+<li><p>What is the overlap in the type of data generated by NEON AOP and PhenoCam. What metrics from PhenoCam could you apply to NEON AOP data, especially once there are &gt;10 years of aerial data?</p></li>
+<li><p>List 4 challenges to timing AOP flight campaigns.</p></li>
+<li><p>When using NEON AOP data, when should you use <code>byTileAOP</code> versus <code>byFileAOP</code>? What additional processing might you need to do if you worked with the <code>byFileAOP</code> data?
+<em>Hint: try pulling the data in both formats (this will take a while)</em></p></li>
+<li><p>How do the additional bands in NEON AOP improve our contraint of Biodiversity and Ecosystem Structure relative to satelite-derived data?</p></li>
+<li><p>What role do campagins such as NEON AOP play in ‘filling the sampling gap’ of essential <em>in situ</em> data such as FLUXNET (Eddy Co-Variance) data?</p></li>
+<li><p>List 3 attributes of NEON AOP data that are unique to other publicly served data.
+<em>Hints: Band width? Resolution? Something else?</em></p></li>
+<li><p>Which data product(s) derived from the NEON AOP campaign align with remotely-sensed products from NASA?<br />
+<em>Hint: start with vegetation indicies</em></p></li>
+</ol>
 </div>
 <div id="neon-aop-coding-lab" class="section level2">
 <h2><span class="header-section-number">5.9</span> NEON AOP Coding Lab</h2>
