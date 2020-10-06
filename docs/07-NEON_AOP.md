@@ -967,15 +967,14 @@ AOP point clouds for 1km tiles from the <a href="https://www.neonscience.org/fie
 
 <a href="https://drive.google.com/open?id=1Aemh0IVKvC-LoMj2AXr9k8rDQk77l8k7" target="_blank"> **Link to download .laz files on Google Drive Here.**</a>
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EYbhNSUnIdU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Recommended Skills
 
 For this tutorial, you should have an understanding of Light Detection 
 And Ranging (LiDAR) technology, specifically how discrete return lidar 
 data are collected and represented in las/laz files. For more information 
-on how lidar works, please see this 
-<a href="https://www.youtube.com/watch?v=EYbhNSUnIdU" target="_blank"> primer video </a>
-and
+on how lidar works, please see NEON's
 <a href="https://www.neonscience.org/intro-lidar-r-series" target="_blank"> Introduction to Lidar Tutorial Series.</a>
 
 </div> 
@@ -2102,3 +2101,45 @@ plot(base_crop$geometry, border = 'blue', add=T)
 ```
 
 <img src="07-NEON_AOP_files/figure-html/import and plot base plots-1.png" width="672" />
+
+## NEON AOP Written Questions:
+
+1) 
+
+
+## NEON AOP Coding Lab
+
+For the purpose of this coding lab we will evaluate 2 different forested sites in 2018:
+
+1) Guanica (GUAN) in Puerto Rico:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Rz9kgfPgLPo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+2) Bartlett Experimental Forest in New Hampshire:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zK4cEEs-8tQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+**1:** How are these two forests similar?  How are they different? *(3-5 sentences)*
+
+**2:** Using this NEON tutorial and the tutorials we've covered in this textbook *(hint: you did half of this workflow in your very first coding lab)* pull the NEON AOP derived Canopy Height Model (CHM, `DP3.30015.001`) and High-resolution orthorectified camera imagery mosaic
+`DP3.30010.001` for each forest and overlay the NEON TOS Woody Vegetation Structure `DP1.10098.001` basal diameter data product to evaluate how well AOP captures trees in each forest.  
+**Generate a labeled 2x2 plot panel including:** 
+
+  * **Each RGB image with basal diameter overlaid**
+  
+  * **Each CHM with basal diameter overlaid**
+  
+*Hints/reminders from section 2.9:*
+```
+<- loadByProduct
+<- getLocTOS
+<- merge
+```
+**Write 2-3 sentences summarizing your findings and thoughts.**
+
+**3:** Use the `byTileAOP` function of the `neonUtilities` package to pull a subset of the descrete LiDAR pointcloud for each forest (*Hint: You can feed `byTileAOP` Easting and Northing from your `Vegetation Structure` dataframe(s)*).  Use the `structural_diversity_metrics` function that you defined in section 5.6 of the textbook to process discrete return LiDAR for each site and generte structural diversity metrics.  
+  
+  * Using `lidR` generate a labeled 2-panel plot of your canopy height model for each forest
+  * Using `lidR` generate a labeled 2-panel plot of a cross-section for each forest
+  * Use section `5.6.3 Comparing Metrics Between Forests` to compare each forest and generate a a clean summary table via `kable`
+  * Using **Table 2** from <a href="https://doi.org/10.3390/rs12091407" target="_blank">LaRue, Wagner, et al. (2020) </a> as a reference, write 1-2 paragraphs summarizing the differences in forest structural diversity between the two forests and how they may relate to your answers to **Question 1**.  
+  
