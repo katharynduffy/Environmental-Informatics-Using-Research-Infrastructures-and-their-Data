@@ -45,6 +45,8 @@ _bookdown_files/
 # NEON Token
 
 neon_token_source.R
+EARTHDATA_Token.R
+/Tokens/
 
 NEON Field Sites Shapefile v17/
 *.h5
