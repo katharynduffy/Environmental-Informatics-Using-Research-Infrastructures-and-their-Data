@@ -708,18 +708,15 @@ image. However, look at the images below. The top one is what our log adjusted
 image looks like when plotted. The bottom on is an RGB version of the same image. 
 Notice a difference? 
 
-![](https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/hyperspectral-general/RGBImage_2.png)
 
-">
-    <img src="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/hyperspectral-general/RGBImage_2.png"
+<img src="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/hyperspectral-general/RGBImage_2.png"
     alt="RGB image of the SJER field site. At the top right of the image, there is dark, brakish water. Scattered throughout the image, there are several trees. At the center of the image, there is a baseball field, with low grass. At the bottom left of the image, there is a parking lot and some buildings with highly reflective surfaces, and adjacent to it is a section of a gravel lot.">
     </a>
     <a href="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/hyperspectral-general/SJER_Flipped.png">
     <img src="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/hyperspectral-general/SJER_Flipped.png"
     alt="Plot of log transformed reflectance values for the b9 image previously plotted. Applying the log to the image increases the contrast making it look more like an image by factoring out those larger values. While an improvement, the image is still far from great. The proper way to adjust an image is by doing whats called an image stretch. The log transformed image appears flipped because when R reads in the dataset, it reads them as: Columns x Bands x Rows, as opposed to the RGB image on the left which has dimensions as Bands x Rows x Columns.">
     </a>
-    <figcaption>LEFT: The image as it should look. RIGHT: the image that we outputted from the code above. Notice a difference?</figcaption>
-</figure>
+    <figcaption>TOP: The image as it should look. BOTTOM: the image that we outputted from the code above. Notice a difference?</figcaption>
 
 
 ### Transpose Image
@@ -1522,16 +1519,19 @@ Prior to starting the tutorial ensure that the following packages are installed.
 
 ### Example Data Set
 
-############# Possibly add GEDI subset here?? ##############
+#### GEDI Example Data Subset
+This dataset has been subset from a full GEDI orbit retaining only the 'shots' that correspond to a single 1km AOP tile, and only the 'datasets' (attributes) that are needed to visualize the GEDI waveform as shown below.
+<a href="https://ndownloader.figshare.com/files/24978809" class="link--button link--arrow">
+Download GEDI Example Dataset</a>
 
 #### Datum difference between WGS84 and NAD83
 This dataset describes the differences between two common standards for vertical data in North America.
 <a href="https://neondata.sharefile.com/d-sf4e35e969fc43aca" class="link--button link--arrow">
-Download Dataset</a>
+Download Datum Difference Dataset</a>
 
 
 ### Getting Started
-In this tutorial, we will compare NEON and GEDI LiDAR data by comparing the information that they both capture in the same location. NEON data are actually one of the datasets used by the GEDI mission to calibrate and validate GEDI waveforms, so this makes for a valuable comparison! 
+In this section we will compare NEON and GEDI LiDAR data by comparing the information that they both capture in the same location. NEON data are actually one of the datasets used by the GEDI mission to calibrate and validate GEDI waveforms, so this makes for a valuable comparison! 
 
 In order to compare these data, we will need to download GEDI data that overlap a NEON site. Fortunately, Carlos Silva et al. have made a convenient R package clled `rGEDI` and <a href="https://cran.r-project.org/web/packages/rGEDI/vignettes/tutorial.html">this excellent tutorial hosted on CRAN</a> desribing how to work with GEDI data in R. 
 
@@ -1612,11 +1612,12 @@ plot(chm)
 As you can see, this particular CHM is showing a conspicuous, triangle-shaped clearcut in this section of the experimental forest, where the tree canopy is much shorter than the towering 60m+ trees in the undisturbed areas. This variation will give us a variety of forest structures to investigate.
 
 ### Downloading GEDI data
-This next section on downloading and working with GEDI data is loosely based on the excellent `rGEDI` package tutorial <a href="https://cran.r-project.org/web/packages/rGEDI/vignettes/tutorial.html">posted on CRAN here</a>.
+This next section on downloading and working with GEDI data is loosely based on the excellent `rGEDI` package tutorial <a href="https://cran.r-project.org/web/packages/rGEDI/vignettes/tutorial.html">posted on CRAN here</a>. If you would prefer to avoid a large download (>7Gb) of a full GEDI orbit, you can forego these steps and use the <a href="https://ndownloader.figshare.com/files/24978809">
+example GEDI dataset here</a>, and skip to the `readLevel1B()` function below.
 
 The Global Ecosystem Dynamics Investigation (GEDI) is a NASA mission with the primary data collection being performed by a novel waveform lidar instrument mounted on the International Space Station (ISS). Please see <a href="https://www.sciencedirect.com/science/article/pii/S2666017220300018">this open-access paper</a> published in Science of Remote Sensing that describes this mission in detail. The ISS orbits around the world every 90 minutes, and can be tracked <a href="https://spotthestation.nasa.gov/tracking_map.cfm">on this cool NASA website</a>. 
 
-As described <a href="https://lpdaac.usgs.gov/data/get-started-data/collection-overview/missions/gedi-overview/">here</a> on the Land Processes Distributed Active Archive Center (LP DAAC), "the sole GEDI observable is the waveform from which all other data products are derived. Each waveform is captured with a nominal ~30 m diameter."GEDI has six   As of the date of publication, GEDI data are only offered in HDF5 format, with each file containing the data for a full orbit. The LP DAAC has developed a tool that allows researchers to input a bounding box, which will return a list of every orbit that has a "shot" (waveform return) that falls within that box. Unfortunately, at this time, the tool will not subset out the specific shots that fall within that bounding box; you must download the entire orbit (~7Gb). This functionality may be improved in the future.
+As described <a href="https://lpdaac.usgs.gov/data/get-started-data/collection-overview/missions/gedi-overview/">here</a> on the Land Processes Distributed Active Archive Center (LP DAAC), "the sole GEDI observable is the waveform from which all other data products are derived. Each waveform is captured with a nominal ~30 m diameter." As of the date of publication, GEDI data are only offered in HDF5 format, with each file containing the data for a full orbit. The LP DAAC has developed a tool that allows researchers to input a bounding box, which will return a list of every orbit that has a "shot" (waveform return) that falls within that box. Unfortunately, at this time, the tool will not subset out the specific shots that fall within that bounding box; you must download the entire orbit (~7Gb). This functionality may be improved in the future.
 
 Our next few steps involve defining our bounding box, requesting the list of GEDI orbits that contain data relevant to that bounding box, and downloading those data. Let's focus on the extent of our CHM that we downloaded above - but we will first need to re-project the CHM from its UTM projection into WGS84. To do so, we will refer to the EPSG code for WGS84. To look up any of these codes, please see the amazing resource <a href="https://spatialreference.org/ref/epsg/4326/">spatialrerference.org</a>.
 
@@ -1664,6 +1665,9 @@ Great! There are several GEDI orbits available that have at least 1 'shot' withi
 
 ```r
 # Downloading GEDI data, if you haven't already
+# Note that this will download a large file (>7Gb) which
+# can be avoided by using the example dataset provided above.
+# wd='./data/'
 # if(!file.exists(paste0(wd,basename(gLevel1B[2])))){
 #   gediDownload(filepath=gLevel1B[2],outdir=wd)
 # }
@@ -1673,7 +1677,7 @@ Next, we use the rGEDI package to read in the GEDI data. First, we need to make 
 
 
 ```r
-gedilevel1b<-readLevel1B(level1Bpath = file.path('./data/NEON_GEDI_subset.h5'))
+gedilevel1b<-readLevel1B(level1Bpath = file.path('./data/NEON_WREF_GEDI_subset.h5'))
 #gedilevel1b<-readLevel1B(level1Bpath = file.path(wd, "GEDI01_B_2019206022612_O03482_T00370_02_003_01.h5"))
 level1bGeo<-getLevel1BGeo(level1b=gedilevel1b,select=c("elevation_bin0"))
 ```
@@ -1752,16 +1756,17 @@ pointLabel(st_coordinates(level1bgeo_WREF_UTM),
            labels=level1bgeo_WREF_UTM$shot_number, cex=1)
 ```
 
-<img src="07-NEON_AOP_files/figure-html/overly-GEDI-on-chm-1.png" width="480" />
+<img src="07-NEON_AOP_files/figure-html/overly-GEDI-on-chm-1.png" width="768" />
 
 ### Extract Waveform for a single Shot
-Let's take a look at a waveform for a single GEDI shot. We will use the last three numbers of the shot, shown a labels in the plot above, to select a waveform of interest. In this case, let's plot the the footprint labeled '002' in the northwest of the CHM.
+Let's take a look at a waveform for a single GEDI shot. We can select a shot by using its `shot_number` as shown below. Note, however, that the example data subset shots have been re-numbered, and those numbers will not correspond with full orbit GEDI data.
 
 
 ```r
 # Extracting GEDI full-waveform for a given shot_number
-###ERROR HERE###
 wf <- getLevel1BWF(gedilevel1b,shot_number = 20)
+
+# or, if using a full GEDI dataset,
 # wf <- getLevel1BWF(gedilevel1b,shot_number = level1bgeo_WREF_UTM_buffer$shot_number[which(level1bgeo_WREF_UTM_buffer$shot_number==1786)])
 
 # Save current plotting parameters to revert to
@@ -1799,7 +1804,7 @@ Here, we will use the `byTileAOP()` function from the 'neonUtilities' package to
 if (!file.exists('./data/DP1.30003.001/2017/FullSite/D16/2017_WREF_1/L1/DiscreteLidar/ClassifiedPointCloud/NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.laz')){
   byTileAOP(dpID = "DP1.30003.001", site = SITECODE, year = 2017, 
           easting = extent(chm)[1], northing=extent(chm)[3], 
-          check.size = F)
+          check.size = F, savepath = './data/') # Edit savepath as needed
 }
 ```
 
@@ -1812,6 +1817,7 @@ WREF_LAS=readLAS("./data/DP1.30003.001/2017/FullSite/D16/2017_WREF_1/L1/Discrete
 lidR::plot(WREF_LAS)
 ```
 
+<img src="./images/GEDI_AOP1.png" width="768" />
 Oh, yikes! There are a lot of outliers above the actual forest, and a few below. Let's use some simple statistics to throw out those outliers. We will first calculate the mean and standard deviation for the verical axis, and then use the 'filter' options of the `readLAS()` function to eliminate the vertical outliers.
 
 
@@ -1831,6 +1837,9 @@ WREF_LAS=readLAS("./data/DP1.30003.001/2017/FullSite/D16/2017_WREF_1/L1/Discrete
 #Plot the full LiDAR point cloud mosaic tile (1km^2)
 plot(WREF_LAS)
 ```
+
+<img src="./images/GEDI_AOP2.png" width="479" />
+
 Ahhh, that's better.
 
 ### Clip AOP LiDAR Pointcloud to GEDI footprints
@@ -1846,12 +1855,14 @@ WREF_GEDI_footprints=lasclip(WREF_LAS, geometry = level1bgeo_WREF_UTM_buffer)
 plot(WREF_GEDI_footprints[[8]])
 ```
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ERdy6-bqiZI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ### Plot GEDI Waveform with AOP Pointcloud in 3D space
 Now that we can extract individual waveforms, and the AOP LiDAR pointcloud that corresponds with each GEDI waveform, let's see if we can plot them both in 3D space. We already know how to plot the AOP LiDAR points, so let's write a function to draw the GEDI waveform, too, using the `points3d()` function:
 
 
 ```r
-for(shot_n in 1:21){
+for(shot_n in c(20)){
 
   # First, plot the NEON AOP LiDAR clipped to the GEDI footprint
   # We save the plot as an object 'p' which gives the (x,y) offset for the lower
@@ -1885,7 +1896,9 @@ for(shot_n in 1:21){
 }
 ```
 
-Whoa, it looks like there is a bad vertical mismatch between those two data sources. This is because the two data sources have a different vertical datum. The NEON AOP data are delivered in the GEOID12A, while the GEDI data are delivered in the WGS84 native datum. We will need to convert one to the other to get them to line up correctly.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DnqbPPVSwTg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Whoa, it looks like there is a bad vertical mismatch between those two data sources. This is because the two data sources have a different vertical datum. The NEON AOP data are delivered in the GEOID12A datum, while the GEDI data are delivered in the WGS84 native datum. We will need to convert one to the other to get them to line up correctly.
 
 ### Datum, Geoid, and how to best measure the Earth
 We are seeing a vertical mismatch between the NEON and GEDI LiDAR data sources because they are using different standards for measuring the Earth. Here, we will briefly describe the main differences between these two datum models, and then show how to correct for this discrepancy.
@@ -2062,12 +2075,14 @@ for(shot_n in c(20)){
 }
 ```
 
+
+
 ### Optional - NEON base plots
 You may also be interested to see if any of the GEDI footprints intersect a NEON base plot, which would allow for a direct comparison of the GEDI waveform with many of the datasets which are collected within the base plots, such as the vegetation structure data product containing height, DBH, and species identification of all trees >10cm DBH. While it is statistically pretty unlikely that a GEDI footprint will intersect with your base plot of interest, it is possible that _some_ GEDI footprint will intersetc with _some_ base plot in your study area, so we may as well take a look:
 
 
 ```r
-setwd("./data/")
+setwd("./data/") # This will depend upon your local environment
 
 # Download the NEON TOS plots polygons directly from the NEON website
 download.file(url="https://data.neonscience.org/api/v0/documents/All_NEON_TOS_Plots_V8", 
@@ -2111,7 +2126,7 @@ plot(base_crop$geometry, border = 'blue', add=T)
 ```
 
 <img src="07-NEON_AOP_files/figure-html/import and plot base plots-1.png" width="672" />
-
+<img src="./images/GEDI_AOP3.png" width="800" />
 ## NEON AOP Written Questions:
 
 *Reminder: these questions are largely based on the assigned video lectures.  I highly recommend you watching or re-watching them before tackling these questions.*

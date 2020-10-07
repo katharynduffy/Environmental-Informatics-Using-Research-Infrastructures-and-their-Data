@@ -1278,7 +1278,7 @@ Download Datum Difference Dataset</a>
 
 
 ### Getting Started
-In this tutorial, we will compare NEON and GEDI LiDAR data by comparing the information that they both capture in the same location. NEON data are actually one of the datasets used by the GEDI mission to calibrate and validate GEDI waveforms, so this makes for a valuable comparison! 
+In this section we will compare NEON and GEDI LiDAR data by comparing the information that they both capture in the same location. NEON data are actually one of the datasets used by the GEDI mission to calibrate and validate GEDI waveforms, so this makes for a valuable comparison! 
 
 In order to compare these data, we will need to download GEDI data that overlap a NEON site. Fortunately, Carlos Silva et al. have made a convenient R package clled `rGEDI` and <a href="https://cran.r-project.org/web/packages/rGEDI/vignettes/tutorial.html">this excellent tutorial hosted on CRAN</a> desribing how to work with GEDI data in R. 
 
@@ -1315,7 +1315,7 @@ byTileAOP(dpID = "DP3.30015.001", site = SITECODE, year = 2017,
           easting = 580000, northing = 5075000, check.size = F,
           savepath = './data')
 
-chm <- raster('~/Downloads/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/L3/DiscreteLidar/CanopyHeightModelGtif/NEON_D16_WREF_DP3_580000_5075000_CHM.tif')
+chm <- raster('./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/L3/DiscreteLidar/CanopyHeightModelGtif/NEON_D16_WREF_DP3_580000_5075000_CHM.tif')
 
 plot(chm)
 
@@ -1375,7 +1375,7 @@ Great! There are several GEDI orbits available that have at least 1 'shot' withi
 # Downloading GEDI data, if you haven't already
 # Note that this will download a large file (>7Gb) which
 # can be avoided by using the example dataset provided above.
-
+# wd='./data/'
 # if(!file.exists(paste0(wd,basename(gLevel1B[2])))){
 #   gediDownload(filepath=gLevel1B[2],outdir=wd)
 # }
@@ -1415,7 +1415,7 @@ level1bgeo_WREF=st_crop(level1bGeo_spdf, chm_WGS)
 
 Next, project the GEDI geospatial data into the UTM zone that the CHM is within (Zone 10 North). These data come as the point location at the center of the GEDI footprint, so we next convert the GEDI footprint center (lat/long) into a circle using the `buffer()` function. Finally, we can plot the CHM and overlay the GEDI footprint circles, and label with the last three digits of the 'shot' number.
 
-```{r overly-GEDI-on-chm, warning=F, fig.height=4, fig.width=5}
+```{r overly-GEDI-on-chm, warning=F, fig.height=6, fig.width=8}
 
 # project to UTM
 level1bgeo_WREF_UTM=st_transform(
@@ -1439,7 +1439,7 @@ pointLabel(st_coordinates(level1bgeo_WREF_UTM),
 ### Extract Waveform for a single Shot
 Let's take a look at a waveform for a single GEDI shot. We can select a shot by using its `shot_number` as shown below. Note, however, that the example data subset shots have been re-numbered, and those numbers will not correspond with full orbit GEDI data.
 
-```{r extract-wf, warning=F}
+```{r extract-wf, warning=F, cache=TRUE}
 
 # Extracting GEDI full-waveform for a given shot_number
 wf <- getLevel1BWF(gedilevel1b,shot_number = 20)
@@ -1494,6 +1494,9 @@ lidR::plot(WREF_LAS)
 
 ```
 
+```{r, echo=FALSE}
+knitr::include_graphics('./images/GEDI_AOP1.png')
+```
 Oh, yikes! There are a lot of outliers above the actual forest, and a few below. Let's use some simple statistics to throw out those outliers. We will first calculate the mean and standard deviation for the verical axis, and then use the 'filter' options of the `readLAS()` function to eliminate the vertical outliers.
 
 ```{r plot-lidar-pointcloud-good, eval=FALSE}
@@ -1514,6 +1517,11 @@ WREF_LAS=readLAS("./data/DP1.30003.001/2017/FullSite/D16/2017_WREF_1/L1/Discrete
 plot(WREF_LAS)
 
 ```
+
+```{r, echo=FALSE}
+knitr::include_graphics('./images/GEDI_AOP2.png')
+```
+
 Ahhh, that's better.
 
 ### Clip AOP LiDAR Pointcloud to GEDI footprints
@@ -1529,6 +1537,8 @@ WREF_GEDI_footprints=lasclip(WREF_LAS, geometry = level1bgeo_WREF_UTM_buffer)
 plot(WREF_GEDI_footprints[[8]])
 
 ```
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ERdy6-bqiZI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Plot GEDI Waveform with AOP Pointcloud in 3D space
 Now that we can extract individual waveforms, and the AOP LiDAR pointcloud that corresponds with each GEDI waveform, let's see if we can plot them both in 3D space. We already know how to plot the AOP LiDAR points, so let's write a function to draw the GEDI waveform, too, using the `points3d()` function:
@@ -1569,6 +1579,8 @@ for(shot_n in c(20)){
 }
 
 ```
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DnqbPPVSwTg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Whoa, it looks like there is a bad vertical mismatch between those two data sources. This is because the two data sources have a different vertical datum. The NEON AOP data are delivered in the GEOID12A datum, while the GEDI data are delivered in the WGS84 native datum. We will need to convert one to the other to get them to line up correctly.
 
@@ -1740,6 +1752,8 @@ for(shot_n in c(20)){
 
 ```
 
+
+
 ### Optional - NEON base plots
 You may also be interested to see if any of the GEDI footprints intersect a NEON base plot, which would allow for a direct comparison of the GEDI waveform with many of the datasets which are collected within the base plots, such as the vegetation structure data product containing height, DBH, and species identification of all trees >10cm DBH. While it is statistically pretty unlikely that a GEDI footprint will intersect with your base plot of interest, it is possible that _some_ GEDI footprint will intersetc with _some_ base plot in your study area, so we may as well take a look:
 
@@ -1766,7 +1780,9 @@ plot(chm_WGS)
 plot(base_crop$geometry, border = 'blue', add=T)
 
 ```
-
+```{r, echo=FALSE}
+knitr::include_graphics('./images/GEDI_AOP3.png')
+```
 ## NEON AOP Written Questions:
 
 *Reminder: these questions are largely based on the assigned video lectures.  I highly recommend you watching or re-watching them before tackling these questions.*
