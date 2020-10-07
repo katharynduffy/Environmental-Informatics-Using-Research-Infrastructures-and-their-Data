@@ -1415,7 +1415,7 @@ level1bgeo_WREF=st_crop(level1bGeo_spdf, chm_WGS)
 
 Next, project the GEDI geospatial data into the UTM zone that the CHM is within (Zone 10 North). These data come as the point location at the center of the GEDI footprint, so we next convert the GEDI footprint center (lat/long) into a circle using the `buffer()` function. Finally, we can plot the CHM and overlay the GEDI footprint circles, and label with the last three digits of the 'shot' number.
 
-```{r overly-GEDI-on-chm, warning=F, fig.height=6, fig.width=8}
+```{r overly-GEDI-on-chm, warning=F}
 
 # project to UTM
 level1bgeo_WREF_UTM=st_transform(
@@ -1783,6 +1783,7 @@ plot(base_crop$geometry, border = 'blue', add=T)
 ```{r, echo=FALSE}
 knitr::include_graphics('./images/GEDI_AOP3.png')
 ```
+
 ## NEON AOP Written Questions:
 
 *Reminder: these questions are largely based on the assigned video lectures.  I highly recommend you watching or re-watching them before tackling these questions.*

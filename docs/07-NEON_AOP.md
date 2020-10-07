@@ -1756,7 +1756,7 @@ pointLabel(st_coordinates(level1bgeo_WREF_UTM),
            labels=level1bgeo_WREF_UTM$shot_number, cex=1)
 ```
 
-<img src="07-NEON_AOP_files/figure-html/overly-GEDI-on-chm-1.png" width="768" />
+<img src="07-NEON_AOP_files/figure-html/overly-GEDI-on-chm-1.png" width="672" />
 
 ### Extract Waveform for a single Shot
 Let's take a look at a waveform for a single GEDI shot. We can select a shot by using its `shot_number` as shown below. Note, however, that the example data subset shots have been re-numbered, and those numbers will not correspond with full orbit GEDI data.
@@ -2127,6 +2127,7 @@ plot(base_crop$geometry, border = 'blue', add=T)
 
 <img src="07-NEON_AOP_files/figure-html/import and plot base plots-1.png" width="672" />
 <img src="./images/GEDI_AOP3.png" width="800" />
+
 ## NEON AOP Written Questions:
 
 *Reminder: these questions are largely based on the assigned video lectures.  I highly recommend you watching or re-watching them before tackling these questions.*
