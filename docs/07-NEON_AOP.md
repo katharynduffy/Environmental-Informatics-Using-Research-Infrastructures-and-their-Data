@@ -2075,7 +2075,7 @@ for(shot_n in c(20)){
 }
 ```
 
-
+<img src="./images/GEDI_AOP3.png" width="800" />
 
 ### Optional - NEON base plots
 You may also be interested to see if any of the GEDI footprints intersect a NEON base plot, which would allow for a direct comparison of the GEDI waveform with many of the datasets which are collected within the base plots, such as the vegetation structure data product containing height, DBH, and species identification of all trees >10cm DBH. While it is statistically pretty unlikely that a GEDI footprint will intersect with your base plot of interest, it is possible that _some_ GEDI footprint will intersetc with _some_ base plot in your study area, so we may as well take a look:
@@ -2126,7 +2126,7 @@ plot(base_crop$geometry, border = 'blue', add=T)
 ```
 
 <img src="07-NEON_AOP_files/figure-html/import and plot base plots-1.png" width="672" />
-<img src="./images/GEDI_AOP3.png" width="800" />
+
 
 ## NEON AOP Written Questions:
 
