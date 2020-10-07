@@ -387,7 +387,7 @@ taskType <- 'point'                    # Specify the task type, it can be either
 
 To be able to successfully submit a task, the JSON object should be structured in a certain way. The code chunk below uses the information from the previous chunk to create a nested data frame. This nested data frame will be converted to JSON object that can be used to complete the request. 
 
-```{r}
+```{r, cache=TRUE}
 # Create a data frame including the date range for the request
 date <- data.frame(startDate = startDate, endDate = endDate)
 # Create a data frame including lat and long coordinates. ID and category name is optional.
@@ -401,18 +401,18 @@ names(task) <- c("params", "task_name", "task_type")      # Assign names
 remove(date, layers, coordinates, task_info)              # Remove the variables that are not needed anymore
 ```
 `toJSON` function from `jsonlite` package converts the type of data frame to a string that can be recognized as a JSON object to be submitted as a point request.  
-```{r}
+```{r, cache=TRUE}
 task_json <- toJSON(task,auto_unbox = TRUE)   # Convert to JSON object
 ```
 ***
 ## 3b. Submit a Task Request
 Token information is needed to submit a request. Below the login token is assigned to a variable.
-```{r}
+```{r, cache=TRUE}
 token <- paste("Bearer", fromJSON(token_response)$token)     # Save login token to a variable
 ```
 
 Below, post a call to the API **task service**, using the `task_json` created above.
-```{r}
+```{r, cache=TRUE}
 # Post the point request to the API task service
 response <- POST(paste0(API_URL, "task"), 
                  body = task_json , 
@@ -430,7 +430,7 @@ This API call will list all of the requests associated with your user account, a
 The AppEEARS API contains some helpful formatting resources. Below, limit the API response to 2 entries for the last 2 requests and set pretty to True to format the response as an organized JSON object to make it easier to read. Additional information on AppEEARS API
 [retrieve task](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#retrieve-task), [pagination](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#pagination), and [formatting](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#formatting) can be found in the API documentation.
 
-```{r}
+```{r, cache=TRUE}
 params <- list(limit = 2, pretty = TRUE)                            # Set up query parameters
 # Request the task status of last 2 requests from task URL
 response_req <- GET(paste0(API_URL,"task"), query = params, add_headers(Authorization = token))
@@ -441,7 +441,7 @@ prettify(status_response)                                           # Print the 
 ```
 
 The task_id that was generated when submitting your request can also be used to retrieve a task status. 
-```{r}
+```{r, cache=TRUE}
 task_id <- fromJSON(task_response)$task_id                 # Extract the task_id of submitted point request
 # Request the task status of a task with the provided task_id from task URL
 status_req <- GET(paste0(API_URL,"task/", task_id), add_headers(Authorization = token)) 
@@ -468,7 +468,7 @@ while (stat != 'done') {
 ## 4. **Download a Request**
 ## 4a. Explore Files in Request Output 
 Before downloading the request output, examine the files contained in the request output.
-```{r}
+```{r, cache=TRUE}
 # Request the task bundle info from API bundle URL
 response <- GET(paste0(API_URL, "bundle/", task_id), add_headers(Authorization = token))
 response_content <- content(response)                          # Retrieve content of the request
@@ -478,7 +478,7 @@ prettify(bundle_response)                                       # Print the pret
 ***
 ## 4b. Download Files in a Request (Automation) 
 The bundle API provides information about completed tasks. For any completed task, a bundle can be queried to return the files contained as a part of the task request. Below, call the bundle API and return all of the output files. Next, read the contents of the bundle in JSON format and loop through file_id to automate downloading all of the output files into the output directory. For more information, please see [AppEEARS API Documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#bundle).
-```{r, warning= FALSE, results= 'hide'}
+```{r, warning= FALSE, results= 'hide', , cache=TRUE}
 bundle <- fromJSON(bundle_response)$files
 for (id in bundle$file_id){
   # retrieve the filename from the file_id
@@ -500,7 +500,7 @@ The quality API provides quality details about all of the data products availabl
 
 First, reset pagination to include offset which allows you to set the number of results to skip before starting to return entries. Next, make a call to list all of the data product layers and the associated quality product and layer information.
 
-```{r}
+```{r, cache=TRUE}
 params <- list(limit = 6, offset = 20, pretty = TRUE)     # Set up the query parameters
 q_req <- GET(paste0(API_URL, "quality"), query = params)  # Request the quality info from quality API_URL
 q_content <- content(q_req)                               # Retrieve the content of request
@@ -512,7 +512,7 @@ prettify(q_response)                                      # Print the prettified
 ## 5a. List Quality Layers 
 This API call will list all of the quality layer information for a product. For more information visit [AppEEARS API documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#quality)
 
-```{r}
+```{r, cache=TRUE}
 productAndVersion <- 'MCD15A3H.006'                            # Assign ProductAndVersion to a variable 
 # Request the quality info from quality API for a specific product
 MCD15A3H_req <- GET(paste0(API_URL, "quality/", productAndVersion))
@@ -524,7 +524,7 @@ prettify(MCD15A3H_quality)                                     # Print the prett
 ***
 ## 5b. Show Quality Values 
 This API call will list all of the values for a given quality layer. 
-```{r}
+```{r, cache=TRUE}
 quality_layer <- 'FparLai_QC'                                 # assign a quality layer to a variable
 # Request the specified quality layer info from quality API
 quality_req <- GET(paste0(API_URL, "quality/",  productAndVersion, "/", quality_layer, sep = ""))
@@ -536,7 +536,7 @@ prettify(quality_response)                                     # Print the quali
 ***
 ## 5c. [Decode Quality Values]{#decode}
 This API call will decode the bits for a given quality value. 
-```{r}
+```{r, cache=TRUE}
 quality_value <- 1                        # Assign a quality value to a variable 
 # Request and retrieve information for provided quality value from quality API URL 
 response <- content(GET(paste0(API_URL, "quality/", productAndVersion, "/", quality_layer, "/", quality_value)))

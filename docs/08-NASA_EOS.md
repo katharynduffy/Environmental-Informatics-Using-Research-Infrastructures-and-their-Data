@@ -639,7 +639,7 @@ task_response                                                     # Print the pr
 
 ```
 ## {
-##     "task_id": "de45360e-d6e4-4577-97a1-760b9893c002",
+##     "task_id": "3a808dfa-ff0b-48f9-ac7b-9f598d73233b",
 ##     "status": "pending"
 ## }
 ## 
@@ -687,9 +687,9 @@ prettify(status_response)                                           # Print the 
 ##             ]
 ##         },
 ##         "status": "pending",
-##         "created": "2020-10-07T21:00:20.497312",
-##         "task_id": "de45360e-d6e4-4577-97a1-760b9893c002",
-##         "updated": "2020-10-07T21:00:20.510550",
+##         "created": "2020-10-07T21:37:14.871259",
+##         "task_id": "3a808dfa-ff0b-48f9-ac7b-9f598d73233b",
+##         "updated": "2020-10-07T21:37:14.883937",
 ##         "user_id": "kdw223@nau.edu",
 ##         "estimate": {
 ##             "request_size": 204
@@ -701,7 +701,7 @@ prettify(status_response)                                           # Print the 
 ##         "web_version": {
 ## 
 ##         },
-##         "expires_on": "2020-11-06T21:00:20.510550"
+##         "expires_on": "2020-11-06T21:37:14.883937"
 ##     },
 ##     {
 ##         "error": {
@@ -730,9 +730,9 @@ prettify(status_response)                                           # Print the 
 ##             ]
 ##         },
 ##         "status": "done",
-##         "created": "2020-10-07T20:53:19.949127",
-##         "task_id": "fac33d69-2f25-4849-b0e8-078b7b24c550",
-##         "updated": "2020-10-07T20:55:17.770024",
+##         "created": "2020-10-07T21:00:20.497312",
+##         "task_id": "de45360e-d6e4-4577-97a1-760b9893c002",
+##         "updated": "2020-10-07T21:02:10.990738",
 ##         "user_id": "kdw223@nau.edu",
 ##         "attempts": 1,
 ##         "estimate": {
@@ -741,7 +741,7 @@ prettify(status_response)                                           # Print the 
 ##         "retry_at": {
 ## 
 ##         },
-##         "completed": "2020-10-07T20:55:17.765133",
+##         "completed": "2020-10-07T21:02:10.987115",
 ##         "task_name": "NEON SOAP SJER Vegetation",
 ##         "task_type": "point",
 ##         "api_version": "v1",
@@ -750,7 +750,7 @@ prettify(status_response)                                           # Print the 
 ## 
 ##         },
 ##         "size_category": "0",
-##         "expires_on": "2020-11-06T20:55:17.770024"
+##         "expires_on": "2020-11-06T21:02:10.990738"
 ##     }
 ## ]
 ## 
@@ -808,9 +808,9 @@ prettify(statusResponse)                                    # Print the prettifi
 ##         ]
 ##     },
 ##     "status": "pending",
-##     "created": "2020-10-07T21:00:20.497312",
-##     "task_id": "de45360e-d6e4-4577-97a1-760b9893c002",
-##     "updated": "2020-10-07T21:00:20.510550",
+##     "created": "2020-10-07T21:37:14.871259",
+##     "task_id": "3a808dfa-ff0b-48f9-ac7b-9f598d73233b",
+##     "updated": "2020-10-07T21:37:14.883937",
 ##     "user_id": "kdw223@nau.edu",
 ##     "estimate": {
 ##         "request_size": 204
@@ -822,7 +822,7 @@ prettify(statusResponse)                                    # Print the prettifi
 ##     "web_version": {
 ## 
 ##     },
-##     "expires_on": "2020-11-06T21:00:20.510550"
+##     "expires_on": "2020-11-06T21:37:14.883937"
 ## }
 ## 
 ```
@@ -883,57 +883,57 @@ prettify(bundle_response)                                       # Print the pret
 ##     "files": [
 ##         {
 ##             "sha256": "e12e3634d11491fd77aa4c8f347b94304885746713852d21a08c635b2a9e4852",
-##             "file_id": "2f20fcbe-a2d2-45ff-97f5-ab92cf264cf3",
+##             "file_id": "82ab979e-0dbe-4869-b676-88193c79727f",
 ##             "file_name": "NEON-SOAP-SJER-Vegetation-MCD15A3H-006-results.csv",
 ##             "file_size": 68260,
 ##             "file_type": "csv"
 ##         },
 ##         {
 ##             "sha256": "e465df89151b28d63a1dda2420cedec7f24b383d03e0482083839565a27f8d5d",
-##             "file_id": "9cf45abd-0ecc-4b21-b7d3-fd080f53db51",
+##             "file_id": "ab2e3574-3c50-44dd-bafd-c30b1fb4d99d",
 ##             "file_name": "NEON-SOAP-SJER-Vegetation-MOD11A2-006-results.csv",
 ##             "file_size": 28570,
 ##             "file_type": "csv"
 ##         },
 ##         {
 ##             "sha256": "100dd40b43760430c900eea1d39b78a73bf880ae397020ad29bcf1c58947e8b5",
-##             "file_id": "cc39d639-224f-4419-bf4d-ad907343a82c",
+##             "file_id": "765639a0-7278-497d-aca6-433ebf41d021",
 ##             "file_name": "NEON-SOAP-SJER-Vegetation-granule-list.txt",
 ##             "file_size": 11402,
 ##             "file_type": "txt"
 ##         },
 ##         {
-##             "sha256": "f2d0dfb8216e90066123f7a369a2447e4a59025348bc8fb8854fe776b0142314",
-##             "file_id": "4e09ac12-6b95-4609-b13d-b1de5e1d4244",
+##             "sha256": "6b824abc02ce3e49409e332e5b941533a66b2ff4c2a362b4d3b5b31b4266ecd5",
+##             "file_id": "16eae3d4-8876-403e-b673-2e29f2d8324a",
 ##             "file_name": "NEON-SOAP-SJER-Vegetation-request.json",
 ##             "file_size": 883,
 ##             "file_type": "json"
 ##         },
 ##         {
 ##             "sha256": "3e025646ef6eadb42eb4d9f172db96ed824bbc72333519f0c8f44c3449fe4d7d",
-##             "file_id": "068ceed7-801c-4a2c-ac25-ab680c72ba59",
+##             "file_id": "ff3f16d7-75c2-4185-8ce6-f6a3cc4de17c",
 ##             "file_name": "NEON-SOAP-SJER-Vegetation-MCD15A3H-006-metadata.xml",
 ##             "file_size": 17255,
 ##             "file_type": "xml"
 ##         },
 ##         {
 ##             "sha256": "650cd511fcfc442fe675e35d14a244247c565085d5dcbb215782354d7ceda774",
-##             "file_id": "974c18fe-1e5e-4d9b-8010-9456d1449cd0",
+##             "file_id": "ffa0432e-cc7a-4cde-8264-6ad97dbed7c3",
 ##             "file_name": "NEON-SOAP-SJER-Vegetation-MOD11A2-006-metadata.xml",
 ##             "file_size": 17217,
 ##             "file_type": "xml"
 ##         },
 ##         {
-##             "sha256": "fdeeb0d1406af2a5325b66adbbb1c3e29edcf1cac3b952152ed0822ec7238936",
-##             "file_id": "f152e7b0-1bfe-41e8-a776-3d1feedb4275",
+##             "sha256": "337cd424036258f85f9d216debfe1f9b0649bf2971ea1ce356a44b9c9ca51078",
+##             "file_id": "aa98b009-c955-468d-bd03-9ca7068969b9",
 ##             "file_name": "README.md",
 ##             "file_size": 17894,
 ##             "file_type": "txt"
 ##         }
 ##     ],
-##     "created": "2020-10-07T21:01:45.235799",
-##     "task_id": "de45360e-d6e4-4577-97a1-760b9893c002",
-##     "updated": "2020-10-07T21:02:10.756881",
+##     "created": "2020-10-07T21:38:39.407692",
+##     "task_id": "3a808dfa-ff0b-48f9-ac7b-9f598d73233b",
+##     "updated": "2020-10-07T21:39:07.732995",
 ##     "bundle_type": "point"
 ## }
 ## 
