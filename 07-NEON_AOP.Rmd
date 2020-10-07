@@ -1819,4 +1819,15 @@ For the purpose of this coding lab we will evaluate 2 different forested sites i
   * Using `lidR` generate a labeled 2-panel plot of a cross-section for each forest
   * Use section `5.6.3 Comparing Metrics Between Forests` to compare each forest and generate a a clean summary table via `kable`
   * Using **Table 2** from <a href="https://doi.org/10.3390/rs12091407" target="_blank">LaRue, Wagner, et al. (2020) </a> as a reference, write 1-2 paragraphs summarizing the differences in forest structural diversity between the two forests and how they may relate to your answers to **Question 1**.  
-  
+
+## NEON AOP Culmination Write Up
+
+Write up a 1-page **derived data product or research pipeline proposal** summary of a project that you might want to explore using NEON AOP data. Include the types of NEON (and other data) that you would need to implement this project. Save this summary as you will be refining and adding to your ideas over the course of the semester.  
+
+Sugestions: 
+
+1. Tables or bullet lists of **specific** data products
+
+2. An **overarching high-quality figure** to show how these data align
+
+3. One paragaph summarizing *how* this data or analysis is useful to **you and/or the infrastructure**.
