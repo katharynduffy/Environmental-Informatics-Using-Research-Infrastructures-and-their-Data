@@ -32,8 +32,13 @@ The EOSDIS Earthdata Login provides a centralized and simplified mechanism for u
 
 Earthdata Login provides user registration and authentication services and a common set of user information to all EOSDIS data centers in a manner that permits the data center to integrate their additional requirements with the Earthdata Login services. Below is a brief description of services provided by the Earthdata Login.
 
-**To turn in:**
+## **NASA EOS Coding Assignment 1**
+
+*Suggested completion: following lecture 1 on NASA EOS*
+
+**To submit via BBLearn:**
 1) Follow the [steps in the NASA EOSDIS documentation](https://urs.earthdata.nasa.gov/documentation) to sign up for an Earth Data account.
+
 2) Write an R script that stores your `user` and `password` called `EARTHDATA_Token.R` and submit the following line of code via .Rmd and PDF:
 
 ```
@@ -73,7 +78,7 @@ The Application for Extracting and Exploring Analysis Ready Samples ([AppEEARS](
 
 ## Hands on: Pulling AppEEARS Data via the API
 
-*The following section was adapted from [LPDAAC's E-Learning Tutorials on the AppEEARS API](https://lpdaac.usgs.gov/resources/e-learning/getting-started-appeears-api-r-point-request/) and modified to request NEON areas.*
+*The following section was adapted from [LPDAAC's E-Learning Tutorials on the AppEEARS API](https://lpdaac.usgs.gov/resources/e-learning/getting-started-appeears-api-r-point-request/) and modified to request data for NEON sites.*
 
 
 > Contributing Authors: 
@@ -123,7 +128,8 @@ knitr::opts_chunk$set(echo = TRUE)
 The Application for Extracting and Exploring Analysis Ready Samples ([AppEEARS](https://lpdaacsvc.cr.usgs.gov/appeears/)) offers a simple and efficient way to access and transform [geospatial data](https://lpdaacsvc.cr.usgs.gov/appeears/products) from a variety of federal data archives in an easy-to-use web application interface. AppEEARS enables users to subset geospatial data spatially, temporally, and by band/layer for point and area samples. AppEEARS returns not only the requested data, but also the associated quality values, and offers interactive visualizations with summary statistics in the web interface. The [AppEEARS API](https://lpdaacsvc.cr.usgs.gov/appeears/api/) offers users **programmatic access** to all features available in AppEEARS, with the exception of visualizations. The API features are demonstrated in this tutorial.
 
 ***
-### Example: Submit a point request with multiple points in U.S. National Parks for extracting vegetation and land surface temperature data    
+### Example: Submit a point request for multiple NEON sites to extract vegetation and land surface temperature data   
+
 In this tutorial, Connecting to the AppEEARS API, querying the list of available products, submitting a point sample request, downloading the request, working with the AppEEARS Quality API, and loading the results into R for visualization are covered. AppEEARS point requests allow users to subset their desired data using latitude/longitude geographic coordinate pairs (points) for a time period of interest, and for specific data layers within data products. AppEEARS returns the valid data from the parameters defined within the sample request.
 
 #### Data Used in the Example:
@@ -134,7 +140,7 @@ In this tutorial, Connecting to the AppEEARS API, querying the list of available
         - [MOD11A2.006](https://doi.org/10.5067/MODIS/MOD11A2.006), 1000m, 8 day: 'LST_Day_1km', 'LST_Night_1km'  
 
 ***
-### Topics Covered in this tutorial:
+## Topics Covered in this section:
 1. **Getting Started**  
     1a. Load Packages
     1b. Set Up the Output Directory  
@@ -161,8 +167,8 @@ In this tutorial, Connecting to the AppEEARS API, querying the list of available
 ### Prerequisites:
 + A [NASA Earthdata Login](https://urs.earthdata.nasa.gov/) account is required to login to the AppEEARS API and submit a request . You can create an account at the link provided.
 
-+ Install R and RStudio. 
-  These tutorials have been tested on Windows and MAc systems using R Version 4.0.0, RStudio version 1.1.463, and the specifications listed below.      
++ R and RStudio. 
+  These tutorials have been tested on Windows and MAC systems using R Version 4.0.0, RStudio version 1.1.463, and the specifications listed below.      
 
   + Required packages: 
     + `getPass`  
@@ -176,27 +182,12 @@ In this tutorial, Connecting to the AppEEARS API, querying the list of available
     + `ggplot2`
 
 ***
-### Procedures:
+
 #### Getting Started:
   1. Clone/download [AppEEARS API Getting Started in R Repository](https://git.earthdata.nasa.gov/rest/api/latest/projects/LPDUR/repos/appeears-api-getting-started_r/archive?format=zip) from the LP DAAC Data User Resources Repository or pull code from this textbook.
  
-  2. Open the `AppEEARS_API_R.Rproj` file to directly open the project. Next, select the `AppEEARS_API_Point_R.Rmd` from the files list and open it. 
+  2. If you opted to clone LP DAAC's repo open the `AppEEARS_API_R.Rproj` file to directly open the project. Next, select the `AppEEARS_API_Point_R.Rmd` from the files list and open it. 
 
-#### Environment Setup: 
-#### 1. Check the version of R using `version` and RStudio using `RStudio.Version()` and update them if needed. 
-+ Windows
-	+ Install and load installr:              
-	  + `Install.packages("installr");library(installr)`        
-	+ Copy/Update the existing packages to the new R installation:         
-  	+ `UpdateR()`
-  + Open RStudio, go to Help > Check for Updates to install newer version of RStudio (if available).
-
-+ Mac  
-  + Go to https://cloud.r-project.org/bin/macosx/.                
-	+ Download the latest release (R-4.0.1.pkg) and finish the installation. 
-	+ Open RStudio, go to Help > Check for Updates to install newer version of RStudio (if available).
-	+ To update packages, go to Tools > Check for Package Updates. If updates are available, select All, and click Install Updates.   
-  
 
 ***
 ### AppEEARS Information:
@@ -205,8 +196,8 @@ To access AppEEARS, visit: https://lpdaacsvc.cr.usgs.gov/appeears/.
 For comprehensive documentation of the full functionality of the AppEEARS API, please see the AppEEARS [API Documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/).
 
 ***
-## 1. **Getting Started**        
-## 1a. Load Packages
+## Getting Started with the AppEEARS API       
+### Load Packages
 First, load the R packages necessary to run the tutorial. 
 ```{r, warning=FALSE, message=FALSE}
 # Load necessary packages into R                                               
@@ -219,7 +210,7 @@ library(dplyr)              # Function for working with tabular data
 library(readr)              # Read rectangular data like CSV
 ```
 ***
-## 1b. Set Up the Output Directory
+### Set Up the Output Directory
 Set your input directory, and create an output directory for the results.
 ```{r}
 outDir <- file.path('./data/')                 # Create an output directory if it doesn't exist
@@ -227,9 +218,9 @@ suppressWarnings(dir.create(outDir))
 ```
 
 ***
-## 1c. [Login]{#login}
+### Login to Earth Data
 
-To submit a request, you must first login to the AppEEARS API. Use the `getpass` package to enter your NASA Earthdata login Username and Password. When prompted after executing the code block below, enter your username followed by your password.
+To submit a request, you must first login to the AppEEARS API. Use your private `R Script` to enter your NASA Earthdata login Username and Password. 
 
 ```{r}
 source('./Tokens/EARTHDATA_Token.R') #path will change based on where you stored it
@@ -264,7 +255,7 @@ prettify(token_response)                                       # Print the prett
 **Above, you should see a Bearer token. Notice that this token will expire approximately 48 hours after being acquired.**
 
 ***
-## 2. **Query Available Products**
+## Query Available Products
 The product API provides details about all of the products and layers available in AppEEARS. For more information, please see the [API Documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#product).
 
 Below, call the product API to list all of the products available in AppEEARS.
@@ -277,7 +268,7 @@ remove(prods_req, prods_content)                         # Remove the variables 
 ```
 ***
 
-## 2a. Search and Explore Available Products
+## Search and Explore Available Products
 
 Create a list indexed by product name to make it easier to query a specific product.
 
@@ -327,7 +318,7 @@ desired_products
 
 ***
 
-## 2b. Search and Explore Available Layers 
+## Search and Explore Available Layers 
 
 This API call will list all of the layers available for a given product. Each product is referenced by its `ProductAndVersion` property which is also referred to as the product_id. First, request the layers for the `MCD15A3H.006` product.
 
@@ -358,11 +349,11 @@ desired_prods <- c("MOD11A2.006","MOD11A2.006","MCD15A3H.006")  # Create a vecto
 layers <- data.frame(product = desired_prods, layer = desired_layers) 
 ```
 ***
-## 3. **[Submit a Point Request]{#section3}**
+## Submit a Point Request
 The Submit task API call provides a way to submit a new request to be processed. It can accept data via JSON or query string. In the example below, create a JSON object and submit a request. Tasks in AppEEARS correspond to each request associated with your user account. Therefore, each of the calls to this service requires an authentication token (see [Section 1c.](#login)).
 
 ***
-## 3a. Compile a JSON Object
+### Compile a JSON Object
 In this section, begin by setting up the information needed for a nested data frame that will be later converted to a JSON object for submitting an AppEEARS point request.
 For detailed information on required JSON parameters, see the [API Documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#tasks).
 
@@ -405,7 +396,7 @@ remove(date, layers, coordinates, task_info)              # Remove the variables
 task_json <- toJSON(task,auto_unbox = TRUE)   # Convert to JSON object
 ```
 ***
-## 3b. Submit a Task Request
+### Submit a Task Request
 Token information is needed to submit a request. Below the login token is assigned to a variable.
 ```{r, cache=TRUE}
 token <- paste("Bearer", fromJSON(token_response)$token)     # Save login token to a variable
@@ -425,7 +416,7 @@ remove(response, task_content)                                    # Remove the v
 task_response                                                     # Print the prettified task response
 ```
 ***
-## 3c. Retrieve Task Status
+### Retrieve Task Status
 This API call will list all of the requests associated with your user account, automatically sorted by date descending with the most recent requests listed first.
 The AppEEARS API contains some helpful formatting resources. Below, limit the API response to 2 entries for the last 2 requests and set pretty to True to format the response as an organized JSON object to make it easier to read. Additional information on AppEEARS API
 [retrieve task](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#retrieve-task), [pagination](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#pagination), and [formatting](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#formatting) can be found in the API documentation.
@@ -465,8 +456,10 @@ while (stat != 'done') {
 ```
 
 ***
-## 4. **Download a Request**
-## 4a. Explore Files in Request Output 
+## Download a Request
+
+### Explore Files in Request Output 
+
 Before downloading the request output, examine the files contained in the request output.
 ```{r, cache=TRUE}
 # Request the task bundle info from API bundle URL
@@ -476,7 +469,7 @@ bundle_response <- toJSON(response_content, auto_unbox = TRUE)  # Convert the co
 prettify(bundle_response)                                       # Print the prettified response
 ```
 ***
-## 4b. Download Files in a Request (Automation) 
+## Download Files in a Request (Automation) 
 The bundle API provides information about completed tasks. For any completed task, a bundle can be queried to return the files contained as a part of the task request. Below, call the bundle API and return all of the output files. Next, read the contents of the bundle in JSON format and loop through file_id to automate downloading all of the output files into the output directory. For more information, please see [AppEEARS API Documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#bundle).
 ```{r, warning= FALSE, results= 'hide', , cache=TRUE}
 bundle <- fromJSON(bundle_response)$files
@@ -495,7 +488,7 @@ for (id in bundle$file_id){
 ```
 
 ***
-## 5. **Explore AppEEARS Quality Service**
+## Explore AppEEARS Quality Service
 The quality API provides quality details about all of the data products available in AppEEARS. Below are examples of how to query the quality API for listing quality products, layers, and values. The final example ([Section 5c.](#decode)) demonstrates how AppEEARS quality services can be leveraged to decode pertinent quality values for your data. For more information visit [AppEEARS API documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#quality).
 
 First, reset pagination to include offset which allows you to set the number of results to skip before starting to return entries. Next, make a call to list all of the data product layers and the associated quality product and layer information.
@@ -509,7 +502,7 @@ remove(params, q_req, q_content)                          # Remove the variables
 prettify(q_response)                                      # Print the prettified quality information
 ```
 ***
-## 5a. List Quality Layers 
+### List Quality Layers 
 This API call will list all of the quality layer information for a product. For more information visit [AppEEARS API documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#quality)
 
 ```{r, cache=TRUE}
@@ -522,7 +515,7 @@ remove(MCD15A3H_req, MCD15A3H_content)                         # Remove the vari
 prettify(MCD15A3H_quality)                                     # Print the prettified quality information
 ```
 ***
-## 5b. Show Quality Values 
+### Inspect Quality Values 
 This API call will list all of the values for a given quality layer. 
 ```{r, cache=TRUE}
 quality_layer <- 'FparLai_QC'                                 # assign a quality layer to a variable
@@ -534,7 +527,7 @@ remove(quality_req, quality_content)                           # Remove the vari
 prettify(quality_response)                                     # Print the quality response as a data frame
 ```
 ***
-## 5c. [Decode Quality Values]{#decode}
+## Decode Quality Values
 This API call will decode the bits for a given quality value. 
 ```{r, cache=TRUE}
 quality_value <- 1                        # Assign a quality value to a variable 
@@ -545,7 +538,8 @@ remove(response)                                      # Remove the variables tha
 prettify(q_response)                                  # Print the prettified response
 ```
 ***
-## 6. **BONUS: Load Request Output and Visualize**
+## Load Request Output and Visualize
+
 Here, load the CSV file containing the results from your request using `readr` package, and create some basic visualizations using the `ggplot2` package.
 
 ## 6a. Load a CSV
@@ -575,7 +569,7 @@ sprintf("Unit for LST_DAY_1KM is: %s" ,unit)                 # Print LST_DAY_1KM
 
 ```
 ***
-## 6b. Plot Results (Line/Scatter Plots)
+## Plot Results (Line/Scatter Plots)
 Next, plot a time series of daytime LST for the selected point in Grand Canyon National Park for 2018. Below, filter the LST data to exclude fill values. 
 ```{r}
 lst_GC <- lst_GC %>%
@@ -657,4 +651,18 @@ ggplot()+
 This example can provide a template to use for your own research workflows. Leveraging the AppEEARS API for searching, extracting, and formatting analysis ready data, and loading it directly into R means that you can keep your entire research workflow in a single software program, from start to finish.
 
 
-### Submit an Area Request
+## Submit an Area Request
+
+## NASA EOS Written Questions
+
+## NASA EOS Culmination Write Up
+
+Write up a 1-page **derived data product or research pipeline proposal** summary of a project that you might want to explore using NASA EOS data. Include the types of data that you would need to implement this project and how you would retrieve them. Save this summary as you will be refining and adding to your ideas over the course of the semester.  
+
+Suggestions: 
+
+1. Tables or bullet lists of **specific** data products
+
+2. An **overarching high-quality figure** to show how these data align
+
+3. One paragraph summarizing *how* this data or analysis is useful to **you and/or the infrastructure**.
