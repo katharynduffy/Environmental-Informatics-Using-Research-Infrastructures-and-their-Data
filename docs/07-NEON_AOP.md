@@ -1,5 +1,7 @@
 # NEON AOP
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/f5e-X9dMnXs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Hyperspectral Remote Sensing
 
 ### Learning Objectives
@@ -1543,10 +1545,14 @@ This dataset has been subset from a full GEDI orbit retaining only the 'shots' t
 Download GEDI Example Dataset</a>
 
 #### Datum difference between WGS84 and NAD83
-This dataset describes the differences between two common standards for vertical data in North America.
-<a href="https://neondata.sharefile.com/d-sf4e35e969fc43aca" class="link--button link--arrow">
-Download Datum Difference Dataset</a>
+This dataset describes the differences between the common WGS84 and NAD83 standards for vertical data in North America.
+<a href="https://ndownloader.figshare.com/files/24994703" class="link--button link--arrow">
+Download Dataset</a>
 
+#### Datum difference between GEOID12A and NAD83
+This dataset describes the differences between the GEOID12A and NAD83 standards for vertical data in North America.
+<a href="https://ndownloader.figshare.com/files/24994697" class="link--button link--arrow">
+Download Dataset</a>
 
 ### Getting Started
 In this section we will compare NEON and GEDI LiDAR data by comparing the information that they both capture in the same location. NEON data are actually one of the datasets used by the GEDI mission to calibrate and validate GEDI waveforms, so this makes for a valuable comparison! 
@@ -1686,12 +1692,14 @@ Great! There are several GEDI orbits available that have at least 1 'shot' withi
 # Note that this will download a large file (>7Gb) which
 # can be avoided by using the example dataset provided above.
 # wd='./data/'
-# if(!file.exists(paste0(wd,basename(gLevel1B[2])))){
-#   gediDownload(filepath=gLevel1B[2],outdir=wd)
+# if(!file.exists(paste0("./data/",basename(gLevel1B[2])))){
+#   gediDownload(filepath=gLevel1B[2],outdir="./data/")
 # }
 ```
 
 Next, we use the rGEDI package to read in the GEDI data. First, we need to make a 'gedi.level1b' object using the `readLevel1B()` function. Next, we extract the geographic position of the center of each shot from the 'gedi.level1b' object using the `getLevel1BGeo()` function, and display the head of the resulting table.
+
+From this point on, we will be using the (much smaller) example subset of GEDI data linked at the top of this section. All functions and processes should also work with a full GEDI dataset downloaded above, if you choose to pursue this research on your own!
 
 
 ```r
@@ -1932,88 +1940,20 @@ For more information about these standards, please see <a href="https://desktop.
 ### Aligning the Vertical Datum
 AOP data have a relatively small area of coverage, and are therefore delivered with the coordinate reference system (CRS) in the UTM zone in which they were collected, set to the GEOID12A vertical datum (roughly equaling mean sea level). Meanwhile, GEDI data are global, so they are delivered with the common WGS84 ellipsoidal refrence datum. We need to align these vertical datums to ensure that the two data products line up correctly. However, this is not a trivial step, nor as simple as a reprojection. In this example, we will keep the NEON LiDAR data in its current datum, and convert the vertical position of the GEDI data from WGS84 into GEOID12A vertical position.
 
-NOAA has a useful <a href="https://www.ngs.noaa.gov/INFO/facts/vdatum.shtml">tool called Vdatum</a> that will convert from one datum to another. For this example, we will use Vdatum to convert from WGS84 to NAD83. Seeing as GEOID12A is based on the NAD83 datum, we can first convert the GEDI data's vertical position from WGS84 to NAD83 datum, then apply the offset between NAD83 and GEOID12A. Rather than use the Vdatum tool for each point, we will use a raster created by NEON scientists that reports the vertical difference between WGS84 and NAD83 for all points in the conterminous USA. Please <a href="https://neondata.sharefile.com/d-sf4e35e969fc43aca">visit this Sharepoint page</a> (same as the link at the top of this page) to download the raster. We will then read it into our R session:
+NOAA has a useful <a href="https://www.ngs.noaa.gov/INFO/facts/vdatum.shtml">tool called Vdatum</a> that will convert from one datum to another. For this example, we will use Vdatum to convert from WGS84 to NAD83. Seeing as GEOID12A is based on the NAD83 datum, we can first convert the GEDI data's vertical position from WGS84 to NAD83 datum, then apply the offset between NAD83 and GEOID12A. Rather than use the Vdatum tool for each point, we will use a raster created by NEON scientists that reports the vertical difference between WGS84 and NAD83 for all points in the conterminous USA.
 
+You can access this dataset by <a href="https://ndownloader.figshare.com/files/24994703">clicking here to download the WGS84-NAD83 datum offset raster</a>.
 
-```r
-# Edit this filepath as needed for your machine
-datum_diff=raster('./data/WGS84_NAD83_seperation.tif')
-```
+### GEOID12A Height Model
+GEOID12A is a surface model that is described in terms of its relative height compared to NAD83. You can use <a href="https://www.ngs.noaa.gov/cgi-bin/GEOID_STUFF/geoid12A_prompt1.prl">this interactive webpage</a> to find the geoid height for any location within North America. However, that would be combersome to have to use this webpage for every location. Instead, you can download a <a href="https://www.ngs.noaa.gov/GEOID/GEOID12A/GEOID12A_CONUS.shtml>binary file from the NOAA website</a> that describes this geoid's height, and convert that into a raster similar to the one that we just downloaded above. To simplify things here, we have already gone through the process of downloading the binary file and converting it to a raster for you to download, which can now easily be read into your R environment.
 
-#### GEOID12A Height Model
-GEOID12A is a surface model that is described in terms of its relative height compared to NAD83. You can use <a href="https://www.ngs.noaa.gov/cgi-bin/GEOID_STUFF/geoid12A_prompt1.prl">this interactive webpage</a> to find the geoid height for any location within North America. However, that would be combersome to have to use this webpage for every location. Instead, we will download a <a href="https://www.ngs.noaa.gov/GEOID/GEOID12A/GEOID12A_CONUS.shtml>binary file from the NOAA website</a> that describes this geoid's height, and convert that into a raster similar to the one that we just downloaded above. We have included comments here from the NOAA website about the structure of the binary file. We use this information to extract the dimensions of this dataset in order to construct a raster in R from these binary data.
-
-
-```r
-# Download binary file of offset from GEOID12A to NAD83
-if(!file.exists('./data/g2012au0.bin')){
-  download.file("https://www.ngs.noaa.gov/PC_PROD/GEOID12A/Format_unix/g2012au0.bin", 
-                destfile = './data/g2012au0.bin')
-}
-
-# Read header information. See https://www.ngs.noaa.gov/GEOID/GEOID12B/g2012Brme.txt
-
-# File Structure
-# ---------------
-# The files (ASCII and binary) follow the same structure of a one-line header 
-# followed by the data in row-major format. The one-line header contains four 
-# double (real*8) words followed by three long (int*4) words. 
-# These parameters define the geographic extent of the area:
-# 
-# SLAT:  Southernmost North latitude in whole degrees. 
-#        Use a minus sign (-) to indicate South latitudes. 
-# WLON:  Westernmost East longitude in whole degrees. 
-# DLAT:  Distance interval in latitude in whole degrees 
-#        (point spacing in E-W direction)
-# DLON:  Distance interval in longitude in whole degrees 
-#        (point spacing in N-S direction)
-# NLAT:  Number of rows 
-#        (starts with SLAT and moves northward DLAT to next row)
-# NLON:  Number of columns 
-#        (starts with WLON and moves eastward DLON to next column)
-# IKIND: Always equal to one (indicates data are real*4 and endian condition)
-
-to.read = file('./data/g2012au0.bin', "rb")
-header1=readBin(to.read, double(), endian = "big", n=4)
-header1 #SLAT, WLON, DLAT, DLON
-```
-
-```
-## [1]  24.00000000 230.00000000   0.01666667   0.01666667
-```
-
-```r
-header2=readBin(to.read, integer(), endian = "big", n=3)
-header2 #NLAT, NLON, IKIND
-```
-
-```
-## [1] 2041 4201    1
-```
-
-```r
-GEOID12A_diff_vals=readBin(to.read, n=header2[1]*header2[2], numeric(), endian = "big", size=4)
-```
+You can access this dataset by <a href="https://ndownloader.figshare.com/files/24994697">clicking here to download the GEOID12A-NAD83 datum offset raster</a>.
 
 
 
 ```r
-# Create a new raster using the dimensions extracted from the headers
-GEOID12A_diff_rast <- raster(ncol=header2[2], nrow=header2[1], 
-                             xmn=header1[2]-360, xmx=header1[2]+(header1[4]*header2[2])-360, 
-                             ymn=header1[1], ymx=header1[1]+(header1[3]*header2[1]),
-                             crs = crs(datum_diff))
-GEOID12A_diff_rast <- setValues(GEOID12A_diff_rast, values = GEOID12A_diff_vals)
-
-# we need to use the 'flip' function to put the map 'upright' because R expects to see raster values from the top left corner and fills by rows, but this dataset is delivered in sucha a way that it describes the bottom left corner and fills by rows up to the top of the image (this is actually the convention for most traditional remote sensing software - and leads to a similar problem that is explained in the Hyperspectral tutorial series.)
-GEOID12A_diff_rast <- flip(GEOID12A_diff_rast, 'y')
-
-## let's crop out only CONUS for plotting purposes - we will still refer to the fill image when extracting values.
-
-diff_resp=resample(datum_diff, GEOID12A_diff_rast) # resample to match pixel size/registration for cropping
-diff_resp=crop(diff_resp, GEOID12A_diff_rast)
-GEOID12A_diff_rast=crop(GEOID12A_diff_rast, extent(diff_resp))
-GEOID12A_diff_rast_mask=mask(GEOID12A_diff_rast, diff_resp)
+GEOID12A_diff_rast=raster("./data/GEOID12A_NAD83_offset.tif")
+WGS84_diff_rast=raster("./data/WGS84_NAD83_offset.tif")
 ```
 
 Now that we have the two offset rasters, let's plot them together to compare their spatial patterns.
@@ -2021,8 +1961,8 @@ Now that we have the two offset rasters, let's plot them together to compare the
 
 ```r
 par(mfrow=c(2,1), mar=c(2.5,2.5, 3.5,1))
-plot(GEOID12A_diff_rast_mask, col=viridis(100),main="GEOID12A minus NAD83 (m)")
-plot(diff_resp, main="WGS84 minus NAD83 (m)")
+plot(GEOID12A_diff_rast, col=viridis(100),main="GEOID12A minus NAD83 (m)")
+plot(WGS84_diff_rast, main="WGS84 minus NAD83 (m)")
 ```
 
 <img src="07-NEON_AOP_files/figure-html/plot-both-diff-maps-1.png" width="576" />
@@ -2041,9 +1981,9 @@ Now that we know the relative vertical offsets between WGS84, NAD83, and GEOID12
 footprint_df=as.data.frame(
   cbind(level1bgeo_WREF$longitude_lastbin, level1bgeo_WREF$latitude_lastbin))
 
-WGS_NAD_diff <- extract(datum_diff, footprint_df)
+WGS_NAD_diff <- extract(WGS84_diff_rast, footprint_df)
 
-GEOID12A_NAD_diff <- extract(GEOID12A_diff_rast_mask,footprint_df)
+GEOID12A_NAD_diff <- extract(GEOID12A_diff_rast,footprint_df)
 
 # Add together the offsets to calculate a vector of net differences in elevation
 net_diff=WGS_NAD_diff+GEOID12A_NAD_diff

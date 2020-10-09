@@ -7,12 +7,12 @@
 # Aggregation period: 3day
 # Year min: 2008
 # Year max: 2020
-# Final Processing Date: 2020-10-07
-# Final Processing Time: 14:21:52
+# Final Processing Date: 2020-10-09
+# Final Processing Time: 09:10:57
 # Spline RMSE gcc_mean: 0.00335
 # Spline RMSE gcc_50: 0.00318
 # Spline RMSE gcc_75: 0.00358
-# Spline RMSE gcc_90: 0.00431
+# Spline RMSE gcc_90: 0.00432
 #
 site,veg_type,roi_id,direction,gcc_value,transition_10,transition_25,transition_50,transition_10_lower_ci,transition_25_lower_ci,transition_50_lower_ci,transition_10_upper_ci,transition_25_upper_ci,transition_50_upper_ci,threshold_10,threshold_25,threshold_50,min_gcc,max_gcc
 harvard,DB,1000,rising,gcc_90,2009-04-27,2009-05-02,2009-05-10,2009-04-23,2009-05-01,2009-05-08,2009-04-30,2009-05-04,2009-05-11,0.37729,0.3889,0.41811,0.36835,0.462
