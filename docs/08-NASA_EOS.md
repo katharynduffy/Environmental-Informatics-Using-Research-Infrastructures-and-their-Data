@@ -1,10 +1,15 @@
 
 # NASA's Earth Observing System (EOS)
 
-> Estimated Time: 2 hours
+> Estimated Time: 3 hours
 
 ## Learning Objectives
 
+  * Describe the mission of NASA EOS
+  * Describe the roles of DAACs in distributing data
+  * Interact with the AppEEARS API to query the list of available products
+  * Submit and download submitting a point and area sample requests, download the request 
+  * Filter data based on quality
 
 <img src="./images/CURRENT-Earth-Missions10_2019.png" width="400" />
 
@@ -24,7 +29,7 @@ NASA’s Earth Observing System (EOS) is a coordinated series of polar-orbiting 
 
 >Credit: NASA's Goddard Space Flight Center
 
-## NASA EOS Earth Data Assignment:
+## NASA EOS Earth Data Account:
 
 The EOSDIS Earthdata Login provides a centralized and simplified mechanism for user registration and profile management for all EOSDIS system components. End users may register and edit their profile information in one location allowing them access to the wide array of EOSDIS data and services. The EOSDIS Earthdata Login also helps the EOSDIS program better understand the user demographics and access patterns in support of planning for new value-added features and customized services that can be directed to specific users or user groups resulting in better user experience.
 
@@ -1264,7 +1269,7 @@ prettify(q_response)                                  # Print the prettified res
 
 Here, load the CSV file containing the results from your request using `readr` package, and create some basic visualizations using the `ggplot2` package.
 
-## 6a. Load a CSV
+## Load a CSV
 Use the `readr` package to load the CSV file containing the results from the AppEEARS request.
 
 ```r
@@ -1409,6 +1414,7 @@ This example can provide a template to use for your own research workflows. Leve
 ## Submit an Area Request
 
 ## NASA EOS Written Questions
+1) How does the scientific method of Earth Science differ from thta of traditional/classical labratory sciences?
 
 ## NASA EOS Culmination Write Up
 
