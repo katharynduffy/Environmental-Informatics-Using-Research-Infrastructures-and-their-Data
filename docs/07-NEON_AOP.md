@@ -926,7 +926,9 @@ output.
 
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Rz9kgfPgLPo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+## Light Detection And Ranging (LiDAR) Data
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EYbhNSUnIdU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Calculating Forest Structural Diversity Metrics from NEON LiDAR Data
 
@@ -964,7 +966,7 @@ AOP point clouds for 1km tiles from the <a href="https://www.neonscience.org/fie
 
 <a href="https://drive.google.com/open?id=1Aemh0IVKvC-LoMj2AXr9k8rDQk77l8k7" target="_blank"> **Link to download .laz files on Google Drive Here.**</a>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/EYbhNSUnIdU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 ### Recommended Skills
 
@@ -976,11 +978,27 @@ on how lidar works, please see NEON's
 
 </div> 
 
+### Additional Resources
+
+Jean-Romain Roussel, Tristan R.H. Goodbody, Piotr Tompalski have written a fantastic `gitbook` on their `lidR` package [**which can be found here.**](https://jean-romain.github.io/lidRbook/index.html)
+
+<img src="./images/lidR_logo.png" width="226" />
+
+If loading some of the packages needed for this tutorial results in non-stop errors, I strongly suggest you run this section using a Docker container,*(e.g. Rocker Project's Geospatial image)*, or one from CyVerse: https://hub.docker.com/r/cyversevice/rstudio-geospatial
+
+<img src="./images/cyverse_logo.png" width="1042" />
+
 ## Introduction to Structural Diversity Metrics
-Forest structure influences many important ecological processes, including 
-biogeochemical cycling, wildfires, species richness and diversity, and many 
-others. Quantifying forest structure, hereafter referred to as "structural 
-diversity," presents a challenge for many reasons, including difficulty in 
+
+Forest structure influences many important ecological processes, including:
+
+  + biogeochemical cycling, 
+  + wildfires, 
+  + species richness and diversity, 
+  + and many others. 
+  
+Quantifying forest structure, hereafter referred to as "*structural 
+diversity*," presents a challenge for many reasons, including difficulty in 
 measuring individual trees, limbs, and leaves across large areas. In order 
 to overcome this challenge, today's researchers use Light Detection And 
 Ranging (LiDAR) technology to measure large areas of forest. It is also 
@@ -1593,10 +1611,10 @@ byTileAOP(dpID = "DP3.30015.001", site = SITECODE, year = 2017,
 ## Downloading 6 files
 ##   |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%  |                                                                              |======================================================================| 100%
 ## Successfully downloaded  6  files.
-## NEON_D16_WREF_DP3_580000_5075000_CHM.tif downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/L3/DiscreteLidar/CanopyHeightModelGtif
-## NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.kml downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/kmls
-## NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.dbf downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/shps
 ## NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.shp downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/shps
+## NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.dbf downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/shps
+## NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.kml downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/kmls
+## NEON_D16_WREF_DP3_580000_5075000_CHM.tif downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/L3/DiscreteLidar/CanopyHeightModelGtif
 ## NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.shx downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/shps
 ## NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.prj downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/shps
 ```
@@ -1793,7 +1811,7 @@ grid()#add a grid to the plot
 par(oldpar)
 ```
 
-This waveform shows some noise above and below the main ecosystem return, with a fairly dense canopy around 370m elevation, an a characteristic ground return spike at about 340m. While the GEDI data are extremely valuable and offer a near-global coverage, it is hard to get a good sense of what the ecosystem really looks like from this GEDI waveform. Let's download some NEON AOP pointcloud data to pair up with this waveform to get a better sense of what GEDI is reporting.
+This waveform shows some noise above and below the main ecosystem return, with a fairly dense canopy around 370m elevation, and a characteristic ground return spike at about 340m. While the GEDI data are extremely valuable and offer a near-global coverage, it is hard to get a good sense of what the ecosystem really looks like from this GEDI waveform. Let's download some NEON AOP pointcloud data to pair up with this waveform to get a better sense of what GEDI is reporting.
 
 ### Download and Plot NEON AOP LiDAR pointcloud data
 Here, we will use the `byTileAOP()` function from the 'neonUtilities' package to download the classified pointcloud mosaic data (DP1.30003.001). Since this is a mosaic tile like the CHM, we can just pass this function the lower left corner of the CHM tile to get the corresponding lidar pointcloud mosaic tile for our analysis.
@@ -2190,10 +2208,10 @@ For the purpose of this coding lab we will evaluate 2 different forested sites i
 
 Write up a 1-page **derived data product or research pipeline proposal** summary of a project that you might want to explore using NEON AOP data. Include the types of NEON (and other data) that you would need to implement this project. Save this summary as you will be refining and adding to your ideas over the course of the semester.  
 
-Sugestions: 
+Suggestions: 
 
 1. Tables or bullet lists of **specific** data products
 
 2. An **overarching high-quality figure** to show how these data align
 
-3. One paragaph summarizing *how* this data or analysis is useful to **you and/or the infrastructure**.
+3. One paragraph summarizing *how* this data or analysis is useful to **you and/or the infrastructure**.
