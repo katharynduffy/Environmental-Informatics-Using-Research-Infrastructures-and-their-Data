@@ -1768,13 +1768,13 @@ plot(base_crop$geometry, border = 'blue', add=T)
 
 4) How do the additional bands in NEON AOP improve our contraint of Biodiversity and Ecosystem Structure relative to satelite-derived data?
 
-5) What role do campagins such as NEON AOP play in 'filling the sampling gap' of essential *in situ* data such as FLUXNET (Eddy Co-Variance) data?
+5) What role do campaigns such as NEON AOP play in 'filling the sampling gap' of essential *in situ* data such as FLUXNET (Eddy Co-Variance) data?
 
 6) List 3 attributes of NEON AOP data that are unique to other publicly served data.
 *Hints: Band width? Resolution?  Something else?*
 
 7) Which data product(s) derived from the NEON AOP campaign align with remotely-sensed products from NASA?  
-*Hint: start with vegetation indicies*
+*Hint: start with vegetation indices*
 
 ## NEON AOP Coding Lab
 
