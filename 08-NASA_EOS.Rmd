@@ -449,7 +449,7 @@ prettify(statusResponse)                                    # Print the prettifi
 ```
 
 Retrieve the task status every 5 seconds. The task status should be `done` to be able to download the output.
-```{r}
+```{r, eval=FALSE}
 while (stat != 'done') {
   Sys.sleep(5)
   # Request the task status and retrieve content of request from task URL

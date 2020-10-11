@@ -674,7 +674,8 @@ H5close()
 ```
 
 
-<div id="ds-challenge" markdown="1">
+
+
 ### Challenge: Work with Rasters
 
 Try these three extensions on your own: 
@@ -692,11 +693,21 @@ output.
 
 </div>
 
-
+***
 
 ## Light Detection And Ranging (LiDAR) Data
 
+**A 6:02 introduction video on LiDAR:**
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/EYbhNSUnIdU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+**A ~17 minute video lecture by Dr. Tristan Goulden on discrete LiDAR and LiDAT data:**
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PRE5KV2_w3Q" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+**A ~35 minute video on LiDAR Uncertainty:**
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Cy2pAuv-eUY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Calculating Forest Structural Diversity Metrics from NEON LiDAR Data
 
@@ -744,7 +755,6 @@ data are collected and represented in las/laz files. For more information
 on how lidar works, please see NEON's
 <a href="https://www.neonscience.org/intro-lidar-r-series" target="_blank"> Introduction to Lidar Tutorial Series.</a>
 
-</div> 
 
 ### Additional Resources
 

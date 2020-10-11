@@ -267,8 +267,8 @@ prettify(token_response)                                       # Print the prett
 ```
 ## {
 ##     "token_type": "Bearer",
-##     "token": "dZBdb-Pn7AdlNi8uxzWpWbTAK_6M-H6PBKKmm5DOOvnb-GI-6TFM5c-e_48CkPJyM71fWQ3MbRb9Dx7hNwD8QA",
-##     "expiration": "2020-10-09T20:33:11Z"
+##     "token": "h0-rrdCREPd4jBCNg1NbEVs6KbOgv2xD52dPupj72NCAd6-18SlhgIj-cOFMuFEHwQFKJBiatkkP365Rm5HyLQ",
+##     "expiration": "2020-10-13T14:44:21Z"
 ## }
 ## 
 ```
@@ -834,10 +834,6 @@ while (stat != 'done') {
   remove(stat_content) 
   print(stat)
 }
-```
-
-```
-## [1] "done"
 ```
 
 ***
