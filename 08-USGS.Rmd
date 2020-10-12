@@ -19,7 +19,7 @@ The [NWIS web site](https://waterdata.usgs.gov/nwis) serves current and historic
 
 
 
-**USGS R Packages: Collaborative and reproducible data analysis using R**
+## USGS R Packages: Collaborative and reproducible data analysis using R
 
 > Contributors: Jordan Read, Lindsay Carr
 > Adapted from USGS ['Getting Started with USGS R Packages' course materials](https://owi.usgs.gov/R/training-curriculum/usgs-packages/GettingStartedUSGS/)
