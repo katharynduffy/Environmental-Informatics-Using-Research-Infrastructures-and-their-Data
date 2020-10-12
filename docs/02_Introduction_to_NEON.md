@@ -842,7 +842,7 @@ req
 
 ```
 ## Response [https://data.neonscience.org/api/v0/products/DP1.10003.001]
-##   Date: 2020-10-12 16:08
+##   Date: 2020-10-12 17:01
 ##   Status: 200
 ##   Content-Type: application/json;charset=UTF-8
 ##   Size: 24.2 kB

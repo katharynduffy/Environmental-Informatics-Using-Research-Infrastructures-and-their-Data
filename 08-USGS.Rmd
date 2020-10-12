@@ -5,7 +5,7 @@
 **United States Geological Survey's National Water Information System (NWIS)**
 
 
-## USGS Missions:
+## USGS Mission:
 
 > Changes to the natural world combined with growing human demands put our health and safety, national security, and economy at risk. We are focused on some of the most significant issues society faces, and our science is making a substantial contribution to the well-being of the Nation and the world. 
 
