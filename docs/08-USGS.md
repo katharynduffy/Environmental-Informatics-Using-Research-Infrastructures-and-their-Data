@@ -1,8 +1,40 @@
-# USGS NWIS
+# USGS National Water Information System (NWIS)
+
+
 
 **United States Geological Survey's National Water Information System (NWIS)**
 
+
+## USGS Missions:
+
+> Changes to the natural world combined with growing human demands put our health and safety, national security, and economy at risk. We are focused on some of the most significant issues society faces, and our science is making a substantial contribution to the well-being of the Nation and the world. 
+
+You can explore [USGS Missions and programs here.](https://www.usgs.gov/science/mission-areas)
+
+
+```r
+knitr::include_graphics('./images/usgs_missions.png')
+```
+
+<img src="./images/usgs_missions.png" width="738" />
+
+##USGS Water Resources Mission:
+
+>Water information is fundamental to national and local economic well-being, protection of life and property, and effective management of the Nation’s water resources. The USGS works with partners to monitor, assess, conduct targeted research, and deliver information on a wide range of water resources and conditions including streamflow, groundwater, water quality, and water use and availability.
+
+
 The United States Geological Survey (USGS) has collected water-resources data at approximately 1.5 million sites in **all 50 States, the District of Columbia, Puerto Rico, the Virgin Islands, Guam, American Samoa and the Commonwealth of the Northern Mariana Islands**.
+
+
+```r
+knitr::include_graphics('./images/NWIS_sites.png')
+```
+
+<img src="./images/NWIS_sites.png" width="1913" />
+
+A map of collection sites [can be found here/](https://maps.waterdata.usgs.gov/mapper/index.html)
+
+## Types of USGS NWIS Data
 
 The types of data collected are varied, but generally fit into the broad categories of surface water and groundwater. 
 
@@ -2012,8 +2044,8 @@ rect(-81.70, 25.08, -80.30, 26.51, col = NA, border = 'red')
 ```
 
 <div class="figure">
-<img src="08-USGS_files/figure-html/unnamed-chunk-6-1.png" alt="A map of NWIS site locations in the Everglades" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-6)A map of NWIS site locations in the Everglades</p>
+<img src="08-USGS_files/figure-html/unnamed-chunk-8-1.png" alt="A map of NWIS site locations in the Everglades" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-8)A map of NWIS site locations in the Everglades</p>
 </div>
 
 You can now find and download Water Quality Portal data from R! 
@@ -2558,7 +2590,7 @@ check(evap_geojob)
 ## [1] "Process successful"
 ## 
 ## $URL
-## [1] "https://cida.usgs.gov:443/gdp/process/RetrieveResultServlet?id=ba9f574f-8856-4563-8c63-d996af89f000OUTPUT"
+## [1] "https://cida.usgs.gov:443/gdp/process/RetrieveResultServlet?id=fef881af-f01a-4735-bb99-8d76165324b3OUTPUT"
 ## 
 ## $statusType
 ## [1] "ProcessSucceeded"

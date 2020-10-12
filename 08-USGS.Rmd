@@ -1,8 +1,34 @@
-# USGS NWIS
+# USGS National Water Information System (NWIS)
+
+
 
 **United States Geological Survey's National Water Information System (NWIS)**
 
+
+## USGS Missions:
+
+> Changes to the natural world combined with growing human demands put our health and safety, national security, and economy at risk. We are focused on some of the most significant issues society faces, and our science is making a substantial contribution to the well-being of the Nation and the world. 
+
+You can explore [USGS Missions and programs here.](https://www.usgs.gov/science/mission-areas)
+
+```{r}
+knitr::include_graphics('./images/usgs_missions.png')
+```
+
+##USGS Water Resources Mission:
+
+>Water information is fundamental to national and local economic well-being, protection of life and property, and effective management of the Nation’s water resources. The USGS works with partners to monitor, assess, conduct targeted research, and deliver information on a wide range of water resources and conditions including streamflow, groundwater, water quality, and water use and availability.
+
+
 The United States Geological Survey (USGS) has collected water-resources data at approximately 1.5 million sites in **all 50 States, the District of Columbia, Puerto Rico, the Virgin Islands, Guam, American Samoa and the Commonwealth of the Northern Mariana Islands**.
+
+```{r}
+knitr::include_graphics('./images/NWIS_sites.png')
+```
+
+A map of collection sites [can be found here/](https://maps.waterdata.usgs.gov/mapper/index.html)
+
+## Types of USGS NWIS Data
 
 The types of data collected are varied, but generally fit into the broad categories of surface water and groundwater. 
 
@@ -41,7 +67,7 @@ This course assumes a moderate to advanced knowledge of the statistical programm
 
 ### Course outline
 
-```{r eval=TRUE, echo=FALSE, message=FALSE}
+```{r eval=TRUE, echo=FALSE, message=FALSE, warnings=FALSE}
 Module <- c("dataRetrieval", "geoknife", "sbtools", "Application")
 Description <- c(
   "Accessing time series data.",
