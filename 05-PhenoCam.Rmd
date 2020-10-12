@@ -279,10 +279,10 @@ network using the `get_phenos()` function. The returning value would be a
 `data.table` in order to simplify further data exploration.
 
 
-```{r}
+```{r, cache=TRUE}
 
 # obtaining the phenocam site metadata from the server as data.table
-phenos <- get_phenos()
+phenos <- phenocamapi::get_phenos()
 
 # checking out the first few sites
 head(phenos$site)
@@ -326,7 +326,7 @@ To do this we'd first want to remove the sites where there is not data and then
 plot the data.
 
 
-```{r}
+```{r, cache=TRUE}
 # removing the sites with unkown MAT and MAP values
 phenos <- phenos[!((MAT_worldclim == -9999)|(MAP_worldclim == -9999))]
 
@@ -361,7 +361,7 @@ flux tower. For this, we'd want to filter for those with a flux tower using the
 
 
 
-```{r}
+```{r, cache=TRUE}
 # store sites with flux_data available and the FLUX site name is specified
 phenofluxsites <- phenos[flux_data==TRUE&!is.na(flux_sitenames)&flux_sitenames!='',
                          .(PhenoCam=site, Flux=flux_sitenames)] # return as table
@@ -378,7 +378,7 @@ We could further identify which of those Phenocams with a flux tower and in
 deciduous broadleaf forests (`primary_veg_type=='DB'`).
 
 
-```{r}
+```{r, cache=TRUE}
 
 #list deciduous broadleaf sites with flux tower
 DB.flux <- phenos[flux_data==TRUE&primary_veg_type=='DB',
@@ -398,7 +398,7 @@ Therefore, extracting a list of midday images (only one image a day) can be usef
 
 
 
-```{r}
+```{r, cache=TRUE}
 
 # obtaining midday_images for dukehw
 duke_middays <- get_midday_list('dukehw')
@@ -411,7 +411,7 @@ Now we have a list of all the midday images from this Phenocam. Let's download
 them and plot
 
 
-```{r}
+```{r, cache=TRUE}
 # download a file
 destfile <- tempfile(fileext = '.jpg')
 
@@ -437,7 +437,7 @@ we frequently want all the images within a specific time range of interest. We'l
 learn how to do that next.
 
 
-```{r}
+```{r, cache=TRUE}
 
 # open a temporary directory
 tmp_dir <- tempdir()
@@ -459,7 +459,7 @@ head(duke_middays_path)
 We can demonstrate the seasonality of Duke forest observed from the camera. (Note
 this code may take a while to run through the loop).
 
-```{r}
+```{r, cache=TRUE}
 n <- length(duke_middays_path)
 par(mar= c(0,0,0,0), mfrow=c(4,3), oma=c(0,0,3,0))
 

@@ -1069,7 +1069,7 @@ pr <- loadByProduct("DP1.00024.001", site="NIWO", avg=30,
 ## Merged the most recent publication of sensor position files for each site and saved to /stackedFiles
 ## Copied the most recent publication of variable definition file to /stackedFiles
 ## Finished: Stacked 1 data tables and 2 metadata tables!
-## Stacking took 0.2577581 secs
+## Stacking took 0.1886871 secs
 ## All unzipped monthly data folders have been removed.
 ```
 
