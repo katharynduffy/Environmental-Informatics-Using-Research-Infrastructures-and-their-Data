@@ -11,22 +11,22 @@
 
 You can explore [USGS Missions and programs here.](https://www.usgs.gov/science/mission-areas)
 
-```{r}
+```{r, echo=FALSE}
 knitr::include_graphics('./images/usgs_missions.png')
 ```
 
-##USGS Water Resources Mission:
+## USGS Water Resources Mission:
 
 >Water information is fundamental to national and local economic well-being, protection of life and property, and effective management of the Nation’s water resources. The USGS works with partners to monitor, assess, conduct targeted research, and deliver information on a wide range of water resources and conditions including streamflow, groundwater, water quality, and water use and availability.
 
 
 The United States Geological Survey (USGS) has collected water-resources data at approximately 1.5 million sites in **all 50 States, the District of Columbia, Puerto Rico, the Virgin Islands, Guam, American Samoa and the Commonwealth of the Northern Mariana Islands**.
 
-```{r}
+```{r, echo=FALSE}
 knitr::include_graphics('./images/NWIS_sites.png')
 ```
 
-A map of collection sites [can be found here/](https://maps.waterdata.usgs.gov/mapper/index.html)
+A map of collection sites [can be found here](https://maps.waterdata.usgs.gov/mapper/index.html)
 
 ## Types of USGS NWIS Data
 
@@ -88,7 +88,7 @@ htmlTable(data.frame(Module, Description, Duration),
 See the [R installation instructions page](/installr) for how to install/upgrade R and RStudio, add GRAN to your settings, and install some basic packages. Then, execute these lines so that you have the most up-to-date version of the packages used in this course.
 
 ```{r eval=FALSE}
-install.packages(c('dataRetrieval', 'geoknife', 'sbtools'))
+install.packages(c('dataRetrieval', 'geoknife'))
 ```
 
 
@@ -122,7 +122,7 @@ By the end of this lesson, the learner will be able to:
 
 Before continuing with this lesson, you should make sure that the `dataRetrieval` package is installed and loaded. If you haven't recently updated, you could reinstall the package by running `install.packages('dataRetrieval')` or go to the "Update" button in the "Packages" tab in RStudio.
 
-```{r load-dataRetrieval}
+```{r load-dataRetrieval, warning=FALSE}
 # load the dataRetrival package
 library(dataRetrieval)
 ```
@@ -179,7 +179,7 @@ In some cases, users might have specific sites and data that they are pulling wi
 
 In this example, let's find South Carolina stream temperature data. We specify the state, South Carolina, using the `stateCd` argument and South Carolina's two letter abbreviation, SC.
 
-```{r data_sc, message=FALSE, warning=FALSE}
+```{r data_sc, message=FALSE, warning=FALSE, cache=TRUE}
 data_sc <- whatNWISdata(stateCd="SC")
 nrow(data_sc)
 ```
@@ -1330,18 +1330,18 @@ For the first scenario, the workflow from above was fine. If you are manually ch
 
 For the second scenario, your code will fail because it will continue to execute the code line by line after starting the job. So, your code will fail at the code that gets the data (`result`/`download`) since the job is still running. You can prevent scripts from continuing until the job is complete by using the function `wait`. This function makes a call to GDP at specified intervals to see if the job is complete, and allows the code to continue once the job is complete. This function has two arguments: the `geojob` object and `sleep.time`. `sleep.time` defines the interval at which to check the status of the job in seconds (the default for `sleep.time` is 5 seconds). Please try to adjust `sleep.time` to limit the number of calls to GDP, e.g. if you know the job will take about an hour, set `sleep.time=120` (2 min) because every 5 seconds would be excessive. 
 
-```{r wait-workflow, message=FALSE, warning=FALSE}
+```{r wait-workflow, message=FALSE, warning=FALSE, cache=TRUE}
 # typical wait workflow
 evap_geojob <- geoknife(evap_stencil, evap_fabric, evap_knife)
-wait(evap_geojob, sleep.time = 10)
+wait(evap_geojob, sleep.time = 20)
 evap_data <- result(evap_geojob)
 ```
 
 If you know ahead of time that your process will be long, you can tell the job to wait when defining your knife (the default is to not wait). `sleep.time` can be specified as an argument to `webprocess`. The following is functionally the same as the use of `wait()` from above.
 
-```{r wait-shortcut, message=FALSE, warning=FALSE}
+```{r wait-shortcut, message=FALSE, warning=FALSE, cache=TRUE}
 # create knife with the args wait and sleep.time
-evap_knife <- webprocess(wait=TRUE, sleep.time=10)
+evap_knife <- webprocess(wait=TRUE, sleep.time=20)
 
 # follow the same code from before to get the unweighted algorithm
 all_algorithms <- query(evap_knife, 'algorithms')

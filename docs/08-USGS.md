@@ -11,28 +11,18 @@
 
 You can explore [USGS Missions and programs here.](https://www.usgs.gov/science/mission-areas)
 
-
-```r
-knitr::include_graphics('./images/usgs_missions.png')
-```
-
 <img src="./images/usgs_missions.png" width="738" />
 
-##USGS Water Resources Mission:
+## USGS Water Resources Mission:
 
 >Water information is fundamental to national and local economic well-being, protection of life and property, and effective management of the Nation’s water resources. The USGS works with partners to monitor, assess, conduct targeted research, and deliver information on a wide range of water resources and conditions including streamflow, groundwater, water quality, and water use and availability.
 
 
 The United States Geological Survey (USGS) has collected water-resources data at approximately 1.5 million sites in **all 50 States, the District of Columbia, Puerto Rico, the Virgin Islands, Guam, American Samoa and the Commonwealth of the Northern Mariana Islands**.
 
-
-```r
-knitr::include_graphics('./images/NWIS_sites.png')
-```
-
 <img src="./images/NWIS_sites.png" width="1913" />
 
-A map of collection sites [can be found here/](https://maps.waterdata.usgs.gov/mapper/index.html)
+A map of collection sites [can be found here](https://maps.waterdata.usgs.gov/mapper/index.html)
 
 ## Types of USGS NWIS Data
 
@@ -100,14 +90,9 @@ This course assumes a moderate to advanced knowledge of the statistical programm
 <td style='padding-bottom: 0.5em; padding-right: 0.5em; padding-top: 0.5em; background-color: #f7f7f7; text-align: left;'>1 hour</td>
 </tr>
 <tr>
-<td style='padding-bottom: 0.5em; padding-right: 0.5em; padding-top: 0.5em; text-align: left;'>sbtools</td>
-<td style='padding-bottom: 0.5em; padding-right: 0.5em; padding-top: 0.5em; text-align: left;'>Interacting with ScienceBase to access data, add data to ScienceBase, or release data from R output for a data release.</td>
-<td style='padding-bottom: 0.5em; padding-right: 0.5em; padding-top: 0.5em; text-align: left;'>1.5 hour</td>
-</tr>
-<tr style='background-color: #f7f7f7;'>
-<td style='padding-bottom: 0.5em; padding-right: 0.5em; padding-top: 0.5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: left;'>Application</td>
-<td style='padding-bottom: 0.5em; padding-right: 0.5em; padding-top: 0.5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: left;'>Use the packages introduced in previous modules to create and use a robust modular workflow.</td>
-<td style='padding-bottom: 0.5em; padding-right: 0.5em; padding-top: 0.5em; background-color: #f7f7f7; border-bottom: 2px solid grey; text-align: left;'>1.5 hour</td>
+<td style='padding-bottom: 0.5em; padding-right: 0.5em; padding-top: 0.5em; border-bottom: 2px solid grey; text-align: left;'>Application</td>
+<td style='padding-bottom: 0.5em; padding-right: 0.5em; padding-top: 0.5em; border-bottom: 2px solid grey; text-align: left;'>Use the packages introduced in previous modules to create and use a robust modular workflow.</td>
+<td style='padding-bottom: 0.5em; padding-right: 0.5em; padding-top: 0.5em; border-bottom: 2px solid grey; text-align: left;'>1.5 hour</td>
 </tr>
 </tbody>
 </table>
@@ -118,7 +103,7 @@ See the [R installation instructions page](/installr) for how to install/upgrade
 
 
 ```r
-install.packages(c('dataRetrieval', 'geoknife', 'sbtools'))
+install.packages(c('dataRetrieval', 'geoknife'))
 ```
 
 
@@ -217,7 +202,7 @@ nrow(data_sc)
 ```
 
 ```
-## [1] 185981
+## [1] 186041
 ```
 
 Let's look at the dataframe returned from `whatNWISdata`:
@@ -251,10 +236,10 @@ head(data_sc)
 ## 6 03040206           dv   00060   00001 124348       <NA>           wat
 ##   parm_grp_cd  srs_id access_cd begin_date   end_date count_nu
 ## 1        <NA>       0         0 2006-01-01 2019-01-01       14
-## 2        <NA> 1645597         0 2005-10-01 2020-10-11     5394
-## 3        <NA> 1645597         0 2005-10-01 2020-10-11     5394
-## 4        <NA> 1645597         0 2005-10-01 2020-10-11     5394
-## 5        <NA> 1644459         0 2006-01-06 2020-10-11     5202
+## 2        <NA> 1645597         0 2005-10-01 2020-10-12     5395
+## 3        <NA> 1645597         0 2005-10-01 2020-10-12     5395
+## 4        <NA> 1645597         0 2005-10-01 2020-10-12     5395
+## 5        <NA> 1644459         0 2006-01-06 2020-10-12     5203
 ## 6        <NA> 1645423         0 2005-11-17 2019-08-17     4394
 ```
 
@@ -282,7 +267,7 @@ nrow(data_sc_stream_temp)
 ## [1] 652
 ```
 
-We are now down to just 652 rows of data, much less than our original 185,981 rows. Downloading NWIS data will be covered in the next section, [readNWIS](/usgs-packages/dataRetrieval-readNWIS).
+We are now down to just 652 rows of data, much less than our original 186,041 rows. Downloading NWIS data will be covered in the next section, [readNWIS](/usgs-packages/dataRetrieval-readNWIS).
 
 The `whatNWISdata` function can also be very useful for making quick maps with site locations, see the columns `dec_lat_va` and `dec_long_va` (decimal latitude and longitude value). For instance,
 
@@ -701,12 +686,12 @@ head(MauiCo_avgdailyQ)
 
 ```
 ##   agency_cd  site_no   dateTime X_00060_00003 X_00060_00003_cd tz_cd
-## 1      USGS 16400000 2020-10-11          3.17                P   UTC
-## 2      USGS 16401000 1929-08-31         18.00                A   UTC
-## 3      USGS 16402000 1957-07-31         51.00                A   UTC
-## 4      USGS 16403000 1957-06-30          5.50                A   UTC
-## 5      USGS 16403600 1970-09-29          2.40                A   UTC
-## 6      USGS 16403900 1996-09-30          1.30                A   UTC
+## 1      USGS 16400000 2020-10-12           3.5                P   UTC
+## 2      USGS 16401000 1929-08-31          18.0                A   UTC
+## 3      USGS 16402000 1957-07-31          51.0                A   UTC
+## 4      USGS 16403000 1957-06-30           5.5                A   UTC
+## 5      USGS 16403600 1970-09-29           2.4                A   UTC
+## 6      USGS 16403900 1996-09-30           1.3                A   UTC
 ```
 
 ```r
@@ -742,7 +727,7 @@ head(MauiHUC8_mindailyT)
 ## 3      USGS 16520000 2004-04-14          17.5                A   UTC
 ## 4      USGS 16527000 2004-01-13          15.4                A   UTC
 ## 5      USGS 16555000 2004-01-13          16.4                A   UTC
-## 6      USGS 16618000 2020-10-11          21.0                P   UTC
+## 6      USGS 16618000 2020-10-12          21.0                P   UTC
 ```
 
 ```r
@@ -2339,7 +2324,7 @@ head(default_geoms)
 ## [3] "upload:Ag_Lands_Reservation"           
 ## [4] "upload:Airport_Polygon"                
 ## [5] "sample:Alaska"                         
-## [6] "upload:Brasil"
+## [6] "upload:BB_LPK"
 ```
 
 You will notice a pattern with the names of the geoms: a category followed by `:`, and then a specific name. These category-name combinations are the strings you would use to define your geom. Additionally, `webgeom` can accept a URL that points directly to a WFS. The categories you should be familiar with are `sample` and `upload`. `sample` geoms are any that are available through `geoknife` by default. `upload` geoms are custom shapefiles that someone uploaded through GDP. If you would like to upload a specific shapefile to GDP, follow [these instructions](https://my.usgs.gov/confluence/display/GeoDataPortal/Detailed+GDP+Use+Instructions#DetailedGDPUseInstructions-UsinganUploadedShapefile). **Be aware that uploaded shapefiles are wiped from the server at regular intervals (could be as often as weekly)**. To use your own shapefile: upload it, execute your job and then save the output; re-upload your shapefile the next time you need it on GDP.
@@ -2590,7 +2575,7 @@ check(evap_geojob)
 ## [1] "Process successful"
 ## 
 ## $URL
-## [1] "https://cida.usgs.gov:443/gdp/process/RetrieveResultServlet?id=a766620a-ad1f-433e-a210-2789e83683e3OUTPUT"
+## [1] "https://cida.usgs.gov:443/gdp/process/RetrieveResultServlet?id=a908353e-f79e-43dd-b204-fbad4ab85425OUTPUT"
 ## 
 ## $statusType
 ## [1] "ProcessSucceeded"
@@ -2674,7 +2659,7 @@ For the second scenario, your code will fail because it will continue to execute
 ```r
 # typical wait workflow
 evap_geojob <- geoknife(evap_stencil, evap_fabric, evap_knife)
-wait(evap_geojob, sleep.time = 10)
+wait(evap_geojob, sleep.time = 20)
 evap_data <- result(evap_geojob)
 ```
 
@@ -2683,7 +2668,7 @@ If you know ahead of time that your process will be long, you can tell the job t
 
 ```r
 # create knife with the args wait and sleep.time
-evap_knife <- webprocess(wait=TRUE, sleep.time=10)
+evap_knife <- webprocess(wait=TRUE, sleep.time=20)
 
 # follow the same code from before to get the unweighted algorithm
 all_algorithms <- query(evap_knife, 'algorithms')

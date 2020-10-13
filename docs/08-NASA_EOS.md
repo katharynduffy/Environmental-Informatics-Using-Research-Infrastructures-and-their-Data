@@ -267,8 +267,8 @@ prettify(token_response)                                       # Print the prett
 ```
 ## {
 ##     "token_type": "Bearer",
-##     "token": "h0-rrdCREPd4jBCNg1NbEVs6KbOgv2xD52dPupj72NCAd6-18SlhgIj-cOFMuFEHwQFKJBiatkkP365Rm5HyLQ",
-##     "expiration": "2020-10-13T14:44:21Z"
+##     "token": "4-4xOqVgm0WJDzpeAPPPkLBw17XQlSdXuW7LrqbqDPLhwAV_AG2wUm4N1iGB5g2Js3Lj9t3R7yqL5DxL3zscew",
+##     "expiration": "2020-10-15T16:03:26Z"
 ## }
 ## 
 ```
