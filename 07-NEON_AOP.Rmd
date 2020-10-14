@@ -1822,11 +1822,11 @@ For the purpose of this coding lab we will evaluate 2 different forested sites i
 ```
 **Write 2-3 sentences summarizing your findings and thoughts.**
 
-**3:** Use the `byTileAOP` function of the `neonUtilities` package to pull a subset of the descrete LiDAR pointcloud for each forest (*Hint: You can feed `byTileAOP` Easting and Northing from your `Vegetation Structure` dataframe(s)*).  Use the `structural_diversity_metrics` function that you defined in section 5.6 of the textbook to process discrete return LiDAR for each site and generte structural diversity metrics.  
+**3:** Use the `byTileAOP` function of the `neonUtilities` package to pull a subset of the descrete LiDAR pointcloud for each forest (*Hint: You can feed `byTileAOP` Easting and Northing from your `Vegetation Structure` dataframe(s)*).  Use the `structural_diversity_metrics` function that you defined in section 6.5 of the textbook to process discrete return LiDAR for each site and generte structural diversity metrics.  
   
   * Using `lidR` generate a labeled 2-panel plot of your canopy height model for each forest
   * Using `lidR` generate a labeled 2-panel plot of a cross-section for each forest
-  * Use section `5.6.3 Comparing Metrics Between Forests` to compare each forest and generate a a clean summary table via `kable`
+  * Use section `6.5.3 Comparing Metrics Between Forests` to compare each forest and generate a a clean summary table via `kable`
   * Using **Table 2** from <a href="https://doi.org/10.3390/rs12091407" target="_blank">LaRue, Wagner, et al. (2020) </a> as a reference, write 1-2 paragraphs summarizing the differences in forest structural diversity between the two forests and how they may relate to your answers to **Question 1**.  
 
 ## NEON AOP Culmination Write Up
