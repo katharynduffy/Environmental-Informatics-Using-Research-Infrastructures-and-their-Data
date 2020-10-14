@@ -1800,6 +1800,12 @@ For the purpose of this coding lab we will evaluate 2 different forested sites i
 
 **1:** How are these two forests similar?  How are they different? *(3-5 sentences)*
 
+*A few places to start if you need them.  You don't have to address these, just in case you need some hints:*
+*Climate?  How that could affect vegetation structure?*
+*Heterogeniety of the ecossytems?*
+*How seasonal are they? (hint:PhenoCam)*
+*Something else?*
+
 **2:** Using this NEON tutorial and the tutorials we've covered in this textbook *(hint: you did half of this workflow in your very first coding lab)* pull the NEON AOP derived Canopy Height Model (CHM, `DP3.30015.001`) and High-resolution orthorectified camera imagery mosaic
 `DP3.30010.001` for each forest and overlay the NEON TOS Woody Vegetation Structure `DP1.10098.001` basal diameter data product to evaluate how well AOP captures trees in each forest.  
 **Generate a labeled 2x2 plot panel including:** 
