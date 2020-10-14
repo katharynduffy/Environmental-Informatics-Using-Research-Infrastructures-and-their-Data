@@ -329,13 +329,13 @@ for (p in products){
 ## [1] "MCD43A1.006 is Bidirectional Reflectance Distribution Function (BRDF) and Albedo from LP DAAC"
 ## [1] "MCD43A3.006 is Bidirectional Reflectance Distribution Function (BRDF) and Albedo from LP DAAC"
 ## [1] "MCD43A4.006 is Bidirectional Reflectance Distribution Function (BRDF) and Albedo from LP DAAC"
-## [1] "MCD64A1.006 is Thermal Anomalies and Fire from LP DAAC"
+## [1] "MCD64A1.006 is Burned Area (fire) from LP DAAC"
 ## [1] "MOD09A1.006 is Surface Reflectance Bands 1-7 from LP DAAC"
 ## [1] "MOD09GA.006 is Surface Reflectance Bands 1-7 from LP DAAC"
 ## [1] "MOD09GQ.006 is Surface Reflectance Bands 1-2 from LP DAAC"
 ## [1] "MOD09Q1.006 is Surface Reflectance Bands 1-2 from LP DAAC"
 ## [1] "MOD10A1.005 is Snow Cover from NSIDC DAAC"
-## [1] "MOD10A1.006 is Snow Cover from NSIDC DAAC"
+## [1] "MOD10A1.006 is Snow Cover (NDSI) from NSIDC DAAC"
 ## [1] "MOD10A2.005 is Snow Cover from NSIDC DAAC"
 ## [1] "MOD10A2.006 is Snow Cover from NSIDC DAAC"
 ## [1] "MOD11A1.006 is Land Surface Temperature & Emissivity (LST&E) from LP DAAC"
@@ -361,7 +361,7 @@ for (p in products){
 ## [1] "MYD09GQ.006 is Surface Reflectance Bands 1-2 from LP DAAC"
 ## [1] "MYD09Q1.006 is Surface Reflectance Bands 1-2 from LP DAAC"
 ## [1] "MYD10A1.005 is Snow Cover from NSIDC DAAC"
-## [1] "MYD10A1.006 is Snow Cover from NSIDC DAAC"
+## [1] "MYD10A1.006 is Snow Cover (NDSI) from NSIDC DAAC"
 ## [1] "MYD10A2.005 is Snow Cover from NSIDC DAAC"
 ## [1] "MYD10A2.006 is Snow Cover from NSIDC DAAC"
 ## [1] "MYD11A1.006 is Land Surface Temperature & Emissivity (LST&E) from LP DAAC"
@@ -378,9 +378,9 @@ for (p in products){
 ## [1] "MYD17A2H.006 is Gross Primary Productivity (GPP) from LP DAAC"
 ## [1] "MYD17A2HGF.006 is Gross Primary Productivity (GPP) Gap-Filled from LP DAAC"
 ## [1] "MYD17A3HGF.006 is Net Primary Production (NPP) Gap-Filled from LP DAAC"
-## [1] "MYD21A1D.006 is Temperature and Emissivity (LST&E) from LP DAAC"
-## [1] "MYD21A1N.006 is Temperature and Emissivity (LST&E) from LP DAAC"
-## [1] "MYD21A2.006 is Temperature and Emissivity (LST&E) from LP DAAC"
+## [1] "MYD21A1D.006 is Land Surface Temperature & Emissivity (LST&E) from LP DAAC"
+## [1] "MYD21A1N.006 is Land Surface Temperature & Emissivity (LST&E) from LP DAAC"
+## [1] "MYD21A2.006 is Land Surface Temperature & Emissivity (LST&E) from LP DAAC"
 ## [1] "MYDOCGA.006 is Ocean Reflectance Bands 8-16 from LP DAAC"
 ## [1] "MYDTBGA.006 is Thermal Bands and Albedo from LP DAAC"
 ## [1] "NASADEM_NC.001 is Elevation from LP DAAC"
@@ -390,36 +390,36 @@ for (p in products){
 ## [1] "SPL4CMDL.004 is Carbon Net Ecosystem Exchange from NSIDC DAAC"
 ## [1] "SPL4SMGP.004 is Surface and Root Zone Soil Moisture from NSIDC DAAC"
 ## [1] "SPL3FTP.002 is Freeze/Thaw State from NSIDC DAAC"
-## [1] "SRTMGL1_NC.003 is Elevation from LP DAAC"
-## [1] "SRTMGL1_NUMNC.003 is Source from LP DAAC"
-## [1] "SRTMGL3_NC.003 is Elevation from LP DAAC"
-## [1] "SRTMGL3_NUMNC.003 is Source from LP DAAC"
+## [1] "SRTMGL1_NC.003 is Elevation (DEM) from LP DAAC"
+## [1] "SRTMGL1_NUMNC.003 is Source (DEM) from LP DAAC"
+## [1] "SRTMGL3_NC.003 is Elevation (DEM) from LP DAAC"
+## [1] "SRTMGL3_NUMNC.003 is Source (DEM) from LP DAAC"
 ## [1] "ASTGTM_NC.003 is Elevation from LP DAAC"
 ## [1] "ASTGTM_NUMNC.003 is Source from LP DAAC"
 ## [1] "ASTWBD_ATTNC.001 is Water Bodies Database Attributes from LP DAAC"
 ## [1] "ASTWBD_NC.001 is Water Bodies Database Elevation from LP DAAC"
 ## [1] "VNP09H1.001 is Surface Reflectance from LP DAAC"
 ## [1] "VNP09A1.001 is Surface Reflectance from LP DAAC"
-## [1] "VNP13A1.001 is Vegetation Indices from LP DAAC"
-## [1] "VNP13A2.001 is Vegetation Indices from LP DAAC"
-## [1] "VNP13A3.001 is Vegetation Indices from LP DAAC"
+## [1] "VNP13A1.001 is Vegetation Indices (NDVI & EVI) from LP DAAC"
+## [1] "VNP13A2.001 is Vegetation Indices (NDVI & EVI) from LP DAAC"
+## [1] "VNP13A3.001 is Vegetation Indices (NDVI & EVI) from LP DAAC"
 ## [1] "VNP14A1.001 is Thermal Anomalies/Fire from LP DAAC"
 ## [1] "VNP15A2H.001 is Leaf Area Index (LAI) and Fraction of Photosynthetically Active Radiation (FPAR) from LP DAAC"
-## [1] "VNP21A1D.001 is Land Surface Temperature and Emissivity Day from LP DAAC"
-## [1] "VNP21A1N.001 is Land Surface Temperature and Emissivity Night from LP DAAC"
-## [1] "VNP21A2.001 is Land Surface Temperature and Emissivity from LP DAAC"
+## [1] "VNP21A1D.001 is Land Surface Temperature & Emissivity Day (LST&E) from LP DAAC"
+## [1] "VNP21A1N.001 is Land Surface Temperature & Emissivity Night (LST&E) from LP DAAC"
+## [1] "VNP21A2.001 is Land Surface Temperature & Emissivity (LST&E) from LP DAAC"
 ## [1] "VNP43IA1.001 is BRDF-Albedo Model Parameters from LP DAAC"
 ## [1] "VNP43IA2.001 is BRDF-Albedo Quality from LP DAAC"
-## [1] "VNP43IA3.001 is Albedo from LP DAAC"
+## [1] "VNP43IA3.001 is Albedo (BRDF) from LP DAAC"
 ## [1] "VNP43IA4.001 is Nadir BRDF-Adjusted Reflectance from LP DAAC"
 ## [1] "VNP43MA1.001 is BRDF-Albedo Model Parameters from LP DAAC"
 ## [1] "VNP43MA2.001 is BRDF-Albedo Quality from LP DAAC"
-## [1] "VNP43MA3.001 is Albedo from LP DAAC"
+## [1] "VNP43MA3.001 is Albedo (BRDF) from LP DAAC"
 ## [1] "VNP43MA4.001 is Nadir BRDF-Adjusted Reflectance from LP DAAC"
-## [1] "CU_LC08.001 is Landsat 8 Surface Reflectance from USGS"
-## [1] "CU_LE07.001 is Landsat 7 Surface Reflectance from USGS"
-## [1] "CU_LT05.001 is Landsat 5 Surface Reflectance from USGS"
-## [1] "CU_LT04.001 is Landsat 4 Surface Reflectance from USGS"
+## [1] "CU_LC08.001 is CONUS Landsat 8 Surface Reflectance from USGS"
+## [1] "CU_LE07.001 is CONUS Landsat 7 Surface Reflectance from USGS"
+## [1] "CU_LT05.001 is CONUS Landsat 5 Surface Reflectance from USGS"
+## [1] "CU_LT04.001 is CONUS Landsat 4 Surface Reflectance from USGS"
 ## [1] "AK_LC08.001 is Alaska Landsat 8 Surface Reflectance from USGS"
 ## [1] "AK_LE07.001 is Alaska Landsat 7 Surface Reflectance from USGS"
 ## [1] "AK_LT05.001 is Alaska Landsat 5 Surface Reflectance from USGS"
@@ -1408,6 +1408,784 @@ This example can provide a template to use for your own research workflows. Leve
 
 
 ## Submit an Area Request
+
+*The following section was adapted from [LPDAAC's E-Learning Tutorials on the AppEEARS API](https://lpdaac.usgs.gov/resources/e-learning/getting-started-appeears-api-r-area-request/) and modified to request data for NEON sites.*
+
+
+> Contributing Authors: 
+
+>Contact Information  
+ Material written by Mahsa Jami^1^ and Cole Krehbiel^1^                                                     
+ Contact: LPDAAC@usgs.gov   
+ Voice: +1-866-573-3222   
+ Organization: Land Processes Distributed Active Archive Center (LP DAAC)  
+ Website: https://lpdaac.usgs.gov/  
+ Date last modified: 06-12-2020      
+ 
+ >^1^ KBR, Inc., contractor to the U.S. Geological Survey, Earth Resources Observation and Science (EROS) Center,  
+ Sioux Falls, South Dakota, USA. Work performed under USGS contract G15PD00467 for LP DAAC^2^.  
+ 
+ >^2^ LP DAAC Work performed under NASA contract NNG14HH33I.
+
+**This tutorial demonstrates how to use R to connect to the AppEEARS API**
+The Application for Extracting and Exploring Analysis Ready Samples ([AppEEARS](https://lpdaacsvc.cr.usgs.gov/appeears/)) offers a simple and efficient way to access and transform [geospatial data](https://lpdaacsvc.cr.usgs.gov/appeears/products) from a variety of federal data archives in an easy-to-use web application interface. AppEEARS enables users to subset geospatial data spatially, temporally, and by band/layer for point and area samples. AppEEARS returns not only the requested data, but also the associated quality values, and offers interactive visualizations with summary statistics in the web interface. The [AppEEARS API](https://lpdaacsvc.cr.usgs.gov/appeears/api/) offers users **programmatic access** to all features available in AppEEARS, with the exception of visualizations. The API features are demonstrated in this tutorial.
+
+## Submit an area request using a NEON site boundary as the region of interest for extracting elevation, vegetation and land surface temperature data    
+
+In this section: 
+  * Connecting to the AppEEARS API, 
+  * Querying the list of available products, 
+  * Submitting an area sample request, downloading the request, 
+  * Working with the AppEEARS Quality API, and 
+  * Loading the results into R for visualization. 
+  
+AppEEARS area sample requests allow users to subset their desired data by spatial area via vector polygons (shapefiles or GeoJSONs). Users can also reproject and reformat the output data. AppEEARS returns the valid data from the parameters defined within the sample request.       
+
+#### Data Used in this Example:
+- Data layers: 
+    - NASA MEaSUREs Shuttle Radar Topography Mission (SRTM) Version 3 Digital Elevation Model  
+        - [SRTMGL1_NC.003](https://doi.org/10.5067/MEaSUREs/SRTM/SRTMGL1.003), 30m, static: 'SRTM_DEM' 
+    - Combined MODIS Leaf Area Index (LAI)  
+        - [MCD15A3H.006](https://doi.org/10.5067/MODIS/MCD15A3H.006), 500m, 4 day: 'Lai_500m'      
+    - Terra MODIS Land Surface Temperature    
+        - [MOD11A2.006](https://doi.org/10.5067/MODIS/MOD11A2.006), 1000m, 8 day: 'LST_Day_1km', 'LST_Night_1km'  
+
+***
+### Topics Covered in this Tutorial
+
+**Getting Started**             
+  * Load Packages                       
+  * Login     
+  
+**Query Available Products**             
+  * Search and Explore Available Products           
+  * Search and Explore Available Layers             
+
+**Submit an Area Request**               
+  * Load a Shapefile            
+  * Search and Explore Available Projections           
+  * Compile a JSON Object                    
+  * Submit a Task Request          
+  * Retrieve Task Status           
+**Download a Request**                       
+  * Explore Files in Request Output             
+  * Download Files in a Request (Automation)             
+**Explore AppEEARS Quality Service**         
+  * List Quality Layers             
+  * Show Quality Values                     
+  * Decode Quality Values                   
+**BONUS: Load Request Output and Visualize**                          
+  * Load a GeoTIFF                  
+  * Plot a GeoTIFF                     
+
+***
+### Prerequisites:
++ A [NASA Earthdata Login](https://urs.earthdata.nasa.gov/) account is required to login to the AppEEARS API and submit a request . You can create an account at the link provided.
+
++ Install R and RStudio. 
+  These tutorials have been tested on Windows and Mac systems using R Version 4.0.0, RStudio version 1.1.463, and the specifications listed below. 
+
+  + Required packages: 
+    + `getPass`  
+    + `httr`  
+    + `jsonlite`  
+    + `geojsonio`  
+    + `geojsonR`  
+    + `rgdal`
+    + `sp`
+    + `warnings` 
+  + To read and visualize the GeoTIFF:
+    + `raster`           
+    + `rasterVis`           
+    + `RColorBrewer`    
+    + `ggplot2`    
+
+***
+### Procedures:
+#### Getting Started:
+  1. Clone/download [AppEEARS API Getting Started in R Repository](https://git.earthdata.nasa.gov/rest/api/latest/projects/LPDUR/repos/appeears-api-getting-started_r/archive?format=zip) from the LP DAAC Data User Resources Repository or use the code in this textbook.  
+  
+  2. Open the `AppEEARS_API_R.Rproj` file to directly open the project. Next, select the `AppEEARS_API_AREA_R.Rmd` from the files list and open it. 
+
+
+***
+### AppEEARS Information:
+To access AppEEARS, visit: https://lpdaacsvc.cr.usgs.gov/appeears/.
+
+For comprehensive documentation of the full functionality of the AppEEARS API, please see the AppEEARS [API Documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/).
+
+***
+## Getting Started with an Area Request     
+### Load Packages for an Area Request
+
+First, load the R packages necessary to run the tutorial. 
+
+```r
+# Load necessary packages into R                                               
+library(httr)              # To send a request to the server/receive a response from the server
+library(jsonlite)          # Implements a bidirectional mapping between JSON data and the most important R data types
+library(geojsonio)         # Convert data from various R classes to 'GeoJSON' 
+library(geojsonR)          # Functions for processing GeoJSON objects
+library(rgdal)             # Functions for spatial data input/output
+library(sp)                # classes and methods for spatial data types
+library(raster)            # Classes and methods for raster data
+library(rasterVis)         # Advanced plotting functions for raster objects 
+library(ggplot2)           # Functions for graphing and mapping
+library(RColorBrewer)      # Creates nice color schemes
+```
+***
+## Set Up the Output Directory
+Create an output directory for the results.
+
+```r
+outDir <- './data/'               # Create an output directory if it doesn't exist
+```
+Next, assign the AppEEARS API URL to a static variable. 
+
+```r
+API_URL = 'https://lpdaacsvc.cr.usgs.gov/appeears/api/'  # Set the AppEEARS API to a variable
+```
+***
+## Load your Earth Data Token
+To submit a request, you must first login to the AppEEARS API. Use your `token` script to import your credentials.
+
+```r
+source('./Tokens/EARTHDATA_Token.R') #path will change based on where you stored it
+```
+Decode the username and password to be used to post login request.
+
+```r
+secret <- jsonlite::base64_enc(paste(user, password, sep = ":"))  # Encode the string of username and password
+```
+Next, assign the AppEEARS API URL to a static variable. 
+
+```r
+API_URL = 'https://lpdaacsvc.cr.usgs.gov/appeears/api/'     # Set the AppEEARS API to a variable
+```
+Use the `httr` package to post your username and password. A successful login will provide you with a token to be used later in this tutorial to submit a request. For more information or if you are experiencing difficulties, please see the [API Documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#login).
+
+```r
+# Insert API URL, call login service, set the component of HTTP header, and post the request to the server
+response <- httr::POST(paste0(API_URL,"login"), add_headers("Authorization" = paste("Basic", gsub("\n", "", secret)),
+                                                 "Content-Type" =
+                                                   "application/x-www-form-urlencoded;charset=UTF-8"), 
+                 body = "grant_type=client_credentials")
+
+response_content <- content(response)                          # Retrieve the content of the request
+token_response <- toJSON(response_content, auto_unbox = TRUE)  # Convert the response to the JSON object
+remove(user, password, secret, response)                       # Remove the variables that are not needed anymore 
+prettify(token_response)                                       # Print the prettified response
+```
+
+```
+## {
+##     "token_type": "Bearer",
+##     "token": "4-4xOqVgm0WJDzpeAPPPkLBw17XQlSdXuW7LrqbqDPLhwAV_AG2wUm4N1iGB5g2Js3Lj9t3R7yqL5DxL3zscew",
+##     "expiration": "2020-10-15T16:03:26Z"
+## }
+## 
+```
+
+**Above, you should see a Bearer token. Notice that this token will expire approximately 48 hours after being acquired.**
+
+***
+## Query Available Products
+The product API provides details about all of the products and layers available in AppEEARS. For more information, please see the [API Documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#product).
+
+Below, call the product API to list all of the products available in AppEEARS.
+
+```r
+prods_req <- GET(paste0(API_URL, "product"))             # Request the info of all products from product service
+prods_content <- content(prods_req)                      # Retrieve the content of request 
+all_Prods <- toJSON(prods_content, auto_unbox = TRUE)    # Convert the info to JSON object
+remove(prods_req, prods_content)                         # Remove the variables that are not needed anymore
+# prettify(all_Prods)                                      # Print the prettified product response
+```
+***
+## Search and Explore Available Products
+Create a list indexed by product name to make it easier to query a specific product.
+
+```r
+# divides information from each product.
+divided_products <- split(fromJSON(all_Prods), seq(nrow(fromJSON(all_Prods))))
+# Create a list indexed by the product name and version
+products <- setNames(divided_products,fromJSON(all_Prods)$ProductAndVersion)
+# Print no. products available in AppEEARS
+sprintf("AppEEARS currently supports %i products." ,length(products))   
+```
+
+```
+## [1] "AppEEARS currently supports 120 products."
+```
+
+Next, look at the product's names and descriptions. Below, the 'ProductAndVersion' and 'Description' are printed for all products.
+
+```r
+# Loop through the products in the list and Print the product name and description
+for (p in products){                                   
+  print(paste0(p$ProductAndVersion," is ",p$Description," from ",p$Source))  
+}
+```
+
+```
+## [1] "GPW_DataQualityInd.004 is Quality of Input Data for Population Count and Density Grids from SEDAC"
+## [1] "GPW_UN_Adj_PopCount.004 is UN-adjusted Population Count from SEDAC"
+## [1] "GPW_UN_Adj_PopDensity.004 is UN-adjusted Population Density from SEDAC"
+## [1] "MCD12Q1.006 is Land Cover Type from LP DAAC"
+## [1] "MCD12Q2.006 is Land Cover Dynamics from LP DAAC"
+## [1] "MCD15A2H.006 is Leaf Area Index (LAI) and Fraction of Photosynthetically Active Radiation (FPAR) from LP DAAC"
+## [1] "MCD15A3H.006 is Leaf Area Index (LAI) and Fraction of Photosynthetically Active Radiation (FPAR) from LP DAAC"
+## [1] "MCD43A1.006 is Bidirectional Reflectance Distribution Function (BRDF) and Albedo from LP DAAC"
+## [1] "MCD43A3.006 is Bidirectional Reflectance Distribution Function (BRDF) and Albedo from LP DAAC"
+## [1] "MCD43A4.006 is Bidirectional Reflectance Distribution Function (BRDF) and Albedo from LP DAAC"
+## [1] "MCD64A1.006 is Burned Area (fire) from LP DAAC"
+## [1] "MOD09A1.006 is Surface Reflectance Bands 1-7 from LP DAAC"
+## [1] "MOD09GA.006 is Surface Reflectance Bands 1-7 from LP DAAC"
+## [1] "MOD09GQ.006 is Surface Reflectance Bands 1-2 from LP DAAC"
+## [1] "MOD09Q1.006 is Surface Reflectance Bands 1-2 from LP DAAC"
+## [1] "MOD10A1.005 is Snow Cover from NSIDC DAAC"
+## [1] "MOD10A1.006 is Snow Cover (NDSI) from NSIDC DAAC"
+## [1] "MOD10A2.005 is Snow Cover from NSIDC DAAC"
+## [1] "MOD10A2.006 is Snow Cover from NSIDC DAAC"
+## [1] "MOD11A1.006 is Land Surface Temperature & Emissivity (LST&E) from LP DAAC"
+## [1] "MOD11A2.006 is Land Surface Temperature & Emissivity (LST&E) from LP DAAC"
+## [1] "MOD13A1.006 is Vegetation Indices (NDVI & EVI) from LP DAAC"
+## [1] "MOD13A2.006 is Vegetation Indices (NDVI & EVI) from LP DAAC"
+## [1] "MOD13A3.006 is Vegetation Indices (NDVI & EVI) from LP DAAC"
+## [1] "MOD13Q1.006 is Vegetation Indices (NDVI & EVI) from LP DAAC"
+## [1] "MOD14A2.006 is Thermal Anomalies and Fire from LP DAAC"
+## [1] "MOD15A2H.006 is Leaf Area Index (LAI) and Fraction of Photosynthetically Active Radiation (FPAR) from LP DAAC"
+## [1] "MOD16A2.006 is Evapotranspiration (ET & LE) from LP DAAC"
+## [1] "MOD16A2GF.006 is Net Evapotranspiration Gap-Filled (ET & LE) from LP DAAC"
+## [1] "MOD16A3GF.006 is Net Evapotranspiration Gap-Filled (ET & LE) from LP DAAC"
+## [1] "MOD17A2H.006 is Gross Primary Productivity (GPP) from LP DAAC"
+## [1] "MOD17A2HGF.006 is Gross Primary Productivity (GPP) from LP DAAC"
+## [1] "MOD17A3HGF.006 is Net Primary Production (NPP) Gap-Filled from LP DAAC"
+## [1] "MOD44B.006 is Vegetation Continuous Fields (VCF) from LP DAAC"
+## [1] "MOD44W.006 is Land/Water Mask from LP DAAC"
+## [1] "MODOCGA.006 is Ocean Reflectance Bands 8-16 from LP DAAC"
+## [1] "MODTBGA.006 is Thermal Bands and Albedo from LP DAAC"
+## [1] "MYD09A1.006 is Surface Reflectance Bands 1-7 from LP DAAC"
+## [1] "MYD09GA.006 is Surface Reflectance Bands 1-7 from LP DAAC"
+## [1] "MYD09GQ.006 is Surface Reflectance Bands 1-2 from LP DAAC"
+## [1] "MYD09Q1.006 is Surface Reflectance Bands 1-2 from LP DAAC"
+## [1] "MYD10A1.005 is Snow Cover from NSIDC DAAC"
+## [1] "MYD10A1.006 is Snow Cover (NDSI) from NSIDC DAAC"
+## [1] "MYD10A2.005 is Snow Cover from NSIDC DAAC"
+## [1] "MYD10A2.006 is Snow Cover from NSIDC DAAC"
+## [1] "MYD11A1.006 is Land Surface Temperature & Emissivity (LST&E) from LP DAAC"
+## [1] "MYD11A2.006 is Land Surface Temperature & Emissivity (LST&E) from LP DAAC"
+## [1] "MYD13A1.006 is Vegetation Indices (NDVI & EVI) from LP DAAC"
+## [1] "MYD13A2.006 is Vegetation Indices (NDVI & EVI) from LP DAAC"
+## [1] "MYD13A3.006 is Vegetation Indices (NDVI & EVI) from LP DAAC"
+## [1] "MYD13Q1.006 is Vegetation Indices (NDVI & EVI) from LP DAAC"
+## [1] "MYD14A2.006 is Thermal Anomalies and Fire from LP DAAC"
+## [1] "MYD15A2H.006 is Leaf Area Index (LAI) and Fraction of Photosynthetically Active Radiation (FPAR) from LP DAAC"
+## [1] "MYD16A2.006 is Evapotranspiration (ET & LE) from LP DAAC"
+## [1] "MYD16A2GF.006 is Net Evapotranspiration Gap-Filled (ET & LE) from LP DAAC"
+## [1] "MYD16A3GF.006 is Net Evapotranspiration Gap-Filled (ET & LE) from LP DAAC"
+## [1] "MYD17A2H.006 is Gross Primary Productivity (GPP) from LP DAAC"
+## [1] "MYD17A2HGF.006 is Gross Primary Productivity (GPP) Gap-Filled from LP DAAC"
+## [1] "MYD17A3HGF.006 is Net Primary Production (NPP) Gap-Filled from LP DAAC"
+## [1] "MYD21A1D.006 is Land Surface Temperature & Emissivity (LST&E) from LP DAAC"
+## [1] "MYD21A1N.006 is Land Surface Temperature & Emissivity (LST&E) from LP DAAC"
+## [1] "MYD21A2.006 is Land Surface Temperature & Emissivity (LST&E) from LP DAAC"
+## [1] "MYDOCGA.006 is Ocean Reflectance Bands 8-16 from LP DAAC"
+## [1] "MYDTBGA.006 is Thermal Bands and Albedo from LP DAAC"
+## [1] "NASADEM_NC.001 is Elevation from LP DAAC"
+## [1] "NASADEM_NUMNC.001 is Source from LP DAAC"
+## [1] "SPL3SMP_E.003 is Enhanced L3 Radiometer Soil Moisture from NSIDC DAAC"
+## [1] "SPL3SMP.006 is Soil Moisture from NSIDC DAAC"
+## [1] "SPL4CMDL.004 is Carbon Net Ecosystem Exchange from NSIDC DAAC"
+## [1] "SPL4SMGP.004 is Surface and Root Zone Soil Moisture from NSIDC DAAC"
+## [1] "SPL3FTP.002 is Freeze/Thaw State from NSIDC DAAC"
+## [1] "SRTMGL1_NC.003 is Elevation (DEM) from LP DAAC"
+## [1] "SRTMGL1_NUMNC.003 is Source (DEM) from LP DAAC"
+## [1] "SRTMGL3_NC.003 is Elevation (DEM) from LP DAAC"
+## [1] "SRTMGL3_NUMNC.003 is Source (DEM) from LP DAAC"
+## [1] "ASTGTM_NC.003 is Elevation from LP DAAC"
+## [1] "ASTGTM_NUMNC.003 is Source from LP DAAC"
+## [1] "ASTWBD_ATTNC.001 is Water Bodies Database Attributes from LP DAAC"
+## [1] "ASTWBD_NC.001 is Water Bodies Database Elevation from LP DAAC"
+## [1] "VNP09H1.001 is Surface Reflectance from LP DAAC"
+## [1] "VNP09A1.001 is Surface Reflectance from LP DAAC"
+## [1] "VNP13A1.001 is Vegetation Indices (NDVI & EVI) from LP DAAC"
+## [1] "VNP13A2.001 is Vegetation Indices (NDVI & EVI) from LP DAAC"
+## [1] "VNP13A3.001 is Vegetation Indices (NDVI & EVI) from LP DAAC"
+## [1] "VNP14A1.001 is Thermal Anomalies/Fire from LP DAAC"
+## [1] "VNP15A2H.001 is Leaf Area Index (LAI) and Fraction of Photosynthetically Active Radiation (FPAR) from LP DAAC"
+## [1] "VNP21A1D.001 is Land Surface Temperature & Emissivity Day (LST&E) from LP DAAC"
+## [1] "VNP21A1N.001 is Land Surface Temperature & Emissivity Night (LST&E) from LP DAAC"
+## [1] "VNP21A2.001 is Land Surface Temperature & Emissivity (LST&E) from LP DAAC"
+## [1] "VNP43IA1.001 is BRDF-Albedo Model Parameters from LP DAAC"
+## [1] "VNP43IA2.001 is BRDF-Albedo Quality from LP DAAC"
+## [1] "VNP43IA3.001 is Albedo (BRDF) from LP DAAC"
+## [1] "VNP43IA4.001 is Nadir BRDF-Adjusted Reflectance from LP DAAC"
+## [1] "VNP43MA1.001 is BRDF-Albedo Model Parameters from LP DAAC"
+## [1] "VNP43MA2.001 is BRDF-Albedo Quality from LP DAAC"
+## [1] "VNP43MA3.001 is Albedo (BRDF) from LP DAAC"
+## [1] "VNP43MA4.001 is Nadir BRDF-Adjusted Reflectance from LP DAAC"
+## [1] "CU_LC08.001 is CONUS Landsat 8 Surface Reflectance from USGS"
+## [1] "CU_LE07.001 is CONUS Landsat 7 Surface Reflectance from USGS"
+## [1] "CU_LT05.001 is CONUS Landsat 5 Surface Reflectance from USGS"
+## [1] "CU_LT04.001 is CONUS Landsat 4 Surface Reflectance from USGS"
+## [1] "AK_LC08.001 is Alaska Landsat 8 Surface Reflectance from USGS"
+## [1] "AK_LE07.001 is Alaska Landsat 7 Surface Reflectance from USGS"
+## [1] "AK_LT05.001 is Alaska Landsat 5 Surface Reflectance from USGS"
+## [1] "AK_LT04.001 is Alaska Landsat 4 Surface Reflectance from USGS"
+## [1] "HI_LC08.001 is Hawaii Landsat 8 Surface Reflectance from USGS"
+## [1] "HI_LE07.001 is Hawaii Landsat 7 Surface Reflectance from USGS"
+## [1] "HI_LT05.001 is Hawaii Landsat 5 Surface Reflectance from USGS"
+## [1] "HI_LT04.001 is Hawaii Landsat 4 Surface Reflectance from USGS"
+## [1] "DAYMET.003 is Daily Surface Weather Data for North America from ORNL"
+## [1] "SSEBop_ET.004 is SSEBop Actual Evapotranspiration (ETa) from USGS"
+## [1] "eMODIS_Smoothed_NDVI.001 is eMODIS Smoothed Normalized Difference Vegetation Index (NDVI) from USGS"
+## [1] "ECO2LSTE.001 is Land Surface Temperature & Emissivity (LST&E) from LP DAAC"
+## [1] "ECO2CLD.001 is Cloud Mask from LP DAAC"
+## [1] "ECO3ETPTJPL.001 is Evapotranspiration PT-JPL from LP DAAC"
+## [1] "ECO3ANCQA.001 is L3/L4 Ancillary Data Quality Assurance (QA) Flags from LP DAAC"
+## [1] "ECO4ESIPTJPL.001 is Evaporative Stress Index PT-JPL from LP DAAC"
+## [1] "ECO4WUE.001 is Water Use Efficiency from LP DAAC"
+## [1] "ECO1BGEO.001 is Geolocation from LP DAAC"
+## [1] "ECO1BMAPRAD.001 is Resampled Radiance from LP DAAC"
+```
+The product service provides many useful details, including if a product is currently available in AppEEARS, a description, and information on the spatial and temporal resolution. Below, the product details are retrieved using 'ProductAndVersion'. 
+
+```r
+# Convert the MCD15A3H.006 info to JSON object and print the prettified info
+prettify(toJSON(products$"MCD15A3H.006")) 
+```
+
+```
+## [
+##     {
+##         "Product": "MCD15A3H",
+##         "Platform": "Combined MODIS",
+##         "Description": "Leaf Area Index (LAI) and Fraction of Photosynthetically Active Radiation (FPAR)",
+##         "RasterType": "Tile",
+##         "Resolution": "500m",
+##         "TemporalGranularity": "4 day",
+##         "Version": "006",
+##         "Available": true,
+##         "DocLink": "https://doi.org/10.5067/MODIS/MCD15A3H.006",
+##         "Source": "LP DAAC",
+##         "TemporalExtentStart": "2002-07-04",
+##         "TemporalExtentEnd": "Present",
+##         "Deleted": false,
+##         "DOI": "10.5067/MODIS/MCD15A3H.006",
+##         "ProductAndVersion": "MCD15A3H.006"
+##     }
+## ]
+## 
+```
+Below, search for products containing Leaf Area Index in their description.
+
+
+```r
+LAI_Products <- list()                                        # Create an empty list 
+for (p in products){                                          # Loop through the product list
+  if (grepl('Leaf Area Index', p$Description )){              # Look through the product description for a keyword 
+    LAI_Products <- append(LAI_Products, p$ProductAndVersion) # Append the LAI products to the list
+  }
+}
+LAI_Products
+```
+
+```
+## [[1]]
+## [1] "MCD15A2H.006"
+## 
+## [[2]]
+## [1] "MCD15A3H.006"
+## 
+## [[3]]
+## [1] "MOD15A2H.006"
+## 
+## [[4]]
+## [1] "MYD15A2H.006"
+## 
+## [[5]]
+## [1] "VNP15A2H.001"
+```
+
+Using the info above, Create a list of desired products.  
+
+
+```r
+desired_products <- c('MCD15A3H.006','MOD11A2.006','SRTMGL1_NC.003')   # Create a list of desired products 
+desired_products
+```
+
+```
+## [1] "MCD15A3H.006"   "MOD11A2.006"    "SRTMGL1_NC.003"
+```
+
+***
+## Search and Explore Available Layers
+This API call will list all of the layers available for a given product. Each product is referenced by its `ProductAndVersion` property which is also referred to as the product_id. First, request the layers for the `MCD15A3H.006` product.
+
+
+```r
+# Request layers for the 1st product in the list: MCD15A3H.006
+MCD15A3H_req <- GET(paste0(API_URL,"product/", desired_products[1]))  # Request the info of a product from product URL
+MCD15A3H_content <- content(MCD15A3H_req)                             # Retrieve content of the request 
+MCD15A3H_response <- toJSON(MCD15A3H_content, auto_unbox = TRUE)      # Convert the content to JSON object
+remove(MCD15A3H_req, MCD15A3H_content)                                # Remove the variables that are not needed anymore
+#prettify(MCD15A3H_response)                                          # Print the prettified response
+names(fromJSON(MCD15A3H_response))                                    # print the layer's names    
+```
+
+```
+## [1] "FparExtra_QC"    "FparLai_QC"      "FparStdDev_500m" "Fpar_500m"      
+## [5] "LaiStdDev_500m"  "Lai_500m"
+```
+Next, request the layers for the `MOD11A2.006` product.
+
+```r
+MOD11_req <- GET(paste0(API_URL,"product/", desired_products[2]))  # Request the info of a product from product URL
+MOD11_content <- content(MOD11_req)                                # Retrieve content of the request
+MOD11_response <- toJSON(MOD11_content, auto_unbox = TRUE)         # Convert the content to JSON object
+remove(MOD11_req, MOD11_content)                                   # Remove the variables that are not needed anymore
+names(fromJSON(MOD11_response))                                    # print the layer names
+```
+
+```
+##  [1] "Clear_sky_days"   "Clear_sky_nights" "Day_view_angl"    "Day_view_time"   
+##  [5] "Emis_31"          "Emis_32"          "LST_Day_1km"      "LST_Night_1km"   
+##  [9] "Night_view_angl"  "Night_view_time"  "QC_Day"           "QC_Night"
+```
+Next, request the layers for the`SRTMGL1_NC.003` product.
+
+```r
+SRTMGL1_req <- GET(paste0(API_URL,"product/", desired_products[3]))# Request the info of a product from product URL
+SRTMGL1_content <- content(SRTMGL1_req)                            # Retrieve content of the request  
+SRTMGL1_response <- toJSON(SRTMGL1_content, auto_unbox = TRUE)     # Convert the content to JSON object
+remove(SRTMGL1_req, SRTMGL1_content)                               # Remove the variables that are not needed anymore
+names(fromJSON(SRTMGL1_response))
+```
+
+```
+## [1] "SRTMGL1_DEM"
+```
+
+Lastly, select the desired layers and pertinent products and make a data frame using this information. This list will be inserted into the JSON file used to submit a request in [Section 3](#section3).
+
+```r
+# Create a vector of desired layers
+desired_layers <- c("LST_Day_1km","LST_Night_1km","Lai_500m","SRTMGL1_DEM")     
+# Create a vector of products including the desired layers
+desired_prods <- c("MOD11A2.006","MOD11A2.006","MCD15A3H.006","SRTMGL1_NC.003") 
+# Create a data frame including the desired data products and layers
+layers <- data.frame(product = desired_prods, layer = desired_layers)              
+```
+
+***
+## Submit an Area Request
+The Submit task API call provides a way to submit a new request to be processed. It can accept data via JSON or query string. In the example below, create a JSON object and submit a request. Tasks in AppEEARS correspond to each request associated with your user account. Therefore, each of the calls to this service requires an authentication token.
+
+***
+### Load a Shapefile
+In this section, begin by loading a shapefile using the `rgdal` package. The shapefile is publicly available for download from the [NPS website](https://irma.nps.gov/DataStore/Reference/Profile/2224545?lnv=True).
+
+```r
+onaq <- readOGR(dsn= "./ONAQ_extent", layer = "D15_ONAQ_C1_P1_v2")
+```
+
+```
+## OGR data source with driver: ESRI Shapefile 
+## Source: "/Users/kdw223/Research/katharynduffy.github.io/ONAQ_extent", layer: "D15_ONAQ_C1_P1_v2"
+## with 1 features
+## It has 1 fields
+```
+
+```r
+onaq_wgs84 <- spTransform(onaq, CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"))
+```
+
+convert the Spatial data frame to GeoJSON using `geojson_json` from `geojsonio` package, which makes it easy to create the geospatial data in and out of GeoJSON format.
+
+```r
+onaq_json <- geojsonio::geojson_json(onaq, geometry = "polygon")    # Convert the data frame to GeoJSON
+```
+
+```
+## Warning: 'geojsonlint' not installed, skipping GeoJSON linting
+```
+Next, the GeoJSON object can be read as a list using the `FROM_GeoJson` function from `geojsonR` package.  
+
+```r
+onaq_js <- geojsonR::FROM_GeoJson(onaq_json)                    # Read the GeoJSON 
+```
+***
+## Search and Explore Available Projections
+The spatial API provides some helper services used to support submitting area task requests. The call below will retrieve the list of supported projections in AppEEARS. For more information, please see the [AppEEARS API](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#spatial)
+
+
+```r
+proj_req <- GET(paste0(API_URL, "spatial/proj"))          # Request the projection info from API_URL            
+proj_content <- content(proj_req)                         # Retrieve content of the request
+proj_response <- toJSON(proj_content, auto_unbox = TRUE)  # Convert the content to JSON object
+remove(proj_req, proj_content)                            # Remove the variables that are not needed 
+projs <- fromJSON(proj_response)                          # Read the projects as a R object
+projection <- projs[projs$Name=="geographic",]            # Choose the projection for your output
+```
+***
+## Compile a JSON Object
+In this section, begin by setting up the information needed for a nested data frame that will be later converted to a JSON object for submitting an AppEEARS area request.For detailed information on required JSON parameters, see the [API Documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#tasks).
+
+
+```r
+taskName <- 'NEON-ONAQ'    # Enter name of the task, 'Grand Canyon' used here
+taskType <- 'area'            # Type of task, it can be either "area" or "point"
+
+projection <- projection$Name # Set output projection 
+
+outFormat <- 'geotiff'        # Set output file format type. it can be either 'geotiff' or 'netcdf4'
+
+startDate <- '01-01-2018'     # Start of the date range for which to extract data: MM-DD-YYYY
+endDate <- '12-31-2019'       # End of the date range for which to extract data: MM-DD-YYYY
+recurring <- FALSE            # Specify True for a recurring date range
+#yearRange = [2000,2016]      # If recurring = True, set yearRange, change start/end date to MM-DD
+```
+To be able to successfully submit a task, the JSON object should be structured in a certain way. The code chunk below uses the information from the previous chunk to create a nested data frame. This nested data frame will be converted to JSON object that can be used to complete the request. 
+
+```r
+# Create a data frame including the date range for the request
+date <- data.frame(startDate = startDate, endDate = endDate)
+
+# Create a list including the projection and add the output format info
+out <- list(projection )
+names(out) <- c("projection")
+out$format$type <- outFormat
+
+# Change the GeoJSON format for successful task submission
+onaq_js$features[[1]]$geometry$coordinates <- list(onaq_js$features[[1]]$geometry$coordinates)
+
+task_info <- list(date, layers, out, onaq_js)                 # Create a list of data frames 
+names(task_info) <- c("dates", "layers", "output", "geo")       # Assign names
+
+task <- list(task_info, taskName, taskType)                     # Create a nested list 
+names(task) <- c("params", "task_name", "task_type")            # Assign names  
+```
+`toJSON` function from `jsonlite` package converts the type of data frame to a string that can be recognized as a JSON object to be submitted as an area request.
+
+```r
+task_json <- jsonlite::toJSON(task,auto_unbox = TRUE, digits = 10)
+```
+***
+## Submit a Task Request 
+Token information is needed to submit a request. Below the login token is assigned to a variable.
+
+```r
+token <- paste("Bearer", fromJSON(token_response)$token)     # Save login token to a variable
+```
+Below, post a call to the API task service, using the `task_json` created above.
+
+```r
+# Post the point request to the API task service
+response <- POST(paste0(API_URL, "task"), body = task_json , encode = "json", 
+                 add_headers(Authorization = token, "Content-Type" = "application/json"))
+
+task_content <- content(response)                           # Retrieve content of the request 
+task_response <- toJSON(task_content, auto_unbox = TRUE)    # Convert the content to JSON and prettify it
+prettify(task_response)                                     # Print the task response
+```
+A JSON downloaded from a previous request containing the information from that request can also be used if available
+
+```r
+# task <- jsonlite::toJSON(jsonlite::read_json("LST-request.json"), digits = 10, auto_unbox = TRUE)
+# response <- POST(paste0(API_URL,"task"), body = task, encode = "json", 
+#                        add_headers(Authorization = token, "Content-Type" = "application/json"))
+# task_response <- prettify(toJSON(content(response), auto_unbox = TRUE))
+# task_response
+```
+***
+## Retrieve Task Status
+This API call will list all of the requests associated with your user account, automatically sorted by date descending with the most recent requests listed first.
+The AppEEARS API contains some helpful formatting resources. Below, limit the API response to 2 entries for the last 2 requests and set pretty to True to format the response as an organized JSON, making it easier to read. Additional information on AppEEARS API
+[retrieve task](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#retrieve-task), [pagination](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#pagination), and [formatting](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#formatting) can be found in the API documentation.
+
+
+```r
+params <- list(limit = 2, pretty = TRUE)                            # Set up query parameters
+# Request the task status of last 2 requests from task URL
+response_req <- GET(paste0(API_URL,"task"), query = params, add_headers(Authorization = token))
+response_content <- content(response_req)                           # Retrieve content of the request
+status_response <- toJSON(response_content, auto_unbox = TRUE)      # Convert the content to JSON object
+remove(response_req, response_content)                              # Remove the variables that are not needed anymore     
+prettify(status_response)                                           # Print the prettified response
+```
+
+The task_id that was generated when submitting your request can also be used to retrieve a task status. 
+Notice, this could get longer because of the number of vertices in the shapefile that will be printed.
+
+```r
+# task_id <- fromJSON(task_response)$task_id                 # Extract the task_id of submitted point request
+# # Request the task status of a task with the provided task_id from task URL
+# status_req <- GET(paste0(API_URL,"task/", task_id), add_headers(Authorization = token)) 
+# status_content <- content(status_req)                       # Retrieve content of the request       
+# statusResponse <-toJSON(status_content, auto_unbox = TRUE)  # Convert the content to JSON object
+# remove(status_req, status_content)                          # Remove the variables that are not needed 
+# prettify(statusResponse)                                    # Print the prettified response
+```
+Retrieve the task status every 60 seconds. The task status should be `done` to be able to download the output.
+
+```r
+# Request the task status of last request from task URL
+stat_req <- GET(paste0(API_URL,"task"), query = list(limit = 1), add_headers(Authorization = token))
+stat_content <- content(stat_req)                           # Retrieve content of the request
+stat_response <- toJSON(stat_content, auto_unbox = TRUE)    # Convert the content to JSON object
+stat <- fromJSON(stat_response)$status                      # Assign the task status to a variable
+remove(stat_req, stat_content)                              # Remove the variables that are not needed      
+
+while (stat != 'done') {
+  Sys.sleep(60)
+  stat_req <- GET(paste0(API_URL,"task"), query = list(limit = 1), add_headers(Authorization = token))
+  stat_content <- content(stat_req)
+  stat <-fromJSON(toJSON(stat_content, auto_unbox = TRUE))$status    
+  remove(stat_content) 
+  print(stat)
+}
+```
+***  
+## Download a Request
+### Explore Files in Request Output 
+Before downloading the request output, examine the files contained in the request output.
+
+```r
+task_id <- fromJSON(task_response)[[1]]
+response <- GET(paste0(API_URL, "bundle/", task_id), add_headers(Authorization = token))
+bundle_response <- prettify(toJSON(content(response), auto_unbox = TRUE))
+```
+
+***
+## Download Files in a Request (Automation) 
+The bundle API provides information about completed tasks. For any completed task, a bundle can be queried to return the files contained as a part of the task request. Below, call the bundle API and return all of the output files. Next, read the contents of the bundle in JSON format and loop through file_id to automate downloading all of the output files into the output directory. For more information, please see [AppEEARS API Documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#bundle).
+
+```r
+bundle <- fromJSON(bundle_response)$files
+for (id in bundle$file_id){
+  # retrieve the filename from the file_id
+  filename <- bundle[bundle$file_id == id,]$file_name           
+  # create a destination directory to store the file in
+  filepath <- paste(outDir,filename, sep = "/")
+  suppressWarnings(dir.create(dirname(filepath)))
+  # write the file to disk using the destination directory and file name 
+  response <- GET(paste0(API_URL, "bundle/", task_id, "/", id), 
+                  write_disk(filepath, overwrite = TRUE), progress(),
+                  add_headers(Authorization = token))
+}
+```
+
+Now, take a look at "R_output" directory. Separate folders are made for each product and the outputs are saved in these folders. 
+
+
+```r
+# List of directories in the R_output directory
+list.dirs(outDir)
+```
+Below, the list of relative path and file names is assigned to a variable and part of the list is printed.
+
+```r
+relative_path <- bundle$file_name            # Assign relative path to a variable
+relative_path[550:560]                       # Print part of the list
+```
+
+Later in this tutorial, the `SRTMGL1_NC` GeoTIFF is loaded for visulalization. Below, the directory to this file is assigned to a variable.
+
+```r
+SRTMGL1_NC_subdir <- relative_path[grepl("*SRTMGL1_NC", relative_path)]    # Extract the telative path to the SRTMGL1_N 
+SRTMGL1_NC_dir <- paste0(outDir, "/", SRTMGL1_NC_subdir)           # Assign absolute path to a variable
+SRTMGL1_NC_dir                                                             # Print the absolute path
+```
+***
+## Explore AppEEARS Quality Service
+The quality API provides quality details about all of the data products available in AppEEARS. Below are examples of how to query the quality API for listing quality products, layers, and values. The final example ([Section 5c.](#decode)) demonstrates how AppEEARS quality services can be leveraged to decode pertinent quality values for your data. For more information visit [AppEEARS API documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#quality)
+
+First, reset pagination to include offset which allows you to set the number of results to skip before starting to return entries. Next, make a call to list all of the data product layers and the associated quality product and layer information.
+
+```r
+params <- list(limit = 6, offset = 20, pretty = TRUE)          # Assign query to a variable
+# Request the specified quality layer info from quality API
+quality_req <- GET(paste0(API_URL, "quality"), query = params)
+quality_content <- content(quality_req)                        # Retrieve the content of request
+quality_response <- toJSON(quality_content, auto_unbox = TRUE) # Convert the info to JSON object
+remove(quality_req, quality_content)                           # Remove the variables that are not needed 
+prettify(quality_response)
+```
+***
+## List Quality Layers 
+This API call will list all of the quality layer information for a product. For more information visit [AppEEARS API documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#quality)
+
+
+```r
+productAndVersion <- 'MCD15A3H.006'                                  # Assign productAndVersion to a variable
+MCD15A3H_q_req <- GET(paste0(API_URL, "quality/", productAndVersion))# Request quality info for a product
+MCD15A3H_q_content <- content(MCD15A3H_q_req)                        # Retrieve the content of request
+MCD15A3H_quality <- toJSON(MCD15A3H_q_content, auto_unbox = TRUE)    # Convert the info to JSON object
+remove(MCD15A3H_q_req, MCD15A3H_q_content)
+prettify(MCD15A3H_quality)
+```
+***
+## Show Quality Values 
+This API call will list all of the values for a given quality layer. 
+
+```r
+quality_layer <- 'FparLai_QC'                                 # assign a quality layer to a variable
+# Request the specified quality layer info from quality API
+quality_req <- GET(paste0(API_URL, "quality/",  productAndVersion, "/", quality_layer, sep = ""))
+quality_content <- content(quality_req)                        # Retrieve the content of request
+quality_response <- toJSON(quality_content, auto_unbox = TRUE) # Convert the info to JSON object
+remove(quality_req, quality_content)                           # Remove the variables that are not needed 
+prettify(quality_response)                                     # Print the quality response as a data frame
+```
+***
+## Decode Quality Values
+This API call will decode the bits for a given quality value. 
+
+```r
+quality_value <- 1                        # Assign a quality value to a variable 
+# Request and retrieve information for provided quality value from quality API URL 
+response <- content(GET(paste0(API_URL, "quality/", productAndVersion, "/", quality_layer, "/", quality_value)))
+q_response <- toJSON(response, auto_unbox = TRUE)     # Convert the info to JSON object
+remove(response)                                      # Remove the variables that are not needed anymore
+prettify(q_response)                                  # Print the prettified response
+```
+***
+## BONUS: Load Request Output and Visualize
+Here, load one of the output GeoTIFFs and show some basic visualizations using the `rasterVis` and `ggplot2` packages.
+
+## Load a GeoTIFF
+First, created a raster object by calling the raster() function from the `raster` package.
+
+```r
+# Create a raster object using the directory previously extracted
+dem <- raster(SRTMGL1_NC_dir)
+```
+***
+## Plot a GeoTIFF
+Make a plot of DEM data and add some additional parameters to the plot. 
+
+
+```r
+gplot(dem) +
+  geom_raster(aes(fill = value)) +
+  scale_fill_distiller(name = "Elevation (m)", palette = "BrBG", na.value=NA) +
+  coord_fixed(expand = F, ratio = 1) +
+  labs(title = "SRTM DEM: Grand Canyon NP")+
+  theme(plot.title = element_text(face = "bold",size = rel(2),hjust = 0.5),
+        axis.title.x = element_blank(), 
+        axis.title.y = element_blank(),
+        panel.border = element_rect(fill = NA , color = "black", size = 0.8),
+        panel.background = element_rect(fill = "white", colour = "#6D9EC1",size = 2, linetype = "solid"),
+        panel.grid.major = element_line(size = 0.001, linetype = 'solid',colour = "gray"),
+        panel.grid.minor = element_line(size = 0.001, linetype = 'solid',colour = "gray"))
+```
+
+This example can provide a template to use for your own research workflows. Leveraging the AppEEARS API for searching, extracting, and formatting analysis ready data, and loading it directly into R means that you can keep your entire research workflow in a single software program, from start to finish.
+
+
+
 
 ## NASA EOS Written Questions
 1) How does the scientific method of Earth Science differ from thta of traditional/classical labratory sciences?
