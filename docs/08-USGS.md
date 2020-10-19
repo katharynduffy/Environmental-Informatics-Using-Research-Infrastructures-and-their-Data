@@ -362,11 +362,10 @@ names(wqpcounts_sc)
 ## [15] "x-frame-options"           "x-content-type-options"   
 ## [17] "x-xss-protection"          "strict-transport-security"
 ## [19] "x-cache"                   "via"                      
-## [21] "x-amz-cf-pop"              "x-amz-cf-id"              
-## [23] "age"
+## [21] "x-amz-cf-pop"              "x-amz-cf-id"
 ```
 
-This returns a list with 23 different items, including total number of sites, breakdown of the number of sites by source (BioData, NWIS, STORET), total number of records, and breakdown of records count by source. Let's just look at total number of sites and total number of records.
+This returns a list with 22 different items, including total number of sites, breakdown of the number of sites by source (BioData, NWIS, STORET), total number of records, and breakdown of records count by source. Let's just look at total number of sites and total number of records.
 
 
 ```r
@@ -382,10 +381,10 @@ wqpcounts_sc[['total-result-count']]
 ```
 
 ```
-## [1] 3613430
+## [1] 3613490
 ```
 
-This doesn't provide any information about the sites, just the total number. I know that with 3,613,430 results, I will want to add more criteria before trying to download. Let's continue to add query parameters before moving to `whatWQPsites`.
+This doesn't provide any information about the sites, just the total number. I know that with 3,613,490 results, I will want to add more criteria before trying to download. Let's continue to add query parameters before moving to `whatWQPsites`.
 
 
 ```r
@@ -686,12 +685,12 @@ head(MauiCo_avgdailyQ)
 
 ```
 ##   agency_cd  site_no   dateTime X_00060_00003 X_00060_00003_cd tz_cd
-## 1      USGS 16400000 2020-10-12           3.5                P   UTC
-## 2      USGS 16401000 1929-08-31          18.0                A   UTC
-## 3      USGS 16402000 1957-07-31          51.0                A   UTC
-## 4      USGS 16403000 1957-06-30           5.5                A   UTC
-## 5      USGS 16403600 1970-09-29           2.4                A   UTC
-## 6      USGS 16403900 1996-09-30           1.3                A   UTC
+## 1      USGS 16400000 2020-10-18          7.94                P   UTC
+## 2      USGS 16401000 1929-08-31         18.00                A   UTC
+## 3      USGS 16402000 1957-07-31         51.00                A   UTC
+## 4      USGS 16403000 1957-06-30          5.50                A   UTC
+## 5      USGS 16403600 1970-09-29          2.40                A   UTC
+## 6      USGS 16403900 1996-09-30          1.30                A   UTC
 ```
 
 ```r
@@ -727,7 +726,7 @@ head(MauiHUC8_mindailyT)
 ## 3      USGS 16520000 2004-04-14          17.5                A   UTC
 ## 4      USGS 16527000 2004-01-13          15.4                A   UTC
 ## 5      USGS 16555000 2004-01-13          16.4                A   UTC
-## 6      USGS 16618000 2020-10-12          21.0                P   UTC
+## 6      USGS 16618000 2020-10-18          20.5                P   UTC
 ```
 
 ```r
@@ -768,28 +767,25 @@ names(SaltLake_totalN)
 ## [11] "tu_id"                      "body_part_id"              
 ## [13] "p00003"                     "p00004"                    
 ## [15] "p00009"                     "p00010"                    
-## [17] "p00025"                     "p00061"                    
-## [19] "p00063"                     "p00065"                    
-## [21] "p00095"                     "p00098"                    
-## [23] "p00191"                     "p00300"                    
-## [25] "p00301"                     "p00400"                    
-## [27] "p00480"                     "p01325"                    
-## [29] "p01330"                     "p01345"                    
-## [31] "p01350"                     "p30207"                    
-## [33] "p30209"                     "p30211"                    
-## [35] "p50015"                     "p50280"                    
-## [37] "p70305"                     "p71820"                    
-## [39] "p71999"                     "p72012"                    
-## [41] "p72013"                     "p72020"                    
-## [43] "p72219"                     "p72220"                    
-## [45] "p72263"                     "p81904"                    
-## [47] "p82398"                     "p84164"                    
-## [49] "p84171"                     "p84182"                    
-## [51] "p99111"                     "p99156"                    
-## [53] "p99159"                     "p99168"                    
-## [55] "p99169"                     "p99170"                    
-## [57] "p99171"                     "p99173"                    
-## [59] "p99206"                     "startDateTime"
+## [17] "p00020"                     "p00025"                    
+## [19] "p00061"                     "p00063"                    
+## [21] "p00065"                     "p00095"                    
+## [23] "p00098"                     "p00191"                    
+## [25] "p00300"                     "p00301"                    
+## [27] "p00400"                     "p00480"                    
+## [29] "p30207"                     "p30209"                    
+## [31] "p30211"                     "p50015"                    
+## [33] "p50280"                     "p70305"                    
+## [35] "p71820"                     "p71999"                    
+## [37] "p72012"                     "p72013"                    
+## [39] "p72020"                     "p72219"                    
+## [41] "p72220"                     "p72263"                    
+## [43] "p81904"                     "p82398"                    
+## [45] "p84164"                     "p84171"                    
+## [47] "p84182"                     "p99111"                    
+## [49] "p99156"                     "p99159"                    
+## [51] "p99171"                     "p99173"                    
+## [53] "p99206"                     "startDateTime"
 ```
 
 ```r
@@ -798,7 +794,7 @@ length(unique(SaltLake_totalN$site_no))
 ```
 
 ```
-## [1] 9
+## [1] 10
 ```
 
 ### readNWISdv
@@ -2311,7 +2307,7 @@ length(default_geoms)
 ```
 
 ```
-## [1] 31
+## [1] 29
 ```
 
 ```r
@@ -2575,7 +2571,7 @@ check(evap_geojob)
 ## [1] "Process successful"
 ## 
 ## $URL
-## [1] "https://cida.usgs.gov:443/gdp/process/RetrieveResultServlet?id=a908353e-f79e-43dd-b204-fbad4ab85425OUTPUT"
+## [1] "https://cida.usgs.gov:443/gdp/process/RetrieveResultServlet?id=1033380f-85b6-4023-9bcb-99b669a8bfa0OUTPUT"
 ## 
 ## $statusType
 ## [1] "ProcessSucceeded"
