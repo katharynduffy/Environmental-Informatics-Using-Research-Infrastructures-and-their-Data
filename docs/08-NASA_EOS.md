@@ -267,8 +267,8 @@ prettify(token_response)                                       # Print the prett
 ```
 ## {
 ##     "token_type": "Bearer",
-##     "token": "4-4xOqVgm0WJDzpeAPPPkLBw17XQlSdXuW7LrqbqDPLhwAV_AG2wUm4N1iGB5g2Js3Lj9t3R7yqL5DxL3zscew",
-##     "expiration": "2020-10-15T16:03:26Z"
+##     "token": "-HS6DOrKUrzf3AQHycrrodUzWXThuBWzPphlSNsoJIl1F5kJuS1ueS5TPaFvlMuGD9Gf4wpzTKbqfqaJIZoKbw",
+##     "expiration": "2020-10-21T16:44:19Z"
 ## }
 ## 
 ```
@@ -1580,8 +1580,8 @@ prettify(token_response)                                       # Print the prett
 ```
 ## {
 ##     "token_type": "Bearer",
-##     "token": "4-4xOqVgm0WJDzpeAPPPkLBw17XQlSdXuW7LrqbqDPLhwAV_AG2wUm4N1iGB5g2Js3Lj9t3R7yqL5DxL3zscew",
-##     "expiration": "2020-10-15T16:03:26Z"
+##     "token": "-HS6DOrKUrzf3AQHycrrodUzWXThuBWzPphlSNsoJIl1F5kJuS1ueS5TPaFvlMuGD9Gf4wpzTKbqfqaJIZoKbw",
+##     "expiration": "2020-10-21T16:44:19Z"
 ## }
 ## 
 ```
@@ -1905,7 +1905,7 @@ onaq_wgs84 <- spTransform(onaq, CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=
 convert the Spatial data frame to GeoJSON using `geojson_json` from `geojsonio` package, which makes it easy to create the geospatial data in and out of GeoJSON format.
 
 ```r
-onaq_json <- geojsonio::geojson_json(onaq, geometry = "polygon")    # Convert the data frame to GeoJSON
+onaq_json <- geojsonio::geojson_json(onaq_wgs84, geometry = "polygon")    # Convert the data frame to GeoJSON
 ```
 
 ```
@@ -2016,6 +2016,13 @@ remove(response_req, response_content)                              # Remove the
 prettify(status_response)                                           # Print the prettified response
 ```
 
+```
+## {
+##     "message": "You don't have the permission to access the requested resource. It is either read-protected or not readable by the server."
+## }
+## 
+```
+
 The task_id that was generated when submitting your request can also be used to retrieve a task status. 
 Notice, this could get longer because of the number of vertices in the shapefile that will be printed.
 
@@ -2037,15 +2044,6 @@ stat_content <- content(stat_req)                           # Retrieve content o
 stat_response <- toJSON(stat_content, auto_unbox = TRUE)    # Convert the content to JSON object
 stat <- fromJSON(stat_response)$status                      # Assign the task status to a variable
 remove(stat_req, stat_content)                              # Remove the variables that are not needed      
-
-while (stat != 'done') {
-  Sys.sleep(60)
-  stat_req <- GET(paste0(API_URL,"task"), query = list(limit = 1), add_headers(Authorization = token))
-  stat_content <- content(stat_req)
-  stat <-fromJSON(toJSON(stat_content, auto_unbox = TRUE))$status    
-  remove(stat_content) 
-  print(stat)
-}
 ```
 ***  
 ## Download a Request
@@ -2084,19 +2082,64 @@ Now, take a look at "R_output" directory. Separate folders are made for each pro
 # List of directories in the R_output directory
 list.dirs(outDir)
 ```
+
+```
+##  [1] "./data/"                                                                                     
+##  [2] "./data//__MACOSX"                                                                            
+##  [3] "./data//__MACOSX/All_NEON_TOS_Plots_V8"                                                      
+##  [4] "./data//All_NEON_TOS_Plots_V8"                                                               
+##  [5] "./data//AOP"                                                                                 
+##  [6] "./data//AOPTerrestrial"                                                                      
+##  [7] "./data//AOPTerrestrial 2"                                                                    
+##  [8] "./data//DP1.30003.001"                                                                       
+##  [9] "./data//DP1.30003.001/2017"                                                                  
+## [10] "./data//DP1.30003.001/2017/FullSite"                                                         
+## [11] "./data//DP1.30003.001/2017/FullSite/D16"                                                     
+## [12] "./data//DP1.30003.001/2017/FullSite/D16/2017_WREF_1"                                         
+## [13] "./data//DP1.30003.001/2017/FullSite/D16/2017_WREF_1/L1"                                      
+## [14] "./data//DP1.30003.001/2017/FullSite/D16/2017_WREF_1/L1/DiscreteLidar"                        
+## [15] "./data//DP1.30003.001/2017/FullSite/D16/2017_WREF_1/L1/DiscreteLidar/ClassifiedPointCloud"   
+## [16] "./data//DP1.30003.001/2017/FullSite/D16/2017_WREF_1/Metadata"                                
+## [17] "./data//DP1.30003.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar"                  
+## [18] "./data//DP1.30003.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary"     
+## [19] "./data//DP1.30003.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/kmls"
+## [20] "./data//DP1.30003.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/shps"
+## [21] "./data//DP3.30015.001"                                                                       
+## [22] "./data//DP3.30015.001/2017"                                                                  
+## [23] "./data//DP3.30015.001/2017/FullSite"                                                         
+## [24] "./data//DP3.30015.001/2017/FullSite/D16"                                                     
+## [25] "./data//DP3.30015.001/2017/FullSite/D16/2017_WREF_1"                                         
+## [26] "./data//DP3.30015.001/2017/FullSite/D16/2017_WREF_1/L3"                                      
+## [27] "./data//DP3.30015.001/2017/FullSite/D16/2017_WREF_1/L3/DiscreteLidar"                        
+## [28] "./data//DP3.30015.001/2017/FullSite/D16/2017_WREF_1/L3/DiscreteLidar/CanopyHeightModelGtif"  
+## [29] "./data//DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata"                                
+## [30] "./data//DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar"                  
+## [31] "./data//DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary"     
+## [32] "./data//DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/kmls"
+## [33] "./data//DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/shps"
+## [34] "./data//filesToStack00200"                                                                   
+## [35] "./data//NEON_TOS"                                                                            
+## [36] "./data//pointreyes"                                                                          
+## [37] "./data//pointreyesclear"                                                                     
+## [38] "./data//pointreyesfoggy"                                                                     
+## [39] "./data//SJER"                                                                                
+## [40] "./data//SOAP"
+```
 Below, the list of relative path and file names is assigned to a variable and part of the list is printed.
 
 ```r
 relative_path <- bundle$file_name            # Assign relative path to a variable
-relative_path[550:560]                       # Print part of the list
 ```
 
 Later in this tutorial, the `SRTMGL1_NC` GeoTIFF is loaded for visulalization. Below, the directory to this file is assigned to a variable.
 
 ```r
-SRTMGL1_NC_subdir <- relative_path[grepl("*SRTMGL1_NC", relative_path)]    # Extract the telative path to the SRTMGL1_N 
-SRTMGL1_NC_dir <- paste0(outDir, "/", SRTMGL1_NC_subdir)           # Assign absolute path to a variable
+SRTMGL1_NC_dir <- ('./data/NASADEM_NC.001_NASADEM_HGT_doy2000042_aid0001.tif')           # Assign absolute path to a variable
 SRTMGL1_NC_dir                                                             # Print the absolute path
+```
+
+```
+## [1] "./data/NASADEM_NC.001_NASADEM_HGT_doy2000042_aid0001.tif"
 ```
 ***
 ## Explore AppEEARS Quality Service
@@ -2113,6 +2156,60 @@ quality_response <- toJSON(quality_content, auto_unbox = TRUE) # Convert the inf
 remove(quality_req, quality_content)                           # Remove the variables that are not needed 
 prettify(quality_response)
 ```
+
+```
+## [
+##     {
+##         "ProductAndVersion": "CU_LT05.001",
+##         "Layer": "SRB1",
+##         "QualityProductAndVersion": "CU_LT05.001",
+##         "QualityLayers": [
+##             "PIXELQA"
+##         ]
+##     },
+##     {
+##         "ProductAndVersion": "CU_LT05.001",
+##         "Layer": "SRB2",
+##         "QualityProductAndVersion": "CU_LT05.001",
+##         "QualityLayers": [
+##             "PIXELQA"
+##         ]
+##     },
+##     {
+##         "ProductAndVersion": "CU_LT05.001",
+##         "Layer": "SRB3",
+##         "QualityProductAndVersion": "CU_LT05.001",
+##         "QualityLayers": [
+##             "PIXELQA"
+##         ]
+##     },
+##     {
+##         "ProductAndVersion": "CU_LT05.001",
+##         "Layer": "SRB4",
+##         "QualityProductAndVersion": "CU_LT05.001",
+##         "QualityLayers": [
+##             "PIXELQA"
+##         ]
+##     },
+##     {
+##         "ProductAndVersion": "CU_LT05.001",
+##         "Layer": "SRB5",
+##         "QualityProductAndVersion": "CU_LT05.001",
+##         "QualityLayers": [
+##             "PIXELQA"
+##         ]
+##     },
+##     {
+##         "ProductAndVersion": "CU_LT05.001",
+##         "Layer": "SRB7",
+##         "QualityProductAndVersion": "CU_LT05.001",
+##         "QualityLayers": [
+##             "PIXELQA"
+##         ]
+##     }
+## ]
+## 
+```
 ***
 ## List Quality Layers 
 This API call will list all of the quality layer information for a product. For more information visit [AppEEARS API documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#quality)
@@ -2125,6 +2222,48 @@ MCD15A3H_q_content <- content(MCD15A3H_q_req)                        # Retrieve 
 MCD15A3H_quality <- toJSON(MCD15A3H_q_content, auto_unbox = TRUE)    # Convert the info to JSON object
 remove(MCD15A3H_q_req, MCD15A3H_q_content)
 prettify(MCD15A3H_quality)
+```
+
+```
+## [
+##     {
+##         "ProductAndVersion": "MCD15A3H.006",
+##         "Layer": "Fpar_500m",
+##         "QualityProductAndVersion": "MCD15A3H.006",
+##         "QualityLayers": [
+##             "FparLai_QC",
+##             "FparExtra_QC"
+##         ]
+##     },
+##     {
+##         "ProductAndVersion": "MCD15A3H.006",
+##         "Layer": "FparStdDev_500m",
+##         "QualityProductAndVersion": "MCD15A3H.006",
+##         "QualityLayers": [
+##             "FparLai_QC",
+##             "FparExtra_QC"
+##         ]
+##     },
+##     {
+##         "ProductAndVersion": "MCD15A3H.006",
+##         "Layer": "Lai_500m",
+##         "QualityProductAndVersion": "MCD15A3H.006",
+##         "QualityLayers": [
+##             "FparLai_QC",
+##             "FparExtra_QC"
+##         ]
+##     },
+##     {
+##         "ProductAndVersion": "MCD15A3H.006",
+##         "Layer": "LaiStdDev_500m",
+##         "QualityProductAndVersion": "MCD15A3H.006",
+##         "QualityLayers": [
+##             "FparLai_QC",
+##             "FparExtra_QC"
+##         ]
+##     }
+## ]
+## 
 ```
 ***
 ## Show Quality Values 
@@ -2139,6 +2278,158 @@ quality_response <- toJSON(quality_content, auto_unbox = TRUE) # Convert the inf
 remove(quality_req, quality_content)                           # Remove the variables that are not needed 
 prettify(quality_response)                                     # Print the quality response as a data frame
 ```
+
+```
+## [
+##     {
+##         "ProductAndVersion": "MCD15A3H.006",
+##         "QualityLayer": "FparLai_QC",
+##         "Name": "MODLAND",
+##         "Value": 0,
+##         "Description": "Good quality (main algorithm with or without saturation)",
+##         "Acceptable": true
+##     },
+##     {
+##         "ProductAndVersion": "MCD15A3H.006",
+##         "QualityLayer": "FparLai_QC",
+##         "Name": "MODLAND",
+##         "Value": 1,
+##         "Description": "Other Quality (back-up algorithm or fill values)",
+##         "Acceptable": false
+##     },
+##     {
+##         "ProductAndVersion": "MCD15A3H.006",
+##         "QualityLayer": "FparLai_QC",
+##         "Name": "Sensor",
+##         "Value": 0,
+##         "Description": "Terra",
+##         "Acceptable": {
+## 
+##         }
+##     },
+##     {
+##         "ProductAndVersion": "MCD15A3H.006",
+##         "QualityLayer": "FparLai_QC",
+##         "Name": "Sensor",
+##         "Value": 1,
+##         "Description": "Aqua",
+##         "Acceptable": {
+## 
+##         }
+##     },
+##     {
+##         "ProductAndVersion": "MCD15A3H.006",
+##         "QualityLayer": "FparLai_QC",
+##         "Name": "DeadDetector",
+##         "Value": 0,
+##         "Description": "Detectors apparently fine for up to 50% of channels 1, 2",
+##         "Acceptable": {
+## 
+##         }
+##     },
+##     {
+##         "ProductAndVersion": "MCD15A3H.006",
+##         "QualityLayer": "FparLai_QC",
+##         "Name": "DeadDetector",
+##         "Value": 1,
+##         "Description": "Dead detectors caused >50% adjacent detector retrieval",
+##         "Acceptable": {
+## 
+##         }
+##     },
+##     {
+##         "ProductAndVersion": "MCD15A3H.006",
+##         "QualityLayer": "FparLai_QC",
+##         "Name": "CloudState",
+##         "Value": 0,
+##         "Description": "Significant clouds NOT present (clear)",
+##         "Acceptable": {
+## 
+##         }
+##     },
+##     {
+##         "ProductAndVersion": "MCD15A3H.006",
+##         "QualityLayer": "FparLai_QC",
+##         "Name": "CloudState",
+##         "Value": 1,
+##         "Description": "Significant clouds WERE present",
+##         "Acceptable": {
+## 
+##         }
+##     },
+##     {
+##         "ProductAndVersion": "MCD15A3H.006",
+##         "QualityLayer": "FparLai_QC",
+##         "Name": "CloudState",
+##         "Value": 2,
+##         "Description": "Mixed cloud present in pixel",
+##         "Acceptable": {
+## 
+##         }
+##     },
+##     {
+##         "ProductAndVersion": "MCD15A3H.006",
+##         "QualityLayer": "FparLai_QC",
+##         "Name": "CloudState",
+##         "Value": 3,
+##         "Description": "Cloud state not defined, assumed clear",
+##         "Acceptable": {
+## 
+##         }
+##     },
+##     {
+##         "ProductAndVersion": "MCD15A3H.006",
+##         "QualityLayer": "FparLai_QC",
+##         "Name": "SCF_QC",
+##         "Value": 0,
+##         "Description": "Main (RT) method used, best result possible (no saturation)",
+##         "Acceptable": {
+## 
+##         }
+##     },
+##     {
+##         "ProductAndVersion": "MCD15A3H.006",
+##         "QualityLayer": "FparLai_QC",
+##         "Name": "SCF_QC",
+##         "Value": 1,
+##         "Description": "Main (RT) method used with saturation. Good, very usable",
+##         "Acceptable": {
+## 
+##         }
+##     },
+##     {
+##         "ProductAndVersion": "MCD15A3H.006",
+##         "QualityLayer": "FparLai_QC",
+##         "Name": "SCF_QC",
+##         "Value": 2,
+##         "Description": "Main (RT) method failed due to bad geometry, empirical algorithm used",
+##         "Acceptable": {
+## 
+##         }
+##     },
+##     {
+##         "ProductAndVersion": "MCD15A3H.006",
+##         "QualityLayer": "FparLai_QC",
+##         "Name": "SCF_QC",
+##         "Value": 3,
+##         "Description": "Main (RT) method failed due to problems other than geometry, empirical algorithm used",
+##         "Acceptable": {
+## 
+##         }
+##     },
+##     {
+##         "ProductAndVersion": "MCD15A3H.006",
+##         "QualityLayer": "FparLai_QC",
+##         "Name": "SCF_QC",
+##         "Value": 4,
+##         "Description": "Pixel not produced at all, value couldn't be retrieved (possible reasons: bad L1B data, unusable MOD09GA data)",
+##         "Acceptable": {
+## 
+##         }
+##     }
+## ]
+## 
+```
 ***
 ## Decode Quality Values
 This API call will decode the bits for a given quality value. 
@@ -2150,6 +2441,33 @@ response <- content(GET(paste0(API_URL, "quality/", productAndVersion, "/", qual
 q_response <- toJSON(response, auto_unbox = TRUE)     # Convert the info to JSON object
 remove(response)                                      # Remove the variables that are not needed anymore
 prettify(q_response)                                  # Print the prettified response
+```
+
+```
+## {
+##     "Binary Representation": "0b00000001",
+##     "MODLAND": {
+##         "bits": "0b1",
+##         "description": "Other Quality (back-up algorithm or fill values)"
+##     },
+##     "Sensor": {
+##         "bits": "0b0",
+##         "description": "Terra"
+##     },
+##     "DeadDetector": {
+##         "bits": "0b0",
+##         "description": "Detectors apparently fine for up to 50% of channels 1, 2"
+##     },
+##     "CloudState": {
+##         "bits": "0b00",
+##         "description": "Significant clouds NOT present (clear)"
+##     },
+##     "SCF_QC": {
+##         "bits": "0b000",
+##         "description": "Main (RT) method used, best result possible (no saturation)"
+##     }
+## }
+## 
 ```
 ***
 ## BONUS: Load Request Output and Visualize
@@ -2172,7 +2490,7 @@ gplot(dem) +
   geom_raster(aes(fill = value)) +
   scale_fill_distiller(name = "Elevation (m)", palette = "BrBG", na.value=NA) +
   coord_fixed(expand = F, ratio = 1) +
-  labs(title = "SRTM DEM: Grand Canyon NP")+
+  labs(title = "SRTM DEM: NEON SOAP")+
   theme(plot.title = element_text(face = "bold",size = rel(2),hjust = 0.5),
         axis.title.x = element_blank(), 
         axis.title.y = element_blank(),
@@ -2182,13 +2500,43 @@ gplot(dem) +
         panel.grid.minor = element_line(size = 0.001, linetype = 'solid',colour = "gray"))
 ```
 
+<img src="08-NASA_EOS_files/figure-html/unnamed-chunk-81-1.png" width="768" />
+
 This example can provide a template to use for your own research workflows. Leveraging the AppEEARS API for searching, extracting, and formatting analysis ready data, and loading it directly into R means that you can keep your entire research workflow in a single software program, from start to finish.
 
+## NASA EOS Coding Lab #2
+
+1. Choose two NEON sites in *different* ecoregions.  Then complete the following for **each** of your two NEON sites:
+
+2. Using your Earth Data account submit a point-based request to AppEEARS to pull 250m NDVI from AQUA and TERA for 2017, 2018, & 2019.
+
+  *Hint: How might you decide on the lat/lon to submit?  Metadata for the site?  NEON TOS data?*
+  
+3. Use QA/QC values to filter out 'poor quality'.
+
+  *Hint: Look at the QA/QC files that accompany your request*
+  
+4. Plot 3 years of NDVI from MODIS AQUA and TERA as a timeseries.
+
+5. Constrain a 3-week window for 'peak greeness' from MODIS and highlight it on your timeseries plot.
+
+6. Pull the canopy-level gcc90 from PhenoCam for the same site and the same time period as above.
+
+  *Hint: Check the numbering of your PhenoCam on the [PhenoCam gallery](https://phenocam.sr.unh.edu/webcam/gallery/) *
+  
+7. Plot the PhenoCam and MODIS timeseries on the same plot.
 
 
+8. Constrain a 3-week window for 'peak greeness' from PhenoCam and highlight it on your timeseries.
+  *Hint: Remember our PhenoCam discussions regarding early 'extra green' leaves?  You'll need to use some logic for this, not just a `max` *
+  
+9. Find the timing of the AOP flights that have occured at your sites over the same time period.  Add those dates as a vertical line.
+
+
+**BONUS:** If you'd like to submit an area-based request instead you can do so using the shapefiles for each NEON site [in this folder](https://drive.google.com/drive/folders/19MJee-UKY-McbxDuYYCINhWRbqn4bbGO?usp=sharing)
 
 ## NASA EOS Written Questions
-1) How does the scientific method of Earth Science differ from thta of traditional/classical labratory sciences?
+1) How does the scientific method of Earth Science differ from that of traditional/classical labratory sciences?
 
 ## NASA EOS Culmination Write Up
 

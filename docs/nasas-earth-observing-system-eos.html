@@ -486,8 +486,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.42" data-path="nasas-earth-observing-system-eos.html"><a href="nasas-earth-observing-system-eos.html#bonus-load-request-output-and-visualize"><i class="fa fa-check"></i><b>6.42</b> BONUS: Load Request Output and Visualize</a></li>
 <li class="chapter" data-level="6.43" data-path="nasas-earth-observing-system-eos.html"><a href="nasas-earth-observing-system-eos.html#load-a-geotiff"><i class="fa fa-check"></i><b>6.43</b> Load a GeoTIFF</a></li>
 <li class="chapter" data-level="6.44" data-path="nasas-earth-observing-system-eos.html"><a href="nasas-earth-observing-system-eos.html#plot-a-geotiff"><i class="fa fa-check"></i><b>6.44</b> Plot a GeoTIFF</a></li>
-<li class="chapter" data-level="6.45" data-path="nasas-earth-observing-system-eos.html"><a href="nasas-earth-observing-system-eos.html#nasa-eos-written-questions"><i class="fa fa-check"></i><b>6.45</b> NASA EOS Written Questions</a></li>
-<li class="chapter" data-level="6.46" data-path="nasas-earth-observing-system-eos.html"><a href="nasas-earth-observing-system-eos.html#nasa-eos-culmination-write-up"><i class="fa fa-check"></i><b>6.46</b> NASA EOS Culmination Write Up</a></li>
+<li class="chapter" data-level="6.45" data-path="nasas-earth-observing-system-eos.html"><a href="nasas-earth-observing-system-eos.html#nasa-eos-coding-lab-2"><i class="fa fa-check"></i><b>6.45</b> NASA EOS Coding Lab #2</a></li>
+<li class="chapter" data-level="6.46" data-path="nasas-earth-observing-system-eos.html"><a href="nasas-earth-observing-system-eos.html#nasa-eos-written-questions"><i class="fa fa-check"></i><b>6.46</b> NASA EOS Written Questions</a></li>
+<li class="chapter" data-level="6.47" data-path="nasas-earth-observing-system-eos.html"><a href="nasas-earth-observing-system-eos.html#nasa-eos-culmination-write-up"><i class="fa fa-check"></i><b>6.47</b> NASA EOS Culmination Write Up</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="usgs-national-water-information-system-nwis.html"><a href="usgs-national-water-information-system-nwis.html"><i class="fa fa-check"></i><b>7</b> USGS National Water Information System (NWIS)</a><ul>
 <li class="chapter" data-level="7.1" data-path="usgs-national-water-information-system-nwis.html"><a href="usgs-national-water-information-system-nwis.html#usgs-mission"><i class="fa fa-check"></i><b>7.1</b> USGS Mission:</a></li>
@@ -844,8 +845,8 @@ These tutorials have been tested on Windows and MAC systems using R Version 4.0.
 <a class="sourceLine" id="cb9-10" data-line-number="10"><span class="kw">prettify</span>(token_response)                                       <span class="co"># Print the prettified response</span></a></code></pre></div>
 <pre><code>## {
 ##     &quot;token_type&quot;: &quot;Bearer&quot;,
-##     &quot;token&quot;: &quot;4-4xOqVgm0WJDzpeAPPPkLBw17XQlSdXuW7LrqbqDPLhwAV_AG2wUm4N1iGB5g2Js3Lj9t3R7yqL5DxL3zscew&quot;,
-##     &quot;expiration&quot;: &quot;2020-10-15T16:03:26Z&quot;
+##     &quot;token&quot;: &quot;-HS6DOrKUrzf3AQHycrrodUzWXThuBWzPphlSNsoJIl1F5kJuS1ueS5TPaFvlMuGD9Gf4wpzTKbqfqaJIZoKbw&quot;,
+##     &quot;expiration&quot;: &quot;2020-10-21T16:44:19Z&quot;
 ## }
 ## </code></pre>
 <p><strong>Above, you should see a Bearer token. Notice that this token will expire approximately 48 hours after being acquired.</strong></p>
@@ -2003,8 +2004,8 @@ These tutorials have been tested on Windows and Mac systems using R Version 4.0.
 <a class="sourceLine" id="cb68-10" data-line-number="10"><span class="kw">prettify</span>(token_response)                                       <span class="co"># Print the prettified response</span></a></code></pre></div>
 <pre><code>## {
 ##     &quot;token_type&quot;: &quot;Bearer&quot;,
-##     &quot;token&quot;: &quot;4-4xOqVgm0WJDzpeAPPPkLBw17XQlSdXuW7LrqbqDPLhwAV_AG2wUm4N1iGB5g2Js3Lj9t3R7yqL5DxL3zscew&quot;,
-##     &quot;expiration&quot;: &quot;2020-10-15T16:03:26Z&quot;
+##     &quot;token&quot;: &quot;-HS6DOrKUrzf3AQHycrrodUzWXThuBWzPphlSNsoJIl1F5kJuS1ueS5TPaFvlMuGD9Gf4wpzTKbqfqaJIZoKbw&quot;,
+##     &quot;expiration&quot;: &quot;2020-10-21T16:44:19Z&quot;
 ## }
 ## </code></pre>
 <p><strong>Above, you should see a Bearer token. Notice that this token will expire approximately 48 hours after being acquired.</strong></p>
@@ -2258,7 +2259,7 @@ These tutorials have been tested on Windows and Mac systems using R Version 4.0.
 ## It has 1 fields</code></pre>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">onaq_wgs84 &lt;-<span class="st"> </span><span class="kw">spTransform</span>(onaq, <span class="kw">CRS</span>(<span class="st">&quot;+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0&quot;</span>))</a></code></pre></div>
 <p>convert the Spatial data frame to GeoJSON using <code>geojson_json</code> from <code>geojsonio</code> package, which makes it easy to create the geospatial data in and out of GeoJSON format.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">onaq_json &lt;-<span class="st"> </span>geojsonio<span class="op">::</span><span class="kw">geojson_json</span>(onaq, <span class="dt">geometry =</span> <span class="st">&quot;polygon&quot;</span>)    <span class="co"># Convert the data frame to GeoJSON</span></a></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">onaq_json &lt;-<span class="st"> </span>geojsonio<span class="op">::</span><span class="kw">geojson_json</span>(onaq_wgs84, <span class="dt">geometry =</span> <span class="st">&quot;polygon&quot;</span>)    <span class="co"># Convert the data frame to GeoJSON</span></a></code></pre></div>
 <pre><code>## Warning: &#39;geojsonlint&#39; not installed, skipping GeoJSON linting</code></pre>
 <p>Next, the GeoJSON object can be read as a list using the <code>FROM_GeoJson</code> function from <code>geojsonR</code> package.</p>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1">onaq_js &lt;-<span class="st"> </span>geojsonR<span class="op">::</span><span class="kw">FROM_GeoJson</span>(onaq_json)                    <span class="co"># Read the GeoJSON </span></a></code></pre></div>
@@ -2343,31 +2344,26 @@ The AppEEARS API contains some helpful formatting resources. Below, limit the AP
 <a class="sourceLine" id="cb101-5" data-line-number="5">status_response &lt;-<span class="st"> </span><span class="kw">toJSON</span>(response_content, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>)      <span class="co"># Convert the content to JSON object</span></a>
 <a class="sourceLine" id="cb101-6" data-line-number="6"><span class="kw">remove</span>(response_req, response_content)                              <span class="co"># Remove the variables that are not needed anymore     </span></a>
 <a class="sourceLine" id="cb101-7" data-line-number="7"><span class="kw">prettify</span>(status_response)                                           <span class="co"># Print the prettified response</span></a></code></pre></div>
+<pre><code>## {
+##     &quot;message&quot;: &quot;You don&#39;t have the permission to access the requested resource. It is either read-protected or not readable by the server.&quot;
+## }
+## </code></pre>
 <p>The task_id that was generated when submitting your request can also be used to retrieve a task status.
 Notice, this could get longer because of the number of vertices in the shapefile that will be printed.</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="co"># task_id &lt;- fromJSON(task_response)$task_id                 # Extract the task_id of submitted point request</span></a>
-<a class="sourceLine" id="cb102-2" data-line-number="2"><span class="co"># # Request the task status of a task with the provided task_id from task URL</span></a>
-<a class="sourceLine" id="cb102-3" data-line-number="3"><span class="co"># status_req &lt;- GET(paste0(API_URL,&quot;task/&quot;, task_id), add_headers(Authorization = token)) </span></a>
-<a class="sourceLine" id="cb102-4" data-line-number="4"><span class="co"># status_content &lt;- content(status_req)                       # Retrieve content of the request       </span></a>
-<a class="sourceLine" id="cb102-5" data-line-number="5"><span class="co"># statusResponse &lt;-toJSON(status_content, auto_unbox = TRUE)  # Convert the content to JSON object</span></a>
-<a class="sourceLine" id="cb102-6" data-line-number="6"><span class="co"># remove(status_req, status_content)                          # Remove the variables that are not needed </span></a>
-<a class="sourceLine" id="cb102-7" data-line-number="7"><span class="co"># prettify(statusResponse)                                    # Print the prettified response</span></a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1"><span class="co"># task_id &lt;- fromJSON(task_response)$task_id                 # Extract the task_id of submitted point request</span></a>
+<a class="sourceLine" id="cb103-2" data-line-number="2"><span class="co"># # Request the task status of a task with the provided task_id from task URL</span></a>
+<a class="sourceLine" id="cb103-3" data-line-number="3"><span class="co"># status_req &lt;- GET(paste0(API_URL,&quot;task/&quot;, task_id), add_headers(Authorization = token)) </span></a>
+<a class="sourceLine" id="cb103-4" data-line-number="4"><span class="co"># status_content &lt;- content(status_req)                       # Retrieve content of the request       </span></a>
+<a class="sourceLine" id="cb103-5" data-line-number="5"><span class="co"># statusResponse &lt;-toJSON(status_content, auto_unbox = TRUE)  # Convert the content to JSON object</span></a>
+<a class="sourceLine" id="cb103-6" data-line-number="6"><span class="co"># remove(status_req, status_content)                          # Remove the variables that are not needed </span></a>
+<a class="sourceLine" id="cb103-7" data-line-number="7"><span class="co"># prettify(statusResponse)                                    # Print the prettified response</span></a></code></pre></div>
 <p>Retrieve the task status every 60 seconds. The task status should be <code>done</code> to be able to download the output.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1"><span class="co"># Request the task status of last request from task URL</span></a>
-<a class="sourceLine" id="cb103-2" data-line-number="2">stat_req &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="kw">paste0</span>(API_URL,<span class="st">&quot;task&quot;</span>), <span class="dt">query =</span> <span class="kw">list</span>(<span class="dt">limit =</span> <span class="dv">1</span>), <span class="kw">add_headers</span>(<span class="dt">Authorization =</span> token))</a>
-<a class="sourceLine" id="cb103-3" data-line-number="3">stat_content &lt;-<span class="st"> </span><span class="kw">content</span>(stat_req)                           <span class="co"># Retrieve content of the request</span></a>
-<a class="sourceLine" id="cb103-4" data-line-number="4">stat_response &lt;-<span class="st"> </span><span class="kw">toJSON</span>(stat_content, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>)    <span class="co"># Convert the content to JSON object</span></a>
-<a class="sourceLine" id="cb103-5" data-line-number="5">stat &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(stat_response)<span class="op">$</span>status                      <span class="co"># Assign the task status to a variable</span></a>
-<a class="sourceLine" id="cb103-6" data-line-number="6"><span class="kw">remove</span>(stat_req, stat_content)                              <span class="co"># Remove the variables that are not needed      </span></a>
-<a class="sourceLine" id="cb103-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb103-8" data-line-number="8"><span class="cf">while</span> (stat <span class="op">!=</span><span class="st"> &#39;done&#39;</span>) {</a>
-<a class="sourceLine" id="cb103-9" data-line-number="9">  <span class="kw">Sys.sleep</span>(<span class="dv">60</span>)</a>
-<a class="sourceLine" id="cb103-10" data-line-number="10">  stat_req &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="kw">paste0</span>(API_URL,<span class="st">&quot;task&quot;</span>), <span class="dt">query =</span> <span class="kw">list</span>(<span class="dt">limit =</span> <span class="dv">1</span>), <span class="kw">add_headers</span>(<span class="dt">Authorization =</span> token))</a>
-<a class="sourceLine" id="cb103-11" data-line-number="11">  stat_content &lt;-<span class="st"> </span><span class="kw">content</span>(stat_req)</a>
-<a class="sourceLine" id="cb103-12" data-line-number="12">  stat &lt;-<span class="kw">fromJSON</span>(<span class="kw">toJSON</span>(stat_content, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>))<span class="op">$</span>status    </a>
-<a class="sourceLine" id="cb103-13" data-line-number="13">  <span class="kw">remove</span>(stat_content) </a>
-<a class="sourceLine" id="cb103-14" data-line-number="14">  <span class="kw">print</span>(stat)</a>
-<a class="sourceLine" id="cb103-15" data-line-number="15">}</a></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1"><span class="co"># Request the task status of last request from task URL</span></a>
+<a class="sourceLine" id="cb104-2" data-line-number="2">stat_req &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="kw">paste0</span>(API_URL,<span class="st">&quot;task&quot;</span>), <span class="dt">query =</span> <span class="kw">list</span>(<span class="dt">limit =</span> <span class="dv">1</span>), <span class="kw">add_headers</span>(<span class="dt">Authorization =</span> token))</a>
+<a class="sourceLine" id="cb104-3" data-line-number="3">stat_content &lt;-<span class="st"> </span><span class="kw">content</span>(stat_req)                           <span class="co"># Retrieve content of the request</span></a>
+<a class="sourceLine" id="cb104-4" data-line-number="4">stat_response &lt;-<span class="st"> </span><span class="kw">toJSON</span>(stat_content, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>)    <span class="co"># Convert the content to JSON object</span></a>
+<a class="sourceLine" id="cb104-5" data-line-number="5">stat &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(stat_response)<span class="op">$</span>status                      <span class="co"># Assign the task status to a variable</span></a>
+<a class="sourceLine" id="cb104-6" data-line-number="6"><span class="kw">remove</span>(stat_req, stat_content)                              <span class="co"># Remove the variables that are not needed      </span></a></code></pre></div>
 <hr />
 </div>
 <div id="download-a-request-1" class="section level2">
@@ -2375,84 +2371,386 @@ Notice, this could get longer because of the number of vertices in the shapefile
 <div id="explore-files-in-request-output-1" class="section level3">
 <h3><span class="header-section-number">6.36.1</span> Explore Files in Request Output</h3>
 <p>Before downloading the request output, examine the files contained in the request output.</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">task_id &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(task_response)[[<span class="dv">1</span>]]</a>
-<a class="sourceLine" id="cb104-2" data-line-number="2">response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="kw">paste0</span>(API_URL, <span class="st">&quot;bundle/&quot;</span>, task_id), <span class="kw">add_headers</span>(<span class="dt">Authorization =</span> token))</a>
-<a class="sourceLine" id="cb104-3" data-line-number="3">bundle_response &lt;-<span class="st"> </span><span class="kw">prettify</span>(<span class="kw">toJSON</span>(<span class="kw">content</span>(response), <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1">task_id &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(task_response)[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb105-2" data-line-number="2">response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="kw">paste0</span>(API_URL, <span class="st">&quot;bundle/&quot;</span>, task_id), <span class="kw">add_headers</span>(<span class="dt">Authorization =</span> token))</a>
+<a class="sourceLine" id="cb105-3" data-line-number="3">bundle_response &lt;-<span class="st"> </span><span class="kw">prettify</span>(<span class="kw">toJSON</span>(<span class="kw">content</span>(response), <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
 <hr />
 </div>
 </div>
 <div id="download-files-in-a-request-automation-1" class="section level2">
 <h2><span class="header-section-number">6.37</span> Download Files in a Request (Automation)</h2>
 <p>The bundle API provides information about completed tasks. For any completed task, a bundle can be queried to return the files contained as a part of the task request. Below, call the bundle API and return all of the output files. Next, read the contents of the bundle in JSON format and loop through file_id to automate downloading all of the output files into the output directory. For more information, please see <a href="https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#bundle">AppEEARS API Documentation</a>.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1">bundle &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(bundle_response)<span class="op">$</span>files</a>
-<a class="sourceLine" id="cb105-2" data-line-number="2"><span class="cf">for</span> (id <span class="cf">in</span> bundle<span class="op">$</span>file_id){</a>
-<a class="sourceLine" id="cb105-3" data-line-number="3">  <span class="co"># retrieve the filename from the file_id</span></a>
-<a class="sourceLine" id="cb105-4" data-line-number="4">  filename &lt;-<span class="st"> </span>bundle[bundle<span class="op">$</span>file_id <span class="op">==</span><span class="st"> </span>id,]<span class="op">$</span>file_name           </a>
-<a class="sourceLine" id="cb105-5" data-line-number="5">  <span class="co"># create a destination directory to store the file in</span></a>
-<a class="sourceLine" id="cb105-6" data-line-number="6">  filepath &lt;-<span class="st"> </span><span class="kw">paste</span>(outDir,filename, <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</a>
-<a class="sourceLine" id="cb105-7" data-line-number="7">  <span class="kw">suppressWarnings</span>(<span class="kw">dir.create</span>(<span class="kw">dirname</span>(filepath)))</a>
-<a class="sourceLine" id="cb105-8" data-line-number="8">  <span class="co"># write the file to disk using the destination directory and file name </span></a>
-<a class="sourceLine" id="cb105-9" data-line-number="9">  response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="kw">paste0</span>(API_URL, <span class="st">&quot;bundle/&quot;</span>, task_id, <span class="st">&quot;/&quot;</span>, id), </a>
-<a class="sourceLine" id="cb105-10" data-line-number="10">                  <span class="kw">write_disk</span>(filepath, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>), <span class="kw">progress</span>(),</a>
-<a class="sourceLine" id="cb105-11" data-line-number="11">                  <span class="kw">add_headers</span>(<span class="dt">Authorization =</span> token))</a>
-<a class="sourceLine" id="cb105-12" data-line-number="12">}</a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1">bundle &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(bundle_response)<span class="op">$</span>files</a>
+<a class="sourceLine" id="cb106-2" data-line-number="2"><span class="cf">for</span> (id <span class="cf">in</span> bundle<span class="op">$</span>file_id){</a>
+<a class="sourceLine" id="cb106-3" data-line-number="3">  <span class="co"># retrieve the filename from the file_id</span></a>
+<a class="sourceLine" id="cb106-4" data-line-number="4">  filename &lt;-<span class="st"> </span>bundle[bundle<span class="op">$</span>file_id <span class="op">==</span><span class="st"> </span>id,]<span class="op">$</span>file_name           </a>
+<a class="sourceLine" id="cb106-5" data-line-number="5">  <span class="co"># create a destination directory to store the file in</span></a>
+<a class="sourceLine" id="cb106-6" data-line-number="6">  filepath &lt;-<span class="st"> </span><span class="kw">paste</span>(outDir,filename, <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</a>
+<a class="sourceLine" id="cb106-7" data-line-number="7">  <span class="kw">suppressWarnings</span>(<span class="kw">dir.create</span>(<span class="kw">dirname</span>(filepath)))</a>
+<a class="sourceLine" id="cb106-8" data-line-number="8">  <span class="co"># write the file to disk using the destination directory and file name </span></a>
+<a class="sourceLine" id="cb106-9" data-line-number="9">  response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="kw">paste0</span>(API_URL, <span class="st">&quot;bundle/&quot;</span>, task_id, <span class="st">&quot;/&quot;</span>, id), </a>
+<a class="sourceLine" id="cb106-10" data-line-number="10">                  <span class="kw">write_disk</span>(filepath, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>), <span class="kw">progress</span>(),</a>
+<a class="sourceLine" id="cb106-11" data-line-number="11">                  <span class="kw">add_headers</span>(<span class="dt">Authorization =</span> token))</a>
+<a class="sourceLine" id="cb106-12" data-line-number="12">}</a></code></pre></div>
 <p>Now, take a look at “R_output” directory. Separate folders are made for each product and the outputs are saved in these folders.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="co"># List of directories in the R_output directory</span></a>
-<a class="sourceLine" id="cb106-2" data-line-number="2"><span class="kw">list.dirs</span>(outDir)</a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1"><span class="co"># List of directories in the R_output directory</span></a>
+<a class="sourceLine" id="cb107-2" data-line-number="2"><span class="kw">list.dirs</span>(outDir)</a></code></pre></div>
+<pre><code>##  [1] &quot;./data/&quot;                                                                                     
+##  [2] &quot;./data//__MACOSX&quot;                                                                            
+##  [3] &quot;./data//__MACOSX/All_NEON_TOS_Plots_V8&quot;                                                      
+##  [4] &quot;./data//All_NEON_TOS_Plots_V8&quot;                                                               
+##  [5] &quot;./data//AOP&quot;                                                                                 
+##  [6] &quot;./data//AOPTerrestrial&quot;                                                                      
+##  [7] &quot;./data//AOPTerrestrial 2&quot;                                                                    
+##  [8] &quot;./data//DP1.30003.001&quot;                                                                       
+##  [9] &quot;./data//DP1.30003.001/2017&quot;                                                                  
+## [10] &quot;./data//DP1.30003.001/2017/FullSite&quot;                                                         
+## [11] &quot;./data//DP1.30003.001/2017/FullSite/D16&quot;                                                     
+## [12] &quot;./data//DP1.30003.001/2017/FullSite/D16/2017_WREF_1&quot;                                         
+## [13] &quot;./data//DP1.30003.001/2017/FullSite/D16/2017_WREF_1/L1&quot;                                      
+## [14] &quot;./data//DP1.30003.001/2017/FullSite/D16/2017_WREF_1/L1/DiscreteLidar&quot;                        
+## [15] &quot;./data//DP1.30003.001/2017/FullSite/D16/2017_WREF_1/L1/DiscreteLidar/ClassifiedPointCloud&quot;   
+## [16] &quot;./data//DP1.30003.001/2017/FullSite/D16/2017_WREF_1/Metadata&quot;                                
+## [17] &quot;./data//DP1.30003.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar&quot;                  
+## [18] &quot;./data//DP1.30003.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary&quot;     
+## [19] &quot;./data//DP1.30003.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/kmls&quot;
+## [20] &quot;./data//DP1.30003.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/shps&quot;
+## [21] &quot;./data//DP3.30015.001&quot;                                                                       
+## [22] &quot;./data//DP3.30015.001/2017&quot;                                                                  
+## [23] &quot;./data//DP3.30015.001/2017/FullSite&quot;                                                         
+## [24] &quot;./data//DP3.30015.001/2017/FullSite/D16&quot;                                                     
+## [25] &quot;./data//DP3.30015.001/2017/FullSite/D16/2017_WREF_1&quot;                                         
+## [26] &quot;./data//DP3.30015.001/2017/FullSite/D16/2017_WREF_1/L3&quot;                                      
+## [27] &quot;./data//DP3.30015.001/2017/FullSite/D16/2017_WREF_1/L3/DiscreteLidar&quot;                        
+## [28] &quot;./data//DP3.30015.001/2017/FullSite/D16/2017_WREF_1/L3/DiscreteLidar/CanopyHeightModelGtif&quot;  
+## [29] &quot;./data//DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata&quot;                                
+## [30] &quot;./data//DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar&quot;                  
+## [31] &quot;./data//DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary&quot;     
+## [32] &quot;./data//DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/kmls&quot;
+## [33] &quot;./data//DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/shps&quot;
+## [34] &quot;./data//filesToStack00200&quot;                                                                   
+## [35] &quot;./data//NEON_TOS&quot;                                                                            
+## [36] &quot;./data//pointreyes&quot;                                                                          
+## [37] &quot;./data//pointreyesclear&quot;                                                                     
+## [38] &quot;./data//pointreyesfoggy&quot;                                                                     
+## [39] &quot;./data//SJER&quot;                                                                                
+## [40] &quot;./data//SOAP&quot;</code></pre>
 <p>Below, the list of relative path and file names is assigned to a variable and part of the list is printed.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">relative_path &lt;-<span class="st"> </span>bundle<span class="op">$</span>file_name            <span class="co"># Assign relative path to a variable</span></a>
-<a class="sourceLine" id="cb107-2" data-line-number="2">relative_path[<span class="dv">550</span><span class="op">:</span><span class="dv">560</span>]                       <span class="co"># Print part of the list</span></a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">relative_path &lt;-<span class="st"> </span>bundle<span class="op">$</span>file_name            <span class="co"># Assign relative path to a variable</span></a></code></pre></div>
 <p>Later in this tutorial, the <code>SRTMGL1_NC</code> GeoTIFF is loaded for visulalization. Below, the directory to this file is assigned to a variable.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">SRTMGL1_NC_subdir &lt;-<span class="st"> </span>relative_path[<span class="kw">grepl</span>(<span class="st">&quot;*SRTMGL1_NC&quot;</span>, relative_path)]    <span class="co"># Extract the telative path to the SRTMGL1_N </span></a>
-<a class="sourceLine" id="cb108-2" data-line-number="2">SRTMGL1_NC_dir &lt;-<span class="st"> </span><span class="kw">paste0</span>(outDir, <span class="st">&quot;/&quot;</span>, SRTMGL1_NC_subdir)           <span class="co"># Assign absolute path to a variable</span></a>
-<a class="sourceLine" id="cb108-3" data-line-number="3">SRTMGL1_NC_dir                                                             <span class="co"># Print the absolute path</span></a></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1">SRTMGL1_NC_dir &lt;-<span class="st"> </span>(<span class="st">&#39;./data/NASADEM_NC.001_NASADEM_HGT_doy2000042_aid0001.tif&#39;</span>)           <span class="co"># Assign absolute path to a variable</span></a>
+<a class="sourceLine" id="cb110-2" data-line-number="2">SRTMGL1_NC_dir                                                             <span class="co"># Print the absolute path</span></a></code></pre></div>
+<pre><code>## [1] &quot;./data/NASADEM_NC.001_NASADEM_HGT_doy2000042_aid0001.tif&quot;</code></pre>
 <hr />
 </div>
 <div id="explore-appeears-quality-service-1" class="section level2">
 <h2><span class="header-section-number">6.38</span> Explore AppEEARS Quality Service</h2>
 <p>The quality API provides quality details about all of the data products available in AppEEARS. Below are examples of how to query the quality API for listing quality products, layers, and values. The final example (<a href="#decode">Section 5c.</a>) demonstrates how AppEEARS quality services can be leveraged to decode pertinent quality values for your data. For more information visit <a href="https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#quality">AppEEARS API documentation</a></p>
 <p>First, reset pagination to include offset which allows you to set the number of results to skip before starting to return entries. Next, make a call to list all of the data product layers and the associated quality product and layer information.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">params &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">limit =</span> <span class="dv">6</span>, <span class="dt">offset =</span> <span class="dv">20</span>, <span class="dt">pretty =</span> <span class="ot">TRUE</span>)          <span class="co"># Assign query to a variable</span></a>
-<a class="sourceLine" id="cb109-2" data-line-number="2"><span class="co"># Request the specified quality layer info from quality API</span></a>
-<a class="sourceLine" id="cb109-3" data-line-number="3">quality_req &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="kw">paste0</span>(API_URL, <span class="st">&quot;quality&quot;</span>), <span class="dt">query =</span> params)</a>
-<a class="sourceLine" id="cb109-4" data-line-number="4">quality_content &lt;-<span class="st"> </span><span class="kw">content</span>(quality_req)                        <span class="co"># Retrieve the content of request</span></a>
-<a class="sourceLine" id="cb109-5" data-line-number="5">quality_response &lt;-<span class="st"> </span><span class="kw">toJSON</span>(quality_content, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>) <span class="co"># Convert the info to JSON object</span></a>
-<a class="sourceLine" id="cb109-6" data-line-number="6"><span class="kw">remove</span>(quality_req, quality_content)                           <span class="co"># Remove the variables that are not needed </span></a>
-<a class="sourceLine" id="cb109-7" data-line-number="7"><span class="kw">prettify</span>(quality_response)</a></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1">params &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">limit =</span> <span class="dv">6</span>, <span class="dt">offset =</span> <span class="dv">20</span>, <span class="dt">pretty =</span> <span class="ot">TRUE</span>)          <span class="co"># Assign query to a variable</span></a>
+<a class="sourceLine" id="cb112-2" data-line-number="2"><span class="co"># Request the specified quality layer info from quality API</span></a>
+<a class="sourceLine" id="cb112-3" data-line-number="3">quality_req &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="kw">paste0</span>(API_URL, <span class="st">&quot;quality&quot;</span>), <span class="dt">query =</span> params)</a>
+<a class="sourceLine" id="cb112-4" data-line-number="4">quality_content &lt;-<span class="st"> </span><span class="kw">content</span>(quality_req)                        <span class="co"># Retrieve the content of request</span></a>
+<a class="sourceLine" id="cb112-5" data-line-number="5">quality_response &lt;-<span class="st"> </span><span class="kw">toJSON</span>(quality_content, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>) <span class="co"># Convert the info to JSON object</span></a>
+<a class="sourceLine" id="cb112-6" data-line-number="6"><span class="kw">remove</span>(quality_req, quality_content)                           <span class="co"># Remove the variables that are not needed </span></a>
+<a class="sourceLine" id="cb112-7" data-line-number="7"><span class="kw">prettify</span>(quality_response)</a></code></pre></div>
+<pre><code>## [
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
+##         &quot;Layer&quot;: &quot;SRB1&quot;,
+##         &quot;QualityProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
+##         &quot;QualityLayers&quot;: [
+##             &quot;PIXELQA&quot;
+##         ]
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
+##         &quot;Layer&quot;: &quot;SRB2&quot;,
+##         &quot;QualityProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
+##         &quot;QualityLayers&quot;: [
+##             &quot;PIXELQA&quot;
+##         ]
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
+##         &quot;Layer&quot;: &quot;SRB3&quot;,
+##         &quot;QualityProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
+##         &quot;QualityLayers&quot;: [
+##             &quot;PIXELQA&quot;
+##         ]
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
+##         &quot;Layer&quot;: &quot;SRB4&quot;,
+##         &quot;QualityProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
+##         &quot;QualityLayers&quot;: [
+##             &quot;PIXELQA&quot;
+##         ]
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
+##         &quot;Layer&quot;: &quot;SRB5&quot;,
+##         &quot;QualityProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
+##         &quot;QualityLayers&quot;: [
+##             &quot;PIXELQA&quot;
+##         ]
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
+##         &quot;Layer&quot;: &quot;SRB7&quot;,
+##         &quot;QualityProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
+##         &quot;QualityLayers&quot;: [
+##             &quot;PIXELQA&quot;
+##         ]
+##     }
+## ]
+## </code></pre>
 <hr />
 </div>
 <div id="list-quality-layers-1" class="section level2">
 <h2><span class="header-section-number">6.39</span> List Quality Layers</h2>
 <p>This API call will list all of the quality layer information for a product. For more information visit <a href="https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#quality">AppEEARS API documentation</a></p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1">productAndVersion &lt;-<span class="st"> &#39;MCD15A3H.006&#39;</span>                                  <span class="co"># Assign productAndVersion to a variable</span></a>
-<a class="sourceLine" id="cb110-2" data-line-number="2">MCD15A3H_q_req &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="kw">paste0</span>(API_URL, <span class="st">&quot;quality/&quot;</span>, productAndVersion))<span class="co"># Request quality info for a product</span></a>
-<a class="sourceLine" id="cb110-3" data-line-number="3">MCD15A3H_q_content &lt;-<span class="st"> </span><span class="kw">content</span>(MCD15A3H_q_req)                        <span class="co"># Retrieve the content of request</span></a>
-<a class="sourceLine" id="cb110-4" data-line-number="4">MCD15A3H_quality &lt;-<span class="st"> </span><span class="kw">toJSON</span>(MCD15A3H_q_content, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>)    <span class="co"># Convert the info to JSON object</span></a>
-<a class="sourceLine" id="cb110-5" data-line-number="5"><span class="kw">remove</span>(MCD15A3H_q_req, MCD15A3H_q_content)</a>
-<a class="sourceLine" id="cb110-6" data-line-number="6"><span class="kw">prettify</span>(MCD15A3H_quality)</a></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1">productAndVersion &lt;-<span class="st"> &#39;MCD15A3H.006&#39;</span>                                  <span class="co"># Assign productAndVersion to a variable</span></a>
+<a class="sourceLine" id="cb114-2" data-line-number="2">MCD15A3H_q_req &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="kw">paste0</span>(API_URL, <span class="st">&quot;quality/&quot;</span>, productAndVersion))<span class="co"># Request quality info for a product</span></a>
+<a class="sourceLine" id="cb114-3" data-line-number="3">MCD15A3H_q_content &lt;-<span class="st"> </span><span class="kw">content</span>(MCD15A3H_q_req)                        <span class="co"># Retrieve the content of request</span></a>
+<a class="sourceLine" id="cb114-4" data-line-number="4">MCD15A3H_quality &lt;-<span class="st"> </span><span class="kw">toJSON</span>(MCD15A3H_q_content, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>)    <span class="co"># Convert the info to JSON object</span></a>
+<a class="sourceLine" id="cb114-5" data-line-number="5"><span class="kw">remove</span>(MCD15A3H_q_req, MCD15A3H_q_content)</a>
+<a class="sourceLine" id="cb114-6" data-line-number="6"><span class="kw">prettify</span>(MCD15A3H_quality)</a></code></pre></div>
+<pre><code>## [
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;Layer&quot;: &quot;Fpar_500m&quot;,
+##         &quot;QualityProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;QualityLayers&quot;: [
+##             &quot;FparLai_QC&quot;,
+##             &quot;FparExtra_QC&quot;
+##         ]
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;Layer&quot;: &quot;FparStdDev_500m&quot;,
+##         &quot;QualityProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;QualityLayers&quot;: [
+##             &quot;FparLai_QC&quot;,
+##             &quot;FparExtra_QC&quot;
+##         ]
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;Layer&quot;: &quot;Lai_500m&quot;,
+##         &quot;QualityProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;QualityLayers&quot;: [
+##             &quot;FparLai_QC&quot;,
+##             &quot;FparExtra_QC&quot;
+##         ]
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;Layer&quot;: &quot;LaiStdDev_500m&quot;,
+##         &quot;QualityProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;QualityLayers&quot;: [
+##             &quot;FparLai_QC&quot;,
+##             &quot;FparExtra_QC&quot;
+##         ]
+##     }
+## ]
+## </code></pre>
 <hr />
 </div>
 <div id="show-quality-values" class="section level2">
 <h2><span class="header-section-number">6.40</span> Show Quality Values</h2>
 <p>This API call will list all of the values for a given quality layer.</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">quality_layer &lt;-<span class="st"> &#39;FparLai_QC&#39;</span>                                 <span class="co"># assign a quality layer to a variable</span></a>
-<a class="sourceLine" id="cb111-2" data-line-number="2"><span class="co"># Request the specified quality layer info from quality API</span></a>
-<a class="sourceLine" id="cb111-3" data-line-number="3">quality_req &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="kw">paste0</span>(API_URL, <span class="st">&quot;quality/&quot;</span>,  productAndVersion, <span class="st">&quot;/&quot;</span>, quality_layer, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))</a>
-<a class="sourceLine" id="cb111-4" data-line-number="4">quality_content &lt;-<span class="st"> </span><span class="kw">content</span>(quality_req)                        <span class="co"># Retrieve the content of request</span></a>
-<a class="sourceLine" id="cb111-5" data-line-number="5">quality_response &lt;-<span class="st"> </span><span class="kw">toJSON</span>(quality_content, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>) <span class="co"># Convert the info to JSON object</span></a>
-<a class="sourceLine" id="cb111-6" data-line-number="6"><span class="kw">remove</span>(quality_req, quality_content)                           <span class="co"># Remove the variables that are not needed </span></a>
-<a class="sourceLine" id="cb111-7" data-line-number="7"><span class="kw">prettify</span>(quality_response)                                     <span class="co"># Print the quality response as a data frame</span></a></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1">quality_layer &lt;-<span class="st"> &#39;FparLai_QC&#39;</span>                                 <span class="co"># assign a quality layer to a variable</span></a>
+<a class="sourceLine" id="cb116-2" data-line-number="2"><span class="co"># Request the specified quality layer info from quality API</span></a>
+<a class="sourceLine" id="cb116-3" data-line-number="3">quality_req &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="kw">paste0</span>(API_URL, <span class="st">&quot;quality/&quot;</span>,  productAndVersion, <span class="st">&quot;/&quot;</span>, quality_layer, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))</a>
+<a class="sourceLine" id="cb116-4" data-line-number="4">quality_content &lt;-<span class="st"> </span><span class="kw">content</span>(quality_req)                        <span class="co"># Retrieve the content of request</span></a>
+<a class="sourceLine" id="cb116-5" data-line-number="5">quality_response &lt;-<span class="st"> </span><span class="kw">toJSON</span>(quality_content, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>) <span class="co"># Convert the info to JSON object</span></a>
+<a class="sourceLine" id="cb116-6" data-line-number="6"><span class="kw">remove</span>(quality_req, quality_content)                           <span class="co"># Remove the variables that are not needed </span></a>
+<a class="sourceLine" id="cb116-7" data-line-number="7"><span class="kw">prettify</span>(quality_response)                                     <span class="co"># Print the quality response as a data frame</span></a></code></pre></div>
+<pre><code>## [
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;QualityLayer&quot;: &quot;FparLai_QC&quot;,
+##         &quot;Name&quot;: &quot;MODLAND&quot;,
+##         &quot;Value&quot;: 0,
+##         &quot;Description&quot;: &quot;Good quality (main algorithm with or without saturation)&quot;,
+##         &quot;Acceptable&quot;: true
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;QualityLayer&quot;: &quot;FparLai_QC&quot;,
+##         &quot;Name&quot;: &quot;MODLAND&quot;,
+##         &quot;Value&quot;: 1,
+##         &quot;Description&quot;: &quot;Other Quality (back-up algorithm or fill values)&quot;,
+##         &quot;Acceptable&quot;: false
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;QualityLayer&quot;: &quot;FparLai_QC&quot;,
+##         &quot;Name&quot;: &quot;Sensor&quot;,
+##         &quot;Value&quot;: 0,
+##         &quot;Description&quot;: &quot;Terra&quot;,
+##         &quot;Acceptable&quot;: {
+## 
+##         }
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;QualityLayer&quot;: &quot;FparLai_QC&quot;,
+##         &quot;Name&quot;: &quot;Sensor&quot;,
+##         &quot;Value&quot;: 1,
+##         &quot;Description&quot;: &quot;Aqua&quot;,
+##         &quot;Acceptable&quot;: {
+## 
+##         }
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;QualityLayer&quot;: &quot;FparLai_QC&quot;,
+##         &quot;Name&quot;: &quot;DeadDetector&quot;,
+##         &quot;Value&quot;: 0,
+##         &quot;Description&quot;: &quot;Detectors apparently fine for up to 50% of channels 1, 2&quot;,
+##         &quot;Acceptable&quot;: {
+## 
+##         }
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;QualityLayer&quot;: &quot;FparLai_QC&quot;,
+##         &quot;Name&quot;: &quot;DeadDetector&quot;,
+##         &quot;Value&quot;: 1,
+##         &quot;Description&quot;: &quot;Dead detectors caused &gt;50% adjacent detector retrieval&quot;,
+##         &quot;Acceptable&quot;: {
+## 
+##         }
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;QualityLayer&quot;: &quot;FparLai_QC&quot;,
+##         &quot;Name&quot;: &quot;CloudState&quot;,
+##         &quot;Value&quot;: 0,
+##         &quot;Description&quot;: &quot;Significant clouds NOT present (clear)&quot;,
+##         &quot;Acceptable&quot;: {
+## 
+##         }
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;QualityLayer&quot;: &quot;FparLai_QC&quot;,
+##         &quot;Name&quot;: &quot;CloudState&quot;,
+##         &quot;Value&quot;: 1,
+##         &quot;Description&quot;: &quot;Significant clouds WERE present&quot;,
+##         &quot;Acceptable&quot;: {
+## 
+##         }
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;QualityLayer&quot;: &quot;FparLai_QC&quot;,
+##         &quot;Name&quot;: &quot;CloudState&quot;,
+##         &quot;Value&quot;: 2,
+##         &quot;Description&quot;: &quot;Mixed cloud present in pixel&quot;,
+##         &quot;Acceptable&quot;: {
+## 
+##         }
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;QualityLayer&quot;: &quot;FparLai_QC&quot;,
+##         &quot;Name&quot;: &quot;CloudState&quot;,
+##         &quot;Value&quot;: 3,
+##         &quot;Description&quot;: &quot;Cloud state not defined, assumed clear&quot;,
+##         &quot;Acceptable&quot;: {
+## 
+##         }
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;QualityLayer&quot;: &quot;FparLai_QC&quot;,
+##         &quot;Name&quot;: &quot;SCF_QC&quot;,
+##         &quot;Value&quot;: 0,
+##         &quot;Description&quot;: &quot;Main (RT) method used, best result possible (no saturation)&quot;,
+##         &quot;Acceptable&quot;: {
+## 
+##         }
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;QualityLayer&quot;: &quot;FparLai_QC&quot;,
+##         &quot;Name&quot;: &quot;SCF_QC&quot;,
+##         &quot;Value&quot;: 1,
+##         &quot;Description&quot;: &quot;Main (RT) method used with saturation. Good, very usable&quot;,
+##         &quot;Acceptable&quot;: {
+## 
+##         }
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;QualityLayer&quot;: &quot;FparLai_QC&quot;,
+##         &quot;Name&quot;: &quot;SCF_QC&quot;,
+##         &quot;Value&quot;: 2,
+##         &quot;Description&quot;: &quot;Main (RT) method failed due to bad geometry, empirical algorithm used&quot;,
+##         &quot;Acceptable&quot;: {
+## 
+##         }
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;QualityLayer&quot;: &quot;FparLai_QC&quot;,
+##         &quot;Name&quot;: &quot;SCF_QC&quot;,
+##         &quot;Value&quot;: 3,
+##         &quot;Description&quot;: &quot;Main (RT) method failed due to problems other than geometry, empirical algorithm used&quot;,
+##         &quot;Acceptable&quot;: {
+## 
+##         }
+##     },
+##     {
+##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
+##         &quot;QualityLayer&quot;: &quot;FparLai_QC&quot;,
+##         &quot;Name&quot;: &quot;SCF_QC&quot;,
+##         &quot;Value&quot;: 4,
+##         &quot;Description&quot;: &quot;Pixel not produced at all, value couldn&#39;t be retrieved (possible reasons: bad L1B data, unusable MOD09GA data)&quot;,
+##         &quot;Acceptable&quot;: {
+## 
+##         }
+##     }
+## ]
+## </code></pre>
 <hr />
 </div>
 <div id="decode-quality-values-1" class="section level2">
 <h2><span class="header-section-number">6.41</span> Decode Quality Values</h2>
 <p>This API call will decode the bits for a given quality value.</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1">quality_value &lt;-<span class="st"> </span><span class="dv">1</span>                        <span class="co"># Assign a quality value to a variable </span></a>
-<a class="sourceLine" id="cb112-2" data-line-number="2"><span class="co"># Request and retrieve information for provided quality value from quality API URL </span></a>
-<a class="sourceLine" id="cb112-3" data-line-number="3">response &lt;-<span class="st"> </span><span class="kw">content</span>(<span class="kw">GET</span>(<span class="kw">paste0</span>(API_URL, <span class="st">&quot;quality/&quot;</span>, productAndVersion, <span class="st">&quot;/&quot;</span>, quality_layer, <span class="st">&quot;/&quot;</span>, quality_value)))</a>
-<a class="sourceLine" id="cb112-4" data-line-number="4">q_response &lt;-<span class="st"> </span><span class="kw">toJSON</span>(response, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>)     <span class="co"># Convert the info to JSON object</span></a>
-<a class="sourceLine" id="cb112-5" data-line-number="5"><span class="kw">remove</span>(response)                                      <span class="co"># Remove the variables that are not needed anymore</span></a>
-<a class="sourceLine" id="cb112-6" data-line-number="6"><span class="kw">prettify</span>(q_response)                                  <span class="co"># Print the prettified response</span></a></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1">quality_value &lt;-<span class="st"> </span><span class="dv">1</span>                        <span class="co"># Assign a quality value to a variable </span></a>
+<a class="sourceLine" id="cb118-2" data-line-number="2"><span class="co"># Request and retrieve information for provided quality value from quality API URL </span></a>
+<a class="sourceLine" id="cb118-3" data-line-number="3">response &lt;-<span class="st"> </span><span class="kw">content</span>(<span class="kw">GET</span>(<span class="kw">paste0</span>(API_URL, <span class="st">&quot;quality/&quot;</span>, productAndVersion, <span class="st">&quot;/&quot;</span>, quality_layer, <span class="st">&quot;/&quot;</span>, quality_value)))</a>
+<a class="sourceLine" id="cb118-4" data-line-number="4">q_response &lt;-<span class="st"> </span><span class="kw">toJSON</span>(response, <span class="dt">auto_unbox =</span> <span class="ot">TRUE</span>)     <span class="co"># Convert the info to JSON object</span></a>
+<a class="sourceLine" id="cb118-5" data-line-number="5"><span class="kw">remove</span>(response)                                      <span class="co"># Remove the variables that are not needed anymore</span></a>
+<a class="sourceLine" id="cb118-6" data-line-number="6"><span class="kw">prettify</span>(q_response)                                  <span class="co"># Print the prettified response</span></a></code></pre></div>
+<pre><code>## {
+##     &quot;Binary Representation&quot;: &quot;0b00000001&quot;,
+##     &quot;MODLAND&quot;: {
+##         &quot;bits&quot;: &quot;0b1&quot;,
+##         &quot;description&quot;: &quot;Other Quality (back-up algorithm or fill values)&quot;
+##     },
+##     &quot;Sensor&quot;: {
+##         &quot;bits&quot;: &quot;0b0&quot;,
+##         &quot;description&quot;: &quot;Terra&quot;
+##     },
+##     &quot;DeadDetector&quot;: {
+##         &quot;bits&quot;: &quot;0b0&quot;,
+##         &quot;description&quot;: &quot;Detectors apparently fine for up to 50% of channels 1, 2&quot;
+##     },
+##     &quot;CloudState&quot;: {
+##         &quot;bits&quot;: &quot;0b00&quot;,
+##         &quot;description&quot;: &quot;Significant clouds NOT present (clear)&quot;
+##     },
+##     &quot;SCF_QC&quot;: {
+##         &quot;bits&quot;: &quot;0b000&quot;,
+##         &quot;description&quot;: &quot;Main (RT) method used, best result possible (no saturation)&quot;
+##     }
+## }
+## </code></pre>
 <hr />
 </div>
 <div id="bonus-load-request-output-and-visualize" class="section level2">
@@ -2462,35 +2760,61 @@ Notice, this could get longer because of the number of vertices in the shapefile
 <div id="load-a-geotiff" class="section level2">
 <h2><span class="header-section-number">6.43</span> Load a GeoTIFF</h2>
 <p>First, created a raster object by calling the raster() function from the <code>raster</code> package.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1"><span class="co"># Create a raster object using the directory previously extracted</span></a>
-<a class="sourceLine" id="cb113-2" data-line-number="2">dem &lt;-<span class="st"> </span><span class="kw">raster</span>(SRTMGL1_NC_dir)</a></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1"><span class="co"># Create a raster object using the directory previously extracted</span></a>
+<a class="sourceLine" id="cb120-2" data-line-number="2">dem &lt;-<span class="st"> </span><span class="kw">raster</span>(SRTMGL1_NC_dir)</a></code></pre></div>
 <hr />
 </div>
 <div id="plot-a-geotiff" class="section level2">
 <h2><span class="header-section-number">6.44</span> Plot a GeoTIFF</h2>
 <p>Make a plot of DEM data and add some additional parameters to the plot.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1"><span class="kw">gplot</span>(dem) <span class="op">+</span></a>
-<a class="sourceLine" id="cb114-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> value)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb114-3" data-line-number="3"><span class="st">  </span><span class="kw">scale_fill_distiller</span>(<span class="dt">name =</span> <span class="st">&quot;Elevation (m)&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;BrBG&quot;</span>, <span class="dt">na.value=</span><span class="ot">NA</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb114-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_fixed</span>(<span class="dt">expand =</span> F, <span class="dt">ratio =</span> <span class="dv">1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb114-5" data-line-number="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;SRTM DEM: Grand Canyon NP&quot;</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb114-6" data-line-number="6"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">face =</span> <span class="st">&quot;bold&quot;</span>,<span class="dt">size =</span> <span class="kw">rel</span>(<span class="dv">2</span>),<span class="dt">hjust =</span> <span class="fl">0.5</span>),</a>
-<a class="sourceLine" id="cb114-7" data-line-number="7">        <span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>(), </a>
-<a class="sourceLine" id="cb114-8" data-line-number="8">        <span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb114-9" data-line-number="9">        <span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="ot">NA</span> , <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.8</span>),</a>
-<a class="sourceLine" id="cb114-10" data-line-number="10">        <span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;#6D9EC1&quot;</span>,<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">linetype =</span> <span class="st">&quot;solid&quot;</span>),</a>
-<a class="sourceLine" id="cb114-11" data-line-number="11">        <span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">size =</span> <span class="fl">0.001</span>, <span class="dt">linetype =</span> <span class="st">&#39;solid&#39;</span>,<span class="dt">colour =</span> <span class="st">&quot;gray&quot;</span>),</a>
-<a class="sourceLine" id="cb114-12" data-line-number="12">        <span class="dt">panel.grid.minor =</span> <span class="kw">element_line</span>(<span class="dt">size =</span> <span class="fl">0.001</span>, <span class="dt">linetype =</span> <span class="st">&#39;solid&#39;</span>,<span class="dt">colour =</span> <span class="st">&quot;gray&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="kw">gplot</span>(dem) <span class="op">+</span></a>
+<a class="sourceLine" id="cb121-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_raster</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb121-3" data-line-number="3"><span class="st">  </span><span class="kw">scale_fill_distiller</span>(<span class="dt">name =</span> <span class="st">&quot;Elevation (m)&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;BrBG&quot;</span>, <span class="dt">na.value=</span><span class="ot">NA</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb121-4" data-line-number="4"><span class="st">  </span><span class="kw">coord_fixed</span>(<span class="dt">expand =</span> F, <span class="dt">ratio =</span> <span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb121-5" data-line-number="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;SRTM DEM: NEON SOAP&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb121-6" data-line-number="6"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">face =</span> <span class="st">&quot;bold&quot;</span>,<span class="dt">size =</span> <span class="kw">rel</span>(<span class="dv">2</span>),<span class="dt">hjust =</span> <span class="fl">0.5</span>),</a>
+<a class="sourceLine" id="cb121-7" data-line-number="7">        <span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>(), </a>
+<a class="sourceLine" id="cb121-8" data-line-number="8">        <span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb121-9" data-line-number="9">        <span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="ot">NA</span> , <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.8</span>),</a>
+<a class="sourceLine" id="cb121-10" data-line-number="10">        <span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;#6D9EC1&quot;</span>,<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">linetype =</span> <span class="st">&quot;solid&quot;</span>),</a>
+<a class="sourceLine" id="cb121-11" data-line-number="11">        <span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">size =</span> <span class="fl">0.001</span>, <span class="dt">linetype =</span> <span class="st">&#39;solid&#39;</span>,<span class="dt">colour =</span> <span class="st">&quot;gray&quot;</span>),</a>
+<a class="sourceLine" id="cb121-12" data-line-number="12">        <span class="dt">panel.grid.minor =</span> <span class="kw">element_line</span>(<span class="dt">size =</span> <span class="fl">0.001</span>, <span class="dt">linetype =</span> <span class="st">&#39;solid&#39;</span>,<span class="dt">colour =</span> <span class="st">&quot;gray&quot;</span>))</a></code></pre></div>
+<p><img src="08-NASA_EOS_files/figure-html/unnamed-chunk-81-1.png" width="768" /></p>
 <p>This example can provide a template to use for your own research workflows. Leveraging the AppEEARS API for searching, extracting, and formatting analysis ready data, and loading it directly into R means that you can keep your entire research workflow in a single software program, from start to finish.</p>
 </div>
-<div id="nasa-eos-written-questions" class="section level2">
-<h2><span class="header-section-number">6.45</span> NASA EOS Written Questions</h2>
+<div id="nasa-eos-coding-lab-2" class="section level2">
+<h2><span class="header-section-number">6.45</span> NASA EOS Coding Lab #2</h2>
 <ol style="list-style-type: decimal">
-<li>How does the scientific method of Earth Science differ from thta of traditional/classical labratory sciences?</li>
+<li><p>Choose two NEON sites in <em>different</em> ecoregions. Then complete the following for <strong>each</strong> of your two NEON sites:</p></li>
+<li><p>Using your Earth Data account submit a point-based request to AppEEARS to pull 250m NDVI from AQUA and TERA for 2017, 2018, &amp; 2019.</p></li>
+</ol>
+<p><em>Hint: How might you decide on the lat/lon to submit? Metadata for the site? NEON TOS data?</em></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Use QA/QC values to filter out ‘poor quality’.</li>
+</ol>
+<p><em>Hint: Look at the QA/QC files that accompany your request</em></p>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Plot 3 years of NDVI from MODIS AQUA and TERA as a timeseries.</p></li>
+<li><p>Constrain a 3-week window for ‘peak greeness’ from MODIS and highlight it on your timeseries plot.</p></li>
+<li><p>Pull the canopy-level gcc90 from PhenoCam for the same site and the same time period as above.</p></li>
+</ol>
+<p><em>Hint: Check the numbering of your PhenoCam on the <a href="https://phenocam.sr.unh.edu/webcam/gallery/">PhenoCam gallery</a> </em></p>
+<ol start="7" style="list-style-type: decimal">
+<li><p>Plot the PhenoCam and MODIS timeseries on the same plot.</p></li>
+<li><p>Constrain a 3-week window for ‘peak greeness’ from PhenoCam and highlight it on your timeseries.
+<em>Hint: Remember our PhenoCam discussions regarding early ‘extra green’ leaves? You’ll need to use some logic for this, not just a <code>max</code> </em></p></li>
+<li><p>Find the timing of the AOP flights that have occured at your sites over the same time period. Add those dates as a vertical line.</p></li>
+</ol>
+<p><strong>BONUS:</strong> If you’d like to submit an area-based request instead you can do so using the shapefiles for each NEON site <a href="https://drive.google.com/drive/folders/19MJee-UKY-McbxDuYYCINhWRbqn4bbGO?usp=sharing">in this folder</a></p>
+</div>
+<div id="nasa-eos-written-questions" class="section level2">
+<h2><span class="header-section-number">6.46</span> NASA EOS Written Questions</h2>
+<ol style="list-style-type: decimal">
+<li>How does the scientific method of Earth Science differ from that of traditional/classical labratory sciences?</li>
 </ol>
 </div>
 <div id="nasa-eos-culmination-write-up" class="section level2">
-<h2><span class="header-section-number">6.46</span> NASA EOS Culmination Write Up</h2>
+<h2><span class="header-section-number">6.47</span> NASA EOS Culmination Write Up</h2>
 <p>Write up a 1-page <strong>derived data product or research pipeline proposal</strong> summary of a project that you might want to explore using NASA EOS data. Include the types of data that you would need to implement this project and how you would retrieve them. Save this summary as you will be refining and adding to your ideas over the course of the semester.</p>
 <p>Suggestions:</p>
 <ol style="list-style-type: decimal">
