@@ -115,7 +115,7 @@ zipsByProduct(dpID="DP4.00200.001", package="basic",
 ## Finding available files
 ##   |                                                                              |                                                                      |   0%  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
 ## 
-## Downloading files totaling approximately 298.8 MiB
+## Downloading files totaling approximately 640.8 MiB
 ```
 
 ```
@@ -1069,7 +1069,7 @@ pr <- loadByProduct("DP1.00024.001", site="NIWO", avg=30,
 ## Merged the most recent publication of sensor position files for each site and saved to /stackedFiles
 ## Copied the most recent publication of variable definition file to /stackedFiles
 ## Finished: Stacked 1 data tables and 2 metadata tables!
-## Stacking took 0.1984961 secs
+## Stacking took 0.205364 secs
 ## All unzipped monthly data folders have been removed.
 ```
 

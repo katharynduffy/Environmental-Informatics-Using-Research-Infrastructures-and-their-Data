@@ -492,7 +492,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.13.2" data-path="usgs-national-water-information-system-nwis.html"><a href="usgs-national-water-information-system-nwis.html#readwqpqw"><i class="fa fa-check"></i><b>8.13.2</b> readWQPqw</a></li>
 </ul></li>
 <li class="chapter" data-level="8.14" data-path="usgs-national-water-information-system-nwis.html"><a href="usgs-national-water-information-system-nwis.html#attributes-and-metadata"><i class="fa fa-check"></i><b>8.14</b> Attributes and metadata</a></li>
-<li class="chapter" data-level="8.15" data-path="usgs-national-water-information-system-nwis.html"><a href="usgs-national-water-information-system-nwis.html#usgs-coding-lab-exercises"><i class="fa fa-check"></i><b>8.15</b> USGS COding Lab Exercises</a></li>
+<li class="chapter" data-level="8.15" data-path="usgs-national-water-information-system-nwis.html"><a href="usgs-national-water-information-system-nwis.html#usgs-coding-lab-exercises"><i class="fa fa-check"></i><b>8.15</b> USGS Coding Lab Exercises</a><ul>
+<li class="chapter" data-level="8.15.1" data-path="usgs-national-water-information-system-nwis.html"><a href="usgs-national-water-information-system-nwis.html#just-how-dry-was-the-2020-monsoon"><i class="fa fa-check"></i><b>8.15.1</b> Just how dry was the 2020 monsoon?</a></li>
+</ul></li>
 <li class="chapter" data-level="8.16" data-path="usgs-national-water-information-system-nwis.html"><a href="usgs-national-water-information-system-nwis.html#geoknife---introduction"><i class="fa fa-check"></i><b>8.16</b> geoKnife - Introduction</a></li>
 <li class="chapter" data-level="8.17" data-path="usgs-national-water-information-system-nwis.html"><a href="usgs-national-water-information-system-nwis.html#lesson-summary-1"><i class="fa fa-check"></i><b>8.17</b> Lesson Summary</a></li>
 <li class="chapter" data-level="8.18" data-path="usgs-national-water-information-system-nwis.html"><a href="usgs-national-water-information-system-nwis.html#lesson-objectives-1"><i class="fa fa-check"></i><b>8.18</b> Lesson Objectives</a></li>
@@ -800,8 +802,8 @@ These tutorials have been tested on Windows and MAC systems using R Version 4.0.
 <a class="sourceLine" id="cb554-10" data-line-number="10"><span class="kw">prettify</span>(token_response)                                       <span class="co"># Print the prettified response</span></a></code></pre></div>
 <pre><code>## {
 ##     &quot;token_type&quot;: &quot;Bearer&quot;,
-##     &quot;token&quot;: &quot;-HS6DOrKUrzf3AQHycrrodUzWXThuBWzPphlSNsoJIl1F5kJuS1ueS5TPaFvlMuGD9Gf4wpzTKbqfqaJIZoKbw&quot;,
-##     &quot;expiration&quot;: &quot;2020-10-21T16:44:19Z&quot;
+##     &quot;token&quot;: &quot;uOPRCuUkwUcsnZpa452RpKs4oLVcE8y2zP1E4FDaP4O1JbYruRAFtzUqkyhriNXHtrkj9JnZakLRWgzpxGQLdg&quot;,
+##     &quot;expiration&quot;: &quot;2020-11-05T19:41:25Z&quot;
 ## }
 ## </code></pre>
 <p><strong>Above, you should see a Bearer token. Notice that this token will expire approximately 48 hours after being acquired.</strong></p>
@@ -828,7 +830,7 @@ These tutorials have been tested on Windows and MAC systems using R Version 4.0.
 <a class="sourceLine" id="cb557-4" data-line-number="4">products &lt;-<span class="st"> </span><span class="kw">setNames</span>(divided_products,<span class="kw">fromJSON</span>(all_Prods)<span class="op">$</span>ProductAndVersion)</a>
 <a class="sourceLine" id="cb557-5" data-line-number="5"><span class="co"># Print no. products available in AppEEARS</span></a>
 <a class="sourceLine" id="cb557-6" data-line-number="6"><span class="kw">sprintf</span>(<span class="st">&quot;AppEEARS currently supports %i products.&quot;</span> ,<span class="kw">length</span>(products))   </a></code></pre></div>
-<pre><code>## [1] &quot;AppEEARS currently supports 120 products.&quot;</code></pre>
+<pre><code>## [1] &quot;AppEEARS currently supports 121 products.&quot;</code></pre>
 <p>Next, look at the product’s names and descriptions. Below, the ‘ProductAndVersion’ and ‘Description’ are printed for all products.</p>
 <div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb559-1" data-line-number="1"><span class="co"># Loop through the products in the list and print the product name and description</span></a>
 <a class="sourceLine" id="cb559-2" data-line-number="2"><span class="cf">for</span> (p <span class="cf">in</span> products){                                   </a>
@@ -915,6 +917,7 @@ These tutorials have been tested on Windows and MAC systems using R Version 4.0.
 ## [1] &quot;ASTWBD_NC.001 is Water Bodies Database Elevation from LP DAAC&quot;
 ## [1] &quot;VNP09H1.001 is Surface Reflectance from LP DAAC&quot;
 ## [1] &quot;VNP09A1.001 is Surface Reflectance from LP DAAC&quot;
+## [1] &quot;VNP09GA.001 is Surface Reflectance from LP DAAC&quot;
 ## [1] &quot;VNP13A1.001 is Vegetation Indices (NDVI &amp; EVI) from LP DAAC&quot;
 ## [1] &quot;VNP13A2.001 is Vegetation Indices (NDVI &amp; EVI) from LP DAAC&quot;
 ## [1] &quot;VNP13A3.001 is Vegetation Indices (NDVI &amp; EVI) from LP DAAC&quot;
@@ -1959,8 +1962,8 @@ These tutorials have been tested on Windows and Mac systems using R Version 4.0.
 <a class="sourceLine" id="cb613-10" data-line-number="10"><span class="kw">prettify</span>(token_response)                                       <span class="co"># Print the prettified response</span></a></code></pre></div>
 <pre><code>## {
 ##     &quot;token_type&quot;: &quot;Bearer&quot;,
-##     &quot;token&quot;: &quot;-HS6DOrKUrzf3AQHycrrodUzWXThuBWzPphlSNsoJIl1F5kJuS1ueS5TPaFvlMuGD9Gf4wpzTKbqfqaJIZoKbw&quot;,
-##     &quot;expiration&quot;: &quot;2020-10-21T16:44:19Z&quot;
+##     &quot;token&quot;: &quot;uOPRCuUkwUcsnZpa452RpKs4oLVcE8y2zP1E4FDaP4O1JbYruRAFtzUqkyhriNXHtrkj9JnZakLRWgzpxGQLdg&quot;,
+##     &quot;expiration&quot;: &quot;2020-11-05T19:41:25Z&quot;
 ## }
 ## </code></pre>
 <p><strong>Above, you should see a Bearer token. Notice that this token will expire approximately 48 hours after being acquired.</strong></p>
@@ -1986,7 +1989,7 @@ These tutorials have been tested on Windows and Mac systems using R Version 4.0.
 <a class="sourceLine" id="cb616-4" data-line-number="4">products &lt;-<span class="st"> </span><span class="kw">setNames</span>(divided_products,<span class="kw">fromJSON</span>(all_Prods)<span class="op">$</span>ProductAndVersion)</a>
 <a class="sourceLine" id="cb616-5" data-line-number="5"><span class="co"># Print no. products available in AppEEARS</span></a>
 <a class="sourceLine" id="cb616-6" data-line-number="6"><span class="kw">sprintf</span>(<span class="st">&quot;AppEEARS currently supports %i products.&quot;</span> ,<span class="kw">length</span>(products))   </a></code></pre></div>
-<pre><code>## [1] &quot;AppEEARS currently supports 120 products.&quot;</code></pre>
+<pre><code>## [1] &quot;AppEEARS currently supports 121 products.&quot;</code></pre>
 <p>Next, look at the product’s names and descriptions. Below, the ‘ProductAndVersion’ and ‘Description’ are printed for all products.</p>
 <div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb618-1" data-line-number="1"><span class="co"># Loop through the products in the list and Print the product name and description</span></a>
 <a class="sourceLine" id="cb618-2" data-line-number="2"><span class="cf">for</span> (p <span class="cf">in</span> products){                                   </a>
@@ -2073,6 +2076,7 @@ These tutorials have been tested on Windows and Mac systems using R Version 4.0.
 ## [1] &quot;ASTWBD_NC.001 is Water Bodies Database Elevation from LP DAAC&quot;
 ## [1] &quot;VNP09H1.001 is Surface Reflectance from LP DAAC&quot;
 ## [1] &quot;VNP09A1.001 is Surface Reflectance from LP DAAC&quot;
+## [1] &quot;VNP09GA.001 is Surface Reflectance from LP DAAC&quot;
 ## [1] &quot;VNP13A1.001 is Vegetation Indices (NDVI &amp; EVI) from LP DAAC&quot;
 ## [1] &quot;VNP13A2.001 is Vegetation Indices (NDVI &amp; EVI) from LP DAAC&quot;
 ## [1] &quot;VNP13A3.001 is Vegetation Indices (NDVI &amp; EVI) from LP DAAC&quot;
@@ -2416,7 +2420,8 @@ Notice, this could get longer because of the number of vertices in the shapefile
 ##         &quot;QualityProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
 ##         &quot;QualityLayers&quot;: [
 ##             &quot;PIXELQA&quot;
-##         ]
+##         ],
+##         &quot;VisibleToWorker&quot;: true
 ##     },
 ##     {
 ##         &quot;ProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
@@ -2424,7 +2429,8 @@ Notice, this could get longer because of the number of vertices in the shapefile
 ##         &quot;QualityProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
 ##         &quot;QualityLayers&quot;: [
 ##             &quot;PIXELQA&quot;
-##         ]
+##         ],
+##         &quot;VisibleToWorker&quot;: true
 ##     },
 ##     {
 ##         &quot;ProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
@@ -2432,7 +2438,8 @@ Notice, this could get longer because of the number of vertices in the shapefile
 ##         &quot;QualityProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
 ##         &quot;QualityLayers&quot;: [
 ##             &quot;PIXELQA&quot;
-##         ]
+##         ],
+##         &quot;VisibleToWorker&quot;: true
 ##     },
 ##     {
 ##         &quot;ProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
@@ -2440,7 +2447,8 @@ Notice, this could get longer because of the number of vertices in the shapefile
 ##         &quot;QualityProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
 ##         &quot;QualityLayers&quot;: [
 ##             &quot;PIXELQA&quot;
-##         ]
+##         ],
+##         &quot;VisibleToWorker&quot;: true
 ##     },
 ##     {
 ##         &quot;ProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
@@ -2448,7 +2456,8 @@ Notice, this could get longer because of the number of vertices in the shapefile
 ##         &quot;QualityProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
 ##         &quot;QualityLayers&quot;: [
 ##             &quot;PIXELQA&quot;
-##         ]
+##         ],
+##         &quot;VisibleToWorker&quot;: true
 ##     },
 ##     {
 ##         &quot;ProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
@@ -2456,7 +2465,8 @@ Notice, this could get longer because of the number of vertices in the shapefile
 ##         &quot;QualityProductAndVersion&quot;: &quot;CU_LT05.001&quot;,
 ##         &quot;QualityLayers&quot;: [
 ##             &quot;PIXELQA&quot;
-##         ]
+##         ],
+##         &quot;VisibleToWorker&quot;: true
 ##     }
 ## ]
 ## </code></pre>
@@ -2479,7 +2489,8 @@ Notice, this could get longer because of the number of vertices in the shapefile
 ##         &quot;QualityLayers&quot;: [
 ##             &quot;FparLai_QC&quot;,
 ##             &quot;FparExtra_QC&quot;
-##         ]
+##         ],
+##         &quot;VisibleToWorker&quot;: true
 ##     },
 ##     {
 ##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
@@ -2488,7 +2499,8 @@ Notice, this could get longer because of the number of vertices in the shapefile
 ##         &quot;QualityLayers&quot;: [
 ##             &quot;FparLai_QC&quot;,
 ##             &quot;FparExtra_QC&quot;
-##         ]
+##         ],
+##         &quot;VisibleToWorker&quot;: true
 ##     },
 ##     {
 ##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
@@ -2497,7 +2509,8 @@ Notice, this could get longer because of the number of vertices in the shapefile
 ##         &quot;QualityLayers&quot;: [
 ##             &quot;FparLai_QC&quot;,
 ##             &quot;FparExtra_QC&quot;
-##         ]
+##         ],
+##         &quot;VisibleToWorker&quot;: true
 ##     },
 ##     {
 ##         &quot;ProductAndVersion&quot;: &quot;MCD15A3H.006&quot;,
@@ -2506,7 +2519,8 @@ Notice, this could get longer because of the number of vertices in the shapefile
 ##         &quot;QualityLayers&quot;: [
 ##             &quot;FparLai_QC&quot;,
 ##             &quot;FparExtra_QC&quot;
-##         ]
+##         ],
+##         &quot;VisibleToWorker&quot;: true
 ##     }
 ## ]
 ## </code></pre>

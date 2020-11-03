@@ -267,8 +267,8 @@ prettify(token_response)                                       # Print the prett
 ```
 ## {
 ##     "token_type": "Bearer",
-##     "token": "-HS6DOrKUrzf3AQHycrrodUzWXThuBWzPphlSNsoJIl1F5kJuS1ueS5TPaFvlMuGD9Gf4wpzTKbqfqaJIZoKbw",
-##     "expiration": "2020-10-21T16:44:19Z"
+##     "token": "uOPRCuUkwUcsnZpa452RpKs4oLVcE8y2zP1E4FDaP4O1JbYruRAFtzUqkyhriNXHtrkj9JnZakLRWgzpxGQLdg",
+##     "expiration": "2020-11-05T19:41:25Z"
 ## }
 ## 
 ```
@@ -305,7 +305,7 @@ sprintf("AppEEARS currently supports %i products." ,length(products))
 ```
 
 ```
-## [1] "AppEEARS currently supports 120 products."
+## [1] "AppEEARS currently supports 121 products."
 ```
 
 Next, look at the product's names and descriptions. Below, the 'ProductAndVersion' and 'Description' are printed for all products.
@@ -400,6 +400,7 @@ for (p in products){
 ## [1] "ASTWBD_NC.001 is Water Bodies Database Elevation from LP DAAC"
 ## [1] "VNP09H1.001 is Surface Reflectance from LP DAAC"
 ## [1] "VNP09A1.001 is Surface Reflectance from LP DAAC"
+## [1] "VNP09GA.001 is Surface Reflectance from LP DAAC"
 ## [1] "VNP13A1.001 is Vegetation Indices (NDVI & EVI) from LP DAAC"
 ## [1] "VNP13A2.001 is Vegetation Indices (NDVI & EVI) from LP DAAC"
 ## [1] "VNP13A3.001 is Vegetation Indices (NDVI & EVI) from LP DAAC"
@@ -1580,8 +1581,8 @@ prettify(token_response)                                       # Print the prett
 ```
 ## {
 ##     "token_type": "Bearer",
-##     "token": "-HS6DOrKUrzf3AQHycrrodUzWXThuBWzPphlSNsoJIl1F5kJuS1ueS5TPaFvlMuGD9Gf4wpzTKbqfqaJIZoKbw",
-##     "expiration": "2020-10-21T16:44:19Z"
+##     "token": "uOPRCuUkwUcsnZpa452RpKs4oLVcE8y2zP1E4FDaP4O1JbYruRAFtzUqkyhriNXHtrkj9JnZakLRWgzpxGQLdg",
+##     "expiration": "2020-11-05T19:41:25Z"
 ## }
 ## 
 ```
@@ -1615,7 +1616,7 @@ sprintf("AppEEARS currently supports %i products." ,length(products))
 ```
 
 ```
-## [1] "AppEEARS currently supports 120 products."
+## [1] "AppEEARS currently supports 121 products."
 ```
 
 Next, look at the product's names and descriptions. Below, the 'ProductAndVersion' and 'Description' are printed for all products.
@@ -1709,6 +1710,7 @@ for (p in products){
 ## [1] "ASTWBD_NC.001 is Water Bodies Database Elevation from LP DAAC"
 ## [1] "VNP09H1.001 is Surface Reflectance from LP DAAC"
 ## [1] "VNP09A1.001 is Surface Reflectance from LP DAAC"
+## [1] "VNP09GA.001 is Surface Reflectance from LP DAAC"
 ## [1] "VNP13A1.001 is Vegetation Indices (NDVI & EVI) from LP DAAC"
 ## [1] "VNP13A2.001 is Vegetation Indices (NDVI & EVI) from LP DAAC"
 ## [1] "VNP13A3.001 is Vegetation Indices (NDVI & EVI) from LP DAAC"
@@ -2165,7 +2167,8 @@ prettify(quality_response)
 ##         "QualityProductAndVersion": "CU_LT05.001",
 ##         "QualityLayers": [
 ##             "PIXELQA"
-##         ]
+##         ],
+##         "VisibleToWorker": true
 ##     },
 ##     {
 ##         "ProductAndVersion": "CU_LT05.001",
@@ -2173,7 +2176,8 @@ prettify(quality_response)
 ##         "QualityProductAndVersion": "CU_LT05.001",
 ##         "QualityLayers": [
 ##             "PIXELQA"
-##         ]
+##         ],
+##         "VisibleToWorker": true
 ##     },
 ##     {
 ##         "ProductAndVersion": "CU_LT05.001",
@@ -2181,7 +2185,8 @@ prettify(quality_response)
 ##         "QualityProductAndVersion": "CU_LT05.001",
 ##         "QualityLayers": [
 ##             "PIXELQA"
-##         ]
+##         ],
+##         "VisibleToWorker": true
 ##     },
 ##     {
 ##         "ProductAndVersion": "CU_LT05.001",
@@ -2189,7 +2194,8 @@ prettify(quality_response)
 ##         "QualityProductAndVersion": "CU_LT05.001",
 ##         "QualityLayers": [
 ##             "PIXELQA"
-##         ]
+##         ],
+##         "VisibleToWorker": true
 ##     },
 ##     {
 ##         "ProductAndVersion": "CU_LT05.001",
@@ -2197,7 +2203,8 @@ prettify(quality_response)
 ##         "QualityProductAndVersion": "CU_LT05.001",
 ##         "QualityLayers": [
 ##             "PIXELQA"
-##         ]
+##         ],
+##         "VisibleToWorker": true
 ##     },
 ##     {
 ##         "ProductAndVersion": "CU_LT05.001",
@@ -2205,7 +2212,8 @@ prettify(quality_response)
 ##         "QualityProductAndVersion": "CU_LT05.001",
 ##         "QualityLayers": [
 ##             "PIXELQA"
-##         ]
+##         ],
+##         "VisibleToWorker": true
 ##     }
 ## ]
 ## 
@@ -2233,7 +2241,8 @@ prettify(MCD15A3H_quality)
 ##         "QualityLayers": [
 ##             "FparLai_QC",
 ##             "FparExtra_QC"
-##         ]
+##         ],
+##         "VisibleToWorker": true
 ##     },
 ##     {
 ##         "ProductAndVersion": "MCD15A3H.006",
@@ -2242,7 +2251,8 @@ prettify(MCD15A3H_quality)
 ##         "QualityLayers": [
 ##             "FparLai_QC",
 ##             "FparExtra_QC"
-##         ]
+##         ],
+##         "VisibleToWorker": true
 ##     },
 ##     {
 ##         "ProductAndVersion": "MCD15A3H.006",
@@ -2251,7 +2261,8 @@ prettify(MCD15A3H_quality)
 ##         "QualityLayers": [
 ##             "FparLai_QC",
 ##             "FparExtra_QC"
-##         ]
+##         ],
+##         "VisibleToWorker": true
 ##     },
 ##     {
 ##         "ProductAndVersion": "MCD15A3H.006",
@@ -2260,7 +2271,8 @@ prettify(MCD15A3H_quality)
 ##         "QualityLayers": [
 ##             "FparLai_QC",
 ##             "FparExtra_QC"
-##         ]
+##         ],
+##         "VisibleToWorker": true
 ##     }
 ## ]
 ## 

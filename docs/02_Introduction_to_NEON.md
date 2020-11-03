@@ -842,7 +842,7 @@ req
 
 ```
 ## Response [https://data.neonscience.org/api/v0/products/DP1.10003.001]
-##   Date: 2020-10-19 17:40
+##   Date: 2020-11-03 19:31
 ##   Status: 200
 ##   Content-Type: application/json;charset=UTF-8
 ##   Size: 24.3 kB
@@ -1010,7 +1010,7 @@ avail
 ## $data$specs
 ##   specId             specNumber
 ## 1   3656      NEON.DOC.000916vC
-## 2   2565 NEON_bird_userGuide_vA
+## 2   5183 NEON_bird_userGuide_vB
 ## 3   3729      NEON.DOC.014041vJ
 ## 
 ## $data$keywords

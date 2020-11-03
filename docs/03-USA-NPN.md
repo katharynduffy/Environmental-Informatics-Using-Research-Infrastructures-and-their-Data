@@ -246,7 +246,7 @@ species[species$common_name=="red maple",]
 ## # A tibble: 1 x 19
 ##   species_id common_name genus genus_id genus_common_na… species kingdom
 ##        <int> <chr>       <chr>    <int> <chr>            <chr>   <chr>  
-## 1          3 red maple   Acer       372 ""               rubrum  Plantae
+## 1          3 red maple   Acer       372 Maples (Acer)    rubrum  Plantae
 ## # … with 12 more variables: itis_taxonomic_sn <int>, functional_type <chr>,
 ## #   class_id <int>, class_common_name <chr>, class_name <chr>, order_id <int>,
 ## #   order_common_name <chr>, order_name <chr>, family_id <int>,
