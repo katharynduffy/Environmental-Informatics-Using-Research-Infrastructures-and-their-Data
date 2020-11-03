@@ -362,10 +362,11 @@ names(wqpcounts_sc)
 ## [15] "x-frame-options"           "x-content-type-options"   
 ## [17] "x-xss-protection"          "strict-transport-security"
 ## [19] "x-cache"                   "via"                      
-## [21] "x-amz-cf-pop"              "x-amz-cf-id"
+## [21] "x-amz-cf-pop"              "x-amz-cf-id"              
+## [23] "age"
 ```
 
-This returns a list with 22 different items, including total number of sites, breakdown of the number of sites by source (BioData, NWIS, STORET), total number of records, and breakdown of records count by source. Let's just look at total number of sites and total number of records.
+This returns a list with 23 different items, including total number of sites, breakdown of the number of sites by source (BioData, NWIS, STORET), total number of records, and breakdown of records count by source. Let's just look at total number of sites and total number of records.
 
 
 ```r
@@ -381,10 +382,10 @@ wqpcounts_sc[['total-result-count']]
 ```
 
 ```
-## [1] 3613490
+## [1] 3613827
 ```
 
-This doesn't provide any information about the sites, just the total number. I know that with 3,613,490 results, I will want to add more criteria before trying to download. Let's continue to add query parameters before moving to `whatWQPsites`.
+This doesn't provide any information about the sites, just the total number. I know that with 3,613,827 results, I will want to add more criteria before trying to download. Let's continue to add query parameters before moving to `whatWQPsites`.
 
 
 ```r
@@ -403,10 +404,10 @@ wqpcounts_sc_stream[['total-result-count']]
 ```
 
 ```
-## [1] 1851383
+## [1] 1851690
 ```
 
-1,851,383 results are still a lot to download. Let's add more levels of criteria:
+1,851,690 results are still a lot to download. Let's add more levels of criteria:
 
 
 ```r
@@ -427,10 +428,10 @@ wqpcounts_sc_stream_temp[['total-result-count']]
 ```
 
 ```
-## [1] 140404
+## [1] 140424
 ```
 
-140,404 is little more manageble. We can also easily compare avilable stream temperature and lake temperature data.
+140,424 is little more manageble. We can also easily compare avilable stream temperature and lake temperature data.
 
 
 ```r
@@ -461,7 +462,7 @@ wqpcounts_sc_stream_temp[['total-result-count']]
 ```
 
 ```
-## [1] 140404
+## [1] 140424
 ```
 
 ```r
@@ -685,7 +686,7 @@ head(MauiCo_avgdailyQ)
 
 ```
 ##   agency_cd  site_no   dateTime X_00060_00003 X_00060_00003_cd tz_cd
-## 1      USGS 16400000 2020-10-18          7.94                P   UTC
+## 1      USGS 16400000 2020-11-02          2.12                P   UTC
 ## 2      USGS 16401000 1929-08-31         18.00                A   UTC
 ## 3      USGS 16402000 1957-07-31         51.00                A   UTC
 ## 4      USGS 16403000 1957-06-30          5.50                A   UTC
@@ -726,7 +727,7 @@ head(MauiHUC8_mindailyT)
 ## 3      USGS 16520000 2004-04-14          17.5                A   UTC
 ## 4      USGS 16527000 2004-01-13          15.4                A   UTC
 ## 5      USGS 16555000 2004-01-13          16.4                A   UTC
-## 6      USGS 16618000 2020-10-18          20.5                P   UTC
+## 6      USGS 16618000 2020-11-02          20.0                P   UTC
 ```
 
 ```r
@@ -768,24 +769,15 @@ names(SaltLake_totalN)
 ## [13] "p00003"                     "p00004"                    
 ## [15] "p00009"                     "p00010"                    
 ## [17] "p00020"                     "p00025"                    
-## [19] "p00061"                     "p00063"                    
-## [21] "p00065"                     "p00095"                    
-## [23] "p00098"                     "p00191"                    
-## [25] "p00300"                     "p00301"                    
-## [27] "p00400"                     "p00480"                    
-## [29] "p30207"                     "p30209"                    
-## [31] "p30211"                     "p50015"                    
-## [33] "p50280"                     "p70305"                    
-## [35] "p71820"                     "p71999"                    
-## [37] "p72012"                     "p72013"                    
-## [39] "p72020"                     "p72219"                    
-## [41] "p72220"                     "p72263"                    
-## [43] "p81904"                     "p82398"                    
-## [45] "p84164"                     "p84171"                    
-## [47] "p84182"                     "p99111"                    
-## [49] "p99156"                     "p99159"                    
-## [51] "p99171"                     "p99173"                    
-## [53] "p99206"                     "startDateTime"
+## [19] "p00061"                     "p00065"                    
+## [21] "p00095"                     "p00098"                    
+## [23] "p00191"                     "p00300"                    
+## [25] "p00301"                     "p00400"                    
+## [27] "p30207"                     "p30209"                    
+## [29] "p50280"                     "p70305"                    
+## [31] "p71999"                     "p72263"                    
+## [33] "p99156"                     "p99206"                    
+## [35] "startDateTime"
 ```
 
 ```r
@@ -794,7 +786,7 @@ length(unique(SaltLake_totalN$site_no))
 ```
 
 ```
-## [1] 10
+## [1] 5
 ```
 
 ### readNWISdv
@@ -2031,15 +2023,22 @@ rect(-81.70, 25.08, -80.30, 26.51, col = NA, border = 'red')
 
 You can now find and download Water Quality Portal data from R! 
 
-## USGS COding Lab Exercises
+## USGS Coding Lab Exercises
 
-**1:**
+### Just how dry was the 2020 monsoon?
+<img src="./images/09sep20_jja20p.png" width="325" />
 
-*Determine the number of sites in Arizona that have lake temperature data available in NWIS. Then find how many Arizona sites have lake temperature data available in WQP.*
 
-Helpful links: [`whatNWISdata`](usgs-packages/dataRetrieval-discovery/#whatnwisdata), [`whatWQPsites`](usgs-packages/dataRetrieval-discovery/#whatwqpsites), [`readWQPdata`](usgs-packages/dataRetrieval-discovery/#readwqpdata-querysummary)
+Recently NOAA published a press release demonstrating that 2020 was *both* the hottest *and* driest summer on record for Arizona.  In this lab we will look at USGS NWIS stream gauge and preciptitation data to investigate just how anomalous 2020 data are. 
 
-**2:**
+**1:** Use the `readNWISstat` function to retrieve the following statewide data for 2015-2020:
+1. Precipitation total (inches/week)
+2. Streamflow (ft^3/s)
+
+**2:** Create two timeseries plots (one for preciptitation, one for streamflow), where color is a function of year (e.g. the x axis is month, the y axis is precipitation, legend shows color by year).
+
+**3.** Calculate the monthly mean precipitation and streamflow from 2015-2019, and use that mean to calculate a 2020 anomaly timeseries.  Create two new plots (like #2 above) with the 2015-2019 mean as a thick black line, and 2020 anomaly as a thin red line.
+
 
 ## geoKnife - Introduction
 
@@ -2307,7 +2306,7 @@ length(default_geoms)
 ```
 
 ```
-## [1] 29
+## [1] 33
 ```
 
 ```r
@@ -2571,7 +2570,7 @@ check(evap_geojob)
 ## [1] "Process successful"
 ## 
 ## $URL
-## [1] "https://cida.usgs.gov:443/gdp/process/RetrieveResultServlet?id=1033380f-85b6-4023-9bcb-99b669a8bfa0OUTPUT"
+## [1] "https://cida.usgs.gov:443/gdp/process/RetrieveResultServlet?id=ead9bd2b-5440-487d-9fc4-1f4ffc7b05a3OUTPUT"
 ## 
 ## $statusType
 ## [1] "ProcessSucceeded"
@@ -2695,10 +2694,10 @@ knife_willemail
 ## process inputs: 
 ##    SUMMARIZE_TIMESTEP: false
 ##    SUMMARIZE_FEATURE_ATTRIBUTE: false
-##    DELIMITER: COMMA
 ##    REQUIRE_FULL_COVERAGE: true
 ##    STATISTICS: 
 ##    GROUP_BY: 
+##    DELIMITER: COMMA
 ## wait: FALSE 
 ## email: fake.email@gmail.com
 ```

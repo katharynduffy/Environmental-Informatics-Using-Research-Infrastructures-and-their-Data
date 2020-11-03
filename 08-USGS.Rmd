@@ -1022,15 +1022,24 @@ rect(-81.70, 25.08, -80.30, 26.51, col = NA, border = 'red')
 
 You can now find and download Water Quality Portal data from R! 
 
-## USGS COding Lab Exercises
+## USGS Coding Lab Exercises
 
-**1:**
+### Just how dry was the 2020 monsoon?
+```{r, echo=FALSE}
+knitr::include_graphics('./images/09sep20_jja20p.png')
+```
 
-*Determine the number of sites in Arizona that have lake temperature data available in NWIS. Then find how many Arizona sites have lake temperature data available in WQP.*
 
-Helpful links: [`whatNWISdata`](usgs-packages/dataRetrieval-discovery/#whatnwisdata), [`whatWQPsites`](usgs-packages/dataRetrieval-discovery/#whatwqpsites), [`readWQPdata`](usgs-packages/dataRetrieval-discovery/#readwqpdata-querysummary)
+Recently NOAA published a press release demonstrating that 2020 was *both* the hottest *and* driest summer on record for Arizona.  In this lab we will look at USGS NWIS stream gauge and preciptitation data to investigate just how anomalous 2020 data are. 
 
-**2:**
+**1:** Use the `readNWISstat` function to retrieve the following statewide data for 2015-2020:
+1. Precipitation total (inches/week)
+2. Streamflow (ft^3/s)
+
+**2:** Create two timeseries plots (one for preciptitation, one for streamflow), where color is a function of year (e.g. the x axis is month, the y axis is precipitation, legend shows color by year).
+
+**3.** Calculate the monthly mean precipitation and streamflow from 2015-2019, and use that mean to calculate a 2020 anomaly timeseries.  Create two new plots (like #2 above) with the 2015-2019 mean as a thick black line, and 2020 anomaly as a thin red line.
+
 
 ## geoKnife - Introduction
 
