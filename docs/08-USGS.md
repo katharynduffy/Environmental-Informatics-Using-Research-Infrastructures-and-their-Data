@@ -132,6 +132,12 @@ By the end of this lesson, the learner will be able to:
 - Report a bug or suggest a feature: [dataRetrieval issues on GitHub](https://github.com/USGS-R/dataRetrieval/issues)
 - USGS Presentation: [dataRetrieval Tutorial](https://owi.usgs.gov/R/dataRetrieval.html#1)
 
+
+### Lesson Slide Deck
+
+![Browse the slide deck here](https://owi.usgs.gov/R/dataRetrieval.html#1)
+
+
 ## Introduction to USGS R Packages
 
 
@@ -382,10 +388,10 @@ wqpcounts_sc[['total-result-count']]
 ```
 
 ```
-## [1] 3613827
+## [1] 3613945
 ```
 
-This doesn't provide any information about the sites, just the total number. I know that with 3,613,827 results, I will want to add more criteria before trying to download. Let's continue to add query parameters before moving to `whatWQPsites`.
+This doesn't provide any information about the sites, just the total number. I know that with 3,613,945 results, I will want to add more criteria before trying to download. Let's continue to add query parameters before moving to `whatWQPsites`.
 
 
 ```r
@@ -404,10 +410,10 @@ wqpcounts_sc_stream[['total-result-count']]
 ```
 
 ```
-## [1] 1851690
+## [1] 1851691
 ```
 
-1,851,690 results are still a lot to download. Let's add more levels of criteria:
+1,851,691 results are still a lot to download. Let's add more levels of criteria:
 
 
 ```r
@@ -686,12 +692,12 @@ head(MauiCo_avgdailyQ)
 
 ```
 ##   agency_cd  site_no   dateTime X_00060_00003 X_00060_00003_cd tz_cd
-## 1      USGS 16400000 2020-11-02          2.12                P   UTC
-## 2      USGS 16401000 1929-08-31         18.00                A   UTC
-## 3      USGS 16402000 1957-07-31         51.00                A   UTC
-## 4      USGS 16403000 1957-06-30          5.50                A   UTC
-## 5      USGS 16403600 1970-09-29          2.40                A   UTC
-## 6      USGS 16403900 1996-09-30          1.30                A   UTC
+## 1      USGS 16400000 2020-11-03          10.4                P   UTC
+## 2      USGS 16401000 1929-08-31          18.0                A   UTC
+## 3      USGS 16402000 1957-07-31          51.0                A   UTC
+## 4      USGS 16403000 1957-06-30           5.5                A   UTC
+## 5      USGS 16403600 1970-09-29           2.4                A   UTC
+## 6      USGS 16403900 1996-09-30           1.3                A   UTC
 ```
 
 ```r
@@ -727,7 +733,7 @@ head(MauiHUC8_mindailyT)
 ## 3      USGS 16520000 2004-04-14          17.5                A   UTC
 ## 4      USGS 16527000 2004-01-13          15.4                A   UTC
 ## 5      USGS 16555000 2004-01-13          16.4                A   UTC
-## 6      USGS 16618000 2020-11-02          20.0                P   UTC
+## 6      USGS 16618000 2020-11-03          20.8                P   UTC
 ```
 
 ```r
@@ -2306,7 +2312,7 @@ length(default_geoms)
 ```
 
 ```
-## [1] 33
+## [1] 34
 ```
 
 ```r
@@ -2570,7 +2576,7 @@ check(evap_geojob)
 ## [1] "Process successful"
 ## 
 ## $URL
-## [1] "https://cida.usgs.gov:443/gdp/process/RetrieveResultServlet?id=efff484c-d998-4072-992c-0f84ee4a1c4dOUTPUT"
+## [1] "https://cida.usgs.gov:443/gdp/process/RetrieveResultServlet?id=fe471946-fad9-4055-9c1f-a1b186e4e36eOUTPUT"
 ## 
 ## $statusType
 ## [1] "ProcessSucceeded"
@@ -2711,3 +2717,14 @@ check(geojob)
 mydata <- result(geojob)
 ```
 
+## USGS NWIS Culmination Write Up
+
+Write up a 1-page **derived data product or research pipeline proposal** summary of a project that you might want to explore using USGS NWIS data. Include the types of data that you would need to implement this project and how you would retrieve them. Save this summary as you will be refining and adding to your ideas over the course of the semester.  
+
+Suggestions: 
+
+1. Tables or bullet lists of **specific** data products
+
+2. An **overarching high-quality figure** to show how these data align
+
+3. One paragraph summarizing *how* this data or analysis is useful to **you and/or the infrastructure**.
