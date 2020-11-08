@@ -1070,6 +1070,7 @@ By the end of this lesson, the learner will be able to:
 - Publication: [geoknife: reproducible web-processing of large gridded datasets](http://onlinelibrary.wiley.com/doi/10.1111/ecog.01880/abstract)
 - Tutorial (vignette): [geoknife vignette](https://cran.r-project.org/web/packages/geoknife/vignettes/geoknife.html)
 - An overview of [remote processing basics](https://cida.usgs.gov/gdp/how-to-gdp/) with the Geo Data Portal
+- A blog post on [visualizing Tropical Storm Colin rainfall](https://waterdata.usgs.gov/blog/ts-colin-precip/) with geoknife
 - Source code: [geoknife on GitHub](https://github.com/USGS-R/geoknife)
 - Report a bug or suggest a feature: [geoknife issues on GitHub](https://github.com/USGS-R/geoknife/issues)
 
@@ -1175,16 +1176,16 @@ Here is a second example of using a non-GDP dataset which is not aggregated in t
 
 ```{r create-fabric-UNIWISC, message=FALSE, warning=FALSE}
 wv_fabric <- webdata(url="https://thredds.ucar.edu/thredds/dodsC/satellite/WV/SUPER-NATIONAL_8km/current/SUPER-NATIONAL_8km_WV_20200904_1330.gini")
-wv_var <- query(wv_fabric, "variables")
+query(wv_fabric, "variables")
 
 # need to set the variable(s) in order to query the times
 variables(wv_fabric) <- "IR_WV"
 query(wv_fabric, "times") # Note the times of this dataset include only a single timestep, since the data collection has a file for each time
 ```
-
-Now that we have explored options for our webdata, let's look at what options exist for geospatial features.
+The url used here for `webdata()` contains the date and the time, so we would need to construct a loop through multiple timesteps in order to assemble a time series from this data source. 
 
 ## Available webgeoms
+Now that we have explored options for our webdata, let's look at what options exist for geospatial features.
 
 The next component to `geoknife` jobs is the spatial extent of the data, a.k.a. the stencil. The stencil is defined by using either of the functions `simplegeom` or `webgeom`. `simplegeom` is used to explicitly define an area by the user, but `webgeom` is used to specify an existing web feature service (WFS) as the geospatial extent. Defining your stencil using `simplegeom` will be covered in the next lesson. This lesson will just show you how to learn what available webgeoms exist. Users can use any WFS url to create their stencil, but there are a number of features that exist through GDP already. To determine what features exist, you can create a default webgeom object and then query its geom name, attributes, and values. This will return all available GDP default features. 
 
