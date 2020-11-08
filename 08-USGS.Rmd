@@ -1159,15 +1159,14 @@ Any gridded dataset available online that follows OPeNDAP protocol and some addi
 
 There are hundreds (or potentially thousands) of additional OPeNDAP datasets that will work with geoknife, but need to be found through web searches or catalogs (e.g., [www.esrl.noaa.gov/psd/thredds/dodsC/Datasets](www.esrl.noaa.gov/psd/thredds/dodsC/Datasets) and [apdrc.soest.hawaii.edu/data/data.php](http://apdrc.soest.hawaii.edu/data/data.php) ). 
 
-One such example is Sea Surface Temperature from the Advanced Very High Resolution Radiometer (AVHRR) temperature sensing system. Specifying datasets such as this requires finding out the OPeNDAP endpoint (URL) for the dataset, and specifying it as the `url` to webdata (we found this example in the extensive [apdrc.soest.hawaii.edu/data/data.php](http://apdrc.soest.hawaii.edu/data/data.php) catalog):
+We searched NOAA’s OPenDAP data catalog and found data from the [Center for Operational Oceanographic Products and Services THREDDS server](https://opendap.co-ops.nos.noaa.gov/thredds/catalog.html). It includes forecasts for water levels, water currents, water temperatures, and salinity levels for Delaware Bay. Since it is forecasted data, the times associated with the data will change. To create a webdata object from this dataset, just use the OPeNDAP url. Then query variables and time as we did before.
 
 ```{r create-fabric-NOAA, message=FALSE, warning=FALSE}
-sst_fabric <- webdata(url='dods://apdrc.soest.hawaii.edu/dods/public_data/satellite_product/AVHRR/avhrr_mon')
-
-# need to set the variable(s) we found from the web catalog. 
-variables(sst_fabric) <- c("sst")
-# need to set the time range. 
-times(sst_fabric) <- c('1990-01-01','1999-12-31')
+DelBay_fabric <- webdata(url="https://opendap.co-ops.nos.noaa.gov/thredds/dodsC/DBOFS/fmrc/Aggregated_7_day_DBOFS_Fields_Forecast_best.ncd")
+query(DelBay_fabric, "variables")
+# need to set the variable(s) in order to query the times
+variables(DelBay_fabric) <- "temp"
+query(DelBay_fabric, "times")
 ```
 
 The first example we've included here uses aggregated data, meaning there is a single URL for all the data of this type on the server. Some data that you encounter might be non-aggregated, meaning there are multiple URLs to access the same data. In these cases, you will need to create more than one geojob and join data at the end.
