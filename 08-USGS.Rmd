@@ -1199,7 +1199,7 @@ length(default_geoms)
 head(default_geoms)
 ```
 
-You will notice a pattern with the names of the geoms: a category followed by `:`, and then a specific name. These category-name combinations are the strings you would use to define your geom. Additionally, `webgeom` can accept a URL that points directly to a WFS. The categories you should be familiar with are `sample` and `upload`. `sample` geoms are any that are available through `geoknife` by default. `upload` geoms are custom shapefiles that someone uploaded through GDP. If you would like to upload a specific shapefile to GDP, follow [these instructions](https://my.usgs.gov/confluence/display/GeoDataPortal/Detailed+GDP+Use+Instructions#DetailedGDPUseInstructions-UsinganUploadedShapefile). **Be aware that uploaded shapefiles are wiped from the server at regular intervals (could be as often as weekly)**. To use your own shapefile: upload it, execute your job and then save the output; re-upload your shapefile the next time you need it on GDP.
+You will notice a pattern with the names of the geoms: a category followed by `:`, and then a specific name. These category-name combinations are the strings you would use to define your geom. Additionally, `webgeom` can accept a URL that points directly to a WFS. The categories you should be familiar with are `sample` and `upload`. `sample` geoms are any that are available through `geoknife` by default. `upload` geoms are custom shapefiles that someone uploaded through GDP. If you would like to upload a specific shapefile to GDP, go to the [advanced spatial section in GDP](https://cida.usgs.gov/gdp/client/#!advanced/spatial). **Be aware that uploaded shapefiles are wiped from the server at regular intervals (could be as often as weekly)**. To use your own shapefile: upload it as a zip shapefile, execute your job and then save the output; re-upload your shapefile the next time you need it on GDP if it has expired.
 
 Similar to fabrics where you could not query times without setting the variables, you cannot query attributes of stencils before defining the geoms. Likewise, you cannot query for values of a stencil until you have set the attributes. Attributes give the metadata associated with the stencil and it's geom. Values tell you the individual spatial features available in that attribute of the geom. 
 
@@ -1253,7 +1253,7 @@ length(default_algorithms)
 head(default_algorithms)
 ```
 
-From this list, you can define which algorithm you would like the webprocess component to use. Definitions of each of the default algorithms can be found in the Geo Data Portal Algorithm Summaries section of the [home page for GDP documentation](https://my.usgs.gov/confluence/display/GeoDataPortal/GDP+Home). For example, we want to use the OPeNDAP subsetting algorithm, "OPeNDAP Subset".
+From this list, you can define which algorithm you would like the webprocess component to use. Definitions of each of the default algorithms can be found in the Geo Data Portal Algorithm Summaries section of the [GDP process documentation](https://cida.usgs.gov/gdp/client/#!advanced/process). For example, we want to use the OPeNDAP subsetting algorithm, "OPeNDAP Subset", which downloads a spatiotemporal chunk of data without any spatial processing. 
 
 ```{r add-algorithm, message=FALSE, warning=FALSE}
 # algorithm actually has a default of the weighted average
@@ -1268,23 +1268,22 @@ Now that we can explore all of our options, we will learn how to construct each 
 
 ## Setting up a geojob
 
-A `geojob` is the object that contains all of the necessary processing information to execute a data request to GDP. The `geojob` is made up of the `stencil`, `fabric`, and `knife` (if you need to learn what these components are, please visit [the previous lesson](/usgs-packages/geoknife-data)).
+A `geojob` is the object that contains all of the necessary processing information to execute a data request to GDP. The `geojob` is made up of the `stencil`, `fabric`, and `knife`.
 
-To create a `geojob`, use the function `geoknife` and give the three components as arguments. `stencil` and `fabric` must be indicated, but `knife` has a default. Any additional arguments are specifications for the webprocessing step. See `?'webprocess-class'` for options. This lesson will not discuss all of the options. 
+To create a `geojob`, use the function `geoknife` and give the three components as arguments. `stencil` and `fabric` must be indicated, but `knife` has a default. Any additional arguments are specifications for the webprocessing step. See `?'webprocess-class'` for options. This portion of the lesson will not discuss all of the options. 
 
 ```{r load-geoknife}
 # load the geoknife package
 library(geoknife)
 ```
 
-Let's setup a `geojob` to find the unweighted annual evapotranspiration rates for the state of Indiana using the annual evapotranspiration data we saw in [the previous lesson](/usgs-packages/geoknife-data/#available-webdata). Since we have seen the URL and know the available variables and times, we can set all of that manually in the `webdata` function. Note: the times field must be a vector of start then end date, and be class `POSIXct`.
+Let's setup a `geojob` to find the unweighted annual evapotranspiration rates for the state of Indiana using the annual evapotranspiration data we saw in the previous section. Since we have seen the URL and know the available variables and times, we can set all of that directly in the `webdata` function. Note: the times field must be a vector of start then end date, and be class `POSIXct` or character.
 
 ```{r create-geojob, message=FALSE, warning=FALSE}
 # create fabric
-evap_fabric_info <- list(times = as.POSIXct(c("2005-01-01", "2015-01-01")),
+evap_fabric <- webdata(times = c("2005-01-01", "2015-01-01"),
                          variables = "et",
                          url = 'https://cida.usgs.gov/thredds/dodsC/ssebopeta/yearly')
-evap_fabric <- webdata(evap_fabric_info)
 
 # create stencil
 evap_stencil <- webgeom('state::Indiana')
@@ -1314,7 +1313,7 @@ The geojob has been created and started on the server. Now, you can check to see
 check(evap_geojob)
 ```
 
-Other helpful functions to get status information about the job are `running` (returns T/F to say if the job is still processing), `error` (returns T/F to say if there was an error during the processing), and `successful` (returns T/F indicating whether the job process was able to complete without any issues). Only one of these can return `TRUE` at a time.
+Other helpful functions to get status information about the job are `running` (returns `TRUE`/`FALSE` to say if the job is still processing), `error` (returns `TRUE`/`FALSE` to say if there was an error during the processing), and `successful` (returns `TRUE`/`FALSE` indicating whether the job process was able to complete without any issues). Only one of these can return `TRUE` at a time.
 
 ```{r other-checks-geojob, message=FALSE, warning=FALSE}
 running(evap_geojob)
@@ -1322,7 +1321,7 @@ error(evap_geojob)
 successful(evap_geojob)
 ```
 
-The results of all the status checks say that our job was successful! These status checks are useful if you put a geojob in a script and want to fail gracefully when there is an error in the job.
+The results of all the status checks say that our job was successful. These status checks are useful if you put a geojob in a script and want to fail gracefully when there is an error in the job.
 
 ## Getting geojob data
 
@@ -1373,7 +1372,7 @@ evap_geojob <- geoknife(evap_stencil, evap_fabric, evap_knife)
 evap_data <- result(evap_geojob)
 ```
 
-As in the third scenario, if you have a job that will take a long time and plan to close R in the interim, you can specify the argument `email` when creating the knife. Then when you use your new knife in the `geoknife` call, it will send an email with appropriate information upon job completion (you will see `gdp_data@usgs.gov` as the sender). 
+As for the third scenario, if you have a job that will take a long time and plan to close R in the interim, you can specify the argument `email` when creating the knife. Then when you use your new knife in the `geoknife` call, it will send an email with appropriate information upon job completion (you will see `gdp_data@usgs.gov` as the sender). 
 
 ```{r email-example, message=FALSE, warning=FALSE}
 # example of how to specify an email address to get a job completion alert
@@ -1381,7 +1380,7 @@ knife_willemail <- webprocess(email='fake.email@gmail.com')
 knife_willemail
 ```
 
-The email alert will contain the completed job URL. Since this process requires you to leave R and get information from an email, it is often only recommended if you don't plan to do further analysis in R. Otherwise, we recommend using the `wait()` function in a script. Use the URL as a string in this workflow to get your results:
+The email alert will contain the completed job URL. Since this process requires you to leave R and get information from an email, it is often only recommended if you don't plan to do further analysis in R, or you use `saveRDS` to save the `geojob` object so you can load it in a later session. Otherwise, we recommend using the `wait()` function in a script. Use the URL as a string in this workflow to get your results:
 
 ```{r email-example-results, message=FALSE, warning=FALSE, eval=FALSE}
 geojob <- geojob("my url as a string")
@@ -1391,7 +1390,7 @@ mydata <- result(geojob)
 
 ## USGS NWIS Culmination Write Up
 
-Write up a 1-page **derived data product or research pipeline proposal** summary of a project that you might want to explore using USGS NWIS data. Include the types of data that you would need to implement this project and how you would retrieve them. Save this summary as you will be refining and adding to your ideas over the course of the semester.  
+Write up a 1-page **derived data product or research pipeline proposal** summary of a project that you might want to explore using USGS NWIS and USGS GDP data. Include the types of data that you would need to implement this project and how you would retrieve them. Save this summary as you will be refining and adding to your ideas over the course of the semester.  
 
 Suggestions: 
 
