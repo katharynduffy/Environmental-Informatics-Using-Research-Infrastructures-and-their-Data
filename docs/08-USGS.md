@@ -368,11 +368,10 @@ names(wqpcounts_sc)
 ## [15] "x-frame-options"           "x-content-type-options"   
 ## [17] "x-xss-protection"          "strict-transport-security"
 ## [19] "x-cache"                   "via"                      
-## [21] "x-amz-cf-pop"              "x-amz-cf-id"              
-## [23] "age"
+## [21] "x-amz-cf-pop"              "x-amz-cf-id"
 ```
 
-This returns a list with 23 different items, including total number of sites, breakdown of the number of sites by source (BioData, NWIS, STORET), total number of records, and breakdown of records count by source. Let's just look at total number of sites and total number of records.
+This returns a list with 22 different items, including total number of sites, breakdown of the number of sites by source (BioData, NWIS, STORET), total number of records, and breakdown of records count by source. Let's just look at total number of sites and total number of records.
 
 
 ```r
@@ -388,10 +387,10 @@ wqpcounts_sc[['total-result-count']]
 ```
 
 ```
-## [1] 3613945
+## [1] 3614048
 ```
 
-This doesn't provide any information about the sites, just the total number. I know that with 3,613,945 results, I will want to add more criteria before trying to download. Let's continue to add query parameters before moving to `whatWQPsites`.
+This doesn't provide any information about the sites, just the total number. I know that with 3,614,048 results, I will want to add more criteria before trying to download. Let's continue to add query parameters before moving to `whatWQPsites`.
 
 
 ```r
@@ -410,10 +409,10 @@ wqpcounts_sc_stream[['total-result-count']]
 ```
 
 ```
-## [1] 1851691
+## [1] 1851794
 ```
 
-1,851,691 results are still a lot to download. Let's add more levels of criteria:
+1,851,794 results are still a lot to download. Let's add more levels of criteria:
 
 
 ```r
@@ -434,10 +433,10 @@ wqpcounts_sc_stream_temp[['total-result-count']]
 ```
 
 ```
-## [1] 140424
+## [1] 140432
 ```
 
-140,424 is little more manageble. We can also easily compare avilable stream temperature and lake temperature data.
+140,432 is little more manageble. We can also easily compare avilable stream temperature and lake temperature data.
 
 
 ```r
@@ -468,7 +467,7 @@ wqpcounts_sc_stream_temp[['total-result-count']]
 ```
 
 ```
-## [1] 140424
+## [1] 140432
 ```
 
 ```r
@@ -692,7 +691,7 @@ head(MauiCo_avgdailyQ)
 
 ```
 ##   agency_cd  site_no   dateTime X_00060_00003 X_00060_00003_cd tz_cd
-## 1      USGS 16400000 2020-11-03          10.4                P   UTC
+## 1      USGS 16400000 2020-11-08          13.2                P   UTC
 ## 2      USGS 16401000 1929-08-31          18.0                A   UTC
 ## 3      USGS 16402000 1957-07-31          51.0                A   UTC
 ## 4      USGS 16403000 1957-06-30           5.5                A   UTC
@@ -733,7 +732,7 @@ head(MauiHUC8_mindailyT)
 ## 3      USGS 16520000 2004-04-14          17.5                A   UTC
 ## 4      USGS 16527000 2004-01-13          15.4                A   UTC
 ## 5      USGS 16555000 2004-01-13          16.4                A   UTC
-## 6      USGS 16618000 2020-11-03          20.8                P   UTC
+## 6      USGS 16618000 2020-11-08          21.0                P   UTC
 ```
 
 ```r
@@ -774,16 +773,10 @@ names(SaltLake_totalN)
 ## [11] "tu_id"                      "body_part_id"              
 ## [13] "p00003"                     "p00004"                    
 ## [15] "p00009"                     "p00010"                    
-## [17] "p00020"                     "p00025"                    
-## [19] "p00061"                     "p00065"                    
-## [21] "p00095"                     "p00098"                    
-## [23] "p00191"                     "p00300"                    
-## [25] "p00301"                     "p00400"                    
-## [27] "p30207"                     "p30209"                    
-## [29] "p50280"                     "p70305"                    
-## [31] "p71999"                     "p72263"                    
-## [33] "p99156"                     "p99206"                    
-## [35] "startDateTime"
+## [17] "p00061"                     "p00065"                    
+## [19] "p00095"                     "p30207"                    
+## [21] "p30209"                     "p50280"                    
+## [23] "p71999"                     "startDateTime"
 ```
 
 ```r
@@ -792,7 +785,7 @@ length(unique(SaltLake_totalN$site_no))
 ```
 
 ```
-## [1] 5
+## [1] 2
 ```
 
 ### readNWISdv
@@ -2050,9 +2043,9 @@ Recently NOAA published a press release demonstrating that 2020 was *both* the h
 
 ## Lesson Summary
 
-This lesson will explore how to find and download large gridded datasets via the R package `geoknife`. The package was created to allow easy access to data stored in the [Geo Data Portal (GDP)](https://cida.usgs.gov/gdp/), or any gridded dataset available through the [OPeNDAP](https://www.opendap.org/) protocol DAP2. `geoknife` refers to the gridded dataset as the `fabric`, the spatial feature of interest as the `stencil`, and the subset algorithm parameters as the `knife` (see below).
+This lesson will explore how to find and download large gridded datasets via the R package `geoknife`. The package was created to allow easy access to data stored in the [Geo Data Portal (GDP)](https://cida.usgs.gov/gdp/), or any gridded dataset available through the [OPeNDAP](https://www.opendap.org/) protocol DAP2 that meets some basic metadata requirements. `geoknife` refers to the gridded dataset as the `fabric`, the spatial feature of interest as the `stencil`, and the subset algorithm parameters as the `knife` (see below).
 
-![figure illustrating definitions of fabric, stencil, and knife](../static/img/geoknife_summary.png#inline-img "geoknife terminology figure")
+![figure illustrating definitions of fabric, stencil, and knife](./images/geoknife_summary_subset.png "geoknife terminology figure")
 
 ## Lesson Objectives
 
@@ -2068,6 +2061,8 @@ By the end of this lesson, the learner will be able to:
 
 - Publication: [geoknife: reproducible web-processing of large gridded datasets](http://onlinelibrary.wiley.com/doi/10.1111/ecog.01880/abstract)
 - Tutorial (vignette): [geoknife vignette](https://cran.r-project.org/web/packages/geoknife/vignettes/geoknife.html)
+- An overview of [remote processing basics](https://cida.usgs.gov/gdp/how-to-gdp/) with the Geo Data Portal
+- A blog post on [visualizing Tropical Storm Colin rainfall](https://waterdata.usgs.gov/blog/ts-colin-precip/) with geoknife
 - Source code: [geoknife on GitHub](https://github.com/USGS-R/geoknife)
 - Report a bug or suggest a feature: [geoknife issues on GitHub](https://github.com/USGS-R/geoknife/issues)
 
@@ -2081,7 +2076,7 @@ The USGS Geo Data Portal is designed to perform web-service processing on large 
 
 ## geoknife components: fabric, stencil, knife
 
-The main components of a geoknife workflow are the fabric, stencil, and knife. These three components go into the final element, the geoknife "job" (geojob), which returns the processed data. The fabric is the gridded web dataset to be processed, the stencil is the feature of interest, and the knife is the processing algorithm parameters. Each of the `geoknife` components is created using a corresponding function: fabrics are created using `webdata()`, stencils are created using `webgeom()`, and knives are created using `webprocess()`. 
+The main components of a geoknife workflow are the "fabric", "stencil", and "knife". These three components go into the final element, the geoknife "job" (geojob), which defines what the user needs from the processing, allows tracking of the processing status, and methods to dowload the results. The fabric is the gridded web dataset to be processed, the stencil is the feature of interest, and the knife is the processing algorithm parameters. Each of the `geoknife` components is created using a corresponding function: fabrics are created using `webdata()`, stencils are created using `webgeom()` or `simplegeom()`, and knives are created using `webprocess()`. 
 
 This lesson will focus on discovering what options exist for each of those components. The next lesson will teach you how to construct each component and put it together to get the processed data. Before continuing this lesson, load the geoknife library (install if necessary).
 
@@ -2208,7 +2203,7 @@ class(evap_fabric)
 ## [1] "geoknife"
 ```
 
-Now that we have a defined fabric, we can explore what variables and time period are within that data. First, we use `query` to determine what variables exist. You'll notice that the function `variable` returns NA. This is fine when you are just exploring available data; however, exploring available times requires that the variable be defined. Thus, we need to set which variable from the dataset will be used. Then, we can explore times that are available in the data.
+Now that we have a defined fabric, we can explore what variables and time period are within that data. First, we use `query` to determine what variables exist. You'll notice that the function `variable` returns NA. This is fine when you are just exploring available data; however, exploring available times requires that the variable be defined because sometimes individual variables within a dataset can have different time ranges. Thus, we need to set which variable from the dataset will be used. Then, we can explore times that are available in the data. Using `query()` is helpful when exploring datasets, but is unecessary if you already know what times and variables you'd like to access. 
 
 
 ```r
@@ -2253,51 +2248,60 @@ query(evap_fabric, "times")
 
 ### Datasets not in GDP
 
-Any gridded dataset available online that follows OPeNDAP protocol and some additional conventions can be used with `geoknife`. These datasets can be found through web searches or other catalogs and require finding out the OPeNDAP endpoint (URL) for the dataset. This url is used as the input to the argument `url` in `webdata`. Please see the [Custom Dataset Use Guidelines documentation](https://my.usgs.gov/confluence/display/GeoDataPortal/Custom+Dataset+Use+Guidlines) for more information about compatibility, or contact the GDP development team (gdp@usgs.gov). 
+Any gridded dataset available online that follows OPeNDAP protocol and some additional conventions can be used with `geoknife`. These datasets can be found through web searches or other catalogs and require finding out the OPeNDAP endpoint (URL) for the dataset. This url is used as the input to the argument `url` in `webdata`. Please email the GDP development team (gdp@usgs.gov) with questions abvout these specifics. 
 
-We searched [NOAA's OPenDAP data catalog](https://opendap.co-ops.nos.noaa.gov/) and found this data from the Center for Operational Oceanographic Products and Services THREDDS server. It includes forecasts for water levels, water currents, water temperatures, and salinity levels for Delaware Bay. Since it is forecast data, the times associated with the data will change. To create a webdata object from this dataset, just use the OPeNDAP url. Then query variables and time as we did before.
+There are hundreds (or potentially thousands) of additional OPeNDAP datasets that will work with geoknife, but need to be found through web searches or catalogs (e.g., [www.esrl.noaa.gov/psd/thredds/dodsC/Datasets](www.esrl.noaa.gov/psd/thredds/dodsC/Datasets) and [apdrc.soest.hawaii.edu/data/data.php](http://apdrc.soest.hawaii.edu/data/data.php) ). 
+
+We searched NOAA’s OPenDAP data catalog and found data from the [Center for Operational Oceanographic Products and Services THREDDS server](https://opendap.co-ops.nos.noaa.gov/thredds/catalog.html). It includes forecasts for water levels, water currents, water temperatures, and salinity levels for Delaware Bay. Since it is forecasted data, the times associated with the data will change. To create a webdata object from this dataset, just use the OPeNDAP url. Then query variables and time as we did before.
 
 
 ```r
-DelBay_fabric <- webdata(url="http://opendap.co-ops.nos.noaa.gov/thredds/dodsC/DBOFS/fmrc/Aggregated_7_day_DBOFS_Fields_Forecast_best.ncd")
+DelBay_fabric <- webdata(url="https://opendap.co-ops.nos.noaa.gov/thredds/dodsC/DBOFS/fmrc/Aggregated_7_day_DBOFS_Fields_Forecast_best.ncd")
 query(DelBay_fabric, "variables")
 ```
 
 ```
-## character(0)
+##  [1] "zeta"  "u"     "v"     "w"     "temp"  "Pair"  "Uwind" "Vwind" "h"    
+## [10] "f"     "pm"    "pn"    "angle"
 ```
 
 ```r
 # need to set the variable(s) in order to query the times
-variables(DelBay_fabric) <- c("Vwind", "temp")
+variables(DelBay_fabric) <- "temp"
 query(DelBay_fabric, "times")
 ```
 
 ```
-## [1] NA NA
+## [1] "2020-11-01 UTC" "2020-11-11 UTC"
 ```
 
-Here is a second example of using a non-GDP dataset. This data was found under the [data section on Unidata's website](http://www.unidata.ucar.edu/data/#home). This is aggregated satellite data from the UNIWISC (Unidata-Wisconsin) datastream for Earth's "surface skin" temperature. 
+The first example we've included here uses aggregated data, meaning there is a single URL for all the data of this type on the server. Some data that you encounter might be non-aggregated, meaning there are multiple URLs to access the same data. In these cases, you will need to create more than one geojob and join data at the end.
+
+Here is a second example of using a non-GDP dataset which is not aggregated in times or variables. This data was found under the [data section on Unidata's THREDDS server](https://thredds.ucar.edu/thredds). This example includes water vapor at 8km resolution at national extent from [here](https://thredds.ucar.edu/thredds/catalog/satellite/WV/catalog.html). 
 
 
 ```r
-skinT_fabric <- webdata(url="http://thredds.ucar.edu/thredds/dodsC/satellite/SFC-T/SUPER-NATIONAL_1km")
-skinT_var <- query(skinT_fabric, "variables")
+wv_fabric <- webdata(url="https://thredds.ucar.edu/thredds/dodsC/satellite/WV/SUPER-NATIONAL_8km/current/SUPER-NATIONAL_8km_WV_20200904_1330.gini")
+query(wv_fabric, "variables")
+```
 
+```
+## [1] "IR_WV"
+```
+
+```r
 # need to set the variable(s) in order to query the times
-variables(skinT_fabric) <- skinT_var
-query(skinT_fabric, "times") # your times might be different because this is forecast data
+variables(wv_fabric) <- "IR_WV"
+query(wv_fabric, "times") # Note the times of this dataset include only a single timestep, since the data collection has a file for each time
 ```
 
 ```
-## [1] NA NA
+## [1] "2020-09-04 UTC" "2020-09-04 UTC"
 ```
-
-Both examples we've included here use aggregated data, meaning there is a single URL for all the data of this type on the server. Some data that you encounter might be non-aggregated, meaning there are multiple URLs to access the same data. In these cases, you will need to create more than one geojob and join data at the end.
-
-Now that we have explored options for our webdata, let's look at what options exist for geospatial features.
+The url used here for `webdata()` contains the date and the time, so we would need to construct a loop through multiple timesteps in order to assemble a time series from this data source. 
 
 ## Available webgeoms
+Now that we have explored options for our webdata, let's look at what options exist for geospatial features.
 
 The next component to `geoknife` jobs is the spatial extent of the data, a.k.a. the stencil. The stencil is defined by using either of the functions `simplegeom` or `webgeom`. `simplegeom` is used to explicitly define an area by the user, but `webgeom` is used to specify an existing web feature service (WFS) as the geospatial extent. Defining your stencil using `simplegeom` will be covered in the next lesson. This lesson will just show you how to learn what available webgeoms exist. Users can use any WFS url to create their stencil, but there are a number of features that exist through GDP already. To determine what features exist, you can create a default webgeom object and then query its geom name, attributes, and values. This will return all available GDP default features. 
 
@@ -2312,7 +2316,7 @@ length(default_geoms)
 ```
 
 ```
-## [1] 34
+## [1] 33
 ```
 
 ```r
@@ -2328,7 +2332,7 @@ head(default_geoms)
 ## [6] "upload:BB_LPK"
 ```
 
-You will notice a pattern with the names of the geoms: a category followed by `:`, and then a specific name. These category-name combinations are the strings you would use to define your geom. Additionally, `webgeom` can accept a URL that points directly to a WFS. The categories you should be familiar with are `sample` and `upload`. `sample` geoms are any that are available through `geoknife` by default. `upload` geoms are custom shapefiles that someone uploaded through GDP. If you would like to upload a specific shapefile to GDP, follow [these instructions](https://my.usgs.gov/confluence/display/GeoDataPortal/Detailed+GDP+Use+Instructions#DetailedGDPUseInstructions-UsinganUploadedShapefile). **Be aware that uploaded shapefiles are wiped from the server at regular intervals (could be as often as weekly)**. To use your own shapefile: upload it, execute your job and then save the output; re-upload your shapefile the next time you need it on GDP.
+You will notice a pattern with the names of the geoms: a category followed by `:`, and then a specific name. These category-name combinations are the strings you would use to define your geom. Additionally, `webgeom` can accept a URL that points directly to a WFS. The categories you should be familiar with are `sample` and `upload`. `sample` geoms are any that are available through `geoknife` by default. `upload` geoms are custom shapefiles that someone uploaded through GDP. If you would like to upload a specific shapefile to GDP, go to the [advanced spatial section in GDP](https://cida.usgs.gov/gdp/client/#!advanced/spatial). **Be aware that uploaded shapefiles are wiped from the server at regular intervals (could be as often as weekly)**. To use your own shapefile: upload it as a zip shapefile, execute your job and then save the output; re-upload your shapefile the next time you need it on GDP if it has expired.
 
 Similar to fabrics where you could not query times without setting the variables, you cannot query attributes of stencils before defining the geoms. Likewise, you cannot query for values of a stencil until you have set the attributes. Attributes give the metadata associated with the stencil and it's geom. Values tell you the individual spatial features available in that attribute of the geom. 
 
@@ -2497,7 +2501,7 @@ head(default_algorithms)
 ## [1] "gov.usgs.cida.gdp.wps.algorithm.FeatureCoverageIntersectionAlgorithm"
 ```
 
-From this list, you can define which algorithm you would like the webprocess component to use. Definitions of each of the default algorithms can be found in the Geo Data Portal Algorithm Summaries section of the [home page for GDP documentation](https://my.usgs.gov/confluence/display/GeoDataPortal/GDP+Home). For example, we want to use the OPeNDAP subsetting algorithm, "OPeNDAP Subset".
+From this list, you can define which algorithm you would like the webprocess component to use. Definitions of each of the default algorithms can be found in the Geo Data Portal Algorithm Summaries section of the [GDP process documentation](https://cida.usgs.gov/gdp/client/#!advanced/process). For example, we want to use the OPeNDAP subsetting algorithm, "OPeNDAP Subset", which downloads a spatiotemporal chunk of data without any spatial processing. 
 
 
 ```r
@@ -2525,9 +2529,9 @@ Now that we can explore all of our options, we will learn how to construct each 
 
 ## Setting up a geojob
 
-A `geojob` is the object that contains all of the necessary processing information to execute a data request to GDP. The `geojob` is made up of the `stencil`, `fabric`, and `knife` (if you need to learn what these components are, please visit [the previous lesson](/usgs-packages/geoknife-data)).
+A `geojob` is the object that contains all of the necessary processing information to execute a data request to GDP. The `geojob` is made up of the `stencil`, `fabric`, and `knife`.
 
-To create a `geojob`, use the function `geoknife` and give the three components as arguments. `stencil` and `fabric` must be indicated, but `knife` has a default. Any additional arguments are specifications for the webprocessing step. See `?'webprocess-class'` for options. This lesson will not discuss all of the options. 
+To create a `geojob`, use the function `geoknife` and give the three components as arguments. `stencil` and `fabric` must be indicated, but `knife` has a default. Any additional arguments are specifications for the webprocessing step. See `?'webprocess-class'` for options. This portion of the lesson will not discuss all of the options. 
 
 
 ```r
@@ -2535,15 +2539,14 @@ To create a `geojob`, use the function `geoknife` and give the three components 
 library(geoknife)
 ```
 
-Let's setup a `geojob` to find the unweighted annual evapotranspiration rates for the state of Indiana using the annual evapotranspiration data we saw in [the previous lesson](/usgs-packages/geoknife-data/#available-webdata). Since we have seen the URL and know the available variables and times, we can set all of that manually in the `webdata` function. Note: the times field must be a vector of start then end date, and be class `POSIXct`.
+Let's setup a `geojob` to find the unweighted annual evapotranspiration rates for the state of Indiana using the annual evapotranspiration data we saw in the previous section. Since we have seen the URL and know the available variables and times, we can set all of that directly in the `webdata` function. Note: the times field must be a vector of start then end date, and be class `POSIXct` or character.
 
 
 ```r
 # create fabric
-evap_fabric_info <- list(times = as.POSIXct(c("2005-01-01", "2015-01-01")),
+evap_fabric <- webdata(times = c("2005-01-01", "2015-01-01"),
                          variables = "et",
                          url = 'https://cida.usgs.gov/thredds/dodsC/ssebopeta/yearly')
-evap_fabric <- webdata(evap_fabric_info)
 
 # create stencil
 evap_stencil <- webgeom('state::Indiana')
@@ -2576,7 +2579,7 @@ check(evap_geojob)
 ## [1] "Process successful"
 ## 
 ## $URL
-## [1] "https://cida.usgs.gov:443/gdp/process/RetrieveResultServlet?id=fe471946-fad9-4055-9c1f-a1b186e4e36eOUTPUT"
+## [1] "https://cida.usgs.gov:443/gdp/process/RetrieveResultServlet?id=6ae84150-fdef-4272-9e24-9d4b14df72bbOUTPUT"
 ## 
 ## $statusType
 ## [1] "ProcessSucceeded"
@@ -2585,7 +2588,7 @@ check(evap_geojob)
 ## [1] "100"
 ```
 
-Other helpful functions to get status information about the job are `running` (returns T/F to say if the job is still processing), `error` (returns T/F to say if there was an error during the processing), and `successful` (returns T/F indicating whether the job process was able to complete without any issues). Only one of these can return `TRUE` at a time.
+Other helpful functions to get status information about the job are `running` (returns `TRUE`/`FALSE` to say if the job is still processing), `error` (returns `TRUE`/`FALSE` to say if there was an error during the processing), and `successful` (returns `TRUE`/`FALSE` indicating whether the job process was able to complete without any issues). Only one of these can return `TRUE` at a time.
 
 
 ```r
@@ -2612,7 +2615,7 @@ successful(evap_geojob)
 ## [1] TRUE
 ```
 
-The results of all the status checks say that our job was successful! These status checks are useful if you put a geojob in a script and want to fail gracefully when there is an error in the job.
+The results of all the status checks say that our job was successful. These status checks are useful if you put a geojob in a script and want to fail gracefully when there is an error in the job.
 
 ## Getting geojob data
 
@@ -2683,7 +2686,7 @@ evap_geojob <- geoknife(evap_stencil, evap_fabric, evap_knife)
 evap_data <- result(evap_geojob)
 ```
 
-As in the third scenario, if you have a job that will take a long time and plan to close R in the interim, you can specify the argument `email` when creating the knife. Then when you use your new knife in the `geoknife` call, it will send an email with appropriate information upon job completion (you will see `gdp_data@usgs.gov` as the sender). 
+As for the third scenario, if you have a job that will take a long time and plan to close R in the interim, you can specify the argument `email` when creating the knife. Then when you use your new knife in the `geoknife` call, it will send an email with appropriate information upon job completion (you will see `gdp_data@usgs.gov` as the sender). 
 
 
 ```r
@@ -2708,7 +2711,7 @@ knife_willemail
 ## email: fake.email@gmail.com
 ```
 
-The email alert will contain the completed job URL. Since this process requires you to leave R and get information from an email, it is often only recommended if you don't plan to do further analysis in R. Otherwise, we recommend using the `wait()` function in a script. Use the URL as a string in this workflow to get your results:
+The email alert will contain the completed job URL. Since this process requires you to leave R and get information from an email, it is often only recommended if you don't plan to do further analysis in R, or you use `saveRDS` to save the `geojob` object so you can load it in a later session. Otherwise, we recommend using the `wait()` function in a script. Use the URL as a string in this workflow to get your results:
 
 
 ```r
@@ -2717,9 +2720,94 @@ check(geojob)
 mydata <- result(geojob)
 ```
 
+## Putting it all together, mapping precipitation from Tropical Storm Colin
+
+The following example is slightly modified from the blog post [here](https://waterdata.usgs.gov/blog/ts-colin-precip/) and shows a workflow for accessing rainfall data for the time period covering Tropical Storm Colin and visualizing the total rainfall per county during the time range. 
+
+Define a function to retrieve precip data using geoknife
+
+```r
+getPrecip <- function(states, startDate, endDate){
+    
+    # use fips data from maps package
+    counties_fips <- maps::county.fips %>% 
+        mutate(statecounty=as.character(polyname)) %>% # character to split into state & county
+        tidyr::separate(polyname, c('statename', 'county'), ',') %>%
+        mutate(fips = sprintf('%05d', fips)) %>% # fips need 5 digits to join w/ geoknife result
+        filter(statename %in% states) 
+    
+    stencil <- webgeom(geom = 'sample:Counties',
+                       attribute = 'FIPS',
+                       values = counties_fips$fips)
+    
+    fabric <- webdata(url = 'https://cida.usgs.gov/thredds/dodsC/UofIMETDATA', 
+                      variables = "precipitation_amount", 
+                      times = c(startDate, endDate))
+    
+    job <- geoknife(stencil, fabric, wait = TRUE, REQUIRE_FULL_COVERAGE=FALSE)
+    check(job)
+    precipData_result <- result(job, with.units=TRUE)
+    precipData <- precipData_result %>% 
+        select(-variable, -statistic, -units) %>% 
+        gather(key = fips, value = precipVal, -DateTime) %>%
+        left_join(counties_fips, by="fips") #join w/ counties data
+    
+    return(precipData)
+    
+}
+# Function to map cumulative precipitation data using R package maps:
+precipMap <- function(precipData, startDate, endDate){
+  cols <- colorRampPalette(brewer.pal(9,'Blues'))(9)
+  precip_breaks <- c(seq(0,80,by = 10), 200)
+  
+  precipData_cols <- precipData %>% 
+    group_by(statename, statecounty) %>% 
+    summarize(cumprecip = sum(precipVal)) %>% 
+    mutate(cols = cut(cumprecip, breaks = precip_breaks, labels = cols, right=FALSE)) %>%
+    mutate(cols = as.character(cols))
+  
+  par(mar = c(0,0,3,0))
+  
+  map('county', regions = precipData_cols$statecounty, 
+      fill = TRUE, col = precipData_cols$cols, exact=TRUE)
+  
+  legend(x = "bottomright", fill = cols, cex = 0.7, bty = 'n', 
+         title = "Cumulative\nPrecipitation (mm)",
+         legend = c(paste('<', precip_breaks[-c(1,length(precip_breaks))]), 
+                    paste('>', tail(precip_breaks,2)[1]))) # greater
+  graphics::title("Cumulative Precipitation from Tropical Storm Colin",
+                  line = 2, cex.main=1.2)  #title was being masked by geoknife
+  mtext(side = 3, line = 1, cex = 0.9, 
+        text= paste("By county from", startDate, "to", endDate))
+}
+
+# Now, we can use those functions to fetch data for specific counties and time periods.
+# TS Colin made landfall on June 6th and moved into open ocean on June 7th. Use these dates as the start and end times in our 
+# function (need to account for timezone, +5 UTC). We can visualize the path of the storm by mapping cumulative precipitation for each county.
+library(dplyr)
+library(tidyr)
+library(geoknife) #order matters because 'query' is masked by a function in dplyr
+library(RColorBrewer)
+library(maps)
+
+statesTSColin <- c('florida', 'alabama', 'georgia', 
+                   'south carolina', 'north carolina')
+startTSColin <- "2016-06-06 05:00:00"
+endTSColin <- "2016-06-08 05:00:00"
+
+precipData <- getPrecip(states = statesTSColin, 
+                        startDate = startTSColin, 
+                        endDate = endTSColin)
+precipMap(precipData, 
+          startDate = startTSColin, 
+          endDate = endTSColin)
+```
+
+<img src="08-USGS_files/figure-html/visualize-colin-1.png" width="672" />
+
 ## USGS NWIS Culmination Write Up
 
-Write up a 1-page **derived data product or research pipeline proposal** summary of a project that you might want to explore using USGS NWIS data. Include the types of data that you would need to implement this project and how you would retrieve them. Save this summary as you will be refining and adding to your ideas over the course of the semester.  
+Write up a 1-page **derived data product or research pipeline proposal** summary of a project that you might want to explore using USGS NWIS and USGS GDP data. Include the types of data that you would need to implement this project and how you would retrieve them. Save this summary as you will be refining and adding to your ideas over the course of the semester.  
 
 Suggestions: 
 

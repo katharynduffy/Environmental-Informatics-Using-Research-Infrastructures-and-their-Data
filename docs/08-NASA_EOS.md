@@ -267,8 +267,8 @@ prettify(token_response)                                       # Print the prett
 ```
 ## {
 ##     "token_type": "Bearer",
-##     "token": "uOPRCuUkwUcsnZpa452RpKs4oLVcE8y2zP1E4FDaP4O1JbYruRAFtzUqkyhriNXHtrkj9JnZakLRWgzpxGQLdg",
-##     "expiration": "2020-11-05T19:41:25Z"
+##     "token": "W-JbIjc9KOBpw3wy6KXt0sFMw_gUH0e4c7Lv2tp7ZnoKuPZua7Xbh56n6n2b_fTS4HYOk4lbXvTPBtaBjwWmrQ",
+##     "expiration": "2020-11-11T13:09:01Z"
 ## }
 ## 
 ```
@@ -1581,8 +1581,8 @@ prettify(token_response)                                       # Print the prett
 ```
 ## {
 ##     "token_type": "Bearer",
-##     "token": "uOPRCuUkwUcsnZpa452RpKs4oLVcE8y2zP1E4FDaP4O1JbYruRAFtzUqkyhriNXHtrkj9JnZakLRWgzpxGQLdg",
-##     "expiration": "2020-11-05T19:41:25Z"
+##     "token": "W-JbIjc9KOBpw3wy6KXt0sFMw_gUH0e4c7Lv2tp7ZnoKuPZua7Xbh56n6n2b_fTS4HYOk4lbXvTPBtaBjwWmrQ",
+##     "expiration": "2020-11-11T13:09:01Z"
 ## }
 ## 
 ```
