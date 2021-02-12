@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 1 Why ‘EcoInformatics’? | Environmental Informatics Using Research Infrastructures and their Data</title>
+  <title>Chapter 9 Fall 2020 IGNITE Session | Environmental Informatics Using Research Infrastructures and their Data</title>
   <meta name="description" content="Course text for NAU INF 550" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 1 Why ‘EcoInformatics’? | Environmental Informatics Using Research Infrastructures and their Data" />
+  <meta property="og:title" content="Chapter 9 Fall 2020 IGNITE Session | Environmental Informatics Using Research Infrastructures and their Data" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/Users/kdw223/Research/katharynduffy.github.io/images/EcoInfo4.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="katharynduffy/katharynduffy.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 Why ‘EcoInformatics’? | Environmental Informatics Using Research Infrastructures and their Data" />
+  <meta name="twitter:title" content="Chapter 9 Fall 2020 IGNITE Session | Environmental Informatics Using Research Infrastructures and their Data" />
   
   <meta name="twitter:description" content="Course text for NAU INF 550" />
   <meta name="twitter:image" content="/Users/kdw223/Research/katharynduffy.github.io/images/EcoInfo4.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="pre-course-setup-ecoinformatics-tools.html"/>
-<link rel="next" href="introduction-to-neon-its-data.html"/>
+<link rel="prev" href="frequently-asked-questions.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -544,147 +544,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="why-ecoinformatics" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Why ‘EcoInformatics’?</h1>
-<p><em>Portions of the following introduction were adapted from <a href="https://www.cell.com/trends/ecology-evolution/fulltext/S0169-5347(11)00339-9">Michener &amp; Jones 2012, Trends in Ecology &amp; Evolution ’Ecoinformatics: supporting ecology as a data-intensive science</a></em></p>
-<p>Ecology is increasingly becoming a data-intensive science, relying on massive amounts of data collected by both remote-sensing platforms and sensor networks embedded in the environment. New observatory networks, such as the US National Ecological Observatory Network (NEON), provide research platforms that enable scientists to examine phenomena across diverse ecosystem types through access to thousands of sensors collecting diverse environmental observations. These networks spatially and temporaly overlap with a number of other networks and infrastructures ranging from remote sensing, to citizen science, and so on.</p>
-<p>It has been argued that <strong>data-intensive science represents the fourth scientific paradigm</strong> following the empirical <em>(i.e. description of natural phenomena)</em>, theoretical <em>(e.g. modeling and generalization)</em> and computational <em>(e.g. simulation)</em> scientific approaches, and comprises an approach for unifying theory, experimentation and simulation.</p>
-<p>Ecologists increasingly address questions at broader scales that have both scientific and societal relevance. For example, the <a href="https://academic.oup.com/bioscience/article/61/4/290/324883">40 top priorities for science that can inform conservation and management policy in the USA</a> rely principally on a sound foundation of ecological research, and the ability to scale knowledge and inter-connect data.</p>
-<p><img src="images/interconnect_data.png" width="951" /></p>
-<blockquote>
-<p>Continental-scale patterns and dynamics result from climate and people as broad-scale
-drivers interacting with finer-scale vectors that redistribute materials within and among linked
-terrestrial and aquatic systems. Climate and land-use change interact with patterns and processes
-at multiple, finer scales (blue arrows). (a) These drivers can influence broad-scale patterns
-directly, and these constraints may act to overwhelm heterogeneity and processes at (b) mesoscales and at (c) the finer scale of local sites. Broad-scale drivers can also exert an indirect impact
-on broad-scale patterns through their interactions with disturbances, including (d) the spread of
-invasive species, (e) pattern–process relationships at meso-scales, or (f) at finer scales within a
-site. Connectivity imparted by the transfer of materials occurs both at (g) the meso-scale and at
-(h) finer scales within sites where terrestrial and aquatic systems are connected. These dynamics
-at fine scales can propagate to influence larger spatial extents (red arrows). Feedbacks occur
-throughout the system. The term “drivers” refers to both forcing functions that are part of the
-system and to external drivers. <a href="https://esajournals.onlinelibrary.wiley.com/doi/pdf/10.1890/070098">Peters et al., 2008</a></p>
-</blockquote>
-<p><strong>Ecology is also affected by changes that are occurring throughout science as a whole. </strong></p>
-<p>In particular, scientists, professional societies and research sponsors are recognizing the value of data as a product of the scientific enterprise and placing increased emphasis on data stewardship, data sharing, openness and supporting study repeatability.</p>
-<p><img src="images/intro_data.png" width="875" /></p>
-<blockquote>
-<p>Data on ecological and environmental systems are (A) acquired, checked for quality, documented
-using an acquisition workflow, and then both the raw and derived data products are versioned and
-deposited in the DataONE federated data archive (red dashed arrows). Researchers discover and access
-data from the federation and then (B) integrate and process the data in an analysis workflow, resulting in
-derived data products, visualizations, and scholarly papers that are in turn archived in the data federation
-(red dashed arrows). Other researchers directly cite any of the versioned data, workflows, and visualizations
-that are archived in the DataONE federation. <a href="https://science.sciencemag.org/content/sci/331/6018/703.full.pdf?casa_token=dDumP2G8NpEAAAAA:8Zrx01SOGOQK79my5SKJdsy5buDQAOd_wVclvlq2eFJZ0MWpeUlHQ7zx3ygkfoQOXSyRLhgx0FDO9V4">Richman et al., 2011</a></p>
-</blockquote>
-<p><strong>The changes that are occurring in ecology create challenges with respect to acquiring, managing and analyzing the large volumes of data that are collected by scientists worldwide. </strong></p>
-<p>One challenge that is particularly daunting lies in dealing with the scope of ecology and the enormous variability in scales that is encountered, spanning microbial community dynamics, communities of organisms inhabiting a single plant or square meter, and ecological processes occurring at the scale of the continent and biosphere. The diversity in scales studied and the ways in which studies are carried out results in large numbers of <a href="https://muse.jhu.edu/article/262029/pdf?casa_token=8ysDn-0aPmAAAAAA:kqtGap8fEbZOvCZE_tcp4sjof-RwcLsiNvk0kk4fpx90jv4npnStRQAPQOb4jb9UC-JINBLlCEw">small, idiosyncratic data sets</a> that accumulate from the thousands of scientists that collect relevant biological, ecological and environmental data.</p>
-<p><img src="images/data-ontology.png" width="1226" /></p>
-<blockquote>
-<p>A proposed high-level architecture for ecological and environmental data management is shown consisting of three primary levels. Data stored within distributed
-data repositories (a) is mediated by standard metadata and ontologies (b) to power software tools used by scientists and data managers (c). Software applications use
-community-endorsed ontologies and metadata standards from the middle level to provide tools that are more effective for publishing, querying, integrating and analyzing
-data. Ontologies are separated into framework ontologies and domain-specific extensions, enabling contributions from multiple research groups, disciplines and
-individuals. Cross-disciplinary data are maintained in local repositories, but made accessible to the broader research community through distributed systems based on
-shared, open protocols (such as Metacat). Example repositories include the LTER network, National Ecological Observatory Network, United States Geographical Survey
-and SEEK’s EarthGrid. <a href="https://www.sciencedirect.com/science/article/pii/S0169534708000384?casa_token=b8GX-9jkuLwAAAAA:nQtJlhAUGyZdcokpQLEtho3OfVeDUKhENueO0k8H7dWPmPmXOUFYhGR6sKNtT04rEgJNR_HNlqg">Madin et al. 2008,</a></p>
-</blockquote>
-<p><strong>Ecoinformatics is a framework</strong> that enables scientists to generate new knowledge through innovative tools and approaches for:</p>
-<ul>
-<li>discovering,</li>
-<li>managing,</li>
-<li>integrating,</li>
-<li>analyzing,</li>
-<li>visualizing,</li>
-<li>and preserving</li>
-</ul>
-<p>relevant biological, environmental, and socioeconomic data and information. Many ecoinformatics solutions have been developed <em>over the past decade</em>, increasing scientists’ efficiency and supporting faster and easier data discovery, integration and analysis; however, many challenges remain, especially in relation to installing ecoinformatics practices into mainstream research and education.</p>
-<p>And that, course participants, is why we are here.</p>
-<div id="the-framework-of-this-course" class="section level2">
-<h2><span class="header-section-number">1.1</span> The Framework of this Course</h2>
-<p>Over the duration of this course we will survey a wide array of observation platforms and networks and build hands-on experience with the framework of Ecoinformatics. For coherance we will cover the following overarching themes:</p>
-<blockquote>
-<ol style="list-style-type: decimal">
-<li>Each network’s <strong>mission and design</strong></li>
-<li>Each network’s <strong>spatial design</strong></li>
-</ol>
-<ul>
-<li>e.g. opprtunistic vs. planned, citizen science vs. orbital sensors</li>
-</ul>
-<ol start="3" style="list-style-type: decimal">
-<li>The <strong>types of data</strong> that stream from each network</li>
-</ol>
-<ul>
-<li>e.g. sensors, derived products, metadata</li>
-</ul>
-<ol start="4" style="list-style-type: decimal">
-<li><strong>How to access that data</strong></li>
-</ol>
-<ul>
-<li>e.g. APIs, landing pages, r packages etc.</li>
-</ul>
-<ol start="5" style="list-style-type: decimal">
-<li>Opportunities to interact with or contribute to each network</li>
-</ol>
-<ul>
-<li>e.g. RFP’s coming down the pipeline, internships, and post-doctoral scholar programs.</li>
-</ul>
-</blockquote>
-<p>At the conclusion of each network’s section you will be asked to write a 1-page summary reviewing the above framework for each network, and highlight how it potentially aligns with your own research. These series of 1-page summaries will then culminate into a final presentation where you propose to derive your own data product for your own research <em>touching upon multiple networks</em> and <em>accounting for differences in spatial footprints, frequency of observations, and important data cross-walks</em>.</p>
-</div>
-<div id="final-course-project-proposed-derived-data-product" class="section level2">
-<h2><span class="header-section-number">1.2</span> Final Course Project: Proposed Derived Data Product</h2>
-<p>For your final project, you will present a <strong>4-6 minute IGNITE-style derived data product pitch</strong>, followed by <em>2-3 minutes of questions from your audience</em> (which will include members from the infrastrures we’ve covered). Think of this project as your <em>‘sales pitch’</em> to the research infrastructure whose data you are using, and/or the scientific community as a whole. In the IGNITE theme of <em>‘Enlighten us but make it quick’</em>, you will construct a series of slides that auto-advance every 30 seconds. Specific instructions for the content of each slide are below.</p>
-<p>Ideally, this final presentation will feed upon a number of the ‘culmination write-ups’ you have conducted over the course of the semester. Ideally, this derived data product will utilize data from a number of sources, either covered within this course or external to it. Ideally, it will also convince your audience that your idea is <strong>novel, useful,</strong> <em>and</em> <strong>possible</strong>.</p>
-<p>In order to complete this presentation, you will need to have worked with the various data products you propose, have an in-depth understanding of them, and their challenges, along with original, clean, high-level summary graphics. Further, giving an IGNITE-style presentation takes practice. IGNITE-style presentations are powerful, as they keep <em>you</em> moving forward, and give your audience a <em>high-level understanding</em> of your topic. We fully recommend rehearsing your presentation <strong>many times</strong> before giving it live and recording yourself to learn how you can improve.</p>
-<p>Here’s an example (of an even faster) ignite talk from one of your book’s authors:</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/JOlVcHrtl8M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+<div id="fall-2020-ignite-session" class="section level1">
+<h1><span class="header-section-number">Chapter 9</span> Fall 2020 IGNITE Session</h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zOGxBkqw0E8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<p><strong>In your derived data product pitch you will cover these themes:</strong></p>
-<ol style="list-style-type: decimal">
-<li><p>The need for the derived data that you are proposing to produce.</p></li>
-<li><p>What data you will use to derive this product, including the justification for this exact data.</p></li>
-<li><p>The processing pipeline for this product, along with estimates for a timeline.</p></li>
-<li><p>Potential hurdles you will have to overcome.</p></li>
-<li><p>How this product will serve the infrastructure and/or the scientific community.</p></li>
-</ol>
-<p><strong>Specific slide criteria are as follows:</strong></p>
-<p><strong>Slide 1:</strong> Title, authors (including contacts at infrastructures covered if applicable)</p>
-<p><strong>Slide 2:</strong> Justification for the derived data product; the gap or need that it fills</p>
-<p><strong>Slides 3-x: </strong></p>
-<p>1 slide per data product used including:</p>
-<ul>
-<li><p>The exact data product (e.g. NEON data product id and full title)</p></li>
-<li><p>A 1 sentence summary of the data product and its justification for this purpose</p></li>
-<li><p>An original, clean, polished high-level plot, gif or .mp4 of the data</p></li>
-</ul>
-<p><strong>Slide x + 1:</strong> A high-level workflow diagram of the processing pipeline <em>E.g.: Original data and how you pull it in (API, r-package etc)</em></p>
-<ul>
-<li><p>Filtering process using QA/QC or metadata</p></li>
-<li><p>Orthorectification in time or space</p></li>
-</ul>
-<p>Example generated using <a href="https://app.diagrams.net/">draw.io</a>:</p>
-<p><img src="images/APIS_usecase2_v2%20(4).png" width="492" /></p>
-<p><strong>Slide x + 2:</strong> A clean plot of all of the data you mentioned together, and/or the derived data product itself with a 1 sentence summary</p>
-<p>Example:
-<img src="images/mased_APIS_2.png" width="5252" /></p>
-<p><strong>Slide x+3:</strong> Summary: Circle back on how this derived data product serves your research, the infrastructure, and the wider science community (no more than 10 words, suggestion: graphics or bullet points)</p>
-<p><strong>Slide x + 4:</strong> Data citations for all data used in proposed derived data product</p>
-<p><strong>An example slide deck with specific ideas</strong> <a href="https://docs.google.com/presentation/d/16vRomNXmdyGrKQ_bdsGaOfbbU-CW_ZGi5-MPhzDBclY/edit?usp=sharing"><strong>can be found here</strong></a></p>
-<p><strong>The rubric for your final presentation grade is as follows:</strong></p>
-<p>Presentation meets all requirements and criteria: 60%</p>
-<p>Aesthetics and craft of presentation: 10%</p>
-<p>Live presentation of materials: 30%</p>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="pre-course-setup-ecoinformatics-tools.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introduction-to-neon-its-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="frequently-asked-questions.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -717,7 +589,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/katharynduffy/katharynduffy.github.io/edit/master/01_Pre-Course_Skills.Rmd",
+"link": "https://github.com/katharynduffy/katharynduffy.github.io/edit/master/15_FAQ.Rmd",
 "text": "Edit"
 },
 "history": {

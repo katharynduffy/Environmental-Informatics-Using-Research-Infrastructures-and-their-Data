@@ -379,7 +379,7 @@ wqpcounts_sc[['total-site-count']]
 ```
 
 ```
-## [1] 7032
+## [1] 7101
 ```
 
 ```r
@@ -387,10 +387,10 @@ wqpcounts_sc[['total-result-count']]
 ```
 
 ```
-## [1] 3614048
+## [1] 3647355
 ```
 
-This doesn't provide any information about the sites, just the total number. I know that with 3,614,048 results, I will want to add more criteria before trying to download. Let's continue to add query parameters before moving to `whatWQPsites`.
+This doesn't provide any information about the sites, just the total number. I know that with 3,647,355 results, I will want to add more criteria before trying to download. Let's continue to add query parameters before moving to `whatWQPsites`.
 
 
 ```r
@@ -401,7 +401,7 @@ wqpcounts_sc_stream[['total-site-count']]
 ```
 
 ```
-## [1] 1994
+## [1] 2006
 ```
 
 ```r
@@ -409,10 +409,10 @@ wqpcounts_sc_stream[['total-result-count']]
 ```
 
 ```
-## [1] 1851794
+## [1] 1861923
 ```
 
-1,851,794 results are still a lot to download. Let's add more levels of criteria:
+1,861,923 results are still a lot to download. Let's add more levels of criteria:
 
 
 ```r
@@ -425,7 +425,7 @@ wqpcounts_sc_stream_temp[['total-site-count']]
 ```
 
 ```
-## [1] 1462
+## [1] 1467
 ```
 
 ```r
@@ -433,10 +433,10 @@ wqpcounts_sc_stream_temp[['total-result-count']]
 ```
 
 ```
-## [1] 140432
+## [1] 141508
 ```
 
-140,432 is little more manageble. We can also easily compare avilable stream temperature and lake temperature data.
+141,508 is little more manageble. We can also easily compare avilable stream temperature and lake temperature data.
 
 
 ```r
@@ -450,7 +450,7 @@ wqpcounts_sc_stream_temp[['total-site-count']]
 ```
 
 ```
-## [1] 1462
+## [1] 1467
 ```
 
 ```r
@@ -458,7 +458,7 @@ wqpcounts_sc_lake_temp[['total-site-count']]
 ```
 
 ```
-## [1] 626
+## [1] 636
 ```
 
 ```r
@@ -467,7 +467,7 @@ wqpcounts_sc_stream_temp[['total-result-count']]
 ```
 
 ```
-## [1] 140432
+## [1] 141508
 ```
 
 ```r
@@ -475,7 +475,7 @@ wqpcounts_sc_lake_temp[['total-result-count']]
 ```
 
 ```
-## [1] 51878
+## [1] 52700
 ```
 
 From these query results, it looks like South Carolina has much more stream data than it does lake data.
@@ -484,7 +484,7 @@ Now, let's try our South Carolina stream temperature query with `whatWQPsites` a
 
 ### whatWQPsites
 
-`whatWQPsites` gives back site information that matches your search criteria. You can use any of the regular WQP web service arguments here. We are going to use `whatWQPsites` with the final criteria of the last query summary call - state, site type, parameter, and the earliest start date. This should return the same amount of sites as the last `readWQPdata` query did, 1,462.
+`whatWQPsites` gives back site information that matches your search criteria. You can use any of the regular WQP web service arguments here. We are going to use `whatWQPsites` with the final criteria of the last query summary call - state, site type, parameter, and the earliest start date. This should return the same amount of sites as the last `readWQPdata` query did, 1,467.
 
 
 ```r
@@ -498,7 +498,7 @@ nrow(wqpsites_sc_stream_temp)
 ```
 
 ```
-## [1] 1462
+## [1] 1467
 ```
 
 ```r
@@ -691,12 +691,12 @@ head(MauiCo_avgdailyQ)
 
 ```
 ##   agency_cd  site_no   dateTime X_00060_00003 X_00060_00003_cd tz_cd
-## 1      USGS 16400000 2020-11-08          13.2                P   UTC
-## 2      USGS 16401000 1929-08-31          18.0                A   UTC
-## 3      USGS 16402000 1957-07-31          51.0                A   UTC
-## 4      USGS 16403000 1957-06-30           5.5                A   UTC
-## 5      USGS 16403600 1970-09-29           2.4                A   UTC
-## 6      USGS 16403900 1996-09-30           1.3                A   UTC
+## 1      USGS 16400000 2021-02-11          7.93                P   UTC
+## 2      USGS 16401000 1929-08-31         18.00                A   UTC
+## 3      USGS 16402000 1957-07-31         51.00                A   UTC
+## 4      USGS 16403000 1957-06-30          5.50                A   UTC
+## 5      USGS 16403600 1970-09-29          2.40                A   UTC
+## 6      USGS 16403900 1996-09-30          1.30                A   UTC
 ```
 
 ```r
@@ -732,7 +732,7 @@ head(MauiHUC8_mindailyT)
 ## 3      USGS 16520000 2004-04-14          17.5                A   UTC
 ## 4      USGS 16527000 2004-01-13          15.4                A   UTC
 ## 5      USGS 16555000 2004-01-13          16.4                A   UTC
-## 6      USGS 16618000 2020-11-08          21.0                P   UTC
+## 6      USGS 16618000 2021-02-11          18.1                P   UTC
 ```
 
 ```r
@@ -773,10 +773,26 @@ names(SaltLake_totalN)
 ## [11] "tu_id"                      "body_part_id"              
 ## [13] "p00003"                     "p00004"                    
 ## [15] "p00009"                     "p00010"                    
-## [17] "p00061"                     "p00065"                    
-## [19] "p00095"                     "p30207"                    
-## [21] "p30209"                     "p50280"                    
-## [23] "p71999"                     "startDateTime"
+## [17] "p00020"                     "p00025"                    
+## [19] "p00041"                     "p00061"                    
+## [21] "p00063"                     "p00065"                    
+## [23] "p00095"                     "p00098"                    
+## [25] "p00191"                     "p00300"                    
+## [27] "p00301"                     "p00400"                    
+## [29] "p00480"                     "p01300"                    
+## [31] "p01305"                     "p01320"                    
+## [33] "p01325"                     "p01330"                    
+## [35] "p01340"                     "p01345"                    
+## [37] "p01350"                     "p30207"                    
+## [39] "p30209"                     "p50015"                    
+## [41] "p50280"                     "p70305"                    
+## [43] "p71820"                     "p71999"                    
+## [45] "p72012"                     "p72013"                    
+## [47] "p72105"                     "p72219"                    
+## [49] "p72220"                     "p72263"                    
+## [51] "p81904"                     "p99111"                    
+## [53] "p99156"                     "p99159"                    
+## [55] "p99206"                     "startDateTime"
 ```
 
 ```r
@@ -785,7 +801,7 @@ length(unique(SaltLake_totalN$site_no))
 ```
 
 ```
-## [1] 2
+## [1] 9
 ```
 
 ### readNWISdv
@@ -870,25 +886,25 @@ head(or_site_gwl)
 ```
 ##   agency_cd         site_no site_tp_cd     lev_dt lev_tm lev_tz_cd_reported
 ## 1      USGS 452840122302202         GW 1988-03-14   <NA>                UTC
-## 2      USGS 452840122302202         GW 1988-04-05  10:50                PDT
-## 3      USGS 452840122302202         GW 1988-06-16  15:00                PDT
-## 4      USGS 452840122302202         GW 1988-07-19  15:33                PDT
-## 5      USGS 452840122302202         GW 1988-08-30  15:20                PDT
-## 6      USGS 452840122302202         GW 1988-10-03  14:39                PDT
+## 2      USGS 452840122302202         GW 1988-04-05  17:50                UTC
+## 3      USGS 452840122302202         GW 1988-06-16  22:00                UTC
+## 4      USGS 452840122302202         GW 1988-07-19  22:33                UTC
+## 5      USGS 452840122302202         GW 1988-08-30  22:20                UTC
+## 6      USGS 452840122302202         GW 1988-10-03  21:39                UTC
 ##   lev_va sl_lev_va sl_datum_cd lev_status_cd lev_agency_cd lev_dt_acy_cd
-## 1   9.78        NA        <NA>          <NA>          <NA>             D
-## 2   8.77        NA        <NA>          <NA>          <NA>             m
-## 3  10.59        NA        <NA>          <NA>          <NA>             m
-## 4  11.62        NA        <NA>          <NA>          <NA>             m
-## 5  12.13        NA        <NA>          <NA>          <NA>             m
-## 6  12.25        NA        <NA>          <NA>          <NA>             m
+## 1   9.78        NA        <NA>             1          <NA>             D
+## 2   8.77        NA        <NA>             1          <NA>             m
+## 3  10.59        NA        <NA>             1          <NA>             m
+## 4  11.62        NA        <NA>             1          <NA>             m
+## 5  12.13        NA        <NA>             1          <NA>             m
+## 6  12.25        NA        <NA>             1          <NA>             m
 ##   lev_acy_cd lev_src_cd lev_meth_cd lev_age_cd        lev_dateTime lev_tz_cd
-## 1          2          U           U          A                <NA>       UTC
-## 2          2          U           S          A 1988-04-05 17:50:00       UTC
-## 3          2          U           S          A 1988-06-16 22:00:00       UTC
-## 4          2          U           S          A 1988-07-19 22:33:00       UTC
-## 5          2          U           S          A 1988-08-30 22:20:00       UTC
-## 6          2          U           S          A 1988-10-03 21:39:00       UTC
+## 1       <NA>       <NA>           Z          A                <NA>       UTC
+## 2       <NA>       <NA>           S          A 1988-04-05 17:50:00       UTC
+## 3       <NA>       <NA>           S          A 1988-06-16 22:00:00       UTC
+## 4       <NA>       <NA>           S          A 1988-07-19 22:33:00       UTC
+## 5       <NA>       <NA>           S          A 1988-08-30 22:20:00       UTC
+## 6       <NA>       <NA>           S          A 1988-10-03 21:39:00       UTC
 ```
 
 ### readNWISmeas
@@ -1131,12 +1147,12 @@ head(miss_rating_corr)
 
 ```
 ##    INDEP CORR CORRINDEP
-## 1 -10.23    0    -10.23
-## 2 -10.22    0    -10.22
-## 3 -10.21    0    -10.21
-## 4 -10.20    0    -10.20
-## 5 -10.19    0    -10.19
-## 6 -10.18    0    -10.18
+## 1 -10.82    0    -10.82
+## 2 -10.81    0    -10.81
+## 3 -10.80    0    -10.80
+## 4 -10.79    0    -10.79
+## 5 -10.78    0    -10.78
+## 6 -10.77    0    -10.77
 ```
 
 
@@ -1151,12 +1167,12 @@ head(miss_rating_exsa)
 
 ```
 ##    INDEP SHIFT      DEP STOR
-## 1 -10.23  0.22 31961.29 <NA>
-## 2 -10.22  0.22 32002.44 <NA>
-## 3 -10.21  0.22 32043.63 <NA>
-## 4 -10.20  0.22 32084.84 <NA>
-## 5 -10.19  0.22 32126.08 <NA>
-## 6 -10.18  0.22 32167.35 <NA>
+## 1 -10.82  0.81 31961.29 <NA>
+## 2 -10.81  0.81 32002.44 <NA>
+## 3 -10.80  0.81 32043.63 <NA>
+## 4 -10.79  0.81 32084.84 <NA>
+## 5 -10.78  0.81 32126.08 <NA>
+## 6 -10.77  0.81 32167.35 <NA>
 ```
 
 ### readNWISsite
@@ -2272,7 +2288,7 @@ query(DelBay_fabric, "times")
 ```
 
 ```
-## [1] "2020-11-01 UTC" "2020-11-11 UTC"
+## [1] "2021-02-04 UTC" "2021-02-14 UTC"
 ```
 
 The first example we've included here uses aggregated data, meaning there is a single URL for all the data of this type on the server. Some data that you encounter might be non-aggregated, meaning there are multiple URLs to access the same data. In these cases, you will need to create more than one geojob and join data at the end.
@@ -2316,7 +2332,7 @@ length(default_geoms)
 ```
 
 ```
-## [1] 33
+## [1] 75
 ```
 
 ```r
@@ -2329,7 +2345,7 @@ head(default_geoms)
 ## [3] "upload:Ag_Lands_Reservation"           
 ## [4] "upload:Airport_Polygon"                
 ## [5] "sample:Alaska"                         
-## [6] "upload:BB_LPK"
+## [6] "upload:BBShapefile"
 ```
 
 You will notice a pattern with the names of the geoms: a category followed by `:`, and then a specific name. These category-name combinations are the strings you would use to define your geom. Additionally, `webgeom` can accept a URL that points directly to a WFS. The categories you should be familiar with are `sample` and `upload`. `sample` geoms are any that are available through `geoknife` by default. `upload` geoms are custom shapefiles that someone uploaded through GDP. If you would like to upload a specific shapefile to GDP, go to the [advanced spatial section in GDP](https://cida.usgs.gov/gdp/client/#!advanced/spatial). **Be aware that uploaded shapefiles are wiped from the server at regular intervals (could be as often as weekly)**. To use your own shapefile: upload it as a zip shapefile, execute your job and then save the output; re-upload your shapefile the next time you need it on GDP if it has expired.
@@ -2579,7 +2595,7 @@ check(evap_geojob)
 ## [1] "Process successful"
 ## 
 ## $URL
-## [1] "https://cida.usgs.gov:443/gdp/process/RetrieveResultServlet?id=6ae84150-fdef-4272-9e24-9d4b14df72bbOUTPUT"
+## [1] "https://cida.usgs.gov:443/gdp/process/RetrieveResultServlet?id=090e2f71-9735-453d-9bf0-0a3b266c9f72OUTPUT"
 ## 
 ## $statusType
 ## [1] "ProcessSucceeded"
@@ -2703,10 +2719,10 @@ knife_willemail
 ## process inputs: 
 ##    SUMMARIZE_TIMESTEP: false
 ##    SUMMARIZE_FEATURE_ATTRIBUTE: false
+##    DELIMITER: COMMA
 ##    REQUIRE_FULL_COVERAGE: true
 ##    STATISTICS: 
 ##    GROUP_BY: 
-##    DELIMITER: COMMA
 ## wait: FALSE 
 ## email: fake.email@gmail.com
 ```

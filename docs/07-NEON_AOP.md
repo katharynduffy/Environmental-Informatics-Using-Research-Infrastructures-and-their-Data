@@ -1627,12 +1627,12 @@ byTileAOP(dpID = "DP3.30015.001", site = SITECODE, year = 2017,
 ## Downloading 6 files
 ##   |                                                                              |                                                                      |   0%  |                                                                              |==============                                                        |  20%  |                                                                              |============================                                          |  40%  |                                                                              |==========================================                            |  60%  |                                                                              |========================================================              |  80%  |                                                                              |======================================================================| 100%
 ## Successfully downloaded  6  files.
+## NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.prj downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/shps
+## NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.shx downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/shps
+## NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.dbf downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/shps
 ## NEON_D16_WREF_DP3_580000_5075000_CHM.tif downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/L3/DiscreteLidar/CanopyHeightModelGtif
 ## NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.shp downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/shps
-## NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.shx downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/shps
 ## NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.kml downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/kmls
-## NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.prj downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/shps
-## NEON_D16_WREF_DP1_580000_5075000_classified_point_cloud.dbf downloaded to ./data/DP3.30015.001/2017/FullSite/D16/2017_WREF_1/Metadata/DiscreteLidar/TileBoundary/shps
 ```
 
 ```r
@@ -1689,9 +1689,10 @@ gLevel1B <- gedifinder(product="GEDI01_B",
 ```
 
 ```
-## [1] "https://e4ftl01.cr.usgs.gov/GEDI/GEDI01_B.001/2019.10.07/GEDI01_B_2019280204828_O04642_T03216_02_003_01.h5"
-## [2] "https://e4ftl01.cr.usgs.gov/GEDI/GEDI01_B.001/2019.07.25/GEDI01_B_2019206022612_O03482_T00370_02_003_01.h5"
-## [3] "https://e4ftl01.cr.usgs.gov/GEDI/GEDI01_B.001/2019.06.08/GEDI01_B_2019159013955_O02752_T01597_02_003_01.h5"
+## [1] "https://e4ftl01.cr.usgs.gov/GEDI/GEDI01_B.001/2020.07.17/GEDI01_B_2020199091135_O09038_T04443_02_003_01.h5"
+## [2] "https://e4ftl01.cr.usgs.gov/GEDI/GEDI01_B.001/2019.10.07/GEDI01_B_2019280204828_O04642_T03216_02_003_01.h5"
+## [3] "https://e4ftl01.cr.usgs.gov/GEDI/GEDI01_B.001/2019.07.25/GEDI01_B_2019206022612_O03482_T00370_02_003_01.h5"
+## [4] "https://e4ftl01.cr.usgs.gov/GEDI/GEDI01_B.001/2019.06.08/GEDI01_B_2019159013955_O02752_T01597_02_003_01.h5"
 ```
 
 Great! There are several GEDI orbits available that have at least 1 'shot' within our bounding box of interest. For more information about GEDI filename conventions, and other valuable information about GEDI data, <a href="https://lpdaac.usgs.gov/data/get-started-data/collection-overview/missions/gedi-overview/#gedi-temporal-and-spatial-resolution">see this page on the LP DAAC</a>. However, as mentioned before, each of these files are quite large (~7Gb), so let's focus on just the first one for now.

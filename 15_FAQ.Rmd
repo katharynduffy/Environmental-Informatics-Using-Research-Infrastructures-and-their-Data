@@ -57,3 +57,7 @@ A fantastic powerpoint giving you step-by-step directions [can be found here](ht
 
 4. Reach out to your instructors if you need clarification on assignments.
 
+# Fall 2020 IGNITE Session
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zOGxBkqw0E8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+

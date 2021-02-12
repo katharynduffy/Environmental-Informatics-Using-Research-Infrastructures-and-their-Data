@@ -613,7 +613,7 @@ npn_get_point_data(
 ```
 
 ```
-## [1] 48
+## [1] -9999
 ```
 
 This returns a value for lilac bloom of day 48, for the coordinates 30 north, -90 west, as of February 25th, 2019.
@@ -1127,8 +1127,8 @@ unique(phe_statusintensity$phenophaseName)
 ```
 
 ```
-## [1] "Falling leaves"       "Colored leaves"       "Leaves"              
-## [4] "Increasing leaf size" "Open flowers"         "Breaking leaf buds"  
+## [1] "Increasing leaf size" "Breaking leaf buds"   "Falling leaves"      
+## [4] "Leaves"               "Open flowers"         "Colored leaves"      
 ## [7] "Initial growth"
 ```
 And select a single taxon:
@@ -1138,7 +1138,9 @@ unique(phe_perindividual$taxonID)
 ```
 
 ```
-## [1] "QURU"  "ACRU"  "ARNU2"
+##  [1] "QURU"  "ACRU"  "ARNU2" "MEVI"  "TRBOB" "UVSE"  "MIRE"  "MACA4" "MARAR"
+## [10] "ACPE"  "PRSES" "FAGR"  "VIAC"  "FRAM2" "BELE"  "VACO"  "BEAL2" "ACSAS"
+## [19] "TSCA"
 ```
 
 Now create a new, filtered `dataframe` only including those observations and print a summary.  You'll also want to filter for typical things like `NA` values, and think about how you'll work with data that comes in factors or strings.  Are there ways you could extract numerical values for plotting?  Could you `count` data? Summarize your strategy.
@@ -1387,15 +1389,15 @@ For logistical or other reasons, record-keeping at some sites starts earlier tha
 
 Here the authors seek to model the latent distribution of event times (the green line overlaying the histogram in the upper panel) that gives rise to the observations seen in the lower panel. As they begin to introduce both greater complexity, realism, and utility, they can model the moments (or parameters) of the latent distribution using well-established deterministic models involving climatic and other phenological forcings.
 
-## **Intro to USA-NPN Culmination Activity**
+## Intro to USA-NPN Culmination Activity
 
 **Note: I fully realize that phenology data may not be relevant to all of you.**  
 
 *Two suggestions:*
 
-*1. Be creative, example: Say you work with ground water hydrology, how could leaves on trees perhaps be relevant to groundwater recharge rate?  Might there be a lag?  Etc etc.*
+1. Be creative, example: Say you work with ground water hydrology, how could leaves on trees perhaps be relevant to groundwater recharge rate?  Might there be a lag?  Etc etc.
 
-*2. I will fully accept alternate citizen-science-based datasets and project proposals based on those.  The challenge of taking this option is that we have not covered that data.*
+2. I will fully accept alternate citizen-science-based datasets and project proposals based on those.  The challenge of taking this option is that we have not covered that data.
 
 Write up a 1-page **derived data product or research pipeline proposal** summary of a project that you might want to explore using USA-NPN data. Include the types of USA-NPN (and other data) that you will need to implement this project. Save this summary as you will be refining and adding to your ideas over the course of the semester.  
 

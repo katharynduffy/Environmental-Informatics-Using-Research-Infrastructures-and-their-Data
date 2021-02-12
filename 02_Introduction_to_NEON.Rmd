@@ -703,7 +703,7 @@ names(req.content$data)
 
 ```
 
-You can see all of the infoamtion by running the line `print(req.content)`, but
+You can see all of the information by running the line `print(req.content)`, but
 this will result in a very long printout in your console. Instead, you can view
 list items individually. Here, we highlight a couple of interesting examples:
 
@@ -965,7 +965,7 @@ As we'd expect we see daily fluctuation in soil temperature.
 
 Again, the process of determining which sites and time periods have data, and 
 finding the URLs for those data, is the same as for the other data types. We'll 
-go looking for High resolution orthorectified camera imagery, DP1.30010, and 
+go looking for High resolution orthorectified camera imagery, DP1.30010.001, and 
 we'll look at the flight over San Joaquin Experimental Range (SJER) in March 
 2017.
 

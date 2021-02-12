@@ -19,7 +19,7 @@ NASA’s Earth Observing System (EOS) is a coordinated series of polar-orbiting 
 
 [**Review NASA EOS's Mission Profile**](https://eospso.nasa.gov/files/mission_profile.pdf)
 
-* Completeed Missions
+* Completed Missions
 
 * Current Missions
 
@@ -40,6 +40,7 @@ Earthdata Login provides user registration and authentication services and a com
 *Suggested completion: following lecture 1 on NASA EOS*
 
 **To submit via BBLearn:**
+
 1) Follow the [steps in the NASA EOSDIS documentation](https://urs.earthdata.nasa.gov/documentation) to sign up for an Earth Data account.
 
 2) Write an R script that stores your `user` and `password` called `EARTHDATA_Token.R` and submit the following line of code via .Rmd and PDF:
@@ -144,25 +145,45 @@ In this tutorial, Connecting to the AppEEARS API, querying the list of available
 ***
 ## Topics Covered in this section:
 1. **Getting Started**  
+
     1a. Load Packages
+    
     1b. Set Up the Output Directory  
+    
     1c. Login   
+    
 2. **Query Available Products**  
-    2a. Search and Explore Available Products   
-    2b. Search and Explore Available Layers     
+
+    2a. Search and Explore Available Products  
+    
+    2b. Search and Explore Available Layers  
+    
 3. **Submit a Point Request**  
+
     3a. Compile a JSON Object 
+    
     3b. Submit a Task Request 
+    
     3c. Retrieve Task Status  
-4. **Download a Request**    
-    4a. Explore Files in Request Output   
+    
+4. **Download a Request**   
+
+    4a. Explore Files in Request Output
+    
     4b. Download Files in a Request (Automation)  
+    
 5. **Explore AppEEARS Quality API**  
+
     5a. List Quality Layers    
+    
     5b. Show Quality Values  
+    
     5c. Decode Quality Values  
+    
 6. **BONUS: Load Request Output and Visualize**    
+
     6a. Load CSV     
+    
     6b. Plot Results (Line/Scatter Plots)  
     
 ***
@@ -267,8 +288,8 @@ prettify(token_response)                                       # Print the prett
 ```
 ## {
 ##     "token_type": "Bearer",
-##     "token": "W-JbIjc9KOBpw3wy6KXt0sFMw_gUH0e4c7Lv2tp7ZnoKuPZua7Xbh56n6n2b_fTS4HYOk4lbXvTPBtaBjwWmrQ",
-##     "expiration": "2020-11-11T13:09:01Z"
+##     "token": "qHEa7l-TJQmr9LTGwqgchMg2v9_Xhnuz3ADxZRwYkNOg8CBxwXNZ7H-WgmB9FY2STOltNjK1KRNzWjRKqHNSjA",
+##     "expiration": "2021-02-14T17:41:11Z"
 ## }
 ## 
 ```
@@ -305,7 +326,7 @@ sprintf("AppEEARS currently supports %i products." ,length(products))
 ```
 
 ```
-## [1] "AppEEARS currently supports 121 products."
+## [1] "AppEEARS currently supports 122 products."
 ```
 
 Next, look at the product's names and descriptions. Below, the 'ProductAndVersion' and 'Description' are printed for all products.
@@ -385,11 +406,11 @@ for (p in products){
 ## [1] "MYDTBGA.006 is Thermal Bands and Albedo from LP DAAC"
 ## [1] "NASADEM_NC.001 is Elevation from LP DAAC"
 ## [1] "NASADEM_NUMNC.001 is Source from LP DAAC"
-## [1] "SPL3SMP_E.003 is Enhanced L3 Radiometer Soil Moisture from NSIDC DAAC"
-## [1] "SPL3SMP.006 is Soil Moisture from NSIDC DAAC"
-## [1] "SPL4CMDL.004 is Carbon Net Ecosystem Exchange from NSIDC DAAC"
-## [1] "SPL4SMGP.004 is Surface and Root Zone Soil Moisture from NSIDC DAAC"
-## [1] "SPL3FTP.002 is Freeze/Thaw State from NSIDC DAAC"
+## [1] "SPL3SMP_E.004 is Enhanced L3 Radiometer Soil Moisture from NSIDC DAAC"
+## [1] "SPL3SMP.007 is Soil Moisture from NSIDC DAAC"
+## [1] "SPL4CMDL.005 is Carbon Net Ecosystem Exchange from NSIDC DAAC"
+## [1] "SPL4SMGP.005 is Surface and Root Zone Soil Moisture from NSIDC DAAC"
+## [1] "SPL3FTP.003 is Freeze/Thaw State from NSIDC DAAC"
 ## [1] "SRTMGL1_NC.003 is Elevation (DEM) from LP DAAC"
 ## [1] "SRTMGL1_NUMNC.003 is Source (DEM) from LP DAAC"
 ## [1] "SRTMGL3_NC.003 is Elevation (DEM) from LP DAAC"
@@ -409,6 +430,7 @@ for (p in products){
 ## [1] "VNP21A1D.001 is Land Surface Temperature & Emissivity Day (LST&E) from LP DAAC"
 ## [1] "VNP21A1N.001 is Land Surface Temperature & Emissivity Night (LST&E) from LP DAAC"
 ## [1] "VNP21A2.001 is Land Surface Temperature & Emissivity (LST&E) from LP DAAC"
+## [1] "VNP22Q2.001 is Global Land Surface Phenology (GLSP) from LP DAAC"
 ## [1] "VNP43IA1.001 is BRDF-Albedo Model Parameters from LP DAAC"
 ## [1] "VNP43IA2.001 is BRDF-Albedo Quality from LP DAAC"
 ## [1] "VNP43IA3.001 is Albedo (BRDF) from LP DAAC"
@@ -563,7 +585,7 @@ layers <- data.frame(product = desired_prods, layer = desired_layers)
 ```
 ***
 ## Submit a Point Request
-The Submit task API call provides a way to submit a new request to be processed. It can accept data via JSON or query string. In the example below, create a JSON object and submit a request. Tasks in AppEEARS correspond to each request associated with your user account. Therefore, each of the calls to this service requires an authentication token (see [Section 1c.](#login)).
+The Submit task API call provides a way to submit a new request to be processed. It can accept data via JSON or query string. In the example below, create a JSON object and submit a request. Tasks in AppEEARS correspond to each request associated with your user account. Therefore, each of the calls to this service requires an authentication token.
 
 ***
 ### Compile a JSON Object
@@ -1275,11 +1297,11 @@ files <- list.files(outDir, pattern = "\\MOD11A2-006-results.csv$")
 # Read the MOD11A2 results
 df <- read_csv(paste0(outDir,"/", files))
 ```
-Select the MOD11A2.006 LST Day column for the data from Grand Canyon National Park using `dplyr` package.
+Select the MOD11A2.006 LST Day column for the data from `SOAP` using the `dplyr` package.
 
 ```r
-lst_GC <- df %>%
-  # Filter df for the point from GC
+lst_SOAP <- df %>%
+  # Filter df
   filter(Category == "SOAP") %>%  
   # Select desired columns
   select(Latitude, Longitude, Date ,MOD11A2_006_LST_Day_1km, MOD11A2_006_LST_Night_1km) 
@@ -1307,10 +1329,10 @@ sprintf("Unit for LST_DAY_1KM is: %s" ,unit)                 # Print LST_DAY_1KM
 ```
 ***
 ## Plot Results (Line/Scatter Plots)
-Next, plot a time series of daytime LST for the selected point in Grand Canyon National Park for 2018. Below, filter the LST data to exclude fill values. 
+Next, plot a time series of daytime LST for the selected point. Below, filter the LST data to exclude fill values. 
 
 ```r
-lst_GC <- lst_GC %>%
+lst_SOAP <- lst_SOAP %>%
   # exclude NoData
   filter(MOD11A2_006_LST_Day_1km != fillValue)%>%
   filter(MOD11A2_006_LST_Night_1km != fillValue)
@@ -1318,7 +1340,7 @@ lst_GC <- lst_GC %>%
 Next, plot LST Day as a time series with some additional formatting using `ggplot2`.
 
 ```r
-ggplot(lst_GC)+
+ggplot(lst_SOAP)+
   geom_line(aes(x= Date, y = MOD11A2_006_LST_Day_1km), size=1, color="blue")+
   geom_point(aes(x= Date, y = MOD11A2_006_LST_Day_1km), shape=18 , size = 3, color="blue")+
   labs(title = "Time Series",
@@ -1339,8 +1361,8 @@ ggplot(lst_GC)+
 Using the `tidyr` package, the LST Day and Night values for Grand Canyon NP are being gathered in a single column to be used to make a plot including both  `LST_Day_1km` and `LST_Night_1km`.
 
 ```r
-lst_GC_DN <- tidyr::gather(lst_GC, key = Tstat , value = LST, MOD11A2_006_LST_Day_1km, MOD11A2_006_LST_Night_1km)
-lst_GC_DN[1:5,]                     # print the five first observations 
+lst_SOAP_DN <- tidyr::gather(lst_SOAP, key = Tstat , value = LST, MOD11A2_006_LST_Day_1km, MOD11A2_006_LST_Night_1km)
+lst_SOAP_DN[1:5,]                     # print the five first observations 
 ```
 
 ```
@@ -1358,7 +1380,7 @@ Next, plot LST Day and Night as a time series with some additional formatting.
 
 
 ```r
-ggplot(lst_GC_DN)+
+ggplot(lst_SOAP_DN)+
   geom_line(aes(x= Date, y = LST, color = Tstat), size=1)+
   geom_point(aes(x= Date, y = LST, color = Tstat), shape=18 , size = 3)+
   scale_fill_manual(values=c("red", "blue"))+
@@ -1381,19 +1403,19 @@ ggplot(lst_GC_DN)+
 <img src="08-NASA_EOS_files/figure-html/unnamed-chunk-38-1.png" width="1152" />
 
 Finally, bring in the daytime LST data from `SJER` , and compare with daytime LST at `SOAP` , shown below in a scatterplot using `ggplot2` package. 
-Here, the `dplyr` is used to extract the LST_DAY_1km for Zion National Park.  
+Here, the `dplyr` is used to extract the LST_DAY_1km for `SJER`.  
 
 ```r
-lst_Z <- df %>%
+lst_SJER <- df %>%
   filter(MOD11A2_006_LST_Day_1km != fillValue) %>%        # Filter fill value 
-  filter(Category == "SJER")%>%                           # Filter Zion national park
+  filter(Category == "SJER")%>%                           # Filter SJER national park
   select(Date, MOD11A2_006_LST_Day_1km)                   # Select desired columns
 ```
 Make a scatterplot.
 
 ```r
 ggplot()+
-  geom_point(aes(x=lst_Z$MOD11A2_006_LST_Day_1km, y=lst_GC$MOD11A2_006_LST_Day_1km), shape=18 , size = 3, color="blue")+
+  geom_point(aes(x=lst_SOAP$MOD11A2_006_LST_Day_1km, y=lst_SJER$MOD11A2_006_LST_Day_1km[-11]), shape=18 , size = 3, color="blue")+
   labs(title = "MODIS LST: SOAP vs. SJER, 2020",
        x = sprintf("SOAP: LST_Day_1km (%s)",unit),
        y = sprintf( "SJER: LST_Day_1km (%s)",unit))+
@@ -1402,7 +1424,7 @@ ggplot()+
         panel.background = element_rect(fill = "lightgray", colour = "black"),
         axis.text.x = element_text(face ="bold",color="black", size = 10),
         axis.text.y = element_text(face ="bold",color="black", size = 10)
-        )
+  )
 ```
 
 This example can provide a template to use for your own research workflows. Leveraging the AppEEARS API for searching, extracting, and formatting analysis ready data, and loading it directly into R means that you can keep your entire research workflow in a single software program, from start to finish.
@@ -1581,8 +1603,8 @@ prettify(token_response)                                       # Print the prett
 ```
 ## {
 ##     "token_type": "Bearer",
-##     "token": "W-JbIjc9KOBpw3wy6KXt0sFMw_gUH0e4c7Lv2tp7ZnoKuPZua7Xbh56n6n2b_fTS4HYOk4lbXvTPBtaBjwWmrQ",
-##     "expiration": "2020-11-11T13:09:01Z"
+##     "token": "qHEa7l-TJQmr9LTGwqgchMg2v9_Xhnuz3ADxZRwYkNOg8CBxwXNZ7H-WgmB9FY2STOltNjK1KRNzWjRKqHNSjA",
+##     "expiration": "2021-02-14T17:41:11Z"
 ## }
 ## 
 ```
@@ -1616,7 +1638,7 @@ sprintf("AppEEARS currently supports %i products." ,length(products))
 ```
 
 ```
-## [1] "AppEEARS currently supports 121 products."
+## [1] "AppEEARS currently supports 122 products."
 ```
 
 Next, look at the product's names and descriptions. Below, the 'ProductAndVersion' and 'Description' are printed for all products.
@@ -1695,11 +1717,11 @@ for (p in products){
 ## [1] "MYDTBGA.006 is Thermal Bands and Albedo from LP DAAC"
 ## [1] "NASADEM_NC.001 is Elevation from LP DAAC"
 ## [1] "NASADEM_NUMNC.001 is Source from LP DAAC"
-## [1] "SPL3SMP_E.003 is Enhanced L3 Radiometer Soil Moisture from NSIDC DAAC"
-## [1] "SPL3SMP.006 is Soil Moisture from NSIDC DAAC"
-## [1] "SPL4CMDL.004 is Carbon Net Ecosystem Exchange from NSIDC DAAC"
-## [1] "SPL4SMGP.004 is Surface and Root Zone Soil Moisture from NSIDC DAAC"
-## [1] "SPL3FTP.002 is Freeze/Thaw State from NSIDC DAAC"
+## [1] "SPL3SMP_E.004 is Enhanced L3 Radiometer Soil Moisture from NSIDC DAAC"
+## [1] "SPL3SMP.007 is Soil Moisture from NSIDC DAAC"
+## [1] "SPL4CMDL.005 is Carbon Net Ecosystem Exchange from NSIDC DAAC"
+## [1] "SPL4SMGP.005 is Surface and Root Zone Soil Moisture from NSIDC DAAC"
+## [1] "SPL3FTP.003 is Freeze/Thaw State from NSIDC DAAC"
 ## [1] "SRTMGL1_NC.003 is Elevation (DEM) from LP DAAC"
 ## [1] "SRTMGL1_NUMNC.003 is Source (DEM) from LP DAAC"
 ## [1] "SRTMGL3_NC.003 is Elevation (DEM) from LP DAAC"
@@ -1719,6 +1741,7 @@ for (p in products){
 ## [1] "VNP21A1D.001 is Land Surface Temperature & Emissivity Day (LST&E) from LP DAAC"
 ## [1] "VNP21A1N.001 is Land Surface Temperature & Emissivity Night (LST&E) from LP DAAC"
 ## [1] "VNP21A2.001 is Land Surface Temperature & Emissivity (LST&E) from LP DAAC"
+## [1] "VNP22Q2.001 is Global Land Surface Phenology (GLSP) from LP DAAC"
 ## [1] "VNP43IA1.001 is BRDF-Albedo Model Parameters from LP DAAC"
 ## [1] "VNP43IA2.001 is BRDF-Albedo Quality from LP DAAC"
 ## [1] "VNP43IA3.001 is Albedo (BRDF) from LP DAAC"
@@ -1870,7 +1893,7 @@ names(fromJSON(SRTMGL1_response))
 ## [1] "SRTMGL1_DEM"
 ```
 
-Lastly, select the desired layers and pertinent products and make a data frame using this information. This list will be inserted into the JSON file used to submit a request in [Section 3](#section3).
+Lastly, select the desired layers and pertinent products and make a data frame using this information. This list will be inserted into the JSON file used to submit a request.
 
 ```r
 # Create a vector of desired layers
@@ -1933,11 +1956,11 @@ projection <- projs[projs$Name=="geographic",]            # Choose the projectio
 ```
 ***
 ## Compile a JSON Object
-In this section, begin by setting up the information needed for a nested data frame that will be later converted to a JSON object for submitting an AppEEARS area request.For detailed information on required JSON parameters, see the [API Documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#tasks).
+In this section, begin by setting up the information needed for a nested data list that will be later converted to a JSON object for submitting an AppEEARS area request.For detailed information on required JSON parameters, see the [API Documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#tasks).
 
 
 ```r
-taskName <- 'NEON-ONAQ'    # Enter name of the task, 'Grand Canyon' used here
+taskName <- 'NEON-ONAQ'    # Enter name of the task, 'ONAQ' used here
 taskType <- 'area'            # Type of task, it can be either "area" or "point"
 
 projection <- projection$Name # Set output projection 
@@ -2003,7 +2026,8 @@ A JSON downloaded from a previous request containing the information from that r
 ```
 ***
 ## Retrieve Task Status
-This API call will list all of the requests associated with your user account, automatically sorted by date descending with the most recent requests listed first.
+This API call will list all of the requests associated with your user account, automatically sorted by date, with the most recent requests listed first.
+
 The AppEEARS API contains some helpful formatting resources. Below, limit the API response to 2 entries for the last 2 requests and set pretty to True to format the response as an organized JSON, making it easier to read. Additional information on AppEEARS API
 [retrieve task](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#retrieve-task), [pagination](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#pagination), and [formatting](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#formatting) can be found in the API documentation.
 
@@ -2145,7 +2169,7 @@ SRTMGL1_NC_dir                                                             # Pri
 ```
 ***
 ## Explore AppEEARS Quality Service
-The quality API provides quality details about all of the data products available in AppEEARS. Below are examples of how to query the quality API for listing quality products, layers, and values. The final example ([Section 5c.](#decode)) demonstrates how AppEEARS quality services can be leveraged to decode pertinent quality values for your data. For more information visit [AppEEARS API documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#quality)
+The quality API provides quality details about all of the data products available in AppEEARS. Below are examples of how to query the quality API for listing quality products, layers, and values. The final example demonstrates how AppEEARS quality services can be leveraged to decode pertinent quality values for your data. For more information visit [AppEEARS API documentation](https://lpdaacsvc.cr.usgs.gov/appeears/api/?language=R#quality)
 
 First, reset pagination to include offset which allows you to set the number of results to skip before starting to return entries. Next, make a call to list all of the data product layers and the associated quality product and layer information.
 

@@ -1181,7 +1181,7 @@ Now look in your working directory.  You have data!  Read it in:
 # load the time series data but replace the csv filename with whatever you downloaded
 df <- read.table("data/harvard_DB_1000_3day.csv", header = TRUE, sep = ",")
 
-# read in the transidation date file
+# read in the transition date file
 td <- read.table("data/harvard_DB_1000_3day_transition_dates.csv",
                 header = TRUE,
                 sep = ",")
@@ -1513,6 +1513,6 @@ Once you have a subplot of grassland phenology across 2 climates answer the foll
   **Optional Bonus Points:** 
   Repeat the above calculations for the understory camera on the same tower `NEON.D17.SOAP.DP1.00042` and produce the same plots.  Which camera is 'better' and capturing wildfire?  Why do you think that is so?
   
-## **Intro to PhenoCam Culmination Activity**
+## PhenoCam Culmination Activity
 
 Write up a 1-page summary of a project that you might want to explore using PhenoCam data over the duration of this course. Include the types of PhenoCam (and other data) that you will need to implement this project. Save this summary as you will be refining and adding to your ideas over the course of the semester.
