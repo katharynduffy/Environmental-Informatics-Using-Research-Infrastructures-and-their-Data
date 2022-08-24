@@ -30,6 +30,7 @@ vignettes/*.pdf
 # knitr and R markdown default cache directories
 *_cache/
 /cache/
+/_in_dev/
 
 # Temporary files created by R markdown
 *.utf8.md
@@ -44,5 +45,11 @@ _bookdown_files/
 # NEON Token
 
 neon_token_source.R
+EARTHDATA_Token.R
+/Tokens/
 
 NEON Field Sites Shapefile v17/
+*.h5
+*.laz
+/DP1.30001.01/
+data/

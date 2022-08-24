@@ -1,0 +1,180 @@
+---
+title: "Solution NEON Part 2"
+author: "K Duffy"
+date: "8/24/2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+Sorry all, I haven't had time to finish this solution due to recording some future lectures for our class.  I've push up an incomplete version, I'll revise and add more tomorrow.
+
+
+```{r, message=FALSE,warning=FALSE}
+library(tidyverse)
+library(dplyr, quietly=T)
+library(lubridate)
+library(neonUtilities)
+library(httr)
+library(jsonlite)
+library(downloader)
+source('/Users/kdw223/Research/katharynduffy.github.io/neon_token_source.R')
+```
+
+1.  Use the answers that you've provided above to select a *single* NEON site.
+
+e.g. `ONAQ`
+
+
+
+2.  Use the answers that you've provided above to select **3 NEON data products** from either the TOS, TIS or ARS (AOP) collection methods.  Sumarize each product with its NEON identifier, along with a sumarry.
+
+*In this example solution I'm going to look at 3 phenological-realted data products.* **This will vary based on your research and interests**
+
+
+Product 1, TOS Data: **DP1.10055.001**: Plant phenology observations: phenophase status and intensity of tagged plants. This data product contains the quality-controlled, native sampling resolution data from in-situ observations of plant leaf development and reproductive phenophases, at **D15.ONAQ**.  Here I will focus on the phenophase intensity data, which is a measure of how prevalent that particular phenophase is in the sampled plants.
+
+Product 2, TIS Data: **DP1.00033.001** Phenology images: RGB and IR images of the plant canopy taken from an automated camera on the tower top (note, there is another camera to capture understory imagery which is provided is a separate data product). Images are collected every 15 minutes and closely follow protocols of the Phenocam Network.
+
+Product 3, RS Data: **DP3.30015.001** Ecosystem structure: If you're lazy like me, maybe you'd want to pull the abstract first and write something based on that:
+```{r}
+# Request data using the GET function & the API call
+req <- GET("http://data.neonscience.org/api/v0/products/DP3.30015.001")
+req.content <- content(req, as="parsed")
+req.content$data$productAbstract
+```
+3.  Using the NEON Ulitites package or the API pull in those data along with metadata.
+```{r, eval=FALSE}
+#TOS Phenology Data
+sitesOfInterest <- c("ONAQ")
+
+dpid <- as.character('DP1.10055.001') #phe data
+ 
+pheDat <- loadByProduct(dpID="DP1.10055.001",
+                     site = sitesOfInterest,
+                     package = "expanded",
+                     check.size = FALSE, 
+                     token=NEON_TOKEN)
+
+```
+
+Just to 'mix things up' I'll use the API for my imagery:
+```{r}
+#TIS Phenology Imagery
+# Request data using the GET function & the API call
+req <- GET("http://data.neonscience.org/api/v0/products/DP1.00033.001")
+req
+# View requested data
+req.content <- content(req, as="parsed")
+names(req.content$data)
+
+```
+
+```{r}
+req.content$data$productAbstract
+```
+
+*Interesting!* I actually can't pull the NEON phenology imagery data from the NEON API.  Good thing I checked the abstract.  If I were a student (and not a former member of the PhenoCam lab) I'd probably go to the website, search for data etc etc, and then months later realize there's a slick `phenocamAPI` *(yay APIs!!)* that I can use.
+
+I'll jump a few chapters ahead and use that data:
+
+```{r, message=FALSE,warning=FALSE}
+library(phenocamapi)
+# obtaining midday_images for NEON ONAQ
+ONAQ_middays <- get_midday_list('NEON.D15.ONAQ.DP1.00033')
+# see the first few rows
+head(ONAQ_middays)
+```
+
+Okay, now I have links to go grab those 'mid-day' images.  
+
+**BUT...**
+
+The way I was calling data from the `neonUtilities` package doesn't work anymore, so I could ask the `phenocamapi` package what it wants:
+
+```{r}
+phenocams=get_phenos()
+head(phenocams)
+```
+
+Looking at the dataframe and searching for `ONAQ` I see that I have to give this full name to pull the imagery: *NEON.D15.ONAQ.DP1.00033*
+
+```{r}
+# open a temporary directory
+tmp_dir <- tempdir()
+
+# download a subset. 
+download_midday_images(site = 'NEON.D15.ONAQ.DP1.00033', # which site
+                       y = 2019, # which year(s)
+                       months = 1:12, # which month(s)
+                       days = 15, # which days on month(s)
+                       download_dir = tmp_dir) # where on your computer
+```
+
+```{r}
+# list of downloaded files
+ONAQ_middays_path <- dir(tmp_dir, pattern = 'NEON.D15.ONAQ.*', full.names = TRUE)
+
+head(ONAQ_middays_path)
+```
+
+Great, the data is there.
+
+4. Organize your data into `data.frames` and produce summaries for each of your data:
+
+```{r, eval=FALSE}
+#NEON sends the data as a nested list, so I need to undo that
+# unlist all data frames
+list2env(pheDat ,.GlobalEnv)
+summary(phe_perindividualperyear)
+summary(phe_statusintensity)
+```
+
+
+5.  Filter and format your data based on metadata and quality flags:
+
+```{r, eval=FALSE}
+#remove duplicate records
+phe_statusintensity <- select(phe_statusintensity, -uid)
+phe_statusintensity <- distinct(phe_statusintensity)
+#Format dates (native format is 'factor' silly R)
+phe_statusintensity$date <- as.Date(phe_statusintensity$date, "%Y-%m-%d")
+phe_statusintensity$editedDate <- as.Date(phe_statusintensity$editedDate, "%Y-%m-%d")
+phe_statusintensity$year <- substr(phe_statusintensity$date, 1, 4)
+phe_statusintensity$monthDay <- format(phe_statusintensity$date, format="%m-%d")
+```
+
+Now I want to remove NA values so I can see what's really going on:
+
+```{r, eval=FALSE}
+phe_statusintensity=phe_statusintensity%>%
+  filter(!is.na(phe_statusintensity$phenophaseIntensity))
+```
+
+Based on looking at the status intensity data and metadata I'm going to just stick to the `status intensity:leaves` metrics here.
+
+6.  Create minimum of 1 plot per data type (minimum of 3 plots total).  These will vary based on that data that you've chosen.
+
+Second, let's look at the PhenoCam imagery over a year:
+
+```{r}
+library(jpeg)
+n <- length(ONAQ_middays_path)
+par(mar= c(0,0,0,0), mfrow=c(4,3), oma=c(0,0,3,0))
+
+for(i in 1:n){
+  img <- readJPEG(ONAQ_middays_path[i])
+  plot(0:1,0:1, type='n', axes= FALSE, xlab= '', ylab = '')
+  rasterImage(img, 0, 0, 1, 1)
+  mtext(month.name[i], line = -2)
+}
+mtext('Seasonal variation at NEON:ONAQ', font = 2, outer = TRUE)
+```
+
+7.  What is the temporal frequency of observations in the data you decided was of interest?  How do the data align to answer a central question?  What challenges did you run into when investigating these data? How will you address these challenges and document your code? *One to two paragraphs*
+
+Pulling the abstracts really helped me with this.  The TOS phenology data is measured every
+
+The PhenoCam imagery is taken every 15 minutes.  Think about just how much that that is!
+
+The AOP flights are ideally every year, but that can be hard to coordinate (we'll talk about that in Chapter 7).  

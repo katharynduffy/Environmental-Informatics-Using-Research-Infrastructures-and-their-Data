@@ -286,7 +286,7 @@ Now we'll use the `loadByProduct()` function to download data. Your
 API token is entered as the optional `token` input parameter. For 
 this example, we'll download Plant foliar traits (DP1.10026.001).
 
-```{r getCFC, eval=FALSE, comment=NA}
+```{r getCFC, eval=FALSE, comment=NA, cache=TRUE}
 foliar <- loadByProduct(dpID="DP1.10026.001", site="all", 
                         package="expanded", check.size=F,
                         token=NEON_TOKEN)
@@ -331,7 +331,7 @@ variable that gets loaded when you open R. This is a little harder to set
 up initially, but once it's done, it's done globally, and it will work in 
 every script you run.
 
-#### OPtion 1: Save token in a local file
+#### Option 1: Save token in a local file
 
 Open a new, empty R script (.R). Put a single line of code in the script:
 
@@ -398,7 +398,7 @@ Let's begin by:
 
 1. Installing the `geoNEON` package
 2. Making sure that the packages that we need are loaded, and 
-3. Supressing 'stirngs as factors' in R, as factors make all sorts of functions in R 'cranky'.
+3. Supressing 'strings as factors' in R, as factors make all sorts of functions in R 'cranky'.
 
 ```{r}
 options(stringsAsFactors=F)
@@ -421,14 +421,14 @@ Now lets begin by pulling in the **vegetation structure data** using the `loadBy
 ```{r, echo=FALSE}
 source('/Users/kdw223/Research/katharynduffy.github.io/neon_token_source.R')
 ```
-```{r}
+```{r, cache=TRUE}
 veglist <- loadByProduct(dpID="DP1.10098.001", site="WREF", package="basic", check.size=FALSE, token = NEON_TOKEN)
 
 ```
 
 Now, use the `getLocTOS()` function in the `geoNEON` package to get precise locations for the tagged plants. You can refer to the package documentation for more details.
 
-```{r}
+```{r, cache=TRUE}
 vegmap <- getLocTOS(veglist$vst_mappingandtagging, 
                           "vst_mappingandtagging")
 ```
@@ -472,13 +472,15 @@ symbols(veg$adjEasting[which(veg$plotID=="WREF_075")],
 1. Submit via .Rmd and .pdf a simple script that uses a *HIDDEN* token to access NEON data.
 
 Example:
-```{r}
+```{r, cache=TRUE}
 source('neon_token_source.R')
 veglist <- loadByProduct(dpID="DP1.10098.001", site="WREF", package="basic", check.size=FALSE, token = NEON_TOKEN)
 summary(veglist)
 ```
 
 #### Part 2: Further Investigation of NEON TOS Vegetation Structure Data
+
+**Suggested Timing: Complete this exercise before our next class session**
 
 *In the following section all demonstration code uses the `iris` dataset for R as examples.  In this exercise the `iris` data is merely used for example code to get your started, you will complete all plots and models using the NEON TOS vegetation structure data*
 
@@ -517,7 +519,7 @@ library(dplyr)
 #filter(..... !=....)
 
 ```
-5. Create a simple linear model that uses DBH and height to predict allometries.  Print the summary information of your model:
+5. Create a simple linear model that uses Diameter at Breast Height (DBH) and height to predict allometries.  Print the summary information of your model:
 
 ```{r, eval=FALSE}
 #hints
@@ -542,7 +544,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Petal.Length, color=Species)) +
 ```
 
 7. Answer the following questions:
-
+* What do you think about your simile linear model?  What are its limitations?
 * How many `unique` species are present at `WREF`?
 * What are the `top_5` trees based on height? Diameter?
 * What proportion of sampled trees are dead?
@@ -701,7 +703,7 @@ names(req.content$data)
 
 ```
 
-You can see all of the infoamtion by running the line `print(req.content)`, but
+You can see all of the information by running the line `print(req.content)`, but
 this will result in a very long printout in your console. Instead, you can view
 list items individually. Here, we highlight a couple of interesting examples:
 
@@ -764,7 +766,7 @@ Note that if there were only one month of data from a site, you could leave
 off the date in the function. If you want data from more than one site/month 
 you need to iterate this code, GET fails if you give it more than one URL. 
 
-```{r os-query-bird-data-urls}
+```{r os-query-bird-data-urls, cache=TRUE}
 # get data availability for WOOD July 2015
 brd <- GET(bird.urls[grep("WOOD/2015-07", bird.urls)])
 brd.files <- jsonlite::fromJSON(content(brd, as="text"))
@@ -841,7 +843,7 @@ when getting data from other sites and other months. So we select files
 based on the data table name and the package name.
 
 
-```{r os-get-bird-data}
+```{r os-get-bird-data, cache=TRUE}
 
 # Get both files
 brd.count <- read.delim(brd.files$data$files$url
@@ -863,7 +865,7 @@ brd.point <- read.delim(brd.files$data$files$url
 Now we have the data and can access it in R. Just to show that the files we 
 pulled have actual data in them, let's make a quick graphic:
 
-```{r os-plot-bird-data}
+```{r os-plot-bird-data, cache=TRUE}
 # Cluster by species 
 clusterBySp <- brd.count %>%
   dplyr::group_by(scientificName) %>%
@@ -884,10 +886,10 @@ Wow! There are lots of *Agelaius phoeniceus* (Red-winged Blackbirds) at WOOD in 
 ### Instrumentation data (IS)
 
 The process is essentially the same for sensor data. We'll do the same series of 
-queries for Soil Temperature, DP1.00041.001. Let's use data from Moab in March 
+queries for Soil Temperature, DP1.00041.001. Let's use data from Moab in June 
 2017 this time.
 
-```{r soil-data}
+```{r soil-data, cache=TRUE}
 # Request soil temperature data availability info
 req.soil <- GET("http://data.neonscience.org/api/v0/products/DP1.00041.001")
 
@@ -934,7 +936,7 @@ Let's get data (and the URL) for only the 2nd depth described above by selecting
 
 Go get it:
 
-``` {r os-get-soil-data}
+``` {r os-get-soil-data, cache=TRUE}
 
 soil.temp <- read.delim(tmp.files$data$files$url
                         [intersect(grep("002.502.030", 
@@ -963,11 +965,11 @@ As we'd expect we see daily fluctuation in soil temperature.
 
 Again, the process of determining which sites and time periods have data, and 
 finding the URLs for those data, is the same as for the other data types. We'll 
-go looking for High resolution orthorectified camera imagery, DP1.30010, and 
+go looking for High resolution orthorectified camera imagery, DP1.30010.001, and 
 we'll look at the flight over San Joaquin Experimental Range (SJER) in March 
 2017.
 
-```{r aop-data}
+```{r aop-data, cache=TRUE}
 # Request camera data availability info
 req.aop <- GET("http://data.neonscience.org/api/v0/products/DP1.30010.001")
 
@@ -994,14 +996,10 @@ different AOP data products use different naming conventions.
 File formats differ by product as well.
 
 This particular product, camera imagery, is stored in TIFF files. 
-For a full list of AOP data products, their naming conventions, and 
-their file formats, see **update from NEON?**.
+
 
 Instead of reading a TIFF into R, we'll download it to the working 
-directory. This is one option for getting AOP files from the API; if 
-you plan to work with the files in R, you'll need to know how to 
-read the relevant file types into R. We hope to add tutorials for 
-this in the near future.
+directory. This is one option for getting AOP files from the API.
 
 To download the TIFF file, we use the `downloader` package, and we'll 
 select a file based on the time stamp in the file name: `20170328192931`
@@ -1018,13 +1016,12 @@ download(cam.files$data$files$url[grep("20170328192931",
 The image, below, of the San Joaquin Experimental Range should now be in your 
 working directory.
 
-<figure>
-	<a href="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/neon-aop/SJER_tile_20170328192931.png">
-	<img src="https://raw.githubusercontent.com/NEONScience/NEON-Data-Skills/dev-aten/graphics/neon-aop/SJER_tile_20170328192931.png"></a>
-	<figcaption> An example of camera data (DP1.30010.001) from the San Joaquin 
-	Experimental Range. Source: National Ecological Observatory Network (NEON) 
-	</figcaption>
-</figure>
+```{r, echo=FALSE}
+knitr::include_graphics('./images/SJER_tile_20170328192931.png')
+```
+
+> An example of camera data (DP1.30010.001) from the San Joaquin Experimental Range. Source: National Ecological Observatory Network (NEON) 
+
 
 ### Geolocation data
 
@@ -1035,18 +1032,65 @@ This section describes how to get spatial data and what to do with it depends on
 data you're working with.
 
 #### Instrumentation data (both aquatic and terrestrial)
-Stay tuned - spatial data for instruments are in the process of entry into 
-the NEON database.
 
-#### Observational data - Aquatic
-Latitude, longitude, elevation, and associated uncertainties are included in 
-data downloads. Most products also include an "additional coordinate uncertainty" 
-that should be added to the provided uncertainty. Additional spatial data, such 
-as northing and easting, can be downloaded from the API.
+Downloads of instrument system (IS) data include a file called sensor_positions.csv. The sensor positions file contains information about the coordinates of each sensor, relative to a reference location.
+
+While the specifics vary, techniques are generalizable for working with sensor data and the sensor_positions.csv file. Let's look at the sensor locations for photosynthetically active radiation (PAR; DP1.00024.001) at the NEON Treehaven site (TREE) in July 2018. To reduce our file size, we'll use the 30 minute averaging interval. Our final product from this section is to create a spatially explicit picture of light attenuation through the canopy.
+
+```{r, cache=TRUE}
+# load PAR data of interest 
+par <- loadByProduct(dpID="DP1.00024.001", site="TREE",
+                    startdate="2018-07", enddate="2018-07",
+                    avg=30, check.size=F, token=NEON_TOKEN)
+```
+
+**Now we can specifically look at the sensor positions file:**
+
+```{r}
+# create object for sens. pos. file
+pos <- par$sensor_positions_00024
+
+# view names
+names(pos)
+
+```
+
+The sensor locations are indexed by the [HOR.VER variable](https://data.neonscience.org/file-naming-conventions) - see the file naming conventions page for more details.
+
+Using unique() we can view all the locations indexes in this file.
+
+```{r}
+# view names
+unique(pos$HOR.VER)
+```
+
+PAR data are collected at multiple levels of the NEON tower but along a single vertical plane. We see this reflected in the data where HOR=000 (all data collected) at the tower location. The VER index varies (VER = 010 to 060) showing that the vertical position is changing and that PAR is measured at six different levels.
+
+The x, y, and z offsets in the sensor positions file are the relative distance, in meters, to the reference latitude, longitude, and elevation in the file.
+
+The HOR and VER indices in the sensor positions file correspond to the verticalPosition and horizontalPosition fields in par$PARPAR_30min.
+
+Say we wanted to plot a profile of the PAR through the canopy, we would need to start by using the aggregate() function to calculate mean PAR at each vertical position on the tower over the month:
+
+```{r}
+# calc mean PAR at each level
+parMean <- aggregate(par$PARPAR_30min$PARMean, 
+                   by=list(par$PARPAR_30min$verticalPosition),
+                   FUN=mean, na.rm=T)
+```
+
+Now we can plot mean PAR relative to height on the tower (or the zOffset):
+
+```{r}
+# plot PAR
+plot(parMean$x, parMean$Group.1, type="b", pch=20,
+     xlab="Photosynthetically active radiation",
+     ylab="Height above tower base (m)")
+```
 
 #### Observational data - Terrestrial
 Latitude, longitude, elevation, and associated uncertainties are included in 
-data downloads. These are the coordinates and uncertainty of the sampling plot; 
+data downloads  *(Remember NEON COding Lab part 1?)*. These are the coordinates and uncertainty of the sampling plot; 
 for many protocols it is possible to calculate a more precise location. 
 Instructions for doing this are in the respective data product user guides, and 
 code is in the `geoNEON` package on GitHub.
@@ -1069,7 +1113,7 @@ conducted.
 We can query the locations endpoint of the API for the first named location, 
 `WOOD_013.birdGrid.brd`. 
 
-```{r brd-ex-NL}
+```{r brd-ex-NL, cache=TRUE}
 # location data 
 req.loc <- GET("http://data.neonscience.org/api/v0/locations/WOOD_013.birdGrid.brd")
 
@@ -1107,16 +1151,16 @@ symbols(brd.point.loc$easting, brd.point.loc$northing,
 
 And use `getLocTOS()` to calculate the point locations of observations.
 
-```{r brd-calc-NL}
+```{r brd-calc-NL, cache=TRUE}
 
 brd.point.pt <- getLocTOS(brd.point, "brd_perpoint")
 
 
 # plot bird point locations 
 # note that decimal degrees is also an option in the data
-# symbols(brd.point.pt$easting, brd.point.pt$northing, 
-#         circles=brd.point.pt$adjCoordinateUncertainty, 
-#         xlab="Easting", ylab="Northing", tck=0.01, inches=F)
+symbols(brd.point.pt$adjEasting, brd.point.pt$adjNorthing,
+        circles=brd.point.pt$adjCoordinateUncertainty,
+        xlab="Easting", ylab="Northing", tck=0.01, inches=F)
 
 ```
 
@@ -1127,7 +1171,7 @@ located.
 
 NEON maintains accepted taxonomies for many of the taxonomic identification 
 data we collect. NEON taxonomies are available for query via the API; they 
-are also provided via an interactive user interface, the <a href="http://data.neonscience.org/static/taxon.html" target="_blank">Taxon Viewer</a>.
+are also provided via an interactive user interface, the [Taxon Viewer](http://data.neonscience.org/static/taxon.html).
 
 NEON taxonomy data provides the reference information for how NEON 
 validates taxa; an identification must appear in the taxonomy lists 
@@ -1201,7 +1245,7 @@ a more extensive list of taxon data, including many taxon ranks that
 aren't populated for these taxa. For space here, we display only 
 the first 10 taxa:
 
-```{r get-mammals}
+```{r get-mammals, cache=TRUE}
 mam.req <- GET("http://data.neonscience.org/api/v0/taxonomy/?taxonTypeCode=SMALL_MAMMAL&offset=0&limit=500&verbose=true")
 mam.list <- jsonlite::fromJSON(content(mam.req, as="text"))
 mam.list$data[1:10,]
@@ -1227,7 +1271,7 @@ search will also fail with spaces. Search for
 `offset` and `limit` because we know there can only be a single 
 result:
 
-```{r get-verbena}
+```{r get-verbena, cache=TRUE}
 am.req <- GET("http://data.neonscience.org/api/v0/taxonomy/?scientificname=Abronia%20minor%20Standl.")
 am.list <- jsonlite::fromJSON(content(am.req, as="text"))
 am.list$data
@@ -1239,22 +1283,20 @@ At the top of this tutorial, we installed the `neonUtilities` package.
 This is a custom R package that stacks the monthly files provided by 
 the NEON data portal into a single continuous file for each type of 
 data table in the download. It currently handles files downloaded from 
-the data portal, but not files pulled from the API. That functionality 
-will be added soon!
+the data portal, but not files pulled from the API. 
 
 For a guide to using `neonUtilities` on data downloaded from the portal, 
 look <a href="https://www.neonscience.org/neonDataStackR" target="_blank">here</a>.
 
+## Intro to NEON Exercises: Written Questions
 
-## Intro to NEON Exercises
 
-### Computational
-#### Part 1: Sign up for and Use an NEON API Token:
-
-*Code to come*
-
+## Intro to NEON Exercises Part 2
 
 ### Written
+
+**Suggested Timing: Complete this exercise before our next class meeting**
+
 
 **Question 1:** How does NEON address ‘dark data’ (Chapter 1)?
 
@@ -1304,8 +1346,106 @@ sites you’ve already identified in the previous sections and answer *each* of 
 
 <div id="ds-challenge" markdown="1">
 
+### NEON Coding Lab Part 2
+
+## NEON Coding Lab Part 2
+
+**Suggested Timing: Complete this exercise a few days before your NEON clumination write up**
+
+
+1.  Use the answers that you've provided above to select a *single* NEON site.
+
+e.g. `ONAQ`
+
+
+2.  Use the answers that you've provided above to select **3 NEON data products** from either the TOS, TIS or ARS (AOP) collection methods.  Sumarize each product with its NEON identifier, along with a sumarry.
+
+e.g.:
+
+<<<<<<< HEAD
+`**DP1.10055.001**: Plant phenology observations: phenophase status and insensity of tagged plants.  This data product contains the quality-controlled, native sampling resolution data from in-situ observations of plant leaf development and reproductive phenophases, at **D15.ONAQ**.`
+
+3.  Using the NEON Ulitites package or the API pull in those data along with metadata.
+
+
+4. Organize your data into `data.frames` and produce summaries for each of your data:
+
+5.  Filter your data based on metadata and quality flags:
+
+> **DP1.10055.001**: Plant phenology observations: phenophase status and intensity of tagged plants.  This data product contains the quality-controlled, native sampling resolution data from in-situ observations of plant leaf development and reproductive phenophases, at **D15.ONAQ**.  Here I will focus on the phenophase intensity data, which is a measure of how prevalent that particular phenophase is in the sampled plants.
+
+3.  Using the NEON Ulitites package or the API pull in those data along with metadata.
+```{r, eval=FALSE}
+sitesOfInterest <- c("ONAQ")
+
+dpid <- as.character('DP1.10055.001') #phe data
+ 
+pheDat <- loadByProduct(dpID="DP1.10055.001",
+                     site = sitesOfInterest,
+                     package = "basic",
+                     check.size = FALSE, 
+                     token=NEON_TOKEN)
+```
+
+4. Organize your data into `data.frames` and produce summaries for each of your data:
+
+```{r, eval=FALSE}
+#NEON sends the data as a nested list, so I need to undo that
+# unlist all data frames
+list2env(pheDat ,.GlobalEnv)
+summary(phe_perindividualperyear)
+summary(phe_statusintensity)
+```
+
+
+5.  Filter and format your data based on metadata and quality flags:
+
+```{r, eval=FALSE}
+#remove duplicate records
+phe_statusintensity <- select(phe_statusintensity, -uid)
+phe_statusintensity <- distinct(phe_statusintensity)
+#Format dates (native format is 'factor' silly R)
+phe_statusintensity$date <- as.Date(phe_statusintensity$date, "%Y-%m-%d")
+phe_statusintensity$editedDate <- as.Date(phe_statusintensity$editedDate, "%Y-%m-%d")
+phe_statusintensity$year <- substr(phe_statusintensity$date, 1, 4)
+phe_statusintensity$monthDay <- format(phe_statusintensity$date, format="%m-%d")
+```
+
+Now I want to remove NA values so I can see what's really going on:
+
+```{r, eval=FALSE}
+phe_statusintensity=phe_statusintensity%>%
+  filter(!is.na(phe_statusintensity$phenophaseIntensity))
+```
+
+
+6.  Create minimum of 1 plot per data type (minimum of 3 plots total).  These will vary based on that data that you've chosen.
+
+A non-exhastive list of ideas: 
+1. Your data as a function of height on the tower (FPAR example)
+2. A map of the locations where your data is sampled (TOS tree example, bird example)
+3. A model based on the data you're interested in working work (Coding lab 1 example)
+4. A timeseries of your data (example below)
+
+
+7.  What is the frequency of the data you decided was of interest?  How do the data align to answer a central question?  What challenges did you run into when investigating these data? How will you address these challenges and document your code? *One to two paragraphs*
+
 **Intro to NEON Culmination Activity**
 
-Write up a 1-page summary of a project that you might want to explore using NEON data over the duration of this course. Include the types of NEON (and other data) that you will need to implement this project. Save this summary as you will be refining and adding to your ideas over the course of the semester.
+7.  What is the temporal frequency of observations in the data you decided was of interest?  How do the data align to answer a central question?  What challenges did you run into when investigating these data? How will you address these challenges and document your code? *One to two paragraphs*
+
+## Intro to NEON Culmination Activity
+
+**Due before we start Chapter 3: USA-NPN**
+>>>>>>> upstream/master
+
+Write up a 1-page summary of **a project that you might want to explore using NEON** data over the duration of this course. Include:
+
+1. the types of NEON (and other data) that you will need to implement this project, including data product id numbers.
+2. If in your NEON coding lab part 2 you highlighted challenges to using these data, discuss methods to address those challenges.
+  *e.g. If your site doesn't yet have a long data recocrd, is it located close to a longer lived site from another network? (LTER, Ameriflux, LTAR etc)
+3. One high-level summary graphic including all of your data from the NEON Coding Lab Part 2
+
+Save this summary as you will be refining and adding to your ideas over the course of the semester.
 
 

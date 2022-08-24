@@ -132,11 +132,11 @@ A concise list of all available NPN data sets, tools, products.
 ### APIs
 This is a set of standard web service calls that allows for programmatic access to NPN data independent of any particular programming language.
 
-  *[Documentation](https://docs.google.com/document/d/1yNjupricKOAXn6tY1sI7-EwkcfwdGUZ7lxYv7fcPjO8/edit?hl=en_US)
+  *[USA-NPN Web Service API Documentation](https://docs.google.com/document/d/1yNjupricKOAXn6tY1sI7-EwkcfwdGUZ7lxYv7fcPjO8/edit?hl=en_US)
   
-  *[Observational Data API](https://www.usanpn.org/node/34646)
+  *[USA-NPN Geoserver Documentation](https://docs.google.com/document/d/1n409GY931Pf14vNqCaeQx-Ck_5VVLH5-dVUKZ5ylVpQ/edit?usp=sharing)
   
-  *[GeoServer API](https://www.usanpn.org/node/34645)
+  *[USA-NPN GeoServer API](http://geoserver.usanpn.org/geoserver/)
 
 ### Rnpn package
 This suite of R functions allows for programmatic access to both gridded and in-situ NPN data sets in an R environment. Full documentation available here: https://usa-npn.github.io/rnpn/
@@ -152,15 +152,59 @@ This suite of R functions allows for programmatic access to both gridded and in-
 ### Visualization Tool
 [The Visualization Tool](https://data.usanpn.org/vis-tool/#/) provides an easier way to explore phenology data and maps. The user-friendly interface is intended to allow for searching for comparing general trends and quick-and-easy access to map data/products.
 
+## USA-NPN Written Questions
+
+**Suggested timing: Complete before lecture 2 of USA-NPN Hands on Coding Exercises**
+
+**Question 1:** How might or does USA-NPN
+intersect with your current research or future career goals? *(1 paragraph)*
+</div>
+
+
+
+<div id="ds-challenge" markdown="1">
+
+**Question 2:**  Use the USA-NPN visualization tool (www.usanpn.org/data/visualizations) to answer the following questions. Consider the research question that you may explore as your final semester project or a current project that you are working on and answer each of the following questions:
+
+·      Are there species, regions, or phenophases of interest to you?
+
+·      Is there geospatial phenology data that is useful for your work (e.g. Spring Indices or Growing Degree Days)?
+
+·      What is the timeframe of data you will need to address your research interests?
+
+·      What is the spatial extent of data you will need?
+
+
+
+**Question 3:** Consider either your current or future research, or a question you’d like to address during this course:
+
+·       What climate data or additional phenological datasets would be valuable to address your research interests?
+
+·       What challenges, if any, could you foresee when beginning to work with these data?
+
+
+
+
+<div id="ds-challenge" markdown="1">
+
 ## Hands on: Accessing USA-NPN Data via rNPN
 
 ### Introduction
 
 The USA National Phenology Network (USA-NPN) is a USGS funded organization that collects phenological observation records from volunteer and professional scientists to better understand the impact of changes in the environment on the timing of species' life cycles. The USA-NPN also provides a number of raster-based climatological data sets and phenological models. These in-situ observation and geospatial, modeled datasets are available through a number of tools and data services.
 
-The USA-NPN R library, "rnpn", is primarily a data access service for USA-NPN data products, serving as a wrapper to the USA-NPN REST based web services. (link). This guide details how to use the library to access and work with all USA-NPN data types.
+The USA-NPN R library, "rnpn", is primarily a data access service for USA-NPN data products, serving as a wrapper to the [USA-NPN REST based web services](). This guide details how to use the library to access and work with all USA-NPN data types.
 
 
+```r
+install.packages("devtools")
+library('devtools')
+devtools::install_github("usa-npn/rnpn")
+```
+
+```r
+library('rnpn')
+```
 ### Accessing USA-NPN Observational Data
 
 USA-NPN Observational data are collected on the ground by citizen and professional observers following standardized protocols, using the Nature's Notebook platform. The data are available 2009 to present, and come in four formats or data types: Status & Intensity, Individual Phenometrics, Site Phenometrics and Magnitude Phenometrics. An overview of the differences is provided in the figure below, and each type is detailed in the following sections. For a complete description of the USA-NPN approach and notes for working with each data type see the [Open File Report on USA-NPN Observational Data](https://pubs.usgs.gov/of/2018/1060/ofr20181060.pdf).
@@ -196,6 +240,17 @@ Search for a species by common name from the full list:
 
 ```r
 species[species$common_name=="red maple",]
+```
+
+```
+## # A tibble: 1 x 19
+##   species_id common_name genus genus_id genus_common_na… species kingdom
+##        <int> <chr>       <chr>    <int> <chr>            <chr>   <chr>  
+## 1          3 red maple   Acer       372 Maples (Acer)    rubrum  Plantae
+## # … with 12 more variables: itis_taxonomic_sn <int>, functional_type <chr>,
+## #   class_id <int>, class_common_name <chr>, class_name <chr>, order_id <int>,
+## #   order_common_name <chr>, order_name <chr>, family_id <int>,
+## #   family_name <chr>, family_common_name <chr>, species_type <list>
 ```
 
 
@@ -280,6 +335,74 @@ npn_download_individual_phenometrics(
 )
 ```
 
+```
+## using a custom handler function.
+```
+
+```
+## opening curl input connection.
+```
+
+```
+##  Found 96 records...
+```
+
+```
+## closing curl input connection.
+```
+
+```
+## using a custom handler function.
+```
+
+```
+## opening curl input connection.
+```
+
+```
+##  Found 136 records...
+```
+
+```
+## closing curl input connection.
+```
+
+```
+## using a custom handler function.
+```
+
+```
+## opening curl input connection.
+```
+
+```
+##  Found 145 records...
+```
+
+```
+## closing curl input connection.
+```
+
+```
+## using a custom handler function.
+```
+
+```
+## opening curl input connection.
+```
+
+```
+##  Found 103 records...
+```
+
+```
+## closing curl input connection.
+```
+
+```
+## NULL
+```
+
 
 In this example, we're able to see individual saguaro phenology for 2013 through 2016. The results returned from the service is a tabular set of records, giving start and end date by individual saguaro plant. By default, each record contains information about the location, species, phenophase, and start and end dates.
 
@@ -297,6 +420,26 @@ npn_download_individual_phenometrics(
   climate_data = TRUE,
   download_path = 'Betula_data_2015.csv'
 )
+```
+
+```
+## using a custom handler function.
+```
+
+```
+## opening curl input connection.
+```
+
+```
+##  Found 146 records...
+```
+
+```
+## closing curl input connection.
+```
+
+```
+## NULL
 ```
 
 
@@ -461,6 +604,18 @@ npn_get_point_data(
 )
 ```
 
+```
+## Downloading: 980 B     Downloading: 980 B     Downloading: 990 B     Downloading: 990 B     Downloading: 990 B     Downloading: 990 B
+```
+
+```
+## No encoding supplied: defaulting to UTF-8.
+```
+
+```
+## [1] -9999
+```
+
 This returns a value for lilac bloom of day 48, for the coordinates 30 north, -90 west, as of February 25th, 2019.
 
 The above mentioned AGDD products use base temperatures of 32F or 50F and are managed through WCS services. There is also a function to get dynamic AGDD calculations based on a user defined base temperature and a number of other parameters.
@@ -527,6 +682,10 @@ AGDDJun2019<-npn_download_geospatial(
  'gdd:agdd_50f', 
  '2019-06-25'
 )
+```
+
+```
+## [1] "https://geoserver.usanpn.org/geoserver/wcs?service=WCS&version=2.0.1&request=GetCoverage&format=geotiff&coverageId=gdd:agdd_50f&SUBSET=time(\"2019-06-25T00:00:00.000Z\")"
 ```
 
 
@@ -625,46 +784,627 @@ plot(
 )
 ```
 
-## USA-NPN Exercises
 
-### USA-NPN Computational
+## Putting it all together:
+
+
+
+## Combine Point and Raster Data
+
+Observational and gridded data can be visualized or analyzed together for a variety of purposes. Users may want to identify spatial patterns in the alignment of dogwood bloom and the Spring Index bloom model. The current year's lilac leaf out observations may be compared to the 30 year average lilac sub-model of the spring index to see how well the model predicts the observations.
+
+This example shows several data access calls to assemble observational and gridded data.
+
+
+
+Option 1: You can add a parameter to an observational data call to additionally get a gridded layer value for each observation location/date. Note that if you don't specify which sub model of the Spring Index you want,  you will get the SI-x Average layers.
+
+
+```r
+npn_download_site_phenometrics(
+  request_source = 'Your Name Here', 
+  years = '2013',
+  num_days_quality_filter = '30', 
+  species_ids = '35',
+  phenophase_ids = '373', 
+  download_path = 'cl_lilac_data_2013_SIxLeaf.csv',
+  six_leaf_layer = TRUE,
+  six_sub_model = 'lilac'
+)
+```
+
+If you want to append raster data other than Spring Index, Leaf values, there's alternative boolean flags that can be set, including six_bloom_layer for Spring Index, Bloom data, and agdd_layer. Instead of TRUE or FALSE agdd_layer takes 32 or 50 and will correlate each data point with the corresponding AGDD value for the given date using either 32 or 50 base temperature.
+
+
+
+
+Option 2: You can create a combined plot of observational data with modeled/raster data.
+
+Building on the approach for accessing point data from earlier vignettes describing Individual Phenometrics and getting raster data, we can access and plot these products together. In this example, we will look at how well cloned lilac leaf out observations in 2018 are predicted by the lilac leaf sub model of the Spring Index.
+
+### Step 1: Get the data
+
+```r
+LilacLeaf2018<-npn_download_geospatial(
+  'si-x:lilac_leaf_ncep', 
+  '2018-12-31', 
+)
+LilacLeaf2018Obs <-npn_download_individual_phenometrics(
+  request_source = 'Your Name Here', 
+  years = '2018',
+  species_ids = '35',
+  phenophase_ids = '373' 
+)
+```
+
+
+### Step 2: Preparing the data
+
+```r
+coords <- LilacLeaf2018Obs[ , c("longitude", "latitude")]
+data <- as.data.frame(LilacLeaf2018Obs$first_yes_doy)
+crs <- CRS("+proj=utm +zone=18 +datum=WGS84 +units=m +no_defs 
+                 +ellps=WGS84 +towgs84=0,0,0")
+LL_spdf <- SpatialPointsDataFrame(
+  coords = coords,
+  data = data, 
+  proj4string = crs
+)
+```
+
+
+### Step 3: Define style options and create graph
+
+```r
+my.palette <- brewer.pal(n=9,name="OrRd")
+plot(
+  LilacLeaf2018, 
+  col = my.palette,
+  main="2018 Observed and Predicted Lilac Leaf Out"
+)
+plot(
+  LL_spdf,
+  main="Lilac Obs",
+  pch = 21,
+  bg = my.palette,
+  col = 'black',
+  xlim=c(-125.0208,-66.47917),
+  ylim=c(24.0625 ,49.9375),
+  add = TRUE
+)
+legend(
+  "bottomright", 
+  legend=c("Cloned Lilac Leaf Out Observations"),
+  pch = 21,
+  bg = 'white',
+  col = 'black',
+  bty="n", 
+  cex=.8
+)
+```
+
+## Live Demo Code with Lee Marsh of USA-NPN
+
+
+### Basic Utility Functions
+
+```r
+species <- npn_species()
+phenophases <- npn_phenophases()
+
+layer_details <- npn_get_layer_details()
+```
+
+
+```r
+quick_get_phenophase <- function(species_id, date,phenophase_name){
+  phenophases<-npn_phenophases_by_species(c(species_id),date=date)
+  phenophases_species <- phenophases[phenophases$species_id==species_id]$phenophases[[1]]
+  phenophases_species[phenophases_species$phenophase_name==phenophase_name,]$phenophase_id
+}
+
+quick_get_species <- function(species_name){
+  species[species$common_name==species_name,]$species_id
+}
+```
+
+### Download Observational Data
+
+
+```r
+white_oak_id <- quick_get_species("white oak")
+fruits_id<- quick_get_phenophase(white_oak_id,"2017-05-15","Fruits")
+
+# Raw data download
+s2017_white_oak_raw <- npn_download_status_data(
+  request_source = "R Demo",
+  years = c(2017),
+  species_ids = c(white_oak_id),
+  phenophase_ids = c(fruits_id)
+)
+```
+
+### Magnitude Data
+
+```r
+m2017_white_oak_magnitude <- npn_download_magnitude_phenometrics(
+  request_source = "INF550",
+  years = c(2017),
+  species_ids = c(white_oak_id),
+  phenophase_ids = c(fruits_id),
+  period_frequency = "14"
+)
+
+datasets <- npn_datasets()
+
+# NEON data, file download, additional fields
+npn_download_status_data(
+  request_source = "R Demo",
+  years = c(2018:2020),
+  states = c("CO"),
+  dataset_ids = c(16),
+  additional_fields = c("Site_Name"),
+  download_path = "NEON_CO_Data_2018-2010.csv"
+)
+```
+
+### Downloading Geospatial Data
+
+```r
+SIXBloom2018 <- npn_download_geospatial(
+  'si-x:average_bloom_ncep', 
+  '2018-12-31'
+)
+
+
+npn_download_geospatial(
+  'gdd:agdd', 
+  '2018-04-15',
+  output_path = "20180415-32-agdd.tiff"
+)
+
+
+my_point <- npn_get_point_data("gdd:agdd_50f", 33.649, -111.861, "2017-05-15")
+```
+
+### Putting it together
+
+```r
+dogwood_id <- quick_get_species("flowering dogwood")
+dogwood_flowering_id <-
+  quick_get_phenophase(dogwood_id,"2018-05-05","Flowers or flower buds")
+
+dogwood_data <- npn_download_site_phenometrics(
+  request_source = 'Demo', 
+  years = '2018',
+  species_ids = dogwood_id,
+  phenophase_ids = dogwood_flowering_id, 
+  six_leaf_layer = TRUE,
+  agdd=32
+)
+```
+
+### Other Data Sources, e.g. Daymet, MODIS
+
+
+```r
+add_fields <- npn_download_status_data(
+  request_source = "INF550",
+  years = c(2014),
+  species_id = c(4),
+  additional_fields = c("tmaxf","Greenup_0","MidGreenup_0")
+)
+```
+
+## USA-NPN Coding Lab
+
+
+
+```r
+library(rnpn)
+library(ggplot2)
+```
+
+```
+## Warning: package 'ggplot2' was built under R version 3.6.2
+```
+
+```r
+library(neonUtilities)
+```
+
+```
+## Warning: package 'neonUtilities' was built under R version 3.6.2
+```
+
+```r
+library(dplyr)
+```
+
+```
+## Warning: package 'dplyr' was built under R version 3.6.2
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
+source('/Users/kdw223/Research/katharynduffy.github.io/neon_token_source.R')
+```
+1. For the purposes of this exercise we will be focusing on two NEON sites: `HARV` and `CPER`.  Save these two sites into your workplace so that you can feed them into functions and packages.
+
+2.  Define AGGD and write the equation using LaTeX.  What is an appropriate time interval over which we should calculate AGGD? *This will be relevant for following questions*
+
+3. Use the `neonUtilities` package to pull plant phenology observations (DP1.10055.001).  We will work with the `statusintensity` data:
+
+Hints:
+
+```r
+#TOS Phenology Data
+sitesOfInterest <- c("HARV")
+
+dpid <- as.character('DP1.10055.001') #phe data
+ 
+pheDat <- loadByProduct(dpID="DP1.10055.001",
+                     site = sitesOfInterest,
+                     package = "basic",
+                     check.size = FALSE, 
+                     token=NEON_TOKEN)
+
+#NEON sends the data as a nested list, so I need to undo that
+# unlist all data frames
+list2env(pheDat ,.GlobalEnv)
+summary(phe_perindividualperyear)
+summary(phe_statusintensity)
+
+#remove duplicate records
+phe_statusintensity <- select(phe_statusintensity, -uid)
+phe_statusintensity <- distinct(phe_statusintensity)
+```
+
+
+```r
+library(lubridate)
+```
+
+```
+## Warning: package 'lubridate' was built under R version 3.6.2
+```
+
+```
+## 
+## Attaching package: 'lubridate'
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     date, intersect, setdiff, union
+```
+
+```r
+#Format dates
+phe_statusintensity$date <- as.Date(phe_statusintensity$date, "%Y-%m-%d")
+```
+
+```
+## Warning in as.POSIXlt.POSIXct(x, tz = tz): unknown timezone '%Y-%m-%d'
+```
+
+```r
+phe_statusintensity$editedDate <- as.Date(phe_statusintensity$editedDate, "%Y-%m-%d")
+```
+
+```
+## Warning in as.POSIXlt.POSIXct(x, tz = tz): unknown timezone '%Y-%m-%d'
+```
+
+```r
+phe_statusintensity$year <- as.numeric(substr(phe_statusintensity$date, 1, 4))
+phe_statusintensity$month <- as.numeric(format(phe_statusintensity$date, format="%m"))
+```
+
+
+In your `phe_statusintensity` data.frame pick a phenophase name of interest:
+
+
+```r
+unique(phe_statusintensity$phenophaseName)
+```
+
+```
+## [1] "Increasing leaf size" "Breaking leaf buds"   "Falling leaves"      
+## [4] "Leaves"               "Open flowers"         "Colored leaves"      
+## [7] "Initial growth"
+```
+And select a single taxon:
+
+```r
+unique(phe_perindividual$taxonID)
+```
+
+```
+##  [1] "QURU"  "ACRU"  "ARNU2" "MEVI"  "TRBOB" "UVSE"  "MIRE"  "MACA4" "MARAR"
+## [10] "ACPE"  "PRSES" "FAGR"  "VIAC"  "FRAM2" "BELE"  "VACO"  "BEAL2" "ACSAS"
+## [19] "TSCA"
+```
+
+Now create a new, filtered `dataframe` only including those observations and print a summary.  You'll also want to filter for typical things like `NA` values, and think about how you'll work with data that comes in factors or strings.  Are there ways you could extract numerical values for plotting?  Could you `count` data? Summarize your strategy.
+
+4.  Using dpid **DP1.00002.001** Single Aspirated Air Temperature calculate AGGD based on NEON tower data over the time period you decidided upon in question 1.  To save you time and frustration I've placed some **mostly complete** example code for *one* height on the tower *just for Harvard*.  **You will need to determine which height you think it best and conmplete these calculations for both sites.**  You will also need to consder things like filtering your temperature data for quality flags, and converting from GMT (Greenwich Mean Time) to [your location's time](https://stackoverflow.com/questions/1395117/how-do-you-convert-dates-times-from-one-time-zone-to-another-in-r):
+
+
+```r
+##load libraries
+#library(tidyverse)
+library(neonUtilities)
+#install.packages('mgcv')
+library(mgcv)
+```
+
+
+
+```r
+dpid <- as.character('DP1.00002.001')  ##single aspirated air temperature
+
+tempDat <- loadByProduct(dpID=dpid,
+                        site = "HARV", 
+                        startdate = "2017-01",
+                        enddate="2017-12",
+                        avg=30,
+                        package = "basic",
+                        check.size = FALSE)
+
+df <- tempDat$SAAT_30min
+```
+
+
+```r
+# GDD typically reported in F
+# convert df temps
+df$meanTempF=df$tempSingleMean*1.8+32
+
+#pull date value from dateTime
+df$date <- substr(df$endDateTime, 1, 10)
+```
+
+**Group data and summarize values**
+
+Here, I will group the 30-minute temperature averages by data (to get daily values)
+
+**You will want to consider which vertical position is most appropriate to use for your analysis.**
+  
+You can view the sensor position data in the sensor_positions table downloaded above, where HOR.VER are the horizontal and vertical position indices (separated by a period),and zOffset is in meters above the ground:
+
+
+```r
+  select(tempDat$sensor_positions_00002, c(HOR.VER, zOffset))
+```
+
+you can also view all of the sensor position info with the following line:
+
+
+```r
+head(tempDat$sensor_positions_00002)
+```
+For example, the lowest position sensor (verticalPosition == 010) may be most appropriate for comparison with the phenological state of very short plants, while the highest verticalPosition may be better for comparison with canopy trees. 
+
+Here I'll select level 1 for demonstration
+
+```r
+day_temp <- df%>%
+  filter(verticalPosition=="010")%>%
+  group_by(siteID, date)%>%
+  mutate(dayMaxTemp=max(meanTempF), dayMinTemp=min(meanTempF),
+         dayMeanTemp=mean(meanTempF))%>%
+  select(siteID, date, dayMaxTemp, dayMinTemp, dayMeanTemp)%>%
+  distinct()
+
+##alternative, simplified mean, consistent with many GDD calculations 
+### does accumulation differ for true mean vs. simplified mean?
+day_temp$mean2 <- (day_temp$dayMinTemp + day_temp$dayMaxTemp)/2
+```
+
+**Caluculate daily GDD for a true mean**
+
+*50 degrees F is a common base temperature used to calculate plant specific GDD. When might you select a different base temp?*
+
+*How might you want to deal with different 'means' of temperature?  A couple of options below:*
+
+```r
+day_temp$GDD1 <- ifelse(day_temp$dayMeanTemp-50 < 0, 0, round(day_temp$dayMeanTemp-50, 0))
+day_temp$GDD2 <- ifelse(day_temp$mean2-50 < 0, 0, round(day_temp$mean2-50, 0))
+day_temp$GDD3 <- ifelse(day_temp$dayMeanTemp-50 < 0, 0, round(day_temp$mean2-50, 0))
+```
+
+
+```r
+# define year
+day_temp$year <- substr(day_temp$date, 1, 4)
+
+#function to add daily GDD values
+sumr.2 <- function(x) {
+	sapply(1:length(x), function(i) sum(x[1:i]))
+}
+
+#calculate Accumlated GDD
+day_temp$AGDD3 <- sumr.2(x=day_temp$GDD3)
+day_temp$AGDD2 <- sumr.2(x=day_temp$GDD2)
+day_temp$AGDD1 <- sumr.2(x=day_temp$GDD1)
+day_temp <- ungroup(day_temp)
+```
+
+
+
+```r
+library(plotly)
+
+
+p = plot_ly() %>%
+    add_trace(
+      x= ~day_temp$date,
+      y = ~ day_temp$AGDD1,
+      type= 'scatter',
+      mode = "lines",
+      line = list(width = 1, color = "rgb(120,120,120)"),
+      name = "Calculated Mean Temp",
+      showlegend = TRUE, 
+      opacity=.5
+    )%>%
+  add_trace(
+      data = day_temp,
+    x = ~ date,
+    y = ~ AGDD2,
+    name= 'Simplified Mean Temp',
+    showlegend = TRUE,
+    type = 'scatter',
+    mode = 'lines',
+    line = list(width = 1),
+    opacity=.5)%>%
+  add_trace(
+      data = day_temp,
+    x = ~ date,
+    y = ~ AGDD3,
+    name= 'Filtered Using Both',
+    showlegend = TRUE,
+    type = 'scatter',
+    mode = 'lines',
+    line = list(width = 1),
+    opacity=.2)
+p
+```
+
+5.  Plot your calculated AGGD and comment on your calculations.  Do you need to revise your time horizon or sensor height?
+
+
+
+6. Now we're going to build a model to see how AGGD impacts phenological status.  But Wait.  Is phenology **all** driven by temperature?  Should you consider any other variables?  What about AGGD **and** just plain temperature?   Also, we have one very temperate site, and another that is a semi-arid grassland.  Should water availability of any sort be considered?  Any other variables or data?
+
+Create a [GAM (Generalized Additive Model)](https://dereksonderegger.github.io/578/7-beyond-linearity.html#gams) for your phenological data including any variables you think might be relevant.  
+
+One of the bonuses of a GAM is that it will tell you which variables are relevant and which aren't so you can iterate a bit on your model and revise it.  You might want to test a few positions on your asipirated air temperature, or a few other additional variables.  Your selection is up to you, but you must document and justify your decision.
+
+Hints:
+```
+library(mgcv)
+model <- mgcv::gam(phenological_status_you_picked ~ AGGD + s(temp or maybe precip) + s(doy), data=your_data)
+mgcv::summary.gam(model) 
+```
+
+and plot your models for each site:
+Hint:
+```
+mgcv::plot.gam(model, pages=1 )
+```
+7.  Now that we have a model for NEON data, let's use the rnpn package to see how adding additional data could improve our fit. Use the `taxonID` that you selected at each NEON tower, and feed that to the `rnpn` package to grab observational data and increase your number of observations.  
+
+Hints:
+
+* Feeding a state or other region will make the data more congruent
+* You'll likely need to either request the phenophase that you selected from NEON, or filter again.
+* It might make your life easier to request the NEON data from `rnpn` as they host it as well.
+
+8. Pull AGGD from USA-NPN based on the observations you just pulled.
+
+9. Combine your NEON and USA-NPN data into the same data.frame and re-fit your GAM.  
+
+* Summarize your new model
+* Plot your new model
+* Comment on your new model: was it improved?  If so how?
 
 
 <div id="ds-challenge" markdown="1">
 
-### USA-NPN Written
+## NEON TOS Phenology Data Lecture
 
-**Question 1:** How might or does USA-NPN
-intersect with your current research or future career goals? *(1 paragraph)*
-</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aSapVSBoUA8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+> Please watch the recorded lecture with Dr. Katie Jones, lead plant ecologist with NEON Battelle
+
+## Understanding Observation Biases and Censoring in Citizen Science Data
+
+> The following information was adapted from Zachmann et al. (in prep) and is not to be distributed or used beyond this course.
+
+One significant barrier to advancing our understanding and utilization of phenology information is wrapped up in the ability of existing models to represent drivers of phenology and phenological shifts appropriately. 
+
+<img src="./docs/images/700phenology.jpg" width="350" />
+
+The specific timing of phenological events, such as first leaf or first flower in plants, is affected by multiple, potentially interacting climatic and geophysical factors. For example, soil moisture supply, atmospheric demand for water, frost events, day length, and terrain have all been shown to influence species’ phenology. **Many of these factors vary over time as well as space.** Additionally, some of their *effects may themselves* vary over time as a result of interactions among controls on phenology. 
+
+**For instance:**
+
+* Precipitation and temperature likely interact to initiate phenological events; 
+
+* Precipitation triggers a state change only after enough heat has accumulated at a given site over the course of the growing season.
+
+Phenological predictions, specifically, consist of estimates of the anticipated onset dates of key events: *bud break and the arrival of spring, for example,  or plant senescence in the fall*. 
+
+In order to track anomalies in real-time, we need forecasts of phenology.  Further, we need forecasts of long-term shifts in phenology as a result of climate change. However, making any such predictions requires both **reasonable** *and* **skillful** models of phenology. 
+
+>By “reasonable” we refer to models that are appropriate for the data – including any “nonignorable” aspects of the sampling design, Gelman et al. (2013) – and the underlying ecological process, while by “skillful” we mean that the model has adequate predictive performance. 
+
+### Many existing modeling approaches fail in one (or both) regards.
+
+Much of the existing work relies on models that implicitly or explicitly ignore key characteristics of phenological data and the ecological process of phenology. For example, many studies ignore censoring and other aspects of the sampling design underlying observations, including the location and nestedness of sampling units, or incompletely account for the dynamic nature of phenological drivers. Efforts that fail to account for these features of the data are liable to misrepresent the ecological process, thereby making predictions that are demonstrably wrong and potentially biased. Though it can be argued that some information is better than no information, scientific understanding and consequential management actions require the right information. In other words, **it is better to be ignorant than misled.**
+
+### Censoring
+
+Time-to-event data are rarely recorded accurately, in which case observations are said to be censored. There are several types of censoring we must consider. In the context of plant phenology, perhaps the most common is **interval censoring**, which occurs when a **phenological event transpires between visits to a site**. 
+
+<img src="./docs/images/cens1.png" width="1440" />
+
+> Illustration of the types of censoring that are relevant to analyses of phenological data. Although shown extending from zero to positive infinity, the x-axis for most phenological events spans the length of a growing season and starts on Jan. 1. The timing, ti, of the event (e.g., first leaf), in relation to interval boundaries li and ri, is indicated by the position of the leaf along the x- axis, while actual site visits are represented by the presence of the person. Note that - in the case of right-censoring – the event need not occur, hence the question mark. Phenological observations are almost never observed exactly, as depicted on the bottom-most timeline for uncensored observations. (Zachmann et al, in prep)
+
+Taking first leaf as an example, a deciduous shrub at site i might be completely leafless at the time of the first visit, li, but could have several emerging leaves at time of the second visit ri. The size of the interval depends on how frequently the site is visited, and may span days or weeks. All that is known is that the event of interest happened in (li,ri), rather than an exact time. 
+
+Censoring is often ignored in analysis, or it is addressed, potentially inappropriately, using imputation techniques. When the intervals are small relative to the full timespan of interest, the bias introduced by interval censored observations may be small enough to be safely ignored. Either such assumptions must be tested or statistical methods that account for this feature of the sampling design must be used.
+
+## So then how can we model censored data?
+
+<img src="./docs/images/cens2.png" width="1440" />
+
+>An extension of the ontology developed above, this figure shows a simulated set of observations for eight sites chosen at random from the N = 100 sites used to develop the concept figures. Three types of censoring can be seen in this figure. Not all phenological observations are created equally, nor systematically! (Zachmann et al, in prep)
 
 
+For logistical or other reasons, record-keeping at some sites starts earlier than others. Additionally, some of the observers make visits to sites more frequently than others. Analyses that do not account for this sampling process explicitly are somewhat impaired — they must filter the observations for known events (times represented by visits shown in purple) and must discard others (e.g., the data for sites 30 and 77), or must impute times using single-point imputation techniques, which have been shown to lead to invalid inference.
 
-<div id="ds-challenge" markdown="1">
+<img src="./docs/images/cens3.png" width="1440" />
 
-**Question 2:**  Use the USA-NPN visualization tool (www.usanpn.org/data/visualizations) to answer the following questions. Consider the research question that you may explore as your final semester project or a current project that you are working on and answer each of the following questions:
-
-·      Are there species, regions, or phenophases of interest to you?
-
-·      Is there geospatial phenology data that is useful for your work (e.g. Spring Indices or Growing Degree Days)?
-
-·      What is the timeframe of data you will need to address your research interests?
-
-·      What is the spatial extent of data you will need?
+>The histogram seen in the upper panel is constructed on the basis of the true, unobserved leaf out dates. Metaphorically speaking, it is the pile of leaves that would be formed if each leaf (in addition to the other 92 sites not shown) were to fall straight to the bottom of the plot. The histogram on the bottom (in purple) is created using actual first leaf observations (the event dates corresponding to the purple “botanists” above). (Zachmann et al, in prep)
 
 
+Here the authors seek to model the latent distribution of event times (the green line overlaying the histogram in the upper panel) that gives rise to the observations seen in the lower panel. As they begin to introduce both greater complexity, realism, and utility, they can model the moments (or parameters) of the latent distribution using well-established deterministic models involving climatic and other phenological forcings.
 
-**Question 3:** Consider either your current or future research, or a question you’d like to address during this course:
+## Intro to USA-NPN Culmination Activity
 
-·       What climate data or additional phenological datasets would be valuable to address your research interests?
+**Note: I fully realize that phenology data may not be relevant to all of you.**  
 
-·       What challenges, if any, could you foresee when beginning to work with these data?
+*Two suggestions:*
 
+1. Be creative, example: Say you work with ground water hydrology, how could leaves on trees perhaps be relevant to groundwater recharge rate?  Might there be a lag?  Etc etc.
 
+2. I will fully accept alternate citizen-science-based datasets and project proposals based on those.  The challenge of taking this option is that we have not covered that data.
 
+Write up a 1-page **derived data product or research pipeline proposal** summary of a project that you might want to explore using USA-NPN data. Include the types of USA-NPN (and other data) that you will need to implement this project. Save this summary as you will be refining and adding to your ideas over the course of the semester.  
 
-<div id="ds-challenge" markdown="1">
+Sugestions: 
 
-**Intro to USA-NPN Culmination Activity**
+1. Tables or bullet lists of **specific** data products
 
-Write up a 1-page summary of a project that you might want to explore using USA-NPN data over the duration of this course. Include the types of USA-NPN (and other data) that you will need to implement this project. Save this summary as you will be refining and adding to your ideas over the course of the semester.
+2. An **overarching high-quality figure** to show how these data align
+
+3. One paragaph summarizing *how* this data or analysis is useful to **you and/or the infrastructure**.

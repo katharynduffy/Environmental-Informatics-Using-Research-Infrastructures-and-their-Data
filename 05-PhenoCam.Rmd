@@ -1,10 +1,7 @@
 
-# Digital Repeat Photography Networks
+# PhenoCam: Digital Repeat Photography Networks & Methods
 
-
-
-
-> Estimated Time: 2 hours
+> Estimated Time: 4 hours
 
 
 **Course participants**: As you review this information, please
@@ -19,15 +16,178 @@ address that question, that you may want to explore while pursuing this course.
 
 At the end of this activity, you will be able to:
 
-  1. perform basic image processing.
+  1. Understand how phenology is a large driver of biosphere-atmosphere interactions, and is a sensitive indicator of climate change.
+  
+  2. Summarize data which can be pulled out of digital repeat imagery
+  
+  3. Describe basic processing of digital repeat photography
+  
+  3. Perform basic image processing.
 
-  2. estimate image haziness as an indication of fog, cloud or other natural or artificial factors using the `hazer`R package.
+  4. Estimate image haziness as an indication of fog, cloud or other natural or artificial factors using the `hazer`R package.
 
-  3. Define and use a Region of Interest, or ROI, for digitial repeat photography methods.
+  5. Define and use a Region of Interest, or ROI, for digitial repeat photography methods.
 
-  4. Handle Field-of-View (FOV) shifts in digital repeat photography.
+  6. Handle Field-of-View (FOV) shifts in digital repeat photography.
 
-  5. Extract timeseries data from a stack of images using color-based metrics.
+  7. Extract timeseries data from a stack of images using color-based metrics.
+
+## The PhenoCam Network Mission & Design
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_4uHLXL1yZA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+**Since its inception, the objective of the PhenoCam network has been to serve as a repository for phenologically-relevant, digital, repeat (time-lapse) imagery, and to make that imagery, and derived data products, freely available to a wide array of third-party data end-users, including researchers, educators, and the general public.**
+
+
+"Thus, imagery from the PhenoCam archive is made publicly available, without restriction, and we encourage you to download imagery and datasets for use in your own research and teaching. In return, we ask that you acknowledge the source of the data and imagery, and abide by the terms of the Creative Commons CC BY Attribution License." 
+
+
+
+### Relevant documents & background information:
+
+* [The PhenoCam Gallery](https://phenocam.sr.unh.edu/webcam/gallery/)
+
+* [A map of PhenoCam locations](https://phenocam.sr.unh.edu/webcam/network/map/)
+
+* [A site table of all PhenoCams](https://phenocam.sr.unh.edu/webcam/network/table/)
+
+* [PhenoCam metadata](https://phenocam.sr.unh.edu/webcam/tools/site_metadata_format/)
+
+## PhenoCam’s Spatial design:
+
+The PhenoCam Network is:
+
+* A voluntary 'opt in' network with collaborators who are varied, including: 
+
+  + Individual research labs or field sites in North America, Europe, Asia, Africa, South America
+
+  + Individuals who think it would be cool to be part of a network like this
+  
+
+
+The project is largely run by the Richardson Lab at NAU, with support from key collaborators at the University of New Hampshire who provide server and website management.
+
+Anyone can buy a relatively inexpensive camera, run some simple scripts to correct for things like auto-white balance (which we will cover later), and patch in to the netowrk.  PhenoCam then retrieves, archieves and processess imagery for distribution.
+
+
+
+### PhenoCam as a Near Surface Remote Sensing Technique
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/l3d3shbF2_s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+> 6 years of PhenoCam imagery at Harvard Forest
+
+
+* PhenoCam uses imagery from networked digital cameras for continuous monitoring of plant canopies
+
+* Images are recorded approximately every 30 minutes (every 15 minutes for NEON), sunrise to sunset, 365 days a year
+
+* The scale of observations is comparable to that of tower-based land-atmosphere flux measurements
+
+* PhenoCams provide a direct link between what is happening on the ground and what is seen by satellites
+PhenoCams cover a wide array of:
+
+* Plant Funtional Types (PFTs)
+
+```{r, echo=FALSE}
+knitr::include_graphics('./images/phenocams.png')
+```
+
+* Ecoregions
+
+```{r, echo=FALSE}
+knitr::include_graphics('./images/phenocam_zones.png')
+```
+
+> Spatial distribution of PhenoCam data across ecological regions of North America. Background map
+illustrates USA Environmental Protection Agency Level I Ecoregions. Data counts have been aggregated to
+a spatial resolution of 4°, and the size of each circle corresponds to the number of site-years of data in the 4×4°
+grid cell. Sites in Hawaii, Puerto Rico, Central and South America, Europe, Asia and Africa (total of 88 site
+years) are not shown. (Seyednasrollah et al., 2019)
+
+* Co-Located Networks
+ 
+ + [Flux towers](https://phenocam.sr.unh.edu/webcam/network/search/?sitename=spruce&type=I&primary_vegtype=&dominant_species=&active=unknown&fluxdata=unknown&group=)
+ 
+ + [NEON](https://phenocam.sr.unh.edu/webcam/network/search/?sitename=&type=I&primary_vegtype=&dominant_species=&active=unknown&fluxdata=false&group=NEON)
+ 
+ + [LTER/LTAR](https://phenocam.sr.unh.edu/webcam/network/search/?sitename=&type=I&primary_vegtype=&dominant_species=&active=unknown&fluxdata=false&group=LTAR)
+
+* Ambient vs. Experimental set ups
+
+```{r, echo=FALSE}
+knitr::include_graphics('./images/spruce_phenocam.png')
+```
+
+
+  - [SEGA sites](https://phenocam.sr.unh.edu/webcam/network/search/?sitename=sega&type=I&primary_vegtype=&dominant_species=&active=unknown&fluxdata=unknown&group=)
+
+  - [SPRUCE Experiment](https://phenocam.sr.unh.edu/webcam/network/search/?sitename=spruce&type=I&primary_vegtype=&dominant_species=&active=unknown&fluxdata=unknown&group=)
+
+### How PhenoCams Pull Data
+
+```{r, echo=FALSE}
+knitr::include_graphics('./images/Screen Shot 2020-09-13 at 5.46.32 PM.png')
+```
+
+### Leveraging camera near-infrared (NIR) capabilities
+
+[Petach et al., Agricultural & Forest Meteorology 2014](http://harvardforest.fas.harvard.edu/publications/pdfs/Petach_AgriForestMeteor_2014.pdf)
+
+CMOS sensor is sensitive to \lambda > 700 nm
+
+```{r, echo=FALSE}
+knitr::include_graphics('./images/phenocamNIR.png')
+```
+
+A software-controlled filter enables sequential VIS (RGB color) and VIS+NIR (monochrome) images
+Potential applications:
+
+* false color images
+
+* “camera NDVI” as alternative to GCC
+
+```{r, caption='Winter vs. Summer NIR', echo=FALSE,}
+
+knitr::include_graphics(c("./images/phenocamFALSE1.png","./images/phenocamFALSE2.png"))
+``` 
+
+
+
+## Digital Repeat Photography Written Questions
+
+
+*Suggested completion: Before Digital Repeat Photography methods (day 2 PhenoCam)*
+
+**Question 1:** What do you see as the value of the images themselves?  The 1 or 3-day products, the transition dates?  How could they be used for different applications?
+
+**Question 2:** Why does PhenoCam take photos every 15-30 minutes, but summarize to 1 or 3-day products?
+
+**Question 3:** Why does canopy color coordiante with photosynthesis in many ecosystems?  Name an example of a situation where it wouldn't and explain why.
+
+**Question 4:** Why are there sometimes multiple **Regions of Interest (ROIs)** for a PhenoCam?
+
+**Question 5:** How might or does the PhenoCam project
+intersect with your current research or future career goals? *(1 paragraph)*
+
+**Question 6:**
+Use the map on the [PhenoCam website](https://phenocam.sr.unh.edu/webcam/network/map/) to answer the following questions. Consider the research question that you may explore as your final semester project or a current project that you are working on and answer each of the following questions:
+
+* Are there PhenoCams that are in study regions of interest to you?  
+* Which PhenoCam sites does your current research or final project ideas
+coincide with?  
+* Are they connected to other networks (e.g. LTAR, NEON, Fluxnet)?  
+* What is the data record length for the sites you're interested in?
+
+**Question 7:**
+Consider either your current or future research, or a question you’d like to
+address durring this course:
+
+* Which types of PhenoCam data may be more useful to address these questions?
+* What non-PhenoCam data resources could be combined to help address your question?
+* What challenges, if any, could you foresee when beginning to work with these
+data?
+
 
 
 ## Introduction to Digital Repeat Photography Methods
@@ -70,16 +230,256 @@ For more details about digital repeat photogrpahy you can check out the followin
 - <a href="https://bnasr.github.io/papers/Seyednasrollah_et_al_2019_SciData.pdf">Seyednarollah, et al. 2019, "Tracking vegetation phenology across diverse biomes using Version 2.0 of the PhenoCam Dataset "</a>.
 - <a href="https://bnasr.github.io/papers/Seyednasrollah_et_al_2019_PRS.pdf">Seyednarollah, et al. 2019, "Data extraction from digital repeat photography using xROI: An interactive framework to facilitate the process"</a>.
 
+## Pulling Data via the *phenocamapi* Package
 
-```{r, echo=FALSE}
-knitr::include_graphics('./images/repeat_photo.jpg')
+The <a href="https://cran.r-project.org/web/packages/phenocamapi/index.html" target="_blank"> *phenocamapi* R package</a>
+is developed to simplify interacting with the
+<a href="https://phenocam.sr.unh.edu" target="_blank">PhenoCam network</a>
+dataset and perform data wrangling steps on PhenoCam sites' data and metadata.
+
+This tutorial will show you the basic commands for accessing PhenoCam data
+through the PhenoCam API. The *phenocampapi* R package is developed and maintained by
+<a href="https://bnasr.github.io/" target="_blank">Bijan Seyednarollah</a>.
+The most recent release is available on GitHub (<a href="https://github.com/bnasr/phenocamapi" target="_blank">PhenocamAPI</a>).
+<a href="https://github.com/bnasr/phenocamapi/tree/master/vignettes" target ="_blank">Additional vignettes</a>
+can be found on how to merge external time-series (e.g. Flux data) with the
+PhenoCam time-series.
+
+We begin with several useful skills and tools for extracting PhenoCam data
+directly from the server:
+
+- Exploring the PhenoCam metadata
+- Filtering the dataset by site attributes
+- Extracting the list of midday images
+- Downloading midday images for a given time range
+
+## Exploring PhenoCam metadata
+
+Each PhenoCam site has specific metadata including but not limited to how a site
+is set up and where it is located, what vegetation type is visible from the
+camera, and its climate regime. Each PhenoCam may have zero to several Regions
+of Interest (ROIs) per vegetation type. The *phenocamapi* package is an
+interface to interact with the PhenoCam server to extract those data and
+process them in an R environment.
+
+To explore the PhenoCam data, we'll use several packages for this tutorial.
+
+
+```{r, quiet=TRUE}
+
+library(data.table)
+library(phenocamapi)
+library(lubridate)
+library(jpeg)
 ```
 
 
->1929 - 2016: Alpine Mountains near East Fork Toklat River, Alaska.  Credit: Denali National Park (NPS)
+We can obtain an up-to-date `data.frame` of the metadata of the entire PhenoCam
+network using the `get_phenos()` function. The returning value would be a
+`data.table` in order to simplify further data exploration.
+
+
+```{r, cache=TRUE}
+
+# obtaining the phenocam site metadata from the server as data.table
+phenos <- phenocamapi::get_phenos()
+
+# checking out the first few sites
+head(phenos$site)
+
+# checking out the columns
+colnames(phenos)
+```
+
+Now we have a better idea of the types of metadata that are available for the
+Phenocams.
+
+### Remove null values
+
+We may want to explore some of the patterns in the metadata before we jump into
+specific locations.
+
+Let's look at Mean Annual Precipitation (MAP) and Mean Annual
+Temperature (MAT) across the different field site and classify those by the
+primary vegetation type (`primary_veg_type`) for each site. We can find out what
+the abbreviations for the vegetation types mean from the following table:
+
+
+|Abbreviation|Description|
+|-|-|
+| AG |	agriculture |
+| DB |	deciduous broadleaf |
+| DN |	deciduous needleleaf |
+| EB |	evergreen broadleaf |
+| EN |	evergreen needleleaf |
+| GR |	grassland |
+| MX |	mixed vegetation (generally EN/DN, DB/EN, or DB/EB) |
+| SH |	shrubs |
+| TN |	tundra (includes sedges, lichens, mosses, etc.) |
+| WT |	wetland |
+| NV |	non-vegetated |
+| RF |	reference panel | 	 
+| XX |	unspecified |
+
+
+To do this we'd first want to remove the sites where there is not data and then
+plot the data.
+
+
+```{r, cache=TRUE}
+# removing the sites with unkown MAT and MAP values
+phenos <- phenos[!((MAT_worldclim == -9999)|(MAP_worldclim == -9999))]
+
+# extracting the PhenoCam climate space based on the WorldClim dataset
+# and plotting the sites across the climate space different vegetation type as different symbols and colors
+phenos[primary_veg_type=='DB', plot(MAT_worldclim, MAP_worldclim, pch = 19, col = 'green', xlim = c(-5, 27), ylim = c(0, 4000))]
+
+phenos[primary_veg_type=='DN', points(MAT_worldclim, MAP_worldclim, pch = 1, col = 'darkgreen')]
+
+phenos[primary_veg_type=='EN', points(MAT_worldclim, MAP_worldclim, pch = 17, col = 'brown')]
+
+phenos[primary_veg_type=='EB', points(MAT_worldclim, MAP_worldclim, pch = 25, col = 'orange')]
+
+phenos[primary_veg_type=='AG', points(MAT_worldclim, MAP_worldclim, pch = 12, col = 'yellow')]
+
+phenos[primary_veg_type=='SH', points(MAT_worldclim, MAP_worldclim, pch = 23, col = 'red')]
+
+
+legend('topleft', legend = c('DB','DN', 'EN','EB','AG', 'SH'),
+       pch = c(19, 1, 17, 25, 12, 23),
+       col =  c('green', 'darkgreen', 'brown',  'orange',  'yellow',  'red' ))
+```
 
 
 
+### Filtering using attributes
+
+Alternatively, we may want to only include Phenocams with certain attributes in
+our datasets. For example, we may be interested only in sites with a co-located
+flux tower. For this, we'd want to filter for those with a flux tower using the
+`flux_sitenames` attribute in the metadata.
+
+
+
+```{r, cache=TRUE}
+# store sites with flux_data available and the FLUX site name is specified
+phenofluxsites <- phenos[flux_data==TRUE&!is.na(flux_sitenames)&flux_sitenames!='',
+                         .(PhenoCam=site, Flux=flux_sitenames)] # return as table
+#and specify which variables to retain
+
+phenofluxsites <- phenofluxsites[Flux!='']
+
+# see the first few rows
+head(phenofluxsites)
+
+```
+
+We could further identify which of those Phenocams with a flux tower and in
+deciduous broadleaf forests (`primary_veg_type=='DB'`).
+
+
+```{r, cache=TRUE}
+
+#list deciduous broadleaf sites with flux tower
+DB.flux <- phenos[flux_data==TRUE&primary_veg_type=='DB',
+                  site]  # return just the site names as a list
+
+# see the first few rows
+head(DB.flux)
+```
+
+
+
+## Download midday images
+
+While PhenoCam sites may have many images in a given day, many simple analyses
+can use just the midday image when the sun is most directly overhead the canopy.
+Therefore, extracting a list of midday images (only one image a day) can be useful.
+
+
+
+```{r, cache=TRUE}
+
+# obtaining midday_images for dukehw
+duke_middays <- get_midday_list('dukehw')
+
+# see the first few rows
+head(duke_middays)
+```
+
+Now we have a list of all the midday images from this Phenocam. Let's download
+them and plot
+
+
+```{r, cache=TRUE}
+# download a file
+destfile <- tempfile(fileext = '.jpg')
+
+# download only the first available file
+# modify the `[1]` to download other images
+download.file(duke_middays[1], destfile = destfile, mode = 'wb')
+
+# plot the image
+img <- try(readJPEG(destfile))
+if(class(img)!='try-error'){
+  par(mar= c(0,0,0,0))
+  plot(0:1,0:1, type='n', axes= FALSE, xlab= '', ylab = '')
+  rasterImage(img, 0, 0, 1, 1)
+}
+```
+
+
+
+### Download midday images for a given time range
+
+Now we can access all the midday images and download them one at a time. However,
+we frequently want all the images within a specific time range of interest. We'll
+learn how to do that next.
+
+
+```{r, cache=TRUE}
+
+# open a temporary directory
+tmp_dir <- tempdir()
+
+# download a subset. Example dukehw 2017
+download_midday_images(site = 'dukehw', # which site
+                       y = 2017, # which year(s)
+                       months = 1:12, # which month(s)
+                       days = 15, # which days on month(s)
+                       download_dir = tmp_dir) # where on your computer
+
+# list of downloaded files
+duke_middays_path <- dir(tmp_dir, pattern = 'dukehw*', full.names = TRUE)
+
+head(duke_middays_path)
+
+```
+
+We can demonstrate the seasonality of Duke forest observed from the camera. (Note
+this code may take a while to run through the loop).
+
+```{r, cache=TRUE}
+n <- length(duke_middays_path)
+par(mar= c(0,0,0,0), mfrow=c(4,3), oma=c(0,0,3,0))
+
+for(i in 1:n){
+  img <- readJPEG(duke_middays_path[i])
+  plot(0:1,0:1, type='n', axes= FALSE, xlab= '', ylab = '')
+  rasterImage(img, 0, 0, 1, 1)
+  mtext(month.name[i], line = -2)
+}
+mtext('Seasonal variation of forest at Duke Hardwood Forest', font = 2, outer = TRUE)
+```
+
+
+The goal of this section was to show how to download a limited number of midday images from the PhenoCam server. However, more extensive datasets should be downloaded from the <a href="https://phenocam.sr.unh.edu/webcam/network/download/"> PhenoCam </a>.
+
+
+The *phenocamapi* R package is developed and maintained by
+<a href="https://bnasr.github.io/">Bijan Seyednarollah</a>.
+The most recent release is available from
+<a href="https://github.com/bnasr/phenocamapi" target="_blank">https://github.com/bnasr/phenocamapi</a>.
 
 ## Detecting Foggy Images using the 'hazer' R Package
 
@@ -588,191 +988,61 @@ knitr::include_graphics('docs/images/xROI-ms2019.png')
 ```
 >xROI published in ISPRS Journal of Photogrammetry and Remote Sensing, 2019
 
-## Challenge: Use xROI
+### Challenge: Use xROI
 
 Let's use xROI on a little more challenging site with field of view shifts.
 
 Download and extract the data set from
 <a href="http://bit.ly/2DrZgA1">this link (direct download, 218 MB)</a>
 and follow the above steps to extract the time-series.
-</div>
 
-
-***
 
 The *xROI* R package is developed and maintained by
 <a href="https://bnasr.github.io/">Bijan Seyednarollah</a>.
 The most recent release is available from <a href="https://github.com/bnasr/xROI" target="_blank">https://github.com/bnasr/xROI</a>.
 
 
-## The PhenoCam Network Mission & Design
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_4uHLXL1yZA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
-## Pulling Data via the *phenocamapi* Package
+## Hands on: Digital Repeat Photography Computational
+First let's load some packages:
 
 
-
-The <a href="https://cran.r-project.org/web/packages/phenocamapi/index.html" target="_blank"> *phenocamapi* R package</a>
-is developed to simplify interacting with the
-<a href="https://phenocam.sr.unh.edu" target="_blank">PhenoCam network</a>
-dataset and perform data wrangling steps on PhenoCam sites' data and metadata.
-
-This tutorial will show you the basic commands for accessing PhenoCam data
-through the PhenoCam API. The *phenocampapi* R package is developed and maintained by
-<a href="https://bnasr.github.io/" target="_blank">Bijan Seyednarollah</a>.
-The most recent release is available on GitHub (<a href="https://github.com/bnasr/phenocamapi" target="_blank">PhenocamAPI</a>).
-<a href="https://github.com/bnasr/phenocamapi/tree/master/vignettes" target ="_blank">Additional vignettes</a>
-can be found on how to merge external time-series (e.g. Flux data) with the
-PhenoCam time-series.
-
-We begin with several useful skills and tools for extracting PhenoCam data
-directly from the server:
-
-- Exploring the PhenoCam metadata
-- Filtering the dataset by site attributes
-- Downloading PhenoCam time-series data
-- Extracting the list of midday images
-- Downloading midday images for a given time range
-
-## Exploring PhenoCam metadata
-
-Each PhenoCam site has specific metadata including but not limited to how a site
-is set up and where it is located, what vegetation type is visible from the
-camera, and its climate regime. Each PhenoCam may have zero to several Regions
-of Interest (ROIs) per vegetation type. The *phenocamapi* package is an
-interface to interact with the PhenoCam server to extract those data and
-process them in an R environment.
-
-To explore the PhenoCam data, we'll use several packages for this tutorial.
-
-
-```{r}
-
-library(data.table)
+```{r, warning=FALSE, quiet=TRUE}
+library(jsonlite)
 library(phenocamapi)
-library(lubridate)
-library(jpeg)
+library(plotly)
+library(phenocamr)
+library(dplyr)
 ```
 
-
-We can obtain an up-to-date `data.frame` of the metadata of the entire PhenoCam
-network using the `get_phenos()` function. The returning value would be a
-`data.table` in order to simplify further data exploration.
-
+As a refresher, there are two main ways to pull in PhenoCam data.  First, directly via the API:
 
 ```{r}
-
-# obtaining the phenocam site metadata from the server as data.table
-phenos <- get_phenos()
-
-# checking out the first few sites
-head(phenos$site)
-
-# checking out the columns
-colnames(phenos)
+c      = jsonlite::fromJSON('https://phenocam.sr.unh.edu/api/cameras/?format=json&limit=2000')
+c = c$results
+c_m=c$sitemetadata
+c$sitemetadata=NULL
+cams_=cbind(c, c_m)
+cams_[is.na(cams_)] = 'N'
+cams_[, 2:4] <- sapply(cams_[, 2:4], as.numeric) #changing lat/lon/elev from string values into numeric
+head(cams_)
 ```
 
-Now we have a better idea of the types of metadata that are available for the
-Phenocams.
-
-### Remove null values
-
-We may want to explore some of the patterns in the metadata before we jump into
-specific locations.
-
-Let's look at Mean Annual Precipitation (MAP) and Mean Annual
-Temperature (MAT) across the different field site and classify those by the
-primary vegetation type (`primary_veg_type`) for each site. We can find out what
-the abbreviations for the vegetation types mean from the following table:
+And second, via the phenocamapi package:
 
 
-|Abbreviation|Description|
-|-|-|
-| AG |	agriculture |
-| DB |	deciduous broadleaf |
-| DN |	deciduous needleleaf |
-| EB |	evergreen broadleaf |
-| EN |	evergreen needleleaf |
-| GR |	grassland |
-| MX |	mixed vegetation (generally EN/DN, DB/EN, or DB/EB) |
-| SH |	shrubs |
-| TN |	tundra (includes sedges, lichens, mosses, etc.) |
-| WT |	wetland |
-| NV |	non-vegetated |
-| RF |	reference panel | 	 
-| XX |	unspecified |
-
-
-To do this we'd first want to remove the sites where there is not data and then
-plot the data.
-
-
-```{r}
-# removing the sites with unkown MAT and MAP values
-phenos <- phenos[!((MAT_worldclim == -9999)|(MAP_worldclim == -9999))]
-
-# extracting the PhenoCam climate space based on the WorldClim dataset
-# and plotting the sites across the climate space different vegetation type as different symbols and colors
-phenos[primary_veg_type=='DB', plot(MAT_worldclim, MAP_worldclim, pch = 19, col = 'green', xlim = c(-5, 27), ylim = c(0, 4000))]
-
-phenos[primary_veg_type=='DN', points(MAT_worldclim, MAP_worldclim, pch = 1, col = 'darkgreen')]
-
-phenos[primary_veg_type=='EN', points(MAT_worldclim, MAP_worldclim, pch = 17, col = 'brown')]
-
-phenos[primary_veg_type=='EB', points(MAT_worldclim, MAP_worldclim, pch = 25, col = 'orange')]
-
-phenos[primary_veg_type=='AG', points(MAT_worldclim, MAP_worldclim, pch = 12, col = 'yellow')]
-
-phenos[primary_veg_type=='SH', points(MAT_worldclim, MAP_worldclim, pch = 23, col = 'red')]
-
-
-legend('topleft', legend = c('DB','DN', 'EN','EB','AG', 'SH'),
-       pch = c(19, 1, 17, 25, 12, 23),
-       col =  c('green', 'darkgreen', 'brown',  'orange',  'yellow',  'red' ))
-```
-
-
-
-### Filtering using attributes
-
-Alternatively, we may want to only include Phenocams with certain attributes in
-our datasets. For example, we may be interested only in sites with a co-located
-flux tower. For this, we'd want to filter for those with a flux tower using the
-`flux_sitenames` attribute in the metadata.
-
-
-
-```{r}
-# store sites with flux_data available and the FLUX site name is specified
-phenofluxsites <- phenos[flux_data==TRUE&!is.na(flux_sitenames)&flux_sitenames!='',
-                         .(PhenoCam=site, Flux=flux_sitenames)] # return as table
-#and specify which variables to retain
-
-phenofluxsites <- phenofluxsites[Flux!='']
-
-# see the first few rows
-head(phenofluxsites)
+```{r, warnings=FALSE}
+phenos=get_phenos()
+head(phenos)
 
 ```
 
-We could further identify which of those Phenocams with a flux tower and in
-deciduous broadleaf forests (`primary_veg_type=='DB'`).
+To familiarize yourself with the phenocam API, let's explore the structure:
+[https://phenocam.sr.unh.edu/api/](https://phenocam.sr.unh.edu/api/)
 
+Explore the options for filtering, file type and so forth.
 
-```{r}
-
-#list deciduous broadleaf sites with flux tower
-DB.flux <- phenos[flux_data==TRUE&primary_veg_type=='DB',
-                  site]  # return just the site names as a list
-
-# see the first few rows
-head(DB.flux)
-```
-
-
-## PhenoCam time series
+### PhenoCam time series
 
 PhenoCam time series are extracted time series data obtained from ROI's for a
 given site.
@@ -846,144 +1116,6 @@ dukehw_DB_1000[,plot(date, gcc_90, col = 'green', type = 'b')]
 mtext('Duke Forest, Hardwood', font = 2)
 ```
 
-
-## Download midday images
-
-While PhenoCam sites may have many images in a given day, many simple analyses
-can use just the midday image when the sun is most directly overhead the canopy.
-Therefore, extracting a list of midday images (only one image a day) can be useful.
-
-
-
-```{r}
-
-# obtaining midday_images for dukehw
-duke_middays <- get_midday_list('dukehw')
-
-# see the first few rows
-head(duke_middays)
-```
-
-Now we have a list of all the midday images from this Phenocam. Let's download
-them and plot
-
-
-```{r}
-# download a file
-destfile <- tempfile(fileext = '.jpg')
-
-# download only the first available file
-# modify the `[1]` to download other images
-download.file(duke_middays[1], destfile = destfile, mode = 'wb')
-
-# plot the image
-img <- try(readJPEG(destfile))
-if(class(img)!='try-error'){
-  par(mar= c(0,0,0,0))
-  plot(0:1,0:1, type='n', axes= FALSE, xlab= '', ylab = '')
-  rasterImage(img, 0, 0, 1, 1)
-}
-```
-
-
-
-### Download midday images for a given time range
-
-Now we can access all the midday images and download them one at a time. However,
-we frequently want all the images within a specific time range of interest. We'll
-learn how to do that next.
-
-
-```{r}
-
-# open a temporary directory
-tmp_dir <- tempdir()
-
-# download a subset. Example dukehw 2017
-download_midday_images(site = 'dukehw', # which site
-                       y = 2017, # which year(s)
-                       months = 1:12, # which month(s)
-                       days = 15, # which days on month(s)
-                       download_dir = tmp_dir) # where on your computer
-
-# list of downloaded files
-duke_middays_path <- dir(tmp_dir, pattern = 'dukehw*', full.names = TRUE)
-
-head(duke_middays_path)
-
-```
-
-We can demonstrate the seasonality of Duke forest observed from the camera. (Note
-this code may take a while to run through the loop).
-
-```{r}
-n <- length(duke_middays_path)
-par(mar= c(0,0,0,0), mfrow=c(4,3), oma=c(0,0,3,0))
-
-for(i in 1:n){
-  img <- readJPEG(duke_middays_path[i])
-  plot(0:1,0:1, type='n', axes= FALSE, xlab= '', ylab = '')
-  rasterImage(img, 0, 0, 1, 1)
-  mtext(month.name[i], line = -2)
-}
-mtext('Seasonal variation of forest at Duke Hardwood Forest', font = 2, outer = TRUE)
-```
-
-
-The goal of this section was to show how to download a limited number of midday images from the PhenoCam server. However, more extensive datasets should be downloaded from the <a href="https://phenocam.sr.unh.edu/webcam/network/download/"> PhenoCam </a>.
-
-
-***
-
-The *phenocamapi* R package is developed and maintained by
-<a href="https://bnasr.github.io/">Bijan Seyednarollah</a>.
-The most recent release is available from
-<a href="https://github.com/bnasr/phenocamapi" target="_blank">https://github.com/bnasr/phenocamapi</a>.
-
-
-## Digital Repeat Photography Exercises
-
-### Digital Repeat Photography Computational
-First let's load some packages:
-
-
-```{r}
-library(jsonlite)
-library(phenocamapi)
-library(plotly)
-library(phenocamr)
-library(dplyr)
-```
-
-As a refresher, there are two main ways to pull in PhenoCam data.  First, directly via the API:
-
-```{r}
-c      = jsonlite::fromJSON('https://phenocam.sr.unh.edu/api/cameras/?format=json&limit=2000')
-c = c$results
-c_m=c$sitemetadata
-c$sitemetadata=NULL
-cams_=cbind(c, c_m)
-cams_[is.na(cams_)] = 'N'
-cams_[, 2:4] <- sapply(cams_[, 2:4], as.numeric) #changing lat/lon/elev from string values into numeric
-head(cams_)
-```
-
-And second, via the phenocamapi package:
-
-
-```{r}
-phenos=get_phenos()
-head(phenos)
-
-```
-
-To familiarize yourself with the phenocam API, let's explore the structure:
-[https://phenocam.sr.unh.edu/api/](https://phenocam.sr.unh.edu/api/)
-
-Explore the options for filtering, file type and so forth.
-
-***
-
 Now, based on either direct API access or via the phenocamapi package, generate a dataframe of phenocam sites.  Select two phenocam sites from *different* plant functional types to explore (e.g. one grassland site and one evergreen needleleaf site)
 
 
@@ -1013,7 +1145,7 @@ print('build your code here')
 A full description of the methodology is provided in [Scientific Data: Tracking vegetation phenology across diverse North American biomes using PhenoCam imagery (Richardson et al. 2018)](https://www.nature.com/articles/sdata201828).
 
 
-```{r}
+```{r, warnings=FALSE}
 #uncomment if you need to install via devtools
 #if(!require(devtools)){install.package(devtools)}
 #devtools::install_github("khufkens/phenocamr")
@@ -1022,7 +1154,7 @@ library(phenocamr)
 
 
 Use the dataframe of sites that you want to analyze to feed the phenocamr package.
-Note: you can choose either a daily or 3 day product
+*Note: you can choose either a 1 or 3 day product*
 
 
 ```{r}
@@ -1032,7 +1164,7 @@ phenocamr::download_phenocam(
   frequency = 3,
   veg_type = 'DB',
   roi_id = 1000,
-  site = 'harvard$',
+  site = 'harvard',
   phenophase = TRUE,
   out_dir = "data/"
 )
@@ -1049,7 +1181,7 @@ Now look in your working directory.  You have data!  Read it in:
 # load the time series data but replace the csv filename with whatever you downloaded
 df <- read.table("data/harvard_DB_1000_3day.csv", header = TRUE, sep = ",")
 
-# read in the transidation date file
+# read in the transition date file
 td <- read.table("data/harvard_DB_1000_3day_transition_dates.csv",
                 header = TRUE,
                 sep = ",")
@@ -1058,7 +1190,7 @@ td <- read.table("data/harvard_DB_1000_3day_transition_dates.csv",
 Let's take a look at the data:
 
 
-```{r}
+```{r,  warnings=FALSE}
 p = plot_ly() %>%
   add_trace(
     data = df,
@@ -1098,7 +1230,7 @@ Let's create a simple plot_ly line graph of the smooth Green Chromatic Coordinat
 
 
 
-```{r}
+```{r, warnings=FALSE}
 p = plot_ly() %>%
   add_trace(
     data = df,
@@ -1143,7 +1275,7 @@ fall <- td[td$direction == "falling" & td$gcc_value == "gcc_90",]
 
 Let's load in a function to make plotting smoother.  I've dropped it here in the markdown so that you can edit it and re-run it as you see fit:
 
-```{r}
+```{r, warnings=FALSE}
 gcc_plot = function(gcc, spring, fall){
   unix = "1970-01-01"
 
@@ -1153,7 +1285,7 @@ gcc_plot = function(gcc, spring, fall){
     y = ~ gcc_90,
     showlegend = FALSE,
     type = 'scatter',
-    mode = 'markers'
+    mode = 'line'
   ) %>%
     add_trace(
       y = ~ smooth_gcc_90,
@@ -1325,21 +1457,21 @@ Generate a plot of smoothed gcc and transition dates for your two sites and subp
 #p
 ```
 
-### Comparing phenology of the same plant function type (PFT) across climate space
+### In Class Hands-on Coding: Comparing phenology of the same plant function type (PFT) across climate space
 
-As Dr. Richardson mentioned in his introduction lecture, the same plant functional types (e.g. grasslands) can have very different phenologogical cycles.  Let's pick two phenocam grassland sites: one from a tropical climate (kamuela), and one from an arid climate (konza) here in Arizona:
+As Dr. Richardson mentioned in his introduction lecture, the same plant functional types (e.g. grasslands) can have very different phenologogical cycles.  Let's pick two phenocam grassland sites: one from a tropical climate (kamuela), and one from an arid climate (konza):
 
 
-```{r}
-GrassSites=GrassSites[c(27,32),]
+```{r, eval=FALSE}
+GrassSites=GrassSites['filter for your sites']
 ```
 
-Now use the code you've generated above to pull in data from those sites:
+Now pull data for those sites via `phenocamr` or the `phenocamapi`
 
 
 ```{r}
 print('code here')
-#> [1] "code here"
+
 ```
 
 Now let's create a subplot of your grasslands to compare phenology, some hint code below:
@@ -1351,42 +1483,36 @@ Now let's create a subplot of your grasslands to compare phenology, some hint co
 #p
 ```
 
-Once you have a subplot of grassland phenology across 2 climates answer the following questions your markdown:
+Once you have a subplot of grassland phenology across 2 climates answer the following questions in your markdown:
 1. What seasonal patterns do you see?
 2. Do you think you set your thresholds correctly for transition dates/phenophases?  How might that very as a function of climate?
 3. What are the challenges of forecasting or modeling tropical versus arid grasslands?
 
-### Digital Repeat Photography Written
 
-**Question 1:** How might or does the PhenoCam project
-intersect with your current research or future career goals? *(1 paragraph)*
-</div>
+## Digital Repeat Photography Coding Lab
 
 
+### Quantifying haze and redness to evaluate California wildfires
 
-<div id="ds-challenge" markdown="1">
-**Question 2:**
-Use the map on the [PhenoCam website](https://phenocam.sr.unh.edu/webcam/network/map/) to answer the following questions. Consider the research question that you may explore as your final semester project or a current project that you are working on and answer each of the following questions:
+1. Pull mid-day imagery for September 1-7th, 2019 and 2020 for the canopy-level camera `NEON.D17.SOAP.DP1.00033`.  Create a 2-panel plot showing those images in 2019 (left) and 2020 (right).
 
-* Are there PhenoCams that are in study regions of interest to you?  
-* Which PhenoCam sites does your current research or final project ideas
-coincide with?  
-* Are they connected to other networks (e.g. LTAR, NEON, Fluxnet)?  
-* What is the data record length for the sites you're interested in?
+2. Use the `hazeR` package to quantify the haze in each of those images.  Print a summary of your results.
 
-**Question 3:**
-Consider either your current or future research, or a question you’d like to
-address durring this course:
+3. Generate a density function RGB plot for your haziest image in 2020, and one for the same date in 2019.  Create a 2-panel plot showing 2019 on the left and 2020 on the right.  
 
-* Which types of PhenoCam data may be more useful to address these questions?
-* What non-PhenoCam data resources could be combined with NEON data to help address your question?
-* What challenges, if any, could you foresee when beginning to work with these
-data?
+4. Pull timesseries data via the `phenocamapi` package.  Calculate the difference in the rcc90 between 2019 and 2020 over the same time period as your images.
 
-**Question 4:**
+5. Create a summary plot showing haze as a bar and the differenece in rcc90 from *question 4* as a timersies.
 
+6. Answer the following questions:
 
-
-**Intro to PhenoCam Culmination Activity**
+  + Does the `hazeR` package pick up smokey images?
+  
+  + If you were to use color coordinates, which color band would be most useful to highlight smoke and why?
+  
+  **Optional Bonus Points:** 
+  Repeat the above calculations for the understory camera on the same tower `NEON.D17.SOAP.DP1.00042` and produce the same plots.  Which camera is 'better' and capturing wildfire?  Why do you think that is so?
+  
+## PhenoCam Culmination Activity
 
 Write up a 1-page summary of a project that you might want to explore using PhenoCam data over the duration of this course. Include the types of PhenoCam (and other data) that you will need to implement this project. Save this summary as you will be refining and adding to your ideas over the course of the semester.
