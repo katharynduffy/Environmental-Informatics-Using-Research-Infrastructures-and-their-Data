@@ -466,8 +466,8 @@ symbols(veg$adjEasting[which(veg$plotID=="WREF_075")],
 
 ## Intro to NEON Exercises Part 1
 
-### Computational
-#### Part 1: Sign up for and Use an NEON API Token:
+### Exercise 2.1: Computational
+#### Sign up for and Use an NEON API Token:
 
 1. Submit via .Rmd and .pdf a simple script that uses a *HIDDEN* token to access NEON data.
 
@@ -478,7 +478,7 @@ veglist <- loadByProduct(dpID="DP1.10098.001", site="WREF", package="basic", che
 summary(veglist)
 ```
 
-#### Part 2: Further Investigation of NEON TOS Vegetation Structure Data
+#### Further Investigation of NEON TOS Vegetation Structure Data
 
 **Suggested Timing: Complete this exercise before our next class session**
 
@@ -551,7 +551,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Petal.Length, color=Species)) +
 
 
 
-## Part 2: Pulling NEON Data via the API
+## Hands on: Pulling NEON Data via the API
 
 This section covers pulling data from the NEON API or Application 
 Programming Interface using R and the R package httr, but the core 
@@ -1288,12 +1288,10 @@ the data portal, but not files pulled from the API.
 For a guide to using `neonUtilities` on data downloaded from the portal, 
 look <a href="https://www.neonscience.org/neonDataStackR" target="_blank">here</a>.
 
-## Intro to NEON Exercises: Written Questions
-
 
 ## Intro to NEON Exercises Part 2
 
-### Written
+### Exercise 2.2: Written questions
 
 **Suggested Timing: Complete this exercise before our next class meeting**
 
@@ -1346,14 +1344,12 @@ sites you’ve already identified in the previous sections and answer *each* of 
 
 <div id="ds-challenge" markdown="1">
 
-### NEON Coding Lab Part 2
-
-## NEON Coding Lab Part 2
+### Exercise 2.3: NEON Coding Lab
 
 **Suggested Timing: Complete this exercise a few days before your NEON clumination write up**
 
 
-1.  Use the answers that you've provided above to select a *single* NEON site.
+1.  Use the answers that you've provided above in Exercise 2.2 to select a *single* NEON site.
 
 e.g. `ONAQ`
 
@@ -1428,13 +1424,9 @@ A non-exhastive list of ideas:
 4. A timeseries of your data (example below)
 
 
-7.  What is the frequency of the data you decided was of interest?  How do the data align to answer a central question?  What challenges did you run into when investigating these data? How will you address these challenges and document your code? *One to two paragraphs*
-
-**Intro to NEON Culmination Activity**
-
 7.  What is the temporal frequency of observations in the data you decided was of interest?  How do the data align to answer a central question?  What challenges did you run into when investigating these data? How will you address these challenges and document your code? *One to two paragraphs*
 
-## Intro to NEON Culmination Activity
+### Exercise 2.4: Intro to NEON Culmination Activity
 
 **Due before we start Chapter 3: USA-NPN**
 >>>>>>> upstream/master
