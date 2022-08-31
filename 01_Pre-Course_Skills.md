@@ -125,8 +125,8 @@ the program.
 You can run the following script to make sure all the required packages
 are properly installed on your computer.
 
-```{r required libs, eval = FALSE}
 
+```r
 # list of required packages
 list.of.packages <- c(
   'data.table',
@@ -230,7 +230,7 @@ To generate your .PDF to upload, in your RMarkdown file simply push the
 
 ## Exercises:
 
-### Exercise 0.1: A git introduction
+### Exercise 0.7.1: A git introduction
 
 1.  Navigate to our [course
     github](https://github.com/katharynduffy/katharynduffy.github.io)
@@ -238,8 +238,9 @@ To generate your .PDF to upload, in your RMarkdown file simply push the
 3.  `git clone` the repo onto your own personal machine in a place that
     is functional and not temporary *(e.g. not your downloads folder)*.
 
+```{=html}
 <!-- -->
-
+```
     #hints
     cd `Your/Path/Here'
     git clone 'repo HTTPS'
@@ -247,8 +248,9 @@ To generate your .PDF to upload, in your RMarkdown file simply push the
 4.  Add 2-3 sentences introducing yourself in the `_Course-participants`
     folder. For example:
 
+```{=html}
 <!-- -->
-
+```
     ***
     Hi, I'm Dr. Katharyn Duffy.  I have a Ph.D in Earth Science from Northern Arizona University.  Over the past two years I've worked as an open-source software engineer in the PhenoCam lab, and now I'm the coding and lab support for your course.  I really look forward to working with all of you!
     ***
@@ -256,8 +258,9 @@ To generate your .PDF to upload, in your RMarkdown file simply push the
 5.  Submit a `pull request` to add your introduction to our course
     participants folder.
 
+```{=html}
 <!-- -->
-
+```
     #hints
     git add ...
     git commit ...
@@ -304,9 +307,7 @@ USA](https://academic.oup.com/bioscience/article/61/4/290/324883) rely
 principally on a sound foundation of ecological research, and the
 ability to scale knowledge and inter-connect data.
 
-```{r, echo=FALSE}
-knitr::include_graphics('./images/interconnect_data.png')
-```
+<img src="./images/interconnect_data.png" width="951" />
 
 > Continental-scale patterns and dynamics result from climate and people
 > as broad-scale drivers interacting with finer-scale vectors that
@@ -336,9 +337,7 @@ are recognizing the value of data as a product of the scientific
 enterprise and placing increased emphasis on data stewardship, data
 sharing, openness and supporting study repeatability.
 
-```{r, echo=FALSE}
-knitr::include_graphics('./images/intro_data.png')
-```
+<img src="./images/intro_data.png" width="875" />
 
 > Data on ecological and environmental systems are (A) acquired, checked
 > for quality, documented using an acquisition workflow, and then both
@@ -367,9 +366,7 @@ sets](https://muse.jhu.edu/article/262029/pdf?casa_token=8ysDn-0aPmAAAAAA:kqtGap
 that accumulate from the thousands of scientists that collect relevant
 biological, ecological and environmental data.
 
-```{r, echo=FALSE}
-knitr::include_graphics('./images/data-ontology.png')
-```
+<img src="./images/data-ontology.png" width="1226" />
 
 > A proposed high-level architecture for ecological and environmental
 > data management is shown consisting of three primary levels. Data
@@ -522,18 +519,14 @@ etc)*
 
 Example generated using [draw.io](https://app.diagrams.net/):
 
-```{r, echo=FALSE}
-knitr::include_graphics('./images/APIS_usecase2_v2 (4).png')
-```
+<img src="./images/APIS_usecase2_v2 (4).png" width="492" />
 
 **Slide x + 2:** A clean plot of all of the data you mentioned together,
 and/or the derived data product itself with a 1 sentence summary
 
 Example:
 
-```{r, echo=FALSE}
-knitr::include_graphics('./images/mased_APIS_2.png')
-```
+<img src="./images/mased_APIS_2.png" width="5252" />
 
 **Slide x+3:** Summary: Circle back on how this derived data product
 serves your research, the infrastructure, and the wider science
