@@ -1,0 +1,12 @@
+---
+title: "Introduction"
+author: "Benjamin Wiebe"
+date: "2022-09-05"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Hi everyone, my name is Ben Wiebe and I am a first-year Ecological Informatics PhD student in the T3 program in SICCS. I did my undergrad in ecology at Goshen College, and am now doing research in Chris Doughty's lab related to remote sensing techniques of tree water stress and related ecophysiological processes. I look forward to learning with you all.
