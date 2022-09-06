@@ -1,0 +1,13 @@
+---
+title: "WOODS_INF550_Section1.Rmd"
+author: "Marco Woods"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+##Introduction
+
+Hello, my name is Marco Woods. I am a currently working toward my Master's degree in computer science. In my freetime, I like to run and draw. Look forward to working with all of you!
