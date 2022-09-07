@@ -233,7 +233,7 @@ To generate your .PDF to upload, in your RMarkdown file simply push the
 ### Exercise 0.1: A git introduction
 
 1.  Navigate to our [course
-    github](https://github.com/katharynduffy/katharynduffy.github.io)
+    github](https://github.com/katharynduffy/Environmental-Informatics-Using-Research-Infrastructures-and-their-Data)
 2.  `git fork` our repo onto your own personal github account.
 3.  `git clone` the repo onto your own personal machine in a place that
     is functional and not temporary *(e.g. not your downloads folder)*.

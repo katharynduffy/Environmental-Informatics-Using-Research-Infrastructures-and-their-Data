@@ -1,0 +1,14 @@
+---
+title: "Introduction"
+author: "Rohan Boone"
+date: "2022-08-24"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Introduction
+
+Hi I'm Rohan Boone. I'm the academic program coordinator for the T3 program at Northern Arizona University. I have a Masters of Science in Informatics from NAU. I'm currently reviewing the textbook for INF 550.
