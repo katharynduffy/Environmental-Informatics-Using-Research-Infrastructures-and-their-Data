@@ -1,0 +1,13 @@
+title: "Introduction"
+author: "Aparna Kalyanam"
+date: "2022-09-07"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Introduction
+
+Hi, I am Aparna Kalyanam, doing my masters in computer science. I have already completed one of your class i.e.; INF 523 Infromtics for food, water and energy community systems. I want to gain more knowledge in this class. 
