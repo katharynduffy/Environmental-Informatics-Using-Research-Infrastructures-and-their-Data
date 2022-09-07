@@ -1,0 +1,13 @@
+title: "Introduction"
+author: "SaiPrakash Gadila"
+date: "09/06/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Introduction
+
+Hi I'm SaiPrakash Gadila. I'm currently studying master's in computer science at Northern Arizona University. I also pursued INF523 in my last semester and looking to gain more knowledge here.
