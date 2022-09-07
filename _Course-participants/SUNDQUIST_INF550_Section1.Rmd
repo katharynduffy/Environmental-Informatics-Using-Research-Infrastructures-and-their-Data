@@ -1,0 +1,14 @@
+---
+title: "SUNDQUIST_INF550_Section1"
+author: "Shelby Sundquist"
+date: '2022-09-07'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Introduction 
+
+Hi, I'm Shelby Sundquist. I'm  a PhD student in the GEODE lab and my research focuses on a model for the boreal forest. I enjoy exploring in the Grand Canyon and playing with dogs.
