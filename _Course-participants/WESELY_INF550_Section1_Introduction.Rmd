@@ -1,0 +1,14 @@
+---
+title: "WESELY_INF550_Section1_Introduction"
+author: "Natasha"
+date: '2022-09-01'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Introduction
+
+Hello, I'm Natasha Wesely. I am a second year PhD student, co-advised by Dr. Andrew Richardson and Dr. David Auty. I am working on modeling carbon cycle impacts of precipitation variability in four different ecosystem types in New Mexico. However the model I am building on is written in fortran... wish me luck!
