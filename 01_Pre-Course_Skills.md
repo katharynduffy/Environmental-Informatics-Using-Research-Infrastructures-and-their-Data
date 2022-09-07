@@ -230,17 +230,16 @@ To generate your .PDF to upload, in your RMarkdown file simply push the
 
 ## Exercises:
 
-### Exercise 0.7.1: A git introduction
+### Exercise 0.1: A git introduction
 
 1.  Navigate to our [course
-    github](https://github.com/katharynduffy/katharynduffy.github.io)
+    github](https://github.com/katharynduffy/Environmental-Informatics-Using-Research-Infrastructures-and-their-Data)
 2.  `git fork` our repo onto your own personal github account.
 3.  `git clone` the repo onto your own personal machine in a place that
     is functional and not temporary *(e.g. not your downloads folder)*.
 
-```{=html}
 <!-- -->
-```
+
     #hints
     cd `Your/Path/Here'
     git clone 'repo HTTPS'
@@ -248,9 +247,8 @@ To generate your .PDF to upload, in your RMarkdown file simply push the
 4.  Add 2-3 sentences introducing yourself in the `_Course-participants`
     folder. For example:
 
-```{=html}
 <!-- -->
-```
+
     ***
     Hi, I'm Dr. Katharyn Duffy.  I have a Ph.D in Earth Science from Northern Arizona University.  Over the past two years I've worked as an open-source software engineer in the PhenoCam lab, and now I'm the coding and lab support for your course.  I really look forward to working with all of you!
     ***
@@ -258,9 +256,8 @@ To generate your .PDF to upload, in your RMarkdown file simply push the
 5.  Submit a `pull request` to add your introduction to our course
     participants folder.
 
-```{=html}
 <!-- -->
-```
+
     #hints
     git add ...
     git commit ...
