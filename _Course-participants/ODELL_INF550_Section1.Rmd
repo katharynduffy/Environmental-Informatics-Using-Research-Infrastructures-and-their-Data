@@ -1,0 +1,10 @@
+---
+title: "Chapter 1 Exercises"
+author: "Anna Odell"
+date: "9/06/2022"
+output: pdf_document
+---
+
+**Introduction**
+
+Hey  y'all. My name is Anna Odell. I'm a 2nd year PhD student in the GEODE Lab. I think satellites are pretty neat. 
