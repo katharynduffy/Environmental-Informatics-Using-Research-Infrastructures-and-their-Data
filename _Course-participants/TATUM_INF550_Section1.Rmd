@@ -1,0 +1,12 @@
+---
+title: "TATUM_INF550_Section1"
+author: "Julia Tatum"
+date: "2022-09-07"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+I'm Julia Tatum. I'm a 2nd year student in the EcoInformatics PhD program. I am in Dr Temuulen Sankey's lab.
