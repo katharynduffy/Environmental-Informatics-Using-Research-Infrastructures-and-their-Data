@@ -5,8 +5,8 @@ bookdown::gitbook:
       before: |
         <li><a href="./">INF550: EcoInformatics data collection tools & products, </a></li>
       after: |
-        <li><a href="https://github.com/katharynduffy/katharynduffy.github.io" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/katharynduffy/katharynduffy.github.io/edit/master/%s
+        <li><a href="https://katharynduffy.github.io/Environmental-Informatics-Using-Research-Infrastructures-and-their-Data/introduction-to-neon-its-data.html#accessing-neon-data" target="blank">Published with bookdown</a></li>
+    edit: https://github.com/katharynduffy/Environmental-Informatics-Using-Research-Infrastructures-and-their-Data
     download: ["pdf", "epub"]
     search: yes
     fontsettings:

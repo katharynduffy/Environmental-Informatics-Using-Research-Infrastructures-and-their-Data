@@ -411,7 +411,7 @@ Now we have a list of all the midday images from this Phenocam. Let's download
 them and plot
 
 
-```{r, cache=TRUE}
+```{r, eval=FALSE, cache=TRUE}
 # download a file
 destfile <- tempfile(fileext = '.jpg')
 
@@ -437,7 +437,7 @@ we frequently want all the images within a specific time range of interest. We'l
 learn how to do that next.
 
 
-```{r, cache=TRUE}
+```{r, eval=FALSE, cache=TRUE}
 
 # open a temporary directory
 tmp_dir <- tempdir()
@@ -459,7 +459,7 @@ head(duke_middays_path)
 We can demonstrate the seasonality of Duke forest observed from the camera. (Note
 this code may take a while to run through the loop).
 
-```{r, cache=TRUE}
+```{r, eval=FALSE, cache=TRUE}
 n <- length(duke_middays_path)
 par(mar= c(0,0,0,0), mfrow=c(4,3), oma=c(0,0,3,0))
 
@@ -502,7 +502,7 @@ Before we start the image processing steps, let's read in and plot an image. Thi
 image is an example image that comes with the *hazer* package.
 
 
-```{r}
+```{r, eval=FALSE}
 # read the path to the example image
 jpeg_file <- system.file(package = 'hazer', 'pointreyes.jpg')
 
@@ -531,7 +531,7 @@ up of. Using the `density()` function from the base *stats* package, we can extr
 density distribution of each color channel.
 
 
-```{r}
+```{r, eval=FALSE}
 # color channels can be extracted from the matrix
 red_vector <- rgb_array[,,1]
 green_vector <- rgb_array[,,2]
@@ -558,7 +558,7 @@ The brightness matrix comes from the maximum value of the R, G, or B channel. We
 can extract and show the brightness matrix using the `getBrightness()` function.
 
 
-```{r}
+```{r, eval=FALSE}
 # extracting the brightness matrix
 brightness_mat <- getBrightness(rgb_array)
 
@@ -577,13 +577,13 @@ To extract a single brightness value for the image, depending on our needs we ca
 perform some statistics or we can just use the mean of this matrix.
 
 
-```{r}
+```{r, eval=FALSE}
 # the main quantiles
 quantile(brightness_mat)
 ```
 
 
-```{r}
+```{r, eval=FALSE}
 # create histogram
 par(mar=c(5,4,4,2))
 hist(brightness_mat)
@@ -599,7 +599,7 @@ Darkness is determined by the minimum of the R, G or B color channel. In the
 Similarly, we can extract and show the darkness matrix using the `getDarkness()` function.
 
 
-```{r}
+```{r, eval=FALSE}
 # extracting the darkness matrix
 darkness_mat <- getDarkness(rgb_array)
 
@@ -613,7 +613,7 @@ quantile(darkness_mat)
 
 
 
-```{r}
+```{r, eval=FALSE}
 # histogram
 par(mar=c(5,4,4,2))
 hist(darkness_mat)
@@ -630,7 +630,7 @@ darkness and brightness matrices.
 The contrast of the image can quickly be extracted using the `getContrast()` function.
 
 
-```{r}
+```{r, eval=FALSE}
 # extracting the contrast matrix
 contrast_mat <- getContrast(rgb_array)
 
@@ -643,7 +643,7 @@ quantile(contrast_mat)
 ```
 
 
-```{r}
+```{r, eval=FALSE}
 # histogram
 par(mar=c(5,4,4,2))
 hist(contrast_mat)
@@ -667,7 +667,7 @@ The PhenoCam standards classify any image with the haze degree greater
 than 0.4 as a significantly foggy image.
 
 
-```{r}
+```{r, eval=FALSE}
 # extracting the haze matrix
 haze_degree <- getHazeFactor(rgb_array)
 
@@ -688,7 +688,7 @@ You can download the related datasets from
 Download and extract the zip file to be used as input data for the following step.
 
 
-```{r}
+```{r, eval=FALSE}
 #pointreyes_url <- 'http://bit.ly/2F8w2Ia'
 
 # set up the input image directory
@@ -714,7 +714,7 @@ Now we can use a for loop to process all of the images to get the haze and A0
 values.
 
 
-```{r}
+```{r, eval=FALSE}
 # number of images
 n <- length(pointreyes_images)
 
@@ -726,7 +726,7 @@ pb <- txtProgressBar(0, n, style = 3)
 ```
 
 
-```{r}
+```{r, eval=FALSE}
 for(i in 1:n) {
   image_path <- pointreyes_images[i]
   img <- jpeg::readJPEG(image_path)
@@ -746,7 +746,7 @@ Now we have a matrix with haze and A0 values for all our images. Let's
 compare top three images with low and high haze values.
 
 
-```{r}
+```{r, eval=FALSE}
 top10_high_haze <- haze_mat %>%
   dplyr::arrange(desc(haze)) %>%
   slice(1:3)
@@ -774,7 +774,7 @@ mtext('Top images with low (left) and high (right) haze values at Point Reyes', 
 Let's classify those into hazy and non-hazy as per the PhenoCam standard of 0.4.
 
 
-```{r}
+```{r, eval=FALSE}
 # classify image as hazy: T/F
 haze_mat=haze_mat%>%
   mutate(haze_mat, foggy=ifelse(haze>.4, TRUE, FALSE))
@@ -788,7 +788,7 @@ foggy images but keep them separate from the non-foggy ones that we want to
 analyze.
 
 
-```{r}
+```{r, eval=FALSE}
 # identify directory to move the foggy images to
 foggy_dir <- paste0(pointreyes_dir, 'foggy')
 clear_dir <- paste0(pointreyes_dir, 'clear')
@@ -807,7 +807,7 @@ Now that we have our images separated, we can get the full list of haze
 values only for those images that are not classified as "foggy".  
 
 
-```{r}
+```{r, eval=FALSE}
 # this is an alternative approach instead of a for loop
 
 # loading all the images as a list of arrays
@@ -1007,7 +1007,7 @@ The most recent release is available from <a href="https://github.com/bnasr/xROI
 First let's load some packages:
 
 
-```{r, warning=FALSE, quiet=TRUE}
+```{r, warning=FALSE, quiet=TRUE, , eval=FALSE}
 library(jsonlite)
 library(phenocamapi)
 library(plotly)
@@ -1017,7 +1017,7 @@ library(dplyr)
 
 As a refresher, there are two main ways to pull in PhenoCam data.  First, directly via the API:
 
-```{r}
+```{r, eval=FALSE}
 c      = jsonlite::fromJSON('https://phenocam.sr.unh.edu/api/cameras/?format=json&limit=2000')
 c = c$results
 c_m=c$sitemetadata
@@ -1031,7 +1031,7 @@ head(cams_)
 And second, via the phenocamapi package:
 
 
-```{r, warnings=FALSE}
+```{r, warnings=FALSE, eval=FALSE}
 phenos=get_phenos()
 head(phenos)
 
@@ -1056,7 +1056,7 @@ or by using the `get_rois()` function.
 
 
 
-```{r}
+```{r, eval=FALSE}
 # obtaining the list of all the available ROI's on the PhenoCam server
 rois <- get_rois()
 
@@ -1078,7 +1078,7 @@ and specifically the ROI
 we can run the following code.
 
 
-```{r}
+```{r, eval=FALSE}
 # list ROIs for dukehw
 rois[site=='dukehw',]
 
@@ -1106,7 +1106,7 @@ Before we can plot `gcc-90` we do need to fix our dates and convert them from
 Factors to Date to correctly plot.
 
 
-```{r}
+```{r, eval=FALSE}
 # date variable into date format
 dukehw_DB_1000[,date:=as.Date(date)]
 
@@ -1119,7 +1119,7 @@ mtext('Duke Forest, Hardwood', font = 2)
 Now, based on either direct API access or via the phenocamapi package, generate a dataframe of phenocam sites.  Select two phenocam sites from *different* plant functional types to explore (e.g. one grassland site and one evergreen needleleaf site)
 
 
-```{r}
+```{r, eval=FALSE}
 #example
 GrassSites=cams_%>%
   filter(cams_$primary_veg_type=='GR')
@@ -1127,7 +1127,7 @@ head(GrassSites)
 ```
 
 
-```{r}
+```{r, eval=FALSE}
 FirstSite=GrassSites[5, ] #randomly chose the fifth site in the table
 FirstSite
 
@@ -1145,7 +1145,7 @@ print('build your code here')
 A full description of the methodology is provided in [Scientific Data: Tracking vegetation phenology across diverse North American biomes using PhenoCam imagery (Richardson et al. 2018)](https://www.nature.com/articles/sdata201828).
 
 
-```{r, warnings=FALSE}
+```{r, warnings=FALSE, eval=FALSE}
 #uncomment if you need to install via devtools
 #if(!require(devtools)){install.package(devtools)}
 #devtools::install_github("khufkens/phenocamr")
@@ -1157,7 +1157,7 @@ Use the dataframe of sites that you want to analyze to feed the phenocamr packag
 *Note: you can choose either a 1 or 3 day product*
 
 
-```{r}
+```{r, eval=FALSE}
 dir.create('data/', showWarnings = F)
 
 phenocamr::download_phenocam(
@@ -1177,7 +1177,7 @@ phenocamr::download_phenocam(
 Now look in your working directory.  You have data!  Read it in:
 
 
-```{r}
+```{r, eval=FALSE}
 # load the time series data but replace the csv filename with whatever you downloaded
 df <- read.table("data/harvard_DB_1000_3day.csv", header = TRUE, sep = ",")
 
@@ -1190,7 +1190,7 @@ td <- read.table("data/harvard_DB_1000_3day_transition_dates.csv",
 Let's take a look at the data:
 
 
-```{r,  warnings=FALSE}
+```{r,  warnings=FALSE, eval=FALSE}
 p = plot_ly() %>%
   add_trace(
     data = df,
@@ -1221,7 +1221,7 @@ What patterns do you notice?  How would we go about determining say the start of
 Let's subset the transition date (td) for each year when 25% of the greenness amplitude (of the 90^th) percentile is reached (threshold_25).
 
 
-```{r}
+```{r, eval=FALSE}
 # select the rising (spring dates) for 25% threshold of Gcc 90
 spring <- td[td$direction == "rising" & td$gcc_value == "gcc_90",]
 ```
@@ -1230,7 +1230,7 @@ Let's create a simple plot_ly line graph of the smooth Green Chromatic Coordinat
 
 
 
-```{r, warnings=FALSE}
+```{r, warnings=FALSE, eval=FALSE}
 p = plot_ly() %>%
   add_trace(
     data = df,
@@ -1259,7 +1259,7 @@ Of particular interest is the option to specify your own threshold used in deter
 What would be a reasonable threshold for peak greenness?  Or autumn onset?  Look at the ts dataset and phenocamr package and come up with a threshold.  Use the same code to plot it here:
 
 
-```{r}
+```{r, eval=FALSE}
 
 # #some hint code
 # #what does 'rising' versus 'falling' denote?
@@ -1275,7 +1275,7 @@ fall <- td[td$direction == "falling" & td$gcc_value == "gcc_90",]
 
 Let's load in a function to make plotting smoother.  I've dropped it here in the markdown so that you can edit it and re-run it as you see fit:
 
-```{r, warnings=FALSE}
+```{r, warnings=FALSE, eval=FALSE}
 gcc_plot = function(gcc, spring, fall){
   unix = "1970-01-01"
 
@@ -1407,7 +1407,7 @@ gcc_plot = function(gcc, spring, fall){
 ```
 
 
-```{r}
+```{r, eval=FALSE}
 
 gcc_p = gcc_plot(df, spring, fall)
 gcc_p <- gcc_p %>%

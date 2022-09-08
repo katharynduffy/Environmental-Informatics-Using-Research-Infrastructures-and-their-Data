@@ -511,7 +511,7 @@ to the function are:
 -   package: basic or expanded; we'll begin with a `basic` here
 
 ```{r, echo=FALSE}
-source('/Users/kdw223/Research/katharynduffy.github.io/neon_token_source.R')
+source('/Users/kdw223/Research/Environmental-Informatics-Using-Research-Infrastructures-and-their-Data/neon_token_source.R')
 ```
 
 ```{r, cache=TRUE}

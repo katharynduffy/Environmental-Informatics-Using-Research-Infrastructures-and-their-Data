@@ -820,7 +820,7 @@ library(kableExtra)
 Next, we will read in the LiDAR data using the `lidR::readLAS()` function. 
 Note that this function can read in both `.las` and `.laz` file formats.
 
-```{r}
+```{r, eval=FALSE}
 
 # Read in LiDAR data 
 #2017 1 km2 tile .laz file type for HARV and TEAK

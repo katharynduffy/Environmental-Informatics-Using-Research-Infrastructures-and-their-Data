@@ -1,3 +1,217 @@
+--- 
+title: "Environmental Informatics Using Research Infrastructures and their Data"
+author: "Dr. Katharyn Duffy, Dr. Ben Ruddell"
+#date: "2020 Edition"
+cover-image: "/Users/kdw223/Research/katharynduffy.github.io/images/EcoInfo4.png"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+github-repo: 'katharynduffy/katharynduffy.github.io'
+description: "Course text for NAU INF 550"
+always_allow_html: true
+---
+
+# Preface {-}
+
+Placeholder
+
+
+## Acknowledgements {-}
+### Key Contributors {-}
+
+<!--chapter:end:index.Rmd-->
+
+
+# Pre-Course Setup: EcoInformatics Tools {-}
+
+Placeholder
+
+
+## Pre-Course Skills & Setup
+### Installing or Updating R
+### Windows R/RStudio Setup
+### Mac R/RStudio Setup
+## Linux R/RStudio Setup
+### Install basic packages for this course
+## Installing and Setting up Git & Github on Your Machine
+## Installing Atom
+## Linking RStudio to Git
+## How we will be Conducting this Course
+## Exercises:
+## The Framework of this Course
+## Final Course Project: Proposed Derived Data Product
+
+<!--chapter:end:01_Pre-Course_Skills.Rmd-->
+
+
+# Introduction to NEON & its Data
+
+Placeholder
+
+
+## Learning Objectives
+## The NEON Project Mission & Design
+## The Science and Design of NEON
+## NEON's Spatial Design
+### NEON Samples All 20 Eco-Regions
+## How NEON Collects Data
+### Specimens & Samples
+### Airborne Remote Sensing
+## Accessing NEON Data
+### Pathways to access NEON Data
+## Hands on: Accessing NEON Data & User Tokens
+### Via the NEON API, with your User Token
+### Objectives
+### Things You'll Need To Complete This Tutorial
+### Install R Packages
+## Additional Resources
+### Get a NEON API Token
+### Use the API token in neonUtilities
+### Token management for open code
+#### Option 1: Save token in a local file
+#### Option 2: Save your toekn to your R environment
+## Hands on: NEON TOS Data
+### Pull in Tree Data from NEON's TOS and investigate relationships
+## Intro to NEON Exercises Part 1
+### Exercise 2.1: Computational
+#### Sign up for and Use an NEON API Token:
+#### Further Investigation of NEON TOS Vegetation Structure Data
+## Hands on: Pulling NEON Data via the API
+### Objectives
+### Things You'll Need To Complete This Section
+#### Install R Packages
+#### Additional Resources
+## What is an API?
+### Anatomy of an API call
+#### Base URL:
+#### Endpoints:
+### Targets:
+### Observational data (OS)
+### Instrumentation data (IS)
+### Remote sensing data (AOP)
+### Geolocation data
+#### Instrumentation data (both aquatic and terrestrial)
+#### Observational data - Terrestrial
+### Querying a single named location
+### Taxonomy
+## Stacking NEON data
+## Intro to NEON Exercises Part 2
+### Exercise 2.2: Written questions
+### Exercise 2.3: NEON Coding Lab
+### Exercise 2.4: Intro to NEON Culmination Activity
+
+<!--chapter:end:02_Introduction_to_NEON.Rmd-->
+
+
+# Introduction to USA-NPN & its Data
+
+Placeholder
+
+
+## USA-NPN Learning Objectives
+## USA-NPN Project Mission & Design:
+## Vision & Mission
+### Relevant documents & background information:
+## USA-NPN’s Spatial design:
+## Types of USA-NPN Data:
+### Observational
+### Status & Intensity Data
+### Gridded Raster Data
+### Pheno-Forecasts
+## How to Access USA-NPN Data:
+### The USA-NPN Landing page
+### APIs
+### Rnpn package
+### Phenology Observation Portal (for observational data)
+### Geospatial Request Builder (for raster data and image files)
+### Visualization Tool
+## USA-NPN Written Questions
+## Hands on: Accessing USA-NPN Data via rNPN
+### Introduction
+### Accessing USA-NPN Observational Data
+#### Basic format for for Observational data calls
+#### Required Parameters
+#### Find stations at which a species has been observed
+### Status and Intensity Data
+### Individual Phenometrics
+### Site Phenometrics
+### Magnitude Phenometrics
+### USA-NPN Geospatial Data
+## Accumulated Growing Degree Day Products
+## Extended Spring Indices
+### Other Layers
+## Putting it all together:
+## Combine Point and Raster Data
+### Step 1: Get the data
+### Step 2: Preparing the data
+### Step 3: Define style options and create graph
+## Live Demo Code with Lee Marsh of USA-NPN
+### Basic Utility Functions
+### Download Observational Data
+### Magnitude Data
+### Downloading Geospatial Data
+### Putting it together
+### Other Data Sources, e.g. Daymet, MODIS
+## USA-NPN Coding Lab
+## NEON TOS Phenology Data Lecture
+## Understanding Observation Biases and Censoring in Citizen Science Data
+### Many existing modeling approaches fail in one (or both) regards.
+### Censoring
+## So then how can we model censored data?
+## Intro to USA-NPN Culmination Activity
+
+<!--chapter:end:03-USA-NPN.Rmd-->
+
+
+# PhenoCam: Digital Repeat Photography Networks & Methods
+
+Placeholder
+
+
+## Digital Repeat Photography Networks Learning Objectives
+## The PhenoCam Network Mission & Design
+### Relevant documents & background information:
+## PhenoCam’s Spatial design:
+### PhenoCam as a Near Surface Remote Sensing Technique
+### How PhenoCams Pull Data
+### Leveraging camera near-infrared (NIR) capabilities
+## Digital Repeat Photography Written Questions
+## Introduction to Digital Repeat Photography Methods
+## Pulling Data via the *phenocamapi* Package
+## Exploring PhenoCam metadata
+### Remove null values
+### Filtering using attributes
+## Download midday images
+### Download midday images for a given time range
+## Detecting Foggy Images using the 'hazer' R Package
+#### Read & Plot an Image
+#### Histogram of RGB channels
+#### Brightness
+#### Darkness
+#### Contrast
+#### Image fogginess & haziness
+#### Process sets of images
+## Extracting Timeseries from Images using the xROI R Package
+### xROI Design
+### Install xROI
+### Launch xROI
+### End xROI
+### Use xROI
+## Documentation and Citation
+### Challenge: Use xROI
+## Hands on: Digital Repeat Photography Computational
+### PhenoCam time series
+### Obtain ROIs
+### Download time series
+### Threshold values
+### Comparing phenology across vegetation types
+### In Class Hands-on Coding: Comparing phenology of the same plant function type (PFT) across climate space
+## Digital Repeat Photography Coding Lab
+### Quantifying haze and redness to evaluate California wildfires
+## PhenoCam Culmination Activity
+
+<!--chapter:end:05-PhenoCam.Rmd-->
+
 
 # Flux Measurements & Inter-Operability
 
@@ -75,10 +289,9 @@ installation process than CRAN packages:
 install.packages('BiocManager')
 BiocManager::install('rhdf5')
 ```
-```{r, echo=FALSE, warning=FALSE}
-library(kableExtra)
-```
-```{r, results=FALSE, warning=FALSE}
+
+
+```r
 options(stringsAsFactors=F)
 
 library(neonUtilities)
@@ -103,12 +316,54 @@ Inputs to the `zipsByProduct()` function:
 The download may take a while, especially if you're on a slow network.
 
 
-```{r}
+
+```r
 zipsByProduct(dpID="DP4.00200.001", package="basic", 
               site=c("NIWO", "HARV"), 
               startdate="2018-06", enddate="2018-07",
               savepath="./data", 
               check.size=F)
+```
+
+```
+## Finding available files
+## 
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |==================                                                    |  25%
+  |                                                                            
+  |===================================                                   |  50%
+  |                                                                            
+  |====================================================                  |  75%
+  |                                                                            
+  |======================================================================| 100%
+## 
+## Downloading files totaling approximately 345.260177 MB
+```
+
+```
+## ./data/filesToStack00200 already exists. Download will proceed, but check for duplicate files.
+```
+
+```
+## Downloading 4 files
+## 
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======================                                               |  33%
+## NEON.D01.HARV.DP4.00200.001.2018-06.basic.20220120T173946Z.RELEASE-2022.zip could not be downloaded. Re-attempting.
+## 
+  |                                                                            
+  |===============================================                       |  67%
+## NEON.D01.HARV.DP4.00200.001.2018-07.basic.20220120T173946Z.RELEASE-2022.zip could not be downloaded. Re-attempting.
+## 
+  |                                                                            
+  |======================================================================| 100%
+## NEON.D13.NIWO.DP4.00200.001.2018-07.basic.20220120T173946Z.RELEASE-2022.zip could not be downloaded. Re-attempting.
+## 
+## 4 files successfully downloaded to ./data/filesToStack00200
 ```
 
 
@@ -153,7 +408,8 @@ including the `filestoStack00200` folder created by the function, and
 `dp04`:
 
 
-```{r, eval=FALSE}
+
+```r
 flux <- stackEddy(filepath="./data/filesToStack00200",
                  level="dp04")
 ```
@@ -165,7 +421,8 @@ tables: one table for each site's data, and `variables` and `objDesc`
 tables.
 
 
-```{r, eval=FALSE}
+
+```r
 names(flux)
 ```
 
@@ -173,7 +430,8 @@ names(flux)
 Let's look at the contents of one of the site data files:
 
 
-```{r, eval=FALSE}
+
+```r
 knitr::kable(head(flux$NIWO))
 ```
 
@@ -185,7 +443,8 @@ complete. To get the terms of interest, we'll break up the column headers
 into individual terms and look for them in the `objDesc` table:
 
 
-```{r, eval=FALSE}
+
+```r
 term <- unlist(strsplit(names(flux$NIWO), split=".", fixed=T))
 flux$objDesc[which(flux$objDesc$Object %in% term),]
 knitr::kable(term)
@@ -202,7 +461,8 @@ are self-explanatory. The flux components are
 The `variables` table contains the units for each field:
 
 
-```{r, eval=FALSE}
+
+```r
 knitr::kable(flux$variables)
 ```
 
@@ -232,7 +492,8 @@ specified, R will default to the local time zone it detects on your
 operating system.
 
 
-```{r, eval=FALSE}
+
+```r
 timeB <- as.POSIXct(flux$NIWO$timeBgn, 
                     format="%Y-%m-%dT%H:%M:%S", 
                     tz="GMT")
@@ -240,7 +501,8 @@ flux$NIWO <- cbind(timeB, flux$NIWO)
 ```
 
 
-```{r, eval = FALSE}
+
+```r
 plot(flux$NIWO$data.fluxCo2.nsae.flux~timeB, 
      pch=".", xlab="Date", ylab="CO2 flux",
      xaxt="n")
@@ -254,7 +516,8 @@ is a clear diurnal pattern going into the growing season.
 Let's trim down to just two days of data to see a few other details.
 
 
-```{r, eval=FALSE}
+
+```r
 plot(flux$NIWO$data.fluxCo2.nsae.flux~timeB, 
      pch=20, xlab="Date", ylab="CO2 flux",
      xlim=c(as.POSIXct("2018-07-07", tz="GMT"),
@@ -300,7 +563,8 @@ download time by disregarding the 1-minute data files (which are of course
 all available averaging intervals.
 
 
-```{r, eval=FALSE}
+
+```r
 pr <- loadByProduct("DP1.00024.001", site="NIWO", avg=30,
                     startdate="2018-06", enddate="2018-07",
                     package="basic", check.size=F)
@@ -318,7 +582,8 @@ first tower level, and 20, 30, etc going up the tower.
 We'll connect PAR data from the tower top to the flux data.
 
 
-```{r, eval=FALSE}
+
+```r
 pr.top <- pr$PARPAR_30min[which(pr$PARPAR_30min$verticalPosition==
                                 max(pr$PARPAR_30min$verticalPosition)),]
 ```
@@ -328,7 +593,8 @@ data, so here we just need to indicate which time field to use to
 merge the flux and PAR data.
 
 
-```{r, eval=FALSE}
+
+```r
 timeB <- pr.top$startDateTime
 pr.top <- cbind(timeB, pr.top)
 ```
@@ -336,12 +602,14 @@ pr.top <- cbind(timeB, pr.top)
 And merge the two datasets:
 
 
-```{r, eval=FALSE}
+
+```r
 fx.pr <- merge(pr.top, flux$NIWO, by="timeB")
 ```
 
 
-```{r, eval=FALSE}
+
+```r
 plot(fx.pr$data.fluxCo2.nsae.flux~fx.pr$PARMean,
      pch=".", ylim=c(-20,20),
      xlab="PAR", ylab="CO2 flux")
@@ -362,13 +630,15 @@ Extract the Level 3 data from the HDF5 file using `stackEddy()` with
 the same syntax as for the Level 4 data.
 
 
-```{r, eval=FALSE}
+
+```r
 prof <- stackEddy(filepath="./data/filesToStack00200/",
                  level="dp03")
 ```
 
 
-```{r, eval=FALSE}
+
+```r
 knitr::kable(head(prof$NIWO))
 ```
 
@@ -382,7 +652,8 @@ Again, they can be extracted from the HDF5 files using `stackEddy()`
 with the same syntax:
 
 
-```{r, eval=FALSE}
+
+```r
 prof.l2 <- stackEddy(filepath="./data/filesToStack00200/",
                  level="dp02")
 ```
@@ -390,7 +661,8 @@ prof.l2 <- stackEddy(filepath="./data/filesToStack00200/",
 
 
 
-```{r, eval = FALSE}
+
+```r
 knitr::kable(head(prof.l2$HARV))
 ```
 
@@ -420,7 +692,8 @@ a list of HDF5 file contents. It requires only one input, a filepath
 to a single NEON HDF5 file:
 
 
-```{r, eval=FALSE}
+
+```r
 vars <- getVarsEddy("./data/filesToStack00200/NEON.D01.HARV.DP4.00200.001.nsae.2018-07.basic.h5")
 knitr::kable(head(vars))
 ```
@@ -436,7 +709,8 @@ for these data, since deeper canopies generally have more interesting
 profiles:
 
 
-```{r, eval=FALSE}
+
+```r
 iso <- stackEddy(filepath="./data/filesToStack00200/",
                level="dp01", var=c("rtioMoleDryCo2","rtioMoleDryH2o",
                                    "dlta13CCo2","dlta18OH2o"), avg=30)
@@ -445,7 +719,8 @@ iso <- stackEddy(filepath="./data/filesToStack00200/",
 
 
 
-```{r, eval = FALSE}
+
+```r
 knitr::kable(head(iso$HARV))
 ```
 
@@ -461,7 +736,8 @@ we want using `grep()`. And discard the `verticalPosition` values that are
 string values - those are the calibration gases.
 
 
-```{r, eval=FALSE}
+
+```r
 iso.d <- iso$HARV[grep("2018-06-25", iso$HARV$timeBgn, fixed=T),]
 iso.d <- iso.d[-which(is.na(as.numeric(iso.d$verticalPosition))),]
 ```
@@ -473,12 +749,14 @@ iso.d <- iso.d[-which(is.na(as.numeric(iso.d$verticalPosition))),]
 the profiles.
 
 
-```{r}
+
+```r
 library(ggplot2)
 ```
 
 
-```{r, eval=FALSE}
+
+```r
 g <- ggplot(iso.d, aes(y=verticalPosition)) + 
   geom_path(aes(x=data.co2Stor.rtioMoleDryCo2.mean, 
                 group=timeBgn, col=timeBgn)) + 
@@ -490,13 +768,12 @@ g
 
 
 
-```{r,echo=FALSE}
-knitr::include_graphics('./images/eddy_intro_50_1.png')
-```
+<img src="./images/eddy_intro_50_1.png" width="420" />
 
 
 
-```{r, eval = FALSE}
+
+```r
 g <- ggplot(iso.d, aes(y=verticalPosition)) + 
   geom_path(aes(x=data.isoCo2.dlta13CCo2.mean, 
                 group=timeBgn, col=timeBgn)) + 
@@ -509,9 +786,7 @@ g
     “Removed 55 rows containing missing values (geom_path).”
     
 
-```{r,echo=FALSE}
-knitr::include_graphics('./images/eddy_intro_51_1.png')
-```
+<img src="./images/eddy_intro_51_1.png" width="420" />
 
 
 The legends are omitted for space, see if you can work out the times 
@@ -522,9 +797,8 @@ of day the different colors represent.
 
 Install and load packages
 
-```{r, eval = FALSE}
 
-
+```r
 #Install NEONprocIS.base from GitHub, this package is a dependency of eddy4R.base
 
 devtools::install_github(repo="NEONScience/NEON-IS-data-processing",
@@ -555,13 +829,13 @@ lapply(packReq, function(x) {
     install.packages(x)
     library(x, character.only = TRUE)
   }})
-  
 ```
 
 
 Select your site of interest from the list of NEON sites below.  
 
-```{r, eval = FALSE}
+
+```r
 site <- "KONZ"
   
   #"BARR","CLBJ","MLBS","DSNY","NIWO","ORNL","OSBS",
@@ -572,12 +846,12 @@ site <- "KONZ"
   #"SRER","ONAQ","ABBY","WREF","SJER","SOAP","TEAK",
   #"TOOL","BONA","DEJU","HEAL","PUUM"
 }
-
 ```
 
 If you would like to download a set range of dates, define the following paramemters. If these are not defined, it will default to the entire record at the site
 
-```{r, eval = FALSE}
+
+```r
 #define start and end dates, optional, defaults to entire period of site operation. Use %Y-%m-%d format.
 dateBgn <- "2020-03-01"
 dateEnd <- "2020-05-31"
@@ -591,8 +865,8 @@ ver = paste0("v",format(Sys.time(), "%Y%m%dT%H%m"))
 
 Specify Download directory for HDF5 files from the NEON data portal and output directory to save the resulting csv files. Change save paths to where you want the files on your computer. 
 
-``` {r, eval = FALSE}
 
+```r
 #download directory
 DirDnld=tempdir()
 
@@ -602,7 +876,8 @@ DirOutBase <-paste0("~/eddy/data/Ameriflux/",ver)
 
 Specify Data Product number, for the Bundled Eddy-Covariance files, this is DP4.00200.001 
 
-```{r, eval = FALSE}
+
+```r
 #DP number
 dpID <- 'DP4.00200.001'
 ```
@@ -610,7 +885,8 @@ dpID <- 'DP4.00200.001'
 
 Get metadata from Ameriflux Site Info BADM sheets for the site of interest
   
-```{r, eval=FALSE}
+
+```r
   #Grab a list of all Ameriflux sites, containing site ID and site description
   sites_web <- jsonlite::fromJSON("http://ameriflux-data.lbl.gov/AmeriFlux/SiteSearch.svc/SiteList/AmeriFlux")
   
@@ -627,7 +903,8 @@ Get metadata from Ameriflux Site Info BADM sheets for the site of interest
   
   
 Use Ameriflux site IDs to name metadata lists
-```{r, eval=FALSE}
+
+```r
 #use NEON ID as list name
   names(metaSite) <- site 
 #Use Ameriflux site ID as list name  
@@ -636,8 +913,8 @@ Use Ameriflux site IDs to name metadata lists
 
 Check if dateBgn is defined, if not make it the initial operations date "IOCR" of the site
 
-```{r, eval=FALSE}
 
+```r
   if(!exists("dateBgn") || is.na(dateBgn) || is.null(dateBgn)){
     dateBgn <- as.Date(metaSite[[site]]$values$GRP_FLUX_MEASUREMENTS[[1]]$FLUX_MEASUREMENTS_DATE_START, "%Y%m%d")
   } else {
@@ -653,24 +930,28 @@ Check if dateBgn is defined, if not make it the initial operations date "IOCR" o
 ```
 
 Grab the UTC time offset from the Ameriflux API
-```{r, eval=FALSE}
+
+```r
   timeOfstUtc <- as.integer(metaSite[[site]]$values$GRP_UTC_OFFSET[[1]]$UTC_OFFSET)
 ```
 
 Create the date sequence
-```{r, eval=FALSE}
+
+```r
   setDate <- seq(from = as.Date(dateBgn), to = as.Date(dateEnd), by = "month")
-```  
+```
   
 
 Start processing the site time range specified, verify that the site and date range are specified as intended
-```{r, eval=FALSE}
+
+```r
   msg <- paste0("Starting Ameriflux FP standard conversion processing workflow for ", site, " for ", dateBgn, " to ", dateEnd)
   print(msg)
 ```
 
 Create output directory by checking if the download directory exists and create it if not
-```{r, eval=FALSE}
+
+```r
   if(dir.exists(DirDnld) == FALSE) dir.create(DirDnld, recursive = TRUE)
   #Append the site to the base output directory
   DirOut <- paste0(DirOutBase, "/", siteNeon$SITE_ID)
@@ -679,7 +960,8 @@ Create output directory by checking if the download directory exists and create 
 ```
 
 Download and extract data
-```{r, eval = FALSE}
+
+```r
   #Initialize data List
   dataList <- list()
   
@@ -711,30 +993,26 @@ Download and extract data
     }
     return(dataIdx)
   })
-  
-     
-
-    
 ```
 
   
 Add names to list for year/month combinations
   
-```{r, eval = FALSE}
-  
+
+```r
 names(dataList) <- paste0(lubridate::year(setDate),sprintf("%02d",lubridate::month(setDate)))
-                            
 ```
   
   
 Remove NULL elements from list
-```{r, eval = FALSE}
+
+```r
 dataList <- dataList[vapply(dataList, Negate(is.null), NA)]
 ```
 
 Determine tower horizontal & vertical indices
-``` {r, eval=FALSE}
-    
+
+```r
     #Find the tower top level by looking at the vertical index of the turbulent CO2 concentration measurements 
     LvlTowr <- grep(pattern = "_30m", names(dataList[[1]]$dp01$data$co2Turb), value = TRUE)
     LvlTowr <- gsub(x = LvlTowr, pattern = "_30m", replacement = "")
@@ -757,7 +1035,8 @@ Determine tower horizontal & vertical indices
 ```
     
 Subset to the Ameriflux variables to convert
-```{r, eval = FALSE}
+
+```r
     dataListFlux <- lapply(names(dataList), function(x) {
       data.frame(
         "TIMESTAMP_START" = as.POSIXlt(dataList[[x]]$dp04$data$fluxCo2$turb$timeBgn, format="%Y-%m-%dT%H:%M:%OSZ", tz = "GMT"),
@@ -820,14 +1099,16 @@ Subset to the Ameriflux variables to convert
 ```
 
 Combine the monthly data into a single dataframe, remove lists and clean memory
-```{r, eval=FALSE}    
+
+```r
     dataDfFlux <- do.call(rbind.data.frame,dataListFlux)
     rm(list=c("dataListFlux","dataList"))
     gc()
 ```
 
 Regularize timeseries to 30 minutes in case timestamps are missing from NEON files due to processing errors
-``` {r, eval=FALSE}
+
+```r
     timeRglr <- eddy4R.base::def.rglr(timeMeas = as.POSIXlt(dataDfFlux$TIMESTAMP_START), dataMeas = dataDfFlux, BgnRglr = as.POSIXlt(dataDfFlux$TIMESTAMP_START[1]), EndRglr = as.POSIXlt(dataDfFlux$TIMESTAMP_END[length(dataDfFlux$TIMESTAMP_END)]), TzRglr = "UTC", FreqRglr = 1/(60*30))
     
     #Reassign data to data.frame
@@ -839,8 +1120,8 @@ Regularize timeseries to 30 minutes in case timestamps are missing from NEON fil
 
 Define validation times, and remove this data from the dataset. At NEON sites, validations with a series of gasses of known concentration are run every 23.5 hours. These values are used to correct for measurment drift and are run every 23.5 hours to achive daily resolution while also spreading the impact of lost measurements throughout the day. 
 
-```{r, eval=FALSE}
 
+```r
     #Remove co2Turb and h2oTurb data based off of qfFlow (qfFinl frt00)
     dataDfFlux$FC[(which(dataDfFlux$qfCO2_1_1_1 == 1))] <- NaN
     dataDfFlux$LE[(which(dataDfFlux$qfH2O_1_1_1 == 1))] <- NaN
@@ -865,17 +1146,18 @@ Define validation times, and remove this data from the dataset. At NEON sites, v
       dataDfFlux[[paste0("CO2_1_",x,"_2")]][(which(dataDfFlux[[paste0("qfCO2_1_",x,"_2")]] == 1))] <<- NaN
       dataDfFlux[[paste0("CO2_1_",x,"_3")]][(which(dataDfFlux[[paste0("qfCO2_1_",x,"_3")]] == 1))] <<- NaN
     })
- 
 ```
 
 Remove quality flagging variables from output
-```{r, eval = FALSE}
+
+```r
     setIdxQf <- grep("qf", names(dataDfFlux))
     dataDfFlux[,setIdxQf] <- NULL
 ```
 
 Set range thresholds
-```{r, eval=FALSE}
+
+```r
     #assign list
     Rng <- list()
     
@@ -897,7 +1179,8 @@ Set range thresholds
 
     
 Set Max thresholds
-```{r, eval=FALSE}
+
+```r
     Rng$Max <- data.frame(
       "FC" = 100,            #[umol m-2 s-1]
       "SC" = 100,            #[umol m-2 s-1]
@@ -915,8 +1198,8 @@ Set Max thresholds
 ```
 
 Grab all CO2/H2O columns to apply same thresholds, replace missing values with -9999
-```{r, eval = FALSE}
-    
+
+```r
     nameCO2 <- grep("CO2",names(dataDfFlux),value = TRUE)
     nameH2O <- grep("H2O",names(dataDfFlux),value = TRUE)
     #Apply the CO2/H2O threshold to all variables in HOR_VER_REP
@@ -937,7 +1220,8 @@ Grab all CO2/H2O columns to apply same thresholds, replace missing values with -
 ```
 
 Write output data to csv
-``` {r, eval = FALSE}
+
+```r
     #Create output filename based off of Ameriflux file naming convention
     nameFileOut <- base::paste0(DirOut,"/",siteNeon$SITE_ID,'_HH_',dataDfFlux$TIMESTAMP_START[1],'_',utils::tail(dataDfFlux$TIMESTAMP_END,n=1),'_flux.csv')
     
@@ -946,7 +1230,8 @@ Write output data to csv
 ```
 
 Clean up environment
-``` {r, eval=FALSE}
+
+```r
   rm(list="dataDfFlux")
   gc()
 ```
@@ -965,4 +1250,257 @@ Clean up environment
 2) Using metScanR package, find co-located NEON and AmeriFlux sites. Download data for an overlapping time period, and compare FC and H values by making a scatter plot and seeing how far off the data are from a 1:1 line. 
 
 
+
+
+<!--chapter:end:06-Fluxes_and_Inter-operability.Rmd-->
+
+
+# NEON AOP
+
+Placeholder
+
+
+## Hyperspectral Remote Sensing
+### Learning Objectives
+#### Mapping the Invisible
+### About Hyperspectral Remote Sensing Data
+## Key Metadata for Hyperspectral Data
+### Bands and Wavelengths
+### Spectral Resolution
+### Full Width Half Max (FWHM)
+## Intro to Working with Hyperspectral Remote Sensing Data in HDF5 Format
+### Learning Objectives
+### R Libraries to Install:
+### Data to Download
+## About Hyperspectral Remote Sensing Data
+##  Read HDF5 data into R
+### Bands and Wavelengths
+### A Note About Data Slicing in HDF5
+### Arrays vs. Matrices
+### Dimensions in Arrays
+### Data Ignore Value
+### Reflectance Values and Image Stretch
+### Transpose Image
+## Create a Georeferenced Raster
+### Define Raster CRS
+### Challenge: Work with Rasters
+## Light Detection And Ranging (LiDAR) Data
+## Calculating Forest Structural Diversity Metrics from NEON LiDAR Data
+### Learning Objectives
+### R Libraries to Install:
+### Data to Download
+### Recommended Skills
+### Additional Resources
+## Introduction to Structural Diversity Metrics
+## NEON AOP Discrete Return LIDAR
+### Loading the LIDAR Products
+### Normalizing Tree Height to Ground
+## Calculating Structural Diversity Metrics
+### GENERATE CANOPY HEIGHT MODEL (CHM) 
+#### MEAN OUTER CANOPY HEIGHT (MOCH)
+#### MAX CANOPY HEIGHT
+#### RUMPLE
+#### TOP RUGOSITY
+#### DEEP GAPS & DEEP GAP FRACTION
+#### COVER FRACTION
+#### HEIGHT SD
+#### ENTROPY
+#### GAP FRACTION PROFILE 
+#### VAI
+#### VCI
+### Combining Everything Into One Function
+### Comparing Metrics Between Forests
+## Matching GEDI waveforms with NEON AOP LiDAR pointclouds
+### Learning Objectives 
+### Things You’ll Need To Complete This GEDI Section
+### R Packages to Install
+### Example Data Set
+#### GEDI Example Data Subset
+#### Datum difference between WGS84 and NAD83
+#### Datum difference between GEOID12A and NAD83
+### Getting Started
+### Downloading GEDI data
+### Plot GEDI footprints on CHM
+### Extract Waveform for a single Shot
+### Download and Plot NEON AOP LiDAR pointcloud data
+### Clip AOP LiDAR Pointcloud to GEDI footprints
+### Plot GEDI Waveform with AOP Pointcloud in 3D space
+### Datum, Geoid, and how to best measure the Earth
+#### WGS84
+#### GEOID12A
+### Aligning the Vertical Datum
+### GEOID12A Height Model
+### Extract vertical offset for GEDI shots
+### Plot vertically corrected GEDI waveform in 3D
+### Optional - NEON base plots
+## NEON AOP Written Questions:
+## NEON AOP Coding Lab
+## NEON AOP Culmination Write Up
+
+<!--chapter:end:07-NEON_AOP.Rmd-->
+
+
+# NASA's Earth Observing System (EOS)
+
+Placeholder
+
+
+## Learning Objectives
+## NASA EOS Project Mission & Design
+## NASA EOS Earth Data Account:
+## **NASA EOS Coding Assignment 1**
+## Distributed Active Archive Centers
+### LP DAAC
+## The LPDAAC Mission: Process, Archive, Distribute, Apply
+### How you can use LP DAAC's data
+## AppEEARS
+## Hands on: Pulling AppEEARS Data via the API
+## Getting Started with the AppEEARS API (Point Request)
+### Example: Submit a point request for multiple NEON sites to extract vegetation and land surface temperature data   
+#### Data Used in the Example:
+## Topics Covered in this section:
+### Prerequisites:
+#### Getting Started:
+### AppEEARS Information:
+## Getting Started with the AppEEARS API       
+### Load Packages
+### Set Up the Output Directory
+### Login to Earth Data
+## Query Available Products
+## Search and Explore Available Products
+## Search and Explore Available Layers 
+## Submit a Point Request
+### Compile a JSON Object
+### Submit a Task Request
+### Retrieve Task Status
+## Download a Request
+### Explore Files in Request Output 
+## Download Files in a Request (Automation) 
+## Explore AppEEARS Quality Service
+### List Quality Layers 
+### Inspect Quality Values 
+## Decode Quality Values
+## Load Request Output and Visualize
+## Load a CSV
+## Plot Results (Line/Scatter Plots)
+## Submit an Area Request
+## Submit an area request using a NEON site boundary as the region of interest for extracting elevation, vegetation and land surface temperature data    
+#### Data Used in this Example:
+### Topics Covered in this Tutorial
+### Prerequisites:
+### Procedures:
+#### Getting Started:
+### AppEEARS Information:
+## Getting Started with an Area Request     
+### Load Packages for an Area Request
+## Set Up the Output Directory
+## Load your Earth Data Token
+## Query Available Products
+## Search and Explore Available Products
+## Search and Explore Available Layers
+## Submit an Area Request
+### Load a Shapefile
+## Search and Explore Available Projections
+## Compile a JSON Object
+## Submit a Task Request 
+## Retrieve Task Status
+## Download a Request
+### Explore Files in Request Output 
+## Download Files in a Request (Automation) 
+## Explore AppEEARS Quality Service
+## List Quality Layers 
+## Show Quality Values 
+## Decode Quality Values
+## BONUS: Load Request Output and Visualize
+## Load a GeoTIFF
+## Plot a GeoTIFF
+## NASA EOS Coding Lab #2
+## NASA EOS Written Questions
+## NASA EOS Culmination Write Up
+
+<!--chapter:end:08-NASA_EOS.Rmd-->
+
+
+# USGS National Water Information System (NWIS)
+
+Placeholder
+
+
+## USGS Mission:
+## USGS Water Resources Mission:
+## Types of USGS NWIS Data
+## USGS R Packages: Collaborative and reproducible data analysis using R
+### Suggested prerequisite knowledge
+### Course outline
+### Software requirements
+### Lesson Summary
+### Lesson Objectives
+### Lesson Resources
+### Lesson Slide Deck
+## Introduction to USGS R Packages
+## Data available
+## Common NWIS function arguments
+## Discovering NWIS data
+### whatNWISdata
+## Common WQP function arguments
+## Discovering WQP data
+### readWQPdata + querySummary
+### whatWQPsites
+## readNWIS functions
+### readNWISdata
+### readNWISdv
+### readNWISgwl
+### readNWISmeas
+### readNWISpCode
+### readNWISpeak
+### readNWISqw
+### readNWISrating
+### readNWISsite
+### readNWISstat
+### readNWISuse
+### readNWISuv
+## Additional Features
+### Accessing attributes
+### Using lists as input
+### Helper functions
+## readWQP functions
+### readWQPdata
+### readWQPqw
+## Attributes and metadata
+## USGS Coding Lab Exercises
+### Just how dry was the 2020 monsoon?
+## geoKnife - Introduction
+## Lesson Summary
+## Lesson Objectives
+## Lesson Resources
+## Remote processing
+## geoknife components: fabric, stencil, knife
+## Available webdata
+### GDP datasets
+### Datasets not in GDP
+## Available webgeoms
+## Available webprocesses
+## Setting up a geojob
+## Checking the geojob status
+## Getting geojob data
+## `wait` and `email`
+## Putting it all together, mapping precipitation from Tropical Storm Colin
+## USGS NWIS Culmination Write Up
+
+<!--chapter:end:08-USGS.Rmd-->
+
+
+# Frequently Asked Questions: {-}
+
+Placeholder
+
+
+## Where can I find due dates for assignments?
+## How do I submit assignments?
+## Do I still have to submit written exercises as .Rmd and .pdf?
+## What's better for code, conciseness or readability?
+## How find I find resources to navigate the NEON Data Portal?
+## How can I best prepare for class and succeed?
+
+<!--chapter:end:15_FAQ.Rmd-->
 

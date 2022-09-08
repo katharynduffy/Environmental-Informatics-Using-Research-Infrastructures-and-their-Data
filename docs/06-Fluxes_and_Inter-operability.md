@@ -115,16 +115,22 @@ zipsByProduct(dpID="DP4.00200.001", package="basic",
 ## Finding available files
 ##   |                                                                              |                                                                      |   0%  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
 ## 
-## Downloading files totaling approximately 320.5 MiB
+## Downloading files totaling approximately 345.260177 MB
 ```
 
 ```
-## Warning in dir.create(filepath): './data/filesToStack00200' already exists
+## ./data/filesToStack00200 already exists. Download will proceed, but check for duplicate files.
 ```
 
 ```
 ## Downloading 4 files
-##   |                                                                              |                                                                      |   0%  |                                                                              |=======================                                               |  33%  |                                                                              |===============================================                       |  67%  |                                                                              |======================================================================| 100%
+##   |                                                                              |                                                                      |   0%  |                                                                              |=======================                                               |  33%
+## NEON.D01.HARV.DP4.00200.001.2018-06.basic.20220120T173946Z.RELEASE-2022.zip could not be downloaded. Re-attempting.
+##   |                                                                              |===============================================                       |  67%
+## NEON.D01.HARV.DP4.00200.001.2018-07.basic.20220120T173946Z.RELEASE-2022.zip could not be downloaded. Re-attempting.
+##   |                                                                              |======================================================================| 100%
+## NEON.D13.NIWO.DP4.00200.001.2018-07.basic.20220120T173946Z.RELEASE-2022.zip could not be downloaded. Re-attempting.
+## 
 ## 4 files successfully downloaded to ./data/filesToStack00200
 ```
 
@@ -176,15 +182,6 @@ flux <- stackEddy(filepath="./data/filesToStack00200",
                  level="dp04")
 ```
 
-```
-## Extracting data
-##   |                                                                              |                                                                      |   0%  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
-## Stacking data tables by month
-##   |                                                                              |                                                                      |   0%  |                                                                              |==                                                                    |   4%  |                                                                              |=====                                                                 |   7%  |                                                                              |========                                                              |  11%  |                                                                              |==========                                                            |  14%  |                                                                              |============                                                          |  18%  |                                                                              |===============                                                       |  21%  |                                                                              |==================                                                    |  25%  |                                                                              |====================                                                  |  29%  |                                                                              |======================                                                |  32%  |                                                                              |=========================                                             |  36%  |                                                                              |============================                                          |  39%  |                                                                              |==============================                                        |  43%  |                                                                              |================================                                      |  46%  |                                                                              |===================================                                   |  50%  |                                                                              |======================================                                |  54%  |                                                                              |========================================                              |  57%  |                                                                              |==========================================                            |  61%  |                                                                              |=============================================                         |  64%  |                                                                              |================================================                      |  68%  |                                                                              |==================================================                    |  71%  |                                                                              |====================================================                  |  75%  |                                                                              |=======================================================               |  79%  |                                                                              |==========================================================            |  82%  |                                                                              |============================================================          |  86%  |                                                                              |==============================================================        |  89%  |                                                                              |=================================================================     |  93%  |                                                                              |====================================================================  |  96%  |                                                                              |======================================================================| 100%
-## Joining data variables
-##   |                                                                              |                                                                      |   0%  |                                                                              |==                                                                    |   4%  |                                                                              |=====                                                                 |   7%  |                                                                              |========                                                              |  11%  |                                                                              |==========                                                            |  14%  |                                                                              |============                                                          |  18%  |                                                                              |===============                                                       |  21%  |                                                                              |==================                                                    |  25%  |                                                                              |====================                                                  |  29%  |                                                                              |======================                                                |  32%  |                                                                              |=========================                                             |  36%  |                                                                              |============================                                          |  39%  |                                                                              |==============================                                        |  43%  |                                                                              |================================                                      |  46%  |                                                                              |===================================                                   |  50%  |                                                                              |======================================                                |  54%  |                                                                              |========================================                              |  57%  |                                                                              |==========================================                            |  61%  |                                                                              |=============================================                         |  64%  |                                                                              |================================================                      |  68%  |                                                                              |==================================================                    |  71%  |                                                                              |====================================================                  |  75%  |                                                                              |=======================================================               |  79%  |                                                                              |==========================================================            |  82%  |                                                                              |============================================================          |  86%  |                                                                              |==============================================================        |  89%  |                                                                              |=================================================================     |  93%  |                                                                              |====================================================================  |  96%  |                                                                              |======================================================================| 100%
-```
-
 
 
 We now have an object called `flux`. It's a named list containing four 
@@ -197,10 +194,6 @@ tables.
 names(flux)
 ```
 
-```
-## [1] "HARV"      "NIWO"      "variables" "objDesc"
-```
-
 
 Let's look at the contents of one of the site data files:
 
@@ -209,209 +202,6 @@ Let's look at the contents of one of the site data files:
 ```r
 knitr::kable(head(flux$NIWO))
 ```
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> timeBgn </th>
-   <th style="text-align:left;"> timeEnd </th>
-   <th style="text-align:right;"> data.fluxCo2.nsae.flux </th>
-   <th style="text-align:right;"> data.fluxCo2.stor.flux </th>
-   <th style="text-align:right;"> data.fluxCo2.turb.flux </th>
-   <th style="text-align:right;"> data.fluxH2o.nsae.flux </th>
-   <th style="text-align:right;"> data.fluxH2o.stor.flux </th>
-   <th style="text-align:right;"> data.fluxH2o.turb.flux </th>
-   <th style="text-align:right;"> data.fluxMome.turb.veloFric </th>
-   <th style="text-align:right;"> data.fluxTemp.nsae.flux </th>
-   <th style="text-align:right;"> data.fluxTemp.stor.flux </th>
-   <th style="text-align:right;"> data.fluxTemp.turb.flux </th>
-   <th style="text-align:right;"> data.foot.stat.angZaxsErth </th>
-   <th style="text-align:right;"> data.foot.stat.distReso </th>
-   <th style="text-align:right;"> data.foot.stat.veloYaxsHorSd </th>
-   <th style="text-align:right;"> data.foot.stat.veloZaxsHorSd </th>
-   <th style="text-align:right;"> data.foot.stat.veloFric </th>
-   <th style="text-align:right;"> data.foot.stat.distZaxsMeasDisp </th>
-   <th style="text-align:right;"> data.foot.stat.distZaxsRgh </th>
-   <th style="text-align:right;"> data.foot.stat.distZaxsAbl </th>
-   <th style="text-align:right;"> data.foot.stat.distXaxs90 </th>
-   <th style="text-align:right;"> data.foot.stat.distXaxsMax </th>
-   <th style="text-align:right;"> data.foot.stat.distYaxs90 </th>
-   <th style="text-align:right;"> qfqm.fluxCo2.stor.qfFinl </th>
-   <th style="text-align:right;"> qfqm.fluxH2o.stor.qfFinl </th>
-   <th style="text-align:right;"> qfqm.fluxTemp.stor.qfFinl </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 2018-06-01T00:00:00.000Z </td>
-   <td style="text-align:left;"> 2018-06-01T00:29:59.000Z </td>
-   <td style="text-align:right;"> 0.1111935 </td>
-   <td style="text-align:right;"> -0.0619119 </td>
-   <td style="text-align:right;"> 0.1731053 </td>
-   <td style="text-align:right;"> 19.401823 </td>
-   <td style="text-align:right;"> 3.2511265 </td>
-   <td style="text-align:right;"> 16.150697 </td>
-   <td style="text-align:right;"> 0.1970704 </td>
-   <td style="text-align:right;"> 4.1712006 </td>
-   <td style="text-align:right;"> -1.4227119 </td>
-   <td style="text-align:right;"> 5.593913 </td>
-   <td style="text-align:right;"> 94.90147 </td>
-   <td style="text-align:right;"> 8.34 </td>
-   <td style="text-align:right;"> 0.7734536 </td>
-   <td style="text-align:right;"> 0.2708072 </td>
-   <td style="text-align:right;"> 0.2 </td>
-   <td style="text-align:right;"> 8.34 </td>
-   <td style="text-align:right;"> 0.0322148 </td>
-   <td style="text-align:right;"> 1000 </td>
-   <td style="text-align:right;"> 333.60 </td>
-   <td style="text-align:right;"> 133.44 </td>
-   <td style="text-align:right;"> 25.02 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2018-06-01T00:30:00.000Z </td>
-   <td style="text-align:left;"> 2018-06-01T00:59:59.000Z </td>
-   <td style="text-align:right;"> 0.9328922 </td>
-   <td style="text-align:right;"> 0.0853412 </td>
-   <td style="text-align:right;"> 0.8475510 </td>
-   <td style="text-align:right;"> 10.444936 </td>
-   <td style="text-align:right;"> -1.1768333 </td>
-   <td style="text-align:right;"> 11.621770 </td>
-   <td style="text-align:right;"> 0.1969972 </td>
-   <td style="text-align:right;"> -0.9163691 </td>
-   <td style="text-align:right;"> 0.3331562 </td>
-   <td style="text-align:right;"> -1.249525 </td>
-   <td style="text-align:right;"> 354.70503 </td>
-   <td style="text-align:right;"> 8.34 </td>
-   <td style="text-align:right;"> 0.8450318 </td>
-   <td style="text-align:right;"> 0.2300000 </td>
-   <td style="text-align:right;"> 0.2 </td>
-   <td style="text-align:right;"> 8.34 </td>
-   <td style="text-align:right;"> 0.3300708 </td>
-   <td style="text-align:right;"> 1000 </td>
-   <td style="text-align:right;"> 258.54 </td>
-   <td style="text-align:right;"> 108.42 </td>
-   <td style="text-align:right;"> 50.04 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2018-06-01T01:00:00.000Z </td>
-   <td style="text-align:left;"> 2018-06-01T01:29:59.000Z </td>
-   <td style="text-align:right;"> 0.4673682 </td>
-   <td style="text-align:right;"> 0.0217722 </td>
-   <td style="text-align:right;"> 0.4455960 </td>
-   <td style="text-align:right;"> 5.140617 </td>
-   <td style="text-align:right;"> -4.3112673 </td>
-   <td style="text-align:right;"> 9.451884 </td>
-   <td style="text-align:right;"> 0.0651821 </td>
-   <td style="text-align:right;"> -2.9814957 </td>
-   <td style="text-align:right;"> 0.1825849 </td>
-   <td style="text-align:right;"> -3.164081 </td>
-   <td style="text-align:right;"> 358.86732 </td>
-   <td style="text-align:right;"> 8.34 </td>
-   <td style="text-align:right;"> 1.2219162 </td>
-   <td style="text-align:right;"> 0.2300000 </td>
-   <td style="text-align:right;"> 0.2 </td>
-   <td style="text-align:right;"> 8.34 </td>
-   <td style="text-align:right;"> 0.1287607 </td>
-   <td style="text-align:right;"> 1000 </td>
-   <td style="text-align:right;"> 308.58 </td>
-   <td style="text-align:right;"> 125.10 </td>
-   <td style="text-align:right;"> 58.38 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2018-06-01T01:30:00.000Z </td>
-   <td style="text-align:left;"> 2018-06-01T01:59:59.000Z </td>
-   <td style="text-align:right;"> 0.7263614 </td>
-   <td style="text-align:right;"> 0.2494437 </td>
-   <td style="text-align:right;"> 0.4769178 </td>
-   <td style="text-align:right;"> 9.017467 </td>
-   <td style="text-align:right;"> 0.1980776 </td>
-   <td style="text-align:right;"> 8.819389 </td>
-   <td style="text-align:right;"> 0.1296400 </td>
-   <td style="text-align:right;"> -13.3556222 </td>
-   <td style="text-align:right;"> -2.4317615 </td>
-   <td style="text-align:right;"> -10.923861 </td>
-   <td style="text-align:right;"> 137.68858 </td>
-   <td style="text-align:right;"> 8.34 </td>
-   <td style="text-align:right;"> 0.7325131 </td>
-   <td style="text-align:right;"> 0.2300000 </td>
-   <td style="text-align:right;"> 0.2 </td>
-   <td style="text-align:right;"> 8.34 </td>
-   <td style="text-align:right;"> 0.8340000 </td>
-   <td style="text-align:right;"> 1000 </td>
-   <td style="text-align:right;"> 208.50 </td>
-   <td style="text-align:right;"> 83.40 </td>
-   <td style="text-align:right;"> 75.06 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2018-06-01T02:00:00.000Z </td>
-   <td style="text-align:left;"> 2018-06-01T02:29:59.000Z </td>
-   <td style="text-align:right;"> 0.4740572 </td>
-   <td style="text-align:right;"> 0.2252436 </td>
-   <td style="text-align:right;"> 0.2488136 </td>
-   <td style="text-align:right;"> 3.180385 </td>
-   <td style="text-align:right;"> 0.1316297 </td>
-   <td style="text-align:right;"> 3.048756 </td>
-   <td style="text-align:right;"> 0.1746071 </td>
-   <td style="text-align:right;"> -5.3406503 </td>
-   <td style="text-align:right;"> -0.7324937 </td>
-   <td style="text-align:right;"> -4.608157 </td>
-   <td style="text-align:right;"> 188.33767 </td>
-   <td style="text-align:right;"> 8.34 </td>
-   <td style="text-align:right;"> 0.7093743 </td>
-   <td style="text-align:right;"> 0.2300000 </td>
-   <td style="text-align:right;"> 0.2 </td>
-   <td style="text-align:right;"> 8.34 </td>
-   <td style="text-align:right;"> 0.8340000 </td>
-   <td style="text-align:right;"> 1000 </td>
-   <td style="text-align:right;"> 208.50 </td>
-   <td style="text-align:right;"> 83.40 </td>
-   <td style="text-align:right;"> 66.72 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2018-06-01T02:30:00.000Z </td>
-   <td style="text-align:left;"> 2018-06-01T02:59:59.000Z </td>
-   <td style="text-align:right;"> 0.8807022 </td>
-   <td style="text-align:right;"> 0.0707801 </td>
-   <td style="text-align:right;"> 0.8099221 </td>
-   <td style="text-align:right;"> 4.398761 </td>
-   <td style="text-align:right;"> -0.2989443 </td>
-   <td style="text-align:right;"> 4.697706 </td>
-   <td style="text-align:right;"> 0.1047797 </td>
-   <td style="text-align:right;"> -7.2739206 </td>
-   <td style="text-align:right;"> -1.8616349 </td>
-   <td style="text-align:right;"> -5.412286 </td>
-   <td style="text-align:right;"> 183.15582 </td>
-   <td style="text-align:right;"> 8.34 </td>
-   <td style="text-align:right;"> 0.3791676 </td>
-   <td style="text-align:right;"> 0.2300000 </td>
-   <td style="text-align:right;"> 0.2 </td>
-   <td style="text-align:right;"> 8.34 </td>
-   <td style="text-align:right;"> 0.8340000 </td>
-   <td style="text-align:right;"> 1000 </td>
-   <td style="text-align:right;"> 208.50 </td>
-   <td style="text-align:right;"> 83.40 </td>
-   <td style="text-align:right;"> 41.70 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table>
 
 
 The `variables` and `objDesc` tables can help you interpret the column 
@@ -425,332 +215,8 @@ into individual terms and look for them in the `objDesc` table:
 ```r
 term <- unlist(strsplit(names(flux$NIWO), split=".", fixed=T))
 flux$objDesc[which(flux$objDesc$Object %in% term),]
-```
-
-```
-##          Object
-## 138 angZaxsErth
-## 171        data
-## 343      qfFinl
-## 420        qfqm
-## 604     timeBgn
-## 605     timeEnd
-##                                                                                                         Description
-## 138                                                                                                 Wind direction 
-## 171                                                                                          Represents data fields
-## 343       The final quality flag indicating if the data are valid for the given aggregation period (1=fail, 0=pass)
-## 420 Quality flag and quality metrics, represents quality flags and quality metrics that accompany the provided data
-## 604                                                                    The beginning time of the aggregation period
-## 605                                                                          The end time of the aggregation period
-```
-
-```r
 knitr::kable(term)
 ```
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> x </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> timeBgn </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> timeEnd </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> fluxCo2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> nsae </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> flux </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> fluxCo2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> stor </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> flux </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> fluxCo2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> turb </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> flux </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> fluxH2o </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> nsae </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> flux </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> fluxH2o </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> stor </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> flux </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> fluxH2o </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> turb </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> flux </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> fluxMome </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> turb </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> veloFric </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> fluxTemp </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> nsae </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> flux </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> fluxTemp </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> stor </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> flux </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> fluxTemp </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> turb </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> flux </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> foot </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> stat </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> angZaxsErth </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> foot </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> stat </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> distReso </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> foot </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> stat </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> veloYaxsHorSd </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> foot </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> stat </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> veloZaxsHorSd </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> foot </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> stat </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> veloFric </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> foot </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> stat </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> distZaxsMeasDisp </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> foot </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> stat </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> distZaxsRgh </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> foot </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> stat </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> distZaxsAbl </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> foot </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> stat </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> distXaxs90 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> foot </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> stat </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> distXaxsMax </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> foot </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> stat </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> distYaxs90 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> qfqm </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> fluxCo2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> stor </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> qfFinl </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> qfqm </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> fluxH2o </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> stor </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> qfFinl </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> qfqm </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> fluxTemp </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> stor </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> qfFinl </td>
-  </tr>
-</tbody>
-</table>
 
 
 For the terms that aren't captured here, `fluxCo2`, `fluxH2o`, and `fluxTemp` 
@@ -767,188 +233,6 @@ The `variables` table contains the units for each field:
 ```r
 knitr::kable(flux$variables)
 ```
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> category </th>
-   <th style="text-align:left;"> system </th>
-   <th style="text-align:left;"> variable </th>
-   <th style="text-align:left;"> stat </th>
-   <th style="text-align:left;"> units </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> fluxCo2 </td>
-   <td style="text-align:left;"> nsae </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> umolCo2 m-2 s-1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> fluxCo2 </td>
-   <td style="text-align:left;"> stor </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> umolCo2 m-2 s-1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> fluxCo2 </td>
-   <td style="text-align:left;"> turb </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> umolCo2 m-2 s-1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> fluxH2o </td>
-   <td style="text-align:left;"> nsae </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> W m-2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> fluxH2o </td>
-   <td style="text-align:left;"> stor </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> W m-2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> fluxH2o </td>
-   <td style="text-align:left;"> turb </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> W m-2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> fluxMome </td>
-   <td style="text-align:left;"> turb </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> m s-1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> fluxTemp </td>
-   <td style="text-align:left;"> nsae </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> W m-2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> fluxTemp </td>
-   <td style="text-align:left;"> stor </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> W m-2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> fluxTemp </td>
-   <td style="text-align:left;"> turb </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> W m-2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> foot </td>
-   <td style="text-align:left;"> stat </td>
-   <td style="text-align:left;"> angZaxsErth </td>
-   <td style="text-align:left;"> deg </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> foot </td>
-   <td style="text-align:left;"> stat </td>
-   <td style="text-align:left;"> distReso </td>
-   <td style="text-align:left;"> m </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> foot </td>
-   <td style="text-align:left;"> stat </td>
-   <td style="text-align:left;"> veloYaxsHorSd </td>
-   <td style="text-align:left;"> m s-1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> foot </td>
-   <td style="text-align:left;"> stat </td>
-   <td style="text-align:left;"> veloZaxsHorSd </td>
-   <td style="text-align:left;"> m s-1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> foot </td>
-   <td style="text-align:left;"> stat </td>
-   <td style="text-align:left;"> veloFric </td>
-   <td style="text-align:left;"> m s-1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> foot </td>
-   <td style="text-align:left;"> stat </td>
-   <td style="text-align:left;"> distZaxsMeasDisp </td>
-   <td style="text-align:left;"> m </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> foot </td>
-   <td style="text-align:left;"> stat </td>
-   <td style="text-align:left;"> distZaxsRgh </td>
-   <td style="text-align:left;"> m </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> foot </td>
-   <td style="text-align:left;"> stat </td>
-   <td style="text-align:left;"> distZaxsAbl </td>
-   <td style="text-align:left;"> m </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> foot </td>
-   <td style="text-align:left;"> stat </td>
-   <td style="text-align:left;"> distXaxs90 </td>
-   <td style="text-align:left;"> m </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> foot </td>
-   <td style="text-align:left;"> stat </td>
-   <td style="text-align:left;"> distXaxsMax </td>
-   <td style="text-align:left;"> m </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> foot </td>
-   <td style="text-align:left;"> stat </td>
-   <td style="text-align:left;"> distYaxs90 </td>
-   <td style="text-align:left;"> m </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> qfqm </td>
-   <td style="text-align:left;"> fluxCo2 </td>
-   <td style="text-align:left;"> stor </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> qfqm </td>
-   <td style="text-align:left;"> fluxH2o </td>
-   <td style="text-align:left;"> stor </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> qfqm </td>
-   <td style="text-align:left;"> fluxTemp </td>
-   <td style="text-align:left;"> stor </td>
-   <td style="text-align:left;">  </td>
-   <td style="text-align:left;"> NA </td>
-  </tr>
-</tbody>
-</table>
 
 
 
@@ -1010,8 +294,6 @@ plot(flux$NIWO$data.fluxCo2.nsae.flux~timeB,
 axis.POSIXct(1, x=timeB, format="%Y-%m-%d %H:%M:%S")
 ```
 
-<img src="06-Fluxes_and_Inter-operability_files/figure-html/unnamed-chunk-11-1.png" width="672" />
-
 
 
 Note the timing of C uptake; the UTC time zone is clear here, where 
@@ -1054,23 +336,6 @@ all available averaging intervals.
 pr <- loadByProduct("DP1.00024.001", site="NIWO", avg=30,
                     startdate="2018-06", enddate="2018-07",
                     package="basic", check.size=F)
-```
-
-```
-## Finding available files
-##   |                                                                              |                                                                      |   0%  |                                                                              |===================================                                   |  50%  |                                                                              |======================================================================| 100%
-## 
-## Downloading files totaling approximately 1.2 MiB
-## Downloading 11 files
-##   |                                                                              |                                                                      |   0%  |                                                                              |=======                                                               |  10%  |                                                                              |==============                                                        |  20%  |                                                                              |=====================                                                 |  30%  |                                                                              |============================                                          |  40%  |                                                                              |===================================                                   |  50%  |                                                                              |==========================================                            |  60%  |                                                                              |=================================================                     |  70%  |                                                                              |========================================================              |  80%  |                                                                              |===============================================================       |  90%  |                                                                              |======================================================================| 100%
-## 
-## Stacking operation across a single core.
-## Stacking table PARPAR_30min
-## Merged the most recent publication of sensor position files for each site and saved to /stackedFiles
-## Copied the most recent publication of variable definition file to /stackedFiles
-## Finished: Stacked 1 data tables and 2 metadata tables!
-## Stacking took 0.179601 secs
-## All unzipped monthly data folders have been removed.
 ```
 
 
@@ -1118,8 +383,6 @@ plot(fx.pr$data.fluxCo2.nsae.flux~fx.pr$PARMean,
      xlab="PAR", ylab="CO2 flux")
 ```
 
-<img src="06-Fluxes_and_Inter-operability_files/figure-html/unnamed-chunk-16-1.png" width="672" />
-
 
 
 
@@ -1141,3583 +404,11 @@ prof <- stackEddy(filepath="./data/filesToStack00200/",
                  level="dp03")
 ```
 
-```
-## Extracting data
-##   |                                                                              |                                                                      |   0%  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
-## Stacking data tables by month
-##   |                                                                              |                                                                      |   0%  |                                                                              |======                                                                |   8%  |                                                                              |============                                                          |  17%  |                                                                              |==================                                                    |  25%  |                                                                              |=======================                                               |  33%  |                                                                              |=============================                                         |  42%  |                                                                              |===================================                                   |  50%  |                                                                              |=========================================                             |  58%  |                                                                              |===============================================                       |  67%  |                                                                              |====================================================                  |  75%  |                                                                              |==========================================================            |  83%  |                                                                              |================================================================      |  92%  |                                                                              |======================================================================| 100%
-## Joining data variables
-##   |                                                                              |                                                                      |   0%  |                                                                              |======                                                                |   8%  |                                                                              |============                                                          |  17%  |                                                                              |==================                                                    |  25%  |                                                                              |=======================                                               |  33%  |                                                                              |=============================                                         |  42%  |                                                                              |===================================                                   |  50%  |                                                                              |=========================================                             |  58%  |                                                                              |===============================================                       |  67%  |                                                                              |====================================================                  |  75%  |                                                                              |==========================================================            |  83%  |                                                                              |================================================================      |  92%  |                                                                              |======================================================================| 100%
-```
-
 
 
 ```r
 knitr::kable(head(prof$NIWO))
 ```
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> timeBgn </th>
-   <th style="text-align:left;"> timeEnd </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X0.1.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X0.2.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X0.3.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X0.4.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X0.5.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X0.6.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X0.7.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X0.8.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X0.9.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X1.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X1.1.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X1.2.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X1.3.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X1.4.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X1.5.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X1.6.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X1.7.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X1.8.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X1.9.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X2.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X2.1.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X2.2.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X2.3.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X2.4.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X2.5.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X2.6.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X2.7.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X2.8.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X2.9.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X3.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X3.1.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X3.2.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X3.3.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X3.4.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X3.5.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X3.6.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X3.7.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X3.8.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X3.9.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X4.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X4.1.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X4.2.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X4.3.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X4.4.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X4.5.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X4.6.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X4.7.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X4.8.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X4.9.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X5.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X5.1.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X5.2.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X5.3.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X5.4.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X5.5.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X5.6.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X5.7.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X5.8.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X5.9.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X6.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X6.1.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X6.2.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X6.3.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X6.4.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X6.5.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X6.6.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X6.7.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X6.8.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X6.9.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X7.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X7.1.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X7.2.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X7.3.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X7.4.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X7.5.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X7.6.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X7.7.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X7.8.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X7.9.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X8.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X8.1.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X8.2.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X8.3.m </th>
-   <th style="text-align:right;"> data.co2Stor.rateRtioMoleDryCo2.X8.4.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X0.1.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X0.2.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X0.3.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X0.4.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X0.5.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X0.6.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X0.7.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X0.8.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X0.9.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X1.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X1.1.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X1.2.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X1.3.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X1.4.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X1.5.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X1.6.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X1.7.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X1.8.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X1.9.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X2.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X2.1.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X2.2.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X2.3.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X2.4.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X2.5.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X2.6.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X2.7.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X2.8.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X2.9.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X3.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X3.1.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X3.2.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X3.3.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X3.4.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X3.5.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X3.6.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X3.7.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X3.8.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X3.9.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X4.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X4.1.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X4.2.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X4.3.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X4.4.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X4.5.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X4.6.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X4.7.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X4.8.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X4.9.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X5.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X5.1.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X5.2.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X5.3.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X5.4.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X5.5.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X5.6.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X5.7.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X5.8.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X5.9.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X6.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X6.1.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X6.2.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X6.3.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X6.4.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X6.5.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X6.6.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X6.7.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X6.8.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X6.9.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X7.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X7.1.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X7.2.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X7.3.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X7.4.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X7.5.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X7.6.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X7.7.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X7.8.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X7.9.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X8.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X8.1.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X8.2.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X8.3.m </th>
-   <th style="text-align:right;"> data.h2oStor.rateRtioMoleDryH2o.X8.4.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X0.1.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X0.2.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X0.3.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X0.4.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X0.5.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X0.6.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X0.7.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X0.8.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X0.9.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X1.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X1.1.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X1.2.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X1.3.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X1.4.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X1.5.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X1.6.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X1.7.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X1.8.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X1.9.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X2.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X2.1.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X2.2.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X2.3.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X2.4.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X2.5.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X2.6.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X2.7.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X2.8.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X2.9.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X3.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X3.1.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X3.2.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X3.3.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X3.4.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X3.5.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X3.6.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X3.7.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X3.8.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X3.9.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X4.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X4.1.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X4.2.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X4.3.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X4.4.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X4.5.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X4.6.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X4.7.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X4.8.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X4.9.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X5.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X5.1.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X5.2.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X5.3.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X5.4.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X5.5.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X5.6.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X5.7.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X5.8.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X5.9.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X6.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X6.1.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X6.2.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X6.3.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X6.4.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X6.5.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X6.6.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X6.7.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X6.8.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X6.9.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X7.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X7.1.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X7.2.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X7.3.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X7.4.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X7.5.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X7.6.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X7.7.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X7.8.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X7.9.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X8.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X8.1.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X8.2.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X8.3.m </th>
-   <th style="text-align:right;"> data.tempStor.rateTemp.X8.4.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X0.1.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X0.2.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X0.3.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X0.4.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X0.5.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X0.6.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X0.7.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X0.8.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X0.9.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X1.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X1.1.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X1.2.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X1.3.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X1.4.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X1.5.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X1.6.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X1.7.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X1.8.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X1.9.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X2.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X2.1.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X2.2.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X2.3.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X2.4.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X2.5.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X2.6.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X2.7.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X2.8.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X2.9.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X3.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X3.1.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X3.2.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X3.3.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X3.4.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X3.5.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X3.6.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X3.7.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X3.8.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X3.9.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X4.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X4.1.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X4.2.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X4.3.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X4.4.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X4.5.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X4.6.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X4.7.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X4.8.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X4.9.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X5.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X5.1.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X5.2.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X5.3.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X5.4.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X5.5.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X5.6.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X5.7.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X5.8.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X5.9.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X6.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X6.1.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X6.2.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X6.3.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X6.4.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X6.5.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X6.6.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X6.7.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X6.8.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X6.9.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X7.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X7.1.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X7.2.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X7.3.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X7.4.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X7.5.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X7.6.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X7.7.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X7.8.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X7.9.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X8.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X8.1.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X8.2.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X8.3.m </th>
-   <th style="text-align:right;"> qfqm.co2Stor.rateRtioMoleDryCo2.X8.4.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X0.1.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X0.2.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X0.3.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X0.4.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X0.5.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X0.6.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X0.7.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X0.8.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X0.9.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X1.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X1.1.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X1.2.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X1.3.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X1.4.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X1.5.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X1.6.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X1.7.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X1.8.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X1.9.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X2.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X2.1.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X2.2.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X2.3.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X2.4.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X2.5.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X2.6.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X2.7.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X2.8.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X2.9.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X3.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X3.1.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X3.2.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X3.3.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X3.4.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X3.5.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X3.6.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X3.7.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X3.8.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X3.9.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X4.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X4.1.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X4.2.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X4.3.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X4.4.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X4.5.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X4.6.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X4.7.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X4.8.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X4.9.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X5.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X5.1.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X5.2.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X5.3.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X5.4.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X5.5.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X5.6.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X5.7.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X5.8.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X5.9.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X6.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X6.1.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X6.2.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X6.3.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X6.4.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X6.5.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X6.6.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X6.7.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X6.8.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X6.9.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X7.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X7.1.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X7.2.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X7.3.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X7.4.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X7.5.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X7.6.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X7.7.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X7.8.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X7.9.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X8.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X8.1.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X8.2.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X8.3.m </th>
-   <th style="text-align:right;"> qfqm.h2oStor.rateRtioMoleDryH2o.X8.4.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X0.1.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X0.2.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X0.3.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X0.4.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X0.5.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X0.6.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X0.7.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X0.8.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X0.9.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X1.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X1.1.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X1.2.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X1.3.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X1.4.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X1.5.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X1.6.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X1.7.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X1.8.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X1.9.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X2.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X2.1.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X2.2.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X2.3.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X2.4.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X2.5.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X2.6.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X2.7.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X2.8.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X2.9.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X3.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X3.1.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X3.2.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X3.3.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X3.4.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X3.5.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X3.6.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X3.7.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X3.8.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X3.9.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X4.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X4.1.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X4.2.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X4.3.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X4.4.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X4.5.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X4.6.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X4.7.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X4.8.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X4.9.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X5.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X5.1.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X5.2.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X5.3.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X5.4.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X5.5.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X5.6.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X5.7.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X5.8.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X5.9.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X6.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X6.1.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X6.2.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X6.3.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X6.4.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X6.5.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X6.6.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X6.7.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X6.8.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X6.9.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X7.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X7.1.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X7.2.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X7.3.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X7.4.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X7.5.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X7.6.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X7.7.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X7.8.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X7.9.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X8.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X8.1.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X8.2.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X8.3.m </th>
-   <th style="text-align:right;"> qfqm.tempStor.rateTemp.X8.4.m </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 2018-06-01T00:00:00.000Z </td>
-   <td style="text-align:left;"> 2018-06-01T00:29:59.000Z </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> -0.0002682 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> 0.0003159 </td>
-   <td style="text-align:right;"> -0.0001014 </td>
-   <td style="text-align:right;"> -0.0001014 </td>
-   <td style="text-align:right;"> -0.0001014 </td>
-   <td style="text-align:right;"> -0.0001014 </td>
-   <td style="text-align:right;"> -0.0001014 </td>
-   <td style="text-align:right;"> -0.0001051 </td>
-   <td style="text-align:right;"> -0.0001112 </td>
-   <td style="text-align:right;"> -0.0001172 </td>
-   <td style="text-align:right;"> -0.0001233 </td>
-   <td style="text-align:right;"> -0.0001294 </td>
-   <td style="text-align:right;"> -0.0001354 </td>
-   <td style="text-align:right;"> -0.0001415 </td>
-   <td style="text-align:right;"> -0.0001476 </td>
-   <td style="text-align:right;"> -0.0001537 </td>
-   <td style="text-align:right;"> -0.0001597 </td>
-   <td style="text-align:right;"> -0.0001658 </td>
-   <td style="text-align:right;"> -0.0001719 </td>
-   <td style="text-align:right;"> -0.0001779 </td>
-   <td style="text-align:right;"> -0.0001840 </td>
-   <td style="text-align:right;"> -0.0001857 </td>
-   <td style="text-align:right;"> -0.0001870 </td>
-   <td style="text-align:right;"> -0.0001882 </td>
-   <td style="text-align:right;"> -0.0001895 </td>
-   <td style="text-align:right;"> -0.0001907 </td>
-   <td style="text-align:right;"> -0.0001919 </td>
-   <td style="text-align:right;"> -0.0001932 </td>
-   <td style="text-align:right;"> -0.0001944 </td>
-   <td style="text-align:right;"> -0.0001956 </td>
-   <td style="text-align:right;"> -0.0001969 </td>
-   <td style="text-align:right;"> -0.0001981 </td>
-   <td style="text-align:right;"> -0.0001994 </td>
-   <td style="text-align:right;"> -0.0002006 </td>
-   <td style="text-align:right;"> -0.0002018 </td>
-   <td style="text-align:right;"> -0.0002031 </td>
-   <td style="text-align:right;"> -0.0002043 </td>
-   <td style="text-align:right;"> -0.0002055 </td>
-   <td style="text-align:right;"> -0.0002068 </td>
-   <td style="text-align:right;"> -0.0002080 </td>
-   <td style="text-align:right;"> -0.0002093 </td>
-   <td style="text-align:right;"> -0.0002105 </td>
-   <td style="text-align:right;"> -0.0002117 </td>
-   <td style="text-align:right;"> -0.0002130 </td>
-   <td style="text-align:right;"> -0.0002142 </td>
-   <td style="text-align:right;"> -0.0002154 </td>
-   <td style="text-align:right;"> -0.0002172 </td>
-   <td style="text-align:right;"> -0.0002190 </td>
-   <td style="text-align:right;"> -0.0002208 </td>
-   <td style="text-align:right;"> -0.0002226 </td>
-   <td style="text-align:right;"> -0.0002244 </td>
-   <td style="text-align:right;"> -0.0002262 </td>
-   <td style="text-align:right;"> -0.0002279 </td>
-   <td style="text-align:right;"> -0.0002297 </td>
-   <td style="text-align:right;"> -0.0002315 </td>
-   <td style="text-align:right;"> -0.0002333 </td>
-   <td style="text-align:right;"> -0.0002351 </td>
-   <td style="text-align:right;"> -0.0002369 </td>
-   <td style="text-align:right;"> -0.0002387 </td>
-   <td style="text-align:right;"> -0.0002404 </td>
-   <td style="text-align:right;"> -0.0002422 </td>
-   <td style="text-align:right;"> -0.0002440 </td>
-   <td style="text-align:right;"> -0.0002458 </td>
-   <td style="text-align:right;"> -0.0002476 </td>
-   <td style="text-align:right;"> -0.0002494 </td>
-   <td style="text-align:right;"> -0.0002512 </td>
-   <td style="text-align:right;"> -0.0002529 </td>
-   <td style="text-align:right;"> -0.0002547 </td>
-   <td style="text-align:right;"> -0.0002565 </td>
-   <td style="text-align:right;"> -0.0002583 </td>
-   <td style="text-align:right;"> -0.0002601 </td>
-   <td style="text-align:right;"> -0.0002619 </td>
-   <td style="text-align:right;"> -0.0002637 </td>
-   <td style="text-align:right;"> -0.0002654 </td>
-   <td style="text-align:right;"> -0.0002672 </td>
-   <td style="text-align:right;"> -0.0002690 </td>
-   <td style="text-align:right;"> -0.0002708 </td>
-   <td style="text-align:right;"> -0.0002726 </td>
-   <td style="text-align:right;"> -0.0002744 </td>
-   <td style="text-align:right;"> -0.0002762 </td>
-   <td style="text-align:right;"> -0.0002779 </td>
-   <td style="text-align:right;"> -0.0002797 </td>
-   <td style="text-align:right;"> -0.0002815 </td>
-   <td style="text-align:right;"> -0.0002833 </td>
-   <td style="text-align:right;"> -0.0002851 </td>
-   <td style="text-align:right;"> -0.0002869 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2018-06-01T00:30:00.000Z </td>
-   <td style="text-align:left;"> 2018-06-01T00:59:59.000Z </td>
-   <td style="text-align:right;"> 0.0004879 </td>
-   <td style="text-align:right;"> 0.0004879 </td>
-   <td style="text-align:right;"> 0.0004879 </td>
-   <td style="text-align:right;"> 0.0004879 </td>
-   <td style="text-align:right;"> 0.0004879 </td>
-   <td style="text-align:right;"> 0.0004674 </td>
-   <td style="text-align:right;"> 0.0004331 </td>
-   <td style="text-align:right;"> 0.0003989 </td>
-   <td style="text-align:right;"> 0.0003647 </td>
-   <td style="text-align:right;"> 0.0003305 </td>
-   <td style="text-align:right;"> 0.0002963 </td>
-   <td style="text-align:right;"> 0.0002621 </td>
-   <td style="text-align:right;"> 0.0002278 </td>
-   <td style="text-align:right;"> 0.0001936 </td>
-   <td style="text-align:right;"> 0.0001594 </td>
-   <td style="text-align:right;"> 0.0001252 </td>
-   <td style="text-align:right;"> 0.0000910 </td>
-   <td style="text-align:right;"> 0.0000568 </td>
-   <td style="text-align:right;"> 0.0000225 </td>
-   <td style="text-align:right;"> 0.0000381 </td>
-   <td style="text-align:right;"> 0.0000592 </td>
-   <td style="text-align:right;"> 0.0000803 </td>
-   <td style="text-align:right;"> 0.0001013 </td>
-   <td style="text-align:right;"> 0.0001224 </td>
-   <td style="text-align:right;"> 0.0001435 </td>
-   <td style="text-align:right;"> 0.0001646 </td>
-   <td style="text-align:right;"> 0.0001857 </td>
-   <td style="text-align:right;"> 0.0002068 </td>
-   <td style="text-align:right;"> 0.0002278 </td>
-   <td style="text-align:right;"> 0.0002489 </td>
-   <td style="text-align:right;"> 0.0002700 </td>
-   <td style="text-align:right;"> 0.0002911 </td>
-   <td style="text-align:right;"> 0.0003122 </td>
-   <td style="text-align:right;"> 0.0003333 </td>
-   <td style="text-align:right;"> 0.0003543 </td>
-   <td style="text-align:right;"> 0.0003754 </td>
-   <td style="text-align:right;"> 0.0003965 </td>
-   <td style="text-align:right;"> 0.0004176 </td>
-   <td style="text-align:right;"> 0.0004387 </td>
-   <td style="text-align:right;"> 0.0004598 </td>
-   <td style="text-align:right;"> 0.0004808 </td>
-   <td style="text-align:right;"> 0.0005019 </td>
-   <td style="text-align:right;"> 0.0005230 </td>
-   <td style="text-align:right;"> 0.0005441 </td>
-   <td style="text-align:right;"> 0.0005393 </td>
-   <td style="text-align:right;"> 0.0005346 </td>
-   <td style="text-align:right;"> 0.0005298 </td>
-   <td style="text-align:right;"> 0.0005251 </td>
-   <td style="text-align:right;"> 0.0005203 </td>
-   <td style="text-align:right;"> 0.0005156 </td>
-   <td style="text-align:right;"> 0.0005108 </td>
-   <td style="text-align:right;"> 0.0005061 </td>
-   <td style="text-align:right;"> 0.0005013 </td>
-   <td style="text-align:right;"> 0.0004966 </td>
-   <td style="text-align:right;"> 0.0004918 </td>
-   <td style="text-align:right;"> 0.0004871 </td>
-   <td style="text-align:right;"> 0.0004823 </td>
-   <td style="text-align:right;"> 0.0004776 </td>
-   <td style="text-align:right;"> 0.0004728 </td>
-   <td style="text-align:right;"> 0.0004681 </td>
-   <td style="text-align:right;"> 0.0004633 </td>
-   <td style="text-align:right;"> 0.0004586 </td>
-   <td style="text-align:right;"> 0.0004538 </td>
-   <td style="text-align:right;"> 0.0004491 </td>
-   <td style="text-align:right;"> 0.0004443 </td>
-   <td style="text-align:right;"> 0.0004396 </td>
-   <td style="text-align:right;"> 0.0004348 </td>
-   <td style="text-align:right;"> 0.0004301 </td>
-   <td style="text-align:right;"> 0.0004253 </td>
-   <td style="text-align:right;"> 0.0004206 </td>
-   <td style="text-align:right;"> 0.0004158 </td>
-   <td style="text-align:right;"> 0.0004111 </td>
-   <td style="text-align:right;"> 0.0004063 </td>
-   <td style="text-align:right;"> 0.0004016 </td>
-   <td style="text-align:right;"> 0.0003968 </td>
-   <td style="text-align:right;"> 0.0003921 </td>
-   <td style="text-align:right;"> 0.0003873 </td>
-   <td style="text-align:right;"> 0.0003826 </td>
-   <td style="text-align:right;"> 0.0003778 </td>
-   <td style="text-align:right;"> 0.0003731 </td>
-   <td style="text-align:right;"> 0.0003683 </td>
-   <td style="text-align:right;"> 0.0003636 </td>
-   <td style="text-align:right;"> 0.0003588 </td>
-   <td style="text-align:right;"> 0.0003541 </td>
-   <td style="text-align:right;"> -0.0003565 </td>
-   <td style="text-align:right;"> -0.0003565 </td>
-   <td style="text-align:right;"> -0.0003565 </td>
-   <td style="text-align:right;"> -0.0003565 </td>
-   <td style="text-align:right;"> -0.0003565 </td>
-   <td style="text-align:right;"> -0.0003426 </td>
-   <td style="text-align:right;"> -0.0003192 </td>
-   <td style="text-align:right;"> -0.0002959 </td>
-   <td style="text-align:right;"> -0.0002726 </td>
-   <td style="text-align:right;"> -0.0002493 </td>
-   <td style="text-align:right;"> -0.0002260 </td>
-   <td style="text-align:right;"> -0.0002027 </td>
-   <td style="text-align:right;"> -0.0001793 </td>
-   <td style="text-align:right;"> -0.0001560 </td>
-   <td style="text-align:right;"> -0.0001327 </td>
-   <td style="text-align:right;"> -0.0001094 </td>
-   <td style="text-align:right;"> -0.0000861 </td>
-   <td style="text-align:right;"> -0.0000628 </td>
-   <td style="text-align:right;"> -0.0000394 </td>
-   <td style="text-align:right;"> -0.0000366 </td>
-   <td style="text-align:right;"> -0.0000361 </td>
-   <td style="text-align:right;"> -0.0000356 </td>
-   <td style="text-align:right;"> -0.0000350 </td>
-   <td style="text-align:right;"> -0.0000345 </td>
-   <td style="text-align:right;"> -0.0000339 </td>
-   <td style="text-align:right;"> -0.0000334 </td>
-   <td style="text-align:right;"> -0.0000329 </td>
-   <td style="text-align:right;"> -0.0000323 </td>
-   <td style="text-align:right;"> -0.0000318 </td>
-   <td style="text-align:right;"> -0.0000313 </td>
-   <td style="text-align:right;"> -0.0000307 </td>
-   <td style="text-align:right;"> -0.0000302 </td>
-   <td style="text-align:right;"> -0.0000296 </td>
-   <td style="text-align:right;"> -0.0000291 </td>
-   <td style="text-align:right;"> -0.0000286 </td>
-   <td style="text-align:right;"> -0.0000280 </td>
-   <td style="text-align:right;"> -0.0000275 </td>
-   <td style="text-align:right;"> -0.0000270 </td>
-   <td style="text-align:right;"> -0.0000264 </td>
-   <td style="text-align:right;"> -0.0000259 </td>
-   <td style="text-align:right;"> -0.0000253 </td>
-   <td style="text-align:right;"> -0.0000248 </td>
-   <td style="text-align:right;"> -0.0000243 </td>
-   <td style="text-align:right;"> -0.0000237 </td>
-   <td style="text-align:right;"> -0.0000279 </td>
-   <td style="text-align:right;"> -0.0000321 </td>
-   <td style="text-align:right;"> -0.0000363 </td>
-   <td style="text-align:right;"> -0.0000405 </td>
-   <td style="text-align:right;"> -0.0000446 </td>
-   <td style="text-align:right;"> -0.0000488 </td>
-   <td style="text-align:right;"> -0.0000530 </td>
-   <td style="text-align:right;"> -0.0000572 </td>
-   <td style="text-align:right;"> -0.0000614 </td>
-   <td style="text-align:right;"> -0.0000656 </td>
-   <td style="text-align:right;"> -0.0000697 </td>
-   <td style="text-align:right;"> -0.0000739 </td>
-   <td style="text-align:right;"> -0.0000781 </td>
-   <td style="text-align:right;"> -0.0000823 </td>
-   <td style="text-align:right;"> -0.0000865 </td>
-   <td style="text-align:right;"> -0.0000906 </td>
-   <td style="text-align:right;"> -0.0000948 </td>
-   <td style="text-align:right;"> -0.0000990 </td>
-   <td style="text-align:right;"> -0.0001032 </td>
-   <td style="text-align:right;"> -0.0001074 </td>
-   <td style="text-align:right;"> -0.0001116 </td>
-   <td style="text-align:right;"> -0.0001157 </td>
-   <td style="text-align:right;"> -0.0001199 </td>
-   <td style="text-align:right;"> -0.0001241 </td>
-   <td style="text-align:right;"> -0.0001283 </td>
-   <td style="text-align:right;"> -0.0001325 </td>
-   <td style="text-align:right;"> -0.0001366 </td>
-   <td style="text-align:right;"> -0.0001408 </td>
-   <td style="text-align:right;"> -0.0001450 </td>
-   <td style="text-align:right;"> -0.0001492 </td>
-   <td style="text-align:right;"> -0.0001534 </td>
-   <td style="text-align:right;"> -0.0001576 </td>
-   <td style="text-align:right;"> -0.0001617 </td>
-   <td style="text-align:right;"> -0.0001659 </td>
-   <td style="text-align:right;"> -0.0001701 </td>
-   <td style="text-align:right;"> -0.0001743 </td>
-   <td style="text-align:right;"> -0.0001785 </td>
-   <td style="text-align:right;"> -0.0001827 </td>
-   <td style="text-align:right;"> -0.0001868 </td>
-   <td style="text-align:right;"> -0.0001910 </td>
-   <td style="text-align:right;"> -0.0001814 </td>
-   <td style="text-align:right;"> -0.0001814 </td>
-   <td style="text-align:right;"> -0.0001814 </td>
-   <td style="text-align:right;"> -0.0001814 </td>
-   <td style="text-align:right;"> -0.0001814 </td>
-   <td style="text-align:right;"> -0.0001725 </td>
-   <td style="text-align:right;"> -0.0001576 </td>
-   <td style="text-align:right;"> -0.0001427 </td>
-   <td style="text-align:right;"> -0.0001278 </td>
-   <td style="text-align:right;"> -0.0001129 </td>
-   <td style="text-align:right;"> -0.0000980 </td>
-   <td style="text-align:right;"> -0.0000831 </td>
-   <td style="text-align:right;"> -0.0000683 </td>
-   <td style="text-align:right;"> -0.0000534 </td>
-   <td style="text-align:right;"> -0.0000385 </td>
-   <td style="text-align:right;"> -0.0000236 </td>
-   <td style="text-align:right;"> -0.0000087 </td>
-   <td style="text-align:right;"> 0.0000062 </td>
-   <td style="text-align:right;"> 0.0000211 </td>
-   <td style="text-align:right;"> 0.0000247 </td>
-   <td style="text-align:right;"> 0.0000271 </td>
-   <td style="text-align:right;"> 0.0000295 </td>
-   <td style="text-align:right;"> 0.0000318 </td>
-   <td style="text-align:right;"> 0.0000342 </td>
-   <td style="text-align:right;"> 0.0000366 </td>
-   <td style="text-align:right;"> 0.0000390 </td>
-   <td style="text-align:right;"> 0.0000414 </td>
-   <td style="text-align:right;"> 0.0000437 </td>
-   <td style="text-align:right;"> 0.0000461 </td>
-   <td style="text-align:right;"> 0.0000485 </td>
-   <td style="text-align:right;"> 0.0000509 </td>
-   <td style="text-align:right;"> 0.0000533 </td>
-   <td style="text-align:right;"> 0.0000556 </td>
-   <td style="text-align:right;"> 0.0000580 </td>
-   <td style="text-align:right;"> 0.0000604 </td>
-   <td style="text-align:right;"> 0.0000628 </td>
-   <td style="text-align:right;"> 0.0000652 </td>
-   <td style="text-align:right;"> 0.0000675 </td>
-   <td style="text-align:right;"> 0.0000699 </td>
-   <td style="text-align:right;"> 0.0000723 </td>
-   <td style="text-align:right;"> 0.0000747 </td>
-   <td style="text-align:right;"> 0.0000771 </td>
-   <td style="text-align:right;"> 0.0000794 </td>
-   <td style="text-align:right;"> 0.0000818 </td>
-   <td style="text-align:right;"> 0.0000836 </td>
-   <td style="text-align:right;"> 0.0000854 </td>
-   <td style="text-align:right;"> 0.0000872 </td>
-   <td style="text-align:right;"> 0.0000891 </td>
-   <td style="text-align:right;"> 0.0000909 </td>
-   <td style="text-align:right;"> 0.0000927 </td>
-   <td style="text-align:right;"> 0.0000945 </td>
-   <td style="text-align:right;"> 0.0000963 </td>
-   <td style="text-align:right;"> 0.0000981 </td>
-   <td style="text-align:right;"> 0.0000999 </td>
-   <td style="text-align:right;"> 0.0001017 </td>
-   <td style="text-align:right;"> 0.0001035 </td>
-   <td style="text-align:right;"> 0.0001053 </td>
-   <td style="text-align:right;"> 0.0001071 </td>
-   <td style="text-align:right;"> 0.0001090 </td>
-   <td style="text-align:right;"> 0.0001108 </td>
-   <td style="text-align:right;"> 0.0001126 </td>
-   <td style="text-align:right;"> 0.0001144 </td>
-   <td style="text-align:right;"> 0.0001162 </td>
-   <td style="text-align:right;"> 0.0001180 </td>
-   <td style="text-align:right;"> 0.0001198 </td>
-   <td style="text-align:right;"> 0.0001216 </td>
-   <td style="text-align:right;"> 0.0001234 </td>
-   <td style="text-align:right;"> 0.0001252 </td>
-   <td style="text-align:right;"> 0.0001271 </td>
-   <td style="text-align:right;"> 0.0001289 </td>
-   <td style="text-align:right;"> 0.0001307 </td>
-   <td style="text-align:right;"> 0.0001325 </td>
-   <td style="text-align:right;"> 0.0001343 </td>
-   <td style="text-align:right;"> 0.0001361 </td>
-   <td style="text-align:right;"> 0.0001379 </td>
-   <td style="text-align:right;"> 0.0001397 </td>
-   <td style="text-align:right;"> 0.0001415 </td>
-   <td style="text-align:right;"> 0.0001433 </td>
-   <td style="text-align:right;"> 0.0001451 </td>
-   <td style="text-align:right;"> 0.0001470 </td>
-   <td style="text-align:right;"> 0.0001488 </td>
-   <td style="text-align:right;"> 0.0001506 </td>
-   <td style="text-align:right;"> 0.0001524 </td>
-   <td style="text-align:right;"> 0.0001542 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2018-06-01T01:00:00.000Z </td>
-   <td style="text-align:left;"> 2018-06-01T01:29:59.000Z </td>
-   <td style="text-align:right;"> 0.0005086 </td>
-   <td style="text-align:right;"> 0.0005086 </td>
-   <td style="text-align:right;"> 0.0005086 </td>
-   <td style="text-align:right;"> 0.0005086 </td>
-   <td style="text-align:right;"> 0.0005086 </td>
-   <td style="text-align:right;"> 0.0005025 </td>
-   <td style="text-align:right;"> 0.0004925 </td>
-   <td style="text-align:right;"> 0.0004825 </td>
-   <td style="text-align:right;"> 0.0004724 </td>
-   <td style="text-align:right;"> 0.0004624 </td>
-   <td style="text-align:right;"> 0.0004523 </td>
-   <td style="text-align:right;"> 0.0004423 </td>
-   <td style="text-align:right;"> 0.0004323 </td>
-   <td style="text-align:right;"> 0.0004222 </td>
-   <td style="text-align:right;"> 0.0004122 </td>
-   <td style="text-align:right;"> 0.0004021 </td>
-   <td style="text-align:right;"> 0.0003921 </td>
-   <td style="text-align:right;"> 0.0003820 </td>
-   <td style="text-align:right;"> 0.0003720 </td>
-   <td style="text-align:right;"> 0.0003480 </td>
-   <td style="text-align:right;"> 0.0003224 </td>
-   <td style="text-align:right;"> 0.0002968 </td>
-   <td style="text-align:right;"> 0.0002712 </td>
-   <td style="text-align:right;"> 0.0002457 </td>
-   <td style="text-align:right;"> 0.0002201 </td>
-   <td style="text-align:right;"> 0.0001945 </td>
-   <td style="text-align:right;"> 0.0001689 </td>
-   <td style="text-align:right;"> 0.0001434 </td>
-   <td style="text-align:right;"> 0.0001178 </td>
-   <td style="text-align:right;"> 0.0000922 </td>
-   <td style="text-align:right;"> 0.0000666 </td>
-   <td style="text-align:right;"> 0.0000410 </td>
-   <td style="text-align:right;"> 0.0000155 </td>
-   <td style="text-align:right;"> -0.0000101 </td>
-   <td style="text-align:right;"> -0.0000357 </td>
-   <td style="text-align:right;"> -0.0000613 </td>
-   <td style="text-align:right;"> -0.0000869 </td>
-   <td style="text-align:right;"> -0.0001124 </td>
-   <td style="text-align:right;"> -0.0001380 </td>
-   <td style="text-align:right;"> -0.0001636 </td>
-   <td style="text-align:right;"> -0.0001892 </td>
-   <td style="text-align:right;"> -0.0002147 </td>
-   <td style="text-align:right;"> -0.0002403 </td>
-   <td style="text-align:right;"> -0.0002659 </td>
-   <td style="text-align:right;"> -0.0002551 </td>
-   <td style="text-align:right;"> -0.0002443 </td>
-   <td style="text-align:right;"> -0.0002335 </td>
-   <td style="text-align:right;"> -0.0002227 </td>
-   <td style="text-align:right;"> -0.0002119 </td>
-   <td style="text-align:right;"> -0.0002011 </td>
-   <td style="text-align:right;"> -0.0001904 </td>
-   <td style="text-align:right;"> -0.0001796 </td>
-   <td style="text-align:right;"> -0.0001688 </td>
-   <td style="text-align:right;"> -0.0001580 </td>
-   <td style="text-align:right;"> -0.0001472 </td>
-   <td style="text-align:right;"> -0.0001364 </td>
-   <td style="text-align:right;"> -0.0001256 </td>
-   <td style="text-align:right;"> -0.0001148 </td>
-   <td style="text-align:right;"> -0.0001040 </td>
-   <td style="text-align:right;"> -0.0000932 </td>
-   <td style="text-align:right;"> -0.0000824 </td>
-   <td style="text-align:right;"> -0.0000716 </td>
-   <td style="text-align:right;"> -0.0000609 </td>
-   <td style="text-align:right;"> -0.0000501 </td>
-   <td style="text-align:right;"> -0.0000393 </td>
-   <td style="text-align:right;"> -0.0000285 </td>
-   <td style="text-align:right;"> -0.0000177 </td>
-   <td style="text-align:right;"> -0.0000069 </td>
-   <td style="text-align:right;"> 0.0000039 </td>
-   <td style="text-align:right;"> 0.0000147 </td>
-   <td style="text-align:right;"> 0.0000255 </td>
-   <td style="text-align:right;"> 0.0000363 </td>
-   <td style="text-align:right;"> 0.0000471 </td>
-   <td style="text-align:right;"> 0.0000579 </td>
-   <td style="text-align:right;"> 0.0000686 </td>
-   <td style="text-align:right;"> 0.0000794 </td>
-   <td style="text-align:right;"> 0.0000902 </td>
-   <td style="text-align:right;"> 0.0001010 </td>
-   <td style="text-align:right;"> 0.0001118 </td>
-   <td style="text-align:right;"> 0.0001226 </td>
-   <td style="text-align:right;"> 0.0001334 </td>
-   <td style="text-align:right;"> 0.0001442 </td>
-   <td style="text-align:right;"> 0.0001550 </td>
-   <td style="text-align:right;"> 0.0001658 </td>
-   <td style="text-align:right;"> -0.0002073 </td>
-   <td style="text-align:right;"> -0.0002073 </td>
-   <td style="text-align:right;"> -0.0002073 </td>
-   <td style="text-align:right;"> -0.0002073 </td>
-   <td style="text-align:right;"> -0.0002073 </td>
-   <td style="text-align:right;"> -0.0002152 </td>
-   <td style="text-align:right;"> -0.0002283 </td>
-   <td style="text-align:right;"> -0.0002414 </td>
-   <td style="text-align:right;"> -0.0002545 </td>
-   <td style="text-align:right;"> -0.0002676 </td>
-   <td style="text-align:right;"> -0.0002807 </td>
-   <td style="text-align:right;"> -0.0002938 </td>
-   <td style="text-align:right;"> -0.0003069 </td>
-   <td style="text-align:right;"> -0.0003200 </td>
-   <td style="text-align:right;"> -0.0003331 </td>
-   <td style="text-align:right;"> -0.0003462 </td>
-   <td style="text-align:right;"> -0.0003593 </td>
-   <td style="text-align:right;"> -0.0003724 </td>
-   <td style="text-align:right;"> -0.0003855 </td>
-   <td style="text-align:right;"> -0.0003947 </td>
-   <td style="text-align:right;"> -0.0004034 </td>
-   <td style="text-align:right;"> -0.0004122 </td>
-   <td style="text-align:right;"> -0.0004209 </td>
-   <td style="text-align:right;"> -0.0004297 </td>
-   <td style="text-align:right;"> -0.0004384 </td>
-   <td style="text-align:right;"> -0.0004472 </td>
-   <td style="text-align:right;"> -0.0004559 </td>
-   <td style="text-align:right;"> -0.0004647 </td>
-   <td style="text-align:right;"> -0.0004735 </td>
-   <td style="text-align:right;"> -0.0004822 </td>
-   <td style="text-align:right;"> -0.0004910 </td>
-   <td style="text-align:right;"> -0.0004997 </td>
-   <td style="text-align:right;"> -0.0005085 </td>
-   <td style="text-align:right;"> -0.0005172 </td>
-   <td style="text-align:right;"> -0.0005260 </td>
-   <td style="text-align:right;"> -0.0005347 </td>
-   <td style="text-align:right;"> -0.0005435 </td>
-   <td style="text-align:right;"> -0.0005523 </td>
-   <td style="text-align:right;"> -0.0005610 </td>
-   <td style="text-align:right;"> -0.0005698 </td>
-   <td style="text-align:right;"> -0.0005785 </td>
-   <td style="text-align:right;"> -0.0005873 </td>
-   <td style="text-align:right;"> -0.0005960 </td>
-   <td style="text-align:right;"> -0.0006048 </td>
-   <td style="text-align:right;"> -0.0005965 </td>
-   <td style="text-align:right;"> -0.0005881 </td>
-   <td style="text-align:right;"> -0.0005798 </td>
-   <td style="text-align:right;"> -0.0005714 </td>
-   <td style="text-align:right;"> -0.0005631 </td>
-   <td style="text-align:right;"> -0.0005548 </td>
-   <td style="text-align:right;"> -0.0005464 </td>
-   <td style="text-align:right;"> -0.0005381 </td>
-   <td style="text-align:right;"> -0.0005297 </td>
-   <td style="text-align:right;"> -0.0005214 </td>
-   <td style="text-align:right;"> -0.0005131 </td>
-   <td style="text-align:right;"> -0.0005047 </td>
-   <td style="text-align:right;"> -0.0004964 </td>
-   <td style="text-align:right;"> -0.0004880 </td>
-   <td style="text-align:right;"> -0.0004797 </td>
-   <td style="text-align:right;"> -0.0004713 </td>
-   <td style="text-align:right;"> -0.0004630 </td>
-   <td style="text-align:right;"> -0.0004547 </td>
-   <td style="text-align:right;"> -0.0004463 </td>
-   <td style="text-align:right;"> -0.0004380 </td>
-   <td style="text-align:right;"> -0.0004296 </td>
-   <td style="text-align:right;"> -0.0004213 </td>
-   <td style="text-align:right;"> -0.0004130 </td>
-   <td style="text-align:right;"> -0.0004046 </td>
-   <td style="text-align:right;"> -0.0003963 </td>
-   <td style="text-align:right;"> -0.0003879 </td>
-   <td style="text-align:right;"> -0.0003796 </td>
-   <td style="text-align:right;"> -0.0003713 </td>
-   <td style="text-align:right;"> -0.0003629 </td>
-   <td style="text-align:right;"> -0.0003546 </td>
-   <td style="text-align:right;"> -0.0003462 </td>
-   <td style="text-align:right;"> -0.0003379 </td>
-   <td style="text-align:right;"> -0.0003296 </td>
-   <td style="text-align:right;"> -0.0003212 </td>
-   <td style="text-align:right;"> -0.0003129 </td>
-   <td style="text-align:right;"> -0.0003045 </td>
-   <td style="text-align:right;"> -0.0002962 </td>
-   <td style="text-align:right;"> -0.0002879 </td>
-   <td style="text-align:right;"> -0.0002795 </td>
-   <td style="text-align:right;"> -0.0002712 </td>
-   <td style="text-align:right;"> -0.0002556 </td>
-   <td style="text-align:right;"> -0.0002556 </td>
-   <td style="text-align:right;"> -0.0002556 </td>
-   <td style="text-align:right;"> -0.0002556 </td>
-   <td style="text-align:right;"> -0.0002556 </td>
-   <td style="text-align:right;"> -0.0002458 </td>
-   <td style="text-align:right;"> -0.0002293 </td>
-   <td style="text-align:right;"> -0.0002129 </td>
-   <td style="text-align:right;"> -0.0001965 </td>
-   <td style="text-align:right;"> -0.0001801 </td>
-   <td style="text-align:right;"> -0.0001637 </td>
-   <td style="text-align:right;"> -0.0001473 </td>
-   <td style="text-align:right;"> -0.0001308 </td>
-   <td style="text-align:right;"> -0.0001144 </td>
-   <td style="text-align:right;"> -0.0000980 </td>
-   <td style="text-align:right;"> -0.0000816 </td>
-   <td style="text-align:right;"> -0.0000652 </td>
-   <td style="text-align:right;"> -0.0000487 </td>
-   <td style="text-align:right;"> -0.0000323 </td>
-   <td style="text-align:right;"> -0.0000270 </td>
-   <td style="text-align:right;"> -0.0000229 </td>
-   <td style="text-align:right;"> -0.0000188 </td>
-   <td style="text-align:right;"> -0.0000147 </td>
-   <td style="text-align:right;"> -0.0000106 </td>
-   <td style="text-align:right;"> -0.0000065 </td>
-   <td style="text-align:right;"> -0.0000024 </td>
-   <td style="text-align:right;"> 0.0000017 </td>
-   <td style="text-align:right;"> 0.0000058 </td>
-   <td style="text-align:right;"> 0.0000099 </td>
-   <td style="text-align:right;"> 0.0000140 </td>
-   <td style="text-align:right;"> 0.0000181 </td>
-   <td style="text-align:right;"> 0.0000222 </td>
-   <td style="text-align:right;"> 0.0000263 </td>
-   <td style="text-align:right;"> 0.0000304 </td>
-   <td style="text-align:right;"> 0.0000345 </td>
-   <td style="text-align:right;"> 0.0000386 </td>
-   <td style="text-align:right;"> 0.0000427 </td>
-   <td style="text-align:right;"> 0.0000468 </td>
-   <td style="text-align:right;"> 0.0000509 </td>
-   <td style="text-align:right;"> 0.0000550 </td>
-   <td style="text-align:right;"> 0.0000591 </td>
-   <td style="text-align:right;"> 0.0000632 </td>
-   <td style="text-align:right;"> 0.0000673 </td>
-   <td style="text-align:right;"> 0.0000714 </td>
-   <td style="text-align:right;"> 0.0000739 </td>
-   <td style="text-align:right;"> 0.0000765 </td>
-   <td style="text-align:right;"> 0.0000790 </td>
-   <td style="text-align:right;"> 0.0000815 </td>
-   <td style="text-align:right;"> 0.0000840 </td>
-   <td style="text-align:right;"> 0.0000866 </td>
-   <td style="text-align:right;"> 0.0000891 </td>
-   <td style="text-align:right;"> 0.0000916 </td>
-   <td style="text-align:right;"> 0.0000941 </td>
-   <td style="text-align:right;"> 0.0000967 </td>
-   <td style="text-align:right;"> 0.0000992 </td>
-   <td style="text-align:right;"> 0.0001017 </td>
-   <td style="text-align:right;"> 0.0001042 </td>
-   <td style="text-align:right;"> 0.0001068 </td>
-   <td style="text-align:right;"> 0.0001093 </td>
-   <td style="text-align:right;"> 0.0001118 </td>
-   <td style="text-align:right;"> 0.0001143 </td>
-   <td style="text-align:right;"> 0.0001169 </td>
-   <td style="text-align:right;"> 0.0001194 </td>
-   <td style="text-align:right;"> 0.0001219 </td>
-   <td style="text-align:right;"> 0.0001244 </td>
-   <td style="text-align:right;"> 0.0001270 </td>
-   <td style="text-align:right;"> 0.0001295 </td>
-   <td style="text-align:right;"> 0.0001320 </td>
-   <td style="text-align:right;"> 0.0001345 </td>
-   <td style="text-align:right;"> 0.0001371 </td>
-   <td style="text-align:right;"> 0.0001396 </td>
-   <td style="text-align:right;"> 0.0001421 </td>
-   <td style="text-align:right;"> 0.0001446 </td>
-   <td style="text-align:right;"> 0.0001472 </td>
-   <td style="text-align:right;"> 0.0001497 </td>
-   <td style="text-align:right;"> 0.0001522 </td>
-   <td style="text-align:right;"> 0.0001547 </td>
-   <td style="text-align:right;"> 0.0001573 </td>
-   <td style="text-align:right;"> 0.0001598 </td>
-   <td style="text-align:right;"> 0.0001623 </td>
-   <td style="text-align:right;"> 0.0001649 </td>
-   <td style="text-align:right;"> 0.0001674 </td>
-   <td style="text-align:right;"> 0.0001699 </td>
-   <td style="text-align:right;"> 0.0001724 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2018-06-01T01:30:00.000Z </td>
-   <td style="text-align:left;"> 2018-06-01T01:59:59.000Z </td>
-   <td style="text-align:right;"> 0.0013277 </td>
-   <td style="text-align:right;"> 0.0013277 </td>
-   <td style="text-align:right;"> 0.0013277 </td>
-   <td style="text-align:right;"> 0.0013277 </td>
-   <td style="text-align:right;"> 0.0013277 </td>
-   <td style="text-align:right;"> 0.0013735 </td>
-   <td style="text-align:right;"> 0.0014499 </td>
-   <td style="text-align:right;"> 0.0015263 </td>
-   <td style="text-align:right;"> 0.0016027 </td>
-   <td style="text-align:right;"> 0.0016790 </td>
-   <td style="text-align:right;"> 0.0017554 </td>
-   <td style="text-align:right;"> 0.0018318 </td>
-   <td style="text-align:right;"> 0.0019082 </td>
-   <td style="text-align:right;"> 0.0019845 </td>
-   <td style="text-align:right;"> 0.0020609 </td>
-   <td style="text-align:right;"> 0.0021373 </td>
-   <td style="text-align:right;"> 0.0022137 </td>
-   <td style="text-align:right;"> 0.0022900 </td>
-   <td style="text-align:right;"> 0.0023664 </td>
-   <td style="text-align:right;"> 0.0023013 </td>
-   <td style="text-align:right;"> 0.0022204 </td>
-   <td style="text-align:right;"> 0.0021396 </td>
-   <td style="text-align:right;"> 0.0020587 </td>
-   <td style="text-align:right;"> 0.0019778 </td>
-   <td style="text-align:right;"> 0.0018970 </td>
-   <td style="text-align:right;"> 0.0018161 </td>
-   <td style="text-align:right;"> 0.0017353 </td>
-   <td style="text-align:right;"> 0.0016544 </td>
-   <td style="text-align:right;"> 0.0015735 </td>
-   <td style="text-align:right;"> 0.0014927 </td>
-   <td style="text-align:right;"> 0.0014118 </td>
-   <td style="text-align:right;"> 0.0013310 </td>
-   <td style="text-align:right;"> 0.0012501 </td>
-   <td style="text-align:right;"> 0.0011692 </td>
-   <td style="text-align:right;"> 0.0010884 </td>
-   <td style="text-align:right;"> 0.0010075 </td>
-   <td style="text-align:right;"> 0.0009267 </td>
-   <td style="text-align:right;"> 0.0008458 </td>
-   <td style="text-align:right;"> 0.0007649 </td>
-   <td style="text-align:right;"> 0.0006841 </td>
-   <td style="text-align:right;"> 0.0006032 </td>
-   <td style="text-align:right;"> 0.0005224 </td>
-   <td style="text-align:right;"> 0.0004415 </td>
-   <td style="text-align:right;"> 0.0003606 </td>
-   <td style="text-align:right;"> 0.0003730 </td>
-   <td style="text-align:right;"> 0.0003853 </td>
-   <td style="text-align:right;"> 0.0003976 </td>
-   <td style="text-align:right;"> 0.0004099 </td>
-   <td style="text-align:right;"> 0.0004222 </td>
-   <td style="text-align:right;"> 0.0004345 </td>
-   <td style="text-align:right;"> 0.0004468 </td>
-   <td style="text-align:right;"> 0.0004591 </td>
-   <td style="text-align:right;"> 0.0004714 </td>
-   <td style="text-align:right;"> 0.0004837 </td>
-   <td style="text-align:right;"> 0.0004960 </td>
-   <td style="text-align:right;"> 0.0005083 </td>
-   <td style="text-align:right;"> 0.0005206 </td>
-   <td style="text-align:right;"> 0.0005329 </td>
-   <td style="text-align:right;"> 0.0005452 </td>
-   <td style="text-align:right;"> 0.0005575 </td>
-   <td style="text-align:right;"> 0.0005698 </td>
-   <td style="text-align:right;"> 0.0005821 </td>
-   <td style="text-align:right;"> 0.0005944 </td>
-   <td style="text-align:right;"> 0.0006067 </td>
-   <td style="text-align:right;"> 0.0006190 </td>
-   <td style="text-align:right;"> 0.0006313 </td>
-   <td style="text-align:right;"> 0.0006436 </td>
-   <td style="text-align:right;"> 0.0006559 </td>
-   <td style="text-align:right;"> 0.0006682 </td>
-   <td style="text-align:right;"> 0.0006805 </td>
-   <td style="text-align:right;"> 0.0006928 </td>
-   <td style="text-align:right;"> 0.0007051 </td>
-   <td style="text-align:right;"> 0.0007174 </td>
-   <td style="text-align:right;"> 0.0007297 </td>
-   <td style="text-align:right;"> 0.0007420 </td>
-   <td style="text-align:right;"> 0.0007543 </td>
-   <td style="text-align:right;"> 0.0007666 </td>
-   <td style="text-align:right;"> 0.0007789 </td>
-   <td style="text-align:right;"> 0.0007912 </td>
-   <td style="text-align:right;"> 0.0008035 </td>
-   <td style="text-align:right;"> 0.0008158 </td>
-   <td style="text-align:right;"> 0.0008281 </td>
-   <td style="text-align:right;"> 0.0008404 </td>
-   <td style="text-align:right;"> 0.0008527 </td>
-   <td style="text-align:right;"> 0.0000313 </td>
-   <td style="text-align:right;"> 0.0000313 </td>
-   <td style="text-align:right;"> 0.0000313 </td>
-   <td style="text-align:right;"> 0.0000313 </td>
-   <td style="text-align:right;"> 0.0000313 </td>
-   <td style="text-align:right;"> 0.0000337 </td>
-   <td style="text-align:right;"> 0.0000378 </td>
-   <td style="text-align:right;"> 0.0000418 </td>
-   <td style="text-align:right;"> 0.0000459 </td>
-   <td style="text-align:right;"> 0.0000499 </td>
-   <td style="text-align:right;"> 0.0000540 </td>
-   <td style="text-align:right;"> 0.0000580 </td>
-   <td style="text-align:right;"> 0.0000620 </td>
-   <td style="text-align:right;"> 0.0000661 </td>
-   <td style="text-align:right;"> 0.0000701 </td>
-   <td style="text-align:right;"> 0.0000742 </td>
-   <td style="text-align:right;"> 0.0000782 </td>
-   <td style="text-align:right;"> 0.0000823 </td>
-   <td style="text-align:right;"> 0.0000863 </td>
-   <td style="text-align:right;"> 0.0000849 </td>
-   <td style="text-align:right;"> 0.0000830 </td>
-   <td style="text-align:right;"> 0.0000810 </td>
-   <td style="text-align:right;"> 0.0000791 </td>
-   <td style="text-align:right;"> 0.0000771 </td>
-   <td style="text-align:right;"> 0.0000751 </td>
-   <td style="text-align:right;"> 0.0000732 </td>
-   <td style="text-align:right;"> 0.0000712 </td>
-   <td style="text-align:right;"> 0.0000692 </td>
-   <td style="text-align:right;"> 0.0000673 </td>
-   <td style="text-align:right;"> 0.0000653 </td>
-   <td style="text-align:right;"> 0.0000634 </td>
-   <td style="text-align:right;"> 0.0000614 </td>
-   <td style="text-align:right;"> 0.0000594 </td>
-   <td style="text-align:right;"> 0.0000575 </td>
-   <td style="text-align:right;"> 0.0000555 </td>
-   <td style="text-align:right;"> 0.0000536 </td>
-   <td style="text-align:right;"> 0.0000516 </td>
-   <td style="text-align:right;"> 0.0000496 </td>
-   <td style="text-align:right;"> 0.0000477 </td>
-   <td style="text-align:right;"> 0.0000457 </td>
-   <td style="text-align:right;"> 0.0000437 </td>
-   <td style="text-align:right;"> 0.0000418 </td>
-   <td style="text-align:right;"> 0.0000398 </td>
-   <td style="text-align:right;"> 0.0000379 </td>
-   <td style="text-align:right;"> 0.0000349 </td>
-   <td style="text-align:right;"> 0.0000319 </td>
-   <td style="text-align:right;"> 0.0000290 </td>
-   <td style="text-align:right;"> 0.0000260 </td>
-   <td style="text-align:right;"> 0.0000230 </td>
-   <td style="text-align:right;"> 0.0000201 </td>
-   <td style="text-align:right;"> 0.0000171 </td>
-   <td style="text-align:right;"> 0.0000141 </td>
-   <td style="text-align:right;"> 0.0000112 </td>
-   <td style="text-align:right;"> 0.0000082 </td>
-   <td style="text-align:right;"> 0.0000052 </td>
-   <td style="text-align:right;"> 0.0000023 </td>
-   <td style="text-align:right;"> -0.0000007 </td>
-   <td style="text-align:right;"> -0.0000037 </td>
-   <td style="text-align:right;"> -0.0000066 </td>
-   <td style="text-align:right;"> -0.0000096 </td>
-   <td style="text-align:right;"> -0.0000126 </td>
-   <td style="text-align:right;"> -0.0000155 </td>
-   <td style="text-align:right;"> -0.0000185 </td>
-   <td style="text-align:right;"> -0.0000215 </td>
-   <td style="text-align:right;"> -0.0000244 </td>
-   <td style="text-align:right;"> -0.0000274 </td>
-   <td style="text-align:right;"> -0.0000304 </td>
-   <td style="text-align:right;"> -0.0000333 </td>
-   <td style="text-align:right;"> -0.0000363 </td>
-   <td style="text-align:right;"> -0.0000393 </td>
-   <td style="text-align:right;"> -0.0000422 </td>
-   <td style="text-align:right;"> -0.0000452 </td>
-   <td style="text-align:right;"> -0.0000482 </td>
-   <td style="text-align:right;"> -0.0000511 </td>
-   <td style="text-align:right;"> -0.0000541 </td>
-   <td style="text-align:right;"> -0.0000571 </td>
-   <td style="text-align:right;"> -0.0000600 </td>
-   <td style="text-align:right;"> -0.0000630 </td>
-   <td style="text-align:right;"> -0.0000660 </td>
-   <td style="text-align:right;"> -0.0000689 </td>
-   <td style="text-align:right;"> -0.0000719 </td>
-   <td style="text-align:right;"> -0.0000749 </td>
-   <td style="text-align:right;"> -0.0000778 </td>
-   <td style="text-align:right;"> -0.0000808 </td>
-   <td style="text-align:right;"> -0.0010983 </td>
-   <td style="text-align:right;"> -0.0010983 </td>
-   <td style="text-align:right;"> -0.0010983 </td>
-   <td style="text-align:right;"> -0.0010983 </td>
-   <td style="text-align:right;"> -0.0010983 </td>
-   <td style="text-align:right;"> -0.0010630 </td>
-   <td style="text-align:right;"> -0.0010043 </td>
-   <td style="text-align:right;"> -0.0009456 </td>
-   <td style="text-align:right;"> -0.0008868 </td>
-   <td style="text-align:right;"> -0.0008281 </td>
-   <td style="text-align:right;"> -0.0007693 </td>
-   <td style="text-align:right;"> -0.0007106 </td>
-   <td style="text-align:right;"> -0.0006519 </td>
-   <td style="text-align:right;"> -0.0005931 </td>
-   <td style="text-align:right;"> -0.0005344 </td>
-   <td style="text-align:right;"> -0.0004756 </td>
-   <td style="text-align:right;"> -0.0004169 </td>
-   <td style="text-align:right;"> -0.0003582 </td>
-   <td style="text-align:right;"> -0.0002994 </td>
-   <td style="text-align:right;"> -0.0002907 </td>
-   <td style="text-align:right;"> -0.0002876 </td>
-   <td style="text-align:right;"> -0.0002845 </td>
-   <td style="text-align:right;"> -0.0002814 </td>
-   <td style="text-align:right;"> -0.0002783 </td>
-   <td style="text-align:right;"> -0.0002751 </td>
-   <td style="text-align:right;"> -0.0002720 </td>
-   <td style="text-align:right;"> -0.0002689 </td>
-   <td style="text-align:right;"> -0.0002658 </td>
-   <td style="text-align:right;"> -0.0002627 </td>
-   <td style="text-align:right;"> -0.0002595 </td>
-   <td style="text-align:right;"> -0.0002564 </td>
-   <td style="text-align:right;"> -0.0002533 </td>
-   <td style="text-align:right;"> -0.0002502 </td>
-   <td style="text-align:right;"> -0.0002471 </td>
-   <td style="text-align:right;"> -0.0002439 </td>
-   <td style="text-align:right;"> -0.0002408 </td>
-   <td style="text-align:right;"> -0.0002377 </td>
-   <td style="text-align:right;"> -0.0002346 </td>
-   <td style="text-align:right;"> -0.0002315 </td>
-   <td style="text-align:right;"> -0.0002283 </td>
-   <td style="text-align:right;"> -0.0002252 </td>
-   <td style="text-align:right;"> -0.0002221 </td>
-   <td style="text-align:right;"> -0.0002190 </td>
-   <td style="text-align:right;"> -0.0002159 </td>
-   <td style="text-align:right;"> -0.0002160 </td>
-   <td style="text-align:right;"> -0.0002161 </td>
-   <td style="text-align:right;"> -0.0002163 </td>
-   <td style="text-align:right;"> -0.0002164 </td>
-   <td style="text-align:right;"> -0.0002165 </td>
-   <td style="text-align:right;"> -0.0002167 </td>
-   <td style="text-align:right;"> -0.0002168 </td>
-   <td style="text-align:right;"> -0.0002169 </td>
-   <td style="text-align:right;"> -0.0002171 </td>
-   <td style="text-align:right;"> -0.0002172 </td>
-   <td style="text-align:right;"> -0.0002173 </td>
-   <td style="text-align:right;"> -0.0002175 </td>
-   <td style="text-align:right;"> -0.0002176 </td>
-   <td style="text-align:right;"> -0.0002177 </td>
-   <td style="text-align:right;"> -0.0002179 </td>
-   <td style="text-align:right;"> -0.0002180 </td>
-   <td style="text-align:right;"> -0.0002181 </td>
-   <td style="text-align:right;"> -0.0002183 </td>
-   <td style="text-align:right;"> -0.0002184 </td>
-   <td style="text-align:right;"> -0.0002185 </td>
-   <td style="text-align:right;"> -0.0002187 </td>
-   <td style="text-align:right;"> -0.0002188 </td>
-   <td style="text-align:right;"> -0.0002189 </td>
-   <td style="text-align:right;"> -0.0002191 </td>
-   <td style="text-align:right;"> -0.0002192 </td>
-   <td style="text-align:right;"> -0.0002193 </td>
-   <td style="text-align:right;"> -0.0002195 </td>
-   <td style="text-align:right;"> -0.0002196 </td>
-   <td style="text-align:right;"> -0.0002197 </td>
-   <td style="text-align:right;"> -0.0002199 </td>
-   <td style="text-align:right;"> -0.0002200 </td>
-   <td style="text-align:right;"> -0.0002201 </td>
-   <td style="text-align:right;"> -0.0002203 </td>
-   <td style="text-align:right;"> -0.0002204 </td>
-   <td style="text-align:right;"> -0.0002205 </td>
-   <td style="text-align:right;"> -0.0002207 </td>
-   <td style="text-align:right;"> -0.0002208 </td>
-   <td style="text-align:right;"> -0.0002209 </td>
-   <td style="text-align:right;"> -0.0002211 </td>
-   <td style="text-align:right;"> -0.0002212 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2018-06-01T02:00:00.000Z </td>
-   <td style="text-align:left;"> 2018-06-01T02:29:59.000Z </td>
-   <td style="text-align:right;"> 0.0007344 </td>
-   <td style="text-align:right;"> 0.0007344 </td>
-   <td style="text-align:right;"> 0.0007344 </td>
-   <td style="text-align:right;"> 0.0007344 </td>
-   <td style="text-align:right;"> 0.0007344 </td>
-   <td style="text-align:right;"> 0.0008510 </td>
-   <td style="text-align:right;"> 0.0010454 </td>
-   <td style="text-align:right;"> 0.0012397 </td>
-   <td style="text-align:right;"> 0.0014341 </td>
-   <td style="text-align:right;"> 0.0016284 </td>
-   <td style="text-align:right;"> 0.0018228 </td>
-   <td style="text-align:right;"> 0.0020171 </td>
-   <td style="text-align:right;"> 0.0022115 </td>
-   <td style="text-align:right;"> 0.0024058 </td>
-   <td style="text-align:right;"> 0.0026002 </td>
-   <td style="text-align:right;"> 0.0027946 </td>
-   <td style="text-align:right;"> 0.0029889 </td>
-   <td style="text-align:right;"> 0.0031833 </td>
-   <td style="text-align:right;"> 0.0033776 </td>
-   <td style="text-align:right;"> 0.0032919 </td>
-   <td style="text-align:right;"> 0.0031751 </td>
-   <td style="text-align:right;"> 0.0030583 </td>
-   <td style="text-align:right;"> 0.0029415 </td>
-   <td style="text-align:right;"> 0.0028247 </td>
-   <td style="text-align:right;"> 0.0027079 </td>
-   <td style="text-align:right;"> 0.0025911 </td>
-   <td style="text-align:right;"> 0.0024743 </td>
-   <td style="text-align:right;"> 0.0023575 </td>
-   <td style="text-align:right;"> 0.0022407 </td>
-   <td style="text-align:right;"> 0.0021239 </td>
-   <td style="text-align:right;"> 0.0020071 </td>
-   <td style="text-align:right;"> 0.0018903 </td>
-   <td style="text-align:right;"> 0.0017735 </td>
-   <td style="text-align:right;"> 0.0016567 </td>
-   <td style="text-align:right;"> 0.0015399 </td>
-   <td style="text-align:right;"> 0.0014231 </td>
-   <td style="text-align:right;"> 0.0013063 </td>
-   <td style="text-align:right;"> 0.0011895 </td>
-   <td style="text-align:right;"> 0.0010727 </td>
-   <td style="text-align:right;"> 0.0009558 </td>
-   <td style="text-align:right;"> 0.0008390 </td>
-   <td style="text-align:right;"> 0.0007222 </td>
-   <td style="text-align:right;"> 0.0006054 </td>
-   <td style="text-align:right;"> 0.0004886 </td>
-   <td style="text-align:right;"> 0.0004664 </td>
-   <td style="text-align:right;"> 0.0004442 </td>
-   <td style="text-align:right;"> 0.0004219 </td>
-   <td style="text-align:right;"> 0.0003997 </td>
-   <td style="text-align:right;"> 0.0003775 </td>
-   <td style="text-align:right;"> 0.0003553 </td>
-   <td style="text-align:right;"> 0.0003330 </td>
-   <td style="text-align:right;"> 0.0003108 </td>
-   <td style="text-align:right;"> 0.0002886 </td>
-   <td style="text-align:right;"> 0.0002664 </td>
-   <td style="text-align:right;"> 0.0002441 </td>
-   <td style="text-align:right;"> 0.0002219 </td>
-   <td style="text-align:right;"> 0.0001997 </td>
-   <td style="text-align:right;"> 0.0001774 </td>
-   <td style="text-align:right;"> 0.0001552 </td>
-   <td style="text-align:right;"> 0.0001330 </td>
-   <td style="text-align:right;"> 0.0001108 </td>
-   <td style="text-align:right;"> 0.0000885 </td>
-   <td style="text-align:right;"> 0.0000663 </td>
-   <td style="text-align:right;"> 0.0000441 </td>
-   <td style="text-align:right;"> 0.0000218 </td>
-   <td style="text-align:right;"> -0.0000004 </td>
-   <td style="text-align:right;"> -0.0000226 </td>
-   <td style="text-align:right;"> -0.0000448 </td>
-   <td style="text-align:right;"> -0.0000671 </td>
-   <td style="text-align:right;"> -0.0000893 </td>
-   <td style="text-align:right;"> -0.0001115 </td>
-   <td style="text-align:right;"> -0.0001338 </td>
-   <td style="text-align:right;"> -0.0001560 </td>
-   <td style="text-align:right;"> -0.0001782 </td>
-   <td style="text-align:right;"> -0.0002004 </td>
-   <td style="text-align:right;"> -0.0002227 </td>
-   <td style="text-align:right;"> -0.0002449 </td>
-   <td style="text-align:right;"> -0.0002671 </td>
-   <td style="text-align:right;"> -0.0002894 </td>
-   <td style="text-align:right;"> -0.0003116 </td>
-   <td style="text-align:right;"> -0.0003338 </td>
-   <td style="text-align:right;"> -0.0003560 </td>
-   <td style="text-align:right;"> -0.0003783 </td>
-   <td style="text-align:right;"> -0.0004005 </td>
-   <td style="text-align:right;"> -0.0000316 </td>
-   <td style="text-align:right;"> -0.0000316 </td>
-   <td style="text-align:right;"> -0.0000316 </td>
-   <td style="text-align:right;"> -0.0000316 </td>
-   <td style="text-align:right;"> -0.0000316 </td>
-   <td style="text-align:right;"> -0.0000246 </td>
-   <td style="text-align:right;"> -0.0000130 </td>
-   <td style="text-align:right;"> -0.0000013 </td>
-   <td style="text-align:right;"> 0.0000103 </td>
-   <td style="text-align:right;"> 0.0000219 </td>
-   <td style="text-align:right;"> 0.0000336 </td>
-   <td style="text-align:right;"> 0.0000452 </td>
-   <td style="text-align:right;"> 0.0000568 </td>
-   <td style="text-align:right;"> 0.0000685 </td>
-   <td style="text-align:right;"> 0.0000801 </td>
-   <td style="text-align:right;"> 0.0000917 </td>
-   <td style="text-align:right;"> 0.0001034 </td>
-   <td style="text-align:right;"> 0.0001150 </td>
-   <td style="text-align:right;"> 0.0001266 </td>
-   <td style="text-align:right;"> 0.0001239 </td>
-   <td style="text-align:right;"> 0.0001195 </td>
-   <td style="text-align:right;"> 0.0001152 </td>
-   <td style="text-align:right;"> 0.0001109 </td>
-   <td style="text-align:right;"> 0.0001065 </td>
-   <td style="text-align:right;"> 0.0001022 </td>
-   <td style="text-align:right;"> 0.0000978 </td>
-   <td style="text-align:right;"> 0.0000935 </td>
-   <td style="text-align:right;"> 0.0000891 </td>
-   <td style="text-align:right;"> 0.0000848 </td>
-   <td style="text-align:right;"> 0.0000804 </td>
-   <td style="text-align:right;"> 0.0000761 </td>
-   <td style="text-align:right;"> 0.0000717 </td>
-   <td style="text-align:right;"> 0.0000674 </td>
-   <td style="text-align:right;"> 0.0000630 </td>
-   <td style="text-align:right;"> 0.0000587 </td>
-   <td style="text-align:right;"> 0.0000543 </td>
-   <td style="text-align:right;"> 0.0000500 </td>
-   <td style="text-align:right;"> 0.0000456 </td>
-   <td style="text-align:right;"> 0.0000413 </td>
-   <td style="text-align:right;"> 0.0000369 </td>
-   <td style="text-align:right;"> 0.0000326 </td>
-   <td style="text-align:right;"> 0.0000283 </td>
-   <td style="text-align:right;"> 0.0000239 </td>
-   <td style="text-align:right;"> 0.0000196 </td>
-   <td style="text-align:right;"> 0.0000170 </td>
-   <td style="text-align:right;"> 0.0000145 </td>
-   <td style="text-align:right;"> 0.0000120 </td>
-   <td style="text-align:right;"> 0.0000095 </td>
-   <td style="text-align:right;"> 0.0000070 </td>
-   <td style="text-align:right;"> 0.0000045 </td>
-   <td style="text-align:right;"> 0.0000020 </td>
-   <td style="text-align:right;"> -0.0000005 </td>
-   <td style="text-align:right;"> -0.0000030 </td>
-   <td style="text-align:right;"> -0.0000056 </td>
-   <td style="text-align:right;"> -0.0000081 </td>
-   <td style="text-align:right;"> -0.0000106 </td>
-   <td style="text-align:right;"> -0.0000131 </td>
-   <td style="text-align:right;"> -0.0000156 </td>
-   <td style="text-align:right;"> -0.0000181 </td>
-   <td style="text-align:right;"> -0.0000206 </td>
-   <td style="text-align:right;"> -0.0000231 </td>
-   <td style="text-align:right;"> -0.0000256 </td>
-   <td style="text-align:right;"> -0.0000282 </td>
-   <td style="text-align:right;"> -0.0000307 </td>
-   <td style="text-align:right;"> -0.0000332 </td>
-   <td style="text-align:right;"> -0.0000357 </td>
-   <td style="text-align:right;"> -0.0000382 </td>
-   <td style="text-align:right;"> -0.0000407 </td>
-   <td style="text-align:right;"> -0.0000432 </td>
-   <td style="text-align:right;"> -0.0000457 </td>
-   <td style="text-align:right;"> -0.0000482 </td>
-   <td style="text-align:right;"> -0.0000508 </td>
-   <td style="text-align:right;"> -0.0000533 </td>
-   <td style="text-align:right;"> -0.0000558 </td>
-   <td style="text-align:right;"> -0.0000583 </td>
-   <td style="text-align:right;"> -0.0000608 </td>
-   <td style="text-align:right;"> -0.0000633 </td>
-   <td style="text-align:right;"> -0.0000658 </td>
-   <td style="text-align:right;"> -0.0000683 </td>
-   <td style="text-align:right;"> -0.0000708 </td>
-   <td style="text-align:right;"> -0.0000733 </td>
-   <td style="text-align:right;"> -0.0000759 </td>
-   <td style="text-align:right;"> -0.0000784 </td>
-   <td style="text-align:right;"> -0.0000809 </td>
-   <td style="text-align:right;"> -0.0006432 </td>
-   <td style="text-align:right;"> -0.0006432 </td>
-   <td style="text-align:right;"> -0.0006432 </td>
-   <td style="text-align:right;"> -0.0006432 </td>
-   <td style="text-align:right;"> -0.0006432 </td>
-   <td style="text-align:right;"> -0.0006189 </td>
-   <td style="text-align:right;"> -0.0005784 </td>
-   <td style="text-align:right;"> -0.0005379 </td>
-   <td style="text-align:right;"> -0.0004973 </td>
-   <td style="text-align:right;"> -0.0004568 </td>
-   <td style="text-align:right;"> -0.0004163 </td>
-   <td style="text-align:right;"> -0.0003758 </td>
-   <td style="text-align:right;"> -0.0003353 </td>
-   <td style="text-align:right;"> -0.0002947 </td>
-   <td style="text-align:right;"> -0.0002542 </td>
-   <td style="text-align:right;"> -0.0002137 </td>
-   <td style="text-align:right;"> -0.0001732 </td>
-   <td style="text-align:right;"> -0.0001326 </td>
-   <td style="text-align:right;"> -0.0000921 </td>
-   <td style="text-align:right;"> -0.0000846 </td>
-   <td style="text-align:right;"> -0.0000808 </td>
-   <td style="text-align:right;"> -0.0000770 </td>
-   <td style="text-align:right;"> -0.0000732 </td>
-   <td style="text-align:right;"> -0.0000694 </td>
-   <td style="text-align:right;"> -0.0000656 </td>
-   <td style="text-align:right;"> -0.0000618 </td>
-   <td style="text-align:right;"> -0.0000580 </td>
-   <td style="text-align:right;"> -0.0000541 </td>
-   <td style="text-align:right;"> -0.0000503 </td>
-   <td style="text-align:right;"> -0.0000465 </td>
-   <td style="text-align:right;"> -0.0000427 </td>
-   <td style="text-align:right;"> -0.0000389 </td>
-   <td style="text-align:right;"> -0.0000351 </td>
-   <td style="text-align:right;"> -0.0000313 </td>
-   <td style="text-align:right;"> -0.0000275 </td>
-   <td style="text-align:right;"> -0.0000236 </td>
-   <td style="text-align:right;"> -0.0000198 </td>
-   <td style="text-align:right;"> -0.0000160 </td>
-   <td style="text-align:right;"> -0.0000122 </td>
-   <td style="text-align:right;"> -0.0000084 </td>
-   <td style="text-align:right;"> -0.0000046 </td>
-   <td style="text-align:right;"> -0.0000008 </td>
-   <td style="text-align:right;"> 0.0000030 </td>
-   <td style="text-align:right;"> 0.0000069 </td>
-   <td style="text-align:right;"> 0.0000066 </td>
-   <td style="text-align:right;"> 0.0000064 </td>
-   <td style="text-align:right;"> 0.0000062 </td>
-   <td style="text-align:right;"> 0.0000060 </td>
-   <td style="text-align:right;"> 0.0000058 </td>
-   <td style="text-align:right;"> 0.0000055 </td>
-   <td style="text-align:right;"> 0.0000053 </td>
-   <td style="text-align:right;"> 0.0000051 </td>
-   <td style="text-align:right;"> 0.0000049 </td>
-   <td style="text-align:right;"> 0.0000047 </td>
-   <td style="text-align:right;"> 0.0000044 </td>
-   <td style="text-align:right;"> 0.0000042 </td>
-   <td style="text-align:right;"> 0.0000040 </td>
-   <td style="text-align:right;"> 0.0000038 </td>
-   <td style="text-align:right;"> 0.0000035 </td>
-   <td style="text-align:right;"> 0.0000033 </td>
-   <td style="text-align:right;"> 0.0000031 </td>
-   <td style="text-align:right;"> 0.0000029 </td>
-   <td style="text-align:right;"> 0.0000027 </td>
-   <td style="text-align:right;"> 0.0000024 </td>
-   <td style="text-align:right;"> 0.0000022 </td>
-   <td style="text-align:right;"> 0.0000020 </td>
-   <td style="text-align:right;"> 0.0000018 </td>
-   <td style="text-align:right;"> 0.0000016 </td>
-   <td style="text-align:right;"> 0.0000013 </td>
-   <td style="text-align:right;"> 0.0000011 </td>
-   <td style="text-align:right;"> 0.0000009 </td>
-   <td style="text-align:right;"> 0.0000007 </td>
-   <td style="text-align:right;"> 0.0000005 </td>
-   <td style="text-align:right;"> 0.0000002 </td>
-   <td style="text-align:right;"> 0.0000000 </td>
-   <td style="text-align:right;"> -0.0000002 </td>
-   <td style="text-align:right;"> -0.0000004 </td>
-   <td style="text-align:right;"> -0.0000007 </td>
-   <td style="text-align:right;"> -0.0000009 </td>
-   <td style="text-align:right;"> -0.0000011 </td>
-   <td style="text-align:right;"> -0.0000013 </td>
-   <td style="text-align:right;"> -0.0000015 </td>
-   <td style="text-align:right;"> -0.0000018 </td>
-   <td style="text-align:right;"> -0.0000020 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2018-06-01T02:30:00.000Z </td>
-   <td style="text-align:left;"> 2018-06-01T02:59:59.000Z </td>
-   <td style="text-align:right;"> -0.0009450 </td>
-   <td style="text-align:right;"> -0.0009450 </td>
-   <td style="text-align:right;"> -0.0009450 </td>
-   <td style="text-align:right;"> -0.0009450 </td>
-   <td style="text-align:right;"> -0.0009450 </td>
-   <td style="text-align:right;"> -0.0007653 </td>
-   <td style="text-align:right;"> -0.0004659 </td>
-   <td style="text-align:right;"> -0.0001665 </td>
-   <td style="text-align:right;"> 0.0001329 </td>
-   <td style="text-align:right;"> 0.0004323 </td>
-   <td style="text-align:right;"> 0.0007317 </td>
-   <td style="text-align:right;"> 0.0010311 </td>
-   <td style="text-align:right;"> 0.0013305 </td>
-   <td style="text-align:right;"> 0.0016300 </td>
-   <td style="text-align:right;"> 0.0019294 </td>
-   <td style="text-align:right;"> 0.0022288 </td>
-   <td style="text-align:right;"> 0.0025282 </td>
-   <td style="text-align:right;"> 0.0028276 </td>
-   <td style="text-align:right;"> 0.0031270 </td>
-   <td style="text-align:right;"> 0.0030239 </td>
-   <td style="text-align:right;"> 0.0028760 </td>
-   <td style="text-align:right;"> 0.0027282 </td>
-   <td style="text-align:right;"> 0.0025803 </td>
-   <td style="text-align:right;"> 0.0024325 </td>
-   <td style="text-align:right;"> 0.0022846 </td>
-   <td style="text-align:right;"> 0.0021368 </td>
-   <td style="text-align:right;"> 0.0019889 </td>
-   <td style="text-align:right;"> 0.0018411 </td>
-   <td style="text-align:right;"> 0.0016932 </td>
-   <td style="text-align:right;"> 0.0015454 </td>
-   <td style="text-align:right;"> 0.0013975 </td>
-   <td style="text-align:right;"> 0.0012497 </td>
-   <td style="text-align:right;"> 0.0011018 </td>
-   <td style="text-align:right;"> 0.0009540 </td>
-   <td style="text-align:right;"> 0.0008061 </td>
-   <td style="text-align:right;"> 0.0006583 </td>
-   <td style="text-align:right;"> 0.0005104 </td>
-   <td style="text-align:right;"> 0.0003626 </td>
-   <td style="text-align:right;"> 0.0002147 </td>
-   <td style="text-align:right;"> 0.0000669 </td>
-   <td style="text-align:right;"> -0.0000810 </td>
-   <td style="text-align:right;"> -0.0002288 </td>
-   <td style="text-align:right;"> -0.0003767 </td>
-   <td style="text-align:right;"> -0.0005245 </td>
-   <td style="text-align:right;"> -0.0005201 </td>
-   <td style="text-align:right;"> -0.0005157 </td>
-   <td style="text-align:right;"> -0.0005112 </td>
-   <td style="text-align:right;"> -0.0005068 </td>
-   <td style="text-align:right;"> -0.0005024 </td>
-   <td style="text-align:right;"> -0.0004979 </td>
-   <td style="text-align:right;"> -0.0004935 </td>
-   <td style="text-align:right;"> -0.0004891 </td>
-   <td style="text-align:right;"> -0.0004846 </td>
-   <td style="text-align:right;"> -0.0004802 </td>
-   <td style="text-align:right;"> -0.0004757 </td>
-   <td style="text-align:right;"> -0.0004713 </td>
-   <td style="text-align:right;"> -0.0004669 </td>
-   <td style="text-align:right;"> -0.0004624 </td>
-   <td style="text-align:right;"> -0.0004580 </td>
-   <td style="text-align:right;"> -0.0004536 </td>
-   <td style="text-align:right;"> -0.0004491 </td>
-   <td style="text-align:right;"> -0.0004447 </td>
-   <td style="text-align:right;"> -0.0004403 </td>
-   <td style="text-align:right;"> -0.0004358 </td>
-   <td style="text-align:right;"> -0.0004314 </td>
-   <td style="text-align:right;"> -0.0004269 </td>
-   <td style="text-align:right;"> -0.0004225 </td>
-   <td style="text-align:right;"> -0.0004181 </td>
-   <td style="text-align:right;"> -0.0004136 </td>
-   <td style="text-align:right;"> -0.0004092 </td>
-   <td style="text-align:right;"> -0.0004048 </td>
-   <td style="text-align:right;"> -0.0004003 </td>
-   <td style="text-align:right;"> -0.0003959 </td>
-   <td style="text-align:right;"> -0.0003915 </td>
-   <td style="text-align:right;"> -0.0003870 </td>
-   <td style="text-align:right;"> -0.0003826 </td>
-   <td style="text-align:right;"> -0.0003782 </td>
-   <td style="text-align:right;"> -0.0003737 </td>
-   <td style="text-align:right;"> -0.0003693 </td>
-   <td style="text-align:right;"> -0.0003648 </td>
-   <td style="text-align:right;"> -0.0003604 </td>
-   <td style="text-align:right;"> -0.0003560 </td>
-   <td style="text-align:right;"> -0.0003515 </td>
-   <td style="text-align:right;"> -0.0003471 </td>
-   <td style="text-align:right;"> -0.0001513 </td>
-   <td style="text-align:right;"> -0.0001513 </td>
-   <td style="text-align:right;"> -0.0001513 </td>
-   <td style="text-align:right;"> -0.0001513 </td>
-   <td style="text-align:right;"> -0.0001513 </td>
-   <td style="text-align:right;"> -0.0001414 </td>
-   <td style="text-align:right;"> -0.0001250 </td>
-   <td style="text-align:right;"> -0.0001085 </td>
-   <td style="text-align:right;"> -0.0000921 </td>
-   <td style="text-align:right;"> -0.0000756 </td>
-   <td style="text-align:right;"> -0.0000591 </td>
-   <td style="text-align:right;"> -0.0000427 </td>
-   <td style="text-align:right;"> -0.0000262 </td>
-   <td style="text-align:right;"> -0.0000098 </td>
-   <td style="text-align:right;"> 0.0000067 </td>
-   <td style="text-align:right;"> 0.0000232 </td>
-   <td style="text-align:right;"> 0.0000396 </td>
-   <td style="text-align:right;"> 0.0000561 </td>
-   <td style="text-align:right;"> 0.0000725 </td>
-   <td style="text-align:right;"> 0.0000696 </td>
-   <td style="text-align:right;"> 0.0000645 </td>
-   <td style="text-align:right;"> 0.0000594 </td>
-   <td style="text-align:right;"> 0.0000544 </td>
-   <td style="text-align:right;"> 0.0000493 </td>
-   <td style="text-align:right;"> 0.0000442 </td>
-   <td style="text-align:right;"> 0.0000391 </td>
-   <td style="text-align:right;"> 0.0000340 </td>
-   <td style="text-align:right;"> 0.0000289 </td>
-   <td style="text-align:right;"> 0.0000238 </td>
-   <td style="text-align:right;"> 0.0000188 </td>
-   <td style="text-align:right;"> 0.0000137 </td>
-   <td style="text-align:right;"> 0.0000086 </td>
-   <td style="text-align:right;"> 0.0000035 </td>
-   <td style="text-align:right;"> -0.0000016 </td>
-   <td style="text-align:right;"> -0.0000067 </td>
-   <td style="text-align:right;"> -0.0000118 </td>
-   <td style="text-align:right;"> -0.0000168 </td>
-   <td style="text-align:right;"> -0.0000219 </td>
-   <td style="text-align:right;"> -0.0000270 </td>
-   <td style="text-align:right;"> -0.0000321 </td>
-   <td style="text-align:right;"> -0.0000372 </td>
-   <td style="text-align:right;"> -0.0000423 </td>
-   <td style="text-align:right;"> -0.0000474 </td>
-   <td style="text-align:right;"> -0.0000524 </td>
-   <td style="text-align:right;"> -0.0000516 </td>
-   <td style="text-align:right;"> -0.0000508 </td>
-   <td style="text-align:right;"> -0.0000499 </td>
-   <td style="text-align:right;"> -0.0000491 </td>
-   <td style="text-align:right;"> -0.0000482 </td>
-   <td style="text-align:right;"> -0.0000474 </td>
-   <td style="text-align:right;"> -0.0000466 </td>
-   <td style="text-align:right;"> -0.0000457 </td>
-   <td style="text-align:right;"> -0.0000449 </td>
-   <td style="text-align:right;"> -0.0000441 </td>
-   <td style="text-align:right;"> -0.0000432 </td>
-   <td style="text-align:right;"> -0.0000424 </td>
-   <td style="text-align:right;"> -0.0000415 </td>
-   <td style="text-align:right;"> -0.0000407 </td>
-   <td style="text-align:right;"> -0.0000399 </td>
-   <td style="text-align:right;"> -0.0000390 </td>
-   <td style="text-align:right;"> -0.0000382 </td>
-   <td style="text-align:right;"> -0.0000373 </td>
-   <td style="text-align:right;"> -0.0000365 </td>
-   <td style="text-align:right;"> -0.0000357 </td>
-   <td style="text-align:right;"> -0.0000348 </td>
-   <td style="text-align:right;"> -0.0000340 </td>
-   <td style="text-align:right;"> -0.0000332 </td>
-   <td style="text-align:right;"> -0.0000323 </td>
-   <td style="text-align:right;"> -0.0000315 </td>
-   <td style="text-align:right;"> -0.0000306 </td>
-   <td style="text-align:right;"> -0.0000298 </td>
-   <td style="text-align:right;"> -0.0000290 </td>
-   <td style="text-align:right;"> -0.0000281 </td>
-   <td style="text-align:right;"> -0.0000273 </td>
-   <td style="text-align:right;"> -0.0000265 </td>
-   <td style="text-align:right;"> -0.0000256 </td>
-   <td style="text-align:right;"> -0.0000248 </td>
-   <td style="text-align:right;"> -0.0000239 </td>
-   <td style="text-align:right;"> -0.0000231 </td>
-   <td style="text-align:right;"> -0.0000223 </td>
-   <td style="text-align:right;"> -0.0000214 </td>
-   <td style="text-align:right;"> -0.0000206 </td>
-   <td style="text-align:right;"> -0.0000197 </td>
-   <td style="text-align:right;"> -0.0000189 </td>
-   <td style="text-align:right;"> -0.0010168 </td>
-   <td style="text-align:right;"> -0.0010168 </td>
-   <td style="text-align:right;"> -0.0010168 </td>
-   <td style="text-align:right;"> -0.0010168 </td>
-   <td style="text-align:right;"> -0.0010168 </td>
-   <td style="text-align:right;"> -0.0009788 </td>
-   <td style="text-align:right;"> -0.0009156 </td>
-   <td style="text-align:right;"> -0.0008524 </td>
-   <td style="text-align:right;"> -0.0007891 </td>
-   <td style="text-align:right;"> -0.0007259 </td>
-   <td style="text-align:right;"> -0.0006627 </td>
-   <td style="text-align:right;"> -0.0005994 </td>
-   <td style="text-align:right;"> -0.0005362 </td>
-   <td style="text-align:right;"> -0.0004729 </td>
-   <td style="text-align:right;"> -0.0004097 </td>
-   <td style="text-align:right;"> -0.0003465 </td>
-   <td style="text-align:right;"> -0.0002832 </td>
-   <td style="text-align:right;"> -0.0002200 </td>
-   <td style="text-align:right;"> -0.0001568 </td>
-   <td style="text-align:right;"> -0.0001510 </td>
-   <td style="text-align:right;"> -0.0001516 </td>
-   <td style="text-align:right;"> -0.0001523 </td>
-   <td style="text-align:right;"> -0.0001529 </td>
-   <td style="text-align:right;"> -0.0001535 </td>
-   <td style="text-align:right;"> -0.0001542 </td>
-   <td style="text-align:right;"> -0.0001548 </td>
-   <td style="text-align:right;"> -0.0001554 </td>
-   <td style="text-align:right;"> -0.0001561 </td>
-   <td style="text-align:right;"> -0.0001567 </td>
-   <td style="text-align:right;"> -0.0001574 </td>
-   <td style="text-align:right;"> -0.0001580 </td>
-   <td style="text-align:right;"> -0.0001586 </td>
-   <td style="text-align:right;"> -0.0001593 </td>
-   <td style="text-align:right;"> -0.0001599 </td>
-   <td style="text-align:right;"> -0.0001605 </td>
-   <td style="text-align:right;"> -0.0001612 </td>
-   <td style="text-align:right;"> -0.0001618 </td>
-   <td style="text-align:right;"> -0.0001624 </td>
-   <td style="text-align:right;"> -0.0001631 </td>
-   <td style="text-align:right;"> -0.0001637 </td>
-   <td style="text-align:right;"> -0.0001643 </td>
-   <td style="text-align:right;"> -0.0001650 </td>
-   <td style="text-align:right;"> -0.0001656 </td>
-   <td style="text-align:right;"> -0.0001662 </td>
-   <td style="text-align:right;"> -0.0001655 </td>
-   <td style="text-align:right;"> -0.0001648 </td>
-   <td style="text-align:right;"> -0.0001640 </td>
-   <td style="text-align:right;"> -0.0001633 </td>
-   <td style="text-align:right;"> -0.0001626 </td>
-   <td style="text-align:right;"> -0.0001618 </td>
-   <td style="text-align:right;"> -0.0001611 </td>
-   <td style="text-align:right;"> -0.0001603 </td>
-   <td style="text-align:right;"> -0.0001596 </td>
-   <td style="text-align:right;"> -0.0001589 </td>
-   <td style="text-align:right;"> -0.0001581 </td>
-   <td style="text-align:right;"> -0.0001574 </td>
-   <td style="text-align:right;"> -0.0001566 </td>
-   <td style="text-align:right;"> -0.0001559 </td>
-   <td style="text-align:right;"> -0.0001552 </td>
-   <td style="text-align:right;"> -0.0001544 </td>
-   <td style="text-align:right;"> -0.0001537 </td>
-   <td style="text-align:right;"> -0.0001530 </td>
-   <td style="text-align:right;"> -0.0001522 </td>
-   <td style="text-align:right;"> -0.0001515 </td>
-   <td style="text-align:right;"> -0.0001507 </td>
-   <td style="text-align:right;"> -0.0001500 </td>
-   <td style="text-align:right;"> -0.0001493 </td>
-   <td style="text-align:right;"> -0.0001485 </td>
-   <td style="text-align:right;"> -0.0001478 </td>
-   <td style="text-align:right;"> -0.0001470 </td>
-   <td style="text-align:right;"> -0.0001463 </td>
-   <td style="text-align:right;"> -0.0001456 </td>
-   <td style="text-align:right;"> -0.0001448 </td>
-   <td style="text-align:right;"> -0.0001441 </td>
-   <td style="text-align:right;"> -0.0001434 </td>
-   <td style="text-align:right;"> -0.0001426 </td>
-   <td style="text-align:right;"> -0.0001419 </td>
-   <td style="text-align:right;"> -0.0001411 </td>
-   <td style="text-align:right;"> -0.0001404 </td>
-   <td style="text-align:right;"> -0.0001397 </td>
-   <td style="text-align:right;"> -0.0001389 </td>
-   <td style="text-align:right;"> -0.0001382 </td>
-   <td style="text-align:right;"> -0.0001374 </td>
-   <td style="text-align:right;"> -0.0001367 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-  </tr>
-</tbody>
-</table>
 
 
 ### Un-interpolated vertical profile data (Level 2)
@@ -4733,15 +424,6 @@ with the same syntax:
 ```r
 prof.l2 <- stackEddy(filepath="./data/filesToStack00200/",
                  level="dp02")
-```
-
-```
-## Extracting data
-##   |                                                                              |                                                                      |   0%  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
-## Stacking data tables by month
-##   |                                                                              |                                                                      |   0%  |                                                                              |=                                                                     |   2%  |                                                                              |==                                                                    |   3%  |                                                                              |====                                                                  |   5%  |                                                                              |=====                                                                 |   7%  |                                                                              |======                                                                |   8%  |                                                                              |=======                                                               |  10%  |                                                                              |========                                                              |  12%  |                                                                              |=========                                                             |  13%  |                                                                              |==========                                                            |  15%  |                                                                              |============                                                          |  17%  |                                                                              |=============                                                         |  18%  |                                                                              |==============                                                        |  20%  |                                                                              |===============                                                       |  22%  |                                                                              |================                                                      |  23%  |                                                                              |==================                                                    |  25%  |                                                                              |===================                                                   |  27%  |                                                                              |====================                                                  |  28%  |                                                                              |=====================                                                 |  30%  |                                                                              |======================                                                |  32%  |                                                                              |=======================                                               |  33%  |                                                                              |========================                                              |  35%  |                                                                              |==========================                                            |  37%  |                                                                              |===========================                                           |  38%  |                                                                              |============================                                          |  40%  |                                                                              |=============================                                         |  42%  |                                                                              |==============================                                        |  43%  |                                                                              |================================                                      |  45%  |                                                                              |=================================                                     |  47%  |                                                                              |==================================                                    |  48%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================                                  |  52%  |                                                                              |=====================================                                 |  53%  |                                                                              |======================================                                |  55%  |                                                                              |========================================                              |  57%  |                                                                              |=========================================                             |  58%  |                                                                              |==========================================                            |  60%  |                                                                              |===========================================                           |  62%  |                                                                              |============================================                          |  63%  |                                                                              |==============================================                        |  65%  |                                                                              |===============================================                       |  67%  |                                                                              |================================================                      |  68%  |                                                                              |=================================================                     |  70%  |                                                                              |==================================================                    |  72%  |                                                                              |===================================================                   |  73%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================                |  77%  |                                                                              |=======================================================               |  78%  |                                                                              |========================================================              |  80%  |                                                                              |=========================================================             |  82%  |                                                                              |==========================================================            |  83%  |                                                                              |============================================================          |  85%  |                                                                              |=============================================================         |  87%  |                                                                              |==============================================================        |  88%  |                                                                              |===============================================================       |  90%  |                                                                              |================================================================      |  92%  |                                                                              |=================================================================     |  93%  |                                                                              |==================================================================    |  95%  |                                                                              |====================================================================  |  97%  |                                                                              |===================================================================== |  98%  |                                                                              |======================================================================| 100%
-## Joining data variables
-##   |                                                                              |                                                                      |   0%  |                                                                              |======                                                                |   8%  |                                                                              |============                                                          |  17%  |                                                                              |==================                                                    |  25%  |                                                                              |=======================                                               |  33%  |                                                                              |=============================                                         |  42%  |                                                                              |===================================                                   |  50%  |                                                                              |=========================================                             |  58%  |                                                                              |===============================================                       |  67%  |                                                                              |====================================================                  |  75%  |                                                                              |==========================================================            |  83%  |                                                                              |================================================================      |  92%  |                                                                              |======================================================================| 100%
 ```
 
 
@@ -4784,118 +466,6 @@ vars <- getVarsEddy("./data/filesToStack00200/NEON.D01.HARV.DP4.00200.001.nsae.2
 knitr::kable(head(vars))
 ```
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;">   </th>
-   <th style="text-align:left;"> site </th>
-   <th style="text-align:left;"> level </th>
-   <th style="text-align:left;"> category </th>
-   <th style="text-align:left;"> system </th>
-   <th style="text-align:left;"> hor </th>
-   <th style="text-align:left;"> ver </th>
-   <th style="text-align:left;"> tmi </th>
-   <th style="text-align:left;"> name </th>
-   <th style="text-align:left;"> otype </th>
-   <th style="text-align:left;"> dclass </th>
-   <th style="text-align:left;"> dim </th>
-   <th style="text-align:left;"> oth </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> HARV </td>
-   <td style="text-align:left;"> dp01 </td>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> amrs </td>
-   <td style="text-align:left;"> 000 </td>
-   <td style="text-align:left;"> 060 </td>
-   <td style="text-align:left;"> 01m </td>
-   <td style="text-align:left;"> angNedXaxs </td>
-   <td style="text-align:left;"> H5I_DATASET </td>
-   <td style="text-align:left;"> COMPOUND </td>
-   <td style="text-align:left;"> 44640 </td>
-   <td style="text-align:left;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 6 </td>
-   <td style="text-align:left;"> HARV </td>
-   <td style="text-align:left;"> dp01 </td>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> amrs </td>
-   <td style="text-align:left;"> 000 </td>
-   <td style="text-align:left;"> 060 </td>
-   <td style="text-align:left;"> 01m </td>
-   <td style="text-align:left;"> angNedYaxs </td>
-   <td style="text-align:left;"> H5I_DATASET </td>
-   <td style="text-align:left;"> COMPOUND </td>
-   <td style="text-align:left;"> 44640 </td>
-   <td style="text-align:left;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 7 </td>
-   <td style="text-align:left;"> HARV </td>
-   <td style="text-align:left;"> dp01 </td>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> amrs </td>
-   <td style="text-align:left;"> 000 </td>
-   <td style="text-align:left;"> 060 </td>
-   <td style="text-align:left;"> 01m </td>
-   <td style="text-align:left;"> angNedZaxs </td>
-   <td style="text-align:left;"> H5I_DATASET </td>
-   <td style="text-align:left;"> COMPOUND </td>
-   <td style="text-align:left;"> 44640 </td>
-   <td style="text-align:left;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 9 </td>
-   <td style="text-align:left;"> HARV </td>
-   <td style="text-align:left;"> dp01 </td>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> amrs </td>
-   <td style="text-align:left;"> 000 </td>
-   <td style="text-align:left;"> 060 </td>
-   <td style="text-align:left;"> 30m </td>
-   <td style="text-align:left;"> angNedXaxs </td>
-   <td style="text-align:left;"> H5I_DATASET </td>
-   <td style="text-align:left;"> COMPOUND </td>
-   <td style="text-align:left;"> 1488 </td>
-   <td style="text-align:left;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> HARV </td>
-   <td style="text-align:left;"> dp01 </td>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> amrs </td>
-   <td style="text-align:left;"> 000 </td>
-   <td style="text-align:left;"> 060 </td>
-   <td style="text-align:left;"> 30m </td>
-   <td style="text-align:left;"> angNedYaxs </td>
-   <td style="text-align:left;"> H5I_DATASET </td>
-   <td style="text-align:left;"> COMPOUND </td>
-   <td style="text-align:left;"> 1488 </td>
-   <td style="text-align:left;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 11 </td>
-   <td style="text-align:left;"> HARV </td>
-   <td style="text-align:left;"> dp01 </td>
-   <td style="text-align:left;"> data </td>
-   <td style="text-align:left;"> amrs </td>
-   <td style="text-align:left;"> 000 </td>
-   <td style="text-align:left;"> 060 </td>
-   <td style="text-align:left;"> 30m </td>
-   <td style="text-align:left;"> angNedZaxs </td>
-   <td style="text-align:left;"> H5I_DATASET </td>
-   <td style="text-align:left;"> COMPOUND </td>
-   <td style="text-align:left;"> 1488 </td>
-   <td style="text-align:left;"> NA </td>
-  </tr>
-</tbody>
-</table>
-
 
 
 
@@ -4912,15 +482,6 @@ profiles:
 iso <- stackEddy(filepath="./data/filesToStack00200/",
                level="dp01", var=c("rtioMoleDryCo2","rtioMoleDryH2o",
                                    "dlta13CCo2","dlta18OH2o"), avg=30)
-```
-
-```
-## Extracting data
-##   |                                                                              |                                                                      |   0%  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
-## Stacking data tables by month
-##   |                                                                              |                                                                      |   0%  |                                                                              |                                                                      |   1%  |                                                                              |=                                                                     |   1%  |                                                                              |=                                                                     |   2%  |                                                                              |==                                                                    |   2%  |                                                                              |==                                                                    |   3%  |                                                                              |===                                                                   |   4%  |                                                                              |===                                                                   |   5%  |                                                                              |====                                                                  |   5%  |                                                                              |====                                                                  |   6%  |                                                                              |=====                                                                 |   7%  |                                                                              |=====                                                                 |   8%  |                                                                              |======                                                                |   8%  |                                                                              |======                                                                |   9%  |                                                                              |=======                                                               |   9%  |                                                                              |=======                                                               |  10%  |                                                                              |=======                                                               |  11%  |                                                                              |========                                                              |  11%  |                                                                              |========                                                              |  12%  |                                                                              |=========                                                             |  12%  |                                                                              |=========                                                             |  13%  |                                                                              |==========                                                            |  14%  |                                                                              |==========                                                            |  15%  |                                                                              |===========                                                           |  15%  |                                                                              |===========                                                           |  16%  |                                                                              |============                                                          |  17%  |                                                                              |============                                                          |  18%  |                                                                              |=============                                                         |  18%  |                                                                              |=============                                                         |  19%  |                                                                              |==============                                                        |  19%  |                                                                              |==============                                                        |  20%  |                                                                              |==============                                                        |  21%  |                                                                              |===============                                                       |  21%  |                                                                              |===============                                                       |  22%  |                                                                              |================                                                      |  22%  |                                                                              |================                                                      |  23%  |                                                                              |=================                                                     |  24%  |                                                                              |=================                                                     |  25%  |                                                                              |==================                                                    |  25%  |                                                                              |==================                                                    |  26%  |                                                                              |===================                                                   |  27%  |                                                                              |===================                                                   |  28%  |                                                                              |====================                                                  |  28%  |                                                                              |====================                                                  |  29%  |                                                                              |=====================                                                 |  29%  |                                                                              |=====================                                                 |  30%  |                                                                              |=====================                                                 |  31%  |                                                                              |======================                                                |  31%  |                                                                              |======================                                                |  32%  |                                                                              |=======================                                               |  32%  |                                                                              |=======================                                               |  33%  |                                                                              |========================                                              |  34%  |                                                                              |========================                                              |  35%  |                                                                              |=========================                                             |  35%  |                                                                              |=========================                                             |  36%  |                                                                              |==========================                                            |  37%  |                                                                              |==========================                                            |  38%  |                                                                              |===========================                                           |  38%  |                                                                              |===========================                                           |  39%  |                                                                              |============================                                          |  39%  |                                                                              |============================                                          |  40%  |                                                                              |============================                                          |  41%  |                                                                              |=============================                                         |  41%  |                                                                              |=============================                                         |  42%  |                                                                              |==============================                                        |  42%  |                                                                              |==============================                                        |  43%  |                                                                              |===============================                                       |  44%  |                                                                              |===============================                                       |  45%  |                                                                              |================================                                      |  45%  |                                                                              |================================                                      |  46%  |                                                                              |=================================                                     |  47%  |                                                                              |=================================                                     |  48%  |                                                                              |==================================                                    |  48%  |                                                                              |==================================                                    |  49%  |                                                                              |===================================                                   |  49%  |                                                                              |===================================                                   |  50%  |                                                                              |===================================                                   |  51%  |                                                                              |====================================                                  |  51%  |                                                                              |====================================                                  |  52%  |                                                                              |=====================================                                 |  52%  |                                                                              |=====================================                                 |  53%  |                                                                              |======================================                                |  54%  |                                                                              |======================================                                |  55%  |                                                                              |=======================================                               |  55%  |                                                                              |=======================================                               |  56%  |                                                                              |========================================                              |  57%  |                                                                              |========================================                              |  58%  |                                                                              |=========================================                             |  58%  |                                                                              |=========================================                             |  59%  |                                                                              |==========================================                            |  59%  |                                                                              |==========================================                            |  60%  |                                                                              |==========================================                            |  61%  |                                                                              |===========================================                           |  61%  |                                                                              |===========================================                           |  62%  |                                                                              |============================================                          |  62%  |                                                                              |============================================                          |  63%  |                                                                              |=============================================                         |  64%  |                                                                              |=============================================                         |  65%  |                                                                              |==============================================                        |  65%  |                                                                              |==============================================                        |  66%  |                                                                              |===============================================                       |  67%  |                                                                              |===============================================                       |  68%  |                                                                              |================================================                      |  68%  |                                                                              |================================================                      |  69%  |                                                                              |=================================================                     |  69%  |                                                                              |=================================================                     |  70%  |                                                                              |=================================================                     |  71%  |                                                                              |==================================================                    |  71%  |                                                                              |==================================================                    |  72%  |                                                                              |===================================================                   |  72%  |                                                                              |===================================================                   |  73%  |                                                                              |====================================================                  |  74%  |                                                                              |====================================================                  |  75%  |                                                                              |=====================================================                 |  75%  |                                                                              |=====================================================                 |  76%  |                                                                              |======================================================                |  77%  |                                                                              |======================================================                |  78%  |                                                                              |=======================================================               |  78%  |                                                                              |=======================================================               |  79%  |                                                                              |========================================================              |  79%  |                                                                              |========================================================              |  80%  |                                                                              |========================================================              |  81%  |                                                                              |=========================================================             |  81%  |                                                                              |=========================================================             |  82%  |                                                                              |==========================================================            |  82%  |                                                                              |==========================================================            |  83%  |                                                                              |===========================================================           |  84%  |                                                                              |===========================================================           |  85%  |                                                                              |============================================================          |  85%  |                                                                              |============================================================          |  86%  |                                                                              |=============================================================         |  87%  |                                                                              |=============================================================         |  88%  |                                                                              |==============================================================        |  88%  |                                                                              |==============================================================        |  89%  |                                                                              |===============================================================       |  89%  |                                                                              |===============================================================       |  90%  |                                                                              |===============================================================       |  91%  |                                                                              |================================================================      |  91%  |                                                                              |================================================================      |  92%  |                                                                              |=================================================================     |  92%  |                                                                              |=================================================================     |  93%  |                                                                              |==================================================================    |  94%  |                                                                              |==================================================================    |  95%  |                                                                              |===================================================================   |  95%  |                                                                              |===================================================================   |  96%  |                                                                              |====================================================================  |  97%  |                                                                              |====================================================================  |  98%  |                                                                              |===================================================================== |  98%  |                                                                              |===================================================================== |  99%  |                                                                              |======================================================================|  99%  |                                                                              |======================================================================| 100%
-## Joining data variables
-##   |                                                                              |                                                                      |   0%  |                                                                              |=                                                                     |   2%  |                                                                              |===                                                                   |   4%  |                                                                              |====                                                                  |   6%  |                                                                              |=====                                                                 |   7%  |                                                                              |======                                                                |   9%  |                                                                              |========                                                              |  11%  |                                                                              |=========                                                             |  13%  |                                                                              |==========                                                            |  15%  |                                                                              |============                                                          |  17%  |                                                                              |=============                                                         |  19%  |                                                                              |==============                                                        |  20%  |                                                                              |================                                                      |  22%  |                                                                              |=================                                                     |  24%  |                                                                              |==================                                                    |  26%  |                                                                              |===================                                                   |  28%  |                                                                              |=====================                                                 |  30%  |                                                                              |======================                                                |  31%  |                                                                              |=======================                                               |  33%  |                                                                              |=========================                                             |  35%  |                                                                              |==========================                                            |  37%  |                                                                              |===========================                                           |  39%  |                                                                              |=============================                                         |  41%  |                                                                              |==============================                                        |  43%  |                                                                              |===============================                                       |  44%  |                                                                              |================================                                      |  46%  |                                                                              |==================================                                    |  48%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================                                  |  52%  |                                                                              |======================================                                |  54%  |                                                                              |=======================================                               |  56%  |                                                                              |========================================                              |  57%  |                                                                              |=========================================                             |  59%  |                                                                              |===========================================                           |  61%  |                                                                              |============================================                          |  63%  |                                                                              |=============================================                         |  65%  |                                                                              |===============================================                       |  67%  |                                                                              |================================================                      |  69%  |                                                                              |=================================================                     |  70%  |                                                                              |===================================================                   |  72%  |                                                                              |====================================================                  |  74%  |                                                                              |=====================================================                 |  76%  |                                                                              |======================================================                |  78%  |                                                                              |========================================================              |  80%  |                                                                              |=========================================================             |  81%  |                                                                              |==========================================================            |  83%  |                                                                              |============================================================          |  85%  |                                                                              |=============================================================         |  87%  |                                                                              |==============================================================        |  89%  |                                                                              |================================================================      |  91%  |                                                                              |=================================================================     |  93%  |                                                                              |==================================================================    |  94%  |                                                                              |===================================================================   |  96%  |                                                                              |===================================================================== |  98%  |                                                                              |======================================================================| 100%
 ```
 
 
@@ -4949,11 +510,6 @@ iso.d <- iso$HARV[grep("2018-06-25", iso$HARV$timeBgn, fixed=T),]
 iso.d <- iso.d[-which(is.na(as.numeric(iso.d$verticalPosition))),]
 ```
 
-```
-## Warning in which(is.na(as.numeric(iso.d$verticalPosition))): NAs introduced by
-## coercion
-```
-
 
 
 
@@ -4966,10 +522,6 @@ the profiles.
 library(ggplot2)
 ```
 
-```
-## Warning: package 'ggplot2' was built under R version 3.6.2
-```
-
 
 
 ```r
@@ -4980,12 +532,6 @@ g <- ggplot(iso.d, aes(y=verticalPosition)) +
   xlab("CO2") + ylab("Tower level")
 g
 ```
-
-```
-## Warning: Removed 2 row(s) containing missing values (geom_path).
-```
-
-<img src="06-Fluxes_and_Inter-operability_files/figure-html/unnamed-chunk-26-1.png" width="672" />
 
 
 

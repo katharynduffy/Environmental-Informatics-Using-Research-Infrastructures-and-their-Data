@@ -862,7 +862,7 @@ library(rnpn)
 library(ggplot2)
 library(neonUtilities)
 library(dplyr)
-source('/Users/kdw223/Research/katharynduffy.github.io/neon_token_source.R')
+source('/Users/kdw223/Research/Environmental-Informatics-Using-Research-Infrastructures-and-their-Data/neon_token_source.R')
 
 ```
 1. For the purposes of this exercise we will be focusing on two NEON sites: `HARV` and `CPER`.  Save these two sites into your workplace so that you can feed them into functions and packages.

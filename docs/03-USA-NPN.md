@@ -243,14 +243,15 @@ species[species$common_name=="red maple",]
 ```
 
 ```
-## # A tibble: 1 x 19
-##   species_id common_name genus genus_id genus_common_na… species kingdom
-##        <int> <chr>       <chr>    <int> <chr>            <chr>   <chr>  
-## 1          3 red maple   Acer       372 Maples (Acer)    rubrum  Plantae
-## # … with 12 more variables: itis_taxonomic_sn <int>, functional_type <chr>,
-## #   class_id <int>, class_common_name <chr>, class_name <chr>, order_id <int>,
-## #   order_common_name <chr>, order_name <chr>, family_id <int>,
-## #   family_name <chr>, family_common_name <chr>, species_type <list>
+## # A tibble: 1 × 19
+##   specie…¹ commo…² genus genus…³ genus…⁴ species kingdom itis_…⁵ funct…⁶ class…⁷
+##      <int> <chr>   <chr>   <int> <chr>   <chr>   <chr>     <int> <chr>     <int>
+## 1        3 red ma… Acer      372 Maples… rubrum  Plantae   28728 Decidu…      15
+## # … with 9 more variables: class_common_name <chr>, class_name <chr>,
+## #   order_id <int>, order_common_name <chr>, order_name <chr>, family_id <int>,
+## #   family_name <chr>, family_common_name <chr>, species_type <list>, and
+## #   abbreviated variable names ¹​species_id, ²​common_name, ³​genus_id,
+## #   ⁴​genus_common_name, ⁵​itis_taxonomic_sn, ⁶​functional_type, ⁷​class_id
 ```
 
 
@@ -392,7 +393,7 @@ npn_download_individual_phenometrics(
 ```
 
 ```
-##  Found 103 records...
+##  Found 102 records...
 ```
 
 ```
@@ -682,10 +683,6 @@ AGDDJun2019<-npn_download_geospatial(
  'gdd:agdd_50f', 
  '2019-06-25'
 )
-```
-
-```
-## [1] "https://geoserver.usanpn.org/geoserver/wcs?service=WCS&version=2.0.1&request=GetCoverage&format=geotiff&coverageId=gdd:agdd_50f&SUBSET=time(\"2019-06-25T00:00:00.000Z\")"
 ```
 
 
@@ -1003,26 +1000,8 @@ add_fields <- npn_download_status_data(
 ```r
 library(rnpn)
 library(ggplot2)
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 3.6.2
-```
-
-```r
 library(neonUtilities)
-```
-
-```
-## Warning: package 'neonUtilities' was built under R version 3.6.2
-```
-
-```r
 library(dplyr)
-```
-
-```
-## Warning: package 'dplyr' was built under R version 3.6.2
 ```
 
 ```
@@ -1043,7 +1022,7 @@ library(dplyr)
 ```
 
 ```r
-source('/Users/kdw223/Research/katharynduffy.github.io/neon_token_source.R')
+source('/Users/kdw223/Research/Environmental-Informatics-Using-Research-Infrastructures-and-their-Data/neon_token_source.R')
 ```
 1. For the purposes of this exercise we will be focusing on two NEON sites: `HARV` and `CPER`.  Save these two sites into your workplace so that you can feed them into functions and packages.
 
@@ -1079,10 +1058,6 @@ phe_statusintensity <- distinct(phe_statusintensity)
 
 ```r
 library(lubridate)
-```
-
-```
-## Warning: package 'lubridate' was built under R version 3.6.2
 ```
 
 ```
@@ -1127,9 +1102,10 @@ unique(phe_statusintensity$phenophaseName)
 ```
 
 ```
-## [1] "Increasing leaf size" "Breaking leaf buds"   "Falling leaves"      
-## [4] "Leaves"               "Open flowers"         "Colored leaves"      
-## [7] "Initial growth"
+##  [1] "Colored leaves"       "Falling leaves"       "Leaves"              
+##  [4] "Breaking leaf buds"   "Increasing leaf size" "Open flowers"        
+##  [7] "Initial growth"       "Young needles"        "Open pollen cones"   
+## [10] "Breaking needle buds" "Emerging needles"     "Young leaves"
 ```
 And select a single taxon:
 
@@ -1138,9 +1114,9 @@ unique(phe_perindividual$taxonID)
 ```
 
 ```
-##  [1] "QURU"  "ACRU"  "ARNU2" "MEVI"  "TRBOB" "UVSE"  "MIRE"  "MACA4" "MARAR"
-## [10] "ACPE"  "PRSES" "FAGR"  "VIAC"  "FRAM2" "BELE"  "VACO"  "BEAL2" "ACSAS"
-## [19] "TSCA"
+##  [1] "QURU"  "ACRU"  "ARNU2" "TRBOB" "UVSE"  "MEVI"  "MACA4" "MIRE"  "MARAR"
+## [10] "PRSES" "BEAL2" "PIST"  "ACPE"  "VIAC"  "FAGR"  "VACO"  "BELE"  "FRAM2"
+## [19] "ACSAS" "TSCA"
 ```
 
 Now create a new, filtered `dataframe` only including those observations and print a summary.  You'll also want to filter for typical things like `NA` values, and think about how you'll work with data that comes in factors or strings.  Are there ways you could extract numerical values for plotting?  Could you `count` data? Summarize your strategy.
