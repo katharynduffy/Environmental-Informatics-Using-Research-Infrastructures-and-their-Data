@@ -1,0 +1,10 @@
+---
+title: "Chapter 1 Exercises"
+author: "Bilal Aslam"
+date: "9/7/2022"
+output: pdf_document
+---
+
+**Introduction**
+
+Hello, I'm Bilal Aslam.  I'm a second year PhD student in the Ecological Informatics Program working with Dr. Kevin Gurney. I am interested in researching Onroad Carbon emissions using remote sensing techniques and machine learning.
