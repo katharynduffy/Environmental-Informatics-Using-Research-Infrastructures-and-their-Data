@@ -130,7 +130,7 @@ NEON Biorepository</a>.
 Watch this 4:02 minute video to better understand the NEON Airborne
 Observation Platform (AOP).
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/muBZxMMQXK8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+<iframe width="560" height="315" src="https://www.youtube.com/watch?v=etnU4xFMTQo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
 
 </iframe>
 
@@ -573,9 +573,9 @@ symbols(veg$adjEasting[which(veg$plotID=="WREF_075")],
 
 ## Intro to NEON Exercises Part 1
 
-### Exercise 2.1: Computational
+### Exercise 2.1: NEON TOS Vegetation Coding Lab
 
-#### Sign up for and Use an NEON API Token:
+#### Part 1: Sign up for and Use an NEON API Token:
 
 1.  Submit via .Rmd and .pdf a simple script that uses a *HIDDEN* token
     to access NEON data.
@@ -588,7 +588,7 @@ veglist <- loadByProduct(dpID="DP1.10098.001", site="WREF", package="basic", che
 summary(veglist)
 ```
 
-#### Further Investigation of NEON TOS Vegetation Structure Data
+#### Part 2: Further Investigation of NEON TOS Vegetation Structure Data
 
 **Suggested Timing: Complete this exercise before our next class
 session**
@@ -1369,7 +1369,7 @@ section</a> of the API web page. Briefly, they are:
 -   `verbose`: Do you want the short (`false`) or long (`true`) response
 -   `offset`: Skip this number of items in the list. Defaults to 50.
 -   `limit`: Result set will be truncated at this length. Defaults to
-    50.
+    50. 
 
 Staff on the NEON project have plans to modify the settings for `offset`
 and `limit`, such that `offset` will default to 0 and `limit` will

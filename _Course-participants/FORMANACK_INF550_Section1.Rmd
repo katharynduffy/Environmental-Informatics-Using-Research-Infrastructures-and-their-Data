@@ -1,0 +1,13 @@
+---
+title: "Introduction"
+author: "Alicia Formanack"
+date: "9/5/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Hello, hello. I'm Alicia, a second year PhD student in Kiona Ogle's lab.
+I like studying tree growth and its effects on the carbon cycle.

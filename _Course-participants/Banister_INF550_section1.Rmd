@@ -1,0 +1,15 @@
+---
+title: "Exercise 0.7 - Introduction"
+author: "Kelsey Banister"
+date: "2022-09-07"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## INTRODUCTION
+
+Hello all, 
+My name is Kelsey Banister, I am a first year PhD student focusing on disease modeling with Dr. Mihaljevic. I have my master's in informatics and my bachelor's in microbiology. I mostly use R and C++, so I'm looking forward to this class and working with you all!
