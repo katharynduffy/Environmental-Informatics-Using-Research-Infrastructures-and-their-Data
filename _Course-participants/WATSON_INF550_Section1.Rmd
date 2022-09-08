@@ -1,0 +1,14 @@
+---
+title: "Chapter 1 Exercises"
+author: "Samantha Watson"
+date: "2022-09-07"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+** Introductions **
+
+Hi, I am Sam Watson. I'm a second year PhD student in SICCS/ECOSS with Dr. Andrew Richardson. I am interested in using PhenoCams to remotely monitor changes in phenology due to drought. 
