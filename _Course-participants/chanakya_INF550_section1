@@ -1,0 +1,13 @@
+title: "Introduction"
+author: "Sai Chanakya Reddy Challa"
+date: "2022-08-24"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Introduction
+
+Hi I'm Sai Chanakya Reddy.I'm currently studying master's in Computer Science at Northern Arizona University. I'm currently reviewing TextBook.
