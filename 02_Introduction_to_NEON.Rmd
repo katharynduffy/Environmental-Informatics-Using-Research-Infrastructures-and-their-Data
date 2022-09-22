@@ -511,7 +511,7 @@ to the function are:
 -   package: basic or expanded; we'll begin with a `basic` here
 
 ```{r, echo=FALSE}
-source('/Users/kdw223/Research/katharynduffy.github.io/neon_token_source.R')
+source('/Users/rohan/katharynduffy.github.io/neon_token_source.R')
 ```
 
 ```{r, cache=TRUE}
@@ -573,7 +573,7 @@ symbols(veg$adjEasting[which(veg$plotID=="WREF_075")],
 
 ## Intro to NEON Exercises Part 1
 
-### Exercise 2.1: NEON TOS Vegetation Coding Lab
+### Exercise 2.1: NEON Coding Lab - TOS Vegetation Structure
 
 #### Part 1: Sign up for and Use an NEON API Token:
 
@@ -1518,7 +1518,7 @@ previous sections and answer *each* of the following questions:
 
 <div id="ds-challenge" markdown="1">
 
-### Exercise 2.3: NEON Coding Lab
+### Exercise 2.3: NEON Coding Lab - Further Exploration of NEON Data
 
 **Suggested Timing: Complete this exercise a few days before your NEON
 clumination write up**
@@ -1535,7 +1535,6 @@ e.g. `ONAQ`
 
 e.g.:
 
-\<\<\<\<\<\<\< HEAD
 `**DP1.10055.001**: Plant phenology observations: phenophase status and insensity of tagged plants.  This data product contains the quality-controlled, native sampling resolution data from in-situ observations of plant leaf development and reproductive phenophases, at **D15.ONAQ**.`
 
 3.  Using the NEON Ulitites package or the API pull in those data along
@@ -1554,7 +1553,7 @@ e.g.:
 > which is a measure of how prevalent that particular phenophase is in
 > the sampled plants.
 
-3.  Using the NEON Ulitites package or the API pull in those data along
+6.  Using the NEON Ulitites package or the API pull in those data along
     with metadata.
 
 ```{r, eval=FALSE}
@@ -1569,7 +1568,7 @@ pheDat <- loadByProduct(dpID="DP1.10055.001",
                      token=NEON_TOKEN)
 ```
 
-4.  Organize your data into `data.frames` and produce summaries for each
+7.  Organize your data into `data.frames` and produce summaries for each
     of your data:
 
 ```{r, eval=FALSE}
@@ -1580,7 +1579,7 @@ summary(phe_perindividualperyear)
 summary(phe_statusintensity)
 ```
 
-5.  Filter and format your data based on metadata and quality flags:
+8.  Filter and format your data based on metadata and quality flags:
 
 ```{r, eval=FALSE}
 #remove duplicate records
@@ -1600,7 +1599,7 @@ phe_statusintensity=phe_statusintensity%>%
   filter(!is.na(phe_statusintensity$phenophaseIntensity))
 ```
 
-6.  Create minimum of 1 plot per data type (minimum of 3 plots total).
+9.  Create minimum of 1 plot per data type (minimum of 3 plots total).
     These will vary based on that data that you've chosen.
 
 A non-exhastive list of ideas: 1. Your data as a function of height on
@@ -1609,7 +1608,7 @@ sampled (TOS tree example, bird example) 3. A model based on the data
 you're interested in working work (Coding lab 1 example) 4. A timeseries
 of your data (example below)
 
-7.  What is the temporal frequency of observations in the data you
+10. What is the temporal frequency of observations in the data you
     decided was of interest? How do the data align to answer a central
     question? What challenges did you run into when investigating these
     data? How will you address these challenges and document your code?

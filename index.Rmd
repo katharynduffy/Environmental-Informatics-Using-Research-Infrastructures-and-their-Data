@@ -2,11 +2,11 @@
 title: "Environmental Informatics Using Research Infrastructures and their Data"
 author: "Dr. Katharyn Duffy, Dr. Ben Ruddell"
 #date: "2020 Edition"
-cover-image: "/Users/kdw223/Research/katharynduffy.github.io/images/EcoInfo4.png"
+cover-image: "/Users/rohan/katharynduffy.github.io/images/EcoInfo4.png"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
-github-repo: 'katharynduffy/katharynduffy.github.io'
+github-repo: 'rdboone/katharynduffy.github.io'
 description: "Course text for NAU INF 550"
 always_allow_html: true
 ---
