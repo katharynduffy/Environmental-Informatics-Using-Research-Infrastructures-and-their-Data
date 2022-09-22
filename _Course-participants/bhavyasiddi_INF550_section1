@@ -1,0 +1,13 @@
+title: "Introduction"
+author: "Bhavya siddi"
+date: "2022-08-24"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Introduction
+
+Hi I'm Bhavya Siddi. I am pursuing my masters in computer science and I have also completed one of your course i.e. INF523. I have been enrolled in your current course INF 550.
